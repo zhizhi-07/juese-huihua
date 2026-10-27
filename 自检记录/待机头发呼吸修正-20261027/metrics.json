@@ -1,0 +1,112 @@
+[
+  {
+    "layer": "头发 / 04 长披发 / 后发",
+    "direction": 0,
+    "bounds": [
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      }
+    ]
+  },
+  {
+    "layer": "头发 / 04 长披发 / 后发",
+    "direction": 1,
+    "bounds": [
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      }
+    ]
+  },
+  {
+    "layer": "头发 / 04 长披发 / 后发",
+    "direction": 2,
+    "bounds": [
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 0,
+        "bottom": 27
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      },
+      {
+        "top": 2,
+        "bottom": 28
+      }
+    ]
+  },
+  {
+    "layer": "头发 / 04 分束齐刘海 / 前发",
+    "direction": 0,
+    "bounds": [
+      {
+        "top": 0,
+        "bottom": 23
+      },
+      {
+        "top": 0,
+        "bottom": 23
+      },
+      {
+        "top": 2,
+        "bottom": 24
+      },
+      {
+        "top": 2,
+        "bottom": 24
+      }
+    ]
+  },
+  {
+    "layer": "头发 / 04 分束齐刘海 / 前发",
+    "direction": 1,
+    "bounds": [
+      {
+        "top": 0,
+        "bottom": 23
+      },
+      {
+        "top": 0,
+        "bottom": 23
+      },
+      {
+        "top": 2,
+        "bottom": 24
+      },
+      {
+        "top": 2,
+        "bottom": 24
+      }
+    ]
+  }
+]

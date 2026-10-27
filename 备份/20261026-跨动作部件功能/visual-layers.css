@@ -1,0 +1,16 @@
+
+/* Visual component picker: thumbnails first; advanced controls stay secondary. */
+.studio #right-sidebar{width:300px;min-width:300px}
+.studio #right-sidebar>.panel-section:has(#layer-list){max-height:none;min-height:220px;flex:1}
+.studio #layer-list{display:block;overflow:auto;min-height:120px}
+.part-tabs{display:flex;gap:3px;position:sticky;top:0;background:#f2f3ef;padding:4px 0 9px;z-index:2}
+.part-tab{flex:1;padding:7px 2px;border:1px solid #d7dfd3;background:#fff;border-radius:5px;font-size:12px;cursor:pointer;color:#405a4d}
+.part-tab[aria-selected="true"]{background:#227865;color:white;border-color:#227865}
+.part-slot{margin:0 0 12px}.part-slot-title{margin:7px 0 5px;font-size:12px;color:#4c6157}
+.studio .layer-item.visual-layer-card{display:grid;grid-template-columns:50px minmax(0,1fr);gap:8px;padding:7px;margin-bottom:6px;background:#fff;border:1px solid #dce3d7;border-radius:7px;align-items:start;cursor:pointer}
+.studio .layer-item.visual-layer-card.active{border:2px solid #27816a;padding:6px;background:#f2faf5}
+.part-thumb{width:48px;height:48px;image-rendering:pixelated;border:1px solid #d7d9da;border-radius:4px;background-color:#c9cbd2;background-image:conic-gradient(#e5e6eb 25%,transparent 0 50%,#e5e6eb 0 75%,transparent 0);background-size:12px 12px}
+.part-card-main{min-width:0}.studio .visual-layer-card .layer-name{display:block;font-size:12px;color:#304c40;white-space:normal;line-height:1.4;min-width:0}.part-state{display:block;color:#7f8c83;font-size:10px;margin:2px 0 4px}
+.part-card-actions{display:flex;align-items:center;gap:5px}.part-choose{border:1px solid #adc7bb;border-radius:4px;background:#eef6f1;color:#226c56;font-size:11px;padding:3px 9px;cursor:pointer}
+.visual-layer-card.part-visible .part-state{color:#227865}.part-more{grid-column:1/-1;border-top:1px solid #eef0ec;padding-top:3px}.part-more summary{font-size:10px;color:#89938a;cursor:pointer;list-style:none;text-align:right}.part-more[open]{padding-bottom:5px}.studio .part-more .layer-opacity-slider{max-width:130px;width:130px;margin:4px 8px 0 0}.part-empty{font-size:12px;color:#7c867e;padding:10px}
+@media(max-width:1100px){.studio #right-sidebar{width:260px;min-width:260px}}

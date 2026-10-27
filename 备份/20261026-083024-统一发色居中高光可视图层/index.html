@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>像素衣橱 · 角色绘画工作台</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/studio.css">
+</head>
+<body class="dark-theme">
+  <!-- 页面主容器 -->
+  <div id="app-container">
+    
+    <!-- 顶部主工具栏 -->
+    <header id="top-toolbar">
+      <!-- 文件与项目操作 -->
+      <div class="toolbar-group">
+        <span class="group-label">项目/文件</span>
+        <button id="import-btn" class="tool-btn" title="导入 PNG 或 Aseprite 分层源文件">📁 导入素材</button>
+        <button id="load-sample-btn" class="tool-btn" title="加载预置 4 帧角色动作表">🎮 载入示例素材</button>
+        <input type="file" id="import-file-input" accept=".ase,.aseprite,image/png,image/jpeg,image/webp" multiple style="display:none;">
+        
+        <button id="import-project-btn" class="tool-btn" title="导入工程文件 (.json)">📂 打开工程</button>
+        <input type="file" id="import-project-input" accept=".json" style="display:none;">
+
+        <div class="dropdown-wrapper">
+          <button class="tool-btn dropdown-toggle">💾 导出 ▼</button>
+          <div class="dropdown-menu">
+            <button id="export-frame-btn" class="dropdown-item">导出当前帧 (PNG)</button>
+            <button id="export-sheet-btn" class="dropdown-item">导出素材大图 (PNG)</button>
+            <button id="export-all-btn" class="dropdown-item">导出全动作打包 (ZIP)</button>
+            <hr class="dropdown-divider">
+            <button id="export-project-btn" class="dropdown-item">导出项目文件 (.json)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toolbar-separator"></div>
+
+      <!-- 历史操作 -->
+      <div class="toolbar-group">
+        <button id="undo-btn" class="tool-btn icon-btn" title="撤销 (Ctrl+Z)" disabled>↩ 撤销</button>
+        <button id="redo-btn" class="tool-btn icon-btn" title="重做 (Ctrl+Y)" disabled>↪ 重做</button>
+      </div>
+
+      <div class="toolbar-separator"></div>
+
+      <!-- 绘图工具箱 -->
+      <div class="toolbar-group tool-selection-group">
+        <button id="tool-pencil" class="tool-btn active" title="铅笔 (B / P)">✏️ 铅笔</button>
+        <button id="tool-eraser" class="tool-btn" title="橡皮擦 (E)">🧹 橡皮</button>
+        <button id="tool-eyedropper" class="tool-btn" title="吸色管 (I)">💧 吸色</button>
+        <button id="tool-fill" class="tool-btn" title="油漆桶 (G)">🪣 填充</button>
+        <button id="tool-select" class="tool-btn" title="框选工具 (M)">⬚ 框选</button>
+      </div>
+
+      <div class="toolbar-separator"></div>
+
+      <!-- 笔刷与颜色设置 -->
+      <div class="toolbar-group">
+        <label for="color-primary" class="control-label">前景色:</label>
+        <input type="color" id="color-primary" value="#140c1c" title="当前绘制颜色">
+
+        <label for="brush-size" class="control-label" style="margin-left: 8px;">粗细:</label>
+        <input type="range" id="brush-size" min="1" max="16" value="1" title="笔刷大小 ([ / ])">
+        <span id="brush-size-val" class="value-badge">1px</span>
+      </div>
+
+      <div class="toolbar-separator"></div>
+
+      <!-- 画布显示控制 -->
+      <div class="toolbar-group">
+        <button id="zoom-out" class="tool-btn icon-btn" title="缩小 (-)">🔍-</button>
+        <span id="zoom-level" class="zoom-badge">100%</span>
+        <button id="zoom-in" class="tool-btn icon-btn" title="放大 (+)">🔍+</button>
+
+        <button id="grid-toggle" class="tool-btn toggle-btn active" title="显示/隐藏像素网格">▦ 网格</button>
+        <button id="onion-toggle" class="tool-btn toggle-btn" title="显示/隐藏洋葱皮透光">🧅 洋葱皮</button>
+        <button id="diff-toggle" class="tool-btn toggle-btn" title="高亮显示与原图的变更像素">⚡ 变更高亮</button>
+      </div>
+    </header>
+
+    <!-- 工作区主体: 左侧面板 + 中间画布区 + 右侧面板 -->
+    <main id="workspace">
+      
+      <!-- 左侧栏: 素材表、切帧配置、动作与帧列表 -->
+      <aside id="left-sidebar" class="sidebar">
+        <!-- 素材表管理 -->
+        <section class="panel-section">
+          <div class="section-header">
+            <h3>素材列表 (SpriteSheets)</h3>
+          </div>
+          <div id="sheet-list" class="scroll-list"></div>
+        </section>
+
+        <!-- 切帧配置面板 -->
+        <section class="panel-section collapsible-section">
+          <div class="section-header">
+            <h3>切帧配置 (Slicing)</h3>
+          </div>
+          <div class="form-grid">
+            <div class="form-item">
+              <label for="cfg-frame-width">帧宽:</label>
+              <input type="number" id="cfg-frame-width" value="32" min="1">
+            </div>
+            <div class="form-item">
+              <label for="cfg-frame-height">帧高:</label>
+              <input type="number" id="cfg-frame-height" value="32" min="1">
+            </div>
+            <div class="form-item">
+              <label for="cfg-columns">列数:</label>
+              <input type="number" id="cfg-columns" value="1" min="1">
+            </div>
+            <div class="form-item">
+              <label for="cfg-rows">行数:</label>
+              <input type="number" id="cfg-rows" value="1" min="1">
+            </div>
+            <div class="form-item">
+              <label for="cfg-spacing-x">列间距:</label>
+              <input type="number" id="cfg-spacing-x" value="0" min="0">
+            </div>
+            <div class="form-item">
+              <label for="cfg-spacing-y">行间距:</label>
+              <input type="number" id="cfg-spacing-y" value="0" min="0">
+            </div>
+            <div class="form-item">
+              <label for="cfg-offset-x">X偏移:</label>
+              <input type="number" id="cfg-offset-x" value="0" min="0">
+            </div>
+            <div class="form-item">
+              <label for="cfg-offset-y">Y偏移:</label>
+              <input type="number" id="cfg-offset-y" value="0" min="0">
+            </div>
+          </div>
+          <button id="cfg-apply-btn" class="action-btn-primary">重新切帧应用</button>
+        </section>
+
+        <!-- 动作列表面板 -->
+        <section class="panel-section">
+          <div class="section-header">
+            <h3>动作列表 (Actions)</h3>
+          </div>
+          <div id="action-list" class="scroll-list"></div>
+          <div class="action-form">
+            <input type="text" id="cfg-action-name" placeholder="动作名称 (如: walk)" class="compact-input">
+            <select id="cfg-action-direction" class="compact-select">
+              <option value="none">无方向</option>
+              <option value="down">下 (Down)</option>
+              <option value="left">左 (Left)</option>
+              <option value="right">右 (Right)</option>
+              <option value="up">上 (Up)</option>
+            </select>
+            <button id="cfg-action-apply-btn" class="compact-btn">保存动作</button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- 中间主编辑区: 画布 + 底部帧缩略图序列 -->
+      <section id="center-viewport">
+        <!-- 主编辑画布包装层 -->
+        <div id="canvas-container">
+          <canvas id="main-canvas"></canvas>
+        </div>
+
+        <!-- 帧缩略图胶卷条 -->
+        <div id="frame-strip-wrapper">
+          <div class="strip-header">
+            <span>帧序列列表 (Timeline Frames)</span>
+            <span class="strip-hint">点击切换当前编辑帧，左右箭头快速翻页</span>
+          </div>
+          <div id="frame-list" class="frame-strip"></div>
+        </div>
+      </section>
+
+      <!-- 右侧栏: 图层、调色板、帧属性与检查 -->
+      <aside id="right-sidebar" class="sidebar">
+        
+        <!-- 图层管理器 -->
+        <section class="panel-section">
+          <div class="section-header">
+            <h3>图层管理 (Layers)</h3>
+            <button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button>
+          </div>
+          <div id="layer-list" class="scroll-list"></div>
+        </section>
+
+        <!-- 颜色调色板 -->
+        <section class="panel-section">
+          <div class="section-header">
+            <h3>调色板 (Palette)</h3>
+          </div>
+          <div id="palette-container" class="palette-grid"></div>
+          <div class="palette-tools">
+            <input type="color" id="custom-color-input" value="#d04648">
+            <button id="add-palette-color-btn" class="compact-btn">添加到色板</button>
+          </div>
+        </section>
+
+        <!-- 帧属性与审核状态面板 -->
+        <section id="properties-panel" class="panel-section">
+          <div class="section-header">
+            <h3>帧属性与审核 (Properties)</h3>
+          </div>
+          <div class="property-item">
+            <label for="frame-status">审核状态:</label>
+            <select id="frame-status" class="standard-select">
+              <option value="pending">待审核 (Pending)</option>
+              <option value="confirmed">已确认合格 (Confirmed)</option>
+              <option value="needs-fix">需要修改 (Needs-Fix)</option>
+            </select>
+          </div>
+          <div class="property-item">
+            <label for="frame-notes">标注说明 / 修改建议:</label>
+            <textarea id="frame-notes" rows="3" placeholder="填写此帧的修改说明或AI标注..."></textarea>
+          </div>
+        </section>
+
+        <!-- 质量校验与检查面板 -->
+        <section class="panel-section">
+          <div class="section-header">
+            <h3>质量检查 (Inspection)</h3>
+          </div>
+          <div class="button-row">
+            <button id="validate-btn" class="action-btn">校验当前帧</button>
+            <button id="validate-all-btn" class="action-btn">校验全部帧</button>
+          </div>
+          <div class="button-row" style="margin-top: 6px;">
+            <button id="show-diff-btn" class="compact-btn">原图对比</button>
+            <button id="show-contact-sheet-btn" class="compact-btn">连环预览图</button>
+          </div>
+        </section>
+
+      </aside>
+    </main>
+
+    <!-- 底部区域: 动画播放控制 + 状态栏 -->
+    <footer id="bottom-panel">
+      <!-- 动画播放控制器 -->
+      <div id="animation-bar">
+        <div class="preview-canvas-box">
+          <canvas id="preview-canvas" width="64" height="64"></canvas>
+        </div>
+        <div class="player-controls">
+          <button id="prev-frame-btn" class="player-btn" title="上一帧">⏮</button>
+          <button id="play-btn" class="player-btn primary-player-btn" title="播放动画">▶ 播放</button>
+          <button id="pause-btn" class="player-btn" title="暂停动画">⏸ 暂停</button>
+          <button id="stop-btn" class="player-btn" title="停止">⏹ 停止</button>
+          <button id="next-frame-btn" class="player-btn" title="下一帧">⏭</button>
+          
+          <div class="fps-control">
+            <label for="fps-input">帧率 (FPS):</label>
+            <input type="number" id="fps-input" value="8" min="1" max="60" class="fps-number-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部状态指示栏 -->
+      <div id="status-bar">
+        <span class="status-item">角色绘画编辑器</span>
+        <span class="status-sep">|</span>
+        <span class="status-item">就绪</span>
+      </div>
+    </footer>
+
+    <!-- 弹出浮层面板 (校验结果、原图对比、Contact Sheet) -->
+    <div id="validation-panel" class="floating-panel" style="display:none;"></div>
+    <div id="diff-panel" class="floating-panel" style="display:none;"></div>
+    <div id="contact-sheet-panel" class="floating-panel" style="display:none;"></div>
+
+  </div>
+
+  <!-- 外部与核心脚本加载 (严格保持顺序) -->
+  <script src="js/vendor/jszip.min.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/canvas.js"></script>
+  <script src="js/tools.js?v=selection-nudge-1"></script>
+  <script src="js/spritesheet.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/inspection.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/aseprite.js"></script>
+  <script src="js/app.js?v=selection-nudge-1"></script>
+  <script src="js/workbench.js?v=organized-layers-1"></script>
+  <script src="js/local-bridge.js"></script>
+  <script src="js/persistence.js?v=manual-shared-save-2"></script>
+  <script src="js/builtin-packs.js"></script>
+  <script src="js/walk-pack.js"></script>
+  <script src="js/poses.js"></script>
+  <script src="js/original32.js"></script>
+  <script src="js/eyes32.js"></script>
+  <script src="js/studio.js"></script>
+</body>
+</html>

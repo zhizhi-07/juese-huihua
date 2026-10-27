@@ -1,0 +1,2808 @@
+{
+  "order": "back-to-front",
+  "actions": [
+    {
+      "action": "行走",
+      "sheetIndex": 7,
+      "direction": "side",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 6,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 7,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 161,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 162,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 163,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 164,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "行走",
+      "sheetIndex": 7,
+      "direction": "down",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 6,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 7,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 155,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 156,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 157,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 158,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+              "sourceLayer": 251,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+              "sourceLayer": 252,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-行走.png",
+              "sourceLayer": 270,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "行走",
+      "sheetIndex": 7,
+      "direction": "up",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 6,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 7,
+          "backToFront": [
+            {
+              "file": "手/后手-行走.png",
+              "sourceLayer": 148,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 150,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-行走.png",
+              "sourceLayer": 151,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-行走.png",
+              "sourceLayer": 152,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-行走.png",
+              "sourceLayer": 0,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "待机",
+      "sheetIndex": 8,
+      "direction": "side",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-待机.png",
+              "sourceLayer": 182,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 183,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 184,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 185,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-待机.png",
+              "sourceLayer": 182,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 183,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 184,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 185,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-待机.png",
+              "sourceLayer": 182,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 183,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 184,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 185,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-待机.png",
+              "sourceLayer": 182,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 183,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 184,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 185,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "待机",
+      "sheetIndex": 8,
+      "direction": "down",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 177,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 178,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 179,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 177,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 178,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 179,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 177,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 178,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 179,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 177,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 178,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 179,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+              "sourceLayer": 253,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+              "sourceLayer": 254,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-待机.png",
+              "sourceLayer": 266,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "待机",
+      "sheetIndex": 8,
+      "direction": "up",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 171,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 172,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 173,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 171,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 172,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 173,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 171,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 172,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 173,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 171,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-待机.png",
+              "sourceLayer": 172,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-待机.png",
+              "sourceLayer": 173,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-待机.png",
+              "sourceLayer": 5,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/饰品-双马尾-待机.png",
+              "sourceLayer": 267,
+              "enabled": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "拾取",
+      "sheetIndex": 9,
+      "direction": "side",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 204,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 205,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 203,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 206,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        }
+      ]
+    },
+    {
+      "action": "拾取",
+      "sheetIndex": 9,
+      "direction": "down",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 198,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 199,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+              "sourceLayer": 255,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+              "sourceLayer": 256,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-拾取.png",
+              "sourceLayer": 271,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 200,
+              "enabled": true
+            }
+          ],
+          "raisedHandsOnTop": true
+        }
+      ]
+    },
+    {
+      "action": "拾取",
+      "sheetIndex": 9,
+      "direction": "up",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 190,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 190,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "手/后手-拾取.png",
+              "sourceLayer": 190,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 194,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 4,
+          "backToFront": [
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 194,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 5,
+          "backToFront": [
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 192,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-拾取.png",
+              "sourceLayer": 193,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-拾取.png",
+              "sourceLayer": 194,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-拾取.png",
+              "sourceLayer": 1,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "坐",
+      "sheetIndex": 10,
+      "direction": "side",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "手/后手-坐.png",
+              "sourceLayer": 223,
+              "enabled": false
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 224,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 225,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 226,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/侧发-双马尾-坐.png",
+              "sourceLayer": 273,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "手/后手-坐.png",
+              "sourceLayer": 223,
+              "enabled": false
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 224,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 225,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 226,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/侧发-双马尾-坐.png",
+              "sourceLayer": 273,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "手/后手-坐.png",
+              "sourceLayer": 223,
+              "enabled": false
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 224,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 225,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 226,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/侧发-双马尾-坐.png",
+              "sourceLayer": 273,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "手/后手-坐.png",
+              "sourceLayer": 223,
+              "enabled": false
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 224,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 225,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 226,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/侧发-双马尾-坐.png",
+              "sourceLayer": 273,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "坐",
+      "sheetIndex": 10,
+      "direction": "down",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 2,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 219,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 220,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 225,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-坐.png",
+              "sourceLayer": 258,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 2,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 219,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 220,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-坐.png",
+              "sourceLayer": 258,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 2,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 219,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 220,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-坐.png",
+              "sourceLayer": 258,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 2,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 219,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 220,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+              "sourceLayer": 257,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-坐.png",
+              "sourceLayer": 258,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-坐.png",
+              "sourceLayer": 272,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "坐",
+      "sheetIndex": 10,
+      "direction": "up",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 213,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 214,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 215,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 213,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 214,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 215,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 213,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 214,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 215,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 213,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-坐.png",
+              "sourceLayer": 214,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-坐.png",
+              "sourceLayer": 215,
+              "enabled": true
+            },
+            {
+              "file": "双马尾/后发-双马尾-坐.png",
+              "sourceLayer": 3,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "action": "睡觉",
+      "sheetIndex": 11,
+      "direction": "down",
+      "frames": [
+        {
+          "frame": 0,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-睡觉.png",
+              "sourceLayer": 4,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 239,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 240,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-睡觉.png",
+              "sourceLayer": 241,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-睡觉.png",
+              "sourceLayer": 250,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-睡觉.png",
+              "sourceLayer": 269,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-睡觉.png",
+              "sourceLayer": 274,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 1,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-睡觉.png",
+              "sourceLayer": 4,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 239,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 240,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-睡觉.png",
+              "sourceLayer": 241,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-睡觉.png",
+              "sourceLayer": 250,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-睡觉.png",
+              "sourceLayer": 269,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-睡觉.png",
+              "sourceLayer": 274,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 2,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-睡觉.png",
+              "sourceLayer": 4,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 239,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 240,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-睡觉.png",
+              "sourceLayer": 241,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-睡觉.png",
+              "sourceLayer": 250,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-睡觉.png",
+              "sourceLayer": 269,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-睡觉.png",
+              "sourceLayer": 274,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "frame": 3,
+          "backToFront": [
+            {
+              "file": "双马尾/后发-双马尾-睡觉.png",
+              "sourceLayer": 4,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 239,
+              "enabled": true
+            },
+            {
+              "file": "身体/素体-睡觉.png",
+              "sourceLayer": 240,
+              "enabled": true
+            },
+            {
+              "file": "手/前手-睡觉.png",
+              "sourceLayer": 241,
+              "enabled": true
+            },
+            {
+              "file": "蓝色眼睛/眼睛-青蓝-睡觉.png",
+              "sourceLayer": 250,
+              "enabled": true
+            },
+            {
+              "file": "嘴巴/嘴巴-下垂嘴-睡觉.png",
+              "sourceLayer": 269,
+              "enabled": true
+            },
+            {
+              "file": "齐刘海/前发-齐刘海-睡觉.png",
+              "sourceLayer": 274,
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "priorityRule": "举起的手在正面和侧面高于所有部件；背面仍在后发下面。坐姿放下的手不置顶。"
+}

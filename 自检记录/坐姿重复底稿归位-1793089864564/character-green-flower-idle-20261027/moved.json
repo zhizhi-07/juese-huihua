@@ -1,0 +1,47 @@
+[
+  {
+    "from": 195,
+    "to": 200,
+    "name": "body",
+    "own": "down",
+    "direction": "side",
+    "key": "10_0_0",
+    "pixels": 6
+  },
+  {
+    "from": 195,
+    "to": 200,
+    "name": "body",
+    "own": "down",
+    "direction": "side",
+    "key": "10_0_1",
+    "pixels": 6
+  },
+  {
+    "from": 195,
+    "to": 200,
+    "name": "body",
+    "own": "down",
+    "direction": "side",
+    "key": "10_0_2",
+    "pixels": 6
+  },
+  {
+    "from": 195,
+    "to": 200,
+    "name": "body",
+    "own": "down",
+    "direction": "side",
+    "key": "10_0_3",
+    "pixels": 6
+  },
+  {
+    "from": 201,
+    "to": 195,
+    "name": "head",
+    "own": "side",
+    "direction": "down",
+    "key": "10_1_0",
+    "pixels": 21
+  }
+]

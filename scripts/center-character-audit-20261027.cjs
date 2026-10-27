@@ -1,0 +1,14 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),png=require('./png.cjs');
+const out=path.resolve(__dirname,'../自检记录/角色居中检查-'+Date.now()),base='http://127.0.0.1:8765';
+const decode=f=>png.decode(Buffer.from(f.dataURL.split(',')[1],'base64'));
+function largest(im){const seen=new Set(),components=[];for(let k=0;k<im.width*im.height;k++){if(seen.has(k)||!im.data[k*4+3])continue;const q=[k],xs=[];seen.add(k);for(let i=0;i<q.length;i++){const at=q[i],x=at%im.width,y=Math.floor(at/im.width);xs.push(x);for(const [nx,ny]of [[x-1,y],[x+1,y],[x,y-1],[x,y+1]]){if(nx<0||ny<0||nx>=im.width||ny>=im.height)continue;const j=ny*im.width+nx;if(!seen.has(j)&&im.data[j*4+3]){seen.add(j);q.push(j);}}}components.push({count:q.length,left:Math.min(...xs),right:Math.max(...xs)});}assert(components.length);return components.sort((a,b)=>b.count-a.count)[0];}
+(async()=>{fs.mkdirSync(out,{recursive:true});const mainR=await fetch(base+'/api/project?id=main'),main=await mainR.json(),plan=[];
+ for(let si=0;si<main.spriteSheets.length;si++){const sheet=main.spriteSheets[si];if(!sheet.name.startsWith('original32_'))continue;for(let ai=0;ai<sheet.actions.length;ai++){const a=sheet.actions[ai],group=main.layers.findIndex(l=>l.sheetIndex===si&&l.isGroup&&l.name===a.direction),head=main.layers.find(l=>l.sheetIndex===si&&l.parent===group&&l.name==='head');assert(head);const f=head.frameData[`${si}_${ai}_0`],bounds=largest(decode(f)),center=(bounds.left+bounds.right)/2,target=(f.width-1)/2,dx=Math.round(target-center);plan.push({sheet:sheet.name,direction:a.direction,width:f.width,center,target,dx});}}
+ const list=await(await fetch(base+'/api/projects')).json(),risks=[],snapshots=[];
+ for(const info of list.filter(p=>p.id==='main'||p.id.startsWith('character-'))){const r=await fetch(base+'/api/project?id='+info.id),raw=await r.text(),p=JSON.parse(raw);fs.writeFileSync(path.join(out,info.id+'.json'),raw);snapshots.push({id:info.id,name:info.name,etag:r.headers.get('etag')});
+  for(const entry of plan){const si=p.spriteSheets.findIndex(s=>s.name===entry.sheet);if(si<0)continue;const ai=p.spriteSheets[si].actions.findIndex(a=>a.direction===entry.direction);if(ai<0||!entry.dx)continue;
+   for(const l of p.layers.filter(l=>l.sheetIndex===si&&l.frameData))for(const [key,f]of Object.entries(l.frameData)){if(!key.startsWith(`${si}_${ai}_`))continue;const im=decode(f);let lost=0;for(let y=0;y<im.height;y++)for(let x=0;x<im.width;x++)if(im.data[(y*im.width+x)*4+3]&&(x+entry.dx<0||x+entry.dx>=im.width))lost++;if(lost)risks.push({id:info.id,sheet:entry.sheet,direction:entry.direction,dx:entry.dx,layer:p.layers.indexOf(l),name:l.name,visible:l.visible,key,lost});}
+  }
+ }
+ fs.writeFileSync(path.join(out,'audit.json'),JSON.stringify({plan,risks,snapshots},null,2));console.log(JSON.stringify({out,plan,risks},null,2));
+})().catch(e=>{console.error(e);process.exitCode=1;});

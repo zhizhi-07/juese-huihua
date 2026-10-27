@@ -1,0 +1,2014 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "身体/素体-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 150,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 151,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 156,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 157,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 162,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 163,
+          "name": "head",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/前手-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 152,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 158,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 164,
+          "name": "hand",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/后手-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 148,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 155,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 161,
+          "name": "hand 2",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "齐刘海/前发-齐刘海-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 270,
+          "name": "头发 / 02 齐刘海 / 前发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/后发-双马尾-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 0,
+          "name": "头发 / 02 双马尾 / 后发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "蓝色眼睛/眼睛-青蓝-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 251,
+          "name": "眼睛 / 02 青蓝·粉下缘",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "嘴巴/嘴巴-下垂嘴-行走.png",
+      "sheetIndex": 7,
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 252,
+          "name": "嘴巴 / 下垂嘴",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "身体/素体-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 171,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 172,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 177,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 178,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 183,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 184,
+          "name": "head",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/前手-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 173,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 179,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 185,
+          "name": "hand",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/后手-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 169,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 176,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 182,
+          "name": "hand 2",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "齐刘海/前发-齐刘海-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 266,
+          "name": "头发 / 02 齐刘海 / 前发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/后发-双马尾-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 5,
+          "name": "头发 / 02 双马尾 / 后发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/饰品-双马尾-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 267,
+          "name": "发饰 / 02 双马尾 / 饰品",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "file": "蓝色眼睛/眼睛-青蓝-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 253,
+          "name": "眼睛 / 02 青蓝·粉下缘",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "嘴巴/嘴巴-下垂嘴-待机.png",
+      "sheetIndex": 8,
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 254,
+          "name": "嘴巴 / 下垂嘴",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "身体/素体-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 192,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 193,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 198,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 199,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 204,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 205,
+          "name": "head",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/前手-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 194,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 200,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 206,
+          "name": "hand",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/后手-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 190,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 197,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 203,
+          "name": "hand 2",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "齐刘海/前发-齐刘海-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 271,
+          "name": "头发 / 02 齐刘海 / 前发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/后发-双马尾-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 1,
+          "name": "头发 / 02 双马尾 / 后发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "蓝色眼睛/眼睛-青蓝-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 255,
+          "name": "眼睛 / 02 青蓝·粉下缘",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "嘴巴/嘴巴-下垂嘴-拾取.png",
+      "sheetIndex": 9,
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 256,
+          "name": "嘴巴 / 下垂嘴",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "身体/素体-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 213,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 214,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 219,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 220,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 224,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 225,
+          "name": "head",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/前手-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 2,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 215,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 226,
+          "name": "hand",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/后手-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 211,
+          "name": "hand 2",
+          "visible": true
+        },
+        {
+          "index": 218,
+          "name": "hand 2",
+          "visible": false
+        },
+        {
+          "index": 223,
+          "name": "hand 2",
+          "visible": false
+        }
+      ]
+    },
+    {
+      "file": "齐刘海/前发-齐刘海-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 272,
+          "name": "头发 / 02 齐刘海 / 前发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/后发-双马尾-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 3,
+          "name": "头发 / 02 双马尾 / 后发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/侧发-双马尾-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 273,
+          "name": "头发 / 02 双马尾侧扎发束 / 侧发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "蓝色眼睛/眼睛-青蓝-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 257,
+          "name": "眼睛 / 02 青蓝·粉下缘",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "嘴巴/嘴巴-下垂嘴-坐.png",
+      "sheetIndex": 10,
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 258,
+          "name": "嘴巴 / 下垂嘴",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "身体/素体-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 233,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 234,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 239,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 240,
+          "name": "head",
+          "visible": true
+        },
+        {
+          "index": 245,
+          "name": "body",
+          "visible": true
+        },
+        {
+          "index": 246,
+          "name": "head",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "手/前手-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 235,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 241,
+          "name": "hand",
+          "visible": true
+        },
+        {
+          "index": 247,
+          "name": "hand",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "齐刘海/前发-齐刘海-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 274,
+          "name": "头发 / 02 齐刘海 / 前发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "双马尾/后发-双马尾-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 4,
+          "name": "头发 / 02 双马尾 / 后发",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "蓝色眼睛/眼睛-青蓝-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 250,
+          "name": "眼睛 / 00 闭眼",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "file": "嘴巴/嘴巴-下垂嘴-睡觉.png",
+      "sheetIndex": 11,
+      "action": "睡觉",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            450,
+            450,
+            450,
+            450
+          ]
+        }
+      ],
+      "sourceLayers": [
+        {
+          "index": 269,
+          "name": "嘴巴 / 下垂嘴",
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+    "name": "ai",
+    "status": "saved-and-verified",
+    "changedFrames": 8,
+    "handLayers": 0
+  },
+  {
+    "id": "character-black-buns-idle-20261027",
+    "name": "炭黑双丸子·白发罩·待机分支",
+    "status": "saved-and-verified",
+    "changedFrames": 48,
+    "handLayers": 6
+  },
+  {
+    "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+    "name": "可爱-萌衣服",
+    "status": "saved-and-verified",
+    "changedFrames": 17,
+    "handLayers": 6
+  },
+  {
+    "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+    "name": "萌",
+    "status": "saved-and-verified",
+    "changedFrames": 8,
+    "handLayers": 0
+  },
+  {
+    "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+    "name": "萌",
+    "status": "saved-and-verified",
+    "changedFrames": 8,
+    "handLayers": 0
+  },
+  {
+    "id": "character-green-flower-idle-20261027",
+    "name": "灰色长披发·待机分支",
+    "status": "saved-and-verified",
+    "changedFrames": 27,
+    "handLayers": 6
+  },
+  {
+    "id": "character-pink-bob-trial-20261027",
+    "name": "粉色外翻短发·正面首帧试稿",
+    "status": "saved-and-verified",
+    "changedFrames": 23,
+    "handLayers": 6
+  }
+]

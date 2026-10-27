@@ -1,0 +1,165 @@
+{
+  "plan": [
+    {
+      "sheet": "original32_walk",
+      "direction": "side",
+      "wanted": -1,
+      "dx": 0,
+      "centerBefore": 16.5,
+      "centerAfter": 16.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "down",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "up",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "side",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "down",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "up",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "side",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 20.5,
+      "centerAfter": 19.5,
+      "target": 19.5
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "down",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 20.5,
+      "centerAfter": 19.5,
+      "target": 19.5
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "up",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 20.5,
+      "centerAfter": 19.5,
+      "target": 19.5
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "side",
+      "wanted": 3,
+      "dx": 3,
+      "centerBefore": 12.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "down",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "up",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    },
+    {
+      "sheet": "original32_sleep",
+      "direction": "down",
+      "wanted": -1,
+      "dx": -1,
+      "centerBefore": 16.5,
+      "centerAfter": 15.5,
+      "target": 15.5
+    }
+  ],
+  "skipped": [
+    {
+      "id": "main",
+      "name": "头发 / 02 双马尾 / 后发",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "reason": "inactive edge-touching legacy part retained"
+    },
+    {
+      "id": "main",
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "reason": "inactive edge-touching legacy part retained"
+    },
+    {
+      "id": "main",
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "reason": "inactive edge-touching legacy part retained"
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "头发 / 02 双马尾 / 后发",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "reason": "inactive edge-touching legacy part retained"
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "reason": "inactive edge-touching legacy part retained"
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "reason": "inactive edge-touching legacy part retained"
+    }
+  ]
+}

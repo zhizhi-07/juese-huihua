@@ -1,0 +1,42 @@
+[
+  {
+    "id": "main",
+    "name": "人物主工程",
+    "etag": "\"d29f416a3e50c63d24379de65ee564f7f7761ddcdd89b0f828ac25040c5a59f5\""
+  },
+  {
+    "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+    "name": "ai",
+    "etag": "\"d575058f8110699aac6224a8f0daa1abe46de073ffc6250336b30086ea7aeb96\""
+  },
+  {
+    "id": "character-black-buns-idle-20261027",
+    "name": "炭黑双丸子·白发罩·待机分支",
+    "etag": "\"65d45bbaf90a169d4c60a5711cea4ef75611c195befe655f99fb0320ffde5bcb\""
+  },
+  {
+    "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+    "name": "可爱-萌衣服",
+    "etag": "\"a2ca8f3ff992f6d3abbf3a4f730581798809aa10aa29e2fc8d89f7ecd6826fac\""
+  },
+  {
+    "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+    "name": "萌",
+    "etag": "\"20918479ea77c4362fc8a434fd5573ef3be8f60be2592e87c0df57b950020241\""
+  },
+  {
+    "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+    "name": "萌",
+    "etag": "\"c6174bf5fc2530fcf1aec4a15e2bc7cf0e4815bcdf90026dd15575618f97272b\""
+  },
+  {
+    "id": "character-green-flower-idle-20261027",
+    "name": "灰色长披发·待机分支",
+    "etag": "\"166e7a5b6f1f837c23977a373faf3c7a822587c4aab01858594abfb1b27a86bf\""
+  },
+  {
+    "id": "character-pink-bob-trial-20261027",
+    "name": "粉色外翻短发·正面首帧试稿",
+    "etag": "\"67ae6c899373963ec9df811724eba614ae686e2ce6d612a88222aa09de81e106\""
+  }
+]

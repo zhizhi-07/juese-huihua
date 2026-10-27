@@ -1,0 +1,1002 @@
+[
+  {
+    "id": "main",
+    "name": "人物主工程",
+    "etag": "\"f62b6bdae51e0324e233471dbb65b891f88598904437e1a6de50994d4bfc2689\"",
+    "changed": 714,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 0,
+          "right": 31,
+          "count": 793
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 768
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 774
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 727
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 742
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 678
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 3,
+          "right": 34,
+          "count": 779
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 5,
+          "right": 34,
+          "count": 772
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 5,
+          "right": 34,
+          "count": 782
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 26,
+          "count": 492
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 710
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 710
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 786
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+    "name": "ai",
+    "etag": "\"e1de63384ee274073da7e4fc8576c78170b41827f7adb2405d6148dec59c57e6\"",
+    "changed": 129,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 27,
+          "count": 530
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 26,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 9,
+          "right": 30,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 25,
+          "count": 469
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 532
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 526
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 582
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-black-buns-idle-20261027",
+    "name": "炭黑双丸子·白发罩·待机分支",
+    "etag": "\"b54e013c5a53881d63d3a4dc94368b1e2e241ac0fc8672e1480d635d35615b3d\"",
+    "changed": 381,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 2,
+          "right": 26,
+          "count": 614
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 670
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 670
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 9,
+          "right": 31,
+          "count": 566
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 610
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 25,
+          "count": 469
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 580
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 590
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 638
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+    "name": "可爱-萌衣服",
+    "etag": "\"c9ef222d1693b56254fe6fee385151c72f50ecce4c4d8945fd4bf678ca3f005a\"",
+    "changed": 713,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 0,
+          "right": 31,
+          "count": 793
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 768
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 774
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 727
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 742
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 678
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 3,
+          "right": 34,
+          "count": 779
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 5,
+          "right": 34,
+          "count": 772
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 5,
+          "right": 34,
+          "count": 782
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 26,
+          "count": 492
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 710
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 710
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 30,
+          "count": 786
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+    "name": "萌",
+    "etag": "\"67c7d3bfe651e010f32108428771e6fadf3cd2d0382601d9773044a4f85f2ddc\"",
+    "changed": 129,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 27,
+          "count": 530
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 26,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 9,
+          "right": 30,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 25,
+          "count": 129
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 532
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 526
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 582
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+    "name": "萌",
+    "etag": "\"75ea4b1ff5a3992ce5100876ecf9d55c5bd29104cb488c8fe3b115942d969b0f\"",
+    "changed": 134,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 27,
+          "count": 530
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 26,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 1,
+          "right": 29,
+          "count": 691
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 414
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 9,
+          "right": 30,
+          "count": 538
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 554
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 25,
+          "count": 469
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 532
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 526
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 582
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-green-flower-idle-20261027",
+    "name": "灰色长披发·待机分支",
+    "etag": "\"65633e996134b21fac94594048d857fcd8ae44407824e976119090d10c059bde\"",
+    "changed": 717,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 4,
+          "right": 29,
+          "count": 733
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 730
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 728
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 742
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 758
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 754
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 731
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 740
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 734
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 4,
+          "right": 25,
+          "count": 535
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 674
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 676
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 759
+        }
+      }
+    ]
+  },
+  {
+    "id": "character-pink-bob-trial-20261027",
+    "name": "粉色外翻短发·正面首帧试稿",
+    "etag": "\"9b96049807418047326b78c7ff02dced1ef6984b6885832de48591b4bb936047\"",
+    "changed": 381,
+    "compositeBounds": [
+      {
+        "sheet": "original32_walk",
+        "direction": "side",
+        "bounds": {
+          "left": 5,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_walk",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "side",
+        "bounds": {
+          "left": 3,
+          "right": 27,
+          "count": 626
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 642
+        }
+      },
+      {
+        "sheet": "original32_idle",
+        "direction": "up",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 610
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "side",
+        "bounds": {
+          "left": 9,
+          "right": 31,
+          "count": 566
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "down",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 586
+        }
+      },
+      {
+        "sheet": "original32_pickup",
+        "direction": "up",
+        "bounds": {
+          "left": 7,
+          "right": 32,
+          "count": 610
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "side",
+        "bounds": {
+          "left": 6,
+          "right": 25,
+          "count": 469
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 580
+        }
+      },
+      {
+        "sheet": "original32_sit",
+        "direction": "up",
+        "bounds": {
+          "left": 2,
+          "right": 29,
+          "count": 590
+        }
+      },
+      {
+        "sheet": "original32_sleep",
+        "direction": "down",
+        "bounds": {
+          "left": 3,
+          "right": 28,
+          "count": 638
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,5769 @@
+{
+  "ok": true,
+  "sheetCount": 12,
+  "sheetNames": [
+    "0:run",
+    "1:idle",
+    "2:jump",
+    "3:hurt",
+    "4:death",
+    "5:pick up",
+    "6:walk",
+    "7:original32_walk",
+    "8:original32_idle",
+    "9:original32_pickup",
+    "10:original32_sit",
+    "11:original32_sleep"
+  ],
+  "globalLayerCount": 274,
+  "globalLayers": [
+    {
+      "i": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 1,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 2,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 3,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 4,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 5,
+      "name": "头发 / 01 披发 / 后发",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 6,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 7,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 8,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 9,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 10,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 11,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 12,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 13,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 14,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 15,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 16,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 17,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 18,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 19,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 20,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 21,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 22,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 23,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 24,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 25,
+      "name": "run / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 0,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 26,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 27,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 28,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 29,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 30,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 31,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 32,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 33,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 34,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 35,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 36,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 37,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 38,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 39,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 40,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 41,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 42,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 43,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 44,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 45,
+      "name": "idle / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 1,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 46,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 47,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 48,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 49,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 50,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 51,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 52,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 53,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 54,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 55,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 56,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 57,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 58,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 59,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 60,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 61,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 62,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 63,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 64,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 65,
+      "name": "jump / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 2,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 66,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 67,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 68,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 69,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 70,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 71,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 72,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 73,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 74,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 75,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 76,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 77,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 78,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 79,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 80,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 81,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 82,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 83,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 84,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 85,
+      "name": "hurt / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 3,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 86,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 87,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 88,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 89,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 90,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 91,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 92,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 93,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 94,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 95,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 96,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 97,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 98,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 99,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 100,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 101,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 102,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 103,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 104,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 105,
+      "name": "death / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 4,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 106,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 107,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 108,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 109,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 110,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 111,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 112,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 113,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 114,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 115,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 116,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 117,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 118,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 119,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 120,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 121,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 122,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 123,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 124,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 125,
+      "name": "pick up / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 5,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 126,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 127,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 128,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 129,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 130,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 131,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 132,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 133,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 134,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 135,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 136,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 137,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 138,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 139,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 140,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 141,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 142,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 143,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 144,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 145,
+      "name": "walk / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 6,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 146,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 147,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 148,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 149,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 150,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 151,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 152,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 153,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 154,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 155,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 156,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 157,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 158,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 159,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 160,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 161,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 162,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 163,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 164,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 165,
+      "name": "original32_walk / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 166,
+      "name": "眼睛 / 01 紫色",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 167,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 168,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 169,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 170,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 171,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 172,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 173,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 174,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 175,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 176,
+      "name": "body",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 177,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 178,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 179,
+      "name": "vfx",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 180,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 181,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 182,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 183,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 184,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 185,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 186,
+      "name": "original32_idle / 衣服与发型",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 187,
+      "name": "眼睛 / 01 紫色",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 188,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 189,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 190,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 191,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 192,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 193,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 194,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 195,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 196,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 197,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 198,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 199,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 200,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 201,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 202,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 203,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 204,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 205,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 206,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 207,
+      "name": "original32_pickup / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 208,
+      "name": "眼睛 / 01 紫色",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 209,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 210,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 211,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 212,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 213,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 214,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 215,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 216,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 217,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 218,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 219,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 220,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 221,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 222,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 223,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 224,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 225,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 226,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 227,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 228,
+      "name": "original32_sit / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 229,
+      "name": "眼睛 / 01 紫色",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 230,
+      "name": "up",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 231,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 232,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 233,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 234,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 235,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 236,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 237,
+      "name": "down",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 238,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 239,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 240,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 241,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 242,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 243,
+      "name": "side",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 244,
+      "name": "hand 2",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 245,
+      "name": "body",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 246,
+      "name": "head",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 247,
+      "name": "hand",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": true,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 248,
+      "name": "vfx",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 249,
+      "name": "original32_sleep / 衣服与发型",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 250,
+      "name": "眼睛 / 00 闭眼",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 251,
+      "name": "眼睛 / 02 青蓝·粉下缘",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 252,
+      "name": "嘴巴 / 下垂嘴",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 253,
+      "name": "眼睛 / 02 青蓝·粉下缘",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 254,
+      "name": "嘴巴 / 下垂嘴",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 255,
+      "name": "眼睛 / 02 青蓝·粉下缘",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 256,
+      "name": "嘴巴 / 下垂嘴",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 257,
+      "name": "眼睛 / 02 青蓝·粉下缘",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "parent",
+        "depth",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 258,
+      "name": "嘴巴 / 下垂嘴",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 259,
+      "name": "服装 / 01 深蓝JK / 上衣",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 260,
+      "name": "服装 / 01 深蓝JK / 百褶裙",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 261,
+      "name": "服装 / 01 深蓝JK / 红领结",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 262,
+      "name": "头发 / 01 斜刘海 / 前发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 263,
+      "name": "发饰 / 01 灰蓝蝴蝶结",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 264,
+      "name": "绘画图层 260",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 265,
+      "name": "眼睛呀",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 266,
+      "name": "头发 / 02 齐刘海 / 前发",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 267,
+      "name": "发饰 / 02 双马尾 / 饰品",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 268,
+      "name": "研究3",
+      "visible": false,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 8,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 269,
+      "name": "嘴巴 / 下垂嘴",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 270,
+      "name": "头发 / 02 齐刘海 / 前发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 7,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 271,
+      "name": "头发 / 02 齐刘海 / 前发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 9,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 272,
+      "name": "头发 / 02 齐刘海 / 前发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 10,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    },
+    {
+      "i": 273,
+      "name": "头发 / 02 齐刘海 / 前发",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "sheetIndex": 11,
+      "referenceOnly": false,
+      "keys": [
+        "sheetIndex",
+        "isGroup",
+        "parent",
+        "depth",
+        "referenceOnly",
+        "name",
+        "visible",
+        "locked",
+        "opacity",
+        "frameData"
+      ]
+    }
+  ],
+  "currentSheet": {
+    "index": 8,
+    "name": "original32_idle",
+    "frameWidth": 32,
+    "frameHeight": 32,
+    "actions": [
+      {
+        "ai": 0,
+        "name": "side",
+        "direction": "side",
+        "frames": [
+          {
+            "fi": 0,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 1,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 2,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 3,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          }
+        ]
+      },
+      {
+        "ai": 1,
+        "name": "down",
+        "direction": "down",
+        "frames": [
+          {
+            "fi": 0,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 1,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 2,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 3,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          }
+        ]
+      },
+      {
+        "ai": 2,
+        "name": "up",
+        "direction": "up",
+        "frames": [
+          {
+            "fi": 0,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 1,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 2,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          },
+          {
+            "fi": 3,
+            "keys": [
+              "sheetIndex",
+              "sourceX",
+              "sourceY",
+              "width",
+              "height",
+              "locked",
+              "lockedRegions",
+              "status",
+              "duration",
+              "notes"
+            ],
+            "sheetIndex": 8
+          }
+        ]
+      }
+    ]
+  }
+}

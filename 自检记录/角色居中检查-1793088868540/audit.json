@@ -1,0 +1,592 @@
+{
+  "plan": [
+    {
+      "sheet": "original32_walk",
+      "direction": "side",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "down",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "up",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "side",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "down",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "up",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "side",
+      "width": 40,
+      "center": 20.5,
+      "target": 19.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "down",
+      "width": 40,
+      "center": 20.5,
+      "target": 19.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "up",
+      "width": 40,
+      "center": 20.5,
+      "target": 19.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "side",
+      "width": 32,
+      "center": 12.5,
+      "target": 15.5,
+      "dx": 3
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "down",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "up",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    },
+    {
+      "sheet": "original32_sleep",
+      "direction": "down",
+      "width": 32,
+      "center": 16.5,
+      "target": 15.5,
+      "dx": -1
+    }
+  ],
+  "risks": [
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_0",
+      "lost": 5
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_1",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_2",
+      "lost": 3
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_3",
+      "lost": 7
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_4",
+      "lost": 5
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_5",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_6",
+      "lost": 3
+    },
+    {
+      "id": "main",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_7",
+      "lost": 7
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_0",
+      "lost": 5
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_1",
+      "lost": 7
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_2",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_3",
+      "lost": 3
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_0",
+      "lost": 2
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_1",
+      "lost": 2
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_2",
+      "lost": 2
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_3",
+      "lost": 2
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_0",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_1",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_2",
+      "lost": 4
+    },
+    {
+      "id": "main",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_3",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_0",
+      "lost": 5
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_1",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_2",
+      "lost": 3
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_3",
+      "lost": 7
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_4",
+      "lost": 5
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_5",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_6",
+      "lost": 3
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_walk",
+      "direction": "side",
+      "dx": -1,
+      "layer": 0,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": true,
+      "key": "7_0_7",
+      "lost": 7
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_0",
+      "lost": 5
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_1",
+      "lost": 7
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_2",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "side",
+      "dx": -1,
+      "layer": 5,
+      "name": "头发 / 02 双马尾 / 后发",
+      "visible": false,
+      "key": "8_0_3",
+      "lost": 3
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_0",
+      "lost": 2
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_1",
+      "lost": 2
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_2",
+      "lost": 2
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 7,
+      "name": "头发 / 03 灰色长披发 / 后发",
+      "visible": false,
+      "key": "8_1_3",
+      "lost": 2
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_0",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_1",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_2",
+      "lost": 4
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "sheet": "original32_idle",
+      "direction": "down",
+      "dx": -1,
+      "layer": 8,
+      "name": "头发 / 03 浅绿双马尾 / 后发",
+      "visible": false,
+      "key": "8_1_3",
+      "lost": 4
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "main",
+      "name": "人物主工程",
+      "etag": "\"f62b6bdae51e0324e233471dbb65b891f88598904437e1a6de50994d4bfc2689\""
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "name": "ai",
+      "etag": "\"e1de63384ee274073da7e4fc8576c78170b41827f7adb2405d6148dec59c57e6\""
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "name": "炭黑双丸子·白发罩·待机分支",
+      "etag": "\"b54e013c5a53881d63d3a4dc94368b1e2e241ac0fc8672e1480d635d35615b3d\""
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "可爱-萌衣服",
+      "etag": "\"c9ef222d1693b56254fe6fee385151c72f50ecce4c4d8945fd4bf678ca3f005a\""
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "name": "萌",
+      "etag": "\"67c7d3bfe651e010f32108428771e6fadf3cd2d0382601d9773044a4f85f2ddc\""
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "name": "萌",
+      "etag": "\"75ea4b1ff5a3992ce5100876ecf9d55c5bd29104cb488c8fe3b115942d969b0f\""
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "name": "灰色长披发·待机分支",
+      "etag": "\"65633e996134b21fac94594048d857fcd8ae44407824e976119090d10c059bde\""
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "name": "粉色外翻短发·正面首帧试稿",
+      "etag": "\"9b96049807418047326b78c7ff02dced1ef6984b6885832de48591b4bb936047\""
+    }
+  ]
+}

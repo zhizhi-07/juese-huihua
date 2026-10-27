@@ -1,0 +1,290 @@
+[
+  {
+    "label": "idle",
+    "action": 0,
+    "frame": 0,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 0,
+    "frame": 1,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 0,
+    "frame": 2,
+    "bounds": [
+      10,
+      24,
+      23,
+      31,
+      112
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 0,
+    "frame": 3,
+    "bounds": [
+      10,
+      24,
+      23,
+      31,
+      112
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 0,
+    "frame": 0,
+    "bounds": [
+      6,
+      19,
+      22,
+      31,
+      187
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 0,
+    "frame": 1,
+    "bounds": [
+      6,
+      19,
+      22,
+      31,
+      187
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 0,
+    "frame": 2,
+    "bounds": [
+      6,
+      20,
+      22,
+      31,
+      173
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 0,
+    "frame": 3,
+    "bounds": [
+      6,
+      20,
+      22,
+      31,
+      173
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 1,
+    "frame": 0,
+    "bounds": [
+      10,
+      21,
+      23,
+      31,
+      139
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 1,
+    "frame": 1,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 1,
+    "frame": 2,
+    "bounds": [
+      10,
+      6,
+      26,
+      31,
+      114
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 1,
+    "frame": 3,
+    "bounds": [
+      10,
+      24,
+      23,
+      31,
+      112
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 1,
+    "frame": 0,
+    "bounds": [
+      9,
+      20,
+      24,
+      31,
+      174
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 1,
+    "frame": 1,
+    "bounds": [
+      9,
+      20,
+      24,
+      31,
+      174
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 1,
+    "frame": 2,
+    "bounds": [
+      9,
+      21,
+      24,
+      31,
+      160
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 1,
+    "frame": 3,
+    "bounds": [
+      9,
+      21,
+      24,
+      31,
+      160
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 2,
+    "frame": 0,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 2,
+    "frame": 1,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 2,
+    "frame": 2,
+    "bounds": [
+      10,
+      24,
+      23,
+      31,
+      112
+    ]
+  },
+  {
+    "label": "idle",
+    "action": 2,
+    "frame": 3,
+    "bounds": [
+      10,
+      24,
+      23,
+      31,
+      112
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 2,
+    "frame": 0,
+    "bounds": [
+      10,
+      20,
+      23,
+      31,
+      168
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 2,
+    "frame": 1,
+    "bounds": [
+      10,
+      20,
+      23,
+      31,
+      168
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 2,
+    "frame": 2,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  },
+  {
+    "label": "sit",
+    "action": 2,
+    "frame": 3,
+    "bounds": [
+      10,
+      22,
+      23,
+      31,
+      140
+    ]
+  }
+]

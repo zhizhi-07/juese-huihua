@@ -1,0 +1,1 @@
+window.PE_LOCAL_BRIDGE={"url":"http://127.0.0.1:8765","token":"d4d534cc809a8cb8db4b563b3068c4e72003ae9bd95555cd6e508ec8158ff120"};
