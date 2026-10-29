@@ -29,10 +29,7 @@ window.PE = window.PE || {};
       this._selectStartX = -1;
       this._selectStartY = -1;
       this._isMoving = false;
-      this._moveStartX = -1;
-      this._moveStartY = -1;
-      this._moveOriginX = 0;
-      this._moveOriginY = 0;
+      this._transform = null;
     }
 
     /**
@@ -55,6 +52,7 @@ window.PE = window.PE || {};
      * @param {string} name 
      */
     setTool(name) {
+      if (this._transform) this.clearSelection();
       this.currentTool = name;
       if (name !== 'select' && name !== 'move' && this.selection) {
         // Keep selection active or allow tools to edit within/without as needed
@@ -106,7 +104,7 @@ window.PE = window.PE || {};
      * @param {number} py 
      * @param {number} [button=0] 0: left, 2: right
      */
-    onMouseDown(px, py, button = 0) {
+    onMouseDown(px, py, button = 0, resizeHandle = null) {
       this._mouseButton = button;
       if (!this.project) return;
 
@@ -183,19 +181,14 @@ window.PE = window.PE || {};
         }
 
         case 'move': {
-          if (this.selection && px >= this.selection.x && px < this.selection.x + this.selection.w &&
-              py >= this.selection.y && py < this.selection.y + this.selection.h) {
-            this._isMoving = true;
-            this._moveStartX = px;
-            this._moveStartY = py;
-            this._moveOriginX = this.selection.x;
-            this._moveOriginY = this.selection.y;
-            if (!this.selectionData) {
-              this.copySelection();
-            }
-          } else {
-            this.clearSelection();
-          }
+          if (button !== 0 || frame.locked) return;
+          const s=this.selection,tolerance=4/(this.canvasManager?.zoom||1);
+          const resize=resizeHandle??(s&&Math.abs(px-s.x-s.w)<=tolerance&&Math.abs(py-s.y-s.h)<=tolerance);
+          if (!resize && (!s || px<s.x || py<s.y || px>=s.x+s.w || py>=s.y+s.h)) this.selectLayerAt(px,py);
+          const source=this.selection,index=this.project.currentLayerIndex;
+          if (!source || !this._selectionPixels(index,frameKey,source,source)) return;
+          this._isMoving=true;this.isDrawing=true;this.selectionData=null;
+          this._transform={layer:this.project.getCurrentLayer(),index,frameKey,source:{...source},target:{...source},px,py,resize,preview:null};
           break;
         }
       }
@@ -210,6 +203,16 @@ window.PE = window.PE || {};
       if (!this.project) return;
       const frameKey = this.project.getFrameKey();
       const layerIdx = this.project.currentLayerIndex;
+
+      if (this._transform) {
+        const t=this._transform,f=this.project.getCurrentFrame(),s=t.source;
+        if (frameKey!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
+        const target=t.resize?this._scaledSelection(s,Math.max((px-s.x)/s.w,(py-s.y)/s.h)):
+          {...s,x:Math.max(0,Math.min(f.width-s.w,s.x+px-t.px)),y:Math.max(0,Math.min(f.height-s.h,s.y+py-t.py))};
+        const preview=this._selectionPixels(t.index,t.frameKey,s,target);
+        if (preview) {t.target=target;t.preview=preview;this.setSelection(target.x,target.y,target.w,target.h);}
+        return;
+      }
 
       if (this.isDrawing) {
         if (this.currentTool === 'pencil') {
@@ -234,15 +237,6 @@ window.PE = window.PE || {};
           const sh = Math.abs(py - this._selectStartY) + 1;
           this.setSelection(sx, sy, sw, sh);
         }
-      } else if (this._isMoving && this.selection) {
-        const dx = px - this._moveStartX;
-        const dy = py - this._moveStartY;
-        this.selection.x = this._moveOriginX + dx;
-        this.selection.y = this._moveOriginY + dy;
-        if (this.canvasManager) {
-          this.canvasManager.selection = this.selection;
-          this.canvasManager.render();
-        }
       }
     }
 
@@ -252,6 +246,12 @@ window.PE = window.PE || {};
      * @param {number} py 
      */
     onMouseUp(px, py) {
+      if (this._transform) {
+        const t=this._transform;this._transform=null;this._isMoving=false;this.isDrawing=false;
+        if (this.project.getFrameKey()!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
+        if (!this.transformSelection(t.index,t.frameKey,t.source,t.target)) this.setSelection(t.source.x,t.source.y,t.source.w,t.source.h);
+        return;
+      }
       if (this.isDrawing) {
         this.isDrawing = false;
         this.lastX = -1;
@@ -270,21 +270,6 @@ window.PE = window.PE || {};
         }
       }
 
-      if (this._isMoving) {
-        this._isMoving = false;
-        if (this.selection && (this.selection.x !== this._moveOriginX || this.selection.y !== this._moveOriginY)) {
-          this.moveSelection(
-            this.project.currentLayerIndex,
-            this.project.getFrameKey(),
-            this._moveOriginX,
-            this._moveOriginY,
-            this.selection.w,
-            this.selection.h,
-            this.selection.x,
-            this.selection.y
-          );
-        }
-      }
     }
 
     // ==========================================
@@ -672,6 +657,8 @@ window.PE = window.PE || {};
      * Deselect and clear selection buffer.
      */
     clearSelection() {
+      if (this._transform) this.isDrawing=false;
+      this._transform=null;this._isMoving=false;
       this.selection = null;
       this.selectionData = null;
       if (this.canvasManager) {
@@ -778,68 +765,68 @@ window.PE = window.PE || {};
     }
 
     moveSelection(layerIdx, frameKey, srcX, srcY, srcW, srcH, destX, destY) {
-      if (!this.project) return false;
-      const layer=this.project.layers[layerIdx],frame=this.project.getCurrentFrame();
-      if (!layer || layer.locked || PE.isHandLayer(layer) || layer.isGroup || !layer.visible || !frame || frame.locked) return false;
-      for(let y=0;y<srcH;y++)for(let x=0;x<srcW;x++) {
-        if(!this._isInBounds(srcX+x,srcY+y,frame.width,frame.height) || !this._isInBounds(destX+x,destY+y,frame.width,frame.height) || frame.isPixelLocked(srcX+x,srcY+y) || frame.isPixelLocked(destX+x,destY+y)) return false;
-      }
+      return this.transformSelection(layerIdx,frameKey,{x:srcX,y:srcY,w:srcW,h:srcH},{x:destX,y:destY,w:srcW,h:srcH});
+    }
 
-      // Extract current layer pixels inside source region if selectionData is absent
-      if (!this.selectionData) {
-        const layer = this.project.layers[layerIdx];
-        const frameData = layer ? layer.getFrameData(frameKey) : null;
-        this.selectionData = PE.utils.createTransparentImageData(srcW, srcH);
-        if (frameData) {
-          for (let y = 0; y < srcH; y++) {
-            for (let x = 0; x < srcW; x++) {
-              const c = PE.utils.getPixelFromImageData(frameData, srcX + x, srcY + y);
-              if (c) {
-                PE.utils.setPixelInImageData(this.selectionData, x, y, c.r, c.g, c.b, c.a);
-              }
-            }
-          }
+    selectLayerAt(x,y) {
+      const p=this.project,key=p.getFrameKey();this.clearSelection();
+      for (const layer of PE.getRenderLayers(p,p.currentSheetIndex,p.currentActionIndex).slice().reverse()) {
+        if (layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || layer.opacity<=0 || !PE.isLayerVisible(p,layer)) continue;
+        const data=layer.getFrameData(key);
+        if (!data || !this._isInBounds(x,y,data.width,data.height) || !data.data[(y*data.width+x)*4+3]) continue;
+        let left=data.width,top=data.height,right=0,bottom=0;
+        for(let row=0;row<data.height;row++)for(let col=0;col<data.width;col++)if(data.data[(row*data.width+col)*4+3]){
+          left=Math.min(left,col);top=Math.min(top,row);right=Math.max(right,col);bottom=Math.max(bottom,row);
         }
+        p.currentLayerIndex=p.layers.indexOf(layer);this.setSelection(left,top,right-left+1,bottom-top+1);return true;
       }
+      return false;
+    }
 
-      if (this.historyManager) {
-        this.historyManager.beginBatch('移动选区');
+    _scaledSelection(s,scale) {
+      const f=this.project.getCurrentFrame();
+      scale=Math.max(1/Math.min(s.w,s.h),Math.min(scale,(f.width-s.x)/s.w,(f.height-s.y)/s.h));
+      return {...s,w:Math.max(1,Math.min(f.width-s.x,Math.round(s.w*scale))),h:Math.max(1,Math.min(f.height-s.y,Math.round(s.h*scale)))};
+    }
+
+    resizeSelection(scale) {
+      if (!this.selection || this.isDrawing || !Number.isFinite(scale) || scale<=0) return false;
+      const s=this.selection;
+      return this.transformSelection(this.project.currentLayerIndex,this.project.getFrameKey(),s,this._scaledSelection(s,scale));
+    }
+
+    _selectionPixels(layerIdx,key,source,target) {
+      const p=this.project,layer=p?.layers[layerIdx],[si,ai,fi]=key.split('_').map(Number),frame=p?.spriteSheets[si]?.actions[ai]?.frames[fi];
+      if (!layer || layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || !PE.isLayerVisible(p,layer,si) || !frame || frame.locked) return null;
+      const data=layer.getFrameData(key);if(!data)return null;
+      for(const s of [source,target]) {
+        if(![s.x,s.y,s.w,s.h].every(Number.isSafeInteger)||s.x<0||s.y<0||s.w<1||s.h<1||s.x+s.w>frame.width||s.y+s.h>frame.height)return null;
+        for(let y=s.y;y<s.y+s.h;y++)for(let x=s.x;x<s.x+s.w;x++)if(frame.isPixelLocked(x,y))return null;
       }
-
-      // Erase original source pixels
-      const eraseList = [];
-      for (let y = 0; y < srcH; y++) {
-        for (let x = 0; x < srcW; x++) {
-          eraseList.push({ x: srcX + x, y: srcY + y });
-        }
+      const result=PE.utils.cloneImageData(data);
+      for(let y=source.y;y<source.y+source.h;y++)result.data.fill(0,(y*data.width+source.x)*4,(y*data.width+source.x+source.w)*4);
+      for(let y=0;y<target.h;y++)for(let x=0;x<target.w;x++){
+        const sx=source.x+Math.min(source.w-1,Math.floor((x+.5)*source.w/target.w)),sy=source.y+Math.min(source.h-1,Math.floor((y+.5)*source.h/target.h)),i=(sy*data.width+sx)*4;
+        if(data.data[i+3])result.data.set(data.data.subarray(i,i+4),((target.y+y)*data.width+target.x+x)*4);
       }
-      this.erasePixels(layerIdx, frameKey, eraseList);
+      return result;
+    }
 
-      // Paste selectionData at new destination
-      const pasteList = [];
-      for (let y = 0; y < this.selectionData.height; y++) {
-        for (let x = 0; x < this.selectionData.width; x++) {
-          const c = PE.utils.getPixelFromImageData(this.selectionData, x, y);
-          if (c && c.a > 0) {
-            pasteList.push({
-              x: destX + x,
-              y: destY + y,
-              r: c.r,
-              g: c.g,
-              b: c.b,
-              a: c.a
-            });
-          }
-        }
+    transformSelection(layerIdx,key,source,target) {
+      const after=this._selectionPixels(layerIdx,key,source,target);if(!after)return false;
+      const before=this.project.layers[layerIdx].getFrameData(key),history=this.historyManager;
+      history?.beginBatch(source.w===target.w&&source.h===target.h?'移动选区':'缩放选区');
+      for(let i=0;i<after.data.length;i+=4){
+        if(after.data.subarray(i,i+4).every((v,c)=>v===before.data[i+c]))continue;
+        const rgba=d=>({r:d[i],g:d[i+1],b:d[i+2],a:d[i+3]});
+        history?.recordPixelChange(layerIdx,key,(i/4)%before.width,Math.floor(i/4/before.width),rgba(before.data),rgba(after.data));
       }
-      this.drawPixels(layerIdx, frameKey, pasteList);
-
-      if (this.historyManager) {
-        this.historyManager.commitBatch();
+      before.data.set(after.data);this.selectionData=null;this.setSelection(target.x,target.y,target.w,target.h);
+      if(history?.commitBatch()){
+        const entry=history.undoStack.at(-1),layer=this.project.layers[layerIdx];
+        const restore=s=>{this.clearSelection();if(this.project.getFrameKey()===key&&this.project.getCurrentLayer()===layer)this.setSelection(s.x,s.y,s.w,s.h);};
+        entry.undo=()=>restore(source);entry.redo=()=>restore(target);
       }
-
-      this.setSelection(destX, destY, srcW, srcH);
-      if (this.canvasManager) this.canvasManager.render();
       return true;
     }
 

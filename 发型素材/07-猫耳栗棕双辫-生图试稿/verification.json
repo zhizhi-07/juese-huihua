@@ -1,0 +1,9 @@
+{
+  "baseFramesUnchanged": 784,
+  "separateArtworkLayers": 5,
+  "onlyTargetFrame": "8_1_0",
+  "noSemiTransparentEdges": true,
+  "actualRenderMatchesComposite": true,
+  "exportMatchesRender": true,
+  "clothingPreviewLayers": 3
+}

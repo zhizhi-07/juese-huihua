@@ -1,6 +1,6 @@
 const fs=require('fs'),path=require('path'),assert=require('assert'),os=require('os'),{spawn}=require('child_process');
 (async()=>{
- const root=path.resolve(__dirname,'..'),dir=fs.mkdtempSync(path.join(os.tmpdir(),'shared-server-test-'));fs.copyFileSync(path.join(root,'server.js'),path.join(dir,'server.js'));fs.mkdirSync(path.join(dir,'js'));fs.copyFileSync(path.join(root,'js/character-base.js'),path.join(dir,'js/character-base.js'));
+ const root=path.resolve(__dirname,'..'),dir=fs.mkdtempSync(path.join(os.tmpdir(),'shared-server-test-'));fs.copyFileSync(path.join(root,'server.js'),path.join(dir,'server.js'));fs.mkdirSync(path.join(dir,'js'));fs.copyFileSync(path.join(root,'js/character-sync.js'),path.join(dir,'js/character-sync.js'));fs.copyFileSync(path.join(root,'js/character-base.js'),path.join(dir,'js/character-base.js'));
  const port=18766,base='http://127.0.0.1:'+port,child=spawn(process.execPath,[path.join(dir,'server.js'),String(port)],{windowsHide:true,stdio:['ignore','pipe','pipe']});
  try{
   await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Server start timeout')),8000);child.stdout.on('data',()=>{clearTimeout(timer);resolve();});child.on('error',reject);});
@@ -26,7 +26,7 @@ const fs=require('fs'),path=require('path'),assert=require('assert'),os=require(
   assert(!fs.existsSync(path.join(dir,'data/shared-project.json.tmp')));
   const branchUrl=base+'/api/project?id=character-cached-page',legacy={...project,layers:[{name:'头发'},{name:'down',isGroup:true,parent:null},{name:'body',parent:1,frameData:{pixels:'body'}},{name:'head',parent:1,frameData:{pixels:'head'}},{name:'眼睛'},{name:'hand'},{name:'服装'}],currentLayerIndex:6};
   const saveBranch=(data,rev)=>fetch(branchUrl,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':rev},body:JSON.stringify(data)});
-  r=await saveBranch(legacy,'none');assert.equal(r.status,200);const branchRev=r.headers.get('ETag'),clean=await fetch(branchUrl).then(r=>r.json());assert.deepEqual(clean.layers.map(l=>l.name),['down','body','head']);assert.equal(clean.layers[1].parent,0);assert.equal(clean.currentLayerIndex,1);
+  r=await saveBranch(legacy,'none');assert.equal(r.status,200);const branchRev=r.headers.get('ETag'),clean=await fetch(branchUrl).then(r=>r.json());assert.deepEqual(clean.layers.map(l=>l.name),['down','body','head','hand']);assert.equal(clean.layers[1].parent,0);assert.equal(clean.currentLayerIndex,1);
   clean.layers.push({name:'服装 / 新白裙'});assert.equal((await saveBranch(clean,branchRev)).status,200);assert.equal((await fetch(branchUrl).then(r=>r.json())).layers.at(-1).name,'服装 / 新白裙');assert.equal((await saveBranch(legacy,'none')).status,409);
   console.log('PASS: shared file atomic save, version conflict protection, last-file backup, schema rejection, private data/token routes and authenticated file-page bridge.');
  }finally{child.kill();}

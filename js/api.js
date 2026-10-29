@@ -322,7 +322,10 @@ window.PE = window.PE || {};
           visible: l.visible !== false,
           locked: !!l.locked,
           opacity: l.opacity !== undefined ? l.opacity : 1.0,
-          isCurrent: idx === p.currentLayerIndex
+          isCurrent: idx === p.currentLayerIndex,
+          sheetIndex:l.sheetIndex,isGroup:!!l.isGroup,parent:l.parent??null,
+          referenceOnly:!!l.referenceOnly,inheritedBase:!!l.inheritedBase,
+          hasCurrentFrame:!!l.getFrameData(p.getFrameKey())
         }));
         return _success(layers);
       } catch (err) {
@@ -657,6 +660,7 @@ window.PE = window.PE || {};
         const p = _getProject();
         if (!p) return _fail('项目未初始化');
         const lRes = _resolveLayer(p, index);
+        if (lRes.layer.inheritedBase && !locked) return _fail('头部、身体和手部跟随主工程，请到主工程修改');
         if (PE.isHandLayer(lRes.layer) && !locked) return _fail('手部是独立参考层，不能解锁绘画');
         lRes.layer.locked = !!locked;
         _notifyCanvasAndUI();
@@ -888,6 +892,27 @@ window.PE = window.PE || {};
     },
 
     // ===== SELECTION =====
+    copyLayerFrame(source={}) {
+      try {return _success(PE.FrameEditing.copy(PE.app,source));} catch(error) {return _fail(error);}
+    },
+    cutLayerFrame(source={}) {
+      try {return _success(PE.FrameEditing.cut(PE.app,source));} catch(error) {return _fail(error);}
+    },
+    pasteLayerFrames(targets,options={}) {
+      try {return _success(PE.FrameEditing.paste(PE.app,targets,options));} catch(error) {return _fail(error);}
+    },
+    copyLayerToFrames(source,targets,options={}) {
+      try {return _success(PE.FrameEditing.copyToFrames(PE.app,source,targets,options));} catch(error) {return _fail(error);}
+    },
+    copyLayerToNextFrame(source={}) {
+      try {return _success(PE.FrameEditing.next(PE.app,source));} catch(error) {return _fail(error);}
+    },
+    duplicateFrame() {
+      try {return _success(PE.FrameEditing.duplicate(PE.app));} catch(error) {return _fail(error);}
+    },
+    getFrameClipboard() {
+      const clip=PE.app?.frameClipboard;return _success(clip&&clip.project===PE.app?.project?PE.FrameEditing.info(clip):null);
+    },
     copyRegion(si, ai, fi, x, y, w, h) {
       try {
         const ref = _resolveFrame(si, ai, fi);
@@ -1494,6 +1519,13 @@ window.PE = window.PE || {};
         eraseRect: 'eraseRect(layerIdx, si, ai, fi, x, y, w, h) -> 擦除矩形区域内所有像素',
         fillArea: 'fillArea(layerIdx, si, ai, fi, x, y, r, g, b, a) -> 泛洪填充同色连续区域 (油漆桶)',
         copyRegion: 'copyRegion(si, ai, fi, x, y, w, h) -> 复制复合画布选区到内部剪贴板',
+        copyLayerFrame: 'copyLayerFrame({layerIndex,sheetIndex,actionIndex,frameIndex,rect?}={}) -> 复制单层当前帧或指定选区，切帧后保留剪贴板',
+        cutLayerFrame: 'cutLayerFrame(source={}) -> 剪切单层当前帧或选区，可撤销',
+        pasteLayerFrames: 'pasteLayerFrames(targets=[{}],{mode="overlay",x?,y?}={}) -> 粘贴到指定图层/动作/帧，批量校验后一次写入',
+        copyLayerToFrames: 'copyLayerToFrames(source,targets,{mode="overlay",x?,y?}={}) -> 指定源图层帧复制到目标帧列表，不切换视图',
+        copyLayerToNextFrame: 'copyLayerToNextFrame(source={}) -> 复制当前图层到下一帧并跳转；末帧复制整帧追加，可撤销',
+        duplicateFrame: 'duplicateFrame() -> 复制当前整帧到末尾，可撤销',
+        getFrameClipboard: 'getFrameClipboard() -> 查询图层剪贴板来源、位置和尺寸',
         pasteRegion: 'pasteRegion(layerIdx, si, ai, fi, x, y) -> 将剪贴板像素粘贴到指定图层',
         moveRegion: 'moveRegion(layerIdx, si, ai, fi, srcX, srcY, srcW, srcH, destX, destY) -> 移动图层上的局部像素',
         getFrameDiff: 'getFrameDiff(si, ai, fi) -> 对比当前帧与原始帧的差异像素列表',

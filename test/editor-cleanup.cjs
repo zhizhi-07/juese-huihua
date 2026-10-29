@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'..'),before=process.argv.includes('--before');
+class Element{constructor(){this.children=[];this.style={};this.events={};}setAttribute(k,v){this[k]=v;}addEventListener(k,fn){this.events[k]=fn;}appendChild(e){this.children.push(e);}set innerHTML(v){this.children=[];}}
+const palette=new Element(),context={window:{},PE:{},document:{addEventListener(){},getElementById:()=>palette,createElement:()=>new Element()},console};context.window=context;
+const source=name=>before?execFileSync('git',['show','HEAD:js/'+name+'.js'],{cwd:root,encoding:'utf8'}):fs.readFileSync(path.join(root,'js',name+'.js'),'utf8');
+vm.runInNewContext(source('core'),context);vm.runInNewContext(source('app'),context);
+const app=Object.create(context.PE.App.prototype);let picked;
+app.project={palette:[{r:0,g:0,b:255,a:255}]};let image={data:new Uint8ClampedArray([255,0,0,255,0,255,0,255,0,0,255,0,255,0,0,255])};
+app.canvasManager={getCompositeImageData:()=>image,hideHands:true};app.setPrimaryColor=c=>picked=c;app.updatePalette();
+assert.deepEqual(palette.children.map(e=>e.title),['#ff0000','#00ff00'],'palette must contain visible canvas colors, by frequency, excluding transparent pixels and fixed presets');
+palette.children[1].events.click();assert.equal(picked.g,255);
+image={data:new Uint8ClampedArray([9,8,7,255])};app.updatePalette();assert.deepEqual(palette.children.map(e=>e.title),['#090807'],'refresh removes colors no longer on canvas');
+const p=new context.PE.Project();p.layers=[new context.PE.Layer('a'),new context.PE.Layer('b'),new context.PE.Layer('c')];p.currentLayerIndex=2;assert(p.removeLayer(0));assert.equal(p.currentLayerIndex,1,'deleting an earlier layer must preserve the active layer');
+p.layers[0].inheritedBase=true;assert.equal(p.removeLayer(0),false,'shared base cannot be deleted in branch');
+app.project=p;app.updateLayerList();assert.equal(palette.children.length,p.layers.length,'layer rendering must complete without recursively refreshing itself');
+const lockTarget=p.layers.at(-1),lockedBefore=lockTarget.locked;palette.children[0].children[1].events.click();assert.equal(lockTarget.locked,!lockedBefore,'clicking lock refreshes once and updates the layer');
+vm.runInNewContext(fs.readFileSync(path.join(root,'js/pixel-import.js'),'utf8'),context);
+let pixels=new Uint8ClampedArray(256*4);for(let i=0;i<256;i++)pixels.set([i,255-i,(i*7)%256,255],i*4);pixels.set([255,0,0,0],0);const quantized=context.PE.quantizeImage({data:pixels},8);const colors=new Set();for(let i=0;i<pixels.length;i+=4)if(pixels[i+3])colors.add([...pixels.slice(i,i+3)].join(','));assert(colors.size<=8);assert.deepEqual([...pixels.slice(0,4)],[0,0,0,0]);
+const exact={data:new Uint8ClampedArray([255,0,0,255,0,255,0,255])};context.PE.quantizeImage(exact,8);assert.deepEqual([...exact.data],[255,0,0,255,0,255,0,255]);context.PE.quantizeImage(exact,0);assert.deepEqual([...exact.data],[255,0,0,255,0,255,0,255]);assert.throws(()=>context.PE.quantizeImage(exact,-1));
+console.log('PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.');

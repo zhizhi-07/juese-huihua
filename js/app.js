@@ -142,6 +142,11 @@ window.PE = window.PE || {};
     // ==========================================
     bindCanvasEvents(canvas) {
       canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+      const resizeHandleAt=e=>{
+        const s=this.toolManager.selection,cm=this.canvasManager;if(!s)return false;
+        const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*canvas.width/r.width,y=(e.clientY-r.top)*canvas.height/r.height;
+        return Math.abs(x-cm.offsetX-(s.x+s.w)*cm.zoom)<=4&&Math.abs(y-cm.offsetY-(s.y+s.h)*cm.zoom)<=4;
+      };
 
       canvas.addEventListener('mousedown', (e) => {
         // 中键或按住空格时为平移
@@ -154,7 +159,9 @@ window.PE = window.PE || {};
         }
 
         const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
-        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button);
+        if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
+        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e));
+        if(this.toolManager.currentTool==='move')this.updateLayerList();
         this.canvasManager.render();
       });
 
@@ -174,9 +181,12 @@ window.PE = window.PE || {};
           e.clientX >= rect.left &&
           e.clientX <= rect.right &&
           e.clientY >= rect.top &&
-          e.clientY <= rect.bottom
+          e.clientY <= rect.bottom || this.toolManager._transform
         ) {
           const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
+          if(this.toolManager.currentTool==='move'){
+            canvas.style.cursor=resizeHandleAt(e)?'nwse-resize':'move';
+          }else canvas.style.cursor=this.isSpacePressed?'grab':'crosshair';
           this.toolManager.onMouseMove(pixel.x, pixel.y);
           this.canvasManager.render();
           this.updateCursorStatus(pixel.x, pixel.y);
@@ -193,7 +203,7 @@ window.PE = window.PE || {};
         const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
         this.toolManager.onMouseUp(pixel.x, pixel.y);
         this.canvasManager.render();
-        if(wasDrawing)this.updateFrameList();
+        if(wasDrawing){this.updateFrameList();this.updatePalette();}
       });
 
       // 滚轮缩放
@@ -240,7 +250,7 @@ window.PE = window.PE || {};
     // ==========================================
     bindToolbarEvents() {
       // 工具选择
-      const tools = ['pencil', 'eraser', 'eyedropper', 'fill', 'select'];
+      const tools = ['pencil', 'eraser', 'eyedropper', 'fill', 'select', 'move'];
       tools.forEach(toolName => {
         const btn = document.getElementById(`tool-${toolName}`);
         if (btn) {
@@ -920,6 +930,7 @@ window.PE = window.PE || {};
           if (e.target.closest('button') || e.target.closest('input')) return;
           this.project.currentLayerIndex = idx;
           this.updateLayerList();
+          this.updateStatusBar();
           this.canvasManager.render();
         });
 
@@ -930,8 +941,10 @@ window.PE = window.PE || {};
         visBtn.title = '切换图层显示/隐藏';
         visBtn.addEventListener('click', () => {
           layer.visible = !layer.visible;
+          this.persistence?.markDirty();
           visBtn.innerHTML = layer.visible ? '👁' : '🚫';
           this.canvasManager.render();
+          this.updatePalette();
         });
 
         // 锁按钮
@@ -941,7 +954,9 @@ window.PE = window.PE || {};
         lockBtn.title = '锁定/解锁图层';
         lockBtn.addEventListener('click', () => {
           layer.locked = !layer.locked;
+          this.persistence?.markDirty();
           lockBtn.innerHTML = layer.locked ? '🔒' : '🔓';
+          this.updateLayerList();
         });
 
         // 图层名称
@@ -959,6 +974,7 @@ window.PE = window.PE || {};
         opacityInput.title = `不透明度: ${opacityInput.value}%`;
         opacityInput.addEventListener('input', (e) => {
           layer.opacity = parseInt(e.target.value, 10) / 100;
+          this.updatePalette();
           this.canvasManager.render();
         });
 
@@ -976,31 +992,33 @@ window.PE = window.PE || {};
       if (!container) return;
       container.innerHTML = '';
 
-      const palette = this.project.palette || [];
-      palette.forEach((col, idx) => {
-        const swatch = document.createElement('div');
+      const image = this.canvasManager.getCompositeImageData(undefined,undefined,undefined,!this.canvasManager.hideHands);
+      const colors = new Map();
+      if(image)for(let i=0;i<image.data.length;i+=4){
+        const [r,g,b,a]=image.data.subarray(i,i+4);if(!a)continue;
+        const key=[r,g,b,a].join(',');
+        const entry=colors.get(key)||{r,g,b,a,count:0};entry.count++;colors.set(key,entry);
+      }
+      const palette = [...colors.values()].sort((a,b)=>b.count-a.count);
+      palette.forEach(col => {
+        const swatch = document.createElement('button');
+        swatch.type='button';
         swatch.className = 'palette-swatch';
         swatch.style.backgroundColor = `rgba(${col.r}, ${col.g}, ${col.b}, ${(col.a !== undefined ? col.a : 255) / 255})`;
-        swatch.title = `${col.name || '色板'}: rgb(${col.r},${col.g},${col.b})`;
+        swatch.title = this.rgbToHex(col.r,col.g,col.b);
+        swatch.setAttribute('aria-label','取色 '+swatch.title);
 
         swatch.addEventListener('click', () => {
           this.setPrimaryColor(col);
         });
 
-        // 右键从色板删除
-        swatch.addEventListener('contextmenu', (e) => {
-          e.preventDefault();
-          if (confirm(`从调色板删除此颜色?`)) {
-            window.pixelAPI.removeColor(idx);
-          }
-        });
-
         container.appendChild(swatch);
       });
+      if(!palette.length)container.textContent='当前画面还没有颜色';
     }
 
     updateToolbar() {
-      const tools = ['pencil', 'eraser', 'eyedropper', 'fill', 'select'];
+      const tools = ['pencil', 'eraser', 'eyedropper', 'fill', 'select', 'move'];
       const cur = this.toolManager.currentTool || 'pencil';
       tools.forEach(t => {
         const btn = document.getElementById(`tool-${t}`);
@@ -1125,6 +1143,8 @@ window.PE = window.PE || {};
         this.project.currentFrameIndex = 0;
         this.updateActionList();
         this.updateFrameList();
+        this.updateLayerList();
+        this.updatePalette();
         this.updateConfigPanels();
         this.updateStatusBar();
         if (this.animationPlayer) {
@@ -1136,9 +1156,9 @@ window.PE = window.PE || {};
 
     selectFrame(si, ai, fi) {
       this.toolManager.clearSelection();
+      this.animationPlayer.pause();
       this.project.selectFrame(si, ai, fi);
-      this.updateFrameList();
-      this.updateStatusBar();
+      this.updateAll();
       this.canvasManager.render();
     }
 

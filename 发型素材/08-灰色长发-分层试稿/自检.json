@@ -1,0 +1,13 @@
+{
+  "scope": "待机正面首帧；背面前发帧全透明，其他方向和动画未绘制",
+  "checks": [
+    "source body/head/hands unchanged",
+    "front and rear independent",
+    "opaque limited-palette pixels",
+    "all back front-hair frames transparent",
+    "back composite unchanged by front-hair toggle",
+    "main canvas / PNG / preview agree",
+    "two-way mixing with two existing parts per slot",
+    "no old wardrobe copied into candidate"
+  ]
+}

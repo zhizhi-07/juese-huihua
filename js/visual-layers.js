@@ -40,7 +40,7 @@ PE.VisualLayers={
     app.animationPlayer.pause();
     app.history.undoStack.push({description:(visible?'显示':'隐藏')+'全部动作部件',changes:[],undo:()=>restore(before),redo:()=>restore(after)});
     app.history.redoStack=[];app.history._notifyChange();
-    app.updateLayerList();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();
+    app.updateLayerList();app.updatePalette();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();
   },
   thumbnail(layer,project){
     const key=project.getFrameKey(),prefix=project.currentSheetIndex+'_'+project.currentActionIndex+'_';
@@ -60,7 +60,7 @@ PE.VisualLayers={
     const after=p.layers.map(x=>x.visible),restore=(values,li)=>{p.layers.forEach((x,i)=>x.visible=values[i]);p.currentLayerIndex=li;};
     app.history.undoStack.push({description:'选用'+(slot||'图层'),changes:[],undo:()=>restore(before,selected),redo:()=>restore(after,index)});
     app.history.redoStack=[];app.history._notifyChange();
-    app.updateLayerList();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();
+    app.updateLayerList();app.updatePalette();app.updateStatusBar();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();
   }
 };
 document.addEventListener('DOMContentLoaded',()=>{
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     original();if(!this.project.getCurrentSheet()?.name.startsWith('original32_'))return;
     const p=this.project,rows=[...list.querySelectorAll('.layer-item[data-layer-index]')].filter(row=>!p.layers[Number(row.dataset.layerIndex)]?.isGroup);
     this.visualLayerCategory??=V.category(p.layers[p.currentLayerIndex]||{});
+    if(this.visualLayerSelection!==p.currentLayerIndex){this.visualLayerCategory=V.category(p.layers[p.currentLayerIndex]||{});this.visualLayerSelection=p.currentLayerIndex;}
     const nav=element('div','part-tabs');nav.setAttribute('role','tablist');nav.setAttribute('aria-label','部件分类');
     for(const name of names){
       const b=element('button','part-tab',name);b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected',String(this.visualLayerCategory===name));
@@ -95,15 +96,15 @@ document.addEventListener('DOMContentLoaded',()=>{
       const index=Number(row.dataset.layerIndex),l=p.layers[index],slot=V.slot(l)||'图层';
       if(!groups.has(slot)){const group=element('section','part-slot'),title=element('h5','part-slot-title',slot);group.append(title);groups.set(slot,group);}
       row.classList.add('visual-layer-card');row.classList.toggle('part-visible',!!l.visible);
-      const label=row.querySelector('.layer-name'),icons=[...row.querySelectorAll('.layer-icon-btn')],opacity=row.querySelector('input'),clone=row.querySelector('.layer-mini');
+      const label=row.querySelector('.layer-name'),icons=[...row.querySelectorAll('.layer-icon-btn')],opacity=row.querySelector('input'),clone=row.querySelector('.layer-mini'),remove=row.querySelector('.layer-delete');
       const thumb=element('canvas','part-thumb');thumb.width=48;thumb.height=48;thumb.setAttribute('aria-label',(l.name||'图层')+'预览');drawThumbnail(thumb,V.thumbnail(l,p));
       const main=element('div','part-card-main');
       label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?l.name.split(' / ')[1].replace(/^\d+\s*/,''):l.name.split(' / ').at(-1);
-      const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up';
-      const state=element('small','part-state',backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''));
-      const choose=element('button','part-choose',l.visible?'编辑':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
-      for(const icon of icons)icon.onclick=()=>{state.textContent=backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':'');choose.textContent=l.visible?'编辑':'选用';row.classList.toggle('part-visible',!!l.visible);app.animationPlayer._renderPreviewFrame();};
-      const actions=element('div','part-card-actions');actions.append(choose,...icons);main.append(label,state,actions);
+      const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
+      const state=element('small','part-state',l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''));
+      const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
+      for(const icon of icons)icon.onclick=()=>{state.textContent=l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);app.animationPlayer._renderPreviewFrame();};
+      const actions=element('div','part-card-actions');actions.append(choose,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
       if(V.family(p,l).length){
         const bulk=element('div','part-bulk-actions'),toggle=element('button','part-choose part-toggle-all',V.family(p,l).every(x=>x.visible)?'全部动作隐藏':'全部动作显示'),save=element('button','part-choose part-export-all','导出全部动作');
         toggle.type=save.type='button';
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         bulk.append(toggle,save);main.append(bulk);
       }
       const more=element('details','part-more'),summary=element('summary','', '更多');summary.onclick=event=>event.stopPropagation();more.append(summary);
+      const bulk=main.querySelector('.part-bulk-actions');if(bulk)more.append(bulk);
       if(opacity){opacity.title='不透明度';opacity.setAttribute('aria-label',l.name+'不透明度');more.append(opacity);}if(clone)more.append(clone);
       row.replaceChildren(thumb,main,more);groups.get(slot).append(row);
     }

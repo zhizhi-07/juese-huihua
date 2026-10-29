@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e;};
   function button(label,fn,cls='studio-button'){const e=node('button',cls,label);e.onclick=fn;return e;}
   const toolButtons=['pencil','eraser','eyedropper','fill','select'].map(t=>$('tool-'+t));
-  const extraTools=['移动选区','复制选区','粘贴选区','取消选区'].map(byText);
+  const extraTools=['复制选区','粘贴选区','取消选区'].map(byText);
   const header=node('header','studio-header');header.id='studio-header';
-  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><div><strong>像素衣橱</strong><small>HANA CARAKA · 角色绘画工作台</small></div>';
+  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><strong>像素衣橱</strong>';
   const primary=node('div','primary-actions');
   $('import-btn').textContent='导入素材';$('import-project-btn').textContent='打开工程';$('export-project-btn').textContent='保存工程';$('export-project-btn').classList.add('save-primary');
+  const oldSave=$('export-project-btn'),save=oldSave.cloneNode(true);oldSave.replaceWith(save);save.onclick=()=>app.persistence.saveNow();
   const dropdown=document.querySelector('.dropdown-wrapper');dropdown.querySelector('.dropdown-toggle').textContent='导出 PNG / ZIP ▾';
   primary.append($('import-btn'),$('import-project-btn'),$('export-project-btn'),dropdown);header.append($('import-file-input'),$('import-project-input'));
   const more=button('更多 ···',()=>advanced.showModal());primary.append(more);header.append(brand,primary);
@@ -29,20 +30,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   for(const section of [slicing,properties,inspection,secondary])advancedGrid.append(section);
   actionConfig.style.display='none';advancedGrid.append(actionConfig);
   const backupText=$('save-status');
-  if(backupText){backupText.className='save-status';primary.prepend(backupText);}
+  if(backupText){backupText.className='save-status';}
 
   const rail=node('aside','tool-rail');rail.setAttribute('aria-label','绘画工具');
   const labels=['铅笔','橡皮','吸色','填充','框选'],shortcuts=['B','E','I','G','M'];
   const icons=['M5 19l3.5-1 10-10-2.5-2.5-10 10L5 19 M14 7l3 3','M5 14l8-9 7 6-8 9H9z M12 20h8','M5 19l2-5L17 4l3 3-10 10z M13 6l5 5','M4 12l8-8 8 8-8 8z M4 12h16','M4 8V4h4 M16 4h4v4 M20 16v4h-4 M8 20H4v-4'];
   toolButtons.forEach((b,i)=>{b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[i]}"/></svg><span>${labels[i]}</span><kbd>${shortcuts[i]}</kbd>`;b.title=labels[i]+' ('+shortcuts[i]+')';b.setAttribute('aria-label',labels[i]);rail.append(b);});
-  const undoGroup=node('div','rail-history');$('undo-btn').textContent='↶';$('undo-btn').setAttribute('aria-label','撤销');$('redo-btn').textContent='↷';$('redo-btn').setAttribute('aria-label','重做');undoGroup.append($('undo-btn'),$('redo-btn'));rail.append(undoGroup);
+  const undoGroup=node('div','rail-history');$('undo-btn').textContent='↶';$('undo-btn').setAttribute('aria-label','撤销');$('redo-btn').textContent='↷';$('redo-btn').setAttribute('aria-label','重做');undoGroup.append($('undo-btn'),$('redo-btn'));const moveButton=$('tool-move');moveButton.innerHTML='<span aria-hidden="true">↔</span><span>移动缩放</span>';moveButton.setAttribute('aria-label','移动 / 缩放');rail.append(moveButton,undoGroup);
 
   const sources=$('sheet-list').closest('section');sources.querySelector('h3').textContent='动作素材';
   const libraryNote=node('p','section-caption','六套原始动作 · 图层完整保留');sources.querySelector('.section-header').after(libraryNote);
   const directionList=$('action-list');
   const left=$('left-sidebar');left.replaceChildren(sources);
   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
-  const builtinReset=button('重新载入内置角色',()=>loadBuiltins(true),'subtle-button');left.append(builtinReset);
+  const builtinReset=button('重新载入内置角色',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
   const center=$('center-viewport'),canvasHeader=node('div','canvas-header');
   const heading=node('div','canvas-title');const drawingTitle=node('strong','','正在载入角色…'),drawingMeta=node('span','','');heading.append(drawingTitle,drawingMeta);
   const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手部');handSwitch.append(handCheckbox,node('span','','显示手部'));
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const b=button('',()=>app.setPreviewBackground(color),'background-swatch');b.style.backgroundColor=color;b.title=name;b.setAttribute('aria-label','背景：'+name);backgroundPresets.append(b);
   }
   background.append(backgroundPresets);
-  const canvasOptions=node('div','canvas-options');canvasOptions.append(background,handSwitch);canvasHeader.append(heading,canvasOptions);
+  const canvasOptions=node('details','canvas-options'),optionsTitle=node('summary','','画布设置');canvasOptions.append(optionsTitle,background);canvasHeader.append(heading,handSwitch,canvasOptions);
   app.syncBackgroundControls=()=>{const color=app.project.bgColor||'#b8c8c3';backgroundColor.value=color;backgroundHex.value=color;$('preview-canvas').style.backgroundColor=color;};
   app.setPreviewBackground=color=>{
     if(!/^#[0-9a-f]{6}$/i.test(color))return false;
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   pixelAPI.setPreviewBackground=color=>({success:app.setPreviewBackground(color)});
   const viewbar=node('div','canvas-viewbar');const directions=directionList;directions.className='direction-tabs';
   const viewActions=node('div','view-actions');
+  for(const text of ['缩小图片','放大图片']){const b=byText(text);b.className='subtle-button';viewActions.append(b);}
   const focusButton=button('聚焦角色',focusCharacter,'subtle-button');byText('适应画布').textContent='完整画布';viewActions.append(focusButton,byText('适应画布')||buttons.find(b=>b.textContent==='完整画布'));
   for(const id of ['grid-toggle','onion-toggle']){const b=$(id);b.textContent=id==='grid-toggle'?'网格':'洋葱皮';viewActions.append(b);}
   const zoom=node('div','zoom-control');$('zoom-out').textContent='−';$('zoom-in').textContent='+';zoom.append($('zoom-out'),$('zoom-level'),$('zoom-in'));viewActions.append(zoom);viewbar.append(directions,viewActions);
@@ -79,11 +81,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const right=$('right-sidebar'),palette=$('palette-container').closest('section'),layers=$('layer-list').closest('section');
   palette.querySelector('h3').textContent='颜色';layers.querySelector('h3').textContent='绘画图层';$('add-layer-btn').textContent='+ 新图层';
-  const paintControls=node('div','paint-controls');const color=$('color-primary'),hex=document.querySelector('input[aria-label="颜色十六进制"]');paintControls.append(color,hex);const addColor=button('+',()=>{const c=app.toolManager.primaryColor;pixelAPI.addColor(c.r,c.g,c.b,c.a,'自选色');},'color-add');addColor.title='把当前颜色加入色板';addColor.setAttribute('aria-label','把当前颜色加入色板');paintControls.append(addColor);palette.querySelector('.section-header').after(paintControls);
+  const paintControls=node('div','paint-controls');const color=$('color-primary'),hex=document.querySelector('input[aria-label="颜色十六进制"]');paintControls.append(color,hex);palette.querySelector('.section-header').after(paintControls);
+  $('palette-container').before(node('p','palette-caption','当前画面颜色 · 点击取色'));
   const sizeControl=node('label','brush-control','画笔大小 ');sizeControl.append($('brush-size'),$('brush-size-val'));palette.append(sizeControl);
   const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','只读保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','不参与绘画，导出时原样保留。'));
   const preview=node('section','preview-card');preview.append(node('div','preview-label','动画预览'),$('preview-canvas'));
-  right.replaceChildren(palette,layers,handCard,preview);
+  right.replaceChildren(palette,layers,preview);secondary.append(handCard);
+  const layerControls=layers.querySelector('.button-row');if(layerControls){layerControls.prepend(node('span','','图层顺序与删除 '));secondary.append(layerControls);}
   const oldHeader=$('top-toolbar');oldHeader.replaceWith(header);document.querySelector('.workbench-hint')?.remove();
   const workspace=$('workspace');workspace.prepend(rail);
   $('animation-bar').remove();$('bottom-panel').className='studio-footer';
@@ -111,10 +115,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const frameList=app.updateFrameList.bind(app);app.updateFrameList=function(){frameList();const p=this.project;[...$('frame-list').querySelectorAll('canvas')].forEach((c,i)=>{const image=this.canvasManager.getCompositeImageData(p.currentSheetIndex,p.currentActionIndex,i,!this.canvasManager.hideHands);if(image)paintThumbnail(c,image);});};
   const layerList=app.updateLayerList.bind(app);app.updateLayerList=function(){layerList();for(const label of $('layer-list').querySelectorAll('.layer-name')){const original=label.textContent;label.textContent=original.includes('衣服与发型')?'衣服与发型':({'head':'头部','body':'身体','vfx':'特效','▾ down':'▾ 正面分组','▾ side':'▾ 侧面分组','▾ up':'▾ 背面分组'}[original]||original);}
     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';handList.replaceChildren();for(const l of p.layers){if(!PE.isHandLayer(l)||l.sheetIndex!==p.currentSheetIndex||![...l.frameData.keys()].some(k=>k.startsWith(prefix)))continue;handList.append(node('span','hand-name',l.name));}if(!handList.children.length)handList.append(node('span','hand-name','此动作无独立手层'));};
-  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),node('span','status-hands',this.canvasManager.hideHands?'手部已隐藏 · 手部只读':'手部预览已显示 · 手部仍受保护'));};
+  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
   function focusCharacter(){const cm=app.canvasManager,image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands);if(!image)return;const box=bounds(image);if(!box){cm.centerView();return;}cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
   app.canvasManager.hideHands=true;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
-  handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};
+  handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updatePalette();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};
   pixelAPI.setHandsPreviewVisible=show=>{handCheckbox.checked=!!show;handCheckbox.onchange();return {success:true,visible:handCheckbox.checked,referenceOnly:true};};
   pixelAPI.getHandsInfo=()=>({success:true,visible:handCheckbox.checked,layers:app.project.layers.map((l,index)=>({layer:l,index})).filter(({layer:l})=>PE.isHandLayer(l)&&l.sheetIndex===app.project.currentSheetIndex).map(({layer:l,index})=>({index,name:l.name,referenceOnly:true}))});
   const selectedSheet=app.selectSheet.bind(app),selectedAction=app.selectAction.bind(app);
@@ -125,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     for(const image of images){const b=bounds(image);if(!b)continue;if(!union)union={...b};else {const x=Math.min(union.x,b.x),y=Math.min(union.y,b.y),right=Math.max(union.x+union.w,b.x+b.w),bottom=Math.max(union.y+union.h,b.y+b.h);union={x,y,w:right-x,h:bottom-y};}}
     const canvas=this.canvas;canvas.width=144;canvas.height=144;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;const image=images[this.currentFrame];if(!union||!image)return;const tmp=document.createElement('canvas');tmp.width=image.width;tmp.height=image.height;tmp.getContext('2d').putImageData(image,0,0);const scale=Math.max(1,Math.min(6,Math.floor(124/Math.max(union.w,union.h))));ctx.drawImage(tmp,union.x,union.y,union.w,union.h,Math.floor((144-union.w*scale)/2),Math.floor((144-union.h*scale)/2),union.w*scale,union.h*scale);
   };
-  const originalSetTool=app.toolManager.setTool.bind(app.toolManager);app.toolManager.setTool=t=>{originalSetTool(t);toolButtons.forEach((b,i)=>b.setAttribute('aria-pressed',['pencil','eraser','eyedropper','fill','select'][i]===t?'true':'false'));};
+  const originalSetTool=app.toolManager.setTool.bind(app.toolManager);app.toolManager.setTool=t=>{originalSetTool(t);toolButtons.forEach((b,i)=>b.setAttribute('aria-pressed',['pencil','eraser','eyedropper','fill','select'][i]===t?'true':'false'));moveButton.setAttribute('aria-pressed',t==='move'?'true':'false');};
   toolButtons[0].setAttribute('aria-pressed','true');
   const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing)focusCharacter();});resizeObserver.observe($('canvas-container'));
   const loading=node('div','studio-loading');loading.innerHTML='<span class="loading-pixel">▦</span><strong>正在打开你的角色素材</strong><span>保留原始图层与全部动作帧</span>';document.body.append(loading);

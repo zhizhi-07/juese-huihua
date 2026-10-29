@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>像素衣橱 · 角色绘画工作台</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/studio.css">
+  <link rel="stylesheet" href="css/studio.css?v=frame-copy-1">
   <link rel="stylesheet" href="css/visual-layers.css?v=all-action-parts-1">
-  <link rel="stylesheet" href="css/ai-chat.css?v=3">
 </head>
 <body class="dark-theme">
   <!-- 页面主容器 -->
@@ -55,6 +54,7 @@
         <button id="tool-eyedropper" class="tool-btn" title="吸色管 (I)">💧 吸色</button>
         <button id="tool-fill" class="tool-btn" title="油漆桶 (G)">🪣 填充</button>
         <button id="tool-select" class="tool-btn" title="框选工具 (M)">⬚ 框选</button>
+        <button id="tool-move" class="tool-btn" title="点选图片后拖动，拖动右下角等比缩放">↔ 移动 / 缩放</button>
       </div>
 
       <div class="toolbar-separator"></div>
@@ -182,7 +182,7 @@
         <section class="panel-section">
           <div class="section-header">
             <h3>图层管理 (Layers)</h3>
-            <button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button>
+            <div class="layer-header-actions"><button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button><button id="delete-layer-btn" class="icon-action-btn layer-delete" title="删除当前选中图层，可撤销">删除图层</button></div>
           </div>
           <div id="layer-list" class="scroll-list"></div>
         </section>
@@ -276,16 +276,16 @@
   <script src="js/vendor/jszip.min.js"></script>
   <script src="js/core.js?v=hair-slots-2"></script>
   <script src="js/history.js"></script>
-  <script src="js/canvas.js?v=main-canvas-hair-order-3"></script>
-  <script src="js/tools.js?v=selection-nudge-1"></script>
+  <script src="js/canvas.js?v=image-transform-1"></script>
+  <script src="js/tools.js?v=image-transform-1"></script>
   <script src="js/spritesheet.js"></script>
   <script src="js/animation.js"></script>
   <script src="js/inspection.js"></script>
   <script src="js/export.js?v=all-action-parts-1"></script>
-  <script src="js/api.js"></script>
+  <script src="js/api.js?v=frame-copy-1"></script>
   <script src="js/aseprite.js"></script>
-  <script src="js/app.js?v=selection-nudge-1"></script>
-  <script src="js/workbench.js?v=organized-layers-1"></script>
+  <script src="js/app.js?v=frame-copy-1"></script>
+  <script src="js/workbench.js?v=frame-copy-1"></script>
   <script src="js/local-bridge.js"></script>
   <script src="js/persistence.js?v=manual-shared-save-2"></script>
   <script src="js/builtin-packs.js"></script>
@@ -293,13 +293,12 @@
   <script src="js/poses.js"></script>
   <script src="js/original32.js"></script>
   <script src="js/eyes32.js"></script>
-  <script src="js/studio.js"></script>
-  <script src="js/visual-layers.js?v=all-action-parts-1"></script>
-  <script src="js/character-base.js?v=1"></script>
+  <script src="js/studio.js?v=image-transform-1"></script>
+  <script src="js/visual-layers.js?v=frame-copy-1"></script>
+  <script src="js/character-base.js?v=branch-hands-1"></script>
   <script src="js/projects.js?v=4"></script>
-  <script src="js/frame-tools.js?v=1"></script>
+  <script src="js/frame-tools.js?v=frame-copy-1"></script>
   <script src="js/building-groups.js?v=1"></script>
-  <script src="js/ai-edits.js?v=2"></script>
-  <script src="js/ai-chat.js?v=5"></script>
+  <script src="js/pixel-import.js?v=image-transform-1"></script>
 </body>
 </html>

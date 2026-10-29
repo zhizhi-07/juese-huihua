@@ -284,6 +284,36 @@ interface APIResult<T = any> {
 #### `copyRegion(si, ai, fi, x, y, w, h)`
 复制复合帧的指定矩形选区至 API 内部剪贴板。
 
+#### 单层复制、跨帧粘贴与批量处理
+
+以下接口与页面按钮共用 `PE.FrameEditing`。坐标及 API 索引均从 0 开始，页面帧号从 1 开始。只操作指定图层，不把身体、头部等复合画面一起复制；每个目标独立保存像素。修改仅标为未保存，不自动写入共享工程。
+
+- `copyLayerFrame(source={})`：复制单层当前帧；剪贴板在切帧、切朝向、取消选区后保留。`source` 可指定 `{layerIndex, sheetIndex, actionIndex, frameIndex, rect:{x,y,w,h}}`；省略索引取当前项，省略 `rect` 复制整层当前帧。API 不隐式读取页面选区。
+- `cutLayerFrame(source={})`：复制后擦除源范围，可撤销。锁定、继承底稿及保护区域不可剪切。
+- `getFrameClipboard()`：查询剪贴板来源、位置、尺寸、非透明像素数；没有当前工程剪贴板时 `data` 为 `null`。
+- `pasteLayerFrames(targets=[{}], options={})`：将剪贴板粘贴至一个或多个目标。目标项为 `{layerIndex, sheetIndex, actionIndex, frameIndex}`，省略取页面当前项。
+- `copyLayerToFrames(source, targets, options={})`：一次指定源与目标列表，适合 AI 连续调用；不改变剪贴板或页面选择。目标项省略 `sheetIndex`、`layerIndex` 时沿用源，其余省略索引取当前项。跨素材表复制时需指定属于目标素材表的可编辑 `layerIndex`。
+- `copyLayerToNextFrame(source={})`：复制当前图层并跳转下一帧。末帧时复制当前整帧追加，保留其他图层和保护设置；返回 `createdFrame`。源必须是页面当前帧。
+- `duplicateFrame()`：将当前帧所有图层复制到当前动作末尾并跳转，可撤销。
+
+`options` 为 `{mode:'overlay'|'replace', x?, y?}`。默认 `overlay` 只写源非透明像素，目标其他像素保留；`replace` 包含透明像素，覆盖粘贴矩形范围；`x/y` 默认保留源位置。批量目标最多 256 项，会先校验所有目标，任一锁定、保护、错误图层或越界则整批不写；成功的批量修改仅占一次撤销。结果包含 `targetCount`（实际发生变化的帧数）、`modifiedPixels` 和已修改目标列表。原样复制不自动生成新朝向。
+
+```javascript
+// 先查询 getProjectInfo()、getLayers()、getActions(si)，使用真实索引。
+// 以下示例假设已确认头发为图层 4、源为素材表 0 / 动作 1 / 帧 0，正面动作为 0。
+pixelAPI.copyLayerToFrames(
+  {layerIndex:4, sheetIndex:0, actionIndex:1, frameIndex:0},
+  [0,1,2,3].map(frameIndex=>({actionIndex:0, frameIndex})),
+  {mode:'overlay'}
+);
+// 只复制头发局部，粘贴到另一个已存在帧。
+pixelAPI.copyLayerFrame({layerIndex:4, rect:{x:8,y:2,w:16,h:12}});
+pixelAPI.pasteLayerFrames([{layerIndex:4, frameIndex:1}]);
+pixelAPI.undo(); // 一次撤销上次粘贴或整批修改
+```
+
+`getLayers()` 额外返回 `sheetIndex`、`isGroup`、`parent`、`referenceOnly`、`inheritedBase`、`hasCurrentFrame`，便于 AI 选择真实可编辑图层及有内容的源帧。原 `copyRegion/pasteRegion` 继续保留复合画布复制语义，使用独立的原 API 剪贴板。
+
 #### `pasteRegion(layerIdx, si, ai, fi, x, y)`
 将剪贴板内容粘贴至目标图层的 `(x, y)` 偏移起始点。
 

@@ -1,0 +1,98 @@
+{
+  "metrics": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "headShift": 0,
+      "tipShift": 0,
+      "duration": 100
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "headShift": 0,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "headShift": 0,
+      "tipShift": 0,
+      "duration": 100
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "headShift": 0,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "headShift": 0,
+      "tipShift": 0,
+      "duration": 100
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "headShift": 0,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "headShift": 2,
+      "tipShift": 1,
+      "duration": 100
+    }
+  ],
+  "preservedUserErasures": 34,
+  "checks": [
+    "all 12 frames have nonempty composites",
+    "all back front-hair pixels transparent",
+    "back scalp covered by rear hair",
+    "body/head/hands and other actions unchanged",
+    "main canvas, preview and PNG agree",
+    "no user-erased curve restored",
+    "48 two-way mixing composites and 12 dressed composites checked"
+  ]
+}

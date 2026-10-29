@@ -1,0 +1,29 @@
+{
+  "columns": [
+    "front only",
+    "new F + old R1",
+    "new F + old R2",
+    "old F1 + new R",
+    "old F2 + new R",
+    "rear only",
+    "own pair",
+    "bow on old pair",
+    "own + bow"
+  ],
+  "directions": [
+    "side",
+    "front",
+    "back"
+  ],
+  "frames": 4,
+  "reference": "C:/Users/cl/Documents/测试/一些素材/角色衣服/衣服/05/TV/Female/TV_{FrontHair1,RearHair1,RearHair2}_p80024.png",
+  "checks": [
+    "new front with two existing rear styles",
+    "two existing front styles with new rear",
+    "bow with a different complete hairstyle",
+    "front follows skull within one native pixel",
+    "front/side rear has a thin hidden posterior arch and low braids, without a filled face; back base follows actual skull",
+    "all non-hair layers and bow pixels unchanged",
+    "all 12 canvas, animation and PNG paths match"
+  ]
+}

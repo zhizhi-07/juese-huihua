@@ -18,6 +18,11 @@ if(!fs.existsSync(tokenFile))fs.writeFileSync(tokenFile,token);
 // Only a local file page can read this script; HTTP requests never receive its secret.
 fs.writeFileSync(path.join(BASE_DIR,'js','local-bridge.js'),'window.PE_LOCAL_BRIDGE='+JSON.stringify({url:'http://127.0.0.1:'+PORT,token})+';');
 const revision=bytes=>'"'+crypto.createHash('sha256').update(bytes).digest('hex')+'"';
+function projectBytes(file,id){
+  const bytes=fs.readFileSync(file);
+  if(!id.startsWith('character-')||!fs.existsSync(PROJECT_FILE))return bytes;
+  return Buffer.from(JSON.stringify(require('./js/character-sync.js')(JSON.parse(bytes),JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')))));
+}
 function validProject(project){
   if(!project||!Array.isArray(project.layers)||!project.layers.length||project.layers.length>1024||!Array.isArray(project.spriteSheets)||project.spriteSheets.length>128)return false;
   let pixels=0;
@@ -68,7 +73,8 @@ const server = http.createServer((req, res) => {
     const projectFile=projectId==='main'?PROJECT_FILE:path.join(DATA_DIR,'projects',projectId+'.json');
     if(req.method==='GET'){
       if(!fs.existsSync(projectFile)){res.writeHead(404);res.end('{"exists":false}');return;}
-      const bytes=fs.readFileSync(projectFile),etag=revision(bytes);res.setHeader('ETag',etag);
+      let bytes;try{bytes=projectBytes(projectFile,projectId);}catch(error){res.writeHead(409);res.end(JSON.stringify({error:error.message}));return;}
+      const etag=revision(bytes);res.setHeader('ETag',etag);
       if(req.headers['if-none-match']===etag){res.writeHead(304);res.end();return;}
       res.end(bytes);return;
     }
@@ -83,11 +89,15 @@ const server = http.createServer((req, res) => {
       try{project=JSON.parse(bytes.toString('utf8'));}catch{res.writeHead(400);res.end('{"error":"Invalid JSON"}');return;}
       if(!validProject(project)){res.writeHead(400);res.end('{"error":"Invalid project"}');return;}
       try{
-        const previous=fs.existsSync(projectFile)?fs.readFileSync(projectFile):null,current=previous?revision(previous):'none';
+        const previous=fs.existsSync(projectFile)?fs.readFileSync(projectFile):null,current=previous?revision(projectBytes(projectFile,projectId)):'none';
         if(req.headers['if-match']!==current){res.writeHead(409);res.end('{"error":"Shared project changed; local draft retained"}');return;}
         if(!previous&&projectId.startsWith('character-')){
           try{require('./js/character-base.js')(project);bytes=Buffer.from(JSON.stringify(project));}
           catch(error){res.writeHead(400);res.end(JSON.stringify({error:error.message}));return;}
+        }
+        if(projectId.startsWith('character-')&&fs.existsSync(PROJECT_FILE)){
+          require('./js/character-sync.js')(project,JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')));
+          bytes=Buffer.from(JSON.stringify(project));
         }
         fs.mkdirSync(path.dirname(projectFile),{recursive:true});
         if(previous)fs.copyFileSync(projectFile,projectFile+'.bak');

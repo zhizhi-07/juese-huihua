@@ -1,0 +1,37 @@
+{
+  "metrics": [
+    {
+      "fi": 0,
+      "duration": 100,
+      "headShift": 0,
+      "tipShift": 0
+    },
+    {
+      "fi": 1,
+      "duration": 100,
+      "headShift": 0,
+      "tipShift": 1
+    },
+    {
+      "fi": 2,
+      "duration": 100,
+      "headShift": 2,
+      "tipShift": 1
+    },
+    {
+      "fi": 3,
+      "duration": 100,
+      "headShift": 2,
+      "tipShift": 1
+    }
+  ],
+  "scope": "only 8_0_0 through 8_0_3 of front hair",
+  "checks": [
+    "generated a new 45-degree reference first",
+    "accepted near-side curl and upper crown unchanged",
+    "no far-eye occlusion",
+    "front/back and all other layers unchanged",
+    "four main-canvas/PNG/preview paths agree",
+    "dressed and two-rear-hair mixing checked"
+  ]
+}

@@ -575,9 +575,10 @@ window.PE = window.PE || {};
       if (idx < 0 || idx >= this.layers.length) {
         return false;
       }
-      if (PE.isHandLayer(this.layers[idx]) || this.layers[idx].isGroup || this.layers.some(l=>l.parent===idx)) return false;
+      if (PE.isHandLayer(this.layers[idx]) || this.layers[idx].inheritedBase || this.layers[idx].isGroup || this.layers.some(l=>l.parent===idx)) return false;
       this.layers.splice(idx, 1);
       for (const layer of this.layers) if (layer.parent>idx) layer.parent--;
+      if (this.currentLayerIndex > idx) this.currentLayerIndex--;
       if (this.currentLayerIndex >= this.layers.length) {
         this.currentLayerIndex = this.layers.length - 1;
       }

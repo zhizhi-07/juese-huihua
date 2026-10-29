@@ -305,7 +305,8 @@ window.PE = window.PE || {};
         const layer = renderLayers[i];
         if (this.hideHands && PE.isHandLayer(layer)) continue;
         if (!PE.isLayerVisible(this.project, layer, typeof si === "undefined" ? this.project.currentSheetIndex : si)) continue;
-        const data = layer.getFrameData(frameKey);
+        const transform=this.toolManager?._transform;
+        const data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
         if (!data) continue;
 
         this.layerCtx.clearRect(0, 0, fw, fh);
@@ -428,6 +429,10 @@ window.PE = window.PE || {};
         this.ctx.fillStyle = 'rgba(0, 229, 255, 0.15)';
         this.ctx.fillRect(sx, sy, sw, sh);
         this.ctx.strokeRect(sx + 0.5, sy + 0.5, sw - 1, sh - 1);
+        if(this.toolManager?.currentTool==='move'){
+          this.ctx.setLineDash([]);this.ctx.fillStyle='#fff';
+          this.ctx.fillRect(sx+sw-4,sy+sh-4,8,8);this.ctx.strokeRect(sx+sw-4,sy+sh-4,8,8);
+        }
         this.ctx.restore();
       }
     }

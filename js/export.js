@@ -446,7 +446,7 @@ window.PE = window.PE || {};
       for (let li = 0; li < layers.length; li++) {
         const layer = layers[li];
         const layerData = {
-          sheetIndex: layer.sheetIndex, isOriginal: layer.isOriginal, isGroup: layer.isGroup, parent: layer.parent, depth: layer.depth, referenceOnly: layer.referenceOnly,
+          sheetIndex: layer.sheetIndex, isOriginal: layer.isOriginal, isGroup: layer.isGroup, parent: layer.parent, depth: layer.depth, referenceOnly: layer.referenceOnly, inheritedBase: layer.inheritedBase,
           name: layer.name || '',
           visible: layer.visible !== undefined ? layer.visible : true,
           locked: Boolean(layer.locked),
@@ -689,7 +689,7 @@ window.PE = window.PE || {};
           layer = {};
         }
 
-        for (const key of ['sheetIndex','isOriginal','isGroup','parent','depth','referenceOnly']) layer[key]=lData[key];
+        for (const key of ['sheetIndex','isOriginal','isGroup','parent','depth','referenceOnly','inheritedBase']) layer[key]=lData[key];
         layer.name = lData.name || (li === 0 ? '原始图层' : `图层_${li}`);
         layer.visible = lData.visible !== undefined ? lData.visible : true;
         layer.locked = Boolean(lData.locked);

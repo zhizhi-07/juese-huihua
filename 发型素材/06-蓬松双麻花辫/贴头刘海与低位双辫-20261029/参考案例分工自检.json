@@ -1,0 +1,31 @@
+{
+  "reference": [
+    "C:\\Users\\cl\\Documents\\测试\\一些素材\\角色衣服\\衣服\\10\\TV\\Female\\TV_FrontHair1_p80009.png",
+    "C:\\Users\\cl\\Documents\\测试\\一些素材\\角色衣服\\衣服\\10\\TV\\Female\\TV_RearHair1_p80009.png",
+    "C:\\Users\\cl\\Documents\\测试\\一些素材\\角色衣服\\衣服\\10\\TV\\Female\\TV_RearHair2_p80009.png"
+  ],
+  "reference_frames": 12,
+  "current_idle_frames": [
+    "8_0_0",
+    "8_0_1",
+    "8_0_2",
+    "8_0_3",
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3",
+    "8_2_0",
+    "8_2_1",
+    "8_2_2",
+    "8_2_3"
+  ],
+  "principles": [
+    "FrontHair1: forehead fringe and near-face strands on front and side views; empty rear view",
+    "RearHair2: posterior volume and plaits on front and sides, face stays transparent",
+    "RearHair1: full rear-facing scalp and plaits, other views empty",
+    "RearHair1 and RearHair2 share the current rear-hair slot by direction",
+    "Disconnected masked regions are valid; do not fill their bounding rectangle"
+  ],
+  "result": "PASS",
+  "project_written": false
+}
