@@ -1,0 +1,1 @@
+PASS QA 140 actual frame checks; 70 paired and individual hair slot checks; real studio preview paths

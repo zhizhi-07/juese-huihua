@@ -1,0 +1,1 @@
+PASS: selectable HD/pixel resizing, exact nearest RGBA, undo/redo, non-destructive drag preview, move-only preservation, off-canvas/fractional placement, dimension limits, locks, partial-selection and other-frame isolation.

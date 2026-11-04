@@ -1,0 +1,41 @@
+{
+  "source": "E:/工作/素材/rpg宁静城镇/现代_室内_v41.2/现代_室内/2_角色/角色_发电机/身体/身体.ase",
+  "sha256": "9b0b0455cbbbc03203fed6f2019c18e96e2ddb49b89257b72b9c5d3d0f19852e",
+  "sourceDimensions": [
+    927,
+    656
+  ],
+  "sourceTimelineFrames": 9,
+  "selectedSkinFrame": 1,
+  "matchingPng02": [
+    26187,
+    0,
+    17552,
+    26181,
+    26173,
+    26177,
+    26181,
+    26177,
+    26181
+  ],
+  "cell": [
+    16,
+    32
+  ],
+  "directions": [
+    "left",
+    "up",
+    "right",
+    "down"
+  ],
+  "framesPerDirection": 6,
+  "actions": 2,
+  "totalCels": 48,
+  "sourceCoordinates": {
+    "idleY": 32,
+    "walkY": 64
+  },
+  "allCelsExactSourceAndRenderVerified": true,
+  "sourceUnchanged": true,
+  "browserChecked": false
+}

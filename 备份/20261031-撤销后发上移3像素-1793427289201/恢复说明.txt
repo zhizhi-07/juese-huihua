@@ -1,0 +1,1 @@
+before.json 为本次撤销前的完整工程。若要撤回本次恢复，只还原 verification.json 所列48帧，保留其他后续修改，并使用API与最新ETag提交；不要整稿覆盖。

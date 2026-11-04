@@ -1,0 +1,2 @@
+PASS: head/body overlap erased, arms/other sheets/other frames/base preserved; 20x20; undo/redo; no-op and locks.
+PASS: copied/placed/scaled hair supported without resampling; undo/redo; front hair rejected.

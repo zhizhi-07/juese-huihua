@@ -1,0 +1,74 @@
+{
+  "soles": [
+    [
+      9,
+      14
+    ],
+    [
+      10,
+      14
+    ],
+    [
+      12,
+      14
+    ],
+    [
+      13,
+      14
+    ],
+    [
+      9,
+      15
+    ],
+    [
+      10,
+      15
+    ],
+    [
+      12,
+      15
+    ],
+    [
+      13,
+      15
+    ]
+  ],
+  "sitting": {
+    "side": {
+      "body": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAN0lEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJD7xh/94+BGMQG8aHsckyDNmF6GySvUkVw4YXAABuT28uB8f/kAAAAABJRU5ErkJggg=="
+      },
+      "clothes": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAN0lEQVR42mNgGAWjYBTQA/z///9/0dR9/2EAxKbIsDfne+GGgdhkGwZyCbJrKHIZRZppatjwAQBFyTHTARnWGwAAAABJRU5ErkJggg=="
+      }
+    },
+    "down": {
+      "body": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAANElEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJk2XYv7cPMTDZhsEwzBAYpsib6OyBNWx4AQARkWDLvnJPkgAAAABJRU5ErkJggg=="
+      },
+      "clothes": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAANElEQVR42mNgGAWjYBQMOfD/////b873/kemKTa0aOo+6hgCMwiZTRYIyp76H4TR2SMcAAB9SimbbhlWRQAAAABJRU5ErkJggg=="
+      }
+    },
+    "up": {
+      "body": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAMUlEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJk23Yv7cP4Zgiw5ANguHBYRjVwmx4AQBKzWyK7mupwQAAAABJRU5ErkJggg=="
+      },
+      "clothes": {
+        "width": 19,
+        "height": 19,
+        "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAOklEQVR42mNgGAWjYBTQA/z///9/0dR9/5HpwWEYyIA353v/I9MUGQbCQdlT/8PYZBsGMgQdj6YkBgB7pkrJ5R/+ZQAAAABJRU5ErkJggg=="
+      }
+    }
+  }
+}

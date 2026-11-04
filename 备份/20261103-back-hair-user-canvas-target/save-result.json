@@ -1,0 +1,8 @@
+{
+  "status": 200,
+  "response": "{\"saved\":true,\"revision\":\"\\\"ae279acc191dba1733a9a586bae6127c8167df28e86265bd14d2179ef4662f70\\\"\"}",
+  "etag": "\"ae279acc191dba1733a9a586bae6127c8167df28e86265bd14d2179ef4662f70\"",
+  "sha256": "ae279acc191dba1733a9a586bae6127c8167df28e86265bd14d2179ef4662f70",
+  "exactDataReadback": true,
+  "browserRefreshed": false
+}

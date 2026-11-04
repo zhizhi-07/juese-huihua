@@ -1,0 +1,18 @@
+evalmachine.<anonymous>:63
+        for(const [key,data]of layer.frameData){
+                                     ^
+
+TypeError: layer.frameData is not iterable
+    at Object.imageScale (evalmachine.<anonymous>:63:38)
+    at ExportManager._getCompositeImageData (evalmachine.<anonymous>:30:74)
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\hair-slots.cjs:16:107)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Module.require (node:internal/modules/cjs/loader:1527:12)
+    at require (node:internal/modules/helpers:147:16)
+
+Node.js v22.23.1
+EXIT: 1

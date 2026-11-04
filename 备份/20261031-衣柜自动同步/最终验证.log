@@ -1,0 +1,29 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+> node --check js/wardrobe.js
+EXIT 0
+> node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT 0
+> node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-mrgQm8
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: automatic saved-source pixel sync without selection/confirmation, equipped rendering refresh, no repeated writes, dirty-draft protection; same-category multi-piece layering, individual/all removal, filter/archive retention, manual curation, walk/idle, facing, sit, pickup, stale-update rejection, backup, missing-action warning, ZIP download, fresh-page persistence; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-mrgQm8
+EXIT 0
+> node test/wardrobe-rear-order.cjs
+Error: Pass the read-only target snapshot folder
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-rear-order.cjs:9:49)
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-rear-order.cjs:43:1)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49
+EXIT 1
+> node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT 0

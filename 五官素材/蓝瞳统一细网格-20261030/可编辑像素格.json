@@ -1,0 +1,43 @@
+{
+  "width": 36,
+  "height": 16,
+  "placementWidth": 18,
+  "placementHeight": 8,
+  "palette": {
+    "B": "#b78779",
+    "P": "#4e103e",
+    "K": "#070208",
+    "W": "#f7ffff",
+    "D": "#29208d",
+    "C": "#64e6fa",
+    "H": "#f7ffff",
+    "M": "#3067d9",
+    "L": "#1784d6"
+  },
+  "left": [
+    "...PKKKK..",
+    ".KKKKKKKP.",
+    "PKWWDDDWWP",
+    "PKWWCHMWWP",
+    "PKWWLMMWW.",
+    ".PWWLMMWW.",
+    "..WWLMMWW."
+  ],
+  "right": [
+    "..KKKKP...",
+    ".PKKKKKKK.",
+    "PWWDDDWWKP",
+    "PWWCHMWWKP",
+    ".WWLMMWWKP",
+    ".WWLMMWWP.",
+    ".WWLMMWW.."
+  ],
+  "leftOrigin": [
+    6,
+    5
+  ],
+  "rightOrigin": [
+    23,
+    5
+  ]
+}

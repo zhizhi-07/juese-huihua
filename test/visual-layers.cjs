@@ -13,16 +13,16 @@ global.document={addEventListener(name,fn){if(name==='DOMContentLoaded')initiali
 const data=new ImageData(32,32);data.data.set([209,207,226,255],(4*32+8)*4);
 const layer=(name,si=8,visible=false)=>({name,sheetIndex:si,visible,locked:false,frameData:new Map([['8_1_0',data]])});
 const layers=[layer('头发 / 01 披发 / 前发',8,true),layer('头发 / 02 双马尾 / 前发'),layer('头发 / 01 披发 / 后发',8,true),layer('发饰 / 02 双马尾 / 饰品'),layer('眼睛 / 02 青蓝'),layer('嘴巴 / 下垂嘴'),layer('头发 / 02 双马尾 / 前发',7,true)];
-const p={layers,currentLayerIndex:0,currentSheetIndex:8,currentActionIndex:1,getFrameKey:()=> '8_1_0',getCurrentSheet:()=>({name:'original32_idle'})};let dirty=0;
+const p={layers,currentLayerIndex:0,currentSheetIndex:8,currentActionIndex:1,getFrameKey:()=> '8_1_0',getCurrentSheet:()=>({name:'original16_idle'})};let dirty=0;
 const app={project:p,animationPlayer:{pause(){},_renderPreviewFrame(){}},history:{undoStack:[],redoStack:[],_notifyChange(){}},canvasManager:{render(){}},updatePalette(){},updateStatusBar(){},persistence:{markDirty(){dirty++}},updateLayerList(){list.replaceChildren();layers.forEach((l,i)=>{if(l.sheetIndex!==8)return;const row=new Element('div');row.className='layer-item';row.dataset.layerIndex=i;for(const cls of ['layer-icon-btn','layer-icon-btn','layer-name','layer-mini']){const e=new Element(cls==='layer-name'?'span':'button');e.className=cls;row.append(e);}row.append(new Element('input'));list.append(row);});}};
-global.PE={app,isHandLayer:()=>false};vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/visual-layers.js'),'utf8'));
+global.PE={app,isHandLayer:()=>false};global.ImageData=ImageData;vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/core.js'),'utf8'));vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/visual-layers.js'),'utf8'));
 const V=PE.VisualLayers;initialize();assert.equal(list.querySelectorAll('.part-tab').length,5);assert.equal(list.querySelectorAll('.visual-layer-card').length,4);assert.deepEqual(list.querySelectorAll('.part-slot-title').map(e=>e.textContent),['前发','后发','饰品']);assert.equal(list.querySelectorAll('.layer-name')[0].textContent,'披发');
 V.choose(app,1);assert(!layers[0].visible&&layers[1].visible);assert(layers[2].visible&&layers[6].visible);app.history.undoStack[0].undo();assert(layers[0].visible&&!layers[1].visible);app.history.undoStack[0].redo();assert(layers[1].visible&&!layers[0].visible);assert.equal(dirty,1);
 const tabs=list.querySelectorAll('.part-tab');tabs.find(e=>e.textContent==='五官').onclick({stopPropagation(){}});assert.equal(list.querySelectorAll('.visual-layer-card').length,2);assert.deepEqual(list.querySelectorAll('.part-slot-title').map(e=>e.textContent),['眼睛','嘴巴']);assert.equal(dirty,1);
 const other=layer('x');other.frameData=new Map([['8_0_0',data]]);assert.equal(V.thumbnail(other,p),null);assert.equal(V.slot(layers[2]),'后发');
 console.log('PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.');
 
-p.spriteSheets=[];p.spriteSheets[7]={name:'original32_walk'};p.spriteSheets[8]={name:'original32_idle'};
+p.spriteSheets=[];p.spriteSheets[7]={name:'original16_walk'};p.spriteSheets[8]={name:'original16_idle'};
 app.visualLayerCategory='头发';app.updateLayerList();
 assert.equal(list.querySelectorAll('.part-toggle-all').length,4);
 assert.equal(list.querySelectorAll('.part-export-all').length,4);
@@ -35,3 +35,18 @@ assert.deepEqual(layers.map(l=>[...l.frameData]),pixels);
 assert.equal(V.partName(layer('头发 / 02 齐刘海 / 前发')),'前发-齐刘海');
 assert.equal(V.partName(layer('头发 / 02 双马尾侧扎发束 / 侧发')),'侧发-双马尾侧扎发束');
 console.log('PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.');
+
+const groupIndex=layers.length,group={...layer('头发 / 80009 / 后发'),isGroup:true,frameData:new Map()},bottom={...layer('头发 / 80009 / 底层后发'),parent:groupIndex},side={...layer('头发 / 80009 / 侧面后发'),parent:groupIndex,frameData:new Map([['8_0_0',data]])},different={...layer('头发 / 80010 / 后发'),parent:groupIndex};
+layers.push(group,bottom,side,different);assert.deepEqual(V.components(p,bottom),[bottom,side]);assert.notEqual(V.partName(bottom),V.partName(different),'numeric source IDs remain distinct');
+V.choose(app,groupIndex+1);assert(group.visible&&bottom.visible&&side.visible);assert(!different.visible&&!layers[2].visible);app.history.undoStack.at(-1).undo();assert(!group.visible&&!bottom.visible&&!side.visible);app.history.undoStack.at(-1).redo();assert(group.visible&&bottom.visible&&side.visible);
+app.visualLayerCategory='头发';app.updateLayerList();assert(!list.querySelectorAll('.visual-layer-card').some(r=>Number(r.dataset.layerIndex)===groupIndex+2),'blank directional component card is hidden');assert(list.querySelectorAll('.layer-name').some(e=>e.textContent==='80009'),'numeric source ID has a visible label');
+console.log('PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.');
+
+const state=()=>layers.map(l=>({ref:l,parent:l.parent,visible:l.visible,locked:l.locked,data:[...l.frameData]})),originalState=state(),oldNames=layers.map(l=>l.name),historyCount=app.history.undoStack.length;
+assert.equal(list.querySelectorAll('.part-rename').length,list.querySelectorAll('.visual-layer-card').length,'each visible card exposes rename');
+assert(V.rename(app,groupIndex+1,'灰色卷发'));assert.equal(bottom.name,'头发 / 灰色卷发 / 底层后发');assert.equal(side.name,'头发 / 灰色卷发 / 侧面后发');assert.equal(different.name,'头发 / 80010 / 后发');assert.deepEqual(V.components(p,bottom),[bottom,side]);assert.deepEqual(state(),originalState);
+assert.equal(app.history.undoStack.length,historyCount+1);app.history.undoStack.at(-1).undo();assert.deepEqual(layers.map(l=>l.name),oldNames);app.history.undoStack.at(-1).redo();assert.equal(bottom.name,'头发 / 灰色卷发 / 底层后发');
+const bare=layer('后发');layers.push(bare);assert(V.rename(app,layers.length-1,'灰色短卷'));assert.equal(V.slot(bare),'后发');assert(!bare.name.startsWith('头发 /'),'renaming bare rear hair must not change its special rear-view render ordering');
+const protectedLayer={...layer('头发 / 同步 / 前发'),inheritedBase:true};layers.push(protectedLayer);assert.equal(V.rename(app,layers.length-1,'不能修改'),false);assert.equal(V.rename(app,0,'  '),false);assert.throws(()=>V.rename(app,0,'错误 / 路径'),/名称/);
+assert.equal(V.rename(app,groupIndex+1,'灰色卷发'),false,'same friendly name is a no-op');
+console.log('PASS: visible rename buttons, type-preserving names, grouped components renamed together, one-step undo/redo, no pixel/order/visibility/parent changes, protected/blank/invalid/no-op names safe.');

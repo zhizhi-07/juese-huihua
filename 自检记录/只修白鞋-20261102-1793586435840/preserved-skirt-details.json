@@ -1,0 +1,19 @@
+{
+  "removedFromShoePatch": [
+    {
+      "key": "7_1_6",
+      "x": 10,
+      "y": 30,
+      "reason": "保留用户此前手补的裙片延伸，不将倒数第二行归入鞋端"
+    },
+    {
+      "key": "7_2_6",
+      "x": 10,
+      "y": 30,
+      "reason": "保留用户此前手补的裙片延伸，不将倒数第二行归入鞋端"
+    }
+  ],
+  "conditionalETag": "\"b9f28647504019d71e2a576f6455813d6152f2cca587144853032bc34a14d5b6\"",
+  "saveStatus": 200,
+  "response": "{\"saved\":true,\"revision\":\"\\\"f9bd2928c99371f5f079de2ec126312f7ee7eb64dcc6ef5fd22764ea74abab17\\\"\"}"
+}

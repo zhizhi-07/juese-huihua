@@ -1,0 +1,1 @@
+PASS: 24 idle/sit frames; user first frame retained; body/head/hands, other actions and frame timings unchanged; main-canvas/export agree; saved=true

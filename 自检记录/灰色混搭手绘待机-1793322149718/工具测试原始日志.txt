@@ -1,0 +1,25 @@
+Node: C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe
+COMMAND: node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+EXIT: 0
+COMMAND: node test/editor-cleanup.cjs
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+EXIT: 0
+COMMAND: node test/image-import-browser.cjs
+PASS: browser upload; crop/move/resize; original colors; visible move tool; drag; size buttons and handle; undo; reselect; keyboard nudge; no page errors.
+EXIT: 0
+COMMAND: node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+EXIT: 0
+COMMAND: node test/hair-slots.cjs
+PASS: rear hair behind face from front, covers head from back, hidden rear reveals scalp, accessories on top, canvas and PNG fallback agree, project indexes unchanged.
+PASS: main editable canvas, preview composite and PNG fallback have identical layer ordering in front/back views with rear hair and accessories toggled.
+EXIT: 0
+COMMAND: node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+EXIT: 0
+COMMAND: node test/gray-mixed-live-browser.cjs
+PASS: 12 live browser main-canvas frames exactly match engine exports; actual reference key/gray preview; no page errors; no API writes; user tabs untouched.
+EXIT: 0

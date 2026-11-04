@@ -1,0 +1,21 @@
+{
+  "reason": "只修改文档：服装动作分区、姿势与阴影规则；保留当前已有文档修改",
+  "files": [
+    {
+      "name": "AGENTS.md",
+      "sha256": "4dc90ceb7137493b55332a06483b63dc6551b46de4863567a9c4b0f2ff17c47e"
+    },
+    {
+      "name": "人物绘制AI要求与自检.md",
+      "sha256": "9cb72bb8ab12f8d0ec1e77eb9fc7ef8203c8ca9dbc0677487775553de1ac0ec8"
+    },
+    {
+      "name": "衣服绘制AI要求与自检.md",
+      "sha256": "22f3eb6ca9d71704142cf5b95bb5a730b0ee8468cd219cac88bd437700c028de"
+    },
+    {
+      "name": "贴合衣服裤子画法与自检.md",
+      "sha256": "927828abdb3e09f2f0cf1946b70a1201fadeed41324552a1a3d2e1755a03a39f"
+    }
+  ]
+}

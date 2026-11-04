@@ -1,0 +1,166 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\index.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+index 793c77d..54080f6 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+@@ -13,7 +13,7 @@
+   <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
+   <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
+   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+-  <link rel="stylesheet" href="css/workspace-layout.css?v=2">
++  <link rel="stylesheet" href="css/workspace-layout.css?v=brush-size-1">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -72,8 +72,8 @@
+         <input type="color" id="color-primary" value="#140c1c" title="当前绘制颜色">
+ 
+         <label for="brush-size" class="control-label" style="margin-left: 8px;">粗细:</label>
+-        <input type="range" id="brush-size" min="1" max="16" value="1" title="笔刷大小 ([ / ])">
+-        <span id="brush-size-val" class="value-badge">1px</span>
++        <input type="range" id="brush-size" min="1" max="128" value="1" aria-label="画笔 / 橡皮大小滑条" title="画笔 / 橡皮大小 ([ / ])">
++        <input type="number" id="brush-size-number" min="1" max="128" step="1" value="1" aria-label="画笔 / 橡皮大小"><span>px</span>
+       </div>
+ 
+       <div class="toolbar-separator"></div>
+@@ -284,14 +284,14 @@
+   <script src="js/core.js?v=layer-order-2"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=playback-overlays-1"></script>
+-  <script src="js/tools.js?v=layer-resize-mode-1"></script>
++  <script src="js/tools.js?v=brush-size-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js?v=playback-overlays-1"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=ps-layer-shortcuts-2"></script>
++  <script src="js/app.js?v=brush-size-1"></script>
+   <script src="js/workbench.js?v=stable-playback-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+@@ -300,7 +300,7 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=stable-playback-1"></script>
++  <script src="js/studio.js?v=brush-size-1"></script>
+   <script src="js/visual-layers.js?v=layer-order-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\app.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\app.js"
+index a168d26..25fcbad 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\app.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\app.js"
+@@ -263,14 +263,13 @@ window.PE = window.PE || {};
+       });
+ 
+       // 笔刷大小
+-      const brushInput = document.getElementById('brush-size');
+-      const brushVal = document.getElementById('brush-size-val');
+-      if (brushInput) {
+-        brushInput.addEventListener('input', (e) => {
+-          const val = parseInt(e.target.value, 10) || 1;
+-          this.toolManager.setBrushSize(val);
+-          if (brushVal) brushVal.textContent = `${val}px`;
++      for (const id of ['brush-size', 'brush-size-number']) {
++        const input = document.getElementById(id);
++        input?.addEventListener('input', () => {
++          if (input.value !== '') this.setBrushSize(Number(input.value));
+         });
++        input?.addEventListener('change', () => this.setBrushSize(Number(input.value)));
++        input?.addEventListener('blur', () => this.setBrushSize(Number(input.value)));
+       }
+ 
+       // 主颜色选择器
+@@ -597,6 +596,14 @@ window.PE = window.PE || {};
+     // ==========================================
+     // 键盘快捷键
+     // ==========================================
++    setBrushSize(size) {
++      this.toolManager.setBrushSize(size);
++      for (const id of ['brush-size', 'brush-size-number']) {
++        const input = document.getElementById(id);
++        if (input) input.value = this.toolManager.brushSize;
++      }
++    }
++
+     bindKeyboardShortcuts() {
+       window.addEventListener('keydown', (e) => {
+         // 如果焦点在输入框内，不拦截快捷键
+@@ -696,24 +703,10 @@ window.PE = window.PE || {};
+             this.toolManager.setTool('select');
+             this.updateToolbar();
+             break;
+-          case '[': {
+-            const curSize = this.toolManager.brushSize || 1;
+-            const newSize = Math.max(1, curSize - 1);
+-            this.toolManager.setBrushSize(newSize);
+-            const brushInput = document.getElementById('brush-size');
+-            const brushVal = document.getElementById('brush-size-val');
+-            if (brushInput) brushInput.value = newSize;
+-            if (brushVal) brushVal.textContent = `${newSize}px`;
+-            break;
+-          }
++          case '[':
+           case ']': {
+-            const curSize = this.toolManager.brushSize || 1;
+-            const newSize = Math.min(32, curSize + 1);
+-            this.toolManager.setBrushSize(newSize);
+-            const brushInput = document.getElementById('brush-size');
+-            const brushVal = document.getElementById('brush-size-val');
+-            if (brushInput) brushInput.value = newSize;
+-            if (brushVal) brushVal.textContent = `${newSize}px`;
++            e.preventDefault();
++            this.setBrushSize(this.toolManager.brushSize + (e.key === ']' ? 1 : -1));
+             break;
+           }
+           case 'arrowleft': {
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\tools.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\tools.js"
+index cb21cf4..f0c5d63 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\tools.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\tools.js"
+@@ -97,11 +97,11 @@ window.PE = window.PE || {};
+     }
+ 
+     /**
+-     * Set brush size in pixels (clamped between 1 and 32).
++     * Set brush size in native pixels (clamped between 1 and 128).
+      * @param {number} size 
+      */
+     setBrushSize(size) {
+-      this.brushSize = Math.max(1, Math.min(32, Math.round(size)));
++      this.brushSize = Number.isFinite(size) ? Math.max(1, Math.min(128, Math.round(size))) : 1;
+     }
+ 
+     // ==========================================
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\studio.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+index f74a5ab..9d06381 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\js\\studio.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+@@ -83,7 +83,9 @@ document.addEventListener('DOMContentLoaded', async () => {
+   palette.querySelector('h3').textContent='颜色';layers.querySelector('h3').textContent='绘画图层';$('add-layer-btn').textContent='+ 新图层';
+   const paintControls=node('div','paint-controls');const color=$('color-primary'),hex=document.querySelector('input[aria-label="颜色十六进制"]');paintControls.append(color,hex);palette.querySelector('.section-header').after(paintControls);
+   $('palette-container').before(node('p','palette-caption','当前画面颜色 · 点击取色'));
+-  const sizeControl=node('label','brush-control','画笔大小 ');sizeControl.append($('brush-size'),$('brush-size-val'));palette.append(sizeControl);
++  const sizeControl=node('div','brush-control');sizeControl.setAttribute('role','group');sizeControl.setAttribute('aria-label','画笔 / 橡皮大小设置');
++  sizeControl.title='普通画布按画布像素；高清图层按源像素。也可用 [ / ] 调整大小。';
++  sizeControl.append(node('span','','画笔 / 橡皮'),$('brush-size'),$('brush-size-number'),node('span','','px'));viewbar.insertBefore(sizeControl,viewActions);
+   const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','只读保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','不参与绘画，导出时原样保留。'));
+   const preview=node('section','preview-card');preview.append(node('div','preview-label','动画预览'),$('preview-canvas'));
+   right.replaceChildren(palette,layers,preview);secondary.append(handCard);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\css\\workspace-layout.css" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\css\\workspace-layout.css"
+index 5384999..18ee4c2 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-brush-size\\css\\workspace-layout.css"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\css\\workspace-layout.css"
+@@ -40,7 +40,9 @@
+ .studio .paint-controls{margin:0 0 8px}
+ .studio .palette-caption{display:none}
+ .studio #palette-container{max-height:66px;gap:5px}
+-.studio .brush-control{margin-top:10px;color:#52695a}
++.studio .canvas-viewbar>.brush-control{margin:0;gap:6px;color:#43564b;flex-shrink:0;white-space:nowrap;font-size:11px}
++.studio #brush-size{width:90px;min-width:60px;margin:0}
++.studio #brush-size-number{width:57px;min-width:0;height:28px;padding:3px 4px;border:1px solid #c5d3c4;border-radius:4px;background:#fff;color:#43564b;font-size:12px}
+ .studio .preview-card{min-height:88px;padding:8px 10px;border:1px solid #dce3d7;border-radius:7px;background:#edf0e9}
+ .studio .preview-card>.section-header{margin:0;padding-right:20px}
+ .studio .preview-label{display:none}

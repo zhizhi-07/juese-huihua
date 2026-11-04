@@ -1,0 +1,520 @@
+{
+  "changedLayers": [
+    173,
+    174,
+    175,
+    176
+  ],
+  "records": [
+    {
+      "key": "7_0_0",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_0"
+    },
+    {
+      "key": "7_0_1",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_3"
+    },
+    {
+      "key": "7_0_2",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_2"
+    },
+    {
+      "key": "7_0_3",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_1"
+    },
+    {
+      "key": "7_0_4",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_0"
+    },
+    {
+      "key": "7_0_5",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_3"
+    },
+    {
+      "key": "7_0_6",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_2"
+    },
+    {
+      "key": "7_0_7",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 16.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_0_1"
+    },
+    {
+      "key": "7_1_0",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_0"
+    },
+    {
+      "key": "7_1_1",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 29,
+      "footR": 31,
+      "source": "8_1_3"
+    },
+    {
+      "key": "7_1_2",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 29,
+      "footR": 31,
+      "source": "8_1_2"
+    },
+    {
+      "key": "7_1_3",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_1"
+    },
+    {
+      "key": "7_1_4",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_0"
+    },
+    {
+      "key": "7_1_5",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 29,
+      "source": "8_1_3"
+    },
+    {
+      "key": "7_1_6",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 29,
+      "source": "8_1_2"
+    },
+    {
+      "key": "7_1_7",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_1"
+    },
+    {
+      "key": "7_2_0",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_0"
+    },
+    {
+      "key": "7_2_1",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 29,
+      "footR": 31,
+      "source": "8_2_3"
+    },
+    {
+      "key": "7_2_2",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 29,
+      "footR": 31,
+      "source": "8_2_2"
+    },
+    {
+      "key": "7_2_3",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_1"
+    },
+    {
+      "key": "7_2_4",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_0"
+    },
+    {
+      "key": "7_2_5",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 29,
+      "source": "8_2_3"
+    },
+    {
+      "key": "7_2_6",
+      "type": "walking-separated-leg-hems",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 29,
+      "source": "8_2_2"
+    },
+    {
+      "key": "7_2_7",
+      "type": "walking-separated-leg-hems",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_1"
+    },
+    {
+      "key": "9_0_0",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_0"
+    },
+    {
+      "key": "9_0_1",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 26,
+      "cx": 21.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_3"
+    },
+    {
+      "key": "9_0_2",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 17.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_0"
+    },
+    {
+      "key": "9_0_3",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_1"
+    },
+    {
+      "key": "9_0_4",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_0"
+    },
+    {
+      "key": "9_0_5",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_0_1"
+    },
+    {
+      "key": "9_1_0",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_1_0"
+    },
+    {
+      "key": "9_1_1",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 26,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_1_3"
+    },
+    {
+      "key": "9_1_2",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 22,
+      "cx": 19.5,
+      "footL": 31,
+      "footR": 33,
+      "source": "8_1_0"
+    },
+    {
+      "key": "9_1_3",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 22,
+      "cx": 19.5,
+      "footL": 31,
+      "footR": 33,
+      "source": "8_1_1"
+    },
+    {
+      "key": "9_1_4",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_1_0"
+    },
+    {
+      "key": "9_1_5",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_1_1"
+    },
+    {
+      "key": "9_2_0",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_2_0"
+    },
+    {
+      "key": "9_2_1",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 28,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 35,
+      "source": "8_2_3"
+    },
+    {
+      "key": "9_2_2",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 35,
+      "source": "8_2_0"
+    },
+    {
+      "key": "9_2_3",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 26,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 35,
+      "source": "8_2_1"
+    },
+    {
+      "key": "9_2_4",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_2_0"
+    },
+    {
+      "key": "9_2_5",
+      "type": "pickup-torso-shear-and-feet",
+      "top": 24,
+      "cx": 19.5,
+      "footL": 33,
+      "footR": 33,
+      "source": "8_2_1"
+    },
+    {
+      "key": "10_0_0",
+      "type": "seated-side-folded-skirt",
+      "top": 24,
+      "bodyNotRestored": true
+    },
+    {
+      "key": "10_0_1",
+      "type": "seated-side-folded-skirt",
+      "top": 24,
+      "bodyNotRestored": true
+    },
+    {
+      "key": "10_0_2",
+      "type": "seated-side-folded-skirt",
+      "top": 25,
+      "bodyNotRestored": true
+    },
+    {
+      "key": "10_0_3",
+      "type": "seated-side-folded-skirt",
+      "top": 25,
+      "bodyNotRestored": true
+    },
+    {
+      "key": "10_1_0",
+      "type": "seated-two-soles",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 30,
+      "footR": 30,
+      "source": "8_1_2"
+    },
+    {
+      "key": "10_1_1",
+      "type": "seated-two-soles",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 30,
+      "footR": 30,
+      "source": "8_1_3"
+    },
+    {
+      "key": "10_1_2",
+      "type": "seated-two-soles",
+      "top": 25,
+      "cx": 15.5,
+      "footL": 30,
+      "footR": 30,
+      "source": "8_1_2"
+    },
+    {
+      "key": "10_1_3",
+      "type": "seated-two-soles",
+      "top": 25,
+      "cx": 15.5,
+      "footL": 30,
+      "footR": 30,
+      "source": "8_1_3"
+    },
+    {
+      "key": "10_2_0",
+      "type": "seated-hip-not-shoes",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_2"
+    },
+    {
+      "key": "10_2_1",
+      "type": "seated-hip-not-shoes",
+      "top": 24,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_3"
+    },
+    {
+      "key": "10_2_2",
+      "type": "seated-hip-not-shoes",
+      "top": 25,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_2"
+    },
+    {
+      "key": "10_2_3",
+      "type": "seated-hip-not-shoes",
+      "top": 25,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_2_3"
+    },
+    {
+      "key": "11_0_0",
+      "type": "sleep-fixed-feet-breath",
+      "top": 20,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_0"
+    },
+    {
+      "key": "11_0_1",
+      "type": "sleep-fixed-feet-breath",
+      "top": 20,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_1"
+    },
+    {
+      "key": "11_0_2",
+      "type": "sleep-fixed-feet-breath",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_0"
+    },
+    {
+      "key": "11_0_3",
+      "type": "sleep-fixed-feet-breath",
+      "top": 22,
+      "cx": 15.5,
+      "footL": 31,
+      "footR": 31,
+      "source": "8_1_1"
+    }
+  ]
+}

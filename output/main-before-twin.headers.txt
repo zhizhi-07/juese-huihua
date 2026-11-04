@@ -1,0 +1,10 @@
+{
+ "x-content-type-options": "nosniff",
+ "cache-control": "no-store",
+ "content-type": "application/json; charset=utf-8",
+ "etag": "\"573781c21797eba4935a153ddbb9741d19ce3859b92dd970953de4243f0789af\"",
+ "date": "Wed, 04 Nov 2026 09:02:51 GMT",
+ "connection": "keep-alive",
+ "keep-alive": "timeout=5",
+ "content-length": "239587"
+}

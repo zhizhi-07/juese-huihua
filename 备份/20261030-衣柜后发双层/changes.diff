@@ -1,0 +1,78 @@
+
+warning: in the working copy of 'C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜后发双层\wardrobe.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'js/wardrobe.js', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\wardrobe.js" b/js/wardrobe.js
+index 26ccc0a..258601e 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\wardrobe.js"
++++ b/js/wardrobe.js
+@@ -62,16 +62,23 @@ PE.Wardrobe={
+     let t=loop?elapsed%total:Math.min(elapsed,Math.max(0,total-1));
+     for(let i=0;i<times.length;i++){if(t<times[i])return i;t-=times[i];}return Math.max(0,times.length-1);
+   },
+-  rank(layer,direction){
++  rank(layer,direction,project,key){
+     // shortcut: 人物部位使用固定穿插顺序，需要任意遮挡层级时再增加显式插槽。
+     const n=layer.name;
+     if(n.startsWith('发饰 /'))return 40;
++    if(n.startsWith('头发 /')&&n.endsWith('侧面后发'))return direction==='up'?36:25;
+     if(n.startsWith('头发 /')&&n.endsWith('后发'))return direction==='up'?35:-20;
+-    if(n==='hand 2')return -10;
+     if(/^(body|身体)$/.test(n))return 0;
+     if(n.startsWith('服装 /'))return 10;
+     if(/^(head|头部)$/.test(n))return 20;
+-    if(PE.isHandLayer(layer))return 15;
++    if(PE.isHandLayer(layer)){
++      if(project&&key){
++        const index=project.layers.indexOf(layer),body=project.layers.findIndex(l=>/^(body|身体)$/.test(l.name)&&l.getFrameData?.(key)),head=project.layers.findIndex(l=>/^(head|头部)$/.test(l.name)&&l.getFrameData?.(key));
++        if(body>=0&&index<body)return -10;
++        if(head>=0&&index>head)return 22;
++      }
++      return n==='hand 2'?-10:15;
++    }
+     return 30;
+   },
+   async decode(data){const ex=new PE.ExportManager();return (await ex.importProject(new Blob([JSON.stringify(data)]))).project;},
+@@ -248,7 +255,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+         const image=l.getFrameData(key);if(!image)continue;
+         if(W.hasPixels(image))found=true;
+         let canvas=images.get(image);if(!canvas){canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;canvas.getContext('2d').putImageData(image,0,0);images.set(image,canvas);}
+-        commands.push({l,canvas,placement:image.placement,frame:loc.action.frames[frameIndex],flip:loc.flip,rank:W.rank(l,loc.action.direction)});
++        commands.push({l,canvas,placement:image.placement,frame:loc.action.frames[frameIndex],flip:loc.flip,rank:W.rank(l,loc.action.direction,project,key)});
+       }
+       if(!found)missing.push(label+'在'+W.actions[action]+' / '+dir+' 第'+(frameIndex+1)+'帧无像素（可能未制作或刻意留空）');
+     }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\index.html" b/index.html
+index b314f22..7f8e314 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\index.html"
++++ b/index.html
+@@ -298,7 +298,7 @@
+   <script src="js/visual-layers.js?v=hd-image-layers-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+-  <script src="js/wardrobe.js?v=hd-image-layers-multiwear-1"></script>
++  <script src="js/wardrobe.js?v=hd-image-layers-multiwear-rear-2"></script>
+   <script src="js/frame-tools.js?v=hd-image-layers-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+   <script src="js/pixel-import.js?v=hd-image-layers-1"></script>
+warning: in the working copy of 'C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜后发双层\wardrobe.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/wardrobe.cjs', LF will be replaced by CRLF the next time Git touches it
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\wardrobe.cjs" b/test/wardrobe.cjs
+index 5bcc046..36a5bc2 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-衣柜后发双层\\wardrobe.cjs"
++++ b/test/wardrobe.cjs
+@@ -42,6 +42,15 @@ async function main(){
+   assert.equal(W.locate(p,'walk','left').flip,true);assert.equal(W.locate(p,'walk','right').flip,false);assert.equal(W.locate(p,'sleep','down'),null);
+   assert.equal(W.frameAt(p.spriteSheets[0],p.spriteSheets[0].actions[0],120),1);assert.equal(W.frameAt(p.spriteSheets[0],p.spriteSheets[0].actions[0],240),0);assert.equal(W.frameAt(p.spriteSheets[0],p.spriteSheets[0].actions[0],500,false),1);
+   assert(W.rank(p.layers[0],'up')>W.rank({name:'head'},'up'));assert(W.rank(p.layers[0],'down')<W.rank({name:'body'},'down'));
++  for(const direction of ['down','side','up']){
++    const side={name:'头发 / 80009 / 侧面后发'},bottom={name:'头发 / 80009 / 底层后发'};
++    assert(W.rank(side,direction)>W.rank({name:'head'},direction),'side rear hair must cover the head');
++    assert(W.rank(side,direction)>W.rank(bottom,direction),'side rear hair must remain above bottom rear hair');
++    if(direction!=='up')assert(W.rank(side,direction)<W.rank({name:'头发 / 80011 / 前发'},direction),'bangs must cover side rear hair');
++  }
++  const visible=()=>true,rearHand={name:'hand',getFrameData:visible},frontHand={name:'hand',getFrameData:visible},body={name:'body',getFrameData:visible},head={name:'head',getFrameData:visible},baseOrder={layers:[rearHand,body,head,frontHand]};
++  assert(W.rank(rearHand,'down',baseOrder,'0_0_0')<W.rank(body,'down'),'sitting hands behind the body keep their source order');
++  assert(W.rank(frontHand,'side',baseOrder,'0_0_0')>W.rank(head,'side'),'front hands remain above the head in overlapping animation frames');
+   PE.ExportManager.prototype._downloadBlob=function(blob,name){assert.equal(name,'成品头发-成品.zip');};
+   const blob=await W.exportItem(entry),zip=await JSZip.loadAsync(await blob.arrayBuffer());
+   const manifest=JSON.parse(await zip.file('阵列说明.json').async('string'));assert.equal(manifest.files.length,4);assert.deepEqual(manifest.files[0].rows[0].durationsMs,[120,120]);

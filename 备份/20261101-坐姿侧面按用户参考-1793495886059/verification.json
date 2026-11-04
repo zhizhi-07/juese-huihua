@@ -1,0 +1,76 @@
+{
+  "changes": [
+    {
+      "key": "10_0_0",
+      "upperBodyDown": 0,
+      "contactRows": "27..31 fixed",
+      "layers": [
+        226,
+        227,
+        287,
+        225,
+        228
+      ]
+    },
+    {
+      "key": "10_0_1",
+      "upperBodyDown": 0,
+      "contactRows": "27..31 fixed",
+      "layers": [
+        226,
+        227,
+        287,
+        225,
+        228
+      ]
+    },
+    {
+      "key": "10_0_2",
+      "upperBodyDown": 1,
+      "contactRows": "27..31 fixed",
+      "layers": [
+        226,
+        227,
+        287,
+        225,
+        228
+      ]
+    },
+    {
+      "key": "10_0_3",
+      "upperBodyDown": 1,
+      "contactRows": "27..31 fixed",
+      "layers": [
+        226,
+        227,
+        287,
+        225,
+        228
+      ]
+    }
+  ],
+  "firstTwoCompositesExactlyMatchSampledReference": true,
+  "referenceGrid": {
+    "x": 9,
+    "y": 3,
+    "cell": 8,
+    "sampleOffset": 4
+  },
+  "palette": [
+    "#2f3b3d",
+    "#e0c5b4",
+    "#feede1"
+  ],
+  "feetAndHandsGrounded": true,
+  "breath": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "frontAndBackUnchanged": true,
+  "otherActionsAndHairUnchanged": true,
+  "frameMetadataUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

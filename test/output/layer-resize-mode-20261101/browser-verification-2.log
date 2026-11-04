@@ -1,0 +1,2 @@
+PASS: isolated browser UI; both modes; custom width; toolbar buttons; real drag; exact HD roundtrip; pixel resampling; undo; mode-switch no-op; narrow layout; no page errors. User projects untouched.
+EXIT: 0

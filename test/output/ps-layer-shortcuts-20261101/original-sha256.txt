@@ -1,0 +1,17 @@
+
+Algorithm : SHA256
+Hash      : 8088FED2FB5F452D1EB4C9FE48419B3848BA8C431FE8ACC14D51D540CA42FAFE
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\layer-shortcuts.js
+
+Algorithm : SHA256
+Hash      : E443CCC50901E45EEF4DE0262E8AE6DF360DA24C92F835EEEBD5DD852CC73B72
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\app.js
+
+Algorithm : SHA256
+Hash      : 9C7D0A770C0CBFB9EEA3EBBA123EB5666BDBAED73A84880BD082C8E19550200B
+Path      : C:\Users\Administrator\Desktop\角色绘画\index.html
+
+Algorithm : SHA256
+Hash      : 4D04917883DC788BB90A3811C5084D44A7E05DA2B9380A2CF71057C6879B145B
+Path      : C:\Users\Administrator\Desktop\角色绘画\README.md
+

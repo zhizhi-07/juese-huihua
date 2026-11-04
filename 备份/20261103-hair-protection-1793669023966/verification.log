@@ -1,0 +1,46 @@
+$ node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+
+EXIT 0
+
+$ node test/cross-action-copy.cjs
+PASS: walk/front to idle and sit; matching or new independent hair layer; protected-body safety; dry-run; atomic batch; layer order; undo/redo; ambiguous targets; project boundary; saved pixels.
+
+EXIT 0
+
+$ node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+
+EXIT 0
+
+$ node test/frame-delete.cjs
+PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.
+
+EXIT 0
+
+$ node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+
+EXIT 0
+
+$ node test/off-canvas-placement.cjs
+PASS: outside drag preview/commit; negative and beyond-frame boxes; native/HD and partial preservation; pick/nudge; outside resize; undo/redo; JSON reload; frame copy; clipped output and exact return; locks and invalid coordinates.
+
+EXIT 0
+
+$ node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+
+EXIT 0
+
+$ node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+PASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.
+
+EXIT 0
+
+$ node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+
+EXIT 0
+

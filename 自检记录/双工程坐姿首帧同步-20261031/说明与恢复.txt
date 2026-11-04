@@ -1,0 +1,48 @@
+两个工程坐姿侧面首帧同步（2026-10-31）
+
+用户授权：主工程最新坐姿首帧同步到后续帧；当前灰色混搭分支各自最新坐姿首帧也同步后续帧。两份工程均停留在 original32_sit / side / 第1帧，按此方向处理，不扩展正面/背面。
+
+完成：
+1. 主工程 main：同步侧面第2–4帧头部轮廓和当前启用的青蓝眼睛，共6个实际变化的图层帧。隐藏的备用五官/发型、身体、手部和其他动作没有改。
+2. 当前 character-gold-mix-1793320553623 分支：同步侧面第2–4帧的睡衣、侧面后发、独立高清左眼和前发，共11个实际变化的外观图层帧。未重新设计用户首帧。
+3. 主工程的头部修正通过既有共享素体机制进入当前分支；两个项目的眼型、颜色、发型和衣服仍各自独立，没有互相套用。
+4. 第2帧沿用各自首帧；第3、4帧上部随头部下沉1像素。主工程 head 层 y>=25 的下部保留，衣服 y>=27 的接地部分保留，衣领跟随肩颈。高清眼睛与前发保留原生像素，不重采样，只调整对应帧位置。
+5. 所有坐姿朝向的第1帧均逐层原始数据不变；目标侧面首帧合成也不变。工程显隐、锁定（包括用户锁定的前发）、分组、parent、时间和当前选层保留。
+
+实际版本冲突与合并：
+主工程第一次保存 HTTP 200，回读完全一致。
+随后重新 GET 分支时，发现除预期共享头部变化之外，用户还修改了待机侧面首帧眼睛（8_0_0），新增了“绘画图层 209”，并切回待机。旧候选稿因此停止，没有写入分支。
+重新保存该最新分支快照到备份“当前分支/合并前最新工程.json”，确认坐姿首帧仍为本次读取的同一稿，再从最新快照重新生成坐姿后续帧。不是仅换新 ETag 重传旧整稿。
+合并时完整保留新的待机眼睛、额外图层及视图状态，只改坐姿指定后续帧。
+第二次分支保存 HTTP 200，回读完全一致；详见 当前分支/并发修改保留检查.json。
+
+验证：
+实际查看两个工程修改前的四帧、修改前后浅/深底对比、裸身和穿衣合成；全部坐姿三方向十二帧渲染均非空。
+逐层断言每份坐姿所有首帧原始数据不变；恢复目标修改帧后整份数据等于各自修改前基线。其他方向、动作和非目标字段不变。
+主画布 render() 离屏结果与同帧高清合成相同；PNG 导出解码 RGBA 相同。
+运行实际 studio 动画预览函数渲染 1→2→3→4→1，首末预览完全一致。
+最终再次 GET 两份真实工程：都仍与保存回读完全相同；6个主工程目标帧和11个分支外观目标帧均匹配。
+没有操作或强刷用户浏览器；上述渲染测试是离屏 Canvas 检查，不冒称浏览器交互测试。
+
+实际命令与状态摘要（工具原始输出见本次执行记录）：
+node scripts/sync-two-sitting-first-20261031.cjs
+  初次 EXIT 1：TypeError: Cannot read properties of null (reading 'width')，原因是分支后续帧尚无眼睛时比较函数未判断空目标；修复后重跑 EXIT 0。
+  输出：PREPARED both sitting side sequences; independent approved first cels exact, feet fixed, source HD eye/fringe preserved. Branch candidate includes only expected shared-base updates plus its own future appearance cels.
+node scripts/sync-two-sitting-first-20261031.cjs --commit
+  EXIT 1；原始输出先为“主工程 SAVED HTTP 200, exact API readback.”，随后 AssertionError: Branch changed beyond known main-body propagation: stop and merge。
+node scripts/sync-two-sitting-first-20261031.cjs --commit-branch
+  EXIT 0；输出“当前分支 SAVED HTTP 200, exact API readback.”及“FINAL MERGED QA: both saved; concurrent idle-eye pixels, appended layer and view retained; every sitting first cel exact.”
+请求使用各自 GET 的 ETag，PUT 都带 X-Pixel-Editor: 1 / If-Match；实际响应及回读在各自目录“保存响应.json”“api-readback.json”。
+
+产物：
+备份根目录：C:\Users\Administrator\Desktop\角色绘画\备份\20261031-双工程坐姿首帧同步-1793409880926
+脚本：C:\Users\Administrator\Desktop\角色绘画\scripts\sync-two-sitting-first-20261031.cjs
+两个子目录各有 candidate.json、api-readback.json、修改帧.json、自检.json、透明 PNG、三方向十二帧、四帧前后比较及实际预览路径的循环顺序图。
+最终版本和 SHA256 见“最终回读与版本记录.json”。
+
+恢复：
+先 GET 当前项目并备份；主工程只按“主工程/修改帧.json”恢复初始“主工程/original.json”中的对应旧帧。
+分支只按“当前分支/修改帧.json”恢复“当前分支/合并前最新工程.json”中的对应旧帧，不使用最早的旧整稿覆盖分支，避免丢掉用户并发修改的待机眼睛和新增图层。
+保存依旧必须 If-Match 校验；有后续修改只合并本次涉及的帧，不恢复整份工程。不要直接复制后台 JSON，也不要改编辑器代码。
+
+范围：没有修改坐姿正面/背面、任何首帧、待机或其他动作的用户图像；只同步已确认坐姿侧面后续帧。主工程身体、手部原有运动保持，不额外重画或更换套装。

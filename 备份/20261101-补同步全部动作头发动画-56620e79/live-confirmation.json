@@ -1,0 +1,27 @@
+{
+  "etag": "\"4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641\"",
+  "results": [
+    {
+      "sheet": "original32_walk",
+      "changedFrames": 24,
+      "actualSilhouetteChangedFrames": 24
+    },
+    {
+      "sheet": "original32_pickup",
+      "changedFrames": 18,
+      "actualSilhouetteChangedFrames": 18
+    },
+    {
+      "sheet": "original32_sit",
+      "changedFrames": 12,
+      "actualSilhouetteChangedFrames": 12
+    },
+    {
+      "sheet": "original32_sleep",
+      "changedFrames": 4,
+      "actualSilhouetteChangedFrames": 4
+    }
+  ],
+  "totalChangedAnimationFrames": 58,
+  "allTargetHairPixelsMatchCandidate": true
+}

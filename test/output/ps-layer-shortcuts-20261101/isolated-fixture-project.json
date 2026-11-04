@@ -1,0 +1,148 @@
+{
+  "version": "1.0",
+  "name": "未命名项目",
+  "bgColor": "#b8c8c3",
+  "gridColor": "rgba(48,68,62,.2)",
+  "currentSheetIndex": 0,
+  "currentActionIndex": 0,
+  "currentFrameIndex": 0,
+  "currentLayerIndex": 1,
+  "palette": [
+    {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255,
+      "name": "黑色"
+    },
+    {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255,
+      "name": "白色"
+    },
+    {
+      "r": 231,
+      "g": 76,
+      "b": 60,
+      "a": 255,
+      "name": "红色"
+    },
+    {
+      "r": 230,
+      "g": 126,
+      "b": 34,
+      "a": 255,
+      "name": "橙色"
+    },
+    {
+      "r": 241,
+      "g": 196,
+      "b": 15,
+      "a": 255,
+      "name": "黄色"
+    },
+    {
+      "r": 46,
+      "g": 204,
+      "b": 113,
+      "a": 255,
+      "name": "绿色"
+    },
+    {
+      "r": 52,
+      "g": 152,
+      "b": 219,
+      "a": 255,
+      "name": "蓝色"
+    },
+    {
+      "r": 155,
+      "g": 89,
+      "b": 182,
+      "a": 255,
+      "name": "紫色"
+    },
+    {
+      "r": 52,
+      "g": 73,
+      "b": 94,
+      "a": 255,
+      "name": "深蓝灰"
+    },
+    {
+      "r": 149,
+      "g": 165,
+      "b": 166,
+      "a": 255,
+      "name": "浅灰色"
+    }
+  ],
+  "spriteSheets": [
+    {
+      "name": "快捷键隔离测试",
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "columns": 1,
+      "rows": 1,
+      "spacingX": 0,
+      "spacingY": 0,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fps": 8,
+      "imageDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAG0lEQVR4AeTKMQ0AAACDsGX+RSMBAfTuJyIBAAAA//8knOMsAAAABklEQVQDAApQABHf04VIAAAAAElFTkSuQmCC",
+      "actions": [
+        {
+          "name": "idle",
+          "direction": "down",
+          "frames": [
+            {
+              "sheetIndex": 0,
+              "sourceX": 0,
+              "sourceY": 0,
+              "width": 8,
+              "height": 8,
+              "locked": false,
+              "lockedRegions": [],
+              "status": "pending",
+              "duration": 0,
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "sheetIndex": 0,
+      "name": "测试绘画",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "frameData": {
+        "0_0_0": {
+          "width": 8,
+          "height": 8,
+          "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAN0lEQVR4AYzMQQ0AMAgDwG1qJgEZSEUGEnADryaEDyVp+LT3znJ8wb9mD2BewGJ+XpCw2wNpFQoAAP//uhA9jgAAAAZJREFUAwDEqRARuZZGcwAAAABJRU5ErkJggg=="
+        }
+      }
+    },
+    {
+      "sheetIndex": 0,
+      "parent": null,
+      "name": "测试绘画 副本",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "frameData": {
+        "0_0_0": {
+          "width": 8,
+          "height": 8,
+          "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAOElEQVR4AZyOwQ0AUARD/zeNEYxhVGMYwTbEwcWFaNJDk/al8AbtC4rs6Q7cE8jkp++Evqw8fggAAAD///UNbk8AAAAGSURBVAMA7wgIEZQEwUIAAAAASUVORK5CYII="
+        }
+      }
+    }
+  ]
+}

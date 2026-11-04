@@ -1,0 +1,80 @@
+{
+  "records": [
+    {
+      "k": "0_3_0",
+      "top": 20,
+      "cut": 46,
+      "newtop": 22,
+      "eyes": {
+        "x": 6,
+        "y": 37,
+        "w": 21,
+        "h": 15
+      }
+    },
+    {
+      "k": "0_3_1",
+      "top": 20,
+      "cut": 46,
+      "newtop": 22,
+      "eyes": {
+        "x": 6,
+        "y": 37,
+        "w": 21,
+        "h": 15
+      }
+    },
+    {
+      "k": "0_3_2",
+      "top": 18,
+      "cut": 44,
+      "newtop": 20,
+      "eyes": {
+        "x": 6,
+        "y": 35,
+        "w": 21,
+        "h": 15
+      }
+    },
+    {
+      "k": "0_3_3",
+      "top": 18,
+      "cut": 44,
+      "newtop": 20,
+      "eyes": {
+        "x": 6,
+        "y": 35,
+        "w": 21,
+        "h": 15
+      }
+    },
+    {
+      "k": "0_3_4",
+      "top": 20,
+      "cut": 46,
+      "newtop": 22,
+      "eyes": {
+        "x": 6,
+        "y": 37,
+        "w": 21,
+        "h": 15
+      }
+    },
+    {
+      "k": "0_3_5",
+      "top": 20,
+      "cut": 46,
+      "newtop": 22,
+      "eyes": {
+        "x": 6,
+        "y": 37,
+        "w": 21,
+        "h": 15
+      }
+    }
+  ],
+  "otherFramesAndLayersUnchanged": true,
+  "hardPixelNearest": true,
+  "scope": "front idle only",
+  "browserChecked": false
+}

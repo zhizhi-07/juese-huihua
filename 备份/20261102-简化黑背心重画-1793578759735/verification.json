@@ -1,0 +1,39 @@
+{
+  "originalSHA256": "3525edfd6bd63a4f073690d97e4366df630efb2b1f74f567d2ca685c29993b50",
+  "changedLayers": [
+    141,
+    135,
+    129
+  ],
+  "changedCels": [
+    "8_0_0",
+    "8_0_1",
+    "8_0_2",
+    "8_0_3",
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3",
+    "8_2_0",
+    "8_2_1",
+    "8_2_2",
+    "8_2_3"
+  ],
+  "sourceResolution": [
+    144,
+    144
+  ],
+  "logicalResolution": [
+    36,
+    36
+  ],
+  "paletteColors": 8,
+  "noNewLayers": true,
+  "allOtherLayersMetadataAndActionsUnchanged": true,
+  "hairEyesBodyHandsUnchanged": true,
+  "HDMainAndPNG12FramesMatch": true,
+  "actualStudioPreviewFunctionTested": true,
+  "restoreExtraCopyVerified": true,
+  "imageGenerationUsed": false,
+  "browserChecked": false
+}

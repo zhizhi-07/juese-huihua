@@ -1,0 +1,157 @@
+{
+  "originalSHA256": "3592a05b9615d2a81fb90f77f7355a6d9fc5c23280101edaa08261305f154e49",
+  "changed": [
+    {
+      "layer": 10,
+      "key": "8_1_0"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_3"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_0"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_0"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_3"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_3"
+    },
+    {
+      "layer": 191,
+      "key": "8_1_0"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_0"
+    },
+    {
+      "layer": 191,
+      "key": "8_1_1"
+    },
+    {
+      "layer": 191,
+      "key": "8_1_2"
+    },
+    {
+      "layer": 191,
+      "key": "8_1_3"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_1"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_2"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_3"
+    }
+  ],
+  "motion": [
+    {
+      "layer": 10,
+      "key": "8_0_1",
+      "anchor": "8_0_0",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_2",
+      "anchor": "8_0_3",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_1",
+      "anchor": "8_1_0",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_2",
+      "anchor": "8_1_3",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_1",
+      "anchor": "8_2_0",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_2",
+      "anchor": "8_2_3",
+      "rows": "26..35",
+      "reason": "remove abrupt lower-lock horizontal translation"
+    }
+  ],
+  "originalGrayPaletteRestored": true,
+  "acceptedShadowDesignKept": true,
+  "allOtherDataUnchanged": true,
+  "breathingUpperHairUntouched": true,
+  "lowerLocksNoWholeRowSway": true,
+  "mainPreviewPNG12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false,
+  "frameDurations": [
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ]
+  ]
+}

@@ -1,0 +1,31 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');
+const {warp,body,raster,encode}=require('./try-idle-overalls-20261104.cjs');
+const {clothing,check,preview}=require('./sync-user-overalls-20261104.cjs');
+const red=(im,i)=>im.data[i+3]&&im.data[i]===255&&im.data[i+1]===0&&im.data[i+2]===0;
+const {fit}=require('../js/clothing-fit.js');
+async function main(){
+  const id='character-1f622669-b72b-4df8-bafd-ce25df22c486',api='http://127.0.0.1:8765/api/';await(await fetch(api+'projects')).json();
+  const r=await fetch(api+'project?id='+id);assert(r.ok);const raw=await r.text(),before=JSON.parse(raw),p=structuredClone(before),dir=path.resolve(__dirname,'../output/overalls-feet-recalc-20261104-'+Date.now());fs.mkdirSync(dir);
+  fs.writeFileSync(dir+'/before.json',raw);fs.writeFileSync(dir+'/source-meta.json',JSON.stringify({id,etag:r.headers.get('etag'),sha256:crypto.createHash('sha256').update(raw).digest('hex')},null,2));
+  const sources={},sitSources={},soles=[];
+  for(let ai=0;ai<3;ai++){
+    const direction=p.spriteSheets[1].actions[ai].direction,f=p.spriteSheets[1].actions[ai].frames[0];sources[direction]={body:body(p,1,ai,0),clothes:raster(clothing(p,`1_${ai}_0`).frameData[`1_${ai}_0`],f.width,f.height)};
+    const sf=p.spriteSheets[3].actions[ai].frames[0],cel=clothing(p,`3_${ai}_0`).frameData[`3_${ai}_0`],im=raster(cel,sf.width,sf.height);
+    for(let y=0;y<im.height;y++)for(let x=0;x<im.width;x++){const i=(y*im.width+x)*4;if(red(im,i)){assert.equal(direction,'side');soles.push([x,y]);im.data.fill(0,i,i+4);}}
+    sitSources[direction]={body:body(p,3,ai,0),clothes:im};
+  }
+  assert.equal(soles.length,8,'expected the eight user-marked sitting-side sole pixels');fs.writeFileSync(dir+'/calibration.json',JSON.stringify({soles,sitting:Object.fromEntries(Object.entries(sitSources).map(([d,s])=>[d,{body:encode(s.body),clothes:encode(s.clothes)}]))},null,2));
+  const regression=[],checks=[];
+  for(let si=0;si<4;si++)for(let ai=0;ai<p.spriteSheets[si].actions.length;ai++)for(let fi=0;fi<p.spriteSheets[si].actions[ai].frames.length;fi++){
+    if(si===1&&fi===0)continue;const direction=p.spriteSheets[si].actions[ai].direction,key=`${si}_${ai}_${fi}`,target=body(p,si,ai,fi),src=si===3?sitSources[direction]:sources[direction],out=fit(src,target,{shadeLegs:si===0||si===2,soleReference:sitSources.side.body,soles:si===3&&direction==='side'?soles:[]});
+    for(let i=0;i<out.data.length;i+=4)if(out.data[i+3])assert(target.data[i+3]&&target.data[i]!==70,'escaped body '+key);
+    if(['0_0_0','0_0_1','2_0_1','2_0_2'].includes(key)){const f=p.spriteSheets[si].actions[ai].frames[fi],expected=raster(clothing(before,key).frameData[key],f.width,f.height);assert.deepEqual(Buffer.from(out.data),Buffer.from(expected.data),'manual leg correction not reproduced '+key);regression.push(key);}
+    if(si===3&&fi===0)assert.deepEqual(Buffer.from(out.data),Buffer.from(src.clothes.data),'sitting correction changed '+key);
+    clothing(p,key).frameData[key]=encode(out);checks.push({key,solePixels:si===3&&direction==='side'?soles.length:0});
+  }
+  assert.equal(checks.length,63);assert.equal(regression.length,4);const changed=check(before,p);
+  fs.writeFileSync(dir+'/candidate.json',JSON.stringify(p));preview(before,dir);fs.renameSync(dir+'/preview.png',dir+'/before-preview.png');preview(p,dir);
+  fs.writeFileSync(dir+'/checks.json',JSON.stringify({changed,generatedFrames:63,idleSourceFramesPreserved:3,nonClothingUnchanged:true,regression,soleMask:soles,soleFrames:checks.filter(c=>c.solePixels).length,redPixelsInGeneratedOutput:0,sittingCorrectionsPreservedExceptAnnotation:true,checks},null,2));
+  console.log(JSON.stringify({dir,changedCels:changed.length,regression,soleFrames:4,status:'PASS; candidate only'},null,2));
+}
+module.exports={fit};if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});

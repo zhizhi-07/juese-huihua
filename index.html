@@ -5,8 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>像素衣橱 · 角色绘画工作台</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/studio.css?v=frame-copy-1">
+  <link rel="stylesheet" href="css/studio.css?v=layer-order-1">
   <link rel="stylesheet" href="css/visual-layers.css?v=all-action-parts-1">
+  <link rel="stylesheet" href="css/wardrobe.css?v=1">
+  <link rel="stylesheet" href="css/hd-canvas.css?v=drag-create-1">
+  <link rel="stylesheet" href="css/frame-timing.css?v=frame-timing-1">
+  <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
+  <link rel="stylesheet" href="css/select-plus.css?v=auto-outline-2">
+  <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+  <link rel="stylesheet" href="css/workspace-layout.css?v=brush-size-1">
+  <link rel="stylesheet" href="css/studio-theme.css?v=layer-solo-1">
 </head>
 <body class="dark-theme">
   <!-- 页面主容器 -->
@@ -65,8 +73,8 @@
         <input type="color" id="color-primary" value="#140c1c" title="当前绘制颜色">
 
         <label for="brush-size" class="control-label" style="margin-left: 8px;">粗细:</label>
-        <input type="range" id="brush-size" min="1" max="16" value="1" title="笔刷大小 ([ / ])">
-        <span id="brush-size-val" class="value-badge">1px</span>
+        <input type="range" id="brush-size" min="1" max="128" value="1" aria-label="画笔 / 橡皮大小滑条" title="画笔 / 橡皮大小 ([ / ])">
+        <input type="number" id="brush-size-number" min="1" max="128" step="1" value="1" aria-label="画笔 / 橡皮大小"><span>px</span>
       </div>
 
       <div class="toolbar-separator"></div>
@@ -182,7 +190,7 @@
         <section class="panel-section">
           <div class="section-header">
             <h3>图层管理 (Layers)</h3>
-            <div class="layer-header-actions"><button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button><button id="delete-layer-btn" class="icon-action-btn layer-delete" title="删除当前选中图层，可撤销">删除图层</button></div>
+            <div class="layer-header-actions"><button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button><button id="mirror-layer-btn" class="icon-action-btn" title="镜像当前图层：左右 / 上下翻转，或以画布正中、图层内容中线、拖动参考线镜像">镜像</button><button id="mirror-live-btn" class="icon-action-btn mirror-live" aria-pressed="false" title="开启后在这一层上边画边镜像：画一笔，中线另一侧自动同步">镜像绘制</button><button id="delete-layer-btn" class="icon-action-btn layer-delete" title="删除当前选中图层，可撤销">删除图层</button></div>
           </div>
           <div id="layer-list" class="scroll-list"></div>
         </section>
@@ -274,18 +282,18 @@
 
   <!-- 外部与核心脚本加载 (严格保持顺序) -->
   <script src="js/vendor/jszip.min.js"></script>
-  <script src="js/core.js?v=hair-slots-2"></script>
+  <script src="js/core.js?v=native16-wiring-20261104"></script>
   <script src="js/history.js"></script>
-  <script src="js/canvas.js?v=image-transform-1"></script>
-  <script src="js/tools.js?v=image-transform-1"></script>
+  <script src="js/canvas.js?v=select-wand-2"></script>
+  <script src="js/tools.js?v=native16-wiring-20261104"></script>
   <script src="js/spritesheet.js"></script>
-  <script src="js/animation.js"></script>
+  <script src="js/animation.js?v=playback-overlays-1"></script>
   <script src="js/inspection.js"></script>
-  <script src="js/export.js?v=all-action-parts-1"></script>
-  <script src="js/api.js?v=frame-copy-1"></script>
+  <script src="js/export.js?v=clothing-sync-20261104"></script>
+  <script src="js/api.js?v=native16-wiring-20261104"></script>
   <script src="js/aseprite.js"></script>
-  <script src="js/app.js?v=frame-copy-1"></script>
-  <script src="js/workbench.js?v=frame-copy-1"></script>
+  <script src="js/app.js?v=native16-wiring-20261104"></script>
+  <script src="js/workbench.js?v=native16-wiring-20261104"></script>
   <script src="js/local-bridge.js"></script>
   <script src="js/persistence.js?v=manual-shared-save-2"></script>
   <script src="js/builtin-packs.js"></script>
@@ -293,12 +301,29 @@
   <script src="js/poses.js"></script>
   <script src="js/original32.js"></script>
   <script src="js/eyes32.js"></script>
-  <script src="js/studio.js?v=image-transform-1"></script>
-  <script src="js/visual-layers.js?v=frame-copy-1"></script>
+  <script src="js/scene-materials.js?v=1"></script>
+  <script src="js/studio.js?v=scene-materials-20261104"></script>
+  <script src="js/visual-layers.js?v=native16-wiring-20261104"></script>
   <script src="js/character-base.js?v=branch-hands-1"></script>
-  <script src="js/projects.js?v=4"></script>
-  <script src="js/frame-tools.js?v=frame-copy-1"></script>
-  <script src="js/building-groups.js?v=1"></script>
-  <script src="js/pixel-import.js?v=image-transform-1"></script>
+  <script src="js/projects.js?v=native16-wiring-20261104"></script>
+  <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
+  <script src="js/wardrobe.js?v=native16-clean-20261104"></script>
+  <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
+  <script src="js/frame-tools.js?v=native16-wiring-20261104"></script>
+  <script src="js/layer-mirror.js?v=native16-wiring-20261104"></script>
+  <script src="js/layer-shortcuts.js?v=ps-layer-shortcuts-2"></script>
+  <script src="js/building-groups.js?v=native16-wiring-20261104"></script>
+  <script src="js/pixel-import.js?v=stable-toolbar-1"></script>
+  <script src="js/hd-canvas.js?v=native16-wiring-20261104"></script>
+  <script src="js/frame-timing.js?v=frame-timing-1"></script>
+  <script src="js/draw-kit.js?v=visible-aux-3"></script>
+  <script src="js/select-plus.js?v=native16-wiring-20261104"></script>
+  <script src="js/outline.js?v=native16-wiring-20261104"></script>
+  <script src="js/panel-dock.js?v=panel-dock-2"></script>
+  <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+  <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+  <script src="js/hair-animation.js?v=native16-wiring-20261104"></script>
+  <script src="js/clothing-fit.js?v=clothing-sync-20261104"></script>
+  <script src="js/clothing-sync.js?v=clothing-sync-20261104-2"></script>
 </body>
 </html>

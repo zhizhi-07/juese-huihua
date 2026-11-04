@@ -1,0 +1,2 @@
+原始备份：main-before.json（原始响应；SHA256 和 ETag 见 report.json）。
+恢复前先 GET /api/project?id=main，确认没有后续修改；使用当前 ETag、X-Pixel-Editor: 1 和 Content-Type: application/json，以 PUT 提交备份。遇到 409 停止，不能盲目重传。恢复后回读，与备份逐字段比较。当前浏览器草稿不在此备份中，不得刷新或覆盖未保存草稿。

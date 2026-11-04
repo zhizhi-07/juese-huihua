@@ -1,0 +1,573 @@
+{
+  "saved": true,
+  "etag": "\"3f6ee6e23fe22c03513335d8edf711e5a238580343e19f5dc8275340ec454776\"",
+  "originalSHA256": "9df9f59f3b219b83337b7f3f4689e1b8aa0fccf042107bf28aa253a2cb92cc32",
+  "changedFrames": 58,
+  "verifiedFrames": 70,
+  "checks": [
+    {
+      "key": "7_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_0_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_1_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "7_2_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "8_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_0_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_1_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "9_2_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "10_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "10_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": true
+    },
+    {
+      "key": "11_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "11_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "11_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    },
+    {
+      "key": "11_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "handsUnchanged": true,
+      "sittingUnchanged": false
+    }
+  ],
+  "userShoePixelsMovedWithoutChangingAppearance": 12,
+  "scope": "Walking/idle/pickup/sleep trousers follow original leg shadows; both light and shadow shoe ends include raised foot positions; ornaments preserved. Sitting unchanged.",
+  "unchanged": "All shirts, all actual hairstyle pixels, body/hands/eyes, sitting, layer order/visibility/locks, action timing/sizes and editor code.",
+  "browserTested": false
+}

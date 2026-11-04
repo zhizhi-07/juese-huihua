@@ -1,0 +1,57 @@
+{
+  "layerIndex": 197,
+  "positions": [
+    {
+      "key": "8_0_0",
+      "headTop": 4,
+      "placement": {
+        "x": 16,
+        "y": 16,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_0_1",
+      "headTop": 4,
+      "placement": {
+        "x": 16,
+        "y": 16,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_0_2",
+      "headTop": 6,
+      "placement": {
+        "x": 16,
+        "y": 18,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_0_3",
+      "headTop": 6,
+      "placement": {
+        "x": 16,
+        "y": 18,
+        "w": 18,
+        "h": 8
+      }
+    }
+  ],
+  "nearFarWidths": [
+    4.5,
+    3
+  ],
+  "redesignedForThreeQuarterView": true,
+  "opaqueHardPixels": true,
+  "mouthCompletelyUnchanged": true,
+  "frontBackCompositesUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "mainRenderAndExportChecked": true,
+  "studioAnimationAndThumbnailsRendered": true,
+  "userDraftNotRefreshed": true
+}

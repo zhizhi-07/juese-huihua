@@ -1,0 +1,582 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\index.html.before" b/index.html
+index 45000e6..aada93e 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\index.html.before"
++++ b/index.html
+@@ -14,7 +14,7 @@
+   <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
+   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+   <link rel="stylesheet" href="css/workspace-layout.css?v=brush-size-1">
+-  <link rel="stylesheet" href="css/studio-theme.css?v=unslop-20261102">
++  <link rel="stylesheet" href="css/studio-theme.css?v=mono-reference-20261102">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -284,7 +284,7 @@
+   <script src="js/vendor/jszip.min.js"></script>
+   <script src="js/core.js?v=layer-order-2"></script>
+   <script src="js/history.js"></script>
+-  <script src="js/canvas.js?v=playback-overlays-1"></script>
++  <script src="js/canvas.js?v=neutral-workspace-20261102"></script>
+   <script src="js/tools.js?v=brush-size-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js?v=playback-overlays-1"></script>
+@@ -318,6 +318,6 @@
+   <script src="js/select-plus.js?v=select-plus-1"></script>
+   <script src="js/outline.js?v=select-plus-1"></script>
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+-  <script src="js/workspace-layout.js?v=3"></script>
++  <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+ </body>
+ </html>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\css__studio-theme.css.before" b/css/studio-theme.css
+index e85c087..af45bba 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\css__studio-theme.css.before"
++++ b/css/studio-theme.css
+@@ -1,174 +1,180 @@
+-/* Design pass using unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+-   https://github.com/heydamir/unslop — presentation only; project pixels stay untouched. */
++/* Reference-led monochrome workspace. Method: unslop by Damir Sokolovsky
++   (@heydamir), CC BY 4.0 — https://github.com/heydamir/unslop */
+ .studio {
+-  color-scheme:dark;
+-  --bg-primary:#181a1b; --bg-secondary:#202223; --bg-tertiary:#202223;
+-  --bg-surface:#282b2d; --bg-input:#191b1d;
+-  --text-main:#eceeed; --text-muted:#b4bab7; --text-dim:#9ca5a0;
+-  --border-light:#383d3a; --border-dark:#303532; --border-active:#6fc6a4;
+-  --accent-color:#6fc6a4; --accent-hover:#8bd8b9; --accent-active:#57ae8d; --accent-blue:#283f36;
+-  --panel:#202223; --raised:#292d2b; --line:#383d3a; --selected:#293e35;
+-  background:var(--bg-primary)!important; color:var(--text-main); font-size:13px;
++  color-scheme:light;
++  --bg-primary:#f5f5f5; --bg-secondary:#fff; --bg-tertiary:#fafafa; --bg-surface:#fff; --bg-input:#fff;
++  --text-main:#202020; --text-muted:#595959; --text-dim:#707070;
++  --accent-color:#252525; --accent-hover:#404040; --accent-active:#111; --accent-blue:#ededed;
++  --border-light:#e6e6e6; --border-dark:#ededed; --border-active:#555;
++  background:#f5f5f5!important; color:var(--text-main); font-size:13px;
+   font-family:"Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+   font-variant-numeric:tabular-nums;
+ }
+-.studio #app-container { min-width:0; background:var(--bg-primary); }
+-.studio button { transition:color .15s,background-color .15s,border-color .15s; }
+-.studio :is(button,input,select,textarea,summary):focus-visible { outline:2px solid var(--accent-color); outline-offset:3px; }
+-.studio :is(input,select,textarea) { accent-color:var(--accent-color); }
+-.studio :is(input:not([type=color]):not([type=range]):not([type=checkbox]):not([type=file]),select,textarea) {
+-  background:var(--bg-input); border:1px solid var(--line); color:var(--text-main); border-radius:6px; font:inherit;
+-}
+-.studio .studio-header { height:60px; min-height:60px; padding:0 20px; background:var(--panel); border-color:var(--line); }
+-.studio .studio-brand { gap:12px; }
+-.studio .studio-brand strong { font-size:18px; font-weight:600; letter-spacing:0; color:var(--text-main); }
+-.studio .brand-pixels { font-size:28px; color:var(--accent-color); }
++.studio #app-container { min-width:0; background:#f5f5f5; }
++.studio button { font:inherit; transition:background-color .15s,color .15s,border-color .15s; }
++.studio :is(button,input,select,textarea,summary):focus-visible { outline:2px solid #444; outline-offset:2px; }
++.studio :is(input,select,textarea) { accent-color:#252525; }
++.studio :is(input:not([type=color]):not([type=range]):not([type=checkbox]):not([type=file]),select,textarea) { background:#fff; color:#292929; border:1px solid #ddd; border-radius:5px; font:inherit; }
++.studio :is(.studio-button,.primary-actions button,.layer-header-actions>button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose) { background:#f5f5f5; color:#303030; border:1px solid transparent; border-radius:5px; font-size:12px; }
++.studio :is(.studio-button,.primary-actions button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose):hover { background:#eaeaea; color:#111; }
++.studio .studio-header { height:56px; min-height:56px; margin:12px 16px 0; padding:0 20px; border:0; border-radius:12px 12px 0 0; background:#fff; }
++.studio .studio-brand { gap:10px; }
++.studio .brand-pixels { font-size:26px; color:#202020; }
++.studio .studio-brand strong { font-size:17px; font-weight:600; letter-spacing:0; color:#171717; }
+ .studio .primary-actions { gap:8px; }
+-.studio :is(.studio-button,.primary-actions button,.layer-header-actions>button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose,.timing-button) {
+-  background:var(--raised); border:1px solid var(--line); border-radius:6px; color:var(--text-main); font-size:12px;
+-}
+-.studio .primary-actions button { height:36px; padding:0 12px; }
+-.studio .primary-actions .save-primary { color:#14271e; background:var(--accent-color); border-color:var(--accent-color); font-weight:600; }
+-.studio .primary-actions .save-primary:hover { background:var(--accent-hover); }
+-.studio :is(.studio-button,.part-choose,.workspace-menu>summary,.project-menu>summary,.import-menu>summary):hover { background:#343b37; border-color:#5a6860; }
+-.studio .project-bar { min-height:44px; padding:4px 20px; gap:8px; background:#1c1e1f; border-color:var(--line); }
+-.studio .project-bar>strong { font-size:12px; font-weight:400; color:var(--text-muted); }
+-.studio .project-bar>select { max-width:224px; padding:6px 8px; font-size:12px; }
+-.studio :is(.project-menu,.import-menu)>summary { padding:6px 12px; }
++.studio .primary-actions button { height:32px; padding:0 12px; }
++.studio .primary-actions .save-primary { background:#252525; border-color:#252525; color:#fff; }
++.studio .primary-actions .save-primary:hover { background:#404040; }
++.studio .project-bar { margin:0 16px 12px; min-height:44px; padding:6px 20px; gap:8px; border:0; border-top:1px solid #f0f0f0; border-radius:0 0 12px 12px; background:#fff; box-shadow:0 4px 16px #00000003; }
++.studio .project-bar>strong { font-size:12px; font-weight:400; color:#595959; }
++.studio .project-bar>select { padding:6px 8px; max-width:220px; font-size:12px; background:#fafafa; border-color:#eee; color:#444; }
++.studio :is(.project-menu,.import-menu)>summary { padding:6px 10px; }
+ 
+-/* Persistent tools and action navigation frame the drawing. */
+-.studio .tool-rail { width:64px; min-width:64px; padding:12px 6px; gap:4px; background:#1b1d1e; border-color:var(--line); }
+-.studio .tool-rail .tool-btn { height:48px; min-height:48px; padding:4px; gap:4px; font-size:11px; line-height:1.2; color:var(--text-muted); }
+-.studio .tool-rail .tool-btn svg { stroke-width:1.5; }
+-.studio .tool-rail .tool-btn kbd { right:3px; top:3px; font:9px/12px Consolas,monospace; color:var(--text-dim); }
+-.studio .tool-rail .tool-btn:hover { background:var(--raised); color:var(--text-main); }
+-.studio .tool-rail .tool-btn.active { background:var(--selected); border-color:#4c7963; color:#a2e4c7; }
+-.studio .rail-history .tool-btn { height:28px; min-height:28px; padding:0; gap:0; font-size:20px; }
+-.studio #left-sidebar { width:184px; min-width:184px; padding:20px 12px; gap:16px; background:var(--panel); border-right:1px solid var(--line); }
+-.studio #right-sidebar { width:304px; min-width:304px; padding:20px 16px; gap:24px; background:var(--panel); border-left:1px solid var(--line); }
+-.studio .section-header { min-height:24px; margin-bottom:12px; padding-right:24px; gap:8px; }
+-.studio .section-header :is(h3,strong) { font-size:13px; font-weight:600; letter-spacing:0; color:var(--text-main); }
++/* Four quiet regions; only the artwork carries color. */
++.studio #workspace { margin:0 16px 12px; gap:12px; }
++.studio .tool-rail { width:52px; min-width:52px; padding:8px 4px; gap:4px; background:#fff; border:0; border-radius:10px; }
++.studio .tool-rail .tool-btn { width:100%; height:44px; min-height:44px; padding:4px 2px; gap:4px; border:0; border-radius:5px; color:#606060; font-size:10px; }
++.studio .tool-rail .tool-btn svg { width:18px; height:18px; stroke-width:1.5; }
++.studio .tool-rail .tool-btn kbd { color:#777; font:8px/10px Consolas,monospace; }
++.studio .tool-rail .tool-btn:hover { color:#111; background:#f0f0f0; }
++.studio .tool-rail .tool-btn.active { color:#fff; background:#292929; border:0; }
++.studio .tool-rail .tool-btn.active kbd { color:#ccc; }
++.studio .tool-rail .symmetry-tool[data-mode=none] { color:#606060; }
++.studio .rail-history .tool-btn { height:28px; min-height:28px; padding:0; font-size:20px; }
++.studio #left-sidebar { width:156px; min-width:156px; padding:20px 12px; gap:16px; border:0; border-radius:12px; background:#fff; }
++.studio #right-sidebar { width:280px; min-width:280px; padding:0; gap:12px; border:0; background:transparent; }
++.studio #right-sidebar>.panel-section { padding:16px; background:#fff; border-radius:12px; }
++.studio #right-sidebar>.panel-section:has(#layer-list) { min-height:200px; }
++.studio .section-header { min-height:24px; margin-bottom:12px; padding-right:20px; }
++.studio .section-header :is(h3,strong) { color:#262626; font-size:13px; font-weight:600; letter-spacing:0; }
+ .studio #sheet-list { gap:4px; }
+-.studio .sheet-item { min-height:56px; padding:8px; gap:8px; border-radius:6px; color:var(--text-muted); }
+-.studio .sheet-item:hover { background:var(--raised); border-color:transparent; }
+-.studio .sheet-item.active { background:var(--selected); border-color:#4c7963; color:var(--text-main); box-shadow:none; }
++.studio .sheet-item { min-height:48px; padding:8px 10px; gap:0; border:0; border-radius:6px; color:#555; }
++.studio .sheet-item:hover { background:#f6f6f6; border:0; }
++.studio .sheet-item.active { color:#202020; background:#efefef; border:0; box-shadow:inset 2px 0 #333; }
++.studio .sheet-icon { display:none; }
+ .studio .sheet-copy { gap:4px; }
+ .studio .sheet-copy strong { font-size:13px; font-weight:500; }
+-.studio .sheet-copy small { font-size:11px; color:var(--text-dim); }
+-.studio .sheet-icon { width:28px; height:32px; background:var(--raised); color:var(--text-muted); }
+-.studio .sheet-item.active .sheet-icon { background:#365243; color:#a2e4c7; }
+-.studio .source-archive,.studio .library-guide { border-color:var(--line); }
+-.studio .source-archive>summary { color:var(--text-dim); font-size:11px; }
+-.studio .library-guide { font-size:12px; color:var(--text-muted); }
+-.studio .library-guide :is(strong,span) { font-size:11px; color:var(--text-dim); }
+-
+-.studio #center-viewport { margin:0; border:0; border-radius:0; background:var(--panel); }
+-.studio .canvas-header { min-height:64px; padding:12px 16px; gap:12px; border-color:var(--line); }
++.studio .sheet-copy small { color:#727272; font-size:11px; }
++.studio .source-archive { border-color:#eee; margin-top:20px; padding-top:12px; }
++.studio .source-archive>summary { color:#707070; font-size:11px; }
++.studio .library-guide { display:none; }
++.studio #center-viewport { margin:0; min-width:240px; border:0; border-radius:12px; background:#fff; box-shadow:none; }
++.studio .canvas-header { min-height:64px; padding:12px 16px; gap:12px; border-color:#eee; }
+ .studio .canvas-title { gap:4px; }
+-.studio .canvas-title strong { font-size:15px; font-weight:500; }
+-.studio .canvas-title span { font:11px/16px Consolas,"Microsoft YaHei",monospace; letter-spacing:0; color:var(--text-dim); }
+-.studio .hand-switch,.studio .canvas-options>summary { font-size:12px; color:var(--text-muted); }
+-.studio .canvas-viewbar { min-height:48px; padding:8px 12px; gap:8px; background:#242728; border-bottom:1px solid var(--line); }
+-.studio .direction-tabs { gap:2px; padding:2px; background:#181b1a; border:1px solid var(--line); }
+-.studio .direction-tab { padding:6px 10px; font-size:12px; color:var(--text-muted); }
+-.studio .direction-tab.active { background:#35493e; color:#b0e9ce; box-shadow:none; }
+-.studio .canvas-viewbar>.brush-control { gap:8px; color:var(--text-muted); font-size:12px; }
+-.studio #brush-size { width:76px; accent-color:var(--accent-color); }
+-.studio #brush-size-number { width:56px; height:28px; padding:4px; font-size:12px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
+-.studio .view-actions { gap:4px; flex-basis:320px; }
+-.studio .view-actions button,.studio .subtle-button { font-size:12px; color:var(--text-muted); padding:6px 8px; }
+-.studio .view-actions button:hover { color:var(--text-main); background:var(--raised); }
+-.studio .view-actions button.active { background:var(--selected); color:#a2e4c7; }
+-.studio .view-actions .aux-toggle.active { background:var(--selected); color:#a2e4c7; }
+-.studio .zoom-control { border-color:var(--line); }
+-.studio .zoom-badge { font:11px Consolas,monospace; color:var(--text-muted); }
+-.studio #canvas-container { background:#17191a; background-image:none; }
+-.studio .canvas-help { left:12px; bottom:12px; padding:6px 8px; font-size:11px; letter-spacing:0; color:#d0d6d2; background:#202422e8; border:1px solid #57655c; }
+-.studio :is(.image-edit-toolbar,.frame-edit-toolbar) { gap:8px; padding:8px 12px; background:var(--panel); border-color:var(--line); color:var(--text-muted); font-size:12px; }
+-.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button { font-size:12px; padding:6px 8px; }
+-.studio .image-edit-toolbar input[type=number] { padding:4px; }
+-.studio .image-edit-toolbar :is([data-edit-status],strong),.studio .frame-edit-status { color:var(--text-dim); font-size:11px; line-height:1.5; }
+-.studio .frame-edit-status { overflow-wrap:anywhere; }
++.studio .canvas-title strong { font-size:15px; font-weight:500; color:#242424; }
++.studio .canvas-title span { font:11px/16px Consolas,"Microsoft YaHei",monospace; color:#707070; letter-spacing:0; }
++.studio .hand-switch,.studio .canvas-options>summary { color:#595959; font-size:12px; }
++.studio .hand-switch input,.studio .timeline-timing .timing-toggle input { accent-color:#333; }
++.studio .canvas-viewbar { min-height:48px; padding:8px 12px; gap:8px; background:#fff; border-bottom:1px solid #eee; }
++.studio .direction-tabs { gap:2px; padding:2px; border:0; background:#f3f3f3; border-radius:6px; }
++.studio .direction-tab { padding:6px 10px; font-size:12px; color:#595959; }
++.studio .direction-tab.active { color:#fff; background:#303030; box-shadow:none; }
++.studio .canvas-viewbar>.brush-control { gap:6px; color:#595959; font-size:11px; }
++.studio #brush-size { width:72px; min-width:48px; accent-color:#333; }
++.studio #brush-size-number { width:52px; height:28px; padding:4px; color:#333; background:#fff; border-color:#ddd; font-size:12px; }
++.studio .view-actions { gap:2px; flex-basis:280px; }
++.studio .view-actions button { padding:6px 7px; color:#595959; font-size:11px; background:transparent; }
++.studio .view-actions button:hover { color:#111; background:#eee; }
++.studio .view-actions button.active,.studio .view-actions .aux-toggle.active { background:#eee; color:#222; }
++.studio .zoom-control { border-color:#e5e5e5; }
++.studio .zoom-badge { color:#595959; font:11px Consolas,monospace; }
++.studio #canvas-container { background:#f2f2f2; background-image:none; }
++.studio .canvas-help { left:12px; bottom:12px; padding:4px 8px; color:#686868; background:#fffffff0; border-radius:4px; font-size:11px; letter-spacing:0; }
+ .studio :is(.canvas-header,.canvas-viewbar,.image-edit-toolbar,.frame-edit-toolbar,#frame-strip-wrapper) { flex-shrink:0; }
+ 
+-/* Artwork retains its colors; inspector chrome stays neutral. */
+-.studio .paint-controls { margin:0 0 12px; gap:8px; }
+-.studio #color-primary { width:36px; height:36px; background:var(--raised); border-color:var(--line); border-radius:6px; }
+-.studio .paint-controls input[type=text] { height:32px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
+-.studio #palette-container { max-height:72px; gap:6px; }
+-.studio .palette-swatch { border-radius:4px; border:1px solid #ffffff26; }
+-.studio .palette-swatch.active { outline:2px solid var(--accent-color); outline-offset:2px; }
++/* Common commands remain in place; technical controls share one menu. */
++.studio :is(.image-edit-toolbar,.frame-edit-toolbar) { padding:8px 12px; gap:6px; background:#fff; border-color:#eee; color:#595959; font-size:11px; align-items:center; }
++.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button { padding:5px 8px; font-size:11px; border:0; background:transparent; }
++.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button:hover { background:#eee; }
++.studio .image-edit-toolbar>strong { color:#707070; font-weight:400; margin-right:2px; }
++.studio .image-edit-toolbar [data-edit-status],.studio .frame-edit-status { order:99; width:100%; color:#727272; font-size:11px; line-height:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
++.studio .image-edit-toolbar>.workspace-menu { margin-left:auto; }
++.studio .image-edit-toolbar .workspace-menu-content { width:320px; padding:12px; display:flex; flex-direction:column; gap:12px; }
++.studio .image-edit-toolbar .workspace-menu-content label { display:flex; align-items:center; gap:8px; flex-wrap:wrap; color:#555; }
++.studio .image-edit-toolbar .workspace-menu-content input[type=number] { width:76px; padding:4px 6px; }
++.studio .image-edit-toolbar .workspace-menu-content select { min-width:140px; padding:6px; }
++.studio .image-edit-toolbar .workspace-menu-content>button { border-radius:5px; background:#f5f5f5; }
++.studio .frame-edit-toolbar>.workspace-menu { margin-left:auto; }
++.studio .workspace-menu>summary { font-size:11px; padding:5px 8px; color:#555; background:#f5f5f5; border:0; }
++.studio .workspace-menu>summary::after { color:#777; }
++.studio .workspace-menu[open]>summary { background:#eaeaea; border-color:transparent; }
++.studio :is(.workspace-menu-content,.dropdown-menu,.project-actions,.import-actions,.canvas-options[open],.plus-panel,.floating-panel,.dock-panel.is-floating,dialog) { background:#fff; color:#292929; border-color:#e3e3e3; border-radius:8px; box-shadow:0 8px 28px #00000012; }
++.studio .workspace-menu-content { max-height:min(420px,55vh); }
++.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button { color:#333; background:transparent; font-size:12px; }
++.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button:hover { background:#f0f0f0; }
++.studio .workspace-menu-content>button.active { color:#111; background:#eee; }
++.studio .dock-panel.is-floating>.section-header { background:#f7f7f7; border-color:#eee; }
++.studio .dock-panel>.section-header .dock-float-btn { color:#777; }
++.studio .dock-panel>.section-header .dock-float-btn:hover { color:#111; background:#eee; border-color:transparent; }
++.studio :is(#left-sidebar,#right-sidebar).dock-hover { background:#eee; outline-color:#777; }
++
++.studio .paint-controls { gap:8px; margin-bottom:12px; }
++.studio #color-primary { width:32px; height:32px; padding:3px; border-color:#e1e1e1; border-radius:5px; }
++.studio .paint-controls input[type=text] { height:30px; width:100px!important; border-color:#e1e1e1; color:#444; font-size:12px; }
++.studio #palette-container { gap:6px; max-height:64px; }
++.studio .palette-swatch { border-radius:4px; border:1px solid #00000018; }
++.studio .palette-swatch.active { outline:2px solid #444; outline-offset:2px; }
+ .studio .layer-header-actions { gap:4px; padding-bottom:12px; }
+-.studio .layer-header-actions>button { height:28px; padding:4px 8px; font-size:12px; }
+-.studio .layer-header-actions>.layer-move { width:28px; min-width:28px; padding:0; }
+-.studio .layer-header-actions .mirror-live.active { color:#a2e4c7; background:var(--selected); border-color:#4c7963; }
+-.studio .part-tabs { gap:4px; padding:0 0 12px; background:var(--panel); }
+-.studio .part-tab { font-size:12px; padding:6px 2px; border-color:var(--line); background:var(--raised); color:var(--text-muted); }
+-.studio .part-tab[aria-selected=true] { background:var(--selected); border-color:#4c7963; color:#a2e4c7; }
+-.studio .part-slot-title { margin:4px 0 8px; color:var(--text-dim); font-size:12px; font-weight:400; }
+-.studio .layer-item.visual-layer-card { padding:8px; margin-bottom:8px; background:#262a28; border:1px solid var(--line); border-radius:8px; }
+-.studio .layer-item.visual-layer-card.active { padding:8px; background:#2b3831; border:1px solid #6caa8c; }
+-.studio .part-thumb { border-color:#5c655f; }
+-.studio .visual-layer-card .layer-name { color:var(--text-main); font-size:13px; }
+-.studio .part-state,.studio .visual-layer-card.part-visible .part-state { color:var(--text-dim); font-size:11px; margin:4px 0 8px; }
++.studio .layer-header-actions>button { height:28px; padding:4px 7px; color:#555; background:#f5f5f5; border:0; font-size:11px; }
++.studio .layer-header-actions>.layer-move { width:24px; min-width:24px; padding:0; }
++.studio .layer-header-actions .mirror-live.active { background:#292929; color:#fff; border-color:transparent; font-weight:400; }
++.studio .part-tabs { padding:0 0 12px; gap:4px; background:#fff; }
++.studio .part-tab { padding:6px 2px; color:#666; background:#f5f5f5; border:0; font-size:12px; }
++.studio .part-tab[aria-selected=true] { background:#303030; color:#fff; border-color:transparent; }
++.studio .part-slot-title { margin:4px 0 8px; color:#707070; font-size:12px; font-weight:400; }
++.studio .layer-item.visual-layer-card { padding:8px; margin-bottom:8px; background:#fafafa; border:1px solid #eee; border-radius:7px; }
++.studio .layer-item.visual-layer-card.active { padding:8px; background:#f5f5f5; border:1px solid #b0b0b0; }
++.studio .part-thumb { border-color:#ddd; border-radius:4px; }
++.studio .visual-layer-card .layer-name { color:#292929; font-size:13px; }
++.studio .part-state,.studio .visual-layer-card.part-visible .part-state { color:#707070; font-size:11px; margin:4px 0 6px; }
+ .studio .part-card-actions { gap:4px; }
+-.studio .part-choose { padding:4px 8px; font-size:11px; }
+-.studio .layer-icon-btn { width:24px; min-width:24px; height:24px; color:var(--text-muted); }
++.studio .part-choose { padding:4px 6px; background:#eaeaea; font-size:11px; }
++.studio .layer-icon-btn { width:22px; min-width:22px; height:24px; color:#666; }
+ .studio .layer-icon-btn svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+-.studio .layer-delete { border-color:#69504e; background:transparent; color:#e4aaa4; font-size:11px; padding:4px 6px; }
+-.studio .part-more { border-color:var(--line); padding-top:4px; }
+-.studio .part-more summary { color:var(--text-dim); font-size:11px; padding:4px 0; }
+-.studio .part-empty { color:var(--text-dim); }
+-.studio .preview-card { min-height:100px; padding:12px; border-color:var(--line); border-radius:8px; background:#191c1a; }
++.studio .layer-delete { padding:4px 6px; background:transparent; border:0; color:#707070; font-size:11px; }
++.studio .layer-delete:hover { color:#a33; background:#f9eeee; }
++.studio .part-more { border-color:#e6e6e6; }
++.studio .part-more summary { padding:4px 0; color:#707070; font-size:11px; }
++.studio .part-empty { color:#707070; }
++.studio .preview-card { min-height:100px; padding:12px 16px; background:#fff; border:0; border-radius:12px; }
+ .studio #preview-canvas { width:80px; height:80px; border-radius:4px; }
+ 
+-.studio #frame-strip-wrapper { min-height:144px; background:#1e2120; border-color:var(--line); }
+-.studio .timeline-header { min-height:44px; padding:8px 12px; gap:12px; }
+-.studio .timeline-header strong { color:var(--text-main); font-size:12px; }
+-.studio .timeline-playback button { height:28px; font-size:12px; color:var(--text-muted); }
+-.studio .timeline-playback button:hover { background:var(--raised); color:var(--text-main); }
+-.studio .timeline-timing { gap:6px; font-size:11px; color:var(--text-muted); }
+-.studio .timeline-timing :is(.timing-unit,.timing-toggle,.timing-total) { color:var(--text-dim); }
+-.studio .timeline-timing input[type=number] { height:28px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
+-.studio .timeline-timing .timing-button { height:28px; color:var(--text-muted); background:var(--raised); border-color:var(--line); font-size:11px; }
+-.studio #frame-list { height:100px; padding:0 12px 12px; gap:8px; }
+-.studio .frame-thumb { width:72px; min-width:72px; height:84px; background:#2a2f2c; border:1px solid #465149; border-radius:6px; }
+-.studio .frame-thumb.active { background:#33483b; border:1px solid #89c9a7; box-shadow:inset 0 2px #89c9a7; }
+-.studio .frame-thumb canvas { width:60px; height:60px; }
+-.studio :is(.frame-duration,.frame-duration.inherited,.frame-number) { color:#b8c4bb; background:transparent; font:10px/12px Consolas,monospace; letter-spacing:0; }
+-.studio #bottom-panel { height:28px; min-height:28px; background:#1b1e1c; border-color:var(--line); }
+-.studio #status-bar { height:27px; color:var(--text-dim); font-size:11px; }
+-.studio .save-status { color:var(--text-muted); font-size:11px; }
+-.studio .save-error { color:#e4aaa4; }
+-
+-.studio :is(.workspace-menu-content,.dropdown-menu,.project-actions,.import-actions,.canvas-options[open],.plus-panel,.floating-panel,.dock-panel.is-floating,dialog) {
+-  background:#282c29; color:var(--text-main); border:1px solid #4d5851; border-radius:8px; box-shadow:0 8px 24px #0004;
+-}
+-.studio .workspace-menu>summary { font-size:12px; }
+-.studio .workspace-menu>summary::after { color:var(--text-dim); }
+-.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button { background:transparent; color:var(--text-main); font-size:12px; padding:8px 12px; }
+-.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button:hover { background:#39483e; }
+-.studio .workspace-menu-content>button.active { background:var(--selected); color:#a2e4c7; }
+-.studio .dock-panel.is-floating>.section-header { background:var(--raised); border-color:var(--line); }
+-.studio .dock-panel>.section-header .dock-float-btn { opacity:1; color:var(--text-dim); }
+-.studio .dock-panel>.section-header .dock-float-btn:hover { color:var(--text-main); background:var(--raised); border-color:var(--line); }
+-.studio :is(#left-sidebar,#right-sidebar).dock-hover { background:#293e35; outline-color:#89c9a7; }
++.studio #frame-strip-wrapper { min-height:140px; background:#fff; border-color:#eee; }
++.studio .timeline-header { min-height:40px; padding:8px 12px; gap:8px; }
++.studio .timeline-header strong { color:#444; font-size:12px; }
++.studio .timeline-playback button { padding:4px 6px; color:#555; font-size:11px; }
++.studio .timeline-playback button:hover { color:#111; background:#eee; }
++.studio .timeline-timing { gap:4px; color:#595959; font-size:11px; }
++.studio .timeline-timing :is(.timing-unit,.timing-toggle,.timing-total) { color:#707070; }
++.studio .timeline-timing input[type=number] { height:24px; background:#fff; border-color:#ddd; color:#333; }
++.studio .timeline-timing .timing-button { background:#f5f5f5; border-color:transparent; color:#555; }
++.studio #frame-list { height:92px; padding:0 12px 12px; gap:8px; }
++.studio .frame-thumb { width:68px; min-width:68px; height:80px; background:#f7f7f7; border:1px solid #e3e3e3; border-radius:6px; }
++.studio .frame-thumb.active { background:#eee; border:1px solid #666; box-shadow:none; }
++.studio .frame-thumb canvas { width:58px; height:58px; }
++.studio :is(.frame-duration,.frame-duration.inherited,.frame-number) { color:#686868; background:transparent; font:10px/12px Consolas,monospace; letter-spacing:0; }
++.studio #bottom-panel { height:24px; min-height:24px; padding:0 20px; background:#f5f5f5; border:0; }
++.studio #status-bar { height:24px; color:#707070; font-size:11px; }
++.studio .save-status { color:#666; font-size:11px; }
++.studio .save-error { color:#a33; }
+ .studio dialog { overflow:auto; }
+-.studio dialog::backdrop { background:#101310b8; backdrop-filter:none; }
+-.studio .advanced-grid .panel-section { border-color:var(--line); }
+-.studio .advanced-grid :is(input,textarea,select) { color:var(--text-main)!important; background:var(--bg-input)!important; border-color:var(--line)!important; }
+-.studio .advanced-grid .tool-btn,.studio .wardrobe-dialog .studio-button { color:var(--text-main); background:var(--raised); border-color:var(--line); }
+-.studio :is(.pixel-import-dialog p,.frame-copy-dialog p,.wardrobe-note,.wardrobe-item small,.wardrobe-empty,.plus-panel-head strong,.background-control) { color:var(--text-muted); }
+-.studio :is(.wardrobe-register,.wardrobe-item,.wardrobe-empty) { background:var(--panel); border-color:var(--line); }
+-.studio .wardrobe-item.selected { background:var(--selected); border-color:#6caa8c; }
+-.studio .studio-loading { background:#181a1bf5; color:var(--text-main); }
+-.studio .studio-loading>span:last-child { color:var(--text-muted); }
+-.studio .loading-pixel { color:var(--accent-color); animation:none; }
+-.studio ::-webkit-scrollbar-thumb { background:#525b55; }
++.studio dialog::backdrop { background:#0005; backdrop-filter:none; }
++.studio .advanced-grid .panel-section { background:#fafafa; border-color:#eee; }
++.studio .advanced-grid :is(input,textarea,select) { background:#fff!important; color:#333!important; border-color:#ddd!important; }
++.studio .advanced-grid .tool-btn,.studio .wardrobe-dialog .studio-button { color:#444; background:#f5f5f5; border-color:#e3e3e3; }
++.studio :is(.pixel-import-dialog p,.frame-copy-dialog p,.wardrobe-note,.wardrobe-item small,.wardrobe-empty,.plus-panel-head strong,.background-control) { color:#666; }
++.studio :is(.wardrobe-register,.wardrobe-item,.wardrobe-empty) { background:#fafafa; border-color:#e3e3e3; }
++.studio .wardrobe-item.selected { background:#f0f0f0; border-color:#999; }
++.studio .studio-loading { background:#fafafaf5; color:#333; }
++.studio .studio-loading>span:last-child { color:#707070; }
++.studio .loading-pixel { color:#333; animation:none; }
++.studio ::-webkit-scrollbar-thumb { background:#ccc; }
+ 
+ @media(max-width:1200px) {
+-  .studio #left-sidebar { width:152px; min-width:152px; padding:16px 8px; }
+-  .studio #right-sidebar { width:264px; min-width:264px; padding:16px 12px; gap:20px; }
++  .studio #workspace { gap:8px; }
++  .studio #left-sidebar { width:140px; min-width:140px; padding:16px 8px; }
++  .studio #right-sidebar { width:260px; min-width:260px; }
++  .studio #right-sidebar>.panel-section { padding:12px; }
+   .studio .canvas-header { padding:12px; }
+   .studio .canvas-viewbar>.brush-control { gap:4px; }
+ }
+@@ -176,47 +182,40 @@
+   .studio .studio-header { padding:0 12px; }
+   .studio .primary-actions { gap:4px; }
+   .studio .primary-actions button { padding:0 8px; }
+-  .studio .studio-brand strong { font-size:16px; }
+   .studio .project-bar { flex-wrap:wrap; padding:8px 12px; }
+   .studio .project-bar>strong { flex-basis:100%; }
+-  .studio #workspace { display:grid; grid-template-columns:56px minmax(240px,1fr) 240px; grid-template-rows:88px minmax(680px,1fr); overflow:auto; }
+-  .studio .tool-rail { grid-column:1; grid-row:1 / 3; width:56px; min-width:56px; }
+-  .studio #left-sidebar { grid-column:2 / 4; grid-row:1; width:auto; min-width:0; padding:8px 12px; border-bottom:1px solid var(--line); border-right:0; overflow:hidden; }
++  .studio #workspace { display:grid; grid-template-columns:48px minmax(240px,1fr) 240px; grid-template-rows:80px minmax(640px,1fr); overflow:auto; }
++  .studio .tool-rail { grid-column:1; grid-row:1 / 3; width:48px; min-width:48px; }
++  .studio #left-sidebar { grid-column:2 / 4; grid-row:1; width:auto; min-width:0; padding:8px 12px; overflow:hidden; }
+   .studio #left-sidebar:has(> .dock-panel #layer-list) { width:auto; min-width:0; overflow:auto; }
+   .studio #left-sidebar .section-header { margin-bottom:4px; min-height:20px; }
+   .studio #left-sidebar #sheet-list { flex-direction:row; overflow:auto; }
+-  .studio #left-sidebar .sheet-item { min-height:40px; width:auto; flex-shrink:0; padding:4px 8px; }
+-  .studio #left-sidebar .sheet-icon,.studio .library-guide { display:none; }
++  .studio #left-sidebar .sheet-item { min-height:36px; width:auto; flex-shrink:0; padding:4px 10px; }
+   .studio #left-sidebar .source-archive { margin:0; padding:4px; border:0; flex-shrink:0; }
+   .studio #center-viewport { grid-column:2; grid-row:2; }
+-  .studio #right-sidebar { grid-column:3; grid-row:2; width:240px; min-width:240px; padding:12px; }
++  .studio #right-sidebar { grid-column:3; grid-row:2; width:240px; min-width:240px; }
+   .studio .canvas-header { min-height:60px; }
+   .studio .canvas-viewbar { padding:8px; }
+   .studio .view-actions { flex-basis:100%; }
+-  .studio .image-edit-toolbar { max-height:140px; overflow:auto; }
++  .studio .image-edit-toolbar .workspace-menu-content { width:min(300px,70vw); }
+   .studio .advanced-grid { grid-template-columns:1fr; }
+ }
+ @media(max-width:700px) {
+-  .studio .studio-header { height:auto; min-height:60px; flex-wrap:wrap; gap:8px; padding:12px; }
++  .studio .studio-header { height:auto; min-height:56px; flex-wrap:wrap; gap:8px; padding:12px; }
+   .studio .primary-actions { flex-wrap:wrap; }
+-  .studio #workspace { grid-template-columns:52px minmax(240px,1fr); grid-template-rows:88px minmax(680px,1fr) 220px; }
+-  .studio .tool-rail { width:52px; min-width:52px; grid-row:1 / 4; }
++  .studio #workspace { grid-template-columns:48px minmax(240px,1fr); grid-template-rows:80px minmax(640px,1fr) 240px; }
++  .studio .tool-rail { grid-row:1 / 4; }
+   .studio #left-sidebar { grid-column:2; }
+-  .studio #right-sidebar { grid-column:2; grid-row:3; width:auto; min-width:0; display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; border-top:1px solid var(--line); }
++  .studio #right-sidebar { grid-column:2; grid-row:3; width:auto; min-width:0; display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; overflow:auto; }
+   .studio #right-sidebar>.panel-section:has(#layer-list) { min-height:0; }
+   .studio .preview-card { grid-column:1; }
+   .studio .project-bar>select { flex:1; min-width:100px; max-width:100%; }
+-  .studio .canvas-title strong { font-size:14px; }
+-  .studio .canvas-viewbar>.brush-control { font-size:11px; }
+-  .studio .frame-edit-toolbar { max-height:100px; overflow:auto; }
+ }
+ @media(max-height:760px) and (min-width:901px) {
+-  .studio .tool-rail { gap:2px; padding-top:8px; }
+-  .studio .tool-rail .tool-btn { height:36px; min-height:36px; padding:2px; gap:2px; }
++  .studio .tool-rail { gap:2px; }
++  .studio .tool-rail .tool-btn { height:34px; min-height:34px; padding:2px; gap:2px; }
+   .studio .rail-history .tool-btn { height:24px; min-height:24px; }
+-  .studio #right-sidebar { padding-top:12px; gap:16px; }
+-  .studio .canvas-header { min-height:56px; }
++  .studio .canvas-header { min-height:52px; }
+   .studio .preview-card { display:none; }
+-  .studio .image-edit-toolbar { max-height:116px; overflow:auto; }
+ }
+ @media(prefers-reduced-motion:reduce) { .studio * { transition:none!important; animation:none!important; } }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\js__workspace-layout.js.before" b/js/workspace-layout.js
+index a7257b8..e3ecadd 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\js__workspace-layout.js.before"
++++ b/js/workspace-layout.js
+@@ -42,6 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
+   const caption = $('.section-caption');
+   if (caption) caption.hidden = true;
+ 
++  const imageTools = $('.image-edit-toolbar');
++  if (imageTools) {
++    const primary = [...imageTools.children].filter(control =>
++      control.tagName === 'STRONG' || control.hasAttribute('data-edit-status') ||
++      control.matches('[data-edit-flip-x], [data-edit-flip-y]') ||
++      ['新建高清画布', '编辑高清画布'].includes(control.textContent.trim()));
++    menu('抠图与缩放', [...imageTools.children].filter(control => !primary.includes(control)), imageTools);
++  }
++  const frameTools = $('.frame-edit-toolbar');
++  if (frameTools) {
++    menu('帧操作', [...frameTools.children].filter(control => control.tagName === 'BUTTON' &&
++      !['copy-cel-btn', 'cut-cel-btn', 'paste-cel-btn', 'copy-next-cel-btn'].includes(control.id)), frameTools);
++  }
++
+   document.addEventListener('click', event => {
+     for (const details of menus) if (!details.contains(event.target)) details.open = false;
+   });
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\js__canvas.js.before" b/js/canvas.js
+index a0e77a2..52bc3cb 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\js__canvas.js.before"
++++ b/js/canvas.js
+@@ -262,8 +262,8 @@ window.PE = window.PE || {};
+       this.ctx.imageSmoothingEnabled = false;
+ 
+       // 1. Clear background
+-      const bgColor = this.project && this.project.bgColor ? this.project.bgColor : '#1a1a2e';
+-      this.ctx.fillStyle = bgColor;
++      // The workspace mat is UI chrome; the frame keeps its saved preview background.
++      this.ctx.fillStyle = '#f2f2f2';
+       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+ 
+       const frame = this.project ? this.project.getCurrentFrame() : null;
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\test__unslop-ui-browser.cjs.before" b/test/unslop-ui-browser.cjs
+index a108fdf..0018b05 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\test__unslop-ui-browser.cjs.before"
++++ b/test/unslop-ui-browser.cjs
+@@ -4,7 +4,7 @@ const http = require('node:http');
+ const path = require('node:path');
+ const {chromium} = require('playwright');
+ const root = path.resolve(__dirname, '..');
+-const output = path.join(root, '自检记录/界面改版-unslop-20261102');
++const output = path.join(root, '自检记录/界面重做-黑白参考-20261102');
+ const before = process.argv.includes('--before');
+ 
+ (async () => {
+@@ -13,6 +13,7 @@ const before = process.argv.includes('--before');
+   const server = http.createServer(async (req, res) => {
+     if (req.method !== 'GET') { writes++; res.writeHead(405).end(); return; }
+     const url = new URL(req.url, 'http://localhost');
++    if (url.pathname === '/api/projects') { res.writeHead(200, {'Content-Type':'application/json'}).end('[]'); return; }
+     if (url.pathname.startsWith('/api/')) { res.writeHead(404, {'Content-Type':'application/json'}).end('{}'); return; }
+     const file = path.resolve(root, '.' + decodeURIComponent(url.pathname));
+     if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
+@@ -32,6 +33,35 @@ const before = process.argv.includes('--before');
+     await page.waitForFunction(() => window.PE?.app?.persistence?.ready && document.querySelector('.studio-loading')?.hidden);
+     await page.screenshot({path:path.join(output, before ? 'before.png' : 'after.png')});
+     if (!before) {
++      const chrome = await page.evaluate(() => ({
++        surface:getComputedStyle(document.querySelector('.studio-header')).backgroundColor,
++        primary:getComputedStyle(document.querySelector('.save-primary')).backgroundColor,
++        mat:[...PE.app.canvasManager.ctx.getImageData(1,1,1,1).data],
++        preview:PE.app.project.bgColor
++      }));
++      assert.equal(chrome.surface,'rgb(255, 255, 255)');
++      assert.equal(chrome.primary,'rgb(37, 37, 37)');
++      assert.deepEqual(chrome.mat,[242,242,242,255]);
++      assert.equal(chrome.preview,'#b8c8c3','Saved preview color is separate from neutral workspace mat');
++      assert.equal(await page.getByLabel('画布抠图容差',{exact:true}).isVisible(),false);
++      await page.locator('.image-edit-toolbar > .workspace-menu > summary').click();
++      const tolerance = page.getByLabel('画布抠图容差',{exact:true});
++      assert(await tolerance.isVisible());
++      await tolerance.fill('48'); await tolerance.press('Tab');
++      assert.equal(await tolerance.inputValue(),'48');
++      await page.keyboard.press('Escape');
++      assert.equal(await tolerance.isVisible(),false);
++      assert(await page.locator('#copy-cel-btn').isVisible());
++      assert(await page.locator('#copy-next-cel-btn').isVisible());
++      await page.locator('.aux-toggle').click();
++      assert.equal(await page.locator('.image-edit-toolbar').isVisible(),false);
++      assert.equal(await page.locator('.frame-edit-toolbar').isVisible(),false);
++      await page.locator('.aux-toggle').click();
++      assert(await page.locator('#copy-cel-btn').isVisible());
++      assert.equal(await page.locator('#duplicate-frame-btn').isVisible(),false);
++      await page.locator('.frame-edit-toolbar > .workspace-menu > summary').click();
++      assert(await page.locator('#duplicate-frame-btn').isVisible());
++      await page.keyboard.press('Escape');
+       assert(await page.locator('#mirror-layer-btn').isVisible());
+       assert(await page.locator('#mirror-live-btn').isVisible());
+       assert(await page.locator('.timeline-timing').isVisible());
+@@ -85,6 +115,7 @@ const before = process.argv.includes('--before');
+         assert(metrics.width >= 220 && metrics.height >= 120, JSON.stringify({width,...metrics}));
+         assert(metrics.inputRight <= width && !metrics.overflow, JSON.stringify({width,...metrics}));
+         assert(!metrics.overlap, JSON.stringify({width,...metrics}));
++        console.log('LAYOUT '+JSON.stringify({width,...metrics}));
+       }
+       await page.screenshot({path:path.join(output,'after-narrow.png')});
+     }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\test__workspace-layout.cjs.before" b/test/workspace-layout.cjs
+index 85577b4..c3d2842 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\界面重做-黑白参考-20261102\\test__workspace-layout.cjs.before"
++++ b/test/workspace-layout.cjs
+@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
+ 
+ class Element {
+   constructor(tag = 'div', className = '', id = '') {
+-    Object.assign(this, {tag, className, id, children: [], events: {}, open: false});
++    Object.assign(this, {tag, tagName:tag.toUpperCase(), className, id, children: [], events: {}, open: false, attrs:{}, textContent:''});
+     this.classList = {contains: name => this.className.split(' ').includes(name)};
+   }
+   append(...nodes) {
+@@ -17,7 +17,8 @@ class Element {
+   }
+   after(node) { this.parentElement.append(node); }
+   addEventListener(event, callback) { this.events[event] = callback; }
+-  matches(selector) { return selector.split(', ').some(name => this.classList.contains(name.slice(1))); }
++  hasAttribute(name) { return name in this.attrs; }
++  matches(selector) { return selector.split(', ').some(name => name.startsWith('[') ? this.hasAttribute(name.slice(1,-1)) : this.classList.contains(name.slice(1))); }
+   querySelector(selector) {
+     for (const node of this.children) {
+       if (selector === node.tag || (selector[0] === '.' && node.classList.contains(selector.slice(1)))) return node;
+@@ -43,7 +44,13 @@ layerActions.append(add, move, mirror, liveMirror, remove); header.append(layerA
+ const list = new Element('div'); layers.append(header, list);
+ const timing = new Element('div','timeline-timing'), timeline = new Element(); timeline.append(timing);
+ const hands = new Element('label'), checkbox = new Element('input'), options = new Element(), caption = new Element(), canvasHeader = new Element(); hands.append(checkbox); canvasHeader.append(hands);
+-const lookup = {'.canvas-viewbar .view-actions':actions, '#layer-list':list, '.timeline-timing':timing, '.timeline-header':timeline, '#show-hands':checkbox, '.canvas-options':options, '.section-caption':caption};
++const imageTools = new Element(), imageTitle = new Element('strong'), imageCreate = new Element('button'), imageFlip = new Element('button'), imageKey = new Element('button'), tolerance = new Element('label'), imageStatus = new Element('span');
++imageCreate.textContent='新建高清画布'; imageFlip.attrs['data-edit-flip-x']=''; imageStatus.attrs['data-edit-status']='';
++let keyClicks=0; imageKey.onclick=()=>keyClicks++;
++imageTools.append(imageTitle,imageCreate,imageFlip,tolerance,imageKey,imageStatus);
++const frameTools=new Element(), copyCel=new Element('button','','copy-cel-btn'), copyNext=new Element('button','','copy-next-cel-btn'), duplicate=new Element('button','','duplicate-frame-btn'), frameStatus=new Element('span');
++frameTools.append(copyCel,copyNext,duplicate,frameStatus);
++const lookup = {'.canvas-viewbar .view-actions':actions, '#layer-list':list, '.timeline-timing':timing, '.timeline-header':timeline, '#show-hands':checkbox, '.canvas-options':options, '.section-caption':caption, '.image-edit-toolbar':imageTools, '.frame-edit-toolbar':frameTools};
+ const events = {};
+ const document = {querySelector: key => lookup[key], createElement: tag => new Element(tag), addEventListener:(event,callback) => {events[event]=callback;}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'js/workspace-layout.js'),'utf8'), {document});
+@@ -61,6 +68,11 @@ assert.deepEqual(layerActions.children[4].children[1].children,[remove]);
+ mirror.onclick(); assert.equal(mirrorClicks,1,'the visible mirror control keeps its listener');
+ assert.equal(timing.parentElement,timeline,'frame timing controls stay directly visible');
+ assert.equal(hands.parentElement,canvasHeader,'show arms stays in the canvas header, not Settings'); assert.equal(caption.hidden,true);
++assert.deepEqual(imageTools.children.slice(0,4),[imageTitle,imageCreate,imageFlip,imageStatus]);
++assert.deepEqual(imageTools.children[4].children[1].children,[tolerance,imageKey]);
++imageKey.onclick(); assert.equal(keyClicks,1,'image controls retain their original listener');
++assert.deepEqual(frameTools.children.slice(0,3),[copyCel,copyNext,frameStatus]);
++assert.deepEqual(frameTools.children[3].children[1].children,[duplicate]);
+ const layerMenu = layerActions.children[4];
+ menus[0].open=true; layerMenu.open=true; layerMenu.events.toggle(); assert.equal(menus[0].open,false);
+ events.keydown({key:'Escape'}); assert.equal(layerMenu.open,false); assert(layerMenu.children[0].focused);

@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "name": "hair-animation",
+      "exit": 0
+    },
+    {
+      "name": "cross-action-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-delete",
+      "exit": 0
+    },
+    {
+      "name": "hd-image-layers",
+      "exit": 0
+    },
+    {
+      "name": "off-canvas-placement",
+      "exit": 0
+    },
+    {
+      "name": "part-export",
+      "exit": 0
+    },
+    {
+      "name": "persistence",
+      "exit": 0
+    },
+    {
+      "name": "layer-order",
+      "exit": 0
+    }
+  ],
+  "userProjectUnchanged": true,
+  "servedCodeMatches": true,
+  "sourceMasterPixelsUnchanged": true,
+  "oneUndoRestoresBothHairs": true,
+  "reopenDirections": {
+    "down": 0.1,
+    "side": 0.2,
+    "up": 0.3
+  },
+  "isolation": {
+    "differentChannels": 0,
+    "frame": 3,
+    "hairLayers": [
+      "1 前发"
+    ],
+    "hasSelectedHair": true,
+    "opaquePixels": 538,
+    "previewMatchesOnlySelectedHair": true
+  }
+}

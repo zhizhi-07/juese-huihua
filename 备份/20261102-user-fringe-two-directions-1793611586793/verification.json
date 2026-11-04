@@ -1,0 +1,59 @@
+{
+  "changes": [
+    {
+      "layer": 198,
+      "key": "8_0_0",
+      "headOffset": -2,
+      "changedPixels": 18
+    },
+    {
+      "layer": 198,
+      "key": "8_0_1",
+      "headOffset": -2,
+      "changedPixels": 18
+    },
+    {
+      "layer": 198,
+      "key": "8_0_3",
+      "headOffset": 0,
+      "changedPixels": 18
+    },
+    {
+      "layer": 198,
+      "key": "8_1_1",
+      "headOffset": 0,
+      "changedPixels": 12
+    },
+    {
+      "layer": 198,
+      "key": "8_1_2",
+      "headOffset": 2,
+      "changedPixels": 11
+    },
+    {
+      "layer": 198,
+      "key": "8_1_3",
+      "headOffset": 2,
+      "changedPixels": 12
+    }
+  ],
+  "sourceCelsUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "existingMotionOutsideEditsUnchanged": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false,
+  "mainPreviewPNGFrameChecks": 24,
+  "gifFrames": 4,
+  "gifDelays": [
+    100,
+    100,
+    100,
+    100
+  ],
+  "gifPixelsExact": true,
+  "putStatus": 200,
+  "getStatus": 200,
+  "exactAPIReadback": true,
+  "latestUnrelatedEditsPreserved": true,
+  "preSaveRestoreCopyVerified": true
+}

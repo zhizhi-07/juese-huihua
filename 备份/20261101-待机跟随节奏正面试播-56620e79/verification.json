@@ -1,0 +1,48 @@
+{
+  "originalSHA256": "a230dd3c9292fce926af4107e64abc41c386e4aa6b5cb8985537d5c918a62300",
+  "changed": [
+    {
+      "layer": 10,
+      "key": "8_1_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_3"
+    }
+  ],
+  "offlineOnly": true,
+  "apiWritten": false,
+  "changedDurationMs": [
+    160,
+    480,
+    160,
+    600
+  ],
+  "totalMs": 1400,
+  "rootY": [
+    6,
+    6,
+    8,
+    8
+  ],
+  "tailY": [
+    33,
+    32,
+    32,
+    33
+  ],
+  "firstFrameUnchanged": true,
+  "frontHairAndGrayShadingUnchanged": true,
+  "otherDirectionsAndActionsUnchanged": true,
+  "bodyEyesHandsPixelDataUnchanged": true,
+  "rootAndUpperLocksUnchanged": true,
+  "mainPreviewPNG12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false,
+  "noNewDisconnectedComponents": true,
+  "apiStillOriginalAtDelivery": true
+}

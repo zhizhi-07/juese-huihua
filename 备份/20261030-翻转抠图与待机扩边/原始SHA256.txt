@@ -1,0 +1,36 @@
+
+Algorithm : SHA256
+Hash      : 1D7F9AA662570A7FFB779A80E8EB2A3AEB144C224CB5307F6DDCC7DA4D2EDF88
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\pixel-import.js
+
+
+
+Algorithm : SHA256
+Hash      : A4AD07BF18E18320765E053E597EC37A147D35C1535123277505BE46B1766C91
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\character-sync.js
+
+
+
+Algorithm : SHA256
+Hash      : 9B8F220749BD9902B3B98DB1F9717FCDFB5BED60E06E5D5A716D447B8ED8AD25
+Path      : C:\Users\Administrator\Desktop\角色绘画\index.html
+
+
+
+Algorithm : SHA256
+Hash      : 45E59A2C71622756D6E8875FA53AB09E305F8B3A42B9BBC8A08674641970FA71
+Path      : C:\Users\Administrator\Desktop\角色绘画\test\image-import.cjs
+
+
+
+Algorithm : SHA256
+Hash      : C49A03D9E19B7B8C43E89CA3A6D38D122D5467F38A6D3A4C0E11E46177627933
+Path      : C:\Users\Administrator\Desktop\角色绘画\test\image-import-browser.cjs
+
+
+
+Algorithm : SHA256
+Hash      : F71E682134814873951B9BEADDB4BC65993CA5FE3A8EC0D8299EB641E65611F9
+Path      : C:\Users\Administrator\Desktop\角色绘画\人物绘制AI要求与自检.md
+
+

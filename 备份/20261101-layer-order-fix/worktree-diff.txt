@@ -1,0 +1,334 @@
+diff --git a/index.html b/index.html
+index 01eccf6..cd8bac2 100644
+--- a/index.html
++++ b/index.html
+@@ -5,8 +5,14 @@
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>像素衣橱 · 角色绘画工作台</title>
+   <link rel="stylesheet" href="css/style.css">
+-  <link rel="stylesheet" href="css/studio.css?v=frame-copy-1">
++  <link rel="stylesheet" href="css/studio.css?v=layer-order-1">
+   <link rel="stylesheet" href="css/visual-layers.css?v=all-action-parts-1">
++  <link rel="stylesheet" href="css/wardrobe.css?v=1">
++  <link rel="stylesheet" href="css/hd-canvas.css?v=drag-create-1">
++  <link rel="stylesheet" href="css/frame-timing.css?v=frame-timing-1">
++  <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
++  <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
++  <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -182,7 +188,7 @@
+         <section class="panel-section">
+           <div class="section-header">
+             <h3>图层管理 (Layers)</h3>
+-            <div class="layer-header-actions"><button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button><button id="delete-layer-btn" class="icon-action-btn layer-delete" title="删除当前选中图层，可撤销">删除图层</button></div>
++            <div class="layer-header-actions"><button id="add-layer-btn" class="icon-action-btn" title="新建图层">➕ 新图层</button><button id="mirror-layer-btn" class="icon-action-btn" title="镜像当前图层：左右 / 上下翻转，或以画布中线、图层内容中线、自定义坐标镜像">镜像</button><button id="delete-layer-btn" class="icon-action-btn layer-delete" title="删除当前选中图层，可撤销">删除图层</button></div>
+           </div>
+           <div id="layer-list" class="scroll-list"></div>
+         </section>
+@@ -274,18 +280,18 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=hair-slots-2"></script>
++  <script src="js/core.js?v=layer-order-2"></script>
+   <script src="js/history.js"></script>
+-  <script src="js/canvas.js?v=image-transform-1"></script>
+-  <script src="js/tools.js?v=image-transform-1"></script>
++  <script src="js/canvas.js?v=hd-inline-native-1"></script>
++  <script src="js/tools.js?v=ctrl-rect-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+-  <script src="js/export.js?v=all-action-parts-1"></script>
+-  <script src="js/api.js?v=frame-copy-1"></script>
++  <script src="js/export.js?v=hd-image-layers-1"></script>
++  <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=frame-copy-1"></script>
+-  <script src="js/workbench.js?v=frame-copy-1"></script>
++  <script src="js/app.js?v=ctrl-rect-1"></script>
++  <script src="js/workbench.js?v=layer-order-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+   <script src="js/builtin-packs.js"></script>
+@@ -293,12 +299,21 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=image-transform-1"></script>
+-  <script src="js/visual-layers.js?v=frame-copy-1"></script>
++  <script src="js/studio.js?v=ctrl-rect-1"></script>
++  <script src="js/visual-layers.js?v=layer-order-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+-  <script src="js/projects.js?v=4"></script>
+-  <script src="js/frame-tools.js?v=frame-copy-1"></script>
++  <script src="js/projects.js?v=finished-wardrobe-1"></script>
++  <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
++  <script src="js/wardrobe.js?v=chairs-bed-1"></script>
++  <script src="js/frame-tools.js?v=frame-delete-1"></script>
++  <script src="js/layer-mirror.js?v=layer-mirror-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=image-transform-1"></script>
++  <script src="js/pixel-import.js?v=hd-drag-create-1"></script>
++  <script src="js/hd-canvas.js?v=hd-drag-create-1"></script>
++  <script src="js/frame-timing.js?v=frame-timing-1"></script>
++  <script src="js/draw-kit.js?v=draw-kit-1"></script>
++  <script src="js/select-plus.js?v=select-plus-1"></script>
++  <script src="js/outline.js?v=select-plus-1"></script>
++  <script src="js/panel-dock.js?v=panel-dock-1"></script>
+ </body>
+ </html>
+diff --git a/js/core.js b/js/core.js
+index ded305d..7a5b670 100644
+--- a/js/core.js
++++ b/js/core.js
+@@ -11,6 +11,8 @@ window.PE = window.PE || {};
+   // ==========================================
+   // PE.utils - Pixel and Image Utility Methods
+   // ==========================================
++  const imageCanvases = new WeakMap();
++  let pixelCanvas;
+   const utils = {
+     /**
+      * Deep copy of an ImageData object.
+@@ -19,11 +21,54 @@ window.PE = window.PE || {};
+      */
+     cloneImageData(imageData) {
+       if (!imageData) return null;
+-      return new ImageData(
++      const copy = new ImageData(
+         new Uint8ClampedArray(imageData.data),
+         imageData.width,
+         imageData.height
+       );
++      if(imageData.placement)copy.placement={...imageData.placement};
++      return copy;
++    },
++
++    validateImagePlacement(rect, frame) {
++      if(!frame||!rect||![rect.x,rect.y,rect.w,rect.h].every(Number.isFinite)||rect.w<=0||rect.h<=0||Math.abs(rect.x)+rect.w>Number.MAX_SAFE_INTEGER||Math.abs(rect.y)+rect.h>Number.MAX_SAFE_INTEGER)throw new Error('图片放置范围无效');
++      return {x:rect.x,y:rect.y,w:rect.w,h:rect.h};
++    },
++
++    imagePlacementLocked(rect,frame) {
++      return frame.locked||frame.lockedRegions.some(r=>rect.x<r.x+r.w&&rect.x+rect.w>r.x&&rect.y<r.y+r.h&&rect.y+rect.h>r.y);
++    },
++
++    imageSourceRect(image,rect) {
++      const r=image.placement,sx=image.width/r.w,sy=image.height/r.h;
++      const x=Math.max(0,Math.floor((rect.x-r.x)*sx+1e-7)),y=Math.max(0,Math.floor((rect.y-r.y)*sy+1e-7));
++      const right=Math.min(image.width,Math.ceil((rect.x+rect.w-r.x)*sx-1e-7)),bottom=Math.min(image.height,Math.ceil((rect.y+rect.h-r.y)*sy-1e-7));
++      return {x,y,w:Math.max(0,right-x),h:Math.max(0,bottom-y)};
++    },
++
++    drawImageData(ctx, image, x=0, y=0, scale=1) {
++      let source=image.placement&&imageCanvases.get(image.data);
++      if(!source){source=image.placement?document.createElement('canvas'):(pixelCanvas||=document.createElement('canvas'));if(source.width!==image.width)source.width=image.width;if(source.height!==image.height)source.height=image.height;source.getContext('2d').putImageData(image,0,0);if(image.placement)imageCanvases.set(image.data,source);}
++      const r=image.placement||{x:0,y:0,w:image.width,h:image.height};
++      ctx.imageSmoothingEnabled=false;
++      ctx.drawImage(source,x+r.x*scale,y+r.y*scale,r.w*scale,r.h*scale);
++    },
++
++    imageScale(project, sheetIndex, actionIndex=null, frameIndex=null) {
++      let scale=1;
++      for(const layer of project?.layers||[]){
++        if(!PE.isLayerVisible(project,layer,sheetIndex)||layer.opacity<=0)continue;
++        for(const [key,data]of layer.frameData){
++          const [si,ai,fi]=key.split('_').map(Number),r=data.placement;
++          if(r&&si===sheetIndex&&(actionIndex===null||ai===actionIndex)&&(frameIndex===null||fi===frameIndex))scale=Math.max(scale,Math.ceil(data.width/r.w),Math.ceil(data.height/r.h),!Number.isInteger(r.x)||!Number.isInteger(r.y)?10:1);
++        }
++      }
++      return scale;
++    },
++
++    displayScale(project,si,ai,fi,limit=4) {
++      const f=project.spriteSheets[si]?.actions[ai]?.frames[fi];
++      return f?Math.max(1,Math.min(limit,this.imageScale(project,si,ai,fi),Math.floor(Math.sqrt(16*1024*1024/(f.width*f.height))))):1;
+     },
+ 
+     /**
+@@ -102,6 +147,7 @@ window.PE = window.PE || {};
+       imageData.data[idx + 1] = g;
+       imageData.data[idx + 2] = b;
+       imageData.data[idx + 3] = a !== undefined ? a : 255;
++      imageCanvases.delete(imageData.data);
+       return true;
+     },
+ 
+@@ -162,6 +208,7 @@ window.PE = window.PE || {};
+       this.lockedRegions = []; // [{x, y, w, h}]
+       this.status = 'pending'; // 'pending' | 'confirmed' | 'needs-fix'
+       this.notes = '';
++      this.duration = 0; // 毫秒；0 表示跟随素材表的 fps
+     }
+ 
+     /**
+@@ -410,6 +457,7 @@ window.PE = window.PE || {};
+      */
+     ensureFrameData(frameKey, width = 64, height = 64) {
+       let data = this.frameData.get(frameKey);
++      if(data?.placement)throw new Error('请点击“编辑高清画布”修改源像素');
+       if (!data) {
+         data = utils.createTransparentImageData(width, height);
+         this.frameData.set(frameKey, data);
+@@ -442,7 +490,7 @@ window.PE = window.PE || {};
+      * @returns {boolean}
+      */
+     setPixel(frameKey, x, y, r, g, b, a = 255) {
+-      if (PE.isHandLayer(this)) return false;
++      if (PE.isHandLayer(this) || this.frameData.get(frameKey)?.placement) return false;
+       const data = this.frameData.get(frameKey);
+       if (!data) return false;
+       return utils.setPixelInImageData(data, x, y, r, g, b, a);
+@@ -629,6 +677,149 @@ window.PE = window.PE || {};
+     }
+     return true;
+   };
++  // ==========================================
++  // 部件名称识别与层级归位（改名字即自动分类并调整层序）
++  // 渲染顺序：数组索引越大越靠上。rank 越小越靠底层。
++  // ==========================================
++  const PART_RULES = [
++    { test: /后发|背发|后面的头发/, category: '头发', slot: '后发', rank: 0 },
++    { test: /侧发|鬓发|鬓角/, category: '头发', slot: '侧发', rank: 1 },
++    { test: /前发|刘海|额发/, category: '头发', slot: '前发', rank: 4 },
++    { test: /发饰|发夹|发卡|发带|蝴蝶结|头饰|帽子/, category: '头发', slot: '饰品', rank: 5 },
++    { test: /眼|瞳/, category: '五官', slot: '眼睛', rank: 6 },
++    { test: /嘴|口型|唇/, category: '五官', slot: '嘴巴', rank: 7 },
++    { test: /服|衣|裤|裙|鞋|袜|jk/i, category: '衣服', slot: '服装', rank: 3 }
++  ];
++  const HEAD_NAMES = { head: { category: '身体', slot: '头部', rank: 2 }, body: { category: '身体', slot: '身体', rank: 2 }, hand: { category: '身体', slot: '手部', rank: 2 }, 'hand 2': { category: '身体', slot: '手部', rank: -1 } };
++  PE.classifyPart = name => {
++    const full = String(name || '').trim();
++    if (!full) return null;
++    if (HEAD_NAMES[full]) return { ...HEAD_NAMES[full], name: full, clean: full };
++    const pieces = full.split(' / ').map(s => s.trim()).filter(Boolean);
++    const tail = pieces.at(-1) || full;
++    const match = text => PART_RULES.find(rule => rule.test.test(text));
++    const rule = match(tail) || match(full);
++    if (!rule) return null;
++    const clean = tail.replace(/^\d+\s*/, '').trim() || tail;
++    const series = pieces[0] === '头发' && pieces.length >= 3 ? pieces[1].replace(/^\d+\s*/, '').trim() : '';
++    const canonical = rule.category === '头发'
++      ? (rule.slot === '饰品' ? `发饰 / ${clean}` : `头发 / ${series || '通用发型'} / ${rule.slot}`)
++      : `${rule.slot} / ${clean}`;
++    return { category: rule.category, slot: rule.slot, rank: rule.rank, name: canonical, clean, series };
++  };
++  PE.partSeries = (project, sheetIndex) => {
++    for (const layer of project.layers) {
++      if (layer.isGroup) continue;
++      if (sheetIndex !== undefined && layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) continue;
++      const pieces = String(layer.name || '').split(' / ');
++      if (pieces[0] === '头发' && pieces.length >= 3) return pieces[1].replace(/^\d+\s*/, '').trim();
++    }
++    return '';
++  };
++  PE.layerPartRank = layer => {
++    const info = PE.classifyPart(layer?.name);
++    return info ? info.rank : 9;
++  };
++  const rebuildLayers = (project, ordered) => {
++    const layers = project.layers;
++    const parents = new Map(ordered.map(layer => [layer, layer.parent == null ? null : layers[layer.parent] || null]));
++    layers.length = 0;
++    for (const layer of ordered) layers.push(layer);
++    for (const layer of ordered) {
++      const parent = parents.get(layer);
++      layer.parent = parent ? layers.indexOf(parent) : null;
++    }
++  };
++  const rootBlocks = layers => {
++    const blocks = [];
++    let current = null;
++    layers.forEach((layer, index) => {
++      if (layer.parent == null || !current) { current = { indices: [index] }; blocks.push(current); }
++      else current.indices.push(index);
++    });
++    return blocks;
++  };
++  /**
++   * 移动一个图层在绘制顺序中的位置：delta>0 向上（更靠前），delta<0 向下。
++   * 顶层图层与整组（组与组内成员）作为一块整体交换；组内图层只与同组兄弟交换。
++   */
++  PE.moveLayerOrder = (project, index, delta) => {
++    const layers = project.layers, layer = layers[index];
++    if (!layer) return { ok: false, reason: '请先选择一个图层' };
++    if (layer.isGroup) return { ok: false, reason: '请选择组里的具体图层再移动' };
++    if (PE.isHandLayer(layer)) return { ok: false, reason: '手部参考层受保护，不能调整顺序' };
++    if (layer.inheritedBase) return { ok: false, reason: '头部、身体跟随主工程，不能调整顺序' };
++    if (layer.parent != null) {
++      const siblings = layers.map((item, i) => [item, i]).filter(([item]) => item.parent === layer.parent);
++      const position = siblings.findIndex(([item]) => item === layer);
++      const target = siblings[position + delta];
++      if (!target) {
++        // 组内到边界后继续移动，允许独立部件跨到身体底稿组后面。
++        const block = rootBlocks(layers).find(block => block.indices.includes(index));
++        const ordered = layers.filter(item => item !== layer);
++        const members = block.indices.map(i => layers[i]).filter(item => item !== layer);
++        const edge = delta > 0 ? members.at(-1) : members[0];
++        const position = ordered.indexOf(edge) + (delta > 0 ? 1 : 0);
++        layer.parent = null;
++        ordered.splice(position, 0, layer);
++        rebuildLayers(project, ordered);
++        project.currentLayerIndex = layers.indexOf(layer);
++        return { ok: true };
++      }
++      const a = siblings[position][1], b = target[1];
++      [layers[a], layers[b]] = [layers[b], layers[a]];
++      project.currentLayerIndex = layers.indexOf(layer);
++      return { ok: true };
++    }
++    const blocks = rootBlocks(layers);
++    const from = blocks.findIndex(block => block.indices.includes(index));
++    const to = from + delta;
++    if (!blocks[to]) return { ok: false, reason: delta > 0 ? '已经在最上层' : '已经在最下层' };
++    [blocks[from], blocks[to]] = [blocks[to], blocks[from]];
++    rebuildLayers(project, blocks.flatMap(block => block.indices.map(i => layers[i])));
++    project.currentLayerIndex = project.layers.indexOf(layer);
++    return { ok: true };
++  };
++  /**
++   * 按图层名识别部件，并把它放进对应的分类与层序。
++   * 返回 null 表示名字无法识别（保持原样）。
++   */
++  PE.autoPlaceLayer = (project, index, { rename = true } = {}) => {
++    const layer = project.layers[index];
++    if (!layer || layer.isGroup || layer.inheritedBase || PE.isHandLayer(layer)) return null;
++    const info = PE.classifyPart(layer.name);
++    if (!info) return null;
++    const series = info.series || PE.partSeries(project, layer.sheetIndex ?? project.currentSheetIndex);
++    const name = info.category === '头发' && info.slot !== '饰品'
++      ? `头发 / ${series || '通用发型'} / ${info.slot}`
++      : info.name;
++    if (rename && name !== layer.name) layer.name = name;
++    const rank = PE.layerPartRank(layer);
++    if (layer.parent != null) {
++      const siblings = project.layers.map((item, i) => [item, i]).filter(([item]) => item.parent === layer.parent);
++      const ordered = siblings.map(([item]) => item);
++      ordered.splice(ordered.indexOf(layer), 1);
++      const position = ordered.findIndex(item => PE.layerPartRank(item) > rank);
++      ordered.splice(position < 0 ? ordered.length : position, 0, layer);
++      siblings.map(([, i]) => i).sort((a, b) => a - b).forEach((slot, i) => { project.layers[slot] = ordered[i]; });
++    } else {
++      const layers = project.layers;
++      const blocks = rootBlocks(layers);
++      const current = blocks.find(block => block.indices.includes(index));
++      const rest = blocks.filter(block => block !== current);
++      // 后手低于后发，但不能因此把整个身体组也判成后手层级。
++      const blockRank = block => {
++        const parts = block.indices.map(i => layers[i]);
++        if (parts.some(item => item.name === 'body' || item.name === 'head')) return 2;
++        return Math.min(...parts.map(PE.layerPartRank));
++      };
++      const position = rest.findIndex(block => blockRank(block) > rank);
++      rest.splice(position < 0 ? rest.length : position, 0, current);
++      rebuildLayers(project, rest.flatMap(block => block.indices.map(i => layers[i])));
++    }
++    project.currentLayerIndex = project.layers.indexOf(layer);
++    return { ...info, name: layer.name, rank, index: project.currentLayerIndex };
++  };
+   // Rear-view hair belongs to the rear-hair slot but must cover the back of the head.
+   PE.getRenderLayers = (project, sheetIndex, actionIndex) => {
+     const layers=project.layers;

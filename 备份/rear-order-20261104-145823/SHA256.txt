@@ -1,0 +1,13 @@
+
+Algorithm : SHA256
+Hash      : 6237B9D008CC02AD893B34970B9F08B2BA148E7A006A69FA8055A50688A6C2FB
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\core.js
+
+Algorithm : SHA256
+Hash      : 763025E7934EC2E9730843BA08B97288C32DC0E36BC31269E0CA6B1DA8C05ADE
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\visual-layers.js
+
+Algorithm : SHA256
+Hash      : 3701F9AD0BE3659269AC03F4131BA5B26C0A42537F8E1C3418E3D72FD1CF8B44
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\wardrobe.js
+

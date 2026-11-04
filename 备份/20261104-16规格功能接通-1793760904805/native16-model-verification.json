@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": [
+    "native16 visual family",
+    "main sitting arm editable in layer and pixel API",
+    "legacy/branch hand protection retained",
+    "native16 one-pixel hair movement",
+    "63 target hair frames calibrated from actual heads",
+    "current body and sitting pixels unchanged",
+    "new branch uses current body and sitting"
+  ]
+}

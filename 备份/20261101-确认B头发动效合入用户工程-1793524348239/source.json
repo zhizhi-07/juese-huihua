@@ -1,0 +1,13 @@
+{
+  "out": "备份/20261101-确认B头发动效合入用户工程-1793524348239",
+  "target": {
+    "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+    "etag": "\"4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641\"",
+    "sha256": "4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641"
+  },
+  "approved": {
+    "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+    "etag": "\"35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65\"",
+    "sha256": "35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65"
+  }
+}

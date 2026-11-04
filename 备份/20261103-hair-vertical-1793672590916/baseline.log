@@ -1,0 +1,9 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+    "test/hair-animation.cjs"
+  ],
+  "stdout": "",
+  "stderr": "node:internal/modules/cjs/loader:1433\r\n  throw err;\r\n  ^\r\n\r\nError: Cannot find module '@napi-rs/canvas'\r\nRequire stack:\r\n- C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hair-animation.cjs\r\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1430:15)\r\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1040:19)\r\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1045:22)\r\n    at Function._load (node:internal/modules/cjs/loader:1216:25)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)\r\n    at Module.require (node:internal/modules/cjs/loader:1527:12)\r\n    at require (node:internal/modules/helpers:147:16)\r\n    at Object.<anonymous> (C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hair-animation.cjs:2:38)\r\n    at Module._compile (node:internal/modules/cjs/loader:1781:14)\r\n    at Object..js (node:internal/modules/cjs/loader:1913:10) {\r\n  code: 'MODULE_NOT_FOUND',\r\n  requireStack: [\r\n    'C:\\\\Users\\\\Administrator\\\\Desktop\\\\角色绘画\\\\test\\\\hair-animation.cjs'\r\n  ]\r\n}\r\n\r\nNode.js v22.23.1\r\n",
+  "status": 1
+}

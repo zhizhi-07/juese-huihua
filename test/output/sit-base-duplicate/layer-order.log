@@ -1,0 +1,4 @@
+$ node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+
+exit=0

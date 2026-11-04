@@ -1,0 +1,9 @@
+{
+  "threeDistinctStudies": true,
+  "directionsPerStudy": 3,
+  "nativeTransparentAnimations": 9,
+  "eachCycleMs": 400,
+  "allGIFsReopenedAndPixelMatched": true,
+  "sharedExactPalette": true,
+  "previewScale": 4
+}

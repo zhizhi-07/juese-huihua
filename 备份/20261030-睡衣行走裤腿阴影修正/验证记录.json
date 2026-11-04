@@ -1,0 +1,178 @@
+{
+  "saved": true,
+  "etag": "\"d8f1f72aae7494eb83af080bdc34470fccbb80164c6600b6da7e25d0201045ea\"",
+  "originalSHA256": "dc7afd4a55747b466c12ba93c106c0e17fa7803c49efd754219e3838e1210ffa",
+  "checks": [
+    {
+      "key": "7_0_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    }
+  ],
+  "scope": "Only lower trouser pixels of existing walking outfit, 24 frames. Light/shadow borders now follow original body leg pixels, no fixed vertical seam.",
+  "unchanged": "Shirt, all other actions, all other layers, opacity, dimensions/timings, hands/hair/face/body and layer order",
+  "browserTested": false
+}

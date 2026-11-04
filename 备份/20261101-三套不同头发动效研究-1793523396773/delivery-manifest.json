@@ -1,0 +1,42 @@
+[
+  {
+    "name": "A-自然垂坠-三方向.gif",
+    "bytes": 47254,
+    "sha256": "2e59bb923d5cccc38f1857acd792b0e584a575cdac629f054396b4c399bcc7e0"
+  },
+  {
+    "name": "B-分束柔摆-三方向.gif",
+    "bytes": 53979,
+    "sha256": "2dee8af7d10775d921ac0f05555741c67f186c568fdfedfa6376b881259de4b6"
+  },
+  {
+    "name": "C-轻弹回落-三方向.gif",
+    "bytes": 53939,
+    "sha256": "26fcfaf70e50a4d4be12a1cd204f08971b69107464e9d1f37c04bace4ca80edf"
+  },
+  {
+    "name": "三套九方向-同速对比.gif",
+    "bytes": 148228,
+    "sha256": "1d08ff0f6ab4d1774e853e0d6a1e51f37ef64439f0e3fe993a323c3f9a98b7ac"
+  },
+  {
+    "name": "三套学习成果与验证.md",
+    "bytes": 4579,
+    "sha256": "6083a71cabd7a1858f23172a128c6e263eb21cfd63f8624fd1d56cf7e0a6c555"
+  },
+  {
+    "name": "verification.json",
+    "bytes": 1471,
+    "sha256": "b3cfe0280a9039797cec088197aaf82f2da98b0a125aec3d34e10d976372c7b5"
+  },
+  {
+    "name": "media-verification.json",
+    "bytes": 220,
+    "sha256": "a314edc92bd08c6a79e4df438a32590fb13c86767f363b5d0a33e1ae0c1c576f"
+  },
+  {
+    "name": "publish-verification.json",
+    "bytes": 2508,
+    "sha256": "db725241dc50c71f1524517d01c7ef2f0537ff7feba12d3cbef9cd16522a6909"
+  }
+]

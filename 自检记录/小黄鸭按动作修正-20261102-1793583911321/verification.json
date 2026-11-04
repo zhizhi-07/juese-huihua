@@ -1,0 +1,17 @@
+{
+  "originalSHA256": "583796ca7774faa1601545ff0422b549cbe92acf3f11f7bb17f067fb583557eb",
+  "changedLayers": [
+    173,
+    174,
+    175,
+    176
+  ],
+  "changedCels": 58,
+  "idleAll12CelsExact": true,
+  "allOtherLayersAndMetadataExact": true,
+  "originalDimensionsAndDurationsExact": true,
+  "mainCanvasExportAndStudioPreviewChecks": 70,
+  "restorationExtraCopyExact": true,
+  "sideSitBodyNotRestored": true,
+  "browserChecked": false
+}

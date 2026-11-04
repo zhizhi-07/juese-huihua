@@ -1,0 +1,6 @@
+readback sheet 7 checked
+readback sheet 8 checked
+readback sheet 9 checked
+readback sheet 10 checked
+readback sheet 11 checked
+PASS PUT 200; API readback exact; only listed shoe pixels changed.

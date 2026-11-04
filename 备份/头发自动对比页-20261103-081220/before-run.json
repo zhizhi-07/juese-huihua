@@ -1,0 +1,13 @@
+{
+  "state": {
+    "status": "就绪 · 38×36 · 左右同步播放（10fps）",
+    "frames": 8,
+    "size": [
+      38,
+      36
+    ],
+    "stepButtons": false,
+    "cyclesStep": "0.5"
+  },
+  "errors": []
+}

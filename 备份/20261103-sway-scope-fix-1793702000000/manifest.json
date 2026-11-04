@@ -1,0 +1,15 @@
+{
+  "when": "2026-11-03T09:57:48.193Z",
+  "why": "头发飘动：应用范围选「全部动作＋当前方向」时，只动下拉框不写参数，确定后不会写入其它动作；改为把最终应用范围在确定时真正落地，并在面板提示总开关未开与睡觉不参与。",
+  "files": {
+    "js/hair-animation.js": {
+      "before": "1b0fcd3a364e80b8023e1e736c3ed4df93ffdeff074f14e702a8698c40e975d8",
+      "after": "745715ebdaca865ff875a213c6ca069ae5fc72c1b2584582c1a3235bb06563f5"
+    },
+    "index.html": {
+      "before": "49fd66a45acd40c6d8405500cd308ad32a7a629b2e9ca9d154223e9dff5a7786",
+      "after": "818a2668f42e59aa0b233e2cf5301d71d050bd5b0f8bbcd1c09254354da74455"
+    }
+  },
+  "restore": "把 *.before 复制回工程对应路径（hair-animation.js.before -> js/hair-animation.js，index.html.before -> index.html）。恢复前先确认当前文件仍是 *.after 的 SHA256。"
+}

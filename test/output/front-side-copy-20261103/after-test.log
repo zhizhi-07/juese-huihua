@@ -1,0 +1,1 @@
+PASS: actual 中性 front 32x36 -> side 28x36; all 428 pixels exact, minimum shift -1; source intact; undo/redo; shared clipboard; vertical fit; oversized/explicit/replace/lock guards; no project writes.

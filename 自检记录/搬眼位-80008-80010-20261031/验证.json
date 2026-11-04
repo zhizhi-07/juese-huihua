@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "nonempty": true,
+      "eyesExist": true,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "nonempty": true,
+      "eyesExist": false,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "nonempty": true,
+      "eyesExist": false,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "nonempty": true,
+      "eyesExist": false,
+      "mainPreviewExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "nonempty": true,
+      "eyesExist": false,
+      "mainPreviewExportMatch": true
+    }
+  ],
+  "eyePixelsAndPlacementUnchanged": true,
+  "allOriginalTargetLayersUnchanged": true,
+  "otherActionsUnchanged": true,
+  "browserTested": false
+}

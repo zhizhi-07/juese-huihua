@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>重要草稿独立备份</title>
+<style>body{font:18px/1.7 system-ui;max-width:760px;margin:50px auto;padding:20px;background:#f5f3f8;color:#272333}h1{font-size:26px}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:20px;background:white;border:1px solid #ccc}a,button{display:inline-block;margin:10px 15px 10px 0;padding:10px 18px;font:inherit}small{display:block}[hidden]{display:none!important}</style>
+<h1>重要草稿独立备份</h1>
+<p>只读取这个 Chrome 中“用户”工程的浏览器备份，另存一份独立 JSON。<strong>不覆盖原工程，不修改或清空浏览器草稿，不刷新原绘画页。</strong></p>
+<p>请先在原绘画页面关闭控制台，按一次 Ctrl+S，把最新修改写入浏览器备份；即使仍提示共享版本冲突，也先保留原页面。</p>
+<pre id="status" role="status" aria-live="polite">正在检查本浏览器的草稿…</pre>
+<a id="download" hidden>下载完整草稿 JSON</a>
+<button id="retry" hidden>重新读取并另存一份</button>
+<small>必须在原 Chrome 新标签打开此页，网址应为 http://localhost:8765/draft-rescue-user.html；不要改用 127.0.0.1、无痕窗口或其他浏览器。</small>
+<script>
+'use strict';
+const sourceId='character-56620e79-ce79-4fd9-b49c-081f7bc57d67',key='project-'+sourceId,status=document.getElementById('status'),download=document.getElementById('download'),retry=document.getElementById('retry');
+async function readDraft(){
+  const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('pixel-workbench');r.onupgradeneeded=()=>{r.transaction.abort();reject(Error('这个浏览器没有找到原草稿。请在原 Chrome、相同的 localhost 地址打开此页。'));};r.onerror=()=>reject(r.error);r.onsuccess=()=>resolve(r.result);});
+  try{return await new Promise((resolve,reject)=>{const tx=db.transaction('projects','readonly'),store=tx.objectStore('projects'),blob=store.get(key),meta=store.get(key+'-meta');tx.oncomplete=()=>resolve({blob:blob.result,meta:meta.result});tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||Error('读取中断'));});}finally{db.close();}
+}
+async function rescue(){
+  retry.disabled=true;download.hidden=true;status.textContent='正在读取浏览器备份；不会覆盖原工程…';
+  try{
+    const {blob,meta}=await readDraft();if(!(blob instanceof Blob)||!blob.size)throw Error('没有找到这个工程的浏览器备份。请回到原页面按 Ctrl+S，再点“重新读取并另存一份”。');
+    const raw=await blob.text(),project=JSON.parse(raw);if(!Array.isArray(project.layers)||!project.layers.length||!Array.isArray(project.spriteSheets))throw Error('草稿格式不完整，未写入磁盘。');
+    if(download.dataset.url)URL.revokeObjectURL(download.dataset.url);download.dataset.url=URL.createObjectURL(blob);download.href=download.dataset.url;download.download='用户-重要草稿完整备份-'+Date.now()+'.json';download.hidden=false;
+    const savedAt=meta?.savedAt?new Date(meta.savedAt).toLocaleString('zh-CN'):'时间未记录',hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()))].map(n=>n.toString(16).padStart(2,'0')).join('');
+    status.textContent='已读取浏览器备份：'+savedAt+'\n图层：'+project.layers.length+'；大小：'+blob.size+' 字节\n正在另存磁盘副本…';
+    const id='draft-rescue-user-'+Date.now()+'-'+crypto.randomUUID().slice(0,8),url='/api/project?id='+id;
+    const saved=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':'none'},body:blob});if(!saved.ok)throw Error('磁盘另存失败：HTTP '+saved.status+'。浏览器草稿未改变，请先点“下载完整草稿 JSON”。');
+    const read=await fetch(url,{cache:'no-store'});if(!read.ok||await read.text()!==raw)throw Error('磁盘副本回读不一致，请先下载 JSON；原草稿未改变。');
+    status.textContent='已独立保存，并已完整回读核对。\n\n文件：data/projects/'+id+'.json\n浏览器备份时间：'+savedAt+'\nSHA256：'+hash+'\n\n这只是抢救副本，原工程的版本冲突尚未合并。请保留原绘画页，告诉助手“备份页显示已保存”。';
+    status.dataset.savedId=id;status.dataset.sha256=hash;
+  }catch(error){status.textContent='尚未完成磁盘备份：'+error.message+'\n\n不要关闭或刷新原绘画页面。';}
+  finally{retry.disabled=false;retry.hidden=false;}
+}
+retry.onclick=rescue;rescue();
+</script>
+</html>

@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "conflictProjectId": "draft-conflict-1793762650078-819fdffe",
+  "promotedTo": "main",
+  "conflictKeptAsSecondProject": true,
+  "eyeLayers": 8,
+  "movedEyePixels": 79,
+  "earEditsPreserved": true,
+  "actions": {
+    "original16_walk/down": [
+      {
+        "key": "0_1_0",
+        "moved": 4
+      },
+      {
+        "key": "0_1_1",
+        "moved": 2
+      },
+      {
+        "key": "0_1_2",
+        "moved": 2
+      },
+      {
+        "key": "0_1_3",
+        "moved": 4
+      },
+      {
+        "key": "0_1_4",
+        "moved": 4
+      },
+      {
+        "key": "0_1_5",
+        "moved": 2
+      },
+      {
+        "key": "0_1_6",
+        "moved": 2
+      },
+      {
+        "key": "0_1_7",
+        "moved": 4
+      }
+    ],
+    "original16_walk/side": [
+      {
+        "key": "0_0_0",
+        "moved": 2
+      },
+      {
+        "key": "0_0_1",
+        "moved": 1
+      },
+      {
+        "key": "0_0_2",
+        "moved": 1
+      },
+      {
+        "key": "0_0_3",
+        "moved": 0
+      },
+      {
+        "key": "0_0_4",
+        "moved": 0
+      },
+      {
+        "key": "0_0_5",
+        "moved": 0
+      },
+      {
+        "key": "0_0_6",
+        "moved": 0
+      },
+      {
+        "key": "0_0_7",
+        "moved": 2
+      }
+    ],
+    "original16_idle/down": [
+      {
+        "key": "1_1_0",
+        "moved": 4
+      },
+      {
+        "key": "1_1_1",
+        "moved": 4
+      },
+      {
+        "key": "1_1_2",
+        "moved": 2
+      },
+      {
+        "key": "1_1_3",
+        "moved": 2
+      }
+    ],
+    "original16_idle/side": [
+      {
+        "key": "1_0_0",
+        "moved": 2
+      },
+      {
+        "key": "1_0_1",
+        "moved": 2
+      },
+      {
+        "key": "1_0_2",
+        "moved": 1
+      },
+      {
+        "key": "1_0_3",
+        "moved": 1
+      }
+    ],
+    "original16_pickup/down": [
+      {
+        "key": "2_1_0",
+        "moved": 4
+      },
+      {
+        "key": "2_1_1",
+        "moved": 2
+      },
+      {
+        "key": "2_1_2",
+        "moved": 2
+      },
+      {
+        "key": "2_1_3",
+        "moved": 2
+      },
+      {
+        "key": "2_1_4",
+        "moved": 4
+      },
+      {
+        "key": "2_1_5",
+        "moved": 4
+      }
+    ],
+    "original16_pickup/side": [
+      {
+        "key": "2_0_0",
+        "moved": 2
+      },
+      {
+        "key": "2_0_1",
+        "moved": 0
+      },
+      {
+        "key": "2_0_2",
+        "moved": 0
+      },
+      {
+        "key": "2_0_3",
+        "moved": 1
+      },
+      {
+        "key": "2_0_4",
+        "moved": 2
+      },
+      {
+        "key": "2_0_5",
+        "moved": 2
+      }
+    ],
+    "original16_sit/down": [
+      {
+        "key": "3_1_1",
+        "moved": 2
+      },
+      {
+        "key": "3_1_0",
+        "moved": 2
+      },
+      {
+        "key": "3_1_2",
+        "moved": 0
+      },
+      {
+        "key": "3_1_3",
+        "moved": 0
+      }
+    ],
+    "original16_sit/side": [
+      {
+        "key": "3_0_0",
+        "moved": 1
+      },
+      {
+        "key": "3_0_1",
+        "moved": 1
+      },
+      {
+        "key": "3_0_2",
+        "moved": 0
+      },
+      {
+        "key": "3_0_3",
+        "moved": 0
+      }
+    ]
+  },
+  "mainSha256": "ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a",
+  "conflictSha256": "ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a",
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261104-冲突工程合并眼睛-1793762999856",
+  "pixelAudit": {
+    "pass": true,
+    "headPixelChanges": 79,
+    "exactlyEyeCoordinates": true,
+    "eyeLayerOpaquePixels": 79,
+    "eyesShiftedDownOnePixel": true,
+    "conflictProjectEqualsPromotedMain": true,
+    "allEarAndOtherHeadPixelsPreserved": true
+  }
+}

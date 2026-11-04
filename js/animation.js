@@ -14,6 +14,7 @@ window.PE = window.PE || {};
       this.currentFrame = 0;
       this.totalFrames = 0;
       this.timer = null;
+      this.nextTick = null;
       this.canvas = null;         // animation preview canvas element
       this.ctx = null;
       this.project = null;
@@ -100,6 +101,8 @@ window.PE = window.PE || {};
       if (this.totalFrames <= 0) return;
 
       this.playing = true;
+      this.nextTick = null;
+      if(this.canvasManager){this.canvasManager.playbackActive=true;this.canvasManager.render();}
 
       if (this.timer) {
         clearTimeout(this.timer);
@@ -112,10 +115,12 @@ window.PE = window.PE || {};
      */
     pause() {
       this.playing = false;
+      this.nextTick = null;
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
       }
+      if(this.canvasManager?.playbackActive){this.canvasManager.playbackActive=false;this.canvasManager.render();}
     }
 
     /**
@@ -187,6 +192,7 @@ window.PE = window.PE || {};
       this.fps = Math.max(1, Math.min(60, Number(fps) || 8));
       if (this.playing) {
         clearTimeout(this.timer);
+        this.nextTick = null;
         this._schedule();
       }
     }
@@ -218,7 +224,11 @@ window.PE = window.PE || {};
       const sheet=this.project?.spriteSheets?.[this.sheetIndex];
       const frame=sheet?.actions?.[this.actionIndex]?.frames?.[this.currentFrame];
       const delay=sheet?.useFrameDurations!==false && frame?.duration ? frame.duration : 1000/this.fps;
-      this.timer=setTimeout(()=>{this._tick();this._schedule();}, delay);
+      const now=performance.now();
+      this.nextTick=this.nextTick===null?now+delay:this.nextTick+delay;
+      // Compensate rendering time, but do not burst through frames after a suspended tab.
+      if(this.nextTick<now)this.nextTick=now+delay;
+      this.timer=setTimeout(()=>{this._tick();this._schedule();}, Math.max(0,this.nextTick-now));
     }
     _tick() {
       const action = this.project?.spriteSheets?.[this.sheetIndex]?.actions?.[this.actionIndex];
@@ -235,7 +245,7 @@ window.PE = window.PE || {};
         } else {
           this.currentFrame = this.totalFrames - 1;
           this.pause();
-          this._renderPreviewFrame();
+          this._renderPreviewFrame(true);
           if (typeof this.onFrameChange === 'function') {
             try {
               this.onFrameChange(this.currentFrame);
@@ -249,7 +259,7 @@ window.PE = window.PE || {};
         this.currentFrame++;
       }
 
-      this._renderPreviewFrame();
+      this._renderPreviewFrame(true);
 
       if (typeof this.onFrameChange === 'function') {
         try {

@@ -1,0 +1,734 @@
+{
+  "checked": 184,
+  "failed": 104,
+  "failures": [
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 78
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 78
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 78
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 78
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 6,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 6,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 89
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 104
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 107
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 4,
+      "equipOrder": "front-first",
+      "different": 64
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 5,
+      "equipOrder": "front-first",
+      "different": 77
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 6,
+      "equipOrder": "front-first",
+      "different": 74
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 7,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 89
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 104
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 107
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 4,
+      "equipOrder": "rear-first",
+      "different": 64
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 5,
+      "equipOrder": "rear-first",
+      "different": 77
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 6,
+      "equipOrder": "rear-first",
+      "different": 74
+    },
+    {
+      "action": "walk",
+      "direction": "right",
+      "fi": 7,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 89
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 104
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 107
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 4,
+      "equipOrder": "front-first",
+      "different": 64
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 5,
+      "equipOrder": "front-first",
+      "different": 77
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 6,
+      "equipOrder": "front-first",
+      "different": 74
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 7,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 89
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 104
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 107
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 4,
+      "equipOrder": "rear-first",
+      "different": 64
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 5,
+      "equipOrder": "rear-first",
+      "different": 77
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 6,
+      "equipOrder": "rear-first",
+      "different": 74
+    },
+    {
+      "action": "walk",
+      "direction": "left",
+      "fi": 7,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "walk",
+      "direction": "up",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "up",
+      "fi": 6,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "up",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "up",
+      "fi": 6,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 16
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 12
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 12
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 16
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 16
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 12
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 12
+    },
+    {
+      "action": "sit",
+      "direction": "down",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 16
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 104
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 108
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 109
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 106
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 104
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 108
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 109
+    },
+    {
+      "action": "sit",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 106
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 104
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 108
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 109
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 106
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 104
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 108
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 109
+    },
+    {
+      "action": "sit",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 106
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 76
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 72
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 78
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 66
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 4,
+      "equipOrder": "front-first",
+      "different": 74
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 5,
+      "equipOrder": "front-first",
+      "different": 69
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 76
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 72
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 78
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 66
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 4,
+      "equipOrder": "rear-first",
+      "different": 74
+    },
+    {
+      "action": "pickup",
+      "direction": "right",
+      "fi": 5,
+      "equipOrder": "rear-first",
+      "different": 69
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 76
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 72
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 78
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 66
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 4,
+      "equipOrder": "front-first",
+      "different": 74
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 5,
+      "equipOrder": "front-first",
+      "different": 69
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 76
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 72
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 78
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 66
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 4,
+      "equipOrder": "rear-first",
+      "different": 74
+    },
+    {
+      "action": "pickup",
+      "direction": "left",
+      "fi": 5,
+      "equipOrder": "rear-first",
+      "different": 69
+    }
+  ]
+}

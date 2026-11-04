@@ -1,0 +1,28 @@
+{
+  "sourceSHA256": "4fec75f4b67da65b27ce16744b0d5a8bbfaf8edddd3d1a11a1e69b3140dd790a",
+  "oneActualOutfitLayerAcrossAllDirections": true,
+  "twelveRawCelsPreserved": true,
+  "all12CompositesExactHandsOnAndOff": true,
+  "nearHandPixelsUnchanged": true,
+  "farHandOrderUnchanged": true,
+  "headHairEyesBodyAndOtherActionsPixelsExact": true,
+  "parentsRemappedByIdentity": true,
+  "frameCountSizeTimingExact": true,
+  "mainCanvasPNGAndPreview12FramesChecked": true,
+  "extraCopyRecoveryExact": true,
+  "browserChecked": true,
+  "browserClothingCardCounts": [
+    {
+      "direction": "正面",
+      "clothingCards": 1
+    },
+    {
+      "direction": "侧面",
+      "clothingCards": 1
+    },
+    {
+      "direction": "背面",
+      "clothingCards": 1
+    }
+  ]
+}

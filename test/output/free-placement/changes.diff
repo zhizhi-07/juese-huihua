@@ -1,0 +1,336 @@
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\index.html" b/index.html
+index 192eda2..ec5fa5e 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\index.html"
++++ b/index.html
+@@ -5,7 +5,7 @@
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>像素衣橱 · 角色绘画工作台</title>
+   <link rel="stylesheet" href="css/style.css">
+-  <link rel="stylesheet" href="css/studio.css?v=canvas-image-tools-1">
++  <link rel="stylesheet" href="css/studio.css?v=free-image-placement-1">
+   <link rel="stylesheet" href="css/visual-layers.css?v=all-action-parts-1">
+   <link rel="stylesheet" href="css/wardrobe.css?v=1">
+   <link rel="stylesheet" href="css/hd-canvas.css?v=1">
+@@ -276,17 +276,17 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=editable-hd-canvas-1"></script>
++  <script src="js/core.js?v=free-image-placement-1"></script>
+   <script src="js/history.js"></script>
+-  <script src="js/canvas.js?v=hd-image-layers-1"></script>
+-  <script src="js/tools.js?v=editable-hd-canvas-1"></script>
++  <script src="js/canvas.js?v=free-image-placement-1"></script>
++  <script src="js/tools.js?v=free-image-placement-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-copy-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=frame-copy-1"></script>
++  <script src="js/app.js?v=free-image-placement-1"></script>
+   <script src="js/workbench.js?v=frame-copy-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+@@ -300,9 +300,9 @@
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+   <script src="js/wardrobe.js?v=hd-image-layers-multiwear-rear-2"></script>
+-  <script src="js/frame-tools.js?v=hd-image-layers-1"></script>
++  <script src="js/frame-tools.js?v=free-image-placement-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=editable-hd-canvas-1"></script>
+-  <script src="js/hd-canvas.js?v=1"></script>
++  <script src="js/pixel-import.js?v=free-image-placement-1"></script>
++  <script src="js/hd-canvas.js?v=free-image-placement-1"></script>
+ </body>
+ </html>
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\css_studio.css" b/css/studio.css
+index 72f4623..1f4cc07 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\css_studio.css"
++++ b/css/studio.css
+@@ -47,3 +47,5 @@
+ .pixel-import-dialog{max-height:92vh;padding:18px}.pixel-import-dialog .dialog-title{margin-bottom:12px}.pixel-import-dialog .image-crop-area{margin:10px 0}.pixel-import-dialog .pixel-import-controls{margin:8px 0}.pixel-import-dialog p{margin:7px 0}.pixel-import-dialog canvas[data-source]{width:auto;max-width:100%;max-height:200px}.pixel-import-dialog canvas[data-preview]{height:180px;width:100%;object-fit:contain}
+ .studio #frame-strip-wrapper:has(.frame-edit-toolbar){height:auto;min-height:131px}.frame-edit-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:7px 12px;border-bottom:1px solid #e0e5db}.frame-edit-toolbar .studio-button{font-size:11px;padding:5px 8px}.frame-edit-status{width:100%;font-size:10px;color:#65735e;line-height:1.5}.frame-copy-dialog{width:min(620px,92vw)}.frame-copy-fields{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0}.frame-copy-fields label{display:flex;align-items:center;gap:6px}.frame-copy-fields input[type=number]{width:65px}.frame-copy-dialog p{font-size:12px;line-height:1.7;margin:10px 0}.frame-copy-dialog select{max-width:280px}.frame-copy-dialog button:disabled{opacity:.5;cursor:default}
+ .image-edit-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid #e0e5db;background:#fafbf8;font-size:11px;flex-shrink:0}.image-edit-toolbar .studio-button{font-size:11px;padding:5px 8px}.image-edit-toolbar label{display:flex;align-items:center;gap:4px}.image-edit-toolbar input[type=color]{width:26px;height:25px;padding:1px}.image-edit-toolbar input[type=number]{width:48px}.image-edit-toolbar [data-edit-status]{width:100%;color:#65735e;line-height:1.5}
++
++.image-edit-toolbar .image-position-fields{margin:0;gap:6px}.image-edit-toolbar .image-position-fields input[type=number]{width:84px}
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_core.js" b/js/core.js
+index afb9551..22b9d18 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_core.js"
++++ b/js/core.js
+@@ -31,10 +31,14 @@ window.PE = window.PE || {};
+     },
+ 
+     validateImagePlacement(rect, frame) {
+-      if(!rect||![rect.x,rect.y,rect.w,rect.h].every(Number.isSafeInteger)||rect.x<0||rect.y<0||rect.w<1||rect.h<1||rect.x+rect.w>frame.width||rect.y+rect.h>frame.height)throw new Error('高清图片放置范围无效或超出画布');
++      if(!frame||!rect||![rect.x,rect.y].every(Number.isFinite)||![rect.w,rect.h].every(Number.isSafeInteger)||rect.x<0||rect.y<0||rect.w<1||rect.h<1||rect.x+rect.w>frame.width||rect.y+rect.h>frame.height)throw new Error('高清图片放置范围无效或超出画布');
+       return {x:rect.x,y:rect.y,w:rect.w,h:rect.h};
+     },
+ 
++    imagePlacementLocked(rect,frame) {
++      return frame.locked||frame.lockedRegions.some(r=>rect.x<r.x+r.w&&rect.x+rect.w>r.x&&rect.y<r.y+r.h&&rect.y+rect.h>r.y);
++    },
++
+     drawImageData(ctx, image, x=0, y=0, scale=1) {
+       let source=image.placement&&imageCanvases.get(image.data);
+       if(!source){source=image.placement?document.createElement('canvas'):(pixelCanvas||=document.createElement('canvas'));if(source.width!==image.width)source.width=image.width;if(source.height!==image.height)source.height=image.height;source.getContext('2d').putImageData(image,0,0);if(image.placement)imageCanvases.set(image.data,source);}
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_canvas.js" b/js/canvas.js
+index fd327c2..38a3a86 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_canvas.js"
++++ b/js/canvas.js
+@@ -135,13 +135,13 @@ window.PE = window.PE || {};
+      * @param {number} screenY 
+      * @returns {{x: number, y: number}}
+      */
+-    screenToPixel(screenX, screenY) {
++    screenToPixel(screenX, screenY, snap = true) {
+       const rect = this.canvas.getBoundingClientRect();
+       const clientX = (screenX - rect.left) * this.canvas.width / rect.width;
+       const clientY = (screenY - rect.top) * this.canvas.height / rect.height;
+-      const x = Math.floor((clientX - this.offsetX) / this.zoom);
+-      const y = Math.floor((clientY - this.offsetY) / this.zoom);
+-      return { x, y };
++      const x = (clientX - this.offsetX) / this.zoom;
++      const y = (clientY - this.offsetY) / this.zoom;
++      return snap ? {x:Math.floor(x),y:Math.floor(y)} : {x,y};
+     }
+ 
+     /**
+@@ -278,7 +278,8 @@ window.PE = window.PE || {};
+       this._drawCheckerboard(screenX, screenY, fw, fh);
+ 
+       // Ensure offscreen dimensions match frame size
+-      const p=this.project,scale=Math.max(1,Math.min(PE.utils.imageScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex),Math.ceil(this.zoom),Math.floor(Math.sqrt(16*1024*1024/(fw*fh)))));
++      const p=this.project,subpixel=p.layers.some(l=>{const t=this.toolManager?._transform,r=(t?.layer===l&&t.frameKey===p.getFrameKey()&&t.preview?t.preview:l.getFrameData(p.getFrameKey()))?.placement;return r&&(!Number.isInteger(r.x)||!Number.isInteger(r.y))&&PE.isLayerVisible(p,l);});
++      const scale=Math.max(1,Math.min(subpixel?Math.ceil(this.zoom):PE.utils.imageScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex),Math.ceil(this.zoom),Math.floor(Math.sqrt(16*1024*1024/(fw*fh)))));
+       if (this.offscreenCanvas.width !== fw*scale || this.offscreenCanvas.height !== fh*scale) {
+         this.offscreenCanvas.width = fw*scale;
+         this.offscreenCanvas.height = fh*scale;
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_tools.js" b/js/tools.js
+index 3aa2cce..7a43b47 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_tools.js"
++++ b/js/tools.js
+@@ -11,6 +11,7 @@ window.PE = window.PE || {};
+   class ToolManager {
+     constructor() {
+       this.currentTool = 'pencil'; // 'pencil' | 'eraser' | 'eyedropper' | 'fill' | 'select' | 'move'
++      this.freeImagePlacement = false;
+       this.primaryColor = { r: 0, g: 0, b: 0, a: 255 };
+       this.brushSize = 1;
+       this.isDrawing = false;
+@@ -213,8 +214,9 @@ window.PE = window.PE || {};
+       if (this._transform) {
+         const t=this._transform,f=this.project.getCurrentFrame(),s=t.source;
+         if (frameKey!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
++        const position=v=>this.freeImagePlacement&&t.layer.getFrameData(frameKey)?.placement?v:Math.round(v);
+         const target=t.resize?this._scaledSelection(s,Math.max((px-s.x)/s.w,(py-s.y)/s.h)):
+-          {...s,x:Math.max(0,Math.min(f.width-s.w,s.x+px-t.px)),y:Math.max(0,Math.min(f.height-s.h,s.y+py-t.py))};
++          {...s,x:Math.max(0,Math.min(f.width-s.w,position(s.x+px-t.px))),y:Math.max(0,Math.min(f.height-s.h,position(s.y+py-t.py)))};
+         const preview=this._selectionPixels(t.index,t.frameKey,s,target);
+         if (preview) {t.target=target;t.preview=preview;this.setSelection(target.x,target.y,target.w,target.h);}
+         return;
+@@ -647,9 +649,10 @@ window.PE = window.PE || {};
+       if (rw <= 0 || rh <= 0) {
+         this.selection = null;
+       } else {
++        const hd=this.project?.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement;
+         this.selection = {
+-          x: Math.floor(rx),
+-          y: Math.floor(ry),
++          x: hd?rx:Math.floor(rx),
++          y: hd?ry:Math.floor(ry),
+           w: Math.floor(rw),
+           h: Math.floor(rh)
+         };
+@@ -769,9 +772,11 @@ window.PE = window.PE || {};
+     nudgeSelection(dx, dy) {
+       if (!this.selection || !this.project || this.isDrawing || this._isMoving) return false;
+       const {x,y,w,h}=this.selection;
++      const hd=this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement;
++      const position=(v,step)=>hd&&this.freeImagePlacement?Math.round((v+step*.1)*1e6)/1e6:Math.round(v+step);
+       // Read the active layer again; never paste an old composite/copy buffer.
+       this.selectionData=null;
+-      const moved=this.moveSelection(this.project.currentLayerIndex,this.project.getFrameKey(),x,y,w,h,x+dx,y+dy);
++      const moved=this.moveSelection(this.project.currentLayerIndex,this.project.getFrameKey(),x,y,w,h,position(x,dx),position(y,dy));
+       this.selectionData=null;
+       return moved;
+     }
+@@ -790,7 +795,8 @@ window.PE = window.PE || {};
+           if(x>=r.x&&y>=r.y&&x<r.x+r.w&&y<r.y+r.h){p.currentLayerIndex=p.layers.indexOf(layer);this.setSelection(r.x,r.y,r.w,r.h);return true;}
+           continue;
+         }
+-        if (!data || !this._isInBounds(x,y,data.width,data.height) || !data.data[(y*data.width+x)*4+3]) continue;
++        const px=Math.floor(x),py=Math.floor(y);
++        if (!data || !this._isInBounds(px,py,data.width,data.height) || !data.data[(py*data.width+px)*4+3]) continue;
+         let left=data.width,top=data.height,right=0,bottom=0;
+         for(let row=0;row<data.height;row++)for(let col=0;col<data.width;col++)if(data.data[(row*data.width+col)*4+3]){
+           left=Math.min(left,col);top=Math.min(top,row);right=Math.max(right,col);bottom=Math.max(bottom,row);
+@@ -804,9 +810,9 @@ window.PE = window.PE || {};
+       const f=this.project.getCurrentFrame();
+       const image=this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey());
+       if(image?.placement){
+-        const ratio=image.width/image.height,maxW=Math.min(f.width-s.x,Math.floor((f.height-s.y)*ratio));
++        const ratio=image.width/image.height,maxW=Math.min(Math.floor(f.width-s.x),Math.floor(Math.floor(f.height-s.y)*ratio));
+         const w=Math.max(1,Math.min(maxW,Math.round(s.w*scale)));
+-        return {...s,w,h:Math.max(1,Math.min(f.height-s.y,Math.round(w/ratio)))};
++        return {...s,w,h:Math.max(1,Math.min(Math.floor(f.height-s.y),Math.round(w/ratio)))};
+       }
+       scale=Math.max(1/Math.min(s.w,s.h),Math.min(scale,(f.width-s.x)/s.w,(f.height-s.y)/s.h));
+       return {...s,w:Math.max(1,Math.min(f.width-s.x,Math.round(s.w*scale))),h:Math.max(1,Math.min(f.height-s.y,Math.round(s.h*scale)))};
+@@ -823,6 +829,11 @@ window.PE = window.PE || {};
+       if (!layer || layer.isGroup || layer.sheetIndex!==undefined&&layer.sheetIndex!==si || layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || !PE.isLayerVisible(p,layer,si) || !frame || frame.locked) return null;
+       const data=layer.getFrameData(key);if(!data)return null;
+       for(const s of [source,target]) {
++        if(data.placement){
++          try{PE.utils.validateImagePlacement(s,frame);}catch{return null;}
++          if(PE.utils.imagePlacementLocked(s,frame))return null;
++          continue;
++        }
+         if(![s.x,s.y,s.w,s.h].every(Number.isSafeInteger)||s.x<0||s.y<0||s.w<1||s.h<1||s.x+s.w>frame.width||s.y+s.h>frame.height)return null;
+         for(let y=s.y;y<s.y+s.h;y++)for(let x=s.x;x<s.x+s.w;x++)if(frame.isPixelLocked(x,y))return null;
+       }
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_app.js" b/js/app.js
+index ca211e8..035c488 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_app.js"
++++ b/js/app.js
+@@ -142,6 +142,7 @@ window.PE = window.PE || {};
+     // ==========================================
+     bindCanvasEvents(canvas) {
+       canvas.addEventListener('contextmenu', (e) => e.preventDefault());
++      const mousePixel=e=>this.canvasManager.screenToPixel(e.clientX,e.clientY,!(this.toolManager.currentTool==='move'&&this.toolManager.freeImagePlacement));
+       const resizeHandleAt=e=>{
+         const s=this.toolManager.selection,cm=this.canvasManager;if(!s)return false;
+         const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*canvas.width/r.width,y=(e.clientY-r.top)*canvas.height/r.height;
+@@ -158,7 +159,7 @@ window.PE = window.PE || {};
+           return;
+         }
+ 
+-        const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
++        const pixel = mousePixel(e);
+         if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
+         this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e));
+         if(this.toolManager.currentTool==='move')this.updateLayerList();
+@@ -183,7 +184,7 @@ window.PE = window.PE || {};
+           e.clientY >= rect.top &&
+           e.clientY <= rect.bottom || this.toolManager._transform
+         ) {
+-          const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
++          const pixel = mousePixel(e);
+           if(this.toolManager.currentTool==='move'){
+             canvas.style.cursor=resizeHandleAt(e)?'nwse-resize':'move';
+           }else canvas.style.cursor=this.isSpacePressed?'grab':'crosshair';
+@@ -200,7 +201,7 @@ window.PE = window.PE || {};
+           return;
+         }
+         const wasDrawing=this.toolManager.isDrawing;
+-        const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
++        const pixel = mousePixel(e);
+         this.toolManager.onMouseUp(pixel.x, pixel.y);
+         this.canvasManager.render();
+         if(wasDrawing){this.updateFrameList();this.updatePalette();}
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_pixel-import.js" b/js/pixel-import.js
+index 0b27a4b..6b08ca0 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_pixel-import.js"
++++ b/js/pixel-import.js
+@@ -116,11 +116,32 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const editStatus=imageTools.querySelector('[data-edit-status]'),editColor=imageTools.querySelector('input[type=color]'),editTolerance=imageTools.querySelector('input[type=number]'),editNeutral=imageTools.querySelector('[data-edit-neutral]');
+   const imageSize=document.createElement('label'),placedWidth=document.createElement('input'),imageInfo=document.createElement('span');
+   imageSize.textContent='高清放置宽度 ';placedWidth.type='number';placedWidth.min='1';placedWidth.max='4096';placedWidth.setAttribute('aria-label','高清图层放置宽度');imageSize.append(placedWidth);editStatus.before(imageSize,imageInfo);
++  const freeLabel=document.createElement('label'),freePlacement=document.createElement('input'),positionFields=document.createElement('span');
++  freePlacement.type='checkbox';freePlacement.setAttribute('aria-label','无视像素格放置');freeLabel.append(freePlacement,'无视像素格放置（高清图层）');
++  positionFields.className='pixel-import-controls image-position-fields';positionFields.innerHTML='<label>X <input type="number" min="0" step="1" aria-label="高清图层位置 X"></label><label>Y <input type="number" min="0" step="1" aria-label="高清图层位置 Y"></label>';
++  const positionX=positionFields.querySelector('[aria-label="高清图层位置 X"]'),positionY=positionFields.querySelector('[aria-label="高清图层位置 Y"]');editStatus.before(freeLabel,positionFields);
+   function imageDetails(){
+     const p=app.project,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=data?.placement;
+     imageSize.style.display=r?'flex':'none';imageInfo.textContent=r?'原图 '+data.width+'×'+data.height+' 保持不变 → 放置 '+r.w+'×'+r.h+' · PNG 自动高清导出':'';
+     if(r)placedWidth.value=r.w;
++    positionFields.style.display=r?'flex':'none';
++    for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.step=freePlacement.checked?'0.1':'1';if(r&&document.activeElement!==input)input.value=Math.round(r[axis]*1e6)/1e6;}
+   }
++  freePlacement.onchange=()=>{
++    if(app.toolManager.isDrawing){freePlacement.checked=app.toolManager.freeImagePlacement;editStatus.textContent='请先结束当前拖动';return;}
++    app.toolManager.freeImagePlacement=freePlacement.checked;imageDetails();
++    editStatus.textContent=freePlacement.checked?'高清图层可自由放置，方向键每次微调 0.1 格；源像素不变。普通像素绘画仍按格。':'按像素格放置；已有位置不会因取消勾选而改变，下次移动时吸附到格子。';
++  };
++  for(const [input,axis]of [[positionX,'x'],[positionY,'y']])input.onchange=()=>{
++    try{
++      const p=app.project,tm=app.toolManager,r=p.getCurrentLayer()?.getFrameData(p.getFrameKey())?.placement,value=Number(input.value);
++      if(!r||tm.isDrawing||input.value.trim()===''||!Number.isFinite(value)||!freePlacement.checked&&!Number.isSafeInteger(value))throw new Error('自由小数坐标需先勾选“无视像素格放置”，否则请输入整数');
++      app.animationPlayer.pause();
++      if(!tm.transformSelection(p.currentLayerIndex,p.getFrameKey(),r,{...r,[axis]:value}))throw new Error('位置越界或包含保护区域，未修改');
++      app.persistence?.markDirty();app.updateAll();editStatus.textContent='已调整当前帧图层位置，源像素未重采样，可撤销';
++    }catch(e){editStatus.textContent=e.message;}
++    finally{imageDetails();}
++  };
+   const updateStatus=app.updateStatusBar.bind(app);app.updateStatusBar=()=>{updateStatus();imageDetails();};imageDetails();
+   placedWidth.onchange=()=>{
+     const p=app.project,tm=app.toolManager,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=data?.placement,w=Number(placedWidth.value);
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_frame-tools.js" b/js/frame-tools.js
+index 1fbfdba..9a1bf38 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_frame-tools.js"
++++ b/js/frame-tools.js
+@@ -32,7 +32,8 @@ PE.FrameEditing={
+   read(app,source={}){
+     if(app.toolManager.isDrawing)throw new Error('请先结束当前绘画或拖动');
+     const p=app.project,ref=this.resolve(p,source),data=ref.layer.getFrameData(ref.key),r=source.rect||{x:0,y:0,w:ref.frame.width,h:ref.frame.height};
+-    if(![r.x,r.y,r.w,r.h].every(Number.isSafeInteger)||r.x<0||r.y<0||r.w<1||r.h<1||r.x+r.w>ref.frame.width||r.y+r.h>ref.frame.height)throw new Error('复制选区超出源帧');
++    if(data?.placement){PE.utils.validateImagePlacement(r,ref.frame);}
++    else if(![r.x,r.y,r.w,r.h].every(Number.isSafeInteger)||r.x<0||r.y<0||r.w<1||r.h<1||r.x+r.w>ref.frame.width||r.y+r.h>ref.frame.height)throw new Error('复制选区超出源帧');
+     if(!data)throw new Error('当前图层在源帧没有内容，请先选择有内容的帧');
+     if(data.placement){
+       const bounds=data.placement;
+@@ -54,7 +55,7 @@ PE.FrameEditing={
+   plan(app,clip,targets=[{}],{mode='overlay',x=clip?.x,y=clip?.y}={}){
+     if(!clip||clip.project!==app.project)throw new Error('请先在当前工程复制图层或选区');
+     if(app.toolManager.isDrawing)throw new Error('请先结束当前绘画或拖动');
+-    if(!['overlay','replace'].includes(mode)||![x,y].every(Number.isSafeInteger))throw new Error('粘贴方式或坐标无效');
++    if(!['overlay','replace'].includes(mode)||![x,y].every(clip.pixels.placement?Number.isFinite:Number.isSafeInteger))throw new Error('粘贴方式或坐标无效');
+     if(!Array.isArray(targets)||!targets.length||targets.length>256)throw new Error('一次请选择 1–256 个目标帧');
+     const edits=[],seen=new Set();
+     for(const target of targets){
+@@ -65,7 +66,7 @@ PE.FrameEditing={
+         if(before?.data.some((v,i)=>i%4===3&&v)&&mode!=='replace')throw new Error('高清图片请粘贴到空白图层 / 空白帧，或明确选择覆盖方式；不会合并压缩原图');
+         if(before&&!before.placement&&before.data.some((v,i)=>i%4===3&&v))throw new Error('高清图片不能覆盖已有像素绘画，请新建图层');
+         const after=PE.utils.cloneImageData(clip.pixels);after.placement=PE.utils.validateImagePlacement({...after.placement,x,y},ref.frame);
+-        for(const r of [after.placement,before?.placement].filter(Boolean))for(let row=r.y;row<r.y+r.h;row++)for(let col=r.x;col<r.x+r.w;col++)if(ref.frame.isPixelLocked(col,row))throw new Error('目标包含保护区域；没有修改任何目标');
++        for(const r of [after.placement,before?.placement].filter(Boolean))if(PE.utils.imagePlacementLocked(r,ref.frame))throw new Error('目标包含保护区域；没有修改任何目标');
+         edits.push({ref,before,after,modified:clip.pixelCount});continue;
+       }
+       if(before?.placement)throw new Error('不能把像素选区直接写入高清图片，请选择像素图层');
+@@ -99,7 +100,7 @@ PE.FrameEditing={
+     const clip=this.read(app,source);
+     if(clip.pixels.placement){
+       this.editable(clip.ref);const r=clip.pixels.placement;
+-      for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(clip.ref.frame.isPixelLocked(x,y))throw new Error('图片包含保护区域');
++      if(PE.utils.imagePlacementLocked(r,clip.ref.frame))throw new Error('图片包含保护区域');
+       const result=this.apply(app,[{ref:clip.ref,before:clip.ref.layer.getFrameData(clip.ref.key),after:null,modified:clip.pixelCount}],'剪切高清图片');app.frameClipboard=clip;return result;
+     }
+     const blank={...clip,pixels:new ImageData(clip.pixels.width,clip.pixels.height)};
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_hd-canvas.js" b/js/hd-canvas.js
+index 5e2ee52..17dc4fd 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_hd-canvas.js"
++++ b/js/hd-canvas.js
+@@ -19,7 +19,7 @@ PE.HDCanvasSession=class{
+     if(this.app.project!==p||p.spriteSheets[si]?.actions[ai]?.frames[fi]!==f||!p.layers.includes(l)||l?.getFrameData(this.key)!==d)throw new Error('原图层已变化；请保留当前画布，取消后重新打开，未覆盖工程');
+     if(!r||l.isGroup||l.locked||l.inheritedBase||PE.isHandLayer(l)||!PE.isLayerVisible(p,l)||!f||f.locked)throw new Error('请选择当前帧可编辑的高清图层（受保护图层不能编辑）');
+     PE.utils.validateImagePlacement(r,f);
+-    for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(f.isPixelLocked(x,y))throw new Error('高清画布覆盖保护区域，不能编辑');
++    if(PE.utils.imagePlacementLocked(r,f))throw new Error('高清画布覆盖保护区域，不能编辑');
+   }
+   changed(){return this.project.layers[0].getFrameData('0_0_0').data.some((v,i)=>v!==this.original.data[i]);}
+   apply(){
+diff --git "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_idle-canvas.cjs" b/js/idle-canvas.cjs
+index ba7b77e..45495fd 100644
+--- "a/\345\244\207\344\273\275\\20261030-\346\227\240\350\247\206\345\203\217\347\264\240\346\240\274\346\224\276\347\275\256\\js_idle-canvas.cjs"
++++ b/js/idle-canvas.cjs
+@@ -25,7 +25,7 @@ module.exports=function padIdle(project,width,height=width,{allowCrop=false}={})
+     if(Number(key.split('_')[0])!==si)continue;
+     if(frame.placement){
+       const r=frame.placement,x=r.x+dx,y=r.y+dy;
+-      if(![r.x,r.y,r.w,r.h].every(Number.isSafeInteger)||r.x<0||r.y<0||r.w<1||r.h<1||r.x+r.w>ow||r.y+r.h>oh||x<0||y<0||x+r.w>width||y+r.h>height)throw new Error('高清图片放置范围无效或扩边调整会裁掉图片，未修改工程');
++      if(![r.x,r.y].every(Number.isFinite)||![r.w,r.h].every(Number.isSafeInteger)||r.x<0||r.y<0||r.w<1||r.h<1||r.x+r.w>ow||r.y+r.h>oh||x<0||y<0||x+r.w>width||y+r.h>height)throw new Error('高清图片放置范围无效或扩边调整会裁掉图片，未修改工程');
+       updates.push([layer,key,{...frame,placement:{...r,x,y}}]);continue;
+     }
+     if(frame.width!==ow||frame.height!==oh)throw new Error('待机图层尺寸混杂，未修改工程');

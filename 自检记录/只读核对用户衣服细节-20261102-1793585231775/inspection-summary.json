@@ -1,0 +1,56 @@
+{
+  "readOnly": true,
+  "changedOutfitCels": 36,
+  "outfitChangedPixels": 261,
+  "changedWalkCels": 24,
+  "changedPickupCels": 12,
+  "unchangedSavedSitOutfit": true,
+  "whiteRestoredExample": {
+    "li": 174,
+    "name": "服装 / 衣服-小黄鸭",
+    "si": 9,
+    "key": "9_1_0",
+    "count": 9,
+    "bounds": [
+      15,
+      33,
+      25,
+      33
+    ],
+    "toWhite": 9,
+    "colors": {
+      "236,236,236,255 -> 255,255,255,255": 8,
+      "70,70,94,255 -> 255,255,255,255": 1
+    },
+    "size": [
+      40,
+      40,
+      40,
+      40
+    ]
+  },
+  "notchExample": {
+    "li": 173,
+    "name": "服装 / 衣服-小黄鸭",
+    "si": 7,
+    "key": "7_1_1",
+    "count": 12,
+    "bounds": [
+      10,
+      27,
+      21,
+      29
+    ],
+    "toWhite": 6,
+    "colors": {
+      "187,146,21,255 -> 255,255,255,255": 6,
+      "187,146,21,255 -> 236,236,236,255": 6
+    },
+    "size": [
+      32,
+      32,
+      32,
+      32
+    ]
+  }
+}

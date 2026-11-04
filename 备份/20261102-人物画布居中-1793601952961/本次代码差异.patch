@@ -1,0 +1,98 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\character-sync.js" b/js/character-sync.js
+index 56c4d17..d8f2375 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\character-sync.js"
++++ b/js/character-sync.js
+@@ -9,7 +9,7 @@ function restoreHands(branch,main){
+     for(const [key,pixels]of Object.entries(source.frameData||{})){
+       const [sourceSI,ai,fi]=key.split('_').map(Number);if(sourceSI!==source.sheetIndex)continue;
+       const action=sourceSheet.actions[ai],targetAI=sheet.actions.findIndex(a=>a.name===action?.name&&a.direction===action?.direction);if(targetAI<0||!sheet.actions[targetAI].frames[fi])continue;
+-      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=pixels;
++      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(pixels,sourceSheet,ai,sheet,targetAI,sheet.actions[targetAI].frames[fi]):pixels;
+     }
+     if(!Object.keys(data).length)continue;
+     const matches=l=>l.sheetIndex===si&&Object.keys(l.frameData||{}).some(k=>targetActions.has(Number(k.split('_')[1])));
+@@ -29,9 +29,12 @@ function restoreHands(branch,main){
+   if(selected)branch.currentLayerIndex=branch.layers.indexOf(selected);
+ }
+ module.exports=function syncCharacterBase(branch,main){
++  // Canvas origins can differ; keep wardrobe coordinates and inherit the base in that same origin.
++  const aligned=main.spriteSheets.filter(s=>s.canvasLayout);
++  if(aligned.length)require('./character-canvas.cjs').align(branch,Math.max(...aligned.map(s=>s.canvasLayout.margin)),new Set(aligned.map(s=>s.name)));
+   // Old branch files follow an enlarged idle canvas before inheriting the new-size body/hands.
+   const idle=branch.spriteSheets.find(s=>s.name==='original32_idle'),sourceIdle=main.spriteSheets.find(s=>s.name==='original32_idle');
+-  if(idle&&sourceIdle&&(idle.frameWidth<sourceIdle.frameWidth||idle.frameHeight<sourceIdle.frameHeight))require('./idle-canvas.cjs')(branch,sourceIdle.frameWidth,sourceIdle.frameHeight);
++  if(idle&&sourceIdle&&!sourceIdle.canvasLayout&&(idle.frameWidth<sourceIdle.frameWidth||idle.frameHeight<sourceIdle.frameHeight))require('./idle-canvas.cjs')(branch,sourceIdle.frameWidth,sourceIdle.frameHeight);
+   // A rollback may remove only the known empty 2px margin; painted borders fail closed.
+   if(idle?.frameWidth===36&&idle.frameHeight===36&&sourceIdle?.frameWidth===32&&sourceIdle.frameHeight===32)require('./idle-canvas.cjs')(branch,32,32,{allowCrop:true});
+   restoreHands(branch,main);
+@@ -52,9 +55,9 @@ module.exports=function syncCharacterBase(branch,main){
+       if(isHand(source)){layer.referenceOnly=true;layer.visible=source.visible!==false;layer.opacity=source.opacity??1;}
+       action.frames.forEach((frame,fi)=>{
+         const original=sourceSheet.actions[sourceAI].frames[fi];if(!original)return;
+-        if(frame.width!==original.width||frame.height!==original.height)throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
++        if(!sheet.canvasLayout&&!sourceSheet.canvasLayout&&(frame.width!==original.width||frame.height!==original.height))throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
+         const key=layer.sheetIndex+'_'+ai+'_'+fi,sourceKey=prefix+fi;
+-        if(source.frameData[sourceKey])data[key]=source.frameData[sourceKey];else delete data[key];
++        if(source.frameData[sourceKey])data[key]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(source.frameData[sourceKey],sourceSheet,sourceAI,sheet,ai,frame):source.frameData[sourceKey];else delete data[key];
+       });
+     }
+     if(matched){layer.frameData=data;layer.inheritedBase=true;layer.locked=true;}
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\export.js" b/js/export.js
+index 7e25799..4fb466c 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\export.js"
++++ b/js/export.js
+@@ -407,6 +407,7 @@ window.PE = window.PE || {};
+         const sheet = spriteSheets[si];
+         const sheetData = {
+           sourceFormat: sheet.sourceFormat, sourceBytes: sheet.sourceBytes,
++          canvasLayout: sheet.canvasLayout,
+           name: sheet.name || '',
+           frameWidth: sheet.frameWidth || 32,
+           frameHeight: sheet.frameHeight || 32,
+@@ -582,6 +583,7 @@ window.PE = window.PE || {};
+         }
+ 
+         sheet.sourceFormat=sData.sourceFormat; sheet.sourceBytes=sData.sourceBytes;
++        sheet.canvasLayout=sData.canvasLayout;
+         sheet.name = sData.name || `图集_${si}`;
+         sheet.image = img;
+         sheet.imageData = sheetImageData;
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\server.js" b/server.js
+index 344a8b5..06ac1f9 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\server.js"
++++ b/server.js
+@@ -91,6 +91,17 @@ const server = http.createServer((req, res) => {
+       try{
+         const previous=fs.existsSync(projectFile)?fs.readFileSync(projectFile):null,current=previous?revision(projectBytes(projectFile,projectId)):'none';
+         if(req.headers['if-match']!==current){res.writeHead(409);res.end('{"error":"Shared project changed; local draft retained"}');return;}
++        // Already-open pages may serialize the new borders without the new origin field.
++        if(previous){
++          const saved=JSON.parse(projectBytes(projectFile,projectId));
++          for(const sheet of project.spriteSheets){
++            const old=saved.spriteSheets.find(s=>s.name===sheet.name);if(!old?.canvasLayout||sheet.canvasLayout)continue;
++            const geometry=s=>JSON.stringify(s.actions.map(a=>[a.name,a.direction,a.frames.map(f=>[f.width,f.height,f.sourceX,f.sourceY])]));
++            if(geometry(sheet)!==geometry(old)){res.writeHead(409);res.end('{"error":"Canvas borders changed; local draft retained"}');return;}
++            sheet.canvasLayout=old.canvasLayout;
++          }
++          bytes=Buffer.from(JSON.stringify(project));
++        }
+         if(!previous&&projectId.startsWith('character-')){
+           try{require('./js/character-base.js')(project);bytes=Buffer.from(JSON.stringify(project));}
+           catch(error){res.writeHead(400);res.end(JSON.stringify({error:error.message}));return;}
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\index.html" b/index.html
+index 54080f6..d3b8662 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261102-\344\272\272\347\211\251\347\224\273\345\270\203\345\261\205\344\270\255-1793601952961\\code-before\\index.html"
++++ b/index.html
+@@ -288,7 +288,7 @@
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js?v=playback-overlays-1"></script>
+   <script src="js/inspection.js"></script>
+-  <script src="js/export.js?v=hd-image-layers-1"></script>
++  <script src="js/export.js?v=character-canvas-borders-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+   <script src="js/app.js?v=brush-size-1"></script>
+

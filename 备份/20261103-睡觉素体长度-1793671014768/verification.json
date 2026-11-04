@@ -1,0 +1,43 @@
+{
+  "measurements": [
+    {
+      "frame": 0,
+      "idleHeight": 29,
+      "oldSleepHeight": 31,
+      "newSleepHeight": 29,
+      "footY": 33,
+      "headUnchanged": true
+    },
+    {
+      "frame": 1,
+      "idleHeight": 29,
+      "oldSleepHeight": 31,
+      "newSleepHeight": 29,
+      "footY": 33,
+      "headUnchanged": true
+    },
+    {
+      "frame": 2,
+      "idleHeight": 27,
+      "oldSleepHeight": 29,
+      "newSleepHeight": 27,
+      "footY": 33,
+      "headUnchanged": true
+    },
+    {
+      "frame": 3,
+      "idleHeight": 27,
+      "oldSleepHeight": 29,
+      "newSleepHeight": 27,
+      "footY": 33,
+      "headUnchanged": true
+    }
+  ],
+  "changedCels": 8,
+  "onlySleepBodyAndHandsChanged": true,
+  "headEyesHairAndAllOtherActionsUnchanged": true,
+  "dimensionsFrameCountTimingVisibilityUnchanged": true,
+  "renderPreviewPNGChecks": 24,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

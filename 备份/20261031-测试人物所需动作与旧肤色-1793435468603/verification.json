@@ -1,0 +1,111 @@
+{
+  "counts": [
+    {
+      "name": "睡觉",
+      "si": 2,
+      "segments": [
+        [
+          "down",
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "name": "坐姿",
+      "si": 3,
+      "segments": [
+        [
+          "left",
+          0,
+          6
+        ],
+        [
+          "right",
+          6,
+          6
+        ],
+        [
+          "down",
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "name": "手机",
+      "si": 4,
+      "segments": [
+        [
+          "down",
+          0,
+          12
+        ]
+      ]
+    },
+    {
+      "name": "弯腰拾取",
+      "si": 5,
+      "segments": [
+        [
+          "left",
+          0,
+          12
+        ],
+        [
+          "up",
+          12,
+          12
+        ],
+        [
+          "right",
+          24,
+          12
+        ],
+        [
+          "down",
+          36,
+          12
+        ]
+      ]
+    },
+    {
+      "name": "递送物品",
+      "si": 6,
+      "segments": [
+        [
+          "left",
+          0,
+          10
+        ],
+        [
+          "up",
+          10,
+          10
+        ],
+        [
+          "right",
+          20,
+          10
+        ],
+        [
+          "down",
+          30,
+          10
+        ]
+      ]
+    }
+  ],
+  "skin": {
+    "ffcbb0": "feede1",
+    "ffdbba": "fff5ec",
+    "f6ae9f": "e8cbbb",
+    "f69784": "dcb2a3"
+  },
+  "existingEyeLayersUnchanged": true,
+  "frontSitEqualsIdle": true,
+  "sourceSha256": "9b0b0455cbbbc03203fed6f2019c18e96e2ddb49b89257b72b9c5d3d0f19852e",
+  "allCelsRendered": true,
+  "browserChecked": false,
+  "phoneLoop": "作者指南第4至9帧循环；保留全12帧用于进入退出"
+}

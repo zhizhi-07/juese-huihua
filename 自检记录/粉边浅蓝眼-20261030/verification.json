@@ -1,0 +1,63 @@
+{
+  "id": "character-gold-mix-1793320553623",
+  "backupLayerIndex": 193,
+  "newLayerIndex": 194,
+  "source": [
+    36,
+    20
+  ],
+  "placement": [
+    18,
+    10
+  ],
+  "uniformCell": [
+    0.5,
+    0.5
+  ],
+  "positions": [
+    {
+      "key": "8_1_0",
+      "headTop": 4,
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 10
+      }
+    },
+    {
+      "key": "8_1_1",
+      "headTop": 4,
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 10
+      }
+    },
+    {
+      "key": "8_1_2",
+      "headTop": 6,
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 10
+      }
+    },
+    {
+      "key": "8_1_3",
+      "headTop": 6,
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 10
+      }
+    }
+  ],
+  "allOtherLayersUnchanged": true,
+  "backupEyePixelsUnchanged": true,
+  "referenceIsNotBitIdentical": true,
+  "sourceSHA256": "2d026587742225f25efbbefdaa238bb40d9b8cb724a30f1d1510ebe7cc3aca8c"
+}

@@ -1,0 +1,12 @@
+{
+  "count": 48,
+  "scale": 2,
+  "cell": [
+    32,
+    64
+  ],
+  "nearestNeighborExact": true,
+  "layerMetadataPreserved": true,
+  "status": 200,
+  "readbackExact": true
+}

@@ -141,7 +141,7 @@ window.PE = window.PE || {};
   }
 
   function _applyPixelsToLayer(layer, layerIdx, frame, frameKey, pixelList, batchDescription) {
-    if (layer.locked || PE.isHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==frame.sheetIndex)) {
+    if (layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==frame.sheetIndex)) {
       return {
         modifiedPixels: 0,
         rejectedPixels: pixelList.map(p => ({ x: p.x, y: p.y, reason: '目标图层已被锁定' }))
@@ -646,7 +646,7 @@ window.PE = window.PE || {};
         const p = _getProject();
         if (!p) return _fail('项目未初始化');
         const lRes = _resolveLayer(p, index);
-        if (PE.isHandLayer(lRes.layer)) return _fail('请使用手部预览开关，原始手部可见性受保护');
+        if (PE.isProtectedHandLayer(lRes.layer)) return _fail('请使用手部预览开关，原始手部可见性受保护');
         lRes.layer.visible = !!visible;
         _notifyCanvasAndUI();
         return _success({ layerIndex: lRes.layerIndex, visible: lRes.layer.visible });
@@ -661,7 +661,7 @@ window.PE = window.PE || {};
         if (!p) return _fail('项目未初始化');
         const lRes = _resolveLayer(p, index);
         if (lRes.layer.inheritedBase && !locked) return _fail('头部、身体和手部跟随主工程，请到主工程修改');
-        if (PE.isHandLayer(lRes.layer) && !locked) return _fail('手部是独立参考层，不能解锁绘画');
+        if (PE.isProtectedHandLayer(lRes.layer) && !locked) return _fail('手部是独立参考层，不能解锁绘画');
         lRes.layer.locked = !!locked;
         _notifyCanvasAndUI();
         return _success({ layerIndex: lRes.layerIndex, locked: lRes.layer.locked });
@@ -675,7 +675,7 @@ window.PE = window.PE || {};
         const p = _getProject();
         if (!p) return _fail('项目未初始化');
         const lRes = _resolveLayer(p, index);
-        if (PE.isHandLayer(lRes.layer)) return _fail('手部原始透明度受保护');
+        if (PE.isProtectedHandLayer(lRes.layer)) return _fail('手部原始透明度受保护');
         const op = Math.max(0, Math.min(1, Number(opacity)));
         lRes.layer.opacity = op;
         _notifyCanvasAndUI();
@@ -814,7 +814,7 @@ window.PE = window.PE || {};
         const lRes = _resolveLayer(ref.project, layerIdx);
         const layer = lRes.layer;
 
-        if (layer.locked || PE.isHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==ref.frame.sheetIndex)) {
+        if (layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==ref.frame.sheetIndex)) {
           return _fail('目标图层已被锁定', { modifiedPixels: 0, rejectedPixels: [{ x, y, reason: '图层已锁定' }] });
         }
         if (ref.frame.locked) {
@@ -910,8 +910,13 @@ window.PE = window.PE || {};
     duplicateFrame() {
       try {return _success(PE.FrameEditing.duplicate(PE.app));} catch(error) {return _fail(error);}
     },
+    deleteFrame() {
+      try {return _success(PE.FrameEditing.delete(PE.app));} catch(error) {return _fail(error);}
+    },
     getFrameClipboard() {
-      const clip=PE.app?.frameClipboard;return _success(clip&&clip.project===PE.app?.project?PE.FrameEditing.info(clip):null);
+      const clip=PE.FrameEditing.resolveClipboard(PE.app);
+      if(!clip)return _success(null);
+      try {return _success(PE.FrameEditing.info(clip));} catch(error) {return _fail(error);}
     },
     copyRegion(si, ai, fi, x, y, w, h) {
       try {
@@ -989,7 +994,7 @@ window.PE = window.PE || {};
         const lRes = _resolveLayer(ref.project, layerIdx);
         const layer = lRes.layer;
 
-        if (layer.locked || PE.isHandLayer(layer)) return _fail('图层已锁定');
+        if (layer.locked || PE.isProtectedHandLayer(layer)) return _fail('图层已锁定');
         if (ref.frame.locked) return _fail('帧已锁定');
 
         const sx = Math.round(srcX);
@@ -1525,7 +1530,8 @@ window.PE = window.PE || {};
         copyLayerToFrames: 'copyLayerToFrames(source,targets,{mode="overlay",x?,y?}={}) -> 指定源图层帧复制到目标帧列表，不切换视图',
         copyLayerToNextFrame: 'copyLayerToNextFrame(source={}) -> 复制当前图层到下一帧并跳转；末帧复制整帧追加，可撤销',
         duplicateFrame: 'duplicateFrame() -> 复制当前整帧到末尾，可撤销',
-        getFrameClipboard: 'getFrameClipboard() -> 查询图层剪贴板来源、位置和尺寸',
+        deleteFrame: 'deleteFrame() -> 删除当前朝向的当前整帧并重排所有图层，可撤销；至少保留1帧，锁定帧及共享底稿分支禁止删除',
+        getFrameClipboard: 'getFrameClipboard() -> 查询图层剪贴板来源、位置和尺寸；shared=true 表示来自其它窗口的复制',
         pasteRegion: 'pasteRegion(layerIdx, si, ai, fi, x, y) -> 将剪贴板像素粘贴到指定图层',
         moveRegion: 'moveRegion(layerIdx, si, ai, fi, srcX, srcY, srcW, srcH, destX, destY) -> 移动图层上的局部像素',
         getFrameDiff: 'getFrameDiff(si, ai, fi) -> 对比当前帧与原始帧的差异像素列表',

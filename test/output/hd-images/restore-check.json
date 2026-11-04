@@ -1,0 +1,57 @@
+[
+  {
+    "file": "js/core.js",
+    "restoredCopySHA256": "09CBBAF0A6753CD4BCDDFD3DAA535B566FBCFADC02837F3C19F1CDF1124674AA",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/canvas.js",
+    "restoredCopySHA256": "4E0318490B9987E64C977ADEE23DC82B394AF168971757FC47A1CDF55CED9A88",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/tools.js",
+    "restoredCopySHA256": "3A9397BDC126CD6BEE01A283ACCAB29E6CDDE7A39AD9AE6FA23E54AC1FF442CC",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/export.js",
+    "restoredCopySHA256": "BA765696DA125DC93CC4BD870C4D830AA62A416A092CDD395FF6590CB46C4C28",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/pixel-import.js",
+    "restoredCopySHA256": "3F9C9838143E39DBFBFBF617C633D5511676912B1693252058A9F18A2B382FE3",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/studio.js",
+    "restoredCopySHA256": "CD068D8CC3ECB08F0DC24D36471C0F024A47D356D247C69CA06F2C815547333E",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/frame-tools.js",
+    "restoredCopySHA256": "22F07720609D8DAADD0BEFBA479B35C4DF7018C1938CC63E9ECE4F6204C1F326",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/wardrobe.js",
+    "restoredCopySHA256": "9EC868BA26DE61FC046E166C1A7AADCDA3B7E03F79355B7331D5A1892A3E7AFE",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/visual-layers.js",
+    "restoredCopySHA256": "2B94F36A19216B314EF328A231FED6909B4304D0A7F79E77C3688611E974A3DE",
+    "matchesBackup": true
+  },
+  {
+    "file": "js/idle-canvas.cjs",
+    "restoredCopySHA256": "258F4024D4D5E07F8961140E33B59A6949E26429410BCF1A939B308941324CDF",
+    "matchesBackup": true
+  },
+  {
+    "file": "index.html",
+    "restoredCopySHA256": "96CC76AB9683D4207754AEF73D214D9B3E9FA7A5F44A4D2C0B0FB4C6FA619677",
+    "matchesBackup": true
+  }
+]

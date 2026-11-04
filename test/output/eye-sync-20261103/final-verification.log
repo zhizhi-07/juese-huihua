@@ -1,0 +1,35 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+COMMAND: node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+EXIT: 0
+COMMAND: node test/eye-sync-ui.cjs
+PASS UI DOM: shared eye/hair controls, no eye sway, preserved-frame cancel/apply, hidden sleep list without data deletion, and safe initial selection before preview. No live browser or project data used.
+EXIT: 0
+COMMAND: node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+EXIT: 0
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+COMMAND: node test/directional-base.cjs
+{"original":false,"selected":3,"expected":3,"renderedBodies":1,"expectedBodies":1}
+PASS: direction switching; foreign-cel render guard; implicit and batch direction matching; explicit wrong-direction rejection; undo/redo; locks; shared layers; nested/cyclic groups.
+EXIT: 0
+COMMAND: node test/timeline.cjs
+PASS: correct selected frame before UI render; non-drawing mouseup preserves timeline target; manual next/previous pause playback.
+EXIT: 0
+COMMAND: node test/frame-delete.cjs
+PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.
+EXIT: 0
+COMMAND: node test/cross-action-copy.cjs
+PASS: walk/front to idle and sit; matching or new independent hair layer; protected-body safety; dry-run; atomic batch; layer order; undo/redo; ambiguous targets; project boundary; saved pixels.
+EXIT: 0
+COMMAND: node test/character-sync.cjs
+PASS: reordered sheet/action matching; only head/body inherit; live main updates; conditional GET; stale draft conflict; server rejects base overrides while saving independent wardrobe.
+EXIT: 0
+COMMAND: node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+PASS: visible rename buttons, type-preserving names, grouped components renamed together, one-step undo/redo, no pixel/order/visibility/parent changes, protected/blank/invalid/no-op names safe.
+EXIT: 0

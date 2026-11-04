@@ -1,0 +1,14 @@
+{
+  "front": [
+    "  - strong: 坐姿 / 正面",
+    "      - generic \"head（双击重命名）\": 头部底稿",
+    "      - generic \"body（双击重命名）\": 身体底稿"
+  ],
+  "side": [
+    "  - strong: 坐姿 / 侧面",
+    "      - generic \"head（双击重命名）\": 头部底稿",
+    "      - generic \"body（双击重命名）\": 身体底稿"
+  ],
+  "beforeBodies": 2,
+  "afterBodies": 1
+}

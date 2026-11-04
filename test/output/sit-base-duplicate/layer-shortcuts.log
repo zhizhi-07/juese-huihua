@@ -1,0 +1,4 @@
+$ node test/layer-shortcuts.cjs
+PASS: Ctrl+J layer/rect/mask/native-HD selection copy; independent frames/parents; Ctrl+E alpha/native-HD/all-frame merge; undo/redo, dirty state, protection/gesture/input/modifier guards.
+
+exit=0

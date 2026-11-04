@@ -1,0 +1,27 @@
+
+COMMAND: node test/ctrl-rectangle.cjs
+PASS: Ctrl rectangle pencil/eraser preview/commit; reverse/clipped drag; brush ignored; one-step undo/redo; selection intersection; frame/layer/protection/cancel safety; native HD rectangles without resampling; ordinary brush unchanged.
+EXIT: 0
+COMMAND: node test/ctrl-rectangle-browser.cjs
+PASS: actual Ctrl+mouse eraser/pencil rectangles, preview, key release, pixel-exact area, undo/redo, Escape cancel, native HD edit and tooltip; no page errors.
+EXIT: 0
+COMMAND: node test/hd-inline.cjs
+PASS: inline native eraser/pencil/fill/picker; exact fractional-density marquee; native-pixel move/nudge; selection paint isolation; copy/cut/paste/expansion; one-stroke main undo/redo; locks and frame-switch safety; render cache refresh; unchanged face and placement; JSON reload.
+EXIT: 0
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT: 0
+COMMAND: node test/frame-delete.cjs
+PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.
+EXIT: 0
+COMMAND: node test/off-canvas-placement.cjs
+PASS: outside drag preview/commit; negative and beyond-frame boxes; native/HD and partial preservation; pick/nudge; outside resize; undo/redo; JSON reload; frame copy; clipped output and exact return; locks and invalid coordinates.
+EXIT: 0
+COMMAND: node test/frame-delete-browser.cjs
+PASS: real browser button, cancel/confirm, all-layer reindex, timeline/animation update, undo/redo, manual ETag save/reload on isolated server, last-frame guard; no live user project written.
+EXIT: 0
+COMMAND: node test/frame-copy-browser.cjs
+PASS: actual grouped-hair copy across directions; buttons and Ctrl+C/X/V; repeated next-frame copy and creation; batch range and all directions; undo; locked-target review; no page errors.
+EXIT: 0
+PASS: 8765 serves exact modified tools/app/studio and new cache versions; existing user page not refreshed.
+PASS: restored backup copies match original SHA256.

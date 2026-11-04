@@ -1,0 +1,11 @@
+Error: 此功能只处理选中的头发部件
+    at editable (hair-animation:53:63)
+    at setup (hair-animation:99:5)
+    at hair-animation:300:20
+    at transaction (hair-animation:294:16)
+    at Object.sync (hair-animation:299:12)
+    at C:\Users\Administrator\Desktop\角色绘画\test\eye-sync.cjs:31:12
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync.cjs:52:3)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)

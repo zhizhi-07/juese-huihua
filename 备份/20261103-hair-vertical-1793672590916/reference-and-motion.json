@@ -1,0 +1,170 @@
+{
+  "references": [
+    {
+      "code": "A",
+      "name": "头发动效学习A·自然垂坠",
+      "side": [
+        {
+          "fi": 0,
+          "ms": 40,
+          "top": 4,
+          "bottom": 31,
+          "count": 353
+        },
+        {
+          "fi": 1,
+          "ms": 100,
+          "top": 4,
+          "bottom": 31,
+          "count": 353
+        },
+        {
+          "fi": 2,
+          "ms": 40,
+          "top": 6,
+          "bottom": 31,
+          "count": 335
+        },
+        {
+          "fi": 3,
+          "ms": 60,
+          "top": 6,
+          "bottom": 32,
+          "count": 344
+        },
+        {
+          "fi": 4,
+          "ms": 40,
+          "top": 6,
+          "bottom": 32,
+          "count": 344
+        },
+        {
+          "fi": 5,
+          "ms": 60,
+          "top": 6,
+          "bottom": 32,
+          "count": 344
+        },
+        {
+          "fi": 6,
+          "ms": 30,
+          "top": 4,
+          "bottom": 32,
+          "count": 362
+        },
+        {
+          "fi": 7,
+          "ms": 30,
+          "top": 4,
+          "bottom": 31,
+          "count": 353
+        }
+      ]
+    },
+    {
+      "code": "C",
+      "name": "头发动效学习C·轻弹回落",
+      "side": [
+        {
+          "fi": 0,
+          "ms": 40,
+          "top": 4,
+          "bottom": 31,
+          "count": 353
+        },
+        {
+          "fi": 1,
+          "ms": 100,
+          "top": 4,
+          "bottom": 31,
+          "count": 353
+        },
+        {
+          "fi": 2,
+          "ms": 40,
+          "top": 6,
+          "bottom": 30,
+          "count": 326
+        },
+        {
+          "fi": 3,
+          "ms": 60,
+          "top": 6,
+          "bottom": 31,
+          "count": 340
+        },
+        {
+          "fi": 4,
+          "ms": 40,
+          "top": 6,
+          "bottom": 32,
+          "count": 352
+        },
+        {
+          "fi": 5,
+          "ms": 60,
+          "top": 6,
+          "bottom": 31,
+          "count": 334
+        },
+        {
+          "fi": 6,
+          "ms": 30,
+          "top": 4,
+          "bottom": 32,
+          "count": 357
+        },
+        {
+          "fi": 7,
+          "ms": 30,
+          "top": 4,
+          "bottom": 31,
+          "count": 352
+        }
+      ]
+    }
+  ],
+  "sample": [
+    {
+      "mode": "old",
+      "fi": 0,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "old",
+      "fi": 1,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "old",
+      "fi": 2,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "old",
+      "fi": 3,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "local",
+      "fi": 0,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "local",
+      "fi": 1,
+      "verticalChangedPixels": 57
+    },
+    {
+      "mode": "local",
+      "fi": 2,
+      "verticalChangedPixels": 0
+    },
+    {
+      "mode": "local",
+      "fi": 3,
+      "verticalChangedPixels": 0
+    }
+  ]
+}

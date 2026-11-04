@@ -1,0 +1,49 @@
+{
+  "url": "http://127.0.0.1:8765/hair-auto-demo.html?id=draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+  "state": {
+    "status": "就绪 · 行走 · 38×36 · 8帧 / 800ms · 按工程时长播放",
+    "frameInfo": "第 1 / 8 帧 · 100ms",
+    "project": "头发动效学习A·自然垂坠",
+    "headOffsets": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 0,
+        "y": 2
+      },
+      {
+        "x": 0,
+        "y": 0
+      }
+    ]
+  },
+  "errors": [],
+  "writes": [],
+  "servedFilesMatchDisk": true,
+  "hashes": {
+    "hair-auto-demo.html": "04dc262d132b459db3e8bf3d666b993a49705300099a54bad7751e7171d043a8",
+    "js/hair-auto-demo.js": "3a17fd9cc78c230d6dc53e940e16277e599ba57bf1f8f9f6b94c0721bcd3b08b"
+  }
+}

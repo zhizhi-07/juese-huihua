@@ -1,0 +1,23 @@
+{
+  "sourceSHA256": "42619f38ee8ac9275b4b3cc8fe66a8ade1a196f492276e56db72c65e33a0ed40",
+  "oneClothingCardPerDirection": true,
+  "noExtraLayerAdded": true,
+  "oldHiddenBlackOutfitRemovedWithBackup": true,
+  "frontFourRawCelsExact": true,
+  "all12ClothingCompositesExactWithHandsHidden": true,
+  "handsOnOnlyRevealsPreviouslyCoveredNearHand": true,
+  "restoredHandPixels": [
+    {
+      "direction": 0,
+      "frame": 0,
+      "pixelsAt4x": 64
+    }
+  ],
+  "allOtherLayerPixelsExact": true,
+  "parentsRemappedByIdentity": true,
+  "countsDurationsAndOtherActionsExact": true,
+  "pickerKeepsAllDirectionsVisible": true,
+  "mainCanvasPNGAndPreview12FramesChecked": true,
+  "restoreExtraCopyExact": true,
+  "browserChecked": false
+}

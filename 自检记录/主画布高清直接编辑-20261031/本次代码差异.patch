@@ -1,0 +1,639 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\core.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js"
+index 83fcbc9..0a5a090 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\core.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js"
+@@ -31,7 +31,7 @@ window.PE = window.PE || {};
+     },
+ 
+     validateImagePlacement(rect, frame) {
+-      if(!frame||!rect||![rect.x,rect.y].every(Number.isFinite)||![rect.w,rect.h].every(Number.isSafeInteger)||rect.w<1||rect.h<1||Math.abs(rect.x)+rect.w>Number.MAX_SAFE_INTEGER||Math.abs(rect.y)+rect.h>Number.MAX_SAFE_INTEGER)throw new Error('图片放置范围无效');
++      if(!frame||!rect||![rect.x,rect.y,rect.w,rect.h].every(Number.isFinite)||rect.w<=0||rect.h<=0||Math.abs(rect.x)+rect.w>Number.MAX_SAFE_INTEGER||Math.abs(rect.y)+rect.h>Number.MAX_SAFE_INTEGER)throw new Error('图片放置范围无效');
+       return {x:rect.x,y:rect.y,w:rect.w,h:rect.h};
+     },
+ 
+@@ -39,6 +39,13 @@ window.PE = window.PE || {};
+       return frame.locked||frame.lockedRegions.some(r=>rect.x<r.x+r.w&&rect.x+rect.w>r.x&&rect.y<r.y+r.h&&rect.y+rect.h>r.y);
+     },
+ 
++    imageSourceRect(image,rect) {
++      const r=image.placement,sx=image.width/r.w,sy=image.height/r.h;
++      const x=Math.max(0,Math.floor((rect.x-r.x)*sx+1e-7)),y=Math.max(0,Math.floor((rect.y-r.y)*sy+1e-7));
++      const right=Math.min(image.width,Math.ceil((rect.x+rect.w-r.x)*sx-1e-7)),bottom=Math.min(image.height,Math.ceil((rect.y+rect.h-r.y)*sy-1e-7));
++      return {x,y,w:Math.max(0,right-x),h:Math.max(0,bottom-y)};
++    },
++
+     drawImageData(ctx, image, x=0, y=0, scale=1) {
+       let source=image.placement&&imageCanvases.get(image.data);
+       if(!source){source=image.placement?document.createElement('canvas'):(pixelCanvas||=document.createElement('canvas'));if(source.width!==image.width)source.width=image.width;if(source.height!==image.height)source.height=image.height;source.getContext('2d').putImageData(image,0,0);if(image.placement)imageCanvases.set(image.data,source);}
+@@ -140,6 +147,7 @@ window.PE = window.PE || {};
+       imageData.data[idx + 1] = g;
+       imageData.data[idx + 2] = b;
+       imageData.data[idx + 3] = a !== undefined ? a : 255;
++      imageCanvases.delete(imageData.data);
+       return true;
+     },
+ 
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\tools.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js"
+index a7a3ee1..2718b90 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\tools.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js"
+@@ -53,6 +53,7 @@ window.PE = window.PE || {};
+      * @param {string} name 
+      */
+     setTool(name) {
++      if(this._nativeEdit)this.onMouseUp();
+       if (this._transform) this.clearSelection();
+       this.currentTool = name;
+       if (name !== 'select' && name !== 'move' && this.selection) {
+@@ -118,8 +119,18 @@ window.PE = window.PE || {};
+       const frameKey = this.project.getFrameKey();
+       const layerIdx = this.project.currentLayerIndex;
+ 
+-      if(layer.getFrameData(frameKey)?.placement&&['pencil','eraser','fill'].includes(this.currentTool)){
+-        this.onImageEditBlocked?.('请点击“编辑高清画布”修改源像素；主画布用于移动和缩放，不重采样。');return;
++      const image=layer.getFrameData(frameKey),r=image?.placement;
++      if(r&&['pencil','eraser','fill'].includes(this.currentTool)){
++        this._beginNativeEdit(px,py,button);return;
++      }
++      if(r&&this.currentTool==='select'){
++        const point=this._imagePoint(px,py,image);this._selectStartX=point.x;this._selectStartY=point.y;
++        this.isDrawing=true;this._isSelecting=true;
++        this.setSelection(point.x,point.y,r.w/image.width,r.h/image.height);return;
++      }
++      if(r&&this.currentTool==='eyedropper'){
++        const x=Math.floor((px-r.x)*image.width/r.w),y=Math.floor((py-r.y)*image.height/r.h),picked=PE.utils.getPixelFromImageData(image,x,y);
++        if(picked?.a){this.setColor(picked);this.onColorPick?.(picked);return;}
+       }
+ 
+       switch (this.currentTool) {
+@@ -157,7 +168,7 @@ window.PE = window.PE || {};
+         case 'eyedropper': {
+           const comp = this.canvasManager ? this.canvasManager.getCompositeWithOriginal() : null;
+           if (comp) {
+-            const picked = PE.utils.getPixelFromImageData(comp, px, py);
++            const picked = PE.utils.getPixelFromImageData(comp, Math.floor(px), Math.floor(py));
+             if (picked) {
+               this.setColor(picked.r, picked.g, picked.b, picked.a);
+               if (typeof this.onColorPick === 'function') {
+@@ -188,7 +199,7 @@ window.PE = window.PE || {};
+         case 'move': {
+           if (button !== 0 || frame.locked) return;
+           const s=this.selection,tolerance=4/(this.canvasManager?.zoom||1);
+-          const resize=resizeHandle??(s&&Math.abs(px-s.x-s.w)<=tolerance&&Math.abs(py-s.y-s.h)<=tolerance);
++          const resize=!this._selectionStep(s)&&(resizeHandle??(s&&Math.abs(px-s.x-s.w)<=tolerance&&Math.abs(py-s.y-s.h)<=tolerance));
+           if (!resize && (!s || px<s.x || py<s.y || px>=s.x+s.w || py>=s.y+s.h)) this.selectLayerAt(px,py);
+           const source=this.selection,index=this.project.currentLayerIndex;
+           if (!source || !this._selectionPixels(index,frameKey,source,source)) return;
+@@ -206,15 +217,20 @@ window.PE = window.PE || {};
+      */
+     onMouseMove(px, py) {
+       if (!this.project) return;
++      if(this._nativeEdit){
++        const edit=this._nativeEdit;
++        if(this.project.getCurrentLayer()!==edit.session.layer||this.project.getFrameKey()!==edit.session.key){this._nativeEdit=null;this.isDrawing=false;return;}
++        const point=this._sourcePoint(px,py,edit.session.original);edit.tools.onMouseMove(point.x,point.y);this.canvasManager?.render();return;
++      }
+       const frameKey = this.project.getFrameKey();
+       const layerIdx = this.project.currentLayerIndex;
+ 
+       if (this._transform) {
+         const t=this._transform,s=t.source;
+         if (frameKey!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
+-        const position=v=>this._canFreePlace(s,t.index,t.frameKey)?Math.round(v*1e6)/1e6:Math.round(v);
++        const grid=this._selectionStep(s),position=(v,origin,step)=>grid?origin+Math.round((v-origin)/step)*step:this._canFreePlace(s,t.index,t.frameKey)?Math.round(v*1e6)/1e6:Math.round(v);
+         const target=t.resize?this._scaledSelection(s,Math.max((px-s.x)/s.w,(py-s.y)/s.h)):
+-          {...s,x:position(s.x+px-t.px),y:position(s.y+py-t.py)};
++          {...s,x:position(s.x+px-t.px,s.x,grid?.x),y:position(s.y+py-t.py,s.y,grid?.y)};
+         const preview=this._selectionPixels(t.index,t.frameKey,s,target);
+         if (preview) {t.target=target;t.preview=preview;this.setSelection(target.x,target.y,target.w,target.h);}
+         return;
+@@ -222,7 +238,7 @@ window.PE = window.PE || {};
+ 
+       if (this.isDrawing) {
+         if (this.currentTool === 'pencil') {
+-          if (this.lastX !== -1 && (this.lastX !== px || this.lastY !== py)) {
++          if (this.lastX !== px || this.lastY !== py) {
+             const color = (this._mouseButton === 2) ? { r: 0, g: 0, b: 0, a: 0 } : this.primaryColor;
+             this.drawLine(layerIdx, frameKey, this.lastX, this.lastY, px, py, color.r, color.g, color.b, color.a);
+             this.lastX = px;
+@@ -230,13 +246,15 @@ window.PE = window.PE || {};
+             if (this.canvasManager) this.canvasManager.render();
+           }
+         } else if (this.currentTool === 'eraser') {
+-          if (this.lastX !== -1 && (this.lastX !== px || this.lastY !== py)) {
++          if (this.lastX !== px || this.lastY !== py) {
+             this.drawLine(layerIdx, frameKey, this.lastX, this.lastY, px, py, 0, 0, 0, 0);
+             this.lastX = px;
+             this.lastY = py;
+             if (this.canvasManager) this.canvasManager.render();
+           }
+         } else if (this.currentTool === 'select' && this._isSelecting) {
++          const image=this.project.getCurrentLayer()?.getFrameData(frameKey),r=image?.placement;
++          if(r){const point=this._imagePoint(px,py,image);this.setSelection(Math.min(point.x,this._selectStartX),Math.min(point.y,this._selectStartY),Math.abs(point.x-this._selectStartX)+r.w/image.width,Math.abs(point.y-this._selectStartY)+r.h/image.height);return;}
+           const sx = Math.min(this._selectStartX, px);
+           const sy = Math.min(this._selectStartY, py);
+           const sw = Math.abs(px - this._selectStartX) + 1;
+@@ -252,6 +270,14 @@ window.PE = window.PE || {};
+      * @param {number} py 
+      */
+     onMouseUp(px, py) {
++      if(this._nativeEdit){
++        const edit=this._nativeEdit;this._nativeEdit=null;this.isDrawing=false;edit.tools.onMouseUp();
++        try{
++          if(this.project.getCurrentLayer()!==edit.session.layer||this.project.getFrameKey()!==edit.session.key)throw new Error('图层或帧已切换，本笔修改未应用');
++          edit.session.apply();
++        }catch(e){this.onImageEditBlocked?.(e.message);}
++        this.canvasManager?.render();return;
++      }
+       if (this._transform) {
+         const t=this._transform;this._transform=null;this._isMoving=false;this.isDrawing=false;
+         if (this.project.getFrameKey()!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
+@@ -278,6 +304,32 @@ window.PE = window.PE || {};
+ 
+     }
+ 
++    _sourcePoint(x,y,image) {
++      const r=image.placement;
++      return {x:Math.max(-1,Math.min(image.width,Math.floor((x-r.x)*image.width/r.w+1e-7))),y:Math.max(-1,Math.min(image.height,Math.floor((y-r.y)*image.height/r.h+1e-7)))};
++    }
++
++    _imagePoint(x,y,image) {
++      const r=image.placement,point=this._sourcePoint(x,y,image);
++      return {x:r.x+point.x*r.w/image.width,y:r.y+point.y*r.h/image.height};
++    }
++
++    _beginNativeEdit(x,y,button) {
++      try{
++        const app=PE.app?.project===this.project?PE.app:{project:this.project,history:this.historyManager,updateAll:()=>this.canvasManager?.render()};
++        const session=new PE.HDCanvasSession(app),point=this._sourcePoint(x,y,session.original);
++        if(point.x<0||point.y<0||point.x>=session.original.width||point.y>=session.original.height)return;
++        const tools=new ToolManager();tools.init(session.project,null,session.history);tools.setTool(this.currentTool);tools.setColor(this.primaryColor);tools.setBrushSize(this.brushSize);
++        if(this.selection){
++          const s=PE.utils.imageSourceRect(session.original,this.selection),f=session.project.getCurrentFrame(),w=f.width,h=f.height;
++          if(!s.w||!s.h)return;
++          for(const box of [[0,0,w,s.y],[0,s.y+s.h,w,h-s.y-s.h],[0,s.y,s.x,s.h],[s.x+s.w,s.y,w-s.x-s.w,s.h]])if(box[2]>0&&box[3]>0)f.addLockedRegion(...box);
++        }
++        this._nativeEdit={session,tools};this.isDrawing=true;tools.onMouseDown(point.x,point.y,button);
++        if(!tools.isDrawing)this.onMouseUp();
++      }catch(e){this._nativeEdit=null;this.isDrawing=false;this.onImageEditBlocked?.(e.message);}
++    }
++
+     // ==========================================
+     // Drawing Primitives (Used by Tools and External API)
+     // ==========================================
+@@ -654,8 +706,8 @@ window.PE = window.PE || {};
+         this.selection = {
+           x: hd||this.currentTool==='move'&&this.freeImagePlacement?rx:Math.floor(rx),
+           y: hd||this.currentTool==='move'&&this.freeImagePlacement?ry:Math.floor(ry),
+-          w: Math.floor(rw),
+-          h: Math.floor(rh)
++          w: hd?rw:Math.floor(rw),
++          h: hd?rh:Math.floor(rh)
+         };
+       }
+ 
+@@ -774,10 +826,10 @@ window.PE = window.PE || {};
+       if (!this.selection || !this.project || this.isDrawing || this._isMoving) return false;
+       const {x,y,w,h}=this.selection;
+       const free=this._canFreePlace(this.selection,this.project.currentLayerIndex,this.project.getFrameKey());
+-      const position=(v,step)=>free?Math.round((v+step*.1)*1e6)/1e6:Math.round(v+step);
++      const grid=this._selectionStep(this.selection),position=(v,step,cell)=>grid?v+step*cell:free?Math.round((v+step*.1)*1e6)/1e6:Math.round(v+step);
+       // Read the active layer again; never paste an old composite/copy buffer.
+       this.selectionData=null;
+-      const moved=this.moveSelection(this.project.currentLayerIndex,this.project.getFrameKey(),x,y,w,h,position(x,dx),position(y,dy));
++      const moved=this.moveSelection(this.project.currentLayerIndex,this.project.getFrameKey(),x,y,w,h,position(x,dx,grid?.x),position(y,dy,grid?.y));
+       this.selectionData=null;
+       return moved;
+     }
+@@ -802,6 +854,12 @@ window.PE = window.PE || {};
+       return !!r&&source.x<=r.x&&source.y<=r.y&&source.x+source.w>=r.x+r.w&&source.y+source.h>=r.y+r.h;
+     }
+ 
++    _selectionStep(source) {
++      if(!source)return null;
++      const image=this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey()),r=image?.placement;
++      return r&&!(source.x<=r.x&&source.y<=r.y&&source.x+source.w>=r.x+r.w&&source.y+source.h>=r.y+r.h)?{x:r.w/image.width,y:r.h/image.height}:null;
++    }
++
+     selectLayerAt(x,y) {
+       const p=this.project,key=p.getFrameKey();this.clearSelection();
+       for (const layer of PE.getRenderLayers(p,p.currentSheetIndex,p.currentActionIndex).slice().reverse()) {
+@@ -872,19 +930,18 @@ window.PE = window.PE || {};
+           const result=new ImageData(data.data,data.width,data.height);result.placement=placement;return result;
+         }
+         const scaleX=data.width/r.w,scaleY=data.height/r.h;
+-        // shortcut: non-integer source densities need a separate source-grid transform UI.
+-        if(!Number.isSafeInteger(scaleX)||!Number.isSafeInteger(scaleY)){this.onImageEditBlocked?.('此图片不是整数倍放置，请在源画布中移动局部像素。');return null;}
+         const sx=Math.max(0,Math.floor((source.x-r.x)*scaleX+1e-7)),sy=Math.max(0,Math.floor((source.y-r.y)*scaleY+1e-7)),ex=Math.min(data.width,Math.ceil((source.x+source.w-r.x)*scaleX-1e-7)),ey=Math.min(data.height,Math.ceil((source.y+source.h-r.y)*scaleY-1e-7));
+         if(ex<=sx||ey<=sy)return null;
+         const dx=Math.round((target.x-source.x)*scaleX),dy=Math.round((target.y-source.y)*scaleY),left=Math.min(0,sx+dx),top=Math.min(0,sy+dy);
+         const width=Math.ceil((Math.max(data.width,ex+dx)-left)/scaleX)*scaleX,height=Math.ceil((Math.max(data.height,ey+dy)-top)/scaleY)*scaleY;
++        const nativeWidth=Math.ceil(width-1e-7),nativeHeight=Math.ceil(height-1e-7);
+         if(width>32767||height>32767||width*height>16*1024*1024)return null;
+-        const placement={x:r.x+left/scaleX,y:r.y+top/scaleY,w:width/scaleX,h:height/scaleY};
++        const placement={x:r.x+left/scaleX,y:r.y+top/scaleY,w:nativeWidth/scaleX,h:nativeHeight/scaleY};
+         try{PE.utils.validateImagePlacement(placement,frame);}catch{return null;}
+-        const result=new ImageData(width,height);result.placement=placement;
+-        for(let y=0;y<data.height;y++)result.data.set(data.data.subarray(y*data.width*4,(y+1)*data.width*4),((y-top)*width-left)*4);
+-        for(let y=sy;y<ey;y++)result.data.fill(0,((y-top)*width+sx-left)*4,((y-top)*width+ex-left)*4);
+-        for(let y=sy;y<ey;y++)for(let x=sx;x<ex;x++){const i=(y*data.width+x)*4;if(data.data[i+3])result.data.set(data.data.subarray(i,i+4),((y+dy-top)*width+x+dx-left)*4);}
++        const result=new ImageData(nativeWidth,nativeHeight);result.placement=placement;
++        for(let y=0;y<data.height;y++)result.data.set(data.data.subarray(y*data.width*4,(y+1)*data.width*4),((y-top)*nativeWidth-left)*4);
++        for(let y=sy;y<ey;y++)result.data.fill(0,((y-top)*nativeWidth+sx-left)*4,((y-top)*nativeWidth+ex-left)*4);
++        for(let y=sy;y<ey;y++)for(let x=sx;x<ex;x++){const i=(y*data.width+x)*4;if(data.data[i+3])result.data.set(data.data.subarray(i,i+4),((y+dy-top)*nativeWidth+x+dx-left)*4);}
+         return result;
+       }
+       if(free&&(!Number.isInteger(target.x)||!Number.isInteger(target.y))){
+@@ -910,9 +967,19 @@ window.PE = window.PE || {};
+       if(!this.selection||this.isDrawing)return false;
+       const s={...this.selection},p=this.project,index=p.currentLayerIndex,key=p.getFrameKey();
+       const r=p.getCurrentLayer()?.getFrameData(key)?.placement;
+-      if(r&&!['x','y','w','h'].every(k=>s[k]===r[k]))return false;
+       const after=this._selectionPixels(index,key,s,s);if(!after)return false;
+-      if(after.placement){const pixels=PE.utils.cloneImageData(after);edit(pixels);return this._commitSelectionPixels(index,key,s,s,pixels,description);}
++      if(after.placement){
++        const pixels=PE.utils.cloneImageData(after);
++        if(['x','y','w','h'].every(k=>s[k]===r[k]))edit(pixels);
++        else{
++          const box=PE.utils.imageSourceRect(pixels,s);if(!box.w||!box.h)return false;
++          const fragment=new ImageData(box.w,box.h);
++          for(let y=0;y<box.h;y++)fragment.data.set(pixels.data.subarray(((box.y+y)*pixels.width+box.x)*4,((box.y+y)*pixels.width+box.x+box.w)*4),y*box.w*4);
++          edit(fragment);
++          for(let y=0;y<box.h;y++)pixels.data.set(fragment.data.subarray(y*box.w*4,(y+1)*box.w*4),((box.y+y)*pixels.width+box.x)*4);
++        }
++        return this._commitSelectionPixels(index,key,s,s,pixels,description);
++      }
+       const pixels=new ImageData(s.w,s.h);
+       for(let y=0;y<s.h;y++)pixels.data.set(after.data.subarray(((s.y+y)*after.width+s.x)*4,((s.y+y)*after.width+s.x+s.w)*4),y*s.w*4);
+       edit(pixels);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\canvas.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\canvas.js"
+index 38a3a86..c0468cb 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\canvas.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\canvas.js"
+@@ -301,7 +301,9 @@ window.PE = window.PE || {};
+         if (this.hideHands && PE.isHandLayer(layer)) continue;
+         if (!PE.isLayerVisible(this.project, layer, typeof si === "undefined" ? this.project.currentSheetIndex : si)) continue;
+         const transform=this.toolManager?._transform;
+-        const data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
++        const native=this.toolManager?._nativeEdit;
++        let data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
++        if(native?.session.layer===layer&&native.session.key===frameKey){const source=native.session.project.layers[0].getFrameData('0_0_0');data=new ImageData(source.data,source.width,source.height);data.placement={...native.session.original.placement};}
+         if (!data) continue;
+ 
+         this.offscreenCtx.globalAlpha = Math.max(0, Math.min(1, layer.opacity));
+@@ -369,6 +371,8 @@ window.PE = window.PE || {};
+       // 6. Pixel grid
+       if (this.showGrid && this.zoom >= this.gridMinZoom) {
+         this._drawGrid(screenX, screenY, fw, fh);
++        const data=this.project.getCurrentLayer()?.getFrameData(frameKey);
++        if(data?.placement)this._drawSourceGrid(data,frame);
+       }
+ 
+       // Frame border
+@@ -430,6 +434,17 @@ window.PE = window.PE || {};
+       }
+     }
+ 
++    _drawSourceGrid(image,frame) {
++      const r=image.placement,dx=r.w/image.width*this.zoom,dy=r.h/image.height*this.zoom;
++      if(Math.min(dx,dy)<4)return;
++      const ctx=this.ctx,x=this.offsetX+r.x*this.zoom,y=this.offsetY+r.y*this.zoom;
++      ctx.save();ctx.beginPath();ctx.rect(this.offsetX,this.offsetY,frame.width*this.zoom,frame.height*this.zoom);ctx.clip();
++      ctx.strokeStyle='rgba(45,135,160,0.45)';ctx.lineWidth=1;ctx.beginPath();
++      for(let i=Math.max(0,Math.ceil(-x/dx));i<=image.width&&x+i*dx<=this.canvas.width;i++){const px=Math.floor(x+i*dx)+.5;ctx.moveTo(px,y);ctx.lineTo(px,y+r.h*this.zoom);}
++      for(let i=Math.max(0,Math.ceil(-y/dy));i<=image.height&&y+i*dy<=this.canvas.height;i++){const py=Math.floor(y+i*dy)+.5;ctx.moveTo(x,py);ctx.lineTo(x+r.w*this.zoom,py);}
++      ctx.stroke();ctx.restore();
++    }
++
+     /**
+      * Draw transparency checkerboard pattern inside the frame boundary.
+      * @private
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\app.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\app.js"
+index 035c488..6bd62a9 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\app.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\app.js"
+@@ -142,7 +142,7 @@ window.PE = window.PE || {};
+     // ==========================================
+     bindCanvasEvents(canvas) {
+       canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+-      const mousePixel=e=>this.canvasManager.screenToPixel(e.clientX,e.clientY,!(this.toolManager.currentTool==='move'&&this.toolManager.freeImagePlacement));
++      const mousePixel=e=>this.canvasManager.screenToPixel(e.clientX,e.clientY,!(this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement||this.toolManager.currentTool==='move'&&this.toolManager.freeImagePlacement));
+       const resizeHandleAt=e=>{
+         const s=this.toolManager.selection,cm=this.canvasManager;if(!s)return false;
+         const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*canvas.width/r.width,y=(e.clientY-r.top)*canvas.height/r.height;
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\hd-canvas.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hd-canvas.js"
+index 17dc4fd..caad300 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\hd-canvas.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hd-canvas.js"
+@@ -36,43 +36,23 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const app=PE.app,bar=document.querySelector('.image-edit-toolbar');if(!bar)return;
+   const create=document.createElement('button'),edit=document.createElement('button');
+   for(const b of [create,edit]){b.type='button';b.className='studio-button';}
+-  create.textContent='新建高清画布';edit.textContent='编辑高清画布';bar.querySelector('strong').after(create,edit);
+-  const dialog=document.createElement('dialog');dialog.className='advanced-dialog hd-canvas-dialog';dialog.setAttribute('aria-label','可编辑高清源画布');
+-  dialog.innerHTML=`<div class="dialog-title"><h2>高清源画布</h2><button type="button" data-cancel class="studio-button">取消</button></div>
+-    <p data-info></p><div class="pixel-import-controls">
+-    <button type="button" data-tool="pencil" class="studio-button">画笔</button><button type="button" data-tool="eraser" class="studio-button">橡皮</button><button type="button" data-tool="fill" class="studio-button">填充</button><button type="button" data-tool="eyedropper" class="studio-button">取色</button>
+-    <label>颜色 <input type="color" value="#000000" aria-label="高清画布颜色"></label><label>笔宽 <input type="number" value="1" min="1" max="32" aria-label="高清画布笔宽"></label>
+-    <button type="button" data-undo class="studio-button">撤销源画布</button><button type="button" data-redo class="studio-button">重做源画布</button>
+-    <button type="button" data-minus class="studio-button" aria-label="缩小源画布视图">−</button><button type="button" data-plus class="studio-button" aria-label="放大源画布视图">＋</button><button type="button" data-fit class="studio-button">居中适合</button><label><input type="checkbox" data-grid checked>像素网格</label></div>
+-    <div class="hd-source-viewport"><canvas data-canvas aria-label="高清源像素画布" tabindex="0"></canvas></div>
+-    <p>直接修改源像素，不是缩小后涂抹。滚轮缩放视图，中键拖动画布；Ctrl+Z 撤销源画布。应用仅修改当前图层当前帧，工程仍需手动保存。</p>
+-    <p data-status role="status"></p><button type="button" data-apply class="studio-button save-primary">应用到当前图层</button>`;
+-  const size=document.createElement('dialog');size.className='advanced-dialog';size.setAttribute('aria-label','新建高清画布');
+-  size.innerHTML=`<h2>新建可编辑高清画布</h2><p>源画布可以比人物脸大，放置尺寸只决定它在人物上占多大。</p>
+-    <div class="pixel-import-controls"><label>名称 <input data-name value="眼睛" aria-label="高清画布名称"></label><label>源宽 <input type="number" data-w value="96" min="1" max="512" aria-label="高清源宽度"></label><label>源高 <input type="number" data-h value="48" min="1" max="512" aria-label="高清源高度"></label><label>放置宽 <input type="number" data-place value="16" min="1" aria-label="新建高清放置宽度"></label></div>
+-    <p data-status role="status"></p><button type="button" data-create class="studio-button">创建并绘画</button><button type="button" data-cancel class="studio-button">取消新建</button>`;
+-  document.body.append(dialog,size);
+-  let session,cm,tm,pan=null,pointer=null;
+-  const canvas=dialog.querySelector('[data-canvas]'),status=dialog.querySelector('[data-status]'),color=dialog.querySelector('input[type=color]');
+-  const report=e=>{bar.querySelector('[data-edit-status]').textContent=e.message;};
+-  function fit(){canvas.width=canvas.parentElement.clientWidth;canvas.height=canvas.parentElement.clientHeight;cm.zoom=Math.max(1,Math.min(16,Math.floor(Math.min((canvas.width-24)/session.original.width,(canvas.height-24)/session.original.height))));cm.centerView();cm.render();}
++  create.textContent='新建高清画布';edit.textContent='编辑高清画布';edit.title='直接在主画布上修改当前高清图层，不另开窗口';bar.querySelector('strong').after(create,edit);
+   function open(){
+     try{
+       if(app.toolManager.isDrawing)throw new Error('请先结束当前笔画');
+-      session=new PE.HDCanvasSession(app);app.animationPlayer.pause();app.toolManager.clearSelection();
+-      cm=new PE.CanvasManager(canvas,session.project);tm=new PE.ToolManager();tm.init(session.project,cm,session.history);
+-      tm.setColor(app.toolManager.primaryColor);color.value=PE.utils.rgbaToHex(tm.primaryColor.r,tm.primaryColor.g,tm.primaryColor.b);
+-      tm.onColorPick=c=>color.value=PE.utils.rgbaToHex(c.r,c.g,c.b);
+-      dialog.querySelector('[aria-label="高清画布笔宽"]').value='1';status.textContent='';dialog.querySelector('[data-grid]').checked=true;
+-      dialog.querySelector('[data-info]').textContent=session.layer.name+' · 源 '+session.original.width+'×'+session.original.height+' → 人物上 '+session.original.placement.w+'×'+session.original.placement.h;
+-      dialog.showModal();fit();setTool('pencil');canvas.focus();
+-    }catch(e){report(e);}
++      const session=new PE.HDCanvasSession(app),r=session.original.placement,cm=app.canvasManager;
++      app.animationPlayer.pause();app.toolManager.clearSelection();app.toolManager.setTool('pencil');
++      cm.setZoom(Math.max(cm.zoom,Math.ceil(Math.max(session.original.width/r.w,session.original.height/r.h)*4)));
++      cm.offsetX=Math.round(cm.canvas.width/2-(r.x+r.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(r.y+r.h/2)*cm.zoom);
++      app.updateToolbar();app.updateZoomDisplay();cm.render();
++      bar.querySelector('[data-edit-status]').textContent='直接在主画布编辑当前高清层：1px 笔宽 = 1 个源像素；脸和其他图层作为位置参考。改动可撤销，工程仍需保存。';
++      cm.canvas.focus();
++    }catch(e){bar.querySelector('[data-edit-status]').textContent=e.message;}
+   }
+-  function finish(){if(pointer!==null){tm.onMouseUp();pointer=null;pan=null;cm.render();}}
+-  function close(){finish();if(session.changed()&&!confirm('放弃尚未应用的高清画布修改？'))return;dialog.close();}
+-  function setTool(tool){finish();tm.setTool(tool);for(const b of dialog.querySelectorAll('[data-tool]'))b.setAttribute('aria-pressed',String(b.dataset.tool===tool));}
+-  edit.onclick=open;create.onclick=()=>{size.querySelector('[data-status]').textContent='';size.showModal();};
+-  size.querySelector('[data-cancel]').onclick=()=>size.close();
++  edit.onclick=open;
++  const size=document.createElement('dialog');size.className='advanced-dialog';size.setAttribute('aria-label','新建高清画布');
++  size.innerHTML='<h2>新建可编辑高清画布</h2><p>创建后直接在主画布绘画，其他图层仍可作为参考。</p><div class="pixel-import-controls"><label>名称 <input data-name value="眼睛" aria-label="高清画布名称"></label><label>源宽 <input type="number" data-w value="96" min="1" max="512" aria-label="高清源宽度"></label><label>源高 <input type="number" data-h value="48" min="1" max="512" aria-label="高清源高度"></label><label>放置宽 <input type="number" data-place value="16" min="1" aria-label="新建高清放置宽度"></label></div><p data-status role="status"></p><button type="button" data-create class="studio-button">创建并绘画</button><button type="button" data-cancel class="studio-button">取消新建</button>';
++  document.body.append(size);create.onclick=()=>{size.querySelector('[data-status]').textContent='';size.showModal();};size.querySelector('[data-cancel]').onclick=()=>size.close();
+   size.querySelector('[data-create]').onclick=()=>{
+     try{
+       const w=Number(size.querySelector('[data-w]').value),h=Number(size.querySelector('[data-h]').value),pw=Number(size.querySelector('[data-place]').value),f=app.project.getCurrentFrame();
+@@ -81,28 +61,4 @@ document.addEventListener('DOMContentLoaded',()=>{
+       PE.addImageLayer(app,pixels,size.querySelector('[data-name]').value.trim()||'画布');app.updateAll();size.close();open();
+     }catch(e){size.querySelector('[data-status]').textContent=e.message;}
+   };
+-  dialog.querySelector('[data-cancel]').onclick=close;
+-  dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
+-  dialog.querySelector('[data-apply]').onclick=()=>{finish();try{session.apply();dialog.close();}catch(e){status.textContent=e.message;}};
+-  for(const b of dialog.querySelectorAll('[data-tool]'))b.onclick=()=>setTool(b.dataset.tool);
+-  color.oninput=()=>tm.setColor(PE.utils.hexToRGBA(color.value));
+-  dialog.querySelector('[aria-label="高清画布笔宽"]').onchange=e=>tm.setBrushSize(Number(e.target.value));
+-  for(const action of ['undo','redo'])dialog.querySelector('[data-'+action+']').onclick=()=>{finish();session.history[action](session.project);cm.render();};
+-  function zoom(inside){cm.setZoom(Math.min(16,inside?cm.zoom*2:Math.max(1,Math.floor(cm.zoom/2))));}
+-  dialog.querySelector('[data-minus]').onclick=()=>zoom(false);dialog.querySelector('[data-plus]').onclick=()=>zoom(true);dialog.querySelector('[data-fit]').onclick=fit;
+-  dialog.querySelector('[data-grid]').onchange=e=>{cm.showGrid=e.target.checked;cm.render();};
+-  const point=e=>{const p=cm.screenToPixel(e.clientX,e.clientY);return {x:Math.max(-1,Math.min(session.original.width,p.x)),y:Math.max(-1,Math.min(session.original.height,p.y))};};
+-  canvas.addEventListener('contextmenu',e=>e.preventDefault());
+-  canvas.addEventListener('pointerdown',e=>{if(pointer!==null)return;e.preventDefault();canvas.focus();pointer=e.pointerId;canvas.setPointerCapture(pointer);if(e.button===1)pan={x:e.clientX,y:e.clientY};else{const p=point(e);tm.onMouseDown(p.x,p.y,e.button);cm.render();}});
+-  canvas.addEventListener('pointermove',e=>{if(e.pointerId!==pointer)return;if(pan){cm.pan(e.clientX-pan.x,e.clientY-pan.y);pan={x:e.clientX,y:e.clientY};}else{const p=point(e);tm.onMouseMove(p.x,p.y);}cm.render();});
+-  canvas.addEventListener('pointerup',finish);canvas.addEventListener('pointercancel',()=>{session.history.discardBatch(session.project);tm.isDrawing=false;pointer=null;pan=null;cm.render();});
+-  canvas.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY<0);},{passive:false});
+-  window.addEventListener('keydown',e=>{
+-    if(!dialog.open&&!size.open)return;e.stopImmediatePropagation();
+-    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();if(dialog.open)status.textContent='先应用到图层，再保存工程；源画布尚未自动保存。';return;}
+-    if(!dialog.open||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
+-    if((e.ctrlKey||e.metaKey)&&['z','y'].includes(e.key.toLowerCase())){e.preventDefault();finish();session.history[e.key.toLowerCase()==='y'||e.shiftKey?'redo':'undo'](session.project);cm.render();}
+-  },true);
+-  window.addEventListener('beforeunload',e=>{if(dialog.open&&session.changed()){e.preventDefault();e.returnValue='';}});
+-  new ResizeObserver(()=>{if(dialog.open)fit();}).observe(canvas.parentElement);
+ });
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\pixel-import.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js"
+index b46ee02..1c09c9e 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\pixel-import.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js"
+@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   freePlacement.onchange=()=>{
+     if(app.toolManager.isDrawing){freePlacement.checked=app.toolManager.freeImagePlacement;editStatus.textContent='请先结束当前拖动';return;}
+     app.toolManager.freeImagePlacement=freePlacement.checked;imageDetails();
+-    editStatus.textContent=freePlacement.checked?'普通 / 高清图层均可整层自由放置，方向键微调 0.1 格；高清局部可框选移动，不重采样。画笔请用“编辑高清画布”。':'按像素格放置；已有位置不会因取消勾选而改变，下次移动时吸附到格子。';
++    editStatus.textContent=freePlacement.checked?'普通 / 高清图层均可整层自由放置，方向键微调 0.1 格；高清局部可框选移动，不重采样。画笔、橡皮与框选自动使用当前图层的源像素。':'按像素格放置；已有位置不会因取消勾选而改变，下次移动时吸附到格子。';
+   };
+   for(const [input,axis]of [[positionX,'x'],[positionY,'y']])input.onchange=()=>{
+     try{
+@@ -162,7 +162,6 @@ document.addEventListener('DOMContentLoaded',()=>{
+       app.animationPlayer.pause();
+       if(!hadSelection){const r=p.getCurrentLayer()?.getFrameData(p.getFrameKey())?.placement||{x:0,y:0,w:frame.width,h:frame.height};tm.setSelection(r.x,r.y,r.w,r.h);}
+       const r=p.getCurrentLayer()?.getFrameData(p.getFrameKey())?.placement;
+-      if(r&&!['x','y','w','h'].every(k=>tm.selection?.[k]===r[k]))throw new Error('高清图片按整张源图翻转 / 抠图；请取消框选或用“移动 / 缩放”点选整张图片');
+       if(!tm.editSelection(edit,description))throw new Error('当前图层、帧或选区被保护，未修改图片');
+       app.persistence?.markDirty();app.updateAll();editStatus.textContent=description+'完成 · 仅修改当前图层 / 当前帧，可撤销';
+     }catch(error){editStatus.textContent=error.message;}
+@@ -176,7 +175,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const dialog=document.createElement('dialog');dialog.className='advanced-dialog pixel-import-dialog';dialog.setAttribute('aria-label','上传图片与裁选');
+   dialog.innerHTML=`<div class="dialog-title"><h2>上传图片 · 裁选 / 转像素</h2><button type="button" data-close class="studio-button">关闭</button></div>
+     <label>选择图片 <input type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传源图片"></label>
+-    <p><label><input type="checkbox" data-hd>高清图片图层（保留原图，无损缩放）</label><br>勾选后，尺寸只控制图片在画布上占多大；不减色、不像素化。放入后可点击“编辑高清画布”继续逐像素修改（最大512×512）。</p>
++    <p><label><input type="checkbox" data-hd>高清图片图层（保留原图，无损缩放）</label><br>勾选后，尺寸只控制图片在画布上占多大；不减色、不像素化。放入后直接在主画布逐源像素绘画、擦除与框选（编辑最大512×512），其他图层仍作位置参考。</p>
+     <div class="image-crop-area"><section><h3>原图：拖动框选 · 框内移动 · 右下角缩放</h3><canvas data-source aria-label="原图裁选"></canvas>
+     <div class="crop-fields"><label>X <input type="number" min="-16384" value="0" aria-label="裁选 X"></label><label>Y <input type="number" min="-16384" value="0" aria-label="裁选 Y"></label><label>宽 <input type="number" min="1" value="1" aria-label="裁选宽度"></label><label>高 <input type="number" min="1" value="1" aria-label="裁选高度"></label></div>
+     <button type="button" data-all class="studio-button">选整张图</button><button type="button" data-reselect class="studio-button" aria-pressed="false">重新框选</button>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\frame-tools.js" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js"
+index 9a1bf38..f97be50 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\js\\frame-tools.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js"
+@@ -37,11 +37,16 @@ PE.FrameEditing={
+     if(!data)throw new Error('当前图层在源帧没有内容，请先选择有内容的帧');
+     if(data.placement){
+       const bounds=data.placement;
+-      // shortcut: 高清图层按整张图片复制；需要任意源像素裁切时再增加独立裁切工具。
+-      if(source.rect&&!['x','y','w','h'].every(k=>r[k]===bounds[k]))throw new Error('高清图片请选中整张图片或取消框选后复制，不会自动栅格化选区');
+-      const pixelCount=data.data.reduce((n,v,i)=>n+(i%4===3&&v>0?1:0),0);
++      const partial=!!source.rect&&!['x','y','w','h'].every(k=>r[k]===bounds[k]),box=PE.utils.imageSourceRect(data,partial?r:bounds);
++      if(!box.w||!box.h)throw new Error('选区没有源像素');
++      const pixels=partial?new ImageData(box.w,box.h):PE.utils.cloneImageData(data);
++      if(partial){
++        for(let y=0;y<box.h;y++)pixels.data.set(data.data.subarray(((box.y+y)*data.width+box.x)*4,((box.y+y)*data.width+box.x+box.w)*4),y*box.w*4);
++        pixels.placement={x:bounds.x+box.x*bounds.w/data.width,y:bounds.y+box.y*bounds.h/data.height,w:box.w*bounds.w/data.width,h:box.h*bounds.h/data.height};
++      }
++      const pixelCount=pixels.data.reduce((n,v,i)=>n+(i%4===3&&v>0?1:0),0);
+       if(!pixelCount)throw new Error('选中的图层没有可复制的像素');
+-      return {project:p,ref,pixels:PE.utils.cloneImageData(data),x:bounds.x,y:bounds.y,pixelCount};
++      return {project:p,ref,pixels,x:pixels.placement.x,y:pixels.placement.y,pixelCount,partial,sourceRect:box};
+     }
+     const pixels=new ImageData(r.w,r.h);let pixelCount=0;
+     for(let y=0;y<r.h;y++)for(let x=0;x<r.w;x++){
+@@ -63,6 +68,17 @@ PE.FrameEditing={
+       const id=ref.layerIndex+':'+ref.key;if(seen.has(id))continue;seen.add(id);
+       const before=ref.layer.getFrameData(ref.key);
+       if(clip.pixels.placement){
++        if(clip.partial&&before?.placement){
++          const r=before.placement,c=clip.pixels,cr=c.placement,sx=before.width/r.w,sy=before.height/r.h,dx=Math.round((x-r.x)*sx),dy=Math.round((y-r.y)*sy);
++          if(Math.abs(c.width/cr.w-sx)>1e-6||Math.abs(c.height/cr.h-sy)>1e-6||Math.abs((x-r.x)*sx-dx)>1e-6||Math.abs((y-r.y)*sy-dy)>1e-6)throw new Error('目标源像素网格不同，不能无损粘贴；请粘贴到空白图层');
++          const left=Math.min(0,dx),top=Math.min(0,dy),w=Math.max(before.width,dx+c.width)-left,h=Math.max(before.height,dy+c.height)-top;
++          if(w>32767||h>32767||w*h>16*1024*1024)throw new Error('粘贴后源画布过大，未修改');
++          const after=new ImageData(w,h);after.placement=PE.utils.validateImagePlacement({x:r.x+left/sx,y:r.y+top/sy,w:w/sx,h:h/sy},ref.frame);
++          for(const rect of [r,{x,y,w:cr.w,h:cr.h}])if(PE.utils.imagePlacementLocked(rect,ref.frame))throw new Error('目标包含保护区域；没有修改任何目标');
++          for(let row=0;row<before.height;row++)after.data.set(before.data.subarray(row*before.width*4,(row+1)*before.width*4),((row-top)*w-left)*4);
++          for(let row=0;row<c.height;row++)for(let col=0;col<c.width;col++){const i=(row*c.width+col)*4;if(mode==='overlay'&&!c.data[i+3])continue;after.data.set(c.data.subarray(i,i+4),((dy+row-top)*w+dx+col-left)*4);}
++          edits.push({ref,before,after,modified:clip.pixelCount});continue;
++        }
+         if(before?.data.some((v,i)=>i%4===3&&v)&&mode!=='replace')throw new Error('高清图片请粘贴到空白图层 / 空白帧，或明确选择覆盖方式；不会合并压缩原图');
+         if(before&&!before.placement&&before.data.some((v,i)=>i%4===3&&v))throw new Error('高清图片不能覆盖已有像素绘画，请新建图层');
+         const after=PE.utils.cloneImageData(clip.pixels);after.placement=PE.utils.validateImagePlacement({...after.placement,x,y},ref.frame);
+@@ -101,6 +117,11 @@ PE.FrameEditing={
+     if(clip.pixels.placement){
+       this.editable(clip.ref);const r=clip.pixels.placement;
+       if(PE.utils.imagePlacementLocked(r,clip.ref.frame))throw new Error('图片包含保护区域');
++      if(clip.partial){
++        const before=clip.ref.layer.getFrameData(clip.ref.key),after=PE.utils.cloneImageData(before),b=clip.sourceRect;
++        for(let row=0;row<b.h;row++)after.data.fill(0,((b.y+row)*after.width+b.x)*4,((b.y+row)*after.width+b.x+b.w)*4);
++        const result=this.apply(app,[{ref:clip.ref,before,after,modified:clip.pixelCount}],'剪切高清源像素选区');app.frameClipboard=clip;return result;
++      }
+       const result=this.apply(app,[{ref:clip.ref,before:clip.ref.layer.getFrameData(clip.ref.key),after:null,modified:clip.pixelCount}],'剪切高清图片');app.frameClipboard=clip;return result;
+     }
+     const blank={...clip,pixels:new ImageData(clip.pixels.width,clip.pixels.height)};
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\index.html" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+index cfb402a..50856d2 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+@@ -276,17 +276,17 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=off-canvas-placement-1"></script>
++  <script src="js/core.js?v=hd-inline-native-1"></script>
+   <script src="js/history.js"></script>
+-  <script src="js/canvas.js?v=free-image-placement-1"></script>
+-  <script src="js/tools.js?v=off-canvas-placement-1"></script>
++  <script src="js/canvas.js?v=hd-inline-native-1"></script>
++  <script src="js/tools.js?v=hd-inline-native-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-copy-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=free-image-placement-1"></script>
++  <script src="js/app.js?v=hd-inline-native-1"></script>
+   <script src="js/workbench.js?v=off-canvas-placement-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+@@ -300,9 +300,9 @@
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+   <script src="js/wardrobe.js?v=hd-image-layers-multiwear-rear-2"></script>
+-  <script src="js/frame-tools.js?v=free-image-placement-1"></script>
++  <script src="js/frame-tools.js?v=hd-inline-native-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=off-canvas-placement-1"></script>
+-  <script src="js/hd-canvas.js?v=free-image-placement-1"></script>
++  <script src="js/pixel-import.js?v=hd-inline-native-1"></script>
++  <script src="js/hd-canvas.js?v=hd-inline-native-1"></script>
+ </body>
+ </html>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\free-image-placement.cjs" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement.cjs"
+index c1a7a35..d84ca39 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\free-image-placement.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement.cjs"
+@@ -11,7 +11,7 @@ for(const f of ['core','history','canvas','tools','export','frame-tools','pixel-
+   history.undo(p);assert.equal(data().placement.x,12);history.redo(p);assert.equal(data().placement.x,12.5);assert(tm.nudgeSelection(1,0));assert.equal(data().placement.x,12.6);history.undo(p);
+   tm.freeImagePlacement=false;assert.equal(data().placement.x,12.5,'turning option off must not move existing artwork');tm.onMouseDown(14,15,0,false);tm.onMouseMove(15,15);tm.onMouseUp();assert(Number.isInteger(data().placement.x));assert(Number.isInteger(data().placement.y));history.undo(p);
+   const bounds={...data().placement};p.getCurrentFrame().addLockedRegion(20.4,15,1,1);assert.equal(tm.transformSelection(p.currentLayerIndex,key,bounds,bounds),false,'fractional placement must protect even a thin overlap near right edge');p.getCurrentFrame().lockedRegions=[];
+-  for(const x of [NaN,Infinity,Number.MAX_VALUE])assert.throws(()=>PE.utils.validateImagePlacement({x,y:2,w:8,h:4},p.getCurrentFrame()));assert.throws(()=>PE.utils.validateImagePlacement({x:1,y:2,w:8.5,h:4},p.getCurrentFrame()));
++  for(const x of [NaN,Infinity,Number.MAX_VALUE])assert.throws(()=>PE.utils.validateImagePlacement({x,y:2,w:8,h:4},p.getCurrentFrame()));assert.equal(PE.utils.validateImagePlacement({x:1,y:2,w:8.5,h:4},p.getCurrentFrame()).w,8.5);
+   PE.FrameEditing.copy(app,{rect:bounds});PE.FrameEditing.paste(app,[{frameIndex:1}],{mode:'replace'});assert.deepEqual(layer.getFrameData('0_0_1').placement,bounds);assert.deepEqual(layer.getFrameData('0_0_1').data,original);history.undo(p);
+   const session=new PE.HDCanvasSession(app);assert.equal(session.original.placement.x,12.5);
+   const exporter=new PE.ExportManager();exporter.init(p,cm);const raw=JSON.parse(await exporter.exportProject(false).text()),loaded=(await new PE.ExportManager().importProject(new Blob([JSON.stringify(raw)]))).project;assert.deepEqual(loaded.layers[1].getFrameData(key).placement,bounds);assert.deepEqual(loaded.layers[1].getFrameData(key).data,original);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\hd-partial-selection.cjs" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-partial-selection.cjs"
+index 96dc418..3c3fa0a 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\hd-partial-selection.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-partial-selection.cjs"
+@@ -10,7 +10,7 @@ for(const f of ['core','history','canvas','tools','export'])vm.runInThisContext(
+   const moved=l.getFrameData(key);assert.deepEqual(moved.placement,{x:8,y:12,w:8,h:4});assert.deepEqual([moved.width,moved.height],[32,16]);
+   const expected=new ImageData(32,16);for(let y=0;y<16;y++)expected.data.set(original.data.subarray(y*24*4,(y+1)*24*4),(y*32+8)*4);for(let y=0;y<8;y++){expected.data.fill(0,(y*32+8)*4,(y*32+16)*4);expected.data.set(original.data.subarray(y*24*4,(y*24+8)*4),y*32*4);}assert.deepEqual(moved.data,expected.data,'Only source and destination change; every other source byte exact');
+   history.undo(p);assert.equal(l.getFrameData(key),original);assert.deepEqual(tm.selection,{x:10,y:12,w:2,h:2});history.redo(p);assert.equal(l.getFrameData(key),moved);history.undo(p);
+-  assert.equal(tm.editSelection(d=>d.data.fill(0),'must not edit whole source'),false);assert.equal(l.getFrameData(key),original);
++  assert(tm.editSelection(d=>d.data.fill(0),'edit only selected source pixels'));assert.equal(l.getFrameData(key).data[(15*24+23)*4+3],255);history.undo(p);assert.equal(l.getFrameData(key),original);
+   assert.equal(tm.transformSelection(0,key,{x:10,y:12,w:2,h:2},{x:10,y:12,w:3,h:2}),false,'Partial resize is explicitly rejected');
+   assert(tm.moveSelection(0,key,9,11,8,6,9.1,11));assert(Math.abs(l.getFrameData(key).placement.x-10.1)<1e-6);assert.deepEqual(l.getFrameData(key).data,original.data,'A padded marquee around the entire HD image still uses lossless free placement');history.undo(p);
+   const stepCount=history.undoStack.length;
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\off-canvas-placement.cjs" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\off-canvas-placement.cjs"
+index 499b87e..54fdb6d 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\off-canvas-placement.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\off-canvas-placement.cjs"
+@@ -15,7 +15,7 @@ for(const f of ['core','history','canvas','tools','export','frame-tools'])vm.run
+   const clipped=createCanvas(32,32);PE.utils.drawImageData(clipped.getContext('2d'),data());assert(clipped.getContext('2d').getImageData(0,0,32,32).data.every(v=>v===0),'Fully outside renders empty, but source remains saved');
+   assert(tm.transformSelection(0,key,r(),original.placement));assert.deepEqual(data().data,original.data);const returned=createCanvas(32,32);PE.utils.drawImageData(returned.getContext('2d'),data());assert(returned.getContext('2d').getImageData(2,2,1,1).data[3]===255,'Dragging back restores visible art');
+   const frame=a.frames[0];frame.lockedRegions=[{x:0,y:2,w:1,h:1}];assert.equal(tm.transformSelection(0,key,r(),{...r(),x:-1}),false,'Partial overlap with protection stays blocked');frame.lockedRegions=[];
+-  for(const bad of [{x:NaN,y:0,w:1,h:1},{x:Infinity,y:0,w:1,h:1},{x:0,y:0,w:0,h:1},{x:0,y:0,w:1.5,h:1},{x:Number.MAX_VALUE,y:0,w:1,h:1}])assert.throws(()=>PE.utils.validateImagePlacement(bad,frame));
++  for(const bad of [{x:NaN,y:0,w:1,h:1},{x:Infinity,y:0,w:1,h:1},{x:0,y:0,w:0,h:1},{x:0,y:0,w:-1,h:1},{x:Number.MAX_VALUE,y:0,w:1,h:1}])assert.throws(()=>PE.utils.validateImagePlacement(bad,frame));
+   for(const free of [false,true]){
+     const native=new ImageData(32,32);native.data.set([10,20,30,255],(2*32+2)*4);native.data.set([40,50,60,255],(3*32+3)*4);l.frameData.set(key,native);tm.clearSelection();tm.freeImagePlacement=free;tm.setSelection(2,2,2,2);
+     tm.onMouseDown(2.5,2.5,0,false);tm.onMouseMove(free?-1:-1.5,35.5);assert.equal(data(),native);tm.onMouseUp();assert.deepEqual(r(),{x:free?-1.5:-2,y:35,w:2,h:2});assert.deepEqual(tm.selection,r());assert.deepEqual([...data().data],[10,20,30,255,0,0,0,0,0,0,0,0,40,50,60,255]);history.undo(p);assert.equal(data(),native);history.redo(p);assert(data().placement);history.undo(p);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\hd-canvas-browser.cjs" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-canvas-browser.cjs"
+index 812be47..ae537cd 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\hd-canvas-browser.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-canvas-browser.cjs"
+@@ -32,25 +32,31 @@ async function main(){
+     await page.getByRole('button',{name:'新建高清画布',exact:true}).click();
+     await page.getByLabel('高清源宽度',{exact:true}).fill('96');await page.getByLabel('高清源高度',{exact:true}).fill('48');
+     await page.getByRole('button',{name:'创建并绘画',exact:true}).click();
+-    const d=page.getByRole('dialog',{name:'可编辑高清源画布',exact:true});await d.waitFor({state:'visible'});
++    assert.equal(await page.locator('dialog[open]').count(),0,'Create goes directly to main canvas');
+     const state=()=>page.evaluate(()=>{const p=PE.app.project,d=p.getCurrentLayer().getFrameData(p.getFrameKey());return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};});
+     const blank=await state();assert.deepEqual([blank.width,blank.height],[96,48]);assert.deepEqual(blank.placement,{x:8,y:12,w:16,h:8});
+-    const cv=d.getByLabel('高清源像素画布',{exact:true});
+-    async function dot(x,y){const q=await cv.evaluate((c,{x,y})=>{const b=c.getBoundingClientRect(),z=Math.max(1,Math.min(16,Math.floor(Math.min((c.width-24)/96,(c.height-24)/48))));return {x:b.x+(c.width-96*z)/2+(x+.5)*z,y:b.y+(c.height-48*z)/2+(y+.5)*z};},{x,y});await page.mouse.click(q.x,q.y);}
+-    await d.getByLabel('高清画布颜色',{exact:true}).fill('#1768ff');await dot(30,12);assert.deepEqual(await state(),blank,'editing working canvas must not touch project before Apply');
+-    await cv.press('Control+z');await d.getByRole('button',{name:'应用到当前图层',exact:true}).click();assert.deepEqual(await state(),blank,'local Ctrl+Z, not main-layer undo');
+-    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();await d.getByLabel('高清画布颜色',{exact:true}).fill('#1768ff');await dot(30,12);await d.getByRole('button',{name:'应用到当前图层',exact:true}).click();
+-    const painted=await state(),i=(12*96+30)*4;assert.deepEqual(painted.pixels.slice(i,i+4),[23,104,255,255]);assert.deepEqual(painted.placement,blank.placement);
++    const point=async(x,y)=>page.evaluate(({x,y})=>{const app=PE.app,c=app.canvasManager,d=app.project.getCurrentLayer().getFrameData(app.project.getFrameKey()),r=d.placement,b=c.canvas.getBoundingClientRect();return {x:b.x+(c.offsetX+(r.x+(x+.3)*r.w/d.width)*c.zoom)*b.width/c.canvas.width,y:b.y+(c.offsetY+(r.y+(y+.3)*r.h/d.height)*c.zoom)*b.height/c.canvas.height};},{x,y});
++    async function dot(x,y){const q=await point(x,y);await page.mouse.click(q.x,q.y);}
++    await page.locator('#color-primary').fill('#1768ff');await dot(30,12);const i=(12*96+30)*4,painted=await state();assert.deepEqual(painted.pixels.slice(i,i+4),[23,104,255,255]);assert.deepEqual(painted.placement,blank.placement);
+     await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),blank);await page.getByRole('button',{name:'重做',exact:true}).click();assert.deepEqual(await state(),painted);
+-    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();await d.getByRole('button',{name:'橡皮',exact:true}).click();await dot(30,12);await d.getByRole('button',{name:'取消',exact:true}).click();assert(await d.isVisible(),'dismissed confirmation keeps working draft');
+-    page.removeAllListeners('dialog');page.on('dialog',d=>d.accept());await d.getByRole('button',{name:'取消',exact:true}).click();assert.deepEqual(await state(),painted,'cancel keeps original');
+-    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();await page.screenshot({path:path.join(output,'browser-editable-source.png')});await d.getByRole('button',{name:'取消',exact:true}).click();
++    await dot(31,12);const two=await state(),j=(12*96+31)*4;assert.deepEqual(two.pixels.slice(j,j+4),[23,104,255,255]);
++    await page.getByLabel('橡皮',{exact:true}).click();await dot(30,12);const erased=await state();assert.deepEqual(erased.pixels.slice(i,i+4),[0,0,0,0]);assert.deepEqual(erased.pixels.slice(j,j+4),[23,104,255,255],'One native pixel erased, adjacent native pixel exact');await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),two);
++    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();assert.equal(await page.locator('dialog[open]').count(),0,'Edit never opens an isolated source window');assert(await page.getByRole('status').allTextContents().then(a=>a.some(t=>t.includes('直接在主画布'))));
++    await page.getByLabel('框选',{exact:true}).click();const q=await point(30,12);await page.mouse.click(q.x,q.y);
++    const sel=await page.evaluate(()=>({...PE.app.toolManager.selection}));assert(Math.abs(sel.w-1/6)<1e-6);assert(Math.abs(sel.h-1/6)<1e-6);
++    await page.getByLabel('移动 / 缩放',{exact:true}).click();await page.keyboard.press('ArrowRight');const moved=await state();assert.equal(moved.pixels[i+3],0);assert.deepEqual(moved.pixels.slice(j,j+4),two.pixels.slice(i,i+4));assert(Math.abs((await page.evaluate(()=>PE.app.toolManager.selection.x))-sel.x-1/6)<1e-6);await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),two);
++    const nativeDragStart=await point(30,12),nativeDragEnd=await point(31,12);await page.mouse.move(nativeDragStart.x,nativeDragStart.y);await page.mouse.down();await page.mouse.move(nativeDragEnd.x,nativeDragEnd.y,{steps:4});assert.deepEqual(await state(),two,'Native partial mouse drag remains a preview');await page.mouse.up();assert.equal((await state()).pixels[i+3],0);assert.deepEqual((await state()).pixels.slice(j,j+4),two.pixels.slice(i,i+4));await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),two);
++    await page.getByRole('button',{name:'复制',exact:true}).click();assert.deepEqual(await page.evaluate(()=>[PE.app.frameClipboard.pixels.width,PE.app.frameClipboard.pixels.height]),[1,1]);await page.getByRole('button',{name:'剪切',exact:true}).click();assert.equal((await state()).pixels[i+3],0);await page.getByRole('button',{name:'粘贴',exact:true}).click();assert.deepEqual(await state(),two);
++    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();await page.getByLabel('吸色',{exact:true}).click();await dot(30,12);assert.equal(await page.locator('#color-primary').inputValue(),'#1768ff');
++    await page.getByLabel('框选',{exact:true}).click();const dragA=await point(30,12),dragB=await point(31,12);await page.mouse.move(dragA.x,dragA.y);await page.mouse.down();await page.mouse.move(dragB.x,dragB.y,{steps:3});await page.mouse.up();assert(Math.abs((await page.evaluate(()=>PE.app.toolManager.selection.w))-2/6)<1e-6);
++    await page.getByLabel('填充',{exact:true}).click();await page.locator('#color-primary').fill('#ee5577');await dot(30,12);const filled=await state();assert.deepEqual(filled.pixels.slice(i,i+4),[238,85,119,255]);assert.deepEqual(filled.pixels.slice(j,j+4),[238,85,119,255]);assert.equal(filled.pixels.filter((v,i)=>i%4===3&&v>0).length,2,'Fill cannot spill outside selected native pixels');await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),two);
++    await page.getByRole('button',{name:'编辑高清画布',exact:true}).click();await page.getByLabel('橡皮',{exact:true}).click();await page.screenshot({path:path.join(output,'browser-inline-hd-main-canvas.png')});
+     await page.getByRole('button',{name:'保存工程',exact:true}).click();await page.waitForFunction(()=>!PE.app.persistence.dirty&&!PE.app.persistence.saving);
+-    const saved=await (await fetch(base+'/api/project?id=draft-hd-image-test')).json();assert.equal(saved.layers[1].frameData['0_0_0'].width,96);assert.deepEqual(saved.layers[1].frameData['0_0_0'].placement,painted.placement);
++    const saved=await (await fetch(base+'/api/project?id=draft-hd-image-test')).json();assert.deepEqual(saved.layers[1].frameData['0_0_0'].placement,two.placement);const faceCheck=createCanvas(32,32);faceCheck.getContext('2d').drawImage(await loadImage(saved.layers[0].frameData['0_0_0'].dataURL),0,0);assert.deepEqual(faceCheck.getContext('2d').getImageData(0,0,32,32).data,sc.getImageData(0,0,32,32).data,'Face pixels are untouched; PNG encoders may differ');
+     const context2=await browser.newContext(),reopened=await context2.newPage();reopened.on('pageerror',e=>errors.push(e.message));await reopened.goto(base+'/index.html?project=draft-hd-image-test');await reopened.waitForFunction(()=>PE.app.persistence.ready&&document.querySelector('.studio-loading')?.hidden);
+-    assert.deepEqual(await reopened.evaluate(()=>{const p=PE.app.project,d=p.layers[1].getFrameData('0_0_0');return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};}),painted);
+-    await reopened.evaluate(()=>{const p=PE.app.project;p.currentLayerIndex=1;PE.app.updateAll();});await reopened.getByRole('button',{name:'编辑高清画布',exact:true}).click();assert(await reopened.getByRole('dialog',{name:'可编辑高清源画布',exact:true}).isVisible());
+-    assert.deepEqual(errors,[]);console.log('PASS: real UI create blank source, draw native pixel, local and main undo/redo, cancel confirmation, unchanged placement, manual ETag save, fresh-context exact reopen and re-edit; no user projects touched.');
++    assert.deepEqual(await reopened.evaluate(()=>{const p=PE.app.project,d=p.layers[1].getFrameData('0_0_0');return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};}),two);
++    await reopened.evaluate(()=>{PE.app.project.currentLayerIndex=1;PE.app.updateAll();});await reopened.getByRole('button',{name:'编辑高清画布',exact:true}).click();assert.equal(await reopened.locator('dialog[open]').count(),0);
++    assert.deepEqual(errors,[]);console.log('PASS: real main-canvas create/edit with no source dialog; native pencil and one-pixel eraser; main undo/redo; native marquee/drag/nudge; copy/cut/paste; exact picker; selection-limited fill; unchanged face/placement; ETag save/fresh reopen/re-edit.');
+     console.log('Isolated fixture: '+dir);
+   }finally{await browser?.close();server.kill();}
+ }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\free-image-placement-browser.cjs" "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement-browser.cjs"
+index c7f9134..095d171 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-主画布高清直接编辑\\test\\free-image-placement-browser.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement-browser.cjs"
+@@ -67,7 +67,7 @@ async function main(){
+     await page.screenshot({path:path.join(output,'browser-off-canvas-drag.png')});await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),original);await page.getByRole('button',{name:'重做',exact:true}).click();assert.equal((await state()).placement.x,-4);await page.getByRole('button',{name:'撤销',exact:true}).click();
+     console.log('PASS: real negative X and beyond-bottom Y, unchanged full source, intact outside selection box, revision-checked save/fresh reopen, real drag across canvas boundary, undo/redo and exact return.');
+     await page.evaluate(()=>{const c=PE.app.canvasManager;c.zoom=16;c.centerView();c.render();});
+-    await page.getByLabel('框选',{exact:true}).click();const marqueeStart=await hdPoint(12.25,14.25),marqueeEnd=await hdPoint(13.25,15.25);await page.mouse.move(marqueeStart.x,marqueeStart.y);await page.mouse.down();await page.mouse.move(marqueeEnd.x,marqueeEnd.y,{steps:3});await page.mouse.up();
++    await page.getByLabel('框选',{exact:true}).click();const marqueeStart=await hdPoint(12.05,14.05),marqueeEnd=await hdPoint(13.8,15.8);await page.mouse.move(marqueeStart.x,marqueeStart.y);await page.mouse.down();await page.mouse.move(marqueeEnd.x,marqueeEnd.y,{steps:3});await page.mouse.up();
+     assert.deepEqual(await page.evaluate(()=>PE.app.toolManager.selection),{x:12,y:14,w:2,h:2});await page.getByLabel('移动 / 缩放',{exact:true}).click();
+     const partialStart=await hdPoint(13.25,15.25),partialEnd=await hdPoint(11.25,15.25);await page.mouse.move(partialStart.x,partialStart.y);await page.mouse.down();await page.mouse.move(partialEnd.x,partialEnd.y,{steps:4});assert.deepEqual(await state(),original,'HD partial drag remains preview only');await page.mouse.up();
+     const partial=await state();assert.deepEqual(partial.placement,{x:10,y:14,w:10,h:4});assert.deepEqual([partial.width,partial.height],[40,16]);

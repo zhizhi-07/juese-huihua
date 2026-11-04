@@ -1,0 +1,55 @@
+{
+  "beforeSHA256": "5a4dc57ae5ac37c8c5498858b75af171c9754fd1e21071d484fdb93e2d0a3439",
+  "oldDurations": [
+    [
+      220,
+      220,
+      100,
+      140,
+      120,
+      200,
+      120,
+      160
+    ],
+    [
+      220,
+      220,
+      100,
+      140,
+      120,
+      200,
+      120,
+      160
+    ],
+    [
+      220,
+      220,
+      100,
+      140,
+      120,
+      200,
+      120,
+      160
+    ]
+  ],
+  "newDurations": [
+    40,
+    100,
+    40,
+    60,
+    40,
+    60,
+    30,
+    30
+  ],
+  "totalMs": 400,
+  "bodyPoseDwellMs": [
+    100,
+    100,
+    100,
+    100
+  ],
+  "pixelsAndAllOtherDataUnchanged": true,
+  "apiReadback": true,
+  "etag": "\"84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531\""
+}

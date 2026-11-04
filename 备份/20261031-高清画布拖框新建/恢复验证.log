@@ -1,0 +1,7 @@
+PASS extra-copy restore js/hd-canvas.js SHA256=acd139fd34a5f3b3115ed3923ba71f1ef3ab825337da0059448a40fd71a67eb7
+PASS extra-copy restore js/pixel-import.js SHA256=b724d1de14657952a7472a1475e2a062aa2673b1ccfcff9e35a182e8469d5265
+PASS extra-copy restore css/hd-canvas.css SHA256=a4d7a66fca69e3b001521e3f5350506bd1af7a2e272a65bbfb9d8e276a4e5411
+PASS extra-copy restore index.html SHA256=616ae45cfd5b218cb537459263f57f4d9c38e2fd683a1e47bbc9d54817ace73a
+PASS extra-copy restore README.md SHA256=2040ceeca2ce87b7238f531e91e9a5842bce77bebeff0d48873e6899d2546dbb
+PASS extra-copy restore test/hd-canvas.cjs SHA256=c0738779c8eef6c79035ff5558cddf9dbec3fbf4bb855cf0da25b6d0831b9d74
+PASS extra-copy restore test/hd-canvas-browser.cjs SHA256=f7bb23a734cbf02cafeca92d8d705f529f9b7e3459b15d511f2ed3ba5bf4fcda

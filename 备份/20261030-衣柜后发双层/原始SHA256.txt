@@ -1,0 +1,13 @@
+
+Algorithm : SHA256
+Hash      : C442C5ED6F8E4C5FEDEA7C3F627C1239F3EB62DFC0A36F36479C340E32193777
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\wardrobe.js
+
+Algorithm : SHA256
+Hash      : FF8CB3E4305213E6FB3A3D7FBB867E827335BB372A7A7B9C480C2EE40E254010
+Path      : C:\Users\Administrator\Desktop\角色绘画\index.html
+
+Algorithm : SHA256
+Hash      : D17AE10A170F9C5DE2CD8A5E4AA27CC31B80297B2390832CDBD3EB9B4C2DE655
+Path      : C:\Users\Administrator\Desktop\角色绘画\test\wardrobe.cjs
+

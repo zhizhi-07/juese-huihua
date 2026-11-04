@@ -1,0 +1,12 @@
+{
+  "method": "PUT",
+  "path": "/api/project?id=main",
+  "headers": {
+    "X-Pixel-Editor": "1",
+    "Content-Type": "application/json",
+    "If-Match": "\"fd74eda83ee7218407b8c86d250d1b8cb2b4c2ebc469fc22a8672e65f22a3848\""
+  },
+  "status": 200,
+  "body": "{\"saved\":true,\"revision\":\"\\\"419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55\\\"\"}",
+  "etag": "\"419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55\""
+}

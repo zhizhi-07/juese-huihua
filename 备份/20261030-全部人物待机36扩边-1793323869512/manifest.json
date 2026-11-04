@@ -1,0 +1,102 @@
+{
+  "target": 36,
+  "padEachSide": 2,
+  "plans": [
+    {
+      "id": "main",
+      "name": "Hana Caraka · 角色衣橱",
+      "etag": "\"dce10f0462204f50a7e9248f4d18db226eed17808cb3ec7a12cf4df422ac06ab\"",
+      "sha256": "dce10f0462204f50a7e9248f4d18db226eed17808cb3ec7a12cf4df422ac06ab",
+      "si": 8,
+      "checked": 238
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "name": "ai",
+      "etag": "\"6da6e6955fc60d69eb3179dcd91fadff9a81336a7bab3f40ef3ba8a21b794c50\"",
+      "sha256": "6da6e6955fc60d69eb3179dcd91fadff9a81336a7bab3f40ef3ba8a21b794c50",
+      "si": 8,
+      "checked": 48
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "name": "炭黑双丸子·白发罩·待机分支",
+      "etag": "\"0f01f2496d8848469da3a2f5a017a1b50a0690614c1b30a302ca73be9b6b907f\"",
+      "sha256": "0f01f2496d8848469da3a2f5a017a1b50a0690614c1b30a302ca73be9b6b907f",
+      "si": 8,
+      "checked": 100
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "可爱-萌衣服",
+      "etag": "\"e878d1386bbb91a60630aa515f1ff90a37345570feda764ae817b9c671363a1b\"",
+      "sha256": "e878d1386bbb91a60630aa515f1ff90a37345570feda764ae817b9c671363a1b",
+      "si": 8,
+      "checked": 238
+    },
+    {
+      "id": "character-cat-braids-imagegen-20261029",
+      "name": "猫耳栗棕双辫·生图正面试稿",
+      "etag": "\"5ac5f714fe8491025a96bc32b266cd2d411d28ed10f847b2a25f934b699554d5\"",
+      "sha256": "5ac5f714fe8491025a96bc32b266cd2d411d28ed10f847b2a25f934b699554d5",
+      "si": 8,
+      "checked": 53
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "name": "萌",
+      "etag": "\"14713ef45ce0a1726c31cf58023a8daf915f8e39f537f3dae2047048783ee8e3\"",
+      "sha256": "14713ef45ce0a1726c31cf58023a8daf915f8e39f537f3dae2047048783ee8e3",
+      "si": 8,
+      "checked": 48
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "name": "萌",
+      "etag": "\"1039f90ffd6a8fb005ea4cb573ed2a9488188645b9c5963285a1cfddf118bc46\"",
+      "sha256": "1039f90ffd6a8fb005ea4cb573ed2a9488188645b9c5963285a1cfddf118bc46",
+      "si": 8,
+      "checked": 52
+    },
+    {
+      "id": "character-gold-mix-1793320553623",
+      "name": "人物 · 灰色混搭前80011＋后80009",
+      "etag": "\"705b6b4d405dbe352fda69bf479bc41a7bf3a7c0e0884532e4cf7d0446e82a9f\"",
+      "sha256": "705b6b4d405dbe352fda69bf479bc41a7bf3a7c0e0884532e4cf7d0446e82a9f",
+      "si": 8,
+      "checked": 76
+    },
+    {
+      "id": "character-gray-long-study-20261029",
+      "name": "灰色长发·尖发束待机",
+      "etag": "\"3253b4899d584e5f9db3107543568511a79bceb1f66bc8021397ec74236571a9\"",
+      "sha256": "3253b4899d584e5f9db3107543568511a79bceb1f66bc8021397ec74236571a9",
+      "si": 8,
+      "checked": 84
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "name": "灰色长披发·待机分支",
+      "etag": "\"2722356d4ecd7f9791ca4aefe0d46dc00743d488d7798145dc9c7347c74f5180\"",
+      "sha256": "2722356d4ecd7f9791ca4aefe0d46dc00743d488d7798145dc9c7347c74f5180",
+      "si": 8,
+      "checked": 136
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "name": "粉色外翻短发·正面首帧试稿",
+      "etag": "\"bd531c5f66a3d461437c6db50568b71d0f613ed2cf3745994e5dc22da6b73310\"",
+      "sha256": "bd531c5f66a3d461437c6db50568b71d0f613ed2cf3745994e5dc22da6b73310",
+      "si": 8,
+      "checked": 100
+    },
+    {
+      "id": "character-strawberry-braids-idle-20261029",
+      "name": "蓬松双麻花辫·待机",
+      "etag": "\"26767b93d585dd909efbe5c86542b04a8004c54d990316c0dbf2d649f6a8ce7b\"",
+      "sha256": "26767b93d585dd909efbe5c86542b04a8004c54d990316c0dbf2d649f6a8ce7b",
+      "si": 8,
+      "checked": 84
+    }
+  ]
+}

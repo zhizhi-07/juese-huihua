@@ -1,0 +1,29 @@
+{
+  "sourceSHA256": "4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641",
+  "approvedSHA256": "35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65",
+  "map": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    3,
+    0,
+    0
+  ],
+  "threeIdleDirections": true,
+  "framesEach": 8,
+  "cycleMs": [
+    400,
+    400,
+    400
+  ],
+  "hairMatchesApprovedBExactly": true,
+  "nonHairPixelsFromLatestTargetOnly": true,
+  "otherActionsAndMetadataUnchanged": true,
+  "restoreExtraCopyVerified": true,
+  "renderPreviewPNGComparisons": 48,
+  "compositeFramesMatchingApproved": 24,
+  "backFrontHairTransparent": true,
+  "browserChecked": false
+}

@@ -1,0 +1,204 @@
+{
+  "sourceSHA256": "4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641",
+  "map": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    3,
+    0,
+    0
+  ],
+  "delays": [
+    40,
+    100,
+    40,
+    60,
+    40,
+    60,
+    30,
+    30
+  ],
+  "totalMs": 400,
+  "metrics": [
+    {
+      "direction": "side",
+      "frame": 1,
+      "bodySourceFrame": 1,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 4,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 5,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 6,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "side",
+      "frame": 7,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "bodySourceFrame": 1,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 4,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 5,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 6,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "down",
+      "frame": 7,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "bodySourceFrame": 1,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 0,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "bodySourceFrame": 2,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 4,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 5,
+      "bodySourceFrame": 3,
+      "rootOffset": 2,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 6,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 1,
+      "components": 1
+    },
+    {
+      "direction": "up",
+      "frame": 7,
+      "bodySourceFrame": 0,
+      "rootOffset": 0,
+      "tailOffset": 0,
+      "components": 1
+    }
+  ],
+  "originalFirstFramesUnchanged": true,
+  "nonHairPixelsOnlyRepeated": true,
+  "nonIdleDataUnchanged": true,
+  "original12AndNew24MainPreviewPNGMatch": true,
+  "backFrontHairTransparent": true,
+  "noNewDisconnectedComponents": true,
+  "restoreExtraCopyVerified": true,
+  "layerTests": 144,
+  "browserChecked": false,
+  "clothingOrOtherProjectMixesTested": false
+}

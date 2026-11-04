@@ -1,0 +1,58 @@
+[
+  {
+    "file": "AGENTS.md",
+    "originalSHA256": "e49f48c05db251ed0220b8a6dfabe27c1e1417d07ba8f7fb75c26e25db8c4d9d",
+    "currentSHA256": "ed476226f8f933900fc8806920c175151eaaaca03ff782fe49ec202b8876c2b5"
+  },
+  {
+    "file": "README.md",
+    "originalSHA256": "250b1964cddac7250cb3b972b74eeece93c9299c2601630448fe8a3b94968d08",
+    "currentSHA256": "1e4965ae325f8b60ad1129fe0963b31b5b1056334e4388d95f18d67195e2bf6b"
+  },
+  {
+    "file": "后台工程读写约定.md",
+    "originalSHA256": "22292447ad717e0f121e98599b5e9ec5cebefbc608cb35e64c8a95452382f092",
+    "currentSHA256": "7fdd153cdfbd12b18c11ffc2ed83a864bde7aed9eefc163959ef012848a24e01"
+  },
+  {
+    "file": "index.html",
+    "originalSHA256": "370ff7da7b52168c2c1f8658433ff31d19a407ea17ad8370a8990bd10c6f5231",
+    "currentSHA256": "e382899cef405aa64d4dc5971b311329ee89ba47aec5ded46e6154a8f4ece501"
+  },
+  {
+    "file": "ai-service.cjs",
+    "originalSHA256": "149cb345ed2ae74c78761c196edd35bfcbde62e3e49fadd36583b39807eae475",
+    "currentSHA256": "474b2ba8e43f7f916d88841650b45f8b84c98259bb89d301175c39a21ee31acc"
+  },
+  {
+    "file": "js/studio.js",
+    "originalSHA256": "11a0912d2fe4f8f2a1dca67ec8f96086717be7e2bdc2afa6006653a1c5191811",
+    "currentSHA256": "d296d65fcb47ebfb119d6a840a53aaff465fa20771ee752b615b7e197a7a000e"
+  },
+  {
+    "file": "js/projects.js",
+    "originalSHA256": "9fa126a965424eb606dc799d8bb03cf40c04f68e873ce98462137955a40fbbef",
+    "currentSHA256": "3aac9e953c228ebb665dbd2a057146223d622b136e2c5d5a81502552a40d5491"
+  },
+  {
+    "file": "js/ai-chat.js",
+    "originalSHA256": "fbfed46ecfa3f85d0ad0004896c33d93eb57d35310eb87a57fdb8756bcff10fc",
+    "currentSHA256": "a4f44bc8be198d9a265da5670caca273e1348270a623a20953717e0fc9e238d3"
+  },
+  {
+    "file": "js/export.js",
+    "originalSHA256": "8b5c9e42ce2b7cb5aa48feea9376fe0b0edd889319ea7fbaf41caaeeea7dfc6d",
+    "currentSHA256": "95e3ac3f37b701f1a7fd39f1f0eb29e2bdd54ddd2cb998989b99cab82a7efb01"
+  },
+  {
+    "file": "js/wardrobe.js",
+    "originalSHA256": "91e4af1b7336c3df263e6433c10e69468c4265b06f6bad5092854e82a29264c6",
+    "currentSHA256": "3701f9ad0be3659269ac03f4131ba5b26c0a42537f8e1c3418e3d72fd1cf8b44"
+  },
+  {
+    "file": "API_DOCS.md",
+    "originalSHA256": null,
+    "currentSHA256": "41cacbc2e4eea414997b6b929e8b3c0c1658f0940d2ee68a025e368811fb4370",
+    "note": "按用户要求重置为最小接口说明；本次未在重置前单独复制该技术接口文档，不能声称保留了其完整的未提交原版。"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "key": "10_0_0",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": true,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_0_1",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": true,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_0_2",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": true,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_0_3",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": true,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_1_0",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_1_1",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_1_2",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_1_3",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_2_0",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_2_1",
+    "headOffset": 0,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_2_2",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  },
+  {
+    "key": "10_2_3",
+    "headOffset": 1,
+    "profileDrawnFromRightTV": false,
+    "backFrontTransparent": true
+  }
+]

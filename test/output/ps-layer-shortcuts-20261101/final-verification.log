@@ -1,0 +1,40 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+COMMAND: node test/layer-shortcuts.cjs
+PASS: Ctrl+J layer/rect/mask/native-HD selection copy; independent frames/parents; Ctrl+E alpha/native-HD/all-frame merge; undo/redo, dirty state, protection/gesture/input/modifier guards.
+exit=0
+COMMAND: node test/layer-shortcuts-browser.cjs
+PASS: real Ctrl+J / Ctrl+E, Ctrl+Z / Ctrl+Y, selected region, panel button keyboard activation, input/contenteditable/Shift guards, dirty state and JSON export; no page errors; isolated fixture only.
+exit=0
+COMMAND: node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+exit=0
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+exit=0
+COMMAND: node test/ctrl-rectangle.cjs
+PASS: Ctrl rectangle pencil/eraser preview/commit; reverse/clipped drag; brush ignored; one-step undo/redo; selection intersection; frame/layer/protection/cancel safety; native HD rectangles without resampling; ordinary brush unchanged.
+exit=0
+COMMAND: node test/layer-resize-mode.cjs
+PASS: selectable HD/pixel resizing, exact nearest RGBA, undo/redo, non-destructive drag preview, move-only preservation, off-canvas/fractional placement, dimension limits, locks, partial-selection and other-frame isolation.
+exit=0
+COMMAND: node test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+exit=0
+COMMAND: node test/regression.cjs
+PASS death.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS hurt.aseprite side/down/up 4 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS idle.aseprite side/down/up 4 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS jump.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS pick up.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS run.aseprite side/down/up 8 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS PNG slicing and all-layers-hidden transparency; malformed source rejection
+TOTAL 102 real animation frames verified
+exit=0
+COMMAND: node --check js/app.js
+exit=0
+COMMAND: node --check js/layer-shortcuts.js
+exit=0
+COMMAND: node --check test/layer-shortcuts.cjs
+exit=0
+COMMAND: node --check test/layer-shortcuts-browser.cjs
+exit=0

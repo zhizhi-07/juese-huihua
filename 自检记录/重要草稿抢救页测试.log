@@ -1,0 +1,1 @@
+PASS: readonly exact project draft; unique create-only disk backup; source bytes and SHA256 preserved; full readback; missing draft, save failure and bad readback never report success; no reload or original overwrite.

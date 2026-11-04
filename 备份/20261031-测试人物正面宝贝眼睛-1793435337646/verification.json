@@ -1,0 +1,128 @@
+{
+  "records": [
+    {
+      "key": "0_3_0",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "0_3_1",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "0_3_2",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "0_3_3",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "0_3_4",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 8
+    },
+    {
+      "key": "0_3_5",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_0",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_1",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_2",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_3",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_4",
+      "placement": {
+        "x": 4,
+        "y": 36,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    },
+    {
+      "key": "1_3_5",
+      "placement": {
+        "x": 4,
+        "y": 34,
+        "w": 24,
+        "h": 16
+      },
+      "repairedPixels": 16
+    }
+  ],
+  "sourceEyePixelsExact": true,
+  "allOriginalDataUnchanged": true,
+  "frontOnly": true,
+  "browserChecked": false
+}

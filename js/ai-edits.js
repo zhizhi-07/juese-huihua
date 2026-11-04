@@ -17,7 +17,7 @@
     },
     validate(project,layerIndex,edits){
       const layer=project.layers[layerIndex];
-      if(!Number.isSafeInteger(layerIndex)||!layer||layer.locked||layer.isGroup||layer.referenceOnly||layer.isOriginal||root.PE?.isHandLayer?.(layer))throw new Error('请选择一个可编辑的绘画图层');
+      if(!Number.isSafeInteger(layerIndex)||!layer||layer.locked||layer.isGroup||layer.referenceOnly||layer.isOriginal||root.PE?.isProtectedHandLayer?.(layer))throw new Error('请选择一个可编辑的绘画图层');
       if(!Array.isArray(edits)||edits.length>256)throw new Error('绘画结果过大或格式错误');
       let count=0;
       for(const edit of edits){

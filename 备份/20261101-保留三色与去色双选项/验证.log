@@ -1,0 +1,10 @@
+COMMAND: node --check js/pixel-import.js
+exit=0
+COMMAND: node --check test/image-import.cjs
+exit=0
+COMMAND: node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+exit=0
+COMMAND: node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+exit=0

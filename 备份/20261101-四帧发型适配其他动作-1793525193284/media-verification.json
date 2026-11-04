@@ -1,0 +1,90 @@
+{
+  "format": "APNG",
+  "allFourActionPreviewsReopenedAndPixelMatched": true,
+  "identicalAdjacentFramesMayMerge": true,
+  "results": [
+    {
+      "sheet": 7,
+      "sourceFrames": 8,
+      "encodedFrames": 8,
+      "sourceTiming": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "encodedTiming": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "pixelMatchedAtEveryOriginalBoundary": true
+    },
+    {
+      "sheet": 9,
+      "sourceFrames": 6,
+      "encodedFrames": 6,
+      "sourceTiming": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        500
+      ],
+      "encodedTiming": [
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        500.0
+      ],
+      "pixelMatchedAtEveryOriginalBoundary": true
+    },
+    {
+      "sheet": 10,
+      "sourceFrames": 4,
+      "encodedFrames": 4,
+      "sourceTiming": [
+        100,
+        100,
+        100,
+        100
+      ],
+      "encodedTiming": [
+        100.0,
+        100.0,
+        100.0,
+        100.0
+      ],
+      "pixelMatchedAtEveryOriginalBoundary": true
+    },
+    {
+      "sheet": 11,
+      "sourceFrames": 4,
+      "encodedFrames": 3,
+      "sourceTiming": [
+        450,
+        101,
+        10,
+        10
+      ],
+      "encodedTiming": [
+        551.0,
+        10.0,
+        10.0
+      ],
+      "pixelMatchedAtEveryOriginalBoundary": true
+    }
+  ]
+}

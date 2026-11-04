@@ -1,0 +1,3 @@
+{"command":"node C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\按原素材重转-80008-80010-20261031\\verify.cjs","input":"files in task directory","stdout":"VERIFIED: 12 frames, actual main/preview/native+HD export paths; eyes/body and non-hair unchanged\n","stderr":"","exitStatus":0}
+{"command":"node C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\按原素材重转-80008-80010-20261031\\redo.cjs --save","input":"files in task directory","stdout":"SAVED exact API readback\n","stderr":"","exitStatus":0}
+{"command":"node C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\按原素材重转-80008-80010-20261031\\restore.cjs","input":"files in task directory","stdout":"RESTORE TEST OK: extra local copy; final kept; stale ETag rejected\n","stderr":"","exitStatus":0}

@@ -1,0 +1,122 @@
+PASS: Ctrl+J layer/rect/mask/native-HD selection copy; independent frames/parents; Ctrl+E alpha/native-HD/all-frame merge; undo/redo, dirty state, protection/gesture/input/modifier guards.
+exit=0
+COMMAND: node test/layer-shortcuts.cjs
+PASS: Ctrl+J layer/rect/mask/native-HD selection copy; independent frames/parents; Ctrl+E alpha/native-HD/all-frame merge; undo/redo, dirty state, protection/gesture/input/modifier guards.
+exit=0
+COMMAND: node test/layer-shortcuts-browser.cjs
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）', exact: true })
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\layer-shortcuts-browser.cjs:33:85 {
+  log: [
+    "  - waiting for getByRole('button', { name: '复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）', exact: true })"
+  ],
+  name: 'TimeoutError'
+}
+exit=1
+COMMAND: node test/layer-shortcuts-browser.cjs
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）', exact: true })
+    - locator resolved to <button type="button" class="icon-action-btn" title="复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）" aria-label="复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）">复制图层</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\layer-shortcuts-browser.cjs:34:85 {
+  log: [
+    "  - waiting for getByRole('button', { name: '复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）', exact: true })",
+    '    - locator resolved to <button type="button" class="icon-action-btn" title="复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）" aria-label="复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）">复制图层</button>',
+    '  - attempting click action',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events',
+    '    - retrying click action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible, enabled and stable',
+    '      - element is visible, enabled and stable',
+    '      - scrolling into view if needed',
+    '      - done scrolling',
+    '      - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events',
+    '    - retrying click action',
+    '      - waiting 100ms',
+    '    57 × waiting for element to be visible, enabled and stable',
+    '       - element is visible, enabled and stable',
+    '       - scrolling into view if needed',
+    '       - done scrolling',
+    '       - <canvas width="914" height="618" id="main-canvas"></canvas> from <section id="center-viewport">…</section> subtree intercepts pointer events',
+    '     - retrying click action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+exit=1
+COMMAND: node test/layer-shortcuts-browser.cjs
+PASS: real Ctrl+J / Ctrl+E, Ctrl+Z / Ctrl+Y, selected region, panel button keyboard activation, input/contenteditable/Shift guards, dirty state and JSON export; no page errors; isolated fixture only.
+exit=0
+COMMAND: node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+exit=0
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+exit=0
+COMMAND: node test/ctrl-rectangle.cjs
+PASS: Ctrl rectangle pencil/eraser preview/commit; reverse/clipped drag; brush ignored; one-step undo/redo; selection intersection; frame/layer/protection/cancel safety; native HD rectangles without resampling; ordinary brush unchanged.
+exit=0
+COMMAND: node test/layer-resize-mode.cjs
+PASS: selectable HD/pixel resizing, exact nearest RGBA, undo/redo, non-destructive drag preview, move-only preservation, off-canvas/fractional placement, dimension limits, locks, partial-selection and other-frame isolation.
+exit=0
+COMMAND: node test/visual-layers.cjs
+evalmachine.<anonymous>:4
+  info(layer){return PE.classifyPart(layer?.name);},
+                        ^
+
+TypeError: PE.classifyPart is not a function
+    at Object.info (evalmachine.<anonymous>:4:25)
+    at Object.category (evalmachine.<anonymous>:14:17)
+    at app.updateLayerList (evalmachine.<anonymous>:87:34)
+    at evalmachine.<anonymous>:129:7
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\visual-layers.cjs:19:25)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+
+Node.js v22.23.1
+exit=1
+COMMAND: node test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+exit=0
+COMMAND: node test/regression.cjs
+PASS death.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS hurt.aseprite side/down/up 4 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS idle.aseprite side/down/up 4 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS jump.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS pick up.aseprite side/down/up 6 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS run.aseprite side/down/up 8 frames; layers, hide, edits, locks, undo/redo, JSON and PNG round trip
+PASS PNG slicing and all-layers-hidden transparency; malformed source rejection
+TOTAL 102 real animation frames verified
+exit=0

@@ -1,0 +1,218 @@
+{
+  "projectName": "像素转像素 · 前发80008＋后发80010",
+  "id": "character-pixel-mix-1793412618671",
+  "sourceProjectSHA256": "0670b1006168ccdb54afef3f7c7309a7a438c646def1d67b7a186fa6bfd0a17a",
+  "candidateSHA256": "49196a1370108595ff13f6ff675bff6b46c5c55cec2f82fbc26090af1e9e666d",
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": null
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "nonempty": true,
+      "mainCanvas": true,
+      "preview": true,
+      "pngExport": true,
+      "backFrontTransparent": true
+    }
+  ],
+  "mix": [
+    {
+      "kind": "新前发配参考后发",
+      "frames": 12,
+      "nonempty": true
+    },
+    {
+      "kind": "参考前发配新后发",
+      "frames": 12,
+      "nonempty": true
+    }
+  ],
+  "cycle": [
+    {
+      "ai": 0,
+      "from": 0,
+      "to": 1,
+      "changed": 62
+    },
+    {
+      "ai": 0,
+      "from": 1,
+      "to": 2,
+      "changed": 325
+    },
+    {
+      "ai": 0,
+      "from": 2,
+      "to": 3,
+      "changed": 56
+    },
+    {
+      "ai": 0,
+      "from": 3,
+      "to": 0,
+      "changed": 329
+    },
+    {
+      "ai": 1,
+      "from": 0,
+      "to": 1,
+      "changed": 64
+    },
+    {
+      "ai": 1,
+      "from": 1,
+      "to": 2,
+      "changed": 324
+    },
+    {
+      "ai": 1,
+      "from": 2,
+      "to": 3,
+      "changed": 62
+    },
+    {
+      "ai": 1,
+      "from": 3,
+      "to": 0,
+      "changed": 332
+    },
+    {
+      "ai": 2,
+      "from": 0,
+      "to": 1,
+      "changed": 64
+    },
+    {
+      "ai": 2,
+      "from": 1,
+      "to": 2,
+      "changed": 222
+    },
+    {
+      "ai": 2,
+      "from": 2,
+      "to": 3,
+      "changed": 62
+    },
+    {
+      "ai": 2,
+      "from": 3,
+      "to": 0,
+      "changed": 224
+    }
+  ],
+  "unchanged": [
+    "body/head/hands in source snapshot",
+    "all sprite sheets, original source bytes, action frame counts and timings",
+    "no editor code changes",
+    "hair created only for 12 idle frames"
+  ],
+  "palette": [
+    "#777777",
+    "#B2B2B2",
+    "#D1D1D1"
+  ],
+  "notChecked": [
+    "live browser UI; actual engine classes tested offscreen",
+    "second existing hairstyle for mix testing unavailable in the assigned reference project",
+    "unsaved browser drafts unavailable to API"
+  ]
+}

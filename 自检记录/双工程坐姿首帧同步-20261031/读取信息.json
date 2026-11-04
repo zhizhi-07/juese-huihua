@@ -1,0 +1,1144 @@
+[
+  {
+    "label": "主工程",
+    "id": "main",
+    "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-双工程坐姿首帧同步-1793409880926\\主工程",
+    "name": "Hana Caraka · 角色衣橱",
+    "view": [
+      10,
+      0,
+      0,
+      227
+    ],
+    "currentSheet": "original32_sit",
+    "currentDirection": "side",
+    "sitSheet": 10,
+    "actions": [
+      {
+        "i": 0,
+        "direction": "side",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 0,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      },
+      {
+        "i": 1,
+        "direction": "down",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 32,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      },
+      {
+        "i": 2,
+        "direction": "up",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 64,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      }
+    ],
+    "layers": [
+      {
+        "i": 2,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": 217,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d9558c3d2f60f130aac256ab0701f8e1dda0349720b71d67988853119653176"
+          }
+        }
+      },
+      {
+        "i": 3,
+        "name": "头发 / 02 双马尾 / 后发",
+        "visible": false,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "67a94073792a0e91feda7c303cc24310006ca8d796c505ce42e91981dbbc81ad"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "e07ead0996d2d568c09abe05da967c2eefe78a9980c55fcd2be85a080fed2ba8"
+          }
+        }
+      },
+      {
+        "i": 213,
+        "name": "hand 2",
+        "visible": true,
+        "locked": true,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 214,
+        "name": "vfx",
+        "visible": true,
+        "locked": false,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 215,
+        "name": "body",
+        "visible": true,
+        "locked": false,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "54fd3fd2da84f0032fb1f47fdce2a18d1995dcaeeca5311dbfb7fedb2d1f591e"
+          }
+        }
+      },
+      {
+        "i": 216,
+        "name": "head",
+        "visible": true,
+        "locked": false,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "37e9bd8cf8bcafc4c0dd1d22563a7f60a76e656553632130dbae628c569b134e"
+          }
+        }
+      },
+      {
+        "i": 217,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "7dfcdba76efcf279eb4df28dbfec344e57bc3c05fa19f50621eb5b8510461a10"
+          }
+        }
+      },
+      {
+        "i": 218,
+        "name": "vfx",
+        "visible": true,
+        "locked": false,
+        "parent": 212,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 220,
+        "name": "hand 2",
+        "visible": false,
+        "locked": true,
+        "parent": 219,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 221,
+        "name": "body",
+        "visible": true,
+        "locked": false,
+        "parent": 219,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "d2696b4b047930ebf0b18dccea3e262bfd07c02110219c773c20bb663d87b5a3"
+          }
+        }
+      },
+      {
+        "i": 222,
+        "name": "head",
+        "visible": true,
+        "locked": false,
+        "parent": 219,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "e6fd06b2c15a9fe33cc7c859488770ce748662065cdcd390eb4bbc83d9db7ce8"
+          }
+        }
+      },
+      {
+        "i": 223,
+        "name": "vfx",
+        "visible": true,
+        "locked": false,
+        "parent": 219,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 225,
+        "name": "hand 2",
+        "visible": false,
+        "locked": true,
+        "parent": 224,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "4761a256d6473935e152c837e4617a23f0886e29ef97f8154ca4e32e64719db9"
+          }
+        }
+      },
+      {
+        "i": 226,
+        "name": "body",
+        "visible": true,
+        "locked": false,
+        "parent": 224,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "9a6ead7c72e168a4cc4fe8349f6d94613243fc93443cc8debd1f518c0597a573"
+          }
+        }
+      },
+      {
+        "i": 227,
+        "name": "head",
+        "visible": true,
+        "locked": false,
+        "parent": 224,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "605c073540c5dc018fe6f0694a25090d137839caf1d33fafe330e6fc392fe8a5"
+          }
+        }
+      },
+      {
+        "i": 228,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": 224,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "5a921035d8079af544b42648d203b72587ce8890b1f8891a7277069e002ab90b"
+          }
+        }
+      },
+      {
+        "i": 229,
+        "name": "vfx",
+        "visible": true,
+        "locked": false,
+        "parent": 224,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 231,
+        "name": "眼睛 / 01 紫色",
+        "visible": false,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "cd60179c89a09398c54222a8d3c21fdb75ad4bfcd51fb3aef054f793f5cc2be6"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1facd33b95c815d700b62bf29b5b29f9476376cfc0f184052bdaf6db53485f22"
+          }
+        }
+      },
+      {
+        "i": 259,
+        "name": "眼睛 / 02 青蓝·粉下缘",
+        "visible": true,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "19494f3cb07d0de7c1a7fcabe086423178c5bd576f3b03d35caeb3ed491fb682"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "a5e3f6d2785db352bc319d10f5b1ad56b0298b8f99b4bc0f55cce7ff39ef310c"
+          }
+        }
+      },
+      {
+        "i": 260,
+        "name": "嘴巴 / 下垂嘴",
+        "visible": true,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "36857c1c3173f9ecf735ab514213c24a2b13ae9229c7fcd0762aa1c4eeafde6f"
+          }
+        }
+      },
+      {
+        "i": 274,
+        "name": "头发 / 02 齐刘海 / 前发",
+        "visible": false,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "229fbb30a506d1453bb3654e35cdf7aa03dd6388172924a7a899c8d71f435905"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "bba1a7ab61e8ff1e98f565b80f7deeedf4cc87b424e81d1472781e01a9d789b1"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 275,
+        "name": "头发 / 02 双马尾侧扎发束 / 侧发",
+        "visible": false,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_1_0",
+          "10_2_0",
+          "10_0_1",
+          "10_1_1",
+          "10_2_1",
+          "10_0_2",
+          "10_1_2",
+          "10_2_2",
+          "10_0_3",
+          "10_1_3",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "6187ad2572f12b22f555c3a286438f0f9250f9b30869f91069bcdfd493df4e73"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 278,
+        "name": "绘画图层 276",
+        "visible": false,
+        "locked": false,
+        "frameKeys": [
+          "10_0_0"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "dc30c0e2f30e7f0a03366a62cf86596b90dfa0e880576cf847bda5aa287aa321"
+          }
+        }
+      },
+      {
+        "i": 279,
+        "name": "绘画图层 277",
+        "visible": false,
+        "locked": false,
+        "frameKeys": [
+          "10_1_0"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "546144e3a6e01aa7a8d8062ea2cbf23bb3676733374265382636fefa99784e70"
+          }
+        }
+      },
+      {
+        "i": 280,
+        "name": "坐姿 / 手部",
+        "visible": false,
+        "locked": false,
+        "frameKeys": [
+          "10_0_1",
+          "10_0_0",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "c3a564b29fc29e90c39e5b9f174f3c10f080b1514b63ab9452b5f97b4371497c"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "c37b54b5eb66b0426dcd9c8c8fbd39e84e51918a5319ead10005bb46c6241b0b"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "label": "当前分支",
+    "id": "character-gold-mix-1793320553623",
+    "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-双工程坐姿首帧同步-1793409880926\\当前分支",
+    "name": "人物 · 灰色混搭前80011＋后80009",
+    "view": [
+      10,
+      0,
+      0,
+      200
+    ],
+    "currentSheet": "original32_sit",
+    "currentDirection": "side",
+    "sitSheet": 10,
+    "actions": [
+      {
+        "i": 0,
+        "direction": "side",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 0,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      },
+      {
+        "i": 1,
+        "direction": "down",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 32,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      },
+      {
+        "i": 2,
+        "direction": "up",
+        "frames": 4,
+        "first": {
+          "sheetIndex": 10,
+          "sourceX": 0,
+          "sourceY": 64,
+          "width": 32,
+          "height": 32,
+          "locked": false,
+          "lockedRegions": [],
+          "status": "pending",
+          "duration": 100,
+          "notes": ""
+        }
+      }
+    ],
+    "layers": [
+      {
+        "i": 9,
+        "name": "头发 / 80009 / 底层后发",
+        "visible": true,
+        "locked": false,
+        "parent": 8,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "776e5a2e72d78e6a4e62ca367fbe7b9ed997963e808edba24c63712b4b1059b3"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "22a0349854e7ff01a15848f05b6ee25f2f9fa2c52a6738fd583c142f6b7cccb6"
+          }
+        }
+      },
+      {
+        "i": 10,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": null,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d9558c3d2f60f130aac256ab0701f8e1dda0349720b71d67988853119653176"
+          }
+        }
+      },
+      {
+        "i": 157,
+        "name": "hand 2",
+        "visible": true,
+        "locked": true,
+        "parent": 156,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 158,
+        "name": "body",
+        "visible": true,
+        "locked": true,
+        "parent": 156,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "54fd3fd2da84f0032fb1f47fdce2a18d1995dcaeeca5311dbfb7fedb2d1f591e"
+          }
+        }
+      },
+      {
+        "i": 159,
+        "name": "head",
+        "visible": true,
+        "locked": true,
+        "parent": 156,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "37e9bd8cf8bcafc4c0dd1d22563a7f60a76e656553632130dbae628c569b134e"
+          }
+        }
+      },
+      {
+        "i": 160,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": 156,
+        "frameKeys": [
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "7dfcdba76efcf279eb4df28dbfec344e57bc3c05fa19f50621eb5b8510461a10"
+          }
+        }
+      },
+      {
+        "i": 162,
+        "name": "hand 2",
+        "visible": false,
+        "locked": true,
+        "parent": 161,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 163,
+        "name": "body",
+        "visible": true,
+        "locked": true,
+        "parent": 161,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "d2696b4b047930ebf0b18dccea3e262bfd07c02110219c773c20bb663d87b5a3"
+          }
+        }
+      },
+      {
+        "i": 164,
+        "name": "head",
+        "visible": true,
+        "locked": true,
+        "parent": 161,
+        "frameKeys": [
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ],
+        "first": {
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "e6fd06b2c15a9fe33cc7c859488770ce748662065cdcd390eb4bbc83d9db7ce8"
+          }
+        }
+      },
+      {
+        "i": 166,
+        "name": "hand 2",
+        "visible": false,
+        "locked": true,
+        "parent": 165,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "4761a256d6473935e152c837e4617a23f0886e29ef97f8154ca4e32e64719db9"
+          }
+        }
+      },
+      {
+        "i": 167,
+        "name": "body",
+        "visible": true,
+        "locked": true,
+        "parent": 165,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "9a6ead7c72e168a4cc4fe8349f6d94613243fc93443cc8debd1f518c0597a573"
+          }
+        }
+      },
+      {
+        "i": 168,
+        "name": "head",
+        "visible": true,
+        "locked": true,
+        "parent": 165,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "605c073540c5dc018fe6f0694a25090d137839caf1d33fafe330e6fc392fe8a5"
+          }
+        }
+      },
+      {
+        "i": 169,
+        "name": "服装 / 01 浅蓝雪花绒领睡衣",
+        "visible": true,
+        "locked": false,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "9de292829c5d8d10fce2e5030efc78375fcc8634b544eaf1cb25d17c633852ff"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "47aea0d7a863fe114f6b28c4ef6af95b8ea4a0e3b19d7e76d583e205146c1bdc"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "a738746dd1b6412880d76ac9975c1787ccb471bf94403f3e2732eed95b2d5a40"
+          }
+        }
+      },
+      {
+        "i": 170,
+        "name": "hand",
+        "visible": true,
+        "locked": true,
+        "parent": 165,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "5a921035d8079af544b42648d203b72587ce8890b1f8891a7277069e002ab90b"
+          }
+        }
+      },
+      {
+        "i": 199,
+        "name": "头发 / 80009 / 侧面后发",
+        "visible": true,
+        "locked": false,
+        "parent": 8,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "bf6bf3efbd110e8142d13600c4881c660a4d8569e7f136557f7aa1bdffa97749"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      },
+      {
+        "i": 200,
+        "name": "眼睛 / 浅蓝·坐姿侧面",
+        "visible": true,
+        "locked": false,
+        "parent": 165,
+        "frameKeys": [
+          "10_0_0"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 18,
+            "height": 24,
+            "placement": {
+              "x": 18.8,
+              "y": 15.3,
+              "w": 5,
+              "h": 7
+            },
+            "sha": "78a9257f576e18238e411ae5c1c4b3063c1acea2bb24695ed3fc53ca0b044077"
+          }
+        }
+      },
+      {
+        "i": 201,
+        "name": "头发 / 80011 / 前发",
+        "visible": true,
+        "locked": true,
+        "parent": null,
+        "frameKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3",
+          "10_2_0",
+          "10_2_1",
+          "10_2_2",
+          "10_2_3"
+        ],
+        "first": {
+          "10_0_0": {
+            "width": 15,
+            "height": 23,
+            "placement": {
+              "x": 11,
+              "y": 4,
+              "w": 15,
+              "h": 23
+            },
+            "sha": "863434c5b320408030426cf8437822158cd343902455e5d4d5f80b986031c7e8"
+          },
+          "10_1_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "aa4b6de9c74c4a6d8dba4d7a2bab4bb81f18cc51e1165d682936152af19a8175"
+          },
+          "10_2_0": {
+            "width": 32,
+            "height": 32,
+            "sha": "1d18b974d13b410b0a5f2fb3b42b6d42e4e43e8069ffc1a2b00fa9705a646b10"
+          }
+        }
+      }
+    ]
+  }
+]

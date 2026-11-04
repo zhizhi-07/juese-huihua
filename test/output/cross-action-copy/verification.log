@@ -1,0 +1,30 @@
+Cross-action copy verification - 2026-11-01 (Asia/Shanghai)
+
+COMMAND: node test/cross-action-copy.cjs
+PASS: walk/front to idle and sit; matching or new independent hair layer; protected-body safety; dry-run; atomic batch; layer order; undo/redo; ambiguous targets; project boundary; saved pixels.
+EXIT: 0
+
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT: 0
+
+COMMAND: node test/frame-delete.cjs
+PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.
+EXIT: 0
+
+COMMAND: node test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+EXIT: 0
+
+COMMAND: node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT: 0
+
+COMMAND: node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+EXIT: 0
+
+COMMAND: node test/frame-copy-browser.cjs
+PASS: grouped-hair direction copying; buttons and Ctrl+C/X/V; next-frame creation; direction batch; walk/front to idle/sit; automatic new hair layer; target-action batch; body protection; undo/redo; no page errors.
+EXIT: 0
+ALL 7 TESTS PASSED

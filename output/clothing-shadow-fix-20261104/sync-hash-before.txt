@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : E0912D600110BB60A5FAD7F1E6A0979BB95CDB15DAA26E66925DF8958C7C6112
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\clothing-sync.js
+

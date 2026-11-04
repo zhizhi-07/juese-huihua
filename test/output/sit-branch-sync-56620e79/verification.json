@@ -1,0 +1,28 @@
+{
+  "projectId": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+  "baseBodyAlreadyMatchesMain12Frames": true,
+  "changedLayer": 175,
+  "changedKeys": [
+    "10_0_0",
+    "10_0_1",
+    "10_0_2",
+    "10_0_3"
+  ],
+  "changedPixels": [
+    71,
+    71,
+    74,
+    74
+  ],
+  "onlySideGarmentRows26to31": true,
+  "upperGarmentHairBodyOtherDirectionsAndActionsExact": true,
+  "soleFacesWhiteBothFeet": true,
+  "restoreExtraCopyExact": true,
+  "mainCanvasPNGStudioPreviewChecks": 12,
+  "browserChecked": true,
+  "beforeSHA256": "f9bd2928c99371f5f079de2ec126312f7ee7eb64dcc6ef5fd22764ea74abab17",
+  "saved": true,
+  "etag": "\"7b6d0422c166c2244bd0a93a542289df9df66df21fa10ca5a7f29aef94848612\"",
+  "browserAutoPulledWithoutRefresh": true,
+  "concurrent29OtherCelsPreserved": true
+}

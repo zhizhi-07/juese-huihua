@@ -1,0 +1,28 @@
+[
+  {
+    "file": "js/hair-animation.js",
+    "servedCurrent": true,
+    "restoredOnExtraCopy": true,
+    "originalSha256": "745715ebdaca865ff875a213c6ca069ae5fc72c1b2584582c1a3235bb06563f5",
+    "currentSha256": "3b589c05f62cb3204bea7fb58f9db404e111aae750b1ae679c2714f4df39f8db"
+  },
+  {
+    "file": "index.html",
+    "servedCurrent": true,
+    "restoredOnExtraCopy": true,
+    "originalSha256": "818a2668f42e59aa0b233e2cf5301d71d050bd5b0f8bbcd1c09254354da74455",
+    "currentSha256": "e11484fe6418def1b08dde02c0b28cc2e00daa5c810ff4667b0817e99ff71b3d"
+  },
+  {
+    "file": "js/hair-auto-demo.js",
+    "unchanged": true
+  },
+  {
+    "file": "hair-auto-demo.html",
+    "unchanged": true
+  },
+  {
+    "file": "test/hair-animation.cjs",
+    "unchanged": true
+  }
+]

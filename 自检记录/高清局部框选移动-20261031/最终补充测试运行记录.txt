@@ -1,0 +1,9 @@
+COMMAND: node test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+EXIT: 0
+COMMAND: node test/free-image-placement.cjs
+PASS: HD/native free drag, preview-only state, 0.1 nudge, exact native crop, native undo/redo, native JSON/source edit, fractional export density, protected native layers/frame/regions/hand, bounds, partial-selection isolation and unchecked snapping.
+EXIT: 0
+COMMAND: node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT: 0

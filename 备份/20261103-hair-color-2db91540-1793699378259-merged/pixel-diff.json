@@ -1,0 +1,52 @@
+{
+  "scope": "original32_idle, side/down/up, frame 0; colors only",
+  "maps": {
+    "130": {
+      "46465e": "46465e",
+      "b4b4fe": "d1d1d1",
+      "6060d2": "aaaaaa",
+      "030372": "777777"
+    },
+    "190": {
+      "46465e": "46465e",
+      "65658b": "777777",
+      "e5e5ff": "d1d1d1",
+      "b4b4fe": "aaaaaa",
+      "6060d2": "777777",
+      "fafaff": "ececec",
+      "ffffff": "ececec"
+    }
+  },
+  "changes": [
+    {
+      "layer": 130,
+      "name": "后发",
+      "key": "8_0_0",
+      "pixels": 330
+    },
+    {
+      "layer": 130,
+      "name": "后发",
+      "key": "8_1_0",
+      "pixels": 330
+    },
+    {
+      "layer": 130,
+      "name": "后发",
+      "key": "8_2_0",
+      "pixels": 330
+    },
+    {
+      "layer": 190,
+      "name": "前发斜刘海",
+      "key": "8_0_0",
+      "pixels": 188
+    },
+    {
+      "layer": 190,
+      "name": "前发斜刘海",
+      "key": "8_1_0",
+      "pixels": 147
+    }
+  ]
+}

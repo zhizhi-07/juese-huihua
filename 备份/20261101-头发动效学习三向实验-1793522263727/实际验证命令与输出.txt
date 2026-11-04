@@ -1,0 +1,7 @@
+COMMAND: node scripts/hair-motion-study-three-20261101.cjs verify-saved
+PASS verify-saved: live API equals candidate/readback; original12 + new24 main/preview/PNG paths match.
+EXIT: 0
+COMMAND: bundled python scripts/export-hair-study-three-20261101.py
+PASS media: three separate previews + three transparent native GIFs + overview; exact palette, loop duration and reopened playback pixels verified.
+C:\Users\Administrator\Desktop\��ɫ�滭\����\20261101-ͷ����Чѧϰ����ʵ��-1793522263727
+EXIT: 0

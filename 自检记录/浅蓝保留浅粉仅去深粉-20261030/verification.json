@@ -1,0 +1,17 @@
+{
+  "id": "character-gold-mix-1793320553623",
+  "li": 197,
+  "keys": [
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3"
+  ],
+  "removedMarkedDeepPinkPixels": 657,
+  "retainedExactSourcePixels": 6369,
+  "restoredLightPinkAndBrowPixels": 2692,
+  "allOtherLayersUnchanged": true,
+  "backupUnchanged": true,
+  "sourceDimensionsAndPlacementUnchanged": true,
+  "pngSHA256": "5d1fdb947dce5ad2e75da8f98d3cc358c7adf84654d7f48da9ad44bc5a7e687c"
+}

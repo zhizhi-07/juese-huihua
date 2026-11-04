@@ -1,0 +1,99 @@
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/js__canvas.js" b/js/canvas.js
+index 275eab0..a0e77a2 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/js__canvas.js"
++++ b/js/canvas.js
+@@ -26,6 +26,7 @@ window.PE = window.PE || {};
+       this.checkerboardSize = 8; // Transparency background checker square size in px
+       this.gridMinZoom = 4; // Only display pixel grid when zoom >= gridMinZoom
+       this.selection = null; // Selection box {x, y, w, h} or synced from ToolManager
++      this.playbackActive = false;
+       this.shapePreview = null; // 直线 / 矩形 / 椭圆的拖拽预览 {pixels, color}
+       this.toolManager = null; // Optional reference to ToolManager
+ 
+@@ -441,7 +442,7 @@ window.PE = window.PE || {};
+       if (this.showGrid && this.zoom >= this.gridMinZoom) {
+         this._drawGrid(screenX, screenY, fw, fh);
+         const data=this.project.getCurrentLayer()?.getFrameData(frameKey);
+-        if(data?.placement)this._drawSourceGrid(data,frame);
++        if(!this.playbackActive&&data?.placement)this._drawSourceGrid(data,frame);
+       }
+ 
+       // Frame border
+@@ -483,7 +484,7 @@ window.PE = window.PE || {};
+ 
+       // 8. Selection outline
+       const sel = this.selection || (this.toolManager && this.toolManager.selection) || (PE.toolManager && PE.toolManager.selection);
+-      if (sel) {
++      if (sel && !this.playbackActive) {
+         this.ctx.save();
+         this.ctx.strokeStyle = '#00e5ff';
+         this.ctx.lineWidth = 1.5;
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/js__animation.js" b/js/animation.js
+index b08492d..151e1ab 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/js__animation.js"
++++ b/js/animation.js
+@@ -102,6 +102,7 @@ window.PE = window.PE || {};
+ 
+       this.playing = true;
+       this.nextTick = null;
++      if(this.canvasManager){this.canvasManager.playbackActive=true;this.canvasManager.render();}
+ 
+       if (this.timer) {
+         clearTimeout(this.timer);
+@@ -119,6 +120,7 @@ window.PE = window.PE || {};
+         clearTimeout(this.timer);
+         this.timer = null;
+       }
++      if(this.canvasManager?.playbackActive){this.canvasManager.playbackActive=false;this.canvasManager.render();}
+     }
+ 
+     /**
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/index.html" b/index.html
+index 1b76d6d..793c77d 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\351\200\211\345\214\272\346\241\206/index.html"
++++ b/index.html
+@@ -283,10 +283,10 @@
+   <script src="js/vendor/jszip.min.js"></script>
+   <script src="js/core.js?v=layer-order-2"></script>
+   <script src="js/history.js"></script>
+-  <script src="js/canvas.js?v=hd-inline-native-1"></script>
++  <script src="js/canvas.js?v=playback-overlays-1"></script>
+   <script src="js/tools.js?v=layer-resize-mode-1"></script>
+   <script src="js/spritesheet.js"></script>
+-  <script src="js/animation.js?v=stable-playback-1"></script>
++  <script src="js/animation.js?v=playback-overlays-1"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+--- /dev/null
++++ after/test/playback-selection.cjs
+@@ -0,0 +1,29 @@
++const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
++const root=path.resolve(__dirname,'..'),observe=process.argv.includes('--observe');
++let selectionStrokes=0,sourceGrids=0,pixelDraws=0,normalGrids=0;
++function context2d(){return {save(){},restore(){},clearRect(){},fillRect(){},drawImage(){},setLineDash(){},strokeRect(){if(this.strokeStyle==='#00e5ff')selectionStrokes++;}};}
++const canvas=()=>({width:320,height:320,style:{},getContext:()=>context2d()});
++const PE={utils:{imageScale:()=>1,drawImageData:()=>pixelDraws++},getRenderLayers:p=>p.layers,isLayerVisible:()=>true,isHandLayer:()=>false};
++const environment={window:{PE},PE,document:{createElement:canvas},setTimeout:()=>1,clearTimeout(){},performance:{now:()=>0},console};
++for(const file of ['canvas','animation'])vm.runInNewContext(fs.readFileSync(path.join(root,'js',file+'.js'),'utf8'),environment);
++const frames=[{width:32,height:32},{width:32,height:32}],data={width:8,height:8,data:new Uint8ClampedArray(256),placement:{x:4,y:4,w:8,h:8}};
++const layer={opacity:1,getFrameData:key=>key==='0_0_0'?data:{width:32,height:32,data:new Uint8ClampedArray(4096)}};
++const project={currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,layers:[layer],spriteSheets:[{fps:10,actions:[{frames}]}],getCurrentFrame(){return frames[this.currentFrameIndex];},getCurrentLayer:()=>layer,getFrameKey(){return '0_0_'+this.currentFrameIndex;}};
++const cm=new PE.CanvasManager(canvas(),project),selection={x:4,y:4,w:8,h:8};
++cm.selection=selection;cm.toolManager={selection,currentTool:'move'};PE.toolManager={selection};
++cm._drawCheckerboard=()=>{};cm._drawGrid=()=>normalGrids++;cm._drawSourceGrid=()=>sourceGrids++;
++const player=new PE.AnimationPlayer();player.project=project;player.canvasManager=cm;
++player.onFrameChange=i=>{project.currentFrameIndex=i;cm.render();};
++function snapshot(){selectionStrokes=0;sourceGrids=0;pixelDraws=0;normalGrids=0;cm.render();return {selectionStrokes,sourceGrids,pixelDraws,normalGrids};}
++const before=snapshot();player.play();const playing=snapshot();player._tick();const next=snapshot();player.pause();const paused=snapshot();
++console.log(JSON.stringify({before,playing,next,paused,selectionPreserved:cm.selection===selection&&cm.toolManager.selection===selection}));
++if(observe)process.exit(0);
++assert.equal(before.selectionStrokes,2);assert.equal(before.sourceGrids,1);
++assert.equal(playing.selectionStrokes,0,'playback must not draw a stale selection');assert.equal(playing.sourceGrids,0,'source-image grid must not flash between HD and raster frames');
++assert.equal(next.selectionStrokes,0);assert.equal(paused.selectionStrokes,2,'pause restores the original selection outline and resize handle');
++assert.equal(cm.selection,selection);assert.equal(cm.toolManager.selection,selection);assert.equal(data.placement.x,4);
++assert.equal(playing.pixelDraws,1);assert.equal(playing.normalGrids,1,'the user grid toggle is not changed');
++project.currentFrameIndex=0;assert.equal(snapshot().sourceGrids,1,'source grid is restored when paused on an HD frame');
++cm.selection=null;cm.toolManager.selection=null;player.play();assert.equal(snapshot().selectionStrokes,0,'global selection fallback is also suppressed');player.stop();assert.equal(cm.playbackActive,false);
++cm.selection=selection;cm.toolManager.selection=selection;player.loop=false;player.currentFrame=1;player.play();player._tick();assert.equal(cm.playbackActive,false,'non-loop ending restores editing overlays');
++console.log('PASS: playback hides selection/resize handles and per-image source grid only; pause/stop/end restore overlays; selections, pixels and normal grid preserved.');

@@ -1,0 +1,72 @@
+diff --git "a/test\\output\\eye-layer-order-20261103\\before\\js\\core.js" b/js/core.js
+index dc6c4a6..143a962 100644
+--- "a/test\\output\\eye-layer-order-20261103\\before\\js\\core.js"
++++ b/js/core.js
+@@ -746,7 +746,7 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+     { test: /侧发|鬓发|鬓角/, category: '头发', slot: '侧发', rank: 1 },
+     { test: /前发|刘海|额发/, category: '头发', slot: '前发', rank: 4 },
+     { test: /发饰|发夹|发卡|发带|蝴蝶结|头饰|帽子/, category: '头发', slot: '饰品', rank: 5 },
+-    { test: /眼|瞳/, category: '五官', slot: '眼睛', rank: 6 },
++    { test: /眼|瞳/, category: '五官', slot: '眼睛', rank: 3.5 },
+     { test: /嘴|口型|唇/, category: '五官', slot: '嘴巴', rank: 7 },
+     { test: /服|衣|裤|裙|鞋|袜|jk/i, category: '衣服', slot: '服装', rank: 3 }
+   ];
+diff --git "a/test\\output\\eye-layer-order-20261103\\before\\js\\wardrobe.js" b/js/wardrobe.js
+index 4e2fa0d..9fc9d1b 100644
+--- "a/test\\output\\eye-layer-order-20261103\\before\\js\\wardrobe.js"
++++ b/js/wardrobe.js
+@@ -71,6 +71,7 @@ PE.Wardrobe={
+     if(/^(body|身体)$/.test(n))return 0;
+     if(n.startsWith('服装 /'))return 10;
+     if(/^(head|头部)$/.test(n))return 20;
++    if(PE.classifyPart(n)?.slot==='眼睛')return 26;
+     if(PE.isHandLayer(layer)){
+       if(project&&key){
+         const index=project.layers.indexOf(layer),body=project.layers.findIndex(l=>/^(body|身体)$/.test(l.name)&&l.getFrameData?.(key)),head=project.layers.findIndex(l=>/^(head|头部)$/.test(l.name)&&l.getFrameData?.(key));
+diff --git "a/test\\output\\eye-layer-order-20261103\\before\\js\\hair-animation.js" b/js/hair-animation.js
+index 3fe4da5..2d8f78f 100644
+--- "a/test\\output\\eye-layer-order-20261103\\before\\js\\hair-animation.js"
++++ b/js/hair-animation.js
+@@ -334,7 +334,11 @@ window.PE = window.PE || {};
+   }
+   function sync(app,{live}={}) {
+     return transaction(app,'同步'+partName(app.project.getCurrentLayer())+'（保留部件设置）',()=>{
+-      const source=setup(app.project);if(live!==undefined)source.hairAnimation.live=!!live;
++      const p=app.project,selected=p.getCurrentLayer(),source=setup(p);if(live!==undefined)source.hairAnimation.live=!!live;
++      if(source.hairAnimation.part==='eyes'){
++        for(const layer of p.layers.filter(l=>l.hairAnimationId===source.hairAnimation.id))PE.autoPlaceLayer(p,p.layers.indexOf(layer),{rename:false});
++        p.currentLayerIndex=p.layers.indexOf(selected);
++      }
+       return applyPlan(plan(app.project,source));
+     });
+   }
+diff --git "a/test\\output\\eye-layer-order-20261103\\before\\index.html" b/index.html
+index bd0e574..733496c 100644
+--- "a/test\\output\\eye-layer-order-20261103\\before\\index.html"
++++ b/index.html
+@@ -282,7 +282,7 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=eye-sync-no-sleep-20261103"></script>
++  <script src="js/core.js?v=eye-behind-fringe-20261103"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=select-wand-2"></script>
+   <script src="js/tools.js?v=select-wand-1"></script>
+@@ -306,7 +306,7 @@
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+   <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
+-  <script src="js/wardrobe.js?v=eye-sync-no-sleep-20261103"></script>
++  <script src="js/wardrobe.js?v=eye-behind-fringe-20261103"></script>
+   <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
+   <script src="js/frame-tools.js?v=eye-sync-no-sleep-20261103"></script>
+   <script src="js/layer-mirror.js?v=layer-mirror-2"></script>
+@@ -321,6 +321,6 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-sync-no-sleep-20261103">
+-  <script src="js/hair-animation.js?v=eye-sync-no-sleep-20261103"></script>
++  <script src="js/hair-animation.js?v=eye-behind-fringe-20261103"></script>
+ </body>
+ </html>

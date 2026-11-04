@@ -1,0 +1,18 @@
+{
+  "new_document": "C:\\Users\\Administrator\\Desktop\\角色绘画\\贴合衣服裤子画法与自检.md",
+  "updated_entry": "C:\\Users\\Administrator\\Desktop\\角色绘画\\衣服绘制AI要求与自检.md",
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261030-贴合衣裤画法文档\\衣服绘制AI要求与自检-修改前.md",
+  "characters": 3577,
+  "checks": [
+    "All referenced Markdown files exist",
+    "New drawing guide linked from existing clothing guide",
+    "Historical skirt example labelled, not a default outfit",
+    "Old all-frame fixed-shoe rule corrected",
+    "No AGENTS.md, editor code or project JSON changed by this documentation task"
+  ],
+  "sha256": {
+    "贴合衣服裤子画法与自检.md": "927828abdb3e09f2f0cf1946b70a1201fadeed41324552a1a3d2e1755a03a39f",
+    "衣服绘制AI要求与自检.md": "22f3eb6ca9d71704142cf5b95bb5a730b0ee8468cd219cac88bd437700c028de",
+    "衣服绘制AI要求与自检-修改前.md": "f50b5e1a66677bf6c4cea2760e3e8ae8b40db1adf38b28c91bf70f45d9534320"
+  }
+}

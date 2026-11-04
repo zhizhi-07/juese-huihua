@@ -1,0 +1,1 @@
+PUT 200; GET 200; exact readback match. Front/rear complete pixel comparison after head alignment passed in frames 1,2,4. Frame3 and non-hair fields unchanged. Restore-on-copy equality passed. Browser playback not tested.

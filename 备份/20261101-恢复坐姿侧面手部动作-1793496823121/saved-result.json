@@ -1,0 +1,6 @@
+{
+  "status": 200,
+  "reply": "{\"saved\":true,\"revision\":\"\\\"b069c74366520c0f2bcef2880105043da28409d0f568277d98e3329129e57f8b\\\"\"}",
+  "etag": "\"b069c74366520c0f2bcef2880105043da28409d0f568277d98e3329129e57f8b\"",
+  "apiReadbackEqual": true
+}

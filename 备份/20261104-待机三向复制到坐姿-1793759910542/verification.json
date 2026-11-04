@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "sourceSHA256": "aa8892823c01917582db315ac01defe1b32204d7ca0fc64a20188b40c14715ed",
+  "sourceETag": "\"aa8892823c01917582db315ac01defe1b32204d7ca0fc64a20188b40c14715ed\"",
+  "resultSHA256": "5139082e8e0b04a60433b04089edac0c5e5cb5dfe939b43d2fcc8c403a6511a4",
+  "resultETag": "\"5139082e8e0b04a60433b04089edac0c5e5cb5dfe939b43d2fcc8c403a6511a4\"",
+  "directions": [
+    "side",
+    "down",
+    "up"
+  ],
+  "frames": 12,
+  "pixelChange": "exact copies of idle PNG data; no drawing or resizing",
+  "checks": [
+    "other actions unchanged",
+    "other layers unchanged",
+    "sitting dimensions/frame timing/layers match idle",
+    "API readback exact",
+    "reset template updated"
+  ],
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261104-待机三向复制到坐姿-1793759910542"
+}

@@ -1,0 +1,17 @@
+{
+  "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\导出\\用户56620e79-全部动作GIF-20261101\\全部动作-同图预览.gif",
+  "size": [
+    980,
+    660
+  ],
+  "sourceFrames": 70,
+  "directionTracks": 13,
+  "gifFrames": 59,
+  "durationMs": 4000,
+  "paletteColors": 34,
+  "everySourceCelIncluded": true,
+  "decodedPixelsMatch": true,
+  "projectUnchanged": true,
+  "timingNote": "GIF时长按10ms取整；4秒总循环中睡觉循环衔接多停10ms。",
+  "scope": "5组当前常用动作；不含原始动作备份；仅来自API已保存数据。"
+}

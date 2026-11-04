@@ -1,0 +1,7 @@
+{
+  "js/tools.js": "c427545b882336e3f0466218483f0267d9f698c0966a32c75ee3738b0aa27e4c",
+  "js/pixel-import.js": "e37b0444f517aaee847b0bcd866fc7cbd1ef86a2f6e451a25d0f72875d466363",
+  "index.html": "a5407adec92da42939b723ba81951cabbe2598327f7234a79fa835d86229f3b9",
+  "test/hd-image-layers.cjs": "94e9d5fbb8528de28cc44416fb130ee06a709984cbc64baef2c41d4c7828b412",
+  "test/free-image-placement-browser.cjs": "aef19f55fb1d3b344223c9f4979e2d18b200923a9f9280794b3ab631fbb28165"
+}

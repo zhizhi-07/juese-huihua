@@ -1,0 +1,186 @@
+{
+  "plans": [
+    {
+      "id": "main",
+      "name": "人物主工程",
+      "etag": "\"419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55\"",
+      "sha256": "419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55",
+      "diskSHA256": "419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55"
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "name": "ai",
+      "etag": "\"8052985e16ab3b6d0059902be31a71818feacf79f141b9b6e52ea18d30bd5fb3\"",
+      "sha256": "8052985e16ab3b6d0059902be31a71818feacf79f141b9b6e52ea18d30bd5fb3",
+      "diskSHA256": "bae23356741ba6c1a36503794cee81dae8476c640ca4ac54cfe263f790cbf787"
+    },
+    {
+      "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+      "name": "用户",
+      "etag": "\"1e2ddb5eec14c208f7f2d41cc90c91855314f22dc191ecdae16a6813ff07a5e0\"",
+      "sha256": "1e2ddb5eec14c208f7f2d41cc90c91855314f22dc191ecdae16a6813ff07a5e0",
+      "diskSHA256": "1e2ddb5eec14c208f7f2d41cc90c91855314f22dc191ecdae16a6813ff07a5e0"
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "name": "炭黑双丸子·白发罩·待机分支",
+      "etag": "\"7285a8126601f2e61d8340cf139b3e6d41471e0609b577c3a26c27e18a1f4b9a\"",
+      "sha256": "7285a8126601f2e61d8340cf139b3e6d41471e0609b577c3a26c27e18a1f4b9a",
+      "diskSHA256": "1cd01cf7c4b1bab682c5e7a5157ab3376a65ae7b5cf08be4863268a74541ff42"
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "可爱-萌衣服",
+      "etag": "\"1472f31d092deb4c471743b280fa1f4484d07775e316dad630a9ad7cc477b605\"",
+      "sha256": "1472f31d092deb4c471743b280fa1f4484d07775e316dad630a9ad7cc477b605",
+      "diskSHA256": "eaeb45c666ffe1c7f5f22e48b2dcc8089bd89fbf76e670e7c541f8c9a1fb0066"
+    },
+    {
+      "id": "character-cat-braids-imagegen-20261029",
+      "name": "猫耳栗棕双辫·生图正面试稿",
+      "etag": "\"001ba43fb0902572b930cc9e213b1ab7b903899d5b3bde44fa58329e0d6ce139\"",
+      "sha256": "001ba43fb0902572b930cc9e213b1ab7b903899d5b3bde44fa58329e0d6ce139",
+      "diskSHA256": "91a2c9dd2f0563e4f0cfc6b6ee8a0cda83a11e44512114717c1c1489661927d9"
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "name": "萌",
+      "etag": "\"797810a0842ee7e28e7704c68d8967290de665781f511139c891c804449a4531\"",
+      "sha256": "797810a0842ee7e28e7704c68d8967290de665781f511139c891c804449a4531",
+      "diskSHA256": "d8f7bfb44e733ac15c006fee47aa4117104793cb63ede85fd7e0fd4c76967de8"
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "name": "萌",
+      "etag": "\"33597fb74f14371797674b04c73605fe3183970e11e77a5a009ac52a0701323f\"",
+      "sha256": "33597fb74f14371797674b04c73605fe3183970e11e77a5a009ac52a0701323f",
+      "diskSHA256": "a8bc1cf23b28926aa274be0650f88fa5065e1acded2ae685c0fbda993f56a332"
+    },
+    {
+      "id": "character-gold-mix-1793320553623",
+      "name": "人物 · 灰色混搭前80011＋后80009",
+      "etag": "\"b39aac0667aaf67070f0dc01f24cd43f9a24c0e966840934dbfce8cfca8427a8\"",
+      "sha256": "b39aac0667aaf67070f0dc01f24cd43f9a24c0e966840934dbfce8cfca8427a8",
+      "diskSHA256": "a8b1e89387eaa9bf0cf0d7b486a93d99d8c3c29efac6bd5907acf5269e14198f"
+    },
+    {
+      "id": "character-gray-long-study-20261029",
+      "name": "灰色长发·尖发束待机",
+      "etag": "\"ab817e3fd9571792d3f84deb086b43d90917a179e8237a30a6969b5aeed3015b\"",
+      "sha256": "ab817e3fd9571792d3f84deb086b43d90917a179e8237a30a6969b5aeed3015b",
+      "diskSHA256": "62ae1861c26448710d76b92ad33b4e66d99889378447ef4567c37043416a5121"
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "name": "灰色长披发·待机分支",
+      "etag": "\"853b5c9152a9454b9433ad1e78198336e87f35bc009ff274ff271f6a8dd148ed\"",
+      "sha256": "853b5c9152a9454b9433ad1e78198336e87f35bc009ff274ff271f6a8dd148ed",
+      "diskSHA256": "cbaa3b318750bc90f49d9d25c2aa84c20fe294bd87d4a8cb81230896c54bf09b"
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "name": "粉色外翻短发·正面首帧试稿",
+      "etag": "\"e97a57c2afec7f82e259fbfdd799fa6d429f0030222bacf97fcc7d115df57d87\"",
+      "sha256": "e97a57c2afec7f82e259fbfdd799fa6d429f0030222bacf97fcc7d115df57d87",
+      "diskSHA256": "3ec1f59454bb5000fc95aaf6511b7c9f890a35e4425e02c1c17a7283deef3116"
+    },
+    {
+      "id": "character-pixel-mix-1793412618671",
+      "name": "像素转像素 · 前发80008＋后发80010",
+      "etag": "\"f23b96d40d6be16a4dc43c1ffe3a5ea13ddc5b32ea7d7ed8363d4d41f3096677\"",
+      "sha256": "f23b96d40d6be16a4dc43c1ffe3a5ea13ddc5b32ea7d7ed8363d4d41f3096677",
+      "diskSHA256": "d78d8267dba30ffe97baf753895d71dec83ad08b781759c30b6bcc79a3b65c8d"
+    },
+    {
+      "id": "character-strawberry-braids-idle-20261029",
+      "name": "蓬松双麻花辫·待机",
+      "etag": "\"9ed5d8944d1c5492bde2d6577753ed05d1e0791114483b3f9b5113a13c882992\"",
+      "sha256": "9ed5d8944d1c5492bde2d6577753ed05d1e0791114483b3f9b5113a13c882992",
+      "diskSHA256": "f1ef7b46737fe0c9e426a797840c264929c1f79a7b71cb5eed8a3e068383f6a5"
+    },
+    {
+      "id": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6",
+      "name": "用户头发·三向待机动效学习实验",
+      "etag": "\"84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531\"",
+      "sha256": "84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531",
+      "diskSHA256": "84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531"
+    },
+    {
+      "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+      "name": "头发动效学习A·自然垂坠",
+      "etag": "\"ff54ace5e22d84f1594dbaacb718c9e7ad4a98ff44fdab68ae63d47dd18b120d\"",
+      "sha256": "ff54ace5e22d84f1594dbaacb718c9e7ad4a98ff44fdab68ae63d47dd18b120d",
+      "diskSHA256": "ff54ace5e22d84f1594dbaacb718c9e7ad4a98ff44fdab68ae63d47dd18b120d"
+    },
+    {
+      "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+      "name": "头发动效学习B·分束柔摆",
+      "etag": "\"35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65\"",
+      "sha256": "35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65",
+      "diskSHA256": "35f6701c5eb7bdbe4ddcd2c37aae19164471d171fef8112e525fd01bdf4e2a65"
+    },
+    {
+      "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+      "name": "头发动效学习C·轻弹回落",
+      "etag": "\"6318fb0f1b1191d80d5fa493d95d450ccc21174e17e7297a62beaa3840e24959\"",
+      "sha256": "6318fb0f1b1191d80d5fa493d95d450ccc21174e17e7297a62beaa3840e24959",
+      "diskSHA256": "6318fb0f1b1191d80d5fa493d95d450ccc21174e17e7297a62beaa3840e24959"
+    },
+    {
+      "id": "finished-189f23ba-d7ce-46c9-b872-c829f8240474",
+      "name": "蓝色",
+      "etag": "\"d30707a3f8ee6355b1f27c56642a4ff8867ee2c7214355ea87fb68fd8323bc9c\"",
+      "sha256": "d30707a3f8ee6355b1f27c56642a4ff8867ee2c7214355ea87fb68fd8323bc9c",
+      "diskSHA256": "d30707a3f8ee6355b1f27c56642a4ff8867ee2c7214355ea87fb68fd8323bc9c"
+    },
+    {
+      "id": "finished-49b4ab59-a67a-453b-807e-5f42c2d21634",
+      "name": "蓝色",
+      "etag": "\"9f0dcd3c5e110bec71dc0d714668c3285a113683e1ba0c9899952aadfb13d49d\"",
+      "sha256": "9f0dcd3c5e110bec71dc0d714668c3285a113683e1ba0c9899952aadfb13d49d",
+      "diskSHA256": "9f0dcd3c5e110bec71dc0d714668c3285a113683e1ba0c9899952aadfb13d49d"
+    },
+    {
+      "id": "finished-4b40123c-0792-4880-bff8-ea6d94113772",
+      "name": "齐刘海",
+      "etag": "\"859c0d340a407170922cfb3eb1405aba30a7533914c7c7fc751c847f47d69bb4\"",
+      "sha256": "859c0d340a407170922cfb3eb1405aba30a7533914c7c7fc751c847f47d69bb4",
+      "diskSHA256": "859c0d340a407170922cfb3eb1405aba30a7533914c7c7fc751c847f47d69bb4"
+    },
+    {
+      "id": "finished-615b67cd-37af-4398-860e-4ce231afca8d",
+      "name": "波波",
+      "etag": "\"97f07897c243fecbd6b5b49336253edf5d670976516fe73414c938b30bcf79d6\"",
+      "sha256": "97f07897c243fecbd6b5b49336253edf5d670976516fe73414c938b30bcf79d6",
+      "diskSHA256": "97f07897c243fecbd6b5b49336253edf5d670976516fe73414c938b30bcf79d6"
+    },
+    {
+      "id": "finished-6164e956-fe63-4509-9934-47d46577a7a9",
+      "name": "双马尾",
+      "etag": "\"45e45579e38f2ea9787debec09a388f289a90f00c7210f68ee10b13dfe20af5e\"",
+      "sha256": "45e45579e38f2ea9787debec09a388f289a90f00c7210f68ee10b13dfe20af5e",
+      "diskSHA256": "45e45579e38f2ea9787debec09a388f289a90f00c7210f68ee10b13dfe20af5e"
+    },
+    {
+      "id": "finished-787ef95d-2dfd-42a9-9bea-553c4c22b36b",
+      "name": "睡衣",
+      "etag": "\"ca5ccb18d62a39cb3f9f97b47d37e7532384a3435d6604669526de9f85b73c15\"",
+      "sha256": "ca5ccb18d62a39cb3f9f97b47d37e7532384a3435d6604669526de9f85b73c15",
+      "diskSHA256": "ca5ccb18d62a39cb3f9f97b47d37e7532384a3435d6604669526de9f85b73c15"
+    },
+    {
+      "id": "finished-df81f7b2-482a-4314-9637-8dfdcf02a5f6",
+      "name": "双马尾",
+      "etag": "\"f3b4312d11555569d2c2fb5c0e0dd7ac2da2dc94e358d0ffc34417759c78db5a\"",
+      "sha256": "f3b4312d11555569d2c2fb5c0e0dd7ac2da2dc94e358d0ffc34417759c78db5a",
+      "diskSHA256": "f3b4312d11555569d2c2fb5c0e0dd7ac2da2dc94e358d0ffc34417759c78db5a"
+    },
+    {
+      "id": "finished-f00f7189-0621-4217-8d72-29d30561d723",
+      "name": "蓝色",
+      "etag": "\"819d9ec4a45843f18eaa43449a7731925c375119e6f212296a05613281e53117\"",
+      "sha256": "819d9ec4a45843f18eaa43449a7731925c375119e6f212296a05613281e53117",
+      "diskSHA256": "819d9ec4a45843f18eaa43449a7731925c375119e6f212296a05613281e53117"
+    }
+  ]
+}

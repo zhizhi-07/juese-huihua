@@ -1,0 +1,77 @@
+{
+  "id": "draft-user-canvas-merged-1793608789349-dbd059d3",
+  "changedLayer": 5,
+  "changedKeys": [
+    "8_2_0",
+    "8_2_1",
+    "8_2_2",
+    "8_2_3"
+  ],
+  "offsets": [
+    {
+      "k": "8_2_0",
+      "dx": -2,
+      "dy": -2,
+      "compressedRow": null,
+      "opaquePixels": 438
+    },
+    {
+      "k": "8_2_1",
+      "dx": -2,
+      "dy": -2,
+      "compressedRow": null,
+      "opaquePixels": 438
+    },
+    {
+      "k": "8_2_2",
+      "dx": -2,
+      "dy": 0,
+      "compressedRow": 18,
+      "opaquePixels": 410
+    },
+    {
+      "k": "8_2_3",
+      "dx": -2,
+      "dy": 0,
+      "compressedRow": 18,
+      "opaquePixels": 410
+    }
+  ],
+  "checks": [
+    {
+      "fi": 0,
+      "main": true,
+      "preview": true,
+      "export": true,
+      "frontToggleUnchanged": true
+    },
+    {
+      "fi": 1,
+      "main": true,
+      "preview": true,
+      "export": true,
+      "frontToggleUnchanged": true
+    },
+    {
+      "fi": 2,
+      "main": true,
+      "preview": true,
+      "export": true,
+      "frontToggleUnchanged": true
+    },
+    {
+      "fi": 3,
+      "main": true,
+      "preview": true,
+      "export": true,
+      "frontToggleUnchanged": true
+    }
+  ],
+  "restoredExtraCopy": true,
+  "browserTested": false,
+  "unchanged": [
+    "all non-target layers",
+    "all other actions and directions",
+    "all timing/frame dimensions/metadata/visibility"
+  ]
+}

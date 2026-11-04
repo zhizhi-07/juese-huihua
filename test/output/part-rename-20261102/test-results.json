@@ -1,0 +1,20 @@
+[
+  {
+    "command": "node test/visual-layers.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.\nPASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.\nPASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.\nPASS: visible rename buttons, type-preserving names, grouped components renamed together, one-step undo/redo, no pixel/order/visibility/parent changes, protected/blank/invalid/no-op names safe.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/layer-order.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/persistence.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.\nPASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.\n",
+    "stderr": ""
+  }
+]

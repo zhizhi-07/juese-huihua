@@ -1,0 +1,14 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+global.window=global;vm.runInThisContext(fs.readFileSync(process.argv[2]||'js/core.js','utf8'));
+const group={name:'down',isGroup:true,parent:null},hand={name:'hand 2',parent:0},body={name:'body',parent:0},head={name:'head',parent:0},rear={name:'后发',parent:null};
+const p={layers:[group,hand,body,head,rear],currentLayerIndex:4,currentSheetIndex:0};
+PE.autoPlaceLayer(p,4);assert(p.layers.indexOf(rear)<p.layers.indexOf(body),'naming rear hair must place it behind body even when rear hand is in body group');
+const g={name:'hair',isGroup:true,parent:null},r={name:'后发',parent:2};const q={layers:[{name:'body',parent:null},{name:'head',parent:null},g,r],currentLayerIndex:3};
+assert(PE.moveLayerOrder(q,3,-1).ok,'a grouped layer must be movable behind its group');
+while(q.layers.indexOf(r)>0)assert(PE.moveLayerOrder(q,q.layers.indexOf(r),-1).ok);
+assert(q.layers.indexOf(r)<q.layers.findIndex(l=>l.name==='body'));
+assert.equal(q.layers.length,4);assert(q.layers.includes(g));
+console.log('PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost');
+const upGroup={name:'hair',isGroup:true,parent:null},upRear={name:'后发',parent:0};const up={layers:[upGroup,upRear],currentLayerIndex:1};
+assert(PE.moveLayerOrder(up,1,1).ok);assert.deepEqual(up.layers,[upGroup,upRear]);assert.equal(upRear.parent,null);
+assert.equal(p.layers[ p.layers.indexOf(body)].parent,p.layers.indexOf(group));

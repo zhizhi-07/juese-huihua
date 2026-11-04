@@ -1,0 +1,1 @@
+Built-in image_gen; candidate preview only. Size: 2172x724; colors: 34070; alpha levels: 256. Strict grid and exact base preservation NOT passed. No project JSON modified; no layer separation.

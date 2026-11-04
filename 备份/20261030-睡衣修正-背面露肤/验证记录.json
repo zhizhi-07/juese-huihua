@@ -1,0 +1,82 @@
+{
+  "saved": true,
+  "etag": "\"5b1fbf9a6946015801f485c0ae0a83805aac9d28b941ee2e5cba5971b4a95626\"",
+  "originalSHA256": "7d5c0b0aa838d7f0e868f8a74913624b77114edcd2b27fea0dce4094b69dec13",
+  "change": "Only outfit pixels x11..24 y25 in rear idle frames 3/4 (8_2_2, 8_2_3): 28 added pixels, covering exposed neck skin.",
+  "checks": [
+    {
+      "direction": "side",
+      "frame": 0,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "side",
+      "frame": 1,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "down",
+      "frame": 0,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "up",
+      "frame": 0,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "render": true,
+      "png": true
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "render": true,
+      "png": true
+    }
+  ],
+  "unchanged": "All other clothing frames, head/hair/hands/body/layer order/action data",
+  "browserTested": false
+}

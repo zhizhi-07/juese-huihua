@@ -1,0 +1,42 @@
+{
+  "results": [
+    {
+      "name": "hair-animation",
+      "exit": 0
+    },
+    {
+      "name": "cross-action-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-delete",
+      "exit": 0
+    },
+    {
+      "name": "hd-image-layers",
+      "exit": 0
+    },
+    {
+      "name": "off-canvas-placement",
+      "exit": 0
+    },
+    {
+      "name": "part-export",
+      "exit": 0
+    },
+    {
+      "name": "persistence",
+      "exit": 0
+    },
+    {
+      "name": "layer-order",
+      "exit": 0
+    }
+  ],
+  "failed": 0,
+  "passed": 9
+}

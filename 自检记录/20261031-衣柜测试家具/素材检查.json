@@ -1,0 +1,32 @@
+[
+  {
+    "name": "木椅·正面",
+    "width": 24,
+    "height": 34,
+    "hardAlpha": true
+  },
+  {
+    "name": "木椅·朝左",
+    "width": 24,
+    "height": 34,
+    "hardAlpha": true
+  },
+  {
+    "name": "木椅·朝右",
+    "width": 24,
+    "height": 34,
+    "hardAlpha": true
+  },
+  {
+    "name": "木椅·背面",
+    "width": 24,
+    "height": 34,
+    "hardAlpha": true
+  },
+  {
+    "name": "木床·鼠尾草绿被褥",
+    "width": 40,
+    "height": 66,
+    "hardAlpha": true
+  }
+]

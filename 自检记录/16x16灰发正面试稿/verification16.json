@@ -1,0 +1,14 @@
+{
+  "newProject": "trial16-gray-curls-20261031",
+  "size": [
+    16,
+    16
+  ],
+  "frames": 1,
+  "direction": "down",
+  "layers": 7,
+  "alpha": "0 or 255 only",
+  "sourceProjectUnchanged": true,
+  "apiReadbackExact": true,
+  "browserChecked": false
+}

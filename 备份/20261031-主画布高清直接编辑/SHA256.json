@@ -1,0 +1,50 @@
+[
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js",
+    "Hash": "A46C67BD9FF180BD038B1DEFDD99F7B0421005417B31B6E59338FD62A38810EA"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js",
+    "Hash": "4615599B0F89ED55A75605C4108214D5D647BDA600791AD8D0B9118169822C20"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\canvas.js",
+    "Hash": "065DB7FCF4E7D56F692CFC05DCAB93F007135D67C89FA524414974D6B262C30F"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\app.js",
+    "Hash": "FD13AECCC0020855B453171B9F9BE9DADF4594A42AF42C697CE824E973833F4F"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hd-canvas.js",
+    "Hash": "14F47A6DA3749392882FED5E588748CD2DADEA437814FABA4B43C7882C56A963"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js",
+    "Hash": "D4084C50F4BB7BB07205AA4FC2EAC677EC0356FEDDD0253A6CD8658399465F3E"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js",
+    "Hash": "8E2AFD15FBF1025493F0918ECDFEAB69801FE3B9E79DAAFBB2817AC10BB0006D"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html",
+    "Hash": "F1A6C3800A98D2A7CAD4AAC943629FCAAA10D429B935D725AF744387976C8BA4"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement.cjs",
+    "Hash": "6CD93585A9CE2775EAD2E4E54F455293906156695B6C2153EF5AFBAAD1A04E93"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-partial-selection.cjs",
+    "Hash": "75273C01708CF3FB797744F88AF8ECE8CA14730BFAB7A2BF4536AEF9FF9307C4"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-canvas-browser.cjs",
+    "Hash": "AA3C795021351E159FD68160DB09DFCB560B984AC91332EA16D53ABB0F551BB4"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement-browser.cjs",
+    "Hash": "C87354144B7BF29E9308DC740D057D11F25529CB46EFDFBC461A4967549F476A"
+  }
+]

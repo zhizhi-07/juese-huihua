@@ -26,6 +26,8 @@ window.PE = window.PE || {};
       this.checkerboardSize = 8; // Transparency background checker square size in px
       this.gridMinZoom = 4; // Only display pixel grid when zoom >= gridMinZoom
       this.selection = null; // Selection box {x, y, w, h} or synced from ToolManager
+      this.playbackActive = false;
+      this.shapePreview = null; // 直线 / 矩形 / 椭圆的拖拽预览 {pixels, color}
       this.toolManager = null; // Optional reference to ToolManager
 
       // Reusable offscreen buffers
@@ -135,13 +137,13 @@ window.PE = window.PE || {};
      * @param {number} screenY 
      * @returns {{x: number, y: number}}
      */
-    screenToPixel(screenX, screenY) {
+    screenToPixel(screenX, screenY, snap = true) {
       const rect = this.canvas.getBoundingClientRect();
       const clientX = (screenX - rect.left) * this.canvas.width / rect.width;
       const clientY = (screenY - rect.top) * this.canvas.height / rect.height;
-      const x = Math.floor((clientX - this.offsetX) / this.zoom);
-      const y = Math.floor((clientY - this.offsetY) / this.zoom);
-      return { x, y };
+      const x = (clientX - this.offsetX) / this.zoom;
+      const y = (clientY - this.offsetY) / this.zoom;
+      return snap ? {x:Math.floor(x),y:Math.floor(y)} : {x,y};
     }
 
     /**
@@ -166,7 +168,7 @@ window.PE = window.PE || {};
      * @param {number} [frameIdx] 
      * @returns {ImageData|null}
      */
-    getCompositeImageData(sheetIdx, actionIdx, frameIdx, includeHands = true) {
+    getCompositeImageData(sheetIdx, actionIdx, frameIdx, includeHands = true, scale = 1) {
       if (!this.project) return null;
       const si = sheetIdx !== undefined ? sheetIdx : this.project.currentSheetIndex;
       const ai = actionIdx !== undefined ? actionIdx : this.project.currentActionIndex;
@@ -178,18 +180,13 @@ window.PE = window.PE || {};
       const frame = action && action.frames ? action.frames[fi] : null;
       const fw = frame ? frame.width : (sheet ? sheet.frameWidth : 64);
       const fh = frame ? frame.height : (sheet ? sheet.frameHeight : 64);
+      if(!Number.isSafeInteger(scale)||scale<1||fw*scale>32767||fh*scale>32767||fw*fh*scale*scale>16*1024*1024)throw new Error('高清合成超过1600万像素，请减小图片原始分辨率或放大放置尺寸');
 
       const compCanvas = document.createElement('canvas');
-      compCanvas.width = fw;
-      compCanvas.height = fh;
+      compCanvas.width = fw*scale;
+      compCanvas.height = fh*scale;
       const compCtx = compCanvas.getContext('2d');
       compCtx.imageSmoothingEnabled = false;
-
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = fw;
-      tempCanvas.height = fh;
-      const tempCtx = tempCanvas.getContext('2d');
-      tempCtx.imageSmoothingEnabled = false;
 
       const renderLayers=PE.getRenderLayers(this.project,si,ai);
       for (let i = 0; i < renderLayers.length; i++) {
@@ -199,13 +196,11 @@ window.PE = window.PE || {};
         const frameData = layer.getFrameData(frameKey);
         if (!frameData) continue;
 
-        tempCtx.clearRect(0, 0, fw, fh);
-        tempCtx.putImageData(frameData, 0, 0);
         compCtx.globalAlpha = Math.max(0, Math.min(1, layer.opacity));
-        compCtx.drawImage(tempCanvas, 0, 0);
+        PE.utils.drawImageData(compCtx,frameData,0,0,scale);
       }
 
-      return compCtx.getImageData(0, 0, fw, fh);
+      return compCtx.getImageData(0, 0, fw*scale, fh*scale);
     }
 
     /**
@@ -267,8 +262,8 @@ window.PE = window.PE || {};
       this.ctx.imageSmoothingEnabled = false;
 
       // 1. Clear background
-      const bgColor = this.project && this.project.bgColor ? this.project.bgColor : '#1a1a2e';
-      this.ctx.fillStyle = bgColor;
+      // The workspace mat is UI chrome; the frame keeps its saved preview background.
+      this.ctx.fillStyle = '#f2f2f2';
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
       const frame = this.project ? this.project.getCurrentFrame() : null;
@@ -285,9 +280,11 @@ window.PE = window.PE || {};
       this._drawCheckerboard(screenX, screenY, fw, fh);
 
       // Ensure offscreen dimensions match frame size
-      if (this.offscreenCanvas.width !== fw || this.offscreenCanvas.height !== fh) {
-        this.offscreenCanvas.width = fw;
-        this.offscreenCanvas.height = fh;
+      const p=this.project,subpixel=p.layers.some(l=>{const t=this.toolManager?._transform,r=(t?.layer===l&&t.frameKey===p.getFrameKey()&&t.preview?t.preview:l.getFrameData(p.getFrameKey()))?.placement;return r&&(!Number.isInteger(r.x)||!Number.isInteger(r.y))&&PE.isLayerVisible(p,l);});
+      const scale=Math.max(1,Math.min(subpixel?Math.ceil(this.zoom):PE.utils.imageScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex),Math.ceil(this.zoom),Math.floor(Math.sqrt(16*1024*1024/(fw*fh)))));
+      if (this.offscreenCanvas.width !== fw*scale || this.offscreenCanvas.height !== fh*scale) {
+        this.offscreenCanvas.width = fw*scale;
+        this.offscreenCanvas.height = fh*scale;
         this.offscreenCtx.imageSmoothingEnabled = false;
       }
       if (this.layerCanvas.width !== fw || this.layerCanvas.height !== fh) {
@@ -296,7 +293,7 @@ window.PE = window.PE || {};
         this.layerCtx.imageSmoothingEnabled = false;
       }
 
-      this.offscreenCtx.clearRect(0, 0, fw, fh);
+      this.offscreenCtx.clearRect(0, 0, fw*scale, fh*scale);
 
       // Composite the editable layers exactly once.
       const frameKey = this.project.getFrameKey();
@@ -306,13 +303,13 @@ window.PE = window.PE || {};
         if (this.hideHands && PE.isHandLayer(layer)) continue;
         if (!PE.isLayerVisible(this.project, layer, typeof si === "undefined" ? this.project.currentSheetIndex : si)) continue;
         const transform=this.toolManager?._transform;
-        const data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
+        const native=this.toolManager?._nativeEdit;
+        let data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
+        if(native?.session.layer===layer&&native.session.key===frameKey){const source=native.session.project.layers[0].getFrameData('0_0_0');data=new ImageData(source.data,source.width,source.height);data.placement={...native.session.original.placement};}
         if (!data) continue;
 
-        this.layerCtx.clearRect(0, 0, fw, fh);
-        this.layerCtx.putImageData(data, 0, 0);
         this.offscreenCtx.globalAlpha = Math.max(0, Math.min(1, layer.opacity));
-        this.offscreenCtx.drawImage(this.layerCanvas, 0, 0);
+        PE.utils.drawImageData(this.offscreenCtx,data,0,0,scale);
       }
 
       // Draw composited result scaled to screen
@@ -373,9 +370,79 @@ window.PE = window.PE || {};
         }
       }
 
+      // 5.5 Shape tool live preview (line / rect / ellipse)
+      const preview = this.shapePreview;
+      if (preview && preview.pixels && preview.pixels.length) {
+        const c = preview.color || { r: 0, g: 0, b: 0, a: 255 };
+        this.ctx.save();
+        this.ctx.globalAlpha = c.a === 0 ? 0.3 : 0.8;
+        this.ctx.fillStyle = c.a === 0 ? '#000' : `rgb(${c.r},${c.g},${c.b})`;
+        for (const p of preview.pixels) {
+          this.ctx.fillRect(screenX + p.x * this.zoom, screenY + p.y * this.zoom, this.zoom, this.zoom);
+        }
+        this.ctx.restore();
+      }
+
+      // 5.6 Symmetry axis
+      const symmetry = this.toolManager ? this.toolManager.symmetry : 'none';
+      if (symmetry && symmetry !== 'none') {
+        this.ctx.save();
+        this.ctx.strokeStyle = 'rgba(0,180,200,0.85)';
+        this.ctx.lineWidth = 1;
+        this.ctx.setLineDash([5, 4]);
+        if (symmetry === 'x' || symmetry === 'both') {
+          const axisX = screenX + (fw / 2) * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(Math.round(axisX) + 0.5, screenY);
+          this.ctx.lineTo(Math.round(axisX) + 0.5, screenY + screenH);
+          this.ctx.stroke();
+        }
+        if (symmetry === 'y' || symmetry === 'both') {
+          const axisY = screenY + (fh / 2) * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(screenX, Math.round(axisY) + 0.5);
+          this.ctx.lineTo(screenX + screenW, Math.round(axisY) + 0.5);
+          this.ctx.stroke();
+        }
+        this.ctx.restore();
+      }
+
+      // 5.7 镜像参考线（默认画布正中，可拖动到自定义位置）
+      const mirrorGuide = PE.LayerMirror ? PE.LayerMirror.guide(this.project) : null;
+      if (mirrorGuide) {
+        this.ctx.save();
+        this.ctx.strokeStyle = 'rgba(255,79,216,0.9)';
+        this.ctx.lineWidth = mirrorGuide.live ? 1.5 : 1;
+        this.ctx.setLineDash(mirrorGuide.centered === false ? [] : [6, 4]);
+        if (mirrorGuide.direction === 'vertical') {
+          const gy = screenY + mirrorGuide.axis * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(screenX, Math.round(gy) + 0.5);
+          this.ctx.lineTo(screenX + screenW, Math.round(gy) + 0.5);
+          this.ctx.stroke();
+          this.ctx.setLineDash([]);
+          this.ctx.fillStyle = 'rgba(255,79,216,0.95)';
+          this.ctx.fillRect(screenX - 5, Math.round(gy) - 5, 10, 10);
+          this.ctx.fillRect(screenX + screenW - 5, Math.round(gy) - 5, 10, 10);
+        } else {
+          const gx = screenX + mirrorGuide.axis * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(Math.round(gx) + 0.5, screenY);
+          this.ctx.lineTo(Math.round(gx) + 0.5, screenY + screenH);
+          this.ctx.stroke();
+          this.ctx.setLineDash([]);
+          this.ctx.fillStyle = 'rgba(255,79,216,0.95)';
+          this.ctx.fillRect(Math.round(gx) - 5, screenY - 5, 10, 10);
+          this.ctx.fillRect(Math.round(gx) - 5, screenY + screenH - 5, 10, 10);
+        }
+        this.ctx.restore();
+      }
+
       // 6. Pixel grid
       if (this.showGrid && this.zoom >= this.gridMinZoom) {
         this._drawGrid(screenX, screenY, fw, fh);
+        const data=this.project.getCurrentLayer()?.getFrameData(frameKey);
+        if(!this.playbackActive&&data?.placement)this._drawSourceGrid(data,frame);
       }
 
       // Frame border
@@ -415,26 +482,47 @@ window.PE = window.PE || {};
         this.ctx.restore();
       }
 
-      // 8. Selection outline
+      // 8. Selection outline（矩形框选；有魔棒掩膜时交给 select-plus 画不规则蚂蚁线）
       const sel = this.selection || (this.toolManager && this.toolManager.selection) || (PE.toolManager && PE.toolManager.selection);
-      if (sel) {
-        this.ctx.save();
-        this.ctx.strokeStyle = '#00e5ff';
-        this.ctx.lineWidth = 1.5;
-        this.ctx.setLineDash([4, 4]);
+      const hasMask = !!(PE.selectionPlus && PE.selectionPlus.mask);
+      if (sel && !this.playbackActive && !hasMask) {
         const sx = screenX + sel.x * this.zoom;
         const sy = screenY + sel.y * this.zoom;
         const sw = sel.w * this.zoom;
         const sh = sel.h * this.zoom;
-        this.ctx.fillStyle = 'rgba(0, 229, 255, 0.15)';
+        const phase = PE.selectionAntsPhase || 0;
+        const dash = 4;
+        this.ctx.save();
+        this.ctx.fillStyle = 'rgba(30, 150, 255, 0.10)';
         this.ctx.fillRect(sx, sy, sw, sh);
+        // 黑白蚂蚁线：两段虚线错开相位，随时间流动
+        this.ctx.lineWidth = 1.5;
+        this.ctx.setLineDash([dash, dash]);
+        this.ctx.lineDashOffset = -phase;
+        this.ctx.strokeStyle = 'rgba(0,0,0,0.9)';
         this.ctx.strokeRect(sx + 0.5, sy + 0.5, sw - 1, sh - 1);
+        this.ctx.lineDashOffset = -phase + dash;
+        this.ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+        this.ctx.strokeRect(sx + 0.5, sy + 0.5, sw - 1, sh - 1);
+        this.ctx.setLineDash([]);
+        this.ctx.lineDashOffset = 0;
         if(this.toolManager?.currentTool==='move'){
-          this.ctx.setLineDash([]);this.ctx.fillStyle='#fff';
+          this.ctx.fillStyle='#fff';
           this.ctx.fillRect(sx+sw-4,sy+sh-4,8,8);this.ctx.strokeRect(sx+sw-4,sy+sh-4,8,8);
         }
         this.ctx.restore();
       }
+    }
+
+    _drawSourceGrid(image,frame) {
+      const r=image.placement,dx=r.w/image.width*this.zoom,dy=r.h/image.height*this.zoom;
+      if(Math.min(dx,dy)<4)return;
+      const ctx=this.ctx,x=this.offsetX+r.x*this.zoom,y=this.offsetY+r.y*this.zoom;
+      ctx.save();ctx.beginPath();ctx.rect(this.offsetX,this.offsetY,frame.width*this.zoom,frame.height*this.zoom);ctx.clip();
+      ctx.strokeStyle='rgba(45,135,160,0.45)';ctx.lineWidth=1;ctx.beginPath();
+      for(let i=Math.max(0,Math.ceil(-x/dx));i<=image.width&&x+i*dx<=this.canvas.width;i++){const px=Math.floor(x+i*dx)+.5;ctx.moveTo(px,y);ctx.lineTo(px,y+r.h*this.zoom);}
+      for(let i=Math.max(0,Math.ceil(-y/dy));i<=image.height&&y+i*dy<=this.canvas.height;i++){const py=Math.floor(y+i*dy)+.5;ctx.moveTo(x,py);ctx.lineTo(x+r.w*this.zoom,py);}
+      ctx.stroke();ctx.restore();
     }
 
     /**

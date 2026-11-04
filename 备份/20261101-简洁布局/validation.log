@@ -1,0 +1,6 @@
+syntax workspace-layout exit=0
+syntax panel-dock exit=0
+PASS: original controls/listeners preserved; view/tool/layer/timing menus; outside click/Escape; in-place panel reset without reload.
+workspace-layout exit=0
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+editor-cleanup exit=0

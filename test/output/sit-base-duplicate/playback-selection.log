@@ -1,0 +1,5 @@
+$ node test/playback-selection.cjs
+{"before":{"selectionStrokes":2,"sourceGrids":1,"pixelDraws":1,"normalGrids":1},"playing":{"selectionStrokes":0,"sourceGrids":0,"pixelDraws":1,"normalGrids":1},"next":{"selectionStrokes":0,"sourceGrids":0,"pixelDraws":1,"normalGrids":1},"paused":{"selectionStrokes":2,"sourceGrids":0,"pixelDraws":1,"normalGrids":1},"selectionPreserved":true}
+PASS: playback hides selection/resize handles and per-image source grid only; pause/stop/end restore overlays; selections, pixels and normal grid preserved.
+
+exit=0

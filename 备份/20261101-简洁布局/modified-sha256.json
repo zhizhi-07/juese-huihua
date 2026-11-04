@@ -1,0 +1,7 @@
+{
+  "index.html": "250d9bd1426ed5a59ec0db054c0ae10bb6c62c160a55053e39a5def50fa6b9d9",
+  "js/panel-dock.js": "b7b5f20355e9fbfc34be7eb68d69a71d9ce7ab040436620f3b5918bae7c86de7",
+  "js/workspace-layout.js": "aace138ba47d9cf4baf3c2c0b32920aee71dbee5b5232d94d87d5e78178042b8",
+  "css/workspace-layout.css": "045994ce9370cc689bae038c696fab403974daa7a13f2642f67a215f5e4c39d9",
+  "test/workspace-layout.cjs": "24b6d42a9e307953108df37964d820165ee5e2ece59ed21a6421f47158c26c63"
+}

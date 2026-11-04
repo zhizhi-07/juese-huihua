@@ -1,0 +1,11 @@
+sprite slime 16x10 @16x
+sprite slime_red 16x10 @16x
+sprite slime_blue 16x10 @16x
+sprite slime_wink 16x10 @16x
+sprite heart 9x9 @16x
+sprite coin 10x10 @16x
+sprite chest 18x14 @16x
+sprite dome 23x13 @16x
+sprite stripes 8x8 @16x
+sheet chars 67x25 (7 frames) @11x
+-> C:\Users\Administrator\Desktop\角色绘画\自检记录\pxl-install-20261102

@@ -1,0 +1,7 @@
+{
+  "branch-api-before.json": "50c86b6719c239db64136c1ad56c884cf4e49f3f3d0cec29509a9240b68e2ed3",
+  "branch-api-latest.json": "f9bd2928c99371f5f079de2ec126312f7ee7eb64dcc6ef5fd22764ea74abab17",
+  "candidate.json": "7b6d0422c166c2244bd0a93a542289df9df66df21fa10ca5a7f29aef94848612",
+  "api-readback.json": "7b6d0422c166c2244bd0a93a542289df9df66df21fa10ca5a7f29aef94848612",
+  "main-api-before.json": "419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55"
+}

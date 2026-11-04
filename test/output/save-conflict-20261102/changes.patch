@@ -1,0 +1,232 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\persistence.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\persistence.js"
+index a7506e8..296567b 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\persistence.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\persistence.js"
+@@ -10,7 +10,7 @@ PE.ProjectPersistence=class {
+     this.headers={'X-Pixel-Editor':'1'};
+     if(location.protocol==='file:'&&window.PE_LOCAL_BRIDGE?.token)this.headers['X-Pixel-Token']=window.PE_LOCAL_BRIDGE.token;
+   }
+-  show(text,error=false){this.status.textContent=text;this.status.classList.toggle('save-error',error);this.status.title='当前工程独立保存；多人协作请先分出 AI 独立稿。';}
++  show(text,error=false){this.status.textContent=text;this.status.classList.toggle('save-error',error);this.status.title='当前工程独立保存；多人协作请先分出 AI 独立稿。';if(this.conflict){const b=document.createElement('button');b.textContent='处理保存冲突';b.onclick=()=>this.openConflictDialog();this.status.append(' ',b);}}
+   db(){return this.dbPromise??=new Promise((resolve,reject)=>{const request=indexedDB.open('pixel-workbench',1);request.onupgradeneeded=()=>request.result.createObjectStore('projects');request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});}
+   async localRead(){const db=await this.db();return new Promise((resolve,reject)=>{const store=db.transaction('projects').objectStore('projects'),blob=store.get(this.localKey),meta=store.get(this.localKey+'-meta');meta.onsuccess=()=>resolve({blob:blob.result,meta:meta.result});meta.onerror=()=>reject(meta.error);});}
+   async localWrite(blob,pending){const db=await this.db();return new Promise((resolve,reject)=>{const transaction=db.transaction('projects','readwrite'),store=transaction.objectStore('projects');store.put(blob,this.localKey);store.put({pending,revision:this.revision,savedAt:Date.now()},this.localKey+'-meta');transaction.oncomplete=resolve;transaction.onerror=()=>reject(transaction.error);});}
+@@ -35,8 +35,11 @@ PE.ProjectPersistence=class {
+       if(response.status!==404&&!response.ok)throw new Error('共享文件读取失败');
+       this.revision=response.status===404?'none':response.headers.get('ETag');
+       if(local.blob&&(!local.meta||local.meta.pending)){
++        const sharedRevision=this.revision;
+         await this.apply(local.blob);this.ready=true;this.dirty=true;
+-        if(local.meta?.revision&&local.meta.revision!==this.revision){this.conflict=true;this.show('本地草稿已恢复 · 共享版本有更新',true);}else{this.show('草稿已恢复 · 未保存，请点击保存或 Ctrl+S');}
++        // A pending draft still belongs to its original base, not the just-read server version.
++        this.revision=local.meta?.revision||'none';
++        if(this.revision!==sharedRevision){this.conflict=true;this.show('本地草稿已恢复 · 共享版本有更新',true);}else{this.show('草稿已恢复 · 未保存，请点击保存或 Ctrl+S');}
+         return true;
+       }
+       if(response.ok){const blob=await response.blob();await this.apply(blob);await this.localWrite(blob,false).catch(console.error);this.ready=true;this.show('共享工程已恢复');return true;}
+@@ -53,7 +56,7 @@ PE.ProjectPersistence=class {
+   markDirty(){if(!this.ready||this.app.suspendBackup)return;this.dirty=true;this.version++;if(this.conflict)this.show('共享版本有更新 · 本地草稿待保存',true);else{this.show('未保存 · 点击保存或 Ctrl+S');}}
+   async seed(){this.ready=true;this.dirty=true;this.show('未保存 · 点击保存或 Ctrl+S');return false;}
+   saveNow(){
+-    if(!this.ready||this.app.suspendBackup)return Promise.resolve(false);
++    if(!this.ready||this.app.suspendBackup||this.resolving)return Promise.resolve(false);
+     if(this.saving)return this.saving;
+     clearTimeout(this.timer);
+     this.saving=this.performSave().finally(()=>{this.saving=null;});
+@@ -62,7 +65,7 @@ PE.ProjectPersistence=class {
+   async performSave(){
+     const version=this.version,blob=this.app.exportManager.exportProject(false);let localSaved=false;
+     try{await this.localWrite(blob,true);localSaved=true;}catch(error){console.error(error);}
+-    if(this.conflict){this.show('共享版本冲突 · 请先导出工程副本',true);return false;}
++    if(this.conflict){this.show('共享版本冲突 · 请处理保存冲突',true);this.openConflictDialog();return false;}
+     try{
+       const response=await this.request({method:'PUT',headers:{'Content-Type':'application/json','If-Match':this.revision},body:blob});
+       if(response.status===409){this.conflict=true;this.show('共享版本有更新 · 本地草稿已保留',true);return false;}
+@@ -72,14 +75,49 @@ PE.ProjectPersistence=class {
+       return true;
+     }catch(error){this.show(localSaved?'本地已保存 · 共享未连接':'保存失败 · 请导出工程',true);console.error(error);return false;}
+   }
++  async preserveConflictDraft(useShared=false){
++    if(!this.ready||this.saving||this.resolving||this.app.toolManager.isDrawing)throw new Error('请等待当前绘画或保存结束');
++    this.resolving=true;
++    try{
++      const version=this.version,project=this.app.project,blob=this.app.exportManager.exportProject(false);
++      const id='draft-conflict-'+Date.now()+'-'+crypto.randomUUID().slice(0,8),url=this.base+'/api/project?id='+id;
++      const response=await fetch(url,{method:'PUT',headers:{...this.headers,'Content-Type':'application/json','If-Match':'none'},body:blob,signal:AbortSignal.timeout(10000)});
++      if(!response.ok)throw new Error('草稿副本保存失败：'+response.status+'；原页面未改变');
++      const read=await fetch(url,{headers:this.headers,cache:'no-store',signal:AbortSignal.timeout(10000)});
++      if(!read.ok||await read.text()!==await blob.text())throw new Error('草稿副本回读不一致；原页面未改变');
++      const link=new URL(location.href);link.searchParams.set('project',id);
++      if(useShared){
++        const shared=await this.request();if(!shared.ok||!shared.headers.get('ETag'))throw new Error('共享工程读取失败；原页面未改变');
++        const saved=await shared.blob();
++        if(this.version!==version||this.app.project!==project||this.app.toolManager.isDrawing)throw new Error('备份期间本页又有新修改，请重试；未读取共享版本');
++        await this.apply(saved,true);this.revision=shared.headers.get('ETag');this.conflict=false;this.dirty=false;
++        try{await this.localWrite(saved,false);this.show('已读取共享工程 · 原草稿已独立备份');}catch(error){console.error(error);this.show('已读取共享工程 · 草稿副本安全，浏览器备份更新失败',true);}
++      }
++      return link.href;
++    }finally{this.resolving=false;}
++  }
++  openConflictDialog(){
++    if(this.conflictDialog?.open)return;
++    const dialog=document.createElement('dialog');dialog.className='advanced-dialog';this.conflictDialog=dialog;
++    const title=document.createElement('h2');title.textContent='安全处理保存冲突';
++    const info=document.createElement('p');info.textContent='本页草稿与共享文件不是同一版本。不会强制覆盖或自动合并人物像素。两种操作都会先完整另存本页草稿，并回读核对。';
++    const result=document.createElement('p');result.setAttribute('role','status');
++    const buttons=[];
++    const add=(text,fn)=>{const b=document.createElement('button');b.className='studio-button';b.textContent=text;b.onclick=fn;buttons.push(b);dialog.append(b);return b;};
++    dialog.append(title,info,result);
++    const run=async useShared=>{buttons.forEach(b=>b.disabled=true);result.textContent='正在独立保存草稿…';try{const url=await this.preserveConflictDraft(useShared);result.textContent=useShared?'已读取共享版本。原草稿副本：':'草稿已完整另存，原工程未覆盖。请打开副本继续绘画：';const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent='打开本页草稿副本';result.append(a);}catch(error){result.textContent=error.message;}finally{buttons.forEach(b=>b.disabled=false);}};
++    add('本页草稿另存后继续编辑',()=>run(false));
++    add('备份本页并读取共享版本',()=>run(true));
++    add('关闭',()=>dialog.close());dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();
++  }
+   async pull(){
+-    if(!this.ready||this.dirty||this.saving||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
++    if(!this.ready||this.dirty||this.saving||this.resolving||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
+     try{
+       const response=await this.request({headers:{'If-None-Match':this.revision}});
+       if(response.status===304||response.status===404)return;
+       if(!response.ok)return;
+       const blob=await response.blob();
+-      if(this.dirty||this.saving||this.app.toolManager.isDrawing)return;
++      if(this.dirty||this.saving||this.resolving||this.app.toolManager.isDrawing)return;
+       await this.apply(blob,true);this.revision=response.headers.get('ETag');await this.localWrite(blob,false).catch(console.error);this.show('已同步共享修改');
+     }catch(error){console.debug('等待共享工程连接',error.message);}
+   }
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\export.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\export.js"
+index 4fb466c..b4899e3 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\export.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\export.js"
+@@ -10,6 +10,7 @@ window.PE = window.PE || {};
+     constructor() {
+       this.project = null;
+       this.canvasManager = null;
++      this.originalPNGs = new WeakMap();
+     }
+ 
+     /**
+@@ -804,6 +805,9 @@ window.PE = window.PE || {};
+      */
+     _imageDataToDataURL(imageData) {
+       if (!imageData || !imageData.width || !imageData.height) return '';
++      // Unchanged imported PNGs must not accumulate canvas alpha-rounding errors on every save.
++      const original=this.originalPNGs.get(imageData);
++      if(original&&original.width===imageData.width&&original.height===imageData.height&&original.pixels.length===imageData.data.length&&original.pixels.every((v,i)=>v===imageData.data[i]))return original.url;
+       const canvas = document.createElement('canvas');
+       canvas.width = imageData.width;
+       canvas.height = imageData.height;
+@@ -828,7 +832,9 @@ window.PE = window.PE || {};
+           canvas.height = h;
+           const ctx = canvas.getContext('2d');
+           ctx.drawImage(img, 0, 0);
+-          resolve(ctx.getImageData(0, 0, w, h));
++          const pixels=ctx.getImageData(0, 0, w, h);
++          this.originalPNGs.set(pixels,{url:dataURL,width:w,height:h,pixels:pixels.data.slice()});
++          resolve(pixels);
+         };
+         img.onerror = (err) => reject(new Error('转换 DataURL 失败: ' + err));
+         img.src = dataURL;
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\persistence.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\persistence.cjs"
+index 18d3711..cb34905 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\persistence.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\persistence.cjs"
+@@ -1,14 +1,38 @@
+ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+-global.window=global;global.document={addEventListener(){}};global.location={protocol:'http:'};global.PE={};
++global.window=global;global.document={addEventListener(){},createElement(){return {}}};global.location={protocol:'http:',href:'http://localhost:8765/index.html?project=main'};global.PE={};
+ vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/persistence.js'),'utf8'));
+-function setup(){let local={},applied='';const app={suspendBackup:false,project:{value:1},toolManager:{isDrawing:false},exportManager:{exportProject(){return new Blob([JSON.stringify(app.project)])}}};const status={textContent:'',classList:{toggle(){}}};const p=new PE.ProjectPersistence(app,status);p.localRead=async()=>local;p.localWrite=async(blob,pending)=>{local={blob,meta:{pending,revision:p.revision}}};p.apply=async blob=>{applied=await blob.text()};p.schedule=()=>{};return {p,app,status,get local(){return local},set local(v){local=v},get applied(){return applied}};}
++function setup(){let local={},applied='';const app={suspendBackup:false,project:{value:1},toolManager:{isDrawing:false},exportManager:{exportProject(){return new Blob([JSON.stringify(app.project)])}}};const status={textContent:'',classList:{toggle(){}},append(){}};const p=new PE.ProjectPersistence(app,status);p.localRead=async()=>local;p.localWrite=async(blob,pending)=>{local={blob,meta:{pending,revision:p.revision}}};p.apply=async blob=>{applied=await blob.text()};p.openConflictDialog=()=>{p.dialogShown=true};p.schedule=()=>{};return {p,app,status,get local(){return local},set local(v){local=v},get applied(){return applied}};}
+ (async()=>{
+  let t=setup();t.p.ready=true;t.p.dirty=true;t.p.revision='"one"';global.fetch=async(url,o)=>new Response('{}',{status:200,headers:{ETag:'"two"'}});assert(await t.p.saveNow());assert(!t.p.dirty);assert(!t.local.meta.pending);assert.equal(t.p.revision,'"two"');clearTimeout(t.p.timer);
+  t=setup();t.p.ready=true;t.p.dirty=true;global.fetch=async()=>new Response('{}',{status:409});assert.equal(await t.p.saveNow(),false);assert(t.p.conflict&&t.p.dirty&&t.local.meta.pending);
+  t=setup();t.local={blob:new Blob(['legacy-drawing'])};global.fetch=async()=>new Response('{}',{status:404});assert(await t.p.restore());assert.equal(t.applied,'legacy-drawing');assert(t.p.dirty&&t.p.ready);
+  t=setup();t.local={blob:new Blob(['browser-drawing']),meta:{pending:false,revision:'"one"'}};global.fetch=async()=>new Response('agent-shared-drawing',{status:200,headers:{ETag:'"two"'}});assert(await t.p.restore());assert.equal(t.applied,'agent-shared-drawing');assert(!t.p.dirty);
+  t=setup();t.local={blob:new Blob(['unsynced-user-drawing']),meta:{pending:true,revision:'"one"'}};assert(await t.p.restore());assert.equal(t.applied,'unsynced-user-drawing');assert(t.p.conflict&&t.p.dirty);
++ assert.equal(t.p.revision,'"one"','restoring a pending draft must not adopt an unrelated server revision');
++ let writes=0;global.fetch=async()=>{writes++;throw Error('must not overwrite shared drawing')};assert.equal(await t.p.saveNow(),false);assert(t.p.dialogShown);assert.equal(t.local.meta.revision,'"one"');assert.equal(writes,0);
+  t=setup();t.local={blob:new Blob(['offline-drawing']),meta:{pending:true,revision:'"one"'}};global.fetch=async()=>{throw Error('offline')};assert(await t.p.restore());assert.equal(t.applied,'offline-drawing');assert(t.p.dirty);
+  t=setup();t.p.ready=true;global.fetch=async()=>new Response('agent-edit',{status:200,headers:{ETag:'"three"'}});await t.p.pull();assert.equal(t.applied,'agent-edit');assert.equal(t.p.revision,'"three"');t.p.dirty=true;global.fetch=()=>{throw Error('must not poll while drawing is unsaved')};await t.p.pull();
++ for(const mode of ['copy','shared','put-fail','readback-mismatch','shared-fail','edited-during-copy']){
++   t=setup();t.p.ready=t.p.dirty=t.p.conflict=true;t.p.revision='"old"';const original=JSON.stringify(t.app.project),calls=[];let backup;
++   global.fetch=async(url,o={})=>{
++     calls.push([url,o]);
++     if(url.includes('id=draft-conflict-')){
++       if(o.method==='PUT'){assert.equal(o.headers['If-Match'],'none');assert.equal(o.headers['X-Pixel-Editor'],'1');backup=await o.body.text();return new Response('{}',{status:mode==='put-fail'?500:200});}
++       if(mode==='edited-during-copy')t.p.markDirty();
++       return new Response(mode==='readback-mismatch'?'wrong':backup);
++     }
++     assert(!o.method,'the original shared project must never be overwritten by conflict resolution');
++     return new Response('latest-shared-drawing',{status:mode==='shared-fail'?500:200,headers:{ETag:'"latest"'}});
++   };
++   if(['put-fail','readback-mismatch','shared-fail','edited-during-copy'].includes(mode)){
++     await assert.rejects(t.p.preserveConflictDraft(mode==='shared-fail'||mode==='edited-during-copy'));
++     assert.equal(t.applied,'');assert(t.p.conflict&&t.p.dirty);assert.equal(t.p.revision,'"old"');
++   }else{
++     const url=await t.p.preserveConflictDraft(mode==='shared');assert(url.includes('project=draft-conflict-'));assert.equal(backup,original);
++     if(mode==='shared'){assert.equal(t.applied,'latest-shared-drawing');assert.equal(t.p.revision,'"latest"');assert(!t.p.conflict&&!t.p.dirty&&!t.local.meta.pending);}else{assert.equal(t.applied,'');assert(t.p.conflict&&t.p.dirty);assert.equal(calls.length,2);}
++   }
++   assert(!t.p.resolving);assert.equal(JSON.stringify(t.app.project),original);
++ }
+  console.log('PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.');
++ console.log('PASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.');
+ })().catch(e=>{console.error(e);process.exitCode=1});
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\draft-rescue-user.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\draft-rescue-user.html"
+index fd66d3b..eab77b5 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\draft-rescue-user.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\draft-rescue-user.html"
+@@ -9,17 +9,18 @@
+ <p>请先在原绘画页面关闭控制台，按一次 Ctrl+S，把最新修改写入浏览器备份；即使仍提示共享版本冲突，也先保留原页面。</p>
+ <pre id="status" role="status" aria-live="polite">正在检查本浏览器的草稿…</pre>
+ <a id="download" hidden>下载完整草稿 JSON</a>
++<a id="open" hidden target="_blank" rel="noopener">打开已备份草稿，继续绘画和保存</a>
+ <button id="retry" hidden>重新读取并另存一份</button>
+ <small>必须在原 Chrome 新标签打开此页，网址应为 http://localhost:8765/draft-rescue-user.html；不要改用 127.0.0.1、无痕窗口或其他浏览器。</small>
+ <script>
+ 'use strict';
+-const sourceId='character-56620e79-ce79-4fd9-b49c-081f7bc57d67',key='project-'+sourceId,status=document.getElementById('status'),download=document.getElementById('download'),retry=document.getElementById('retry');
++const sourceId='character-56620e79-ce79-4fd9-b49c-081f7bc57d67',key='project-'+sourceId,status=document.getElementById('status'),download=document.getElementById('download'),openDraft=document.getElementById('open'),retry=document.getElementById('retry');
+ async function readDraft(){
+   const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('pixel-workbench');r.onupgradeneeded=()=>{r.transaction.abort();reject(Error('这个浏览器没有找到原草稿。请在原 Chrome、相同的 localhost 地址打开此页。'));};r.onerror=()=>reject(r.error);r.onsuccess=()=>resolve(r.result);});
+   try{return await new Promise((resolve,reject)=>{const tx=db.transaction('projects','readonly'),store=tx.objectStore('projects'),blob=store.get(key),meta=store.get(key+'-meta');tx.oncomplete=()=>resolve({blob:blob.result,meta:meta.result});tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||Error('读取中断'));});}finally{db.close();}
+ }
+ async function rescue(){
+-  retry.disabled=true;download.hidden=true;status.textContent='正在读取浏览器备份；不会覆盖原工程…';
++  retry.disabled=true;download.hidden=true;openDraft.hidden=true;status.textContent='正在读取浏览器备份；不会覆盖原工程…';
+   try{
+     const {blob,meta}=await readDraft();if(!(blob instanceof Blob)||!blob.size)throw Error('没有找到这个工程的浏览器备份。请回到原页面按 Ctrl+S，再点“重新读取并另存一份”。');
+     const raw=await blob.text(),project=JSON.parse(raw);if(!Array.isArray(project.layers)||!project.layers.length||!Array.isArray(project.spriteSheets))throw Error('草稿格式不完整，未写入磁盘。');
+@@ -29,7 +30,8 @@ async function rescue(){
+     const id='draft-rescue-user-'+Date.now()+'-'+crypto.randomUUID().slice(0,8),url='/api/project?id='+id;
+     const saved=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':'none'},body:blob});if(!saved.ok)throw Error('磁盘另存失败：HTTP '+saved.status+'。浏览器草稿未改变，请先点“下载完整草稿 JSON”。');
+     const read=await fetch(url,{cache:'no-store'});if(!read.ok||await read.text()!==raw)throw Error('磁盘副本回读不一致，请先下载 JSON；原草稿未改变。');
+-    status.textContent='已独立保存，并已完整回读核对。\n\n文件：data/projects/'+id+'.json\n浏览器备份时间：'+savedAt+'\nSHA256：'+hash+'\n\n这只是抢救副本，原工程的版本冲突尚未合并。请保留原绘画页，告诉助手“备份页显示已保存”。';
++    status.textContent='已独立保存，并已完整回读核对。\n\n文件：data/projects/'+id+'.json\n浏览器备份时间：'+savedAt+'\nSHA256：'+hash+'\n\n可点下方“打开已备份草稿”继续绘画和保存。新副本独立保存，不与原工程争用版本；原工程和原页面均未覆盖。';
++    openDraft.href='/index.html?project='+id;openDraft.hidden=false;
+     status.dataset.savedId=id;status.dataset.sha256=hash;
+   }catch(error){status.textContent='尚未完成磁盘备份：'+error.message+'\n\n不要关闭或刷新原绘画页面。';}
+   finally{retry.disabled=false;retry.hidden=false;}
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\draft-rescue-user.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\draft-rescue-user.cjs"
+index 27030bd..c11a23b 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\\344\277\235\345\255\230\345\206\262\347\252\201\344\277\256\345\244\215-20261102\\draft-rescue-user.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\draft-rescue-user.cjs"
+@@ -1,6 +1,6 @@
+ const fs=require('fs'),vm=require('vm'),assert=require('assert/strict'),crypto=require('crypto').webcrypto;
+ const html=fs.readFileSync(require('path').resolve(__dirname,'../draft-rescue-user.html'),'utf8'),script=html.match(/<script>([\s\S]*?)<\/script>/)[1],original=JSON.stringify({name:'重要用户稿',layers:[{name:'用户手改',frameData:{}}],spriteSheets:[{name:'idle',actions:[]}]}),blob=new Blob([original]);
+-async function run(mode){const elements=Object.fromEntries(['status','download','retry'].map(id=>[id,{dataset:{},hidden:false}])),calls=[],key='project-character-56620e79-ce79-4fd9-b49c-081f7bc57d67';let closed=false;
++async function run(mode){const elements=Object.fromEntries(['status','download','open','retry'].map(id=>[id,{dataset:{},hidden:false}])),calls=[],key='project-character-56620e79-ce79-4fd9-b49c-081f7bc57d67';let closed=false;
+ const indexedDB={open(){
+  const r={};queueMicrotask(()=>{
+   r.result={transaction(store,kind){
+@@ -13,5 +13,5 @@ const indexedDB={open(){
+ }};
+ const fetch=async(url,options)=>{calls.push({url,options});assert(url.startsWith('/api/project?id=draft-rescue-user-'));if(options?.method==='PUT'){assert.equal(options.headers['If-Match'],'none');assert.equal(options.headers['X-Pixel-Editor'],'1');assert.equal(await options.body.text(),original);return {ok:mode!=='put-fail',status:mode==='put-fail'?500:200};}return {ok:true,text:async()=>mode==='mismatch'?'wrong':original};};
+ const context={document:{getElementById:id=>elements[id]},indexedDB,Blob,crypto,URL:{createObjectURL:()=> 'blob:backup',revokeObjectURL(){}},fetch,Date,JSON,Array,Uint8Array,Error,console};vm.createContext(context);vm.runInContext(script.replace('retry.onclick=rescue;rescue();','retry.onclick=rescue;'),context);await vm.runInContext('rescue()',context);assert(closed);assert.equal(await blob.text(),original);
+-if(mode==='ok'){assert(elements.status.textContent.includes('已独立保存'));assert.equal(calls.length,2);assert(elements.status.dataset.savedId.startsWith('draft-rescue-user-'));assert.equal(elements.status.dataset.sha256,require('crypto').createHash('sha256').update(original).digest('hex'));assert.equal(elements.download.hidden,false);}else{assert(elements.status.textContent.startsWith('尚未完成'));assert(!elements.status.dataset.savedId);if(mode==='missing')assert.equal(calls.length,0);else assert.equal(elements.download.hidden,false);}}
++if(mode==='ok'){assert(elements.status.textContent.includes('已独立保存'));assert.equal(calls.length,2);assert(elements.status.dataset.savedId.startsWith('draft-rescue-user-'));assert.equal(elements.status.dataset.sha256,require('crypto').createHash('sha256').update(original).digest('hex'));assert.equal(elements.download.hidden,false);assert.equal(elements.open.href,'/index.html?project='+elements.status.dataset.savedId);assert.equal(elements.open.hidden,false);}else{assert(elements.status.textContent.startsWith('尚未完成'));assert(!elements.status.dataset.savedId);assert.equal(elements.open.hidden,true);if(mode==='missing')assert.equal(calls.length,0);else assert.equal(elements.download.hidden,false);}}
+ (async()=>{for(const mode of ['ok','missing','put-fail','mismatch'])await run(mode);console.log('PASS: readonly exact project draft; unique create-only disk backup; source bytes and SHA256 preserved; full readback; missing draft, save failure and bad readback never report success; no reload or original overwrite.');})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,4059 @@
+{
+  "sourceSHA256": "ecfff1f658f93c3859bba66e750fdc356df77bceedcd53bcd98c73bb7efd4a7f",
+  "replacements": 9504,
+  "changedLayerFrames": 403,
+  "changedLayers": 65,
+  "changes": [
+    {
+      "li": 2,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 2,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 2,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 2,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 150,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_2_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_1",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_2",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_3",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_4",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_5",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_6",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 152,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_2_7",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_6",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 153,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_2_7",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 154,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_2_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 157,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 21
+      },
+      "pixels": 21
+    },
+    {
+      "li": 158,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 159,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 160,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 163,
+      "layer": "hand 2",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 25
+      },
+      "pixels": 25
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 25
+      },
+      "pixels": 25
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 25
+      },
+      "pixels": 25
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 164,
+      "layer": "body",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 165,
+      "layer": "head",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 166,
+      "layer": "hand",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 169,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 173,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_2_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 173,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_2_1",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 173,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_2_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 173,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_2_3",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 174,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_2_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 174,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_2_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 174,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_2_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 174,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_2_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 175,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_2_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 175,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_2_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 175,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_2_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 175,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_2_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 179,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 179,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 28
+      },
+      "pixels": 28
+    },
+    {
+      "li": 179,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 179,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 180,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 180,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 180,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 180,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 181,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 181,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 181,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 181,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 184,
+      "layer": "hand 2",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 184,
+      "layer": "hand 2",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 184,
+      "layer": "hand 2",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 184,
+      "layer": "hand 2",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 185,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 185,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 185,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 185,
+      "layer": "body",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 186,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 186,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 186,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 186,
+      "layer": "head",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 187,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 187,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 187,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 187,
+      "layer": "hand",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 190,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 192,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_2_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 192,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_2_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 192,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_2_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_1",
+      "colors": {
+        "2f3b3d": 17
+      },
+      "pixels": 17
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_2",
+      "colors": {
+        "2f3b3d": 29
+      },
+      "pixels": 29
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_3",
+      "colors": {
+        "2f3b3d": 25
+      },
+      "pixels": 25
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_4",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 194,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_2_5",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 195,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_2_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 196,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_2_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 196,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_2_4",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 196,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_2_5",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "2f3b3d": 29
+      },
+      "pixels": 29
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "2f3b3d": 29
+      },
+      "pixels": 29
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 200,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 201,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 202,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 205,
+      "layer": "hand 2",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 25
+      },
+      "pixels": 25
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 31
+      },
+      "pixels": 31
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 29
+      },
+      "pixels": 29
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 206,
+      "layer": "body",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 207,
+      "layer": "head",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 208,
+      "layer": "hand",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 211,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 215,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_2_0",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 215,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_2_1",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 215,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_2_2",
+      "colors": {
+        "2f3b3d": 20
+      },
+      "pixels": 20
+    },
+    {
+      "li": 215,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_2_3",
+      "colors": {
+        "2f3b3d": 20
+      },
+      "pixels": 20
+    },
+    {
+      "li": 216,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_2_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 216,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_2_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 216,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_2_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 216,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_2_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 217,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_2_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 217,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_2_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 217,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_2_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 217,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_2_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 221,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 36
+      },
+      "pixels": 36
+    },
+    {
+      "li": 221,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 36
+      },
+      "pixels": 36
+    },
+    {
+      "li": 221,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 34
+      },
+      "pixels": 34
+    },
+    {
+      "li": 221,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 34
+      },
+      "pixels": 34
+    },
+    {
+      "li": 222,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 222,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 222,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 222,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 225,
+      "layer": "hand 2",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 225,
+      "layer": "hand 2",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 225,
+      "layer": "hand 2",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 225,
+      "layer": "hand 2",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 226,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 226,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 226,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 46
+      },
+      "pixels": 46
+    },
+    {
+      "li": 226,
+      "layer": "body",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 46
+      },
+      "pixels": 46
+    },
+    {
+      "li": 227,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 227,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 227,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 227,
+      "layer": "head",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 228,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 228,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 228,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 228,
+      "layer": "hand",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 231,
+      "layer": "眼睛 / 01 紫色",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 241,
+      "layer": "body",
+      "sheet": 11,
+      "key": "11_0_0",
+      "colors": {
+        "2f3b3d": 30
+      },
+      "pixels": 30
+    },
+    {
+      "li": 241,
+      "layer": "body",
+      "sheet": 11,
+      "key": "11_0_1",
+      "colors": {
+        "2f3b3d": 30
+      },
+      "pixels": 30
+    },
+    {
+      "li": 241,
+      "layer": "body",
+      "sheet": 11,
+      "key": "11_0_2",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 241,
+      "layer": "body",
+      "sheet": 11,
+      "key": "11_0_3",
+      "colors": {
+        "2f3b3d": 26
+      },
+      "pixels": 26
+    },
+    {
+      "li": 242,
+      "layer": "head",
+      "sheet": 11,
+      "key": "11_0_0",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 242,
+      "layer": "head",
+      "sheet": 11,
+      "key": "11_0_1",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 242,
+      "layer": "head",
+      "sheet": 11,
+      "key": "11_0_2",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 242,
+      "layer": "head",
+      "sheet": 11,
+      "key": "11_0_3",
+      "colors": {
+        "2f3b3d": 48
+      },
+      "pixels": 48
+    },
+    {
+      "li": 243,
+      "layer": "hand",
+      "sheet": 11,
+      "key": "11_0_0",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 243,
+      "layer": "hand",
+      "sheet": 11,
+      "key": "11_0_1",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 243,
+      "layer": "hand",
+      "sheet": 11,
+      "key": "11_0_2",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 243,
+      "layer": "hand",
+      "sheet": 11,
+      "key": "11_0_3",
+      "colors": {
+        "2f3b3d": 32
+      },
+      "pixels": 32
+    },
+    {
+      "li": 252,
+      "layer": "眼睛 / 00 闭眼",
+      "sheet": 11,
+      "key": "11_0_0",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 252,
+      "layer": "眼睛 / 00 闭眼",
+      "sheet": 11,
+      "key": "11_0_1",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 252,
+      "layer": "眼睛 / 00 闭眼",
+      "sheet": 11,
+      "key": "11_0_2",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 252,
+      "layer": "眼睛 / 00 闭眼",
+      "sheet": 11,
+      "key": "11_0_3",
+      "colors": {
+        "26232c": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 253,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 255,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 257,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 14
+      },
+      "pixels": 14
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 259,
+      "layer": "眼睛 / 02 青蓝·粉下缘",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 12
+      },
+      "pixels": 12
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 267,
+      "layer": "眼睛呀",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 270,
+      "layer": "研究3",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 18
+      },
+      "pixels": 18
+    },
+    {
+      "li": 277,
+      "layer": "绘画图层 275",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 3
+      },
+      "pixels": 3
+    },
+    {
+      "li": 279,
+      "layer": "绘画图层 277",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 34
+      },
+      "pixels": 34
+    },
+    {
+      "li": 280,
+      "layer": "坐姿 / 手部",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 280,
+      "layer": "坐姿 / 手部",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 280,
+      "layer": "坐姿 / 手部",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 280,
+      "layer": "坐姿 / 手部",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 24
+      },
+      "pixels": 24
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_1_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 284,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 8,
+      "key": "8_1_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_3",
+      "colors": {
+        "2f3b3d": 8,
+        "000000": 8
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_4",
+      "colors": {
+        "2f3b3d": 8,
+        "000000": 8
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_5",
+      "colors": {
+        "2f3b3d": 8,
+        "000000": 8
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_6",
+      "colors": {
+        "2f3b3d": 8,
+        "000000": 8
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_0_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_6",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 285,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 7,
+      "key": "7_1_7",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_2",
+      "colors": {
+        "2f3b3d": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_3",
+      "colors": {
+        "2f3b3d": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_0_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_2",
+      "colors": {
+        "2f3b3d": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_3",
+      "colors": {
+        "2f3b3d": 8
+      },
+      "pixels": 8
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_4",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 286,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 9,
+      "key": "9_1_5",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_1_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_1_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_1_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_1_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 287,
+      "layer": "眼睛 / 原版豆豆眼·定位",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 16
+      },
+      "pixels": 16
+    },
+    {
+      "li": 295,
+      "layer": "眼睛呀",
+      "sheet": 10,
+      "key": "10_0_0",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 295,
+      "layer": "眼睛呀",
+      "sheet": 10,
+      "key": "10_0_1",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 295,
+      "layer": "眼睛呀",
+      "sheet": 10,
+      "key": "10_0_2",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    },
+    {
+      "li": 295,
+      "layer": "眼睛呀",
+      "sheet": 10,
+      "key": "10_0_3",
+      "colors": {
+        "2f3b3d": 22
+      },
+      "pixels": 22
+    }
+  ],
+  "allOtherPixelsAndMetadataUnchanged": true,
+  "originalSourceSheetsUnchanged": true,
+  "renderCompositeExportChecks": 420,
+  "browserChecked": false,
+  "previews": [
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-outline-46465e-1793513679522/original32_walk-before-after.png",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-outline-46465e-1793513679522/original32_idle-before-after.png",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-outline-46465e-1793513679522/original32_pickup-before-after.png",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-outline-46465e-1793513679522/original32_sit-before-after.png",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-outline-46465e-1793513679522/original32_sleep-before-after.png"
+  ],
+  "apiSaved": true,
+  "putStatus": 200,
+  "apiReadbackEqual": true,
+  "afterETag": "\"f65aaebc2dd9ada078fe8594efe6283a284f1c70256340f0fb2547b05c7d6daa\"",
+  "afterSHA256": "f65aaebc2dd9ada078fe8594efe6283a284f1c70256340f0fb2547b05c7d6daa",
+  "visualPreviewsOpened": true
+}

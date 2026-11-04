@@ -1,0 +1,32 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "D3CC9E742C6A81C56919D2A43881B099CCC3B75B204009758B3B927488832555",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hd-canvas.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A4D7A66FCA69E3B001521E3F5350506BD1AF7A2E272A65BBFB9D8E276A4E5411",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\css\\hd-canvas.css"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "730237616D6207EC3B002157D671B8620AD2AEF3811E1C0B0A39279CD21F2022",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "44EF139F7CFF1766BE2B6BC8E9065930F19F1E598590363ED275223F468180B5",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "3F6D132524CDF3B7959FFCED9734087B999D17AB65AFC0E692EC370B5F68A338",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "98D7D27DFDC13B2474531592BF3C848719534FAEC081366A4CD509535C7F5D52",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js"
+  }
+]

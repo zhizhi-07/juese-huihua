@@ -1,0 +1,38 @@
+[
+  {
+    "command": "node test/persistence.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.\nPASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/draft-rescue-user.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: readonly exact project draft; unique create-only disk backup; source bytes and SHA256 preserved; full readback; missing draft, save failure and bad readback never report success; no reload or original overwrite.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/shared-server.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: shared file atomic save, version conflict protection, last-file backup, schema rejection, private data/token routes and authenticated file-page bridge.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/character-canvas.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: equal action-envelope margins; every frame shares one border shift; locks/timing/backups preserved; independent branch origin; idempotence; stale drafts rejected; old-client save retains layout; incompatible canvas rejected.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/image-import.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.\n",
+    "stderr": ""
+  },
+  {
+    "command": "node test/user-canvas-merge-20261102.cjs",
+    "exitCode": 0,
+    "stdout": "PASS: 70 frames; 140 real renderer comparisons with hands on/off; source artwork and timing unchanged; all canvas geometries replayed; no visible artwork clipped; idempotent.\n",
+    "stderr": ""
+  }
+]

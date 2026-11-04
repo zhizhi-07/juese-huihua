@@ -1,0 +1,41 @@
+{
+  "newLayerIndex": 206,
+  "mouthPixels": 3,
+  "keys": [
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3"
+  ],
+  "placements": [
+    {
+      "x": 16.95,
+      "y": 23,
+      "w": 2,
+      "h": 1
+    },
+    {
+      "x": 16.95,
+      "y": 23,
+      "w": 2,
+      "h": 1
+    },
+    {
+      "x": 16.95,
+      "y": 25,
+      "w": 2,
+      "h": 1
+    },
+    {
+      "x": 16.95,
+      "y": 25,
+      "w": 2,
+      "h": 1
+    }
+  ],
+  "allExistingLayersUnchanged": true,
+  "sideBackUnchanged": true,
+  "mainRenderAndPngChecked": true,
+  "studioAnimationAndThumbnailRendered": true,
+  "browserProjectNotTouched": true
+}

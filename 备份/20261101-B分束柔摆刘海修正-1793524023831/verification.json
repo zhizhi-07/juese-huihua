@@ -1,0 +1,44 @@
+{
+  "changed": [
+    {
+      "key": "8_0_2",
+      "pixelChanges": 7
+    },
+    {
+      "key": "8_0_3",
+      "pixelChanges": 7
+    },
+    {
+      "key": "8_0_6",
+      "pixelChanges": 4
+    },
+    {
+      "key": "8_0_7",
+      "pixelChanges": 4
+    },
+    {
+      "key": "8_1_2",
+      "pixelChanges": 10
+    },
+    {
+      "key": "8_1_3",
+      "pixelChanges": 4
+    },
+    {
+      "key": "8_1_6",
+      "pixelChanges": 4
+    },
+    {
+      "key": "8_1_7",
+      "pixelChanges": 4
+    }
+  ],
+  "pixelChanges": 44,
+  "rearHairAndAllOtherDataUnchanged": true,
+  "originalFirstFramesUnchanged": true,
+  "crownUnchanged": true,
+  "noNewEyeOcclusion": true,
+  "restoreExtraCopyVerified": true,
+  "mainPreviewPNGFrames": 48,
+  "browserChecked": false
+}

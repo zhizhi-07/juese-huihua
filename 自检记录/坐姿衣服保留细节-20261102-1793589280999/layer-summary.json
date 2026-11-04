@@ -1,0 +1,358 @@
+[
+  {
+    "i": 4,
+    "name": "hand",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 124,
+    "name": "hand 2",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_2_0",
+      "8_2_1",
+      "8_2_2",
+      "8_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 125,
+    "name": "body",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_2_0",
+      "8_2_1",
+      "8_2_2",
+      "8_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 126,
+    "name": "head",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_2_0",
+      "8_2_1",
+      "8_2_2",
+      "8_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 128,
+    "name": "hand 2",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_1_0",
+      "8_1_1",
+      "8_1_2",
+      "8_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 129,
+    "name": "body",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_1_0",
+      "8_1_1",
+      "8_1_2",
+      "8_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 130,
+    "name": "head",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_1_0",
+      "8_1_1",
+      "8_1_2",
+      "8_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 132,
+    "name": "hand 2",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_0_0",
+      "8_0_1",
+      "8_0_2",
+      "8_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 133,
+    "name": "body",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_0_0",
+      "8_0_1",
+      "8_0_2",
+      "8_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 134,
+    "name": "head",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_0_0",
+      "8_0_1",
+      "8_0_2",
+      "8_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 148,
+    "name": "hand 2",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 149,
+    "name": "body",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 150,
+    "name": "head",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 152,
+    "name": "hand 2",
+    "si": 10,
+    "visible": false,
+    "keys": [
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 153,
+    "name": "body",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 154,
+    "name": "head",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 156,
+    "name": "hand 2",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 157,
+    "name": "body",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 158,
+    "name": "head",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 175,
+    "name": "服装 / 衣服-小黄鸭",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3",
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3",
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ],
+    "changedFromLastDelivery": [
+      "10_2_0"
+    ]
+  },
+  {
+    "i": 183,
+    "name": "hand",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 184,
+    "name": "hand",
+    "si": 10,
+    "visible": true,
+    "keys": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 186,
+    "name": "服装 / 衣服-小黄鸭",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_2_0",
+      "8_2_1",
+      "8_2_2",
+      "8_2_3",
+      "8_1_0",
+      "8_1_1",
+      "8_1_2",
+      "8_1_3",
+      "8_0_0",
+      "8_0_1",
+      "8_0_2",
+      "8_0_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 187,
+    "name": "hand",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_2_0",
+      "8_2_1",
+      "8_2_2",
+      "8_2_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 188,
+    "name": "hand",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_1_0",
+      "8_1_1",
+      "8_1_2",
+      "8_1_3"
+    ],
+    "changedFromLastDelivery": []
+  },
+  {
+    "i": 189,
+    "name": "hand",
+    "si": 8,
+    "visible": true,
+    "keys": [
+      "8_0_0",
+      "8_0_1",
+      "8_0_2",
+      "8_0_3"
+    ],
+    "changedFromLastDelivery": []
+  }
+]

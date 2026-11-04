@@ -1,0 +1,54 @@
+[
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js",
+    "sha256": "DDDBE39C4E250C4B2571C479C7DFB5C8E4918ADD105F13B765E71065DA401064"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\canvas.js",
+    "sha256": "368D0918B413C14755F83372C87DE1005C81165D243F11DF2A12D2E756F1F55B"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js",
+    "sha256": "8C087D2FEC9950BBE2E1C0FA8B24BF7B7976DD5B688940D467DB33C301DDB349"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\export.js",
+    "sha256": "C1543B13F79CDF00E7810D4818B2269C2FB5293173302C8F834DAA717787E822"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js",
+    "sha256": "A94403B7424D9E679F43B5C9075D907D515C4DE652136A8258787F4C1EB6BF35"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\studio.js",
+    "sha256": "CEABF38D77BCD315A2EEFBCF3140FAD53B1FE4437CA1616422C9E5C52E0FC0A6"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js",
+    "sha256": "A5748425BAF561EFDC80A00AF9937AFADA1620BB3D18779DBD9DB2A3CF92B7C5"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\wardrobe.js",
+    "sha256": "C442C5ED6F8E4C5FEDEA7C3F627C1239F3EB62DFC0A36F36479C340E32193777"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\visual-layers.js",
+    "sha256": "3F28A64ECC2EA1F2114268D260389F454E4C115B0BC07B459651D3A5F1FEA4FE"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\idle-canvas.cjs",
+    "sha256": "773F9095D8AAAF58E92CB2C498DD60282CB96677BAA4285D391BABFAE60EB218"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html",
+    "sha256": "FF8CB3E4305213E6FB3A3D7FBB867E827335BB372A7A7B9C480C2EE40E254010"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-image-layers.cjs",
+    "sha256": "94E9D5FBB8528DE28CC44416FB130EE06A709984CBC64BAEF2C41D4C7828B412"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-image-browser.cjs",
+    "sha256": "3E430A10510A0AC0056DE90493D62A327898C928C9899DEF318EE3D53CA42E8B"
+  }
+]

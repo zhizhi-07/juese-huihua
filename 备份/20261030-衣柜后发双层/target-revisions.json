@@ -1,0 +1,17 @@
+{
+  "source": {
+    "id": "character-gold-mix-1793320553623",
+    "etag": "\"6344f276a8687553ec15c9cdc806231a037fe493f1c8c2ee40cf4295032d7187\"",
+    "sha256": "6344f276a8687553ec15c9cdc806231a037fe493f1c8c2ee40cf4295032d7187"
+  },
+  "rear": {
+    "id": "finished-df81f7b2-482a-4314-9637-8dfdcf02a5f6",
+    "etag": "\"64b190841fd69d97e2d75343e1db1bd6ae23ee9ded43c5506978b6f1af828c4b\"",
+    "sha256": "64b190841fd69d97e2d75343e1db1bd6ae23ee9ded43c5506978b6f1af828c4b"
+  },
+  "front": {
+    "id": "finished-4b40123c-0792-4880-bff8-ea6d94113772",
+    "etag": "\"d2ecc4dd93ac140cfa958a5555a6803c2584c995641d91211d3b35e20cc8c44e\"",
+    "sha256": "d2ecc4dd93ac140cfa958a5555a6803c2584c995641d91211d3b35e20cc8c44e"
+  }
+}

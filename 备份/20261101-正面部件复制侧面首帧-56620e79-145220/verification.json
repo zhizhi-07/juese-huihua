@@ -1,0 +1,32 @@
+{
+  "originalSHA256": "395eb9a060f3940c8b3de308c756514b008f9ca28ca893128da8a4b23802d442",
+  "source": "8_1_0",
+  "target": "8_0_0",
+  "changed": [
+    {
+      "index": 0,
+      "name": "头发后发",
+      "previousTargetExisted": false
+    },
+    {
+      "index": 181,
+      "name": "眼睛 / 原版豆豆眼·定位",
+      "previousTargetExisted": true
+    },
+    {
+      "index": 185,
+      "name": "眼睛 / 眼睛",
+      "previousTargetExisted": false
+    },
+    {
+      "index": 187,
+      "name": "前发",
+      "previousTargetExisted": true
+    }
+  ],
+  "exactCopyIncludingPlacement": true,
+  "allOtherDataUnchanged": true,
+  "restoreExtraCopyVerified": true,
+  "mainPreviewPNGMatch": true,
+  "browserChecked": false
+}

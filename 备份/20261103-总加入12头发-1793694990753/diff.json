@@ -1,0 +1,87 @@
+{
+  "added": [
+    {
+      "sourceLayer": 0,
+      "name": "头发 / 2 / 后发",
+      "slot": "后发",
+      "sheet": "original32_walk",
+      "id": "9ed75785-d1ed-40da-b9bd-447271404157",
+      "cels": 24
+    },
+    {
+      "sourceLayer": 1,
+      "name": "头发 / 2 / 后发",
+      "slot": "后发",
+      "sheet": "original32_pickup",
+      "id": "9ed75785-d1ed-40da-b9bd-447271404157",
+      "cels": 18
+    },
+    {
+      "sourceLayer": 2,
+      "name": "头发 / 2 / 后发",
+      "slot": "后发",
+      "sheet": "original32_sit",
+      "id": "9ed75785-d1ed-40da-b9bd-447271404157",
+      "cels": 12
+    },
+    {
+      "sourceLayer": 3,
+      "name": "头发 / 2 / 后发",
+      "slot": "后发",
+      "sheet": "original32_sleep",
+      "id": "9ed75785-d1ed-40da-b9bd-447271404157",
+      "cels": 4
+    },
+    {
+      "sourceLayer": 5,
+      "name": "头发 / 2 / 后发",
+      "slot": "后发",
+      "sheet": "original32_idle",
+      "id": "9ed75785-d1ed-40da-b9bd-447271404157",
+      "cels": 12
+    },
+    {
+      "sourceLayer": 191,
+      "name": "头发 / 1 / 前发",
+      "slot": "前发",
+      "sheet": "original32_idle",
+      "id": "27d89c5f-29fe-4572-b724-9e1c7cd8b55f",
+      "cels": 11
+    },
+    {
+      "sourceLayer": 192,
+      "name": "头发 / 1 / 前发",
+      "slot": "前发",
+      "sheet": "original32_walk",
+      "id": "27d89c5f-29fe-4572-b724-9e1c7cd8b55f",
+      "cels": 24
+    },
+    {
+      "sourceLayer": 193,
+      "name": "头发 / 1 / 前发",
+      "slot": "前发",
+      "sheet": "original32_pickup",
+      "id": "27d89c5f-29fe-4572-b724-9e1c7cd8b55f",
+      "cels": 18
+    },
+    {
+      "sourceLayer": 194,
+      "name": "头发 / 1 / 前发",
+      "slot": "前发",
+      "sheet": "original32_sit",
+      "id": "27d89c5f-29fe-4572-b724-9e1c7cd8b55f",
+      "cels": 12
+    },
+    {
+      "sourceLayer": 195,
+      "name": "头发 / 1 / 前发",
+      "slot": "前发",
+      "sheet": "original32_sleep",
+      "id": "27d89c5f-29fe-4572-b724-9e1c7cd8b55f",
+      "cels": 4
+    }
+  ],
+  "existingLayersPreserved": true,
+  "originalIndexShift": 5,
+  "newPartsInitiallyHidden": true
+}

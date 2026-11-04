@@ -1,0 +1,38 @@
+{
+  "changes": [
+    {
+      "key": "1_1_1",
+      "pixels": 4,
+      "shadows": 4
+    },
+    {
+      "key": "1_1_2",
+      "pixels": 4,
+      "shadows": 4
+    },
+    {
+      "key": "1_1_3",
+      "pixels": 4,
+      "shadows": 4
+    },
+    {
+      "key": "1_2_1",
+      "pixels": 4,
+      "shadows": 4
+    },
+    {
+      "key": "1_2_2",
+      "pixels": 4,
+      "shadows": 4
+    },
+    {
+      "key": "1_2_3",
+      "pixels": 4,
+      "shadows": 4
+    }
+  ],
+  "onlySixPantsRegionsChanged": true,
+  "sourcesAndOtherLayersUnchanged": true,
+  "etag": "\"b2fe2fb8bf602b2da3aaa611f1320fdfc15c5e3240e373a7d3a865aba0f4bdee\"",
+  "sha256": "b2fe2fb8bf602b2da3aaa611f1320fdfc15c5e3240e373a7d3a865aba0f4bdee"
+}

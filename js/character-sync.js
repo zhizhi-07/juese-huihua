@@ -9,7 +9,7 @@ function restoreHands(branch,main){
     for(const [key,pixels]of Object.entries(source.frameData||{})){
       const [sourceSI,ai,fi]=key.split('_').map(Number);if(sourceSI!==source.sheetIndex)continue;
       const action=sourceSheet.actions[ai],targetAI=sheet.actions.findIndex(a=>a.name===action?.name&&a.direction===action?.direction);if(targetAI<0||!sheet.actions[targetAI].frames[fi])continue;
-      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=pixels;
+      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(pixels,sourceSheet,ai,sheet,targetAI,sheet.actions[targetAI].frames[fi]):pixels;
     }
     if(!Object.keys(data).length)continue;
     const matches=l=>l.sheetIndex===si&&Object.keys(l.frameData||{}).some(k=>targetActions.has(Number(k.split('_')[1])));
@@ -29,6 +29,14 @@ function restoreHands(branch,main){
   if(selected)branch.currentLayerIndex=branch.layers.indexOf(selected);
 }
 module.exports=function syncCharacterBase(branch,main){
+  // Canvas origins can differ; keep wardrobe coordinates and inherit the base in that same origin.
+  const aligned=main.spriteSheets.filter(s=>s.canvasLayout);
+  if(aligned.length)require('./character-canvas.cjs').align(branch,Math.max(...aligned.map(s=>s.canvasLayout.margin)),new Set(aligned.map(s=>s.name)));
+  // Old branch files follow an enlarged idle canvas before inheriting the new-size body/hands.
+  const idle=branch.spriteSheets.find(s=>s.name==='original32_idle'),sourceIdle=main.spriteSheets.find(s=>s.name==='original32_idle');
+  if(idle&&sourceIdle&&!sourceIdle.canvasLayout&&(idle.frameWidth<sourceIdle.frameWidth||idle.frameHeight<sourceIdle.frameHeight))require('./idle-canvas.cjs')(branch,sourceIdle.frameWidth,sourceIdle.frameHeight);
+  // A rollback may remove only the known empty 2px margin; painted borders fail closed.
+  if(idle?.frameWidth===36&&idle.frameHeight===36&&sourceIdle?.frameWidth===32&&sourceIdle.frameHeight===32)require('./idle-canvas.cjs')(branch,32,32,{allowCrop:true});
   restoreHands(branch,main);
   const isBase=l=>!l.isGroup&&(/^(body|head|身体|头部)$/.test(l.name)||isHand(l));
   for(const layer of branch.layers.filter(isBase)){
@@ -47,9 +55,9 @@ module.exports=function syncCharacterBase(branch,main){
       if(isHand(source)){layer.referenceOnly=true;layer.visible=source.visible!==false;layer.opacity=source.opacity??1;}
       action.frames.forEach((frame,fi)=>{
         const original=sourceSheet.actions[sourceAI].frames[fi];if(!original)return;
-        if(frame.width!==original.width||frame.height!==original.height)throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
+        if(!sheet.canvasLayout&&!sourceSheet.canvasLayout&&(frame.width!==original.width||frame.height!==original.height))throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
         const key=layer.sheetIndex+'_'+ai+'_'+fi,sourceKey=prefix+fi;
-        if(source.frameData[sourceKey])data[key]=source.frameData[sourceKey];else delete data[key];
+        if(source.frameData[sourceKey])data[key]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(source.frameData[sourceKey],sourceSheet,sourceAI,sheet,ai,frame):source.frameData[sourceKey];else delete data[key];
       });
     }
     if(matched){layer.frameData=data;layer.inheritedBase=true;layer.locked=true;}

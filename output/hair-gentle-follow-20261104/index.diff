@@ -1,0 +1,12 @@
+diff --git a/output/hair-gentle-follow-20261104/before/index.html b/index.html
+index 8c35efa..c2b5145 100644
+--- a/output/hair-gentle-follow-20261104/before/index.html
++++ b/index.html
+@@ -321,6 +321,6 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=demo-horizontal-parity-20261104"></script>
++  <script src="js/hair-animation.js?v=gentle-head-follow-20261104-2"></script>
+ </body>
+ </html>

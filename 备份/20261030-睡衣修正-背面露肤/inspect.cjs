@@ -1,0 +1,2 @@
+const h=require('../20261030-睡衣-character-gold-mix/render.cjs'),{fs,path}=h;
+(async()=>{let p=JSON.parse(fs.readFileSync(path.join(__dirname,'original.json'),'utf8')),q=await h.load(p);h.sheet(q,path.join(__dirname,'before.png'));for(let f=0;f<4;f++){let c=h.render(q,2,f),d=c.getContext('2d').getImageData(0,0,36,36).data;console.log('BACK',f);for(let y=20;y<=33;y++){let s='';for(let x=5;x<=30;x++){let i=(y*36+x)*4,r=d[i],g=d[i+1],b=d[i+2];s+=!d[i+3]?'.':r===254&&g===237?'s':r===224&&g===197?'t':r===g&&g===b?'h':r>g&&g>b?'k':'c'}console.log(y,s)}}})();

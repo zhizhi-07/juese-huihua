@@ -1,0 +1,1 @@
+PASS UI DOM: shared eye/hair controls, no eye sway, preserved-frame cancel/apply, hidden sleep list without data deletion, and safe initial selection before preview. No live browser or project data used.

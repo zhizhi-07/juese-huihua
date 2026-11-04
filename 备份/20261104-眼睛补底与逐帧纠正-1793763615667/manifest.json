@@ -1,0 +1,33 @@
+{
+  "saved": true,
+  "sourcePath": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261104-冲突工程合并眼睛-1793762999856\\conflict-before.json",
+  "sourceSha256": "ff6b296fdb9c552eb423bc382a962ddca31de83f5a06f9f7bfae72751c60be9f",
+  "projects": [
+    {
+      "id": "main",
+      "etag": "\"ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a\"",
+      "beforeSha256": "ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a",
+      "candidate": "main-candidate.json",
+      "afterSha256": "4e96af8adb567a3231c9e549302acc4d1cee1713d37e7c451feaf7fb4be55719",
+      "afterETag": "\"4e96af8adb567a3231c9e549302acc4d1cee1713d37e7c451feaf7fb4be55719\""
+    },
+    {
+      "id": "draft-conflict-1793762650078-819fdffe",
+      "etag": "\"ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a\"",
+      "beforeSha256": "ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a",
+      "candidate": "draft-conflict-1793762650078-819fdffe-candidate.json",
+      "afterSha256": "4e96af8adb567a3231c9e549302acc4d1cee1713d37e7c451feaf7fb4be55719",
+      "afterETag": "\"4e96af8adb567a3231c9e549302acc4d1cee1713d37e7c451feaf7fb4be55719\""
+    }
+  ],
+  "checks": {
+    "eyeFrames": 44,
+    "eyePixels": 176,
+    "headAlphaMatchesOriginal": true,
+    "eyeOffset": [
+      0,
+      1
+    ],
+    "otherHeadPixelsAndLayersPreserved": true
+  }
+}

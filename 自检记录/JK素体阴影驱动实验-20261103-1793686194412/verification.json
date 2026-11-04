@@ -1,0 +1,63 @@
+{
+  "sourceClothingFrames": 3,
+  "total": 70,
+  "generatedOtherFrames": 67,
+  "firstThreeBaseCelsExact": true,
+  "lightingAlsoAppliedToSourcePoses": true,
+  "changedPixels": 1652,
+  "changedFrames": 70,
+  "changedMaterialColors": {
+    "72,91,122,255 -> 52,68,95,255": 886,
+    "255,250,240,255 -> 212,221,230,255": 766
+  },
+  "nonDestructiveShadowLayers": 5,
+  "allNewColorsAlreadyInSourcePalette": true,
+  "redBowSkirtFoldsShoesAndOutlineExact": true,
+  "bodyHeadFramesAndTimingsExact": true,
+  "sameBodyShadowReaderAsDuck": true,
+  "bodyShadowRemovedThenNewShadowsDisappear": true,
+  "oldClothingOtherFramesIgnored": true,
+  "restoreExtraCopyExact": true,
+  "before": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "after": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "layeredAndBakedEquivalentFrames": 70,
+  "toggleOffMatchesControlFrames": 70,
+  "idleSamePoseShadowsStable": true,
+  "browserChecked": false,
+  "visualReviewPending": false,
+  "limitations": [
+    "只实验上衣与领片；裙片、便鞋及红领结不强套素体腿部阴影",
+    "几何仍使用当前短衣裙分区模板，不是服装通用解算器",
+    "阴影颜色来自源稿现有色阶，艺术效果仍需用户判断"
+  ],
+  "visualReview": {
+    "all70ClothingFrames": true,
+    "all70CompositeFrames": true,
+    "nativeAnd4xViews": true,
+    "lightAndDarkBackgrounds": true,
+    "bodyShadowControlComparisonReviewed": true,
+    "artisticApprovalPendingUser": true
+  },
+  "published": true,
+  "apiReadbackExact": true,
+  "sourceProjectSHA256StillExact": true,
+  "publishedETag": "\"764fc058659d2c57c3f65cb1696d4a1d8405df4cc97634edceb3f5fa841ede3c\""
+}

@@ -1,0 +1,59 @@
+/* 图层镜像：边画边镜像开关、参考线面板 */
+.studio .layer-mirror {
+  flex-shrink: 0;
+  width: 22px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #d3ddca;
+  border-radius: 5px;
+  background: #fff;
+  color: #8b9785;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.studio .layer-mirror:hover {
+  background: #edf4ee;
+  color: #45583b;
+}
+
+.studio .layer-mirror.active {
+  border-color: #0aa7bb;
+  background: #e4f6f8;
+  color: #0b7f8d;
+}
+
+.mirror-dialog[open] {
+  position: fixed;
+  inset: auto 24px auto auto;
+  top: 96px;
+  margin: 0;
+  width: min(560px, 92vw);
+  z-index: 80;
+}
+
+.mirror-dialog .mirror-live {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 10px;
+  padding: 10px 12px;
+  border: 1px solid #cfe3e6;
+  border-radius: 8px;
+  background: #f0fafb;
+}
+
+.mirror-dialog .mirror-live label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #2c3c38;
+}
+
+.mirror-dialog .mirror-live [data-live-hint] {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #65735e;
+}

@@ -1,0 +1,686 @@
+[
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_0_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_1_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 10,
+    "name": "头发 / 用户 / 后发",
+    "key": "8_2_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 127,
+    "name": "hand 2",
+    "key": "8_2_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 127,
+    "name": "hand 2",
+    "key": "8_2_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 127,
+    "name": "hand 2",
+    "key": "8_2_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 127,
+    "name": "hand 2",
+    "key": "8_2_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 128,
+    "name": "body",
+    "key": "8_2_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 128,
+    "name": "body",
+    "key": "8_2_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 128,
+    "name": "body",
+    "key": "8_2_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 128,
+    "name": "body",
+    "key": "8_2_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 129,
+    "name": "head",
+    "key": "8_2_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 129,
+    "name": "head",
+    "key": "8_2_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 129,
+    "name": "head",
+    "key": "8_2_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 129,
+    "name": "head",
+    "key": "8_2_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 130,
+    "name": "hand",
+    "key": "8_2_3",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 130,
+    "name": "hand",
+    "key": "8_2_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 130,
+    "name": "hand",
+    "key": "8_2_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 130,
+    "name": "hand",
+    "key": "8_2_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 130,
+    "name": "hand",
+    "key": "8_2_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 132,
+    "name": "hand 2",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 132,
+    "name": "hand 2",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 132,
+    "name": "hand 2",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 132,
+    "name": "hand 2",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 133,
+    "name": "body",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 133,
+    "name": "body",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 133,
+    "name": "body",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 133,
+    "name": "body",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 134,
+    "name": "head",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 134,
+    "name": "head",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 134,
+    "name": "head",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 134,
+    "name": "head",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 135,
+    "name": "hand",
+    "key": "8_1_3",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 135,
+    "name": "hand",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 135,
+    "name": "hand",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 135,
+    "name": "hand",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 135,
+    "name": "hand",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 137,
+    "name": "hand 2",
+    "key": "8_0_3",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 137,
+    "name": "hand 2",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 137,
+    "name": "hand 2",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 137,
+    "name": "hand 2",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 137,
+    "name": "hand 2",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 138,
+    "name": "body",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 138,
+    "name": "body",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 138,
+    "name": "body",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 138,
+    "name": "body",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 139,
+    "name": "head",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 139,
+    "name": "head",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 139,
+    "name": "head",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 139,
+    "name": "head",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 140,
+    "name": "hand",
+    "key": "8_0_3",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 140,
+    "name": "hand",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 140,
+    "name": "hand",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 140,
+    "name": "hand",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 140,
+    "name": "hand",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 185,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_0_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_0_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_1_4",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_1_5",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 189,
+    "name": "眼睛 / 眼睛",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_0_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_1_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_1",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_2",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_3",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_4",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_5",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_6",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 191,
+    "name": "前发",
+    "key": "8_2_7",
+    "source": "approved B hair"
+  },
+  {
+    "layer": 192,
+    "name": "导入 · exec-ec5fed44-5f88-4d54-8567-d7d3de235594",
+    "key": "8_1_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 192,
+    "name": "导入 · exec-ec5fed44-5f88-4d54-8567-d7d3de235594",
+    "key": "8_1_7",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 193,
+    "name": "导入 · exec-ec5fed44-5f88-4d54-8567-d7d3de235594",
+    "key": "8_0_6",
+    "source": "latest target repeated pose"
+  },
+  {
+    "layer": 193,
+    "name": "导入 · exec-ec5fed44-5f88-4d54-8567-d7d3de235594",
+    "key": "8_0_7",
+    "source": "latest target repeated pose"
+  }
+]

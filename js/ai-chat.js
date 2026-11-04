@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   panel.addEventListener('keydown',e=>{if(!(e.ctrlKey||e.metaKey)||e.key.toLowerCase()!=='s')e.stopPropagation();});
   function render(){log.replaceChildren();for(const m of history){const item=document.createElement('div');item.className='ai-message '+m.role;const name=document.createElement('strong'),text=document.createElement('div');name.textContent=m.role==='user'?'你':'AI';text.textContent=m.content;item.append(name,text);log.append(item);}log.scrollTop=log.scrollHeight;}
   function remember(){store('pixel-ai-settings',{baseURL:base.value.trim(),model:model.value,category:category.value});}
-  function docs(){const names={hair:'人物绘制AI要求与自检.md ＋ 像素发型教程与自检.md',eyes:'人物绘制AI要求与自检.md ＋ 眼睛绘制AI要求与自检.md',clothes:'人物绘制AI要求与自检.md ＋ 衣服绘制AI要求与自检.md',character:'人物绘制AI要求与自检.md',building:'建筑绘制AI要求与自检.md',item:'物品绘制AI要求与自检.md'};$('docs').textContent='自动读取：后台工程读写约定.md ＋ '+names[category.value];}
+  function docs(){$('docs').textContent='只读取：后台工程读写约定.md；旧绘画规范已归档，新规范待用户制定。';}
   category.onchange=()=>{pending=null;$('apply').disabled=true;$('changes').hidden=true;$('other-actions').checked=false;docs();remember();};model.onchange=remember;
   $('other-actions').onchange=()=>{pending=null;$('apply').disabled=true;};
   let controller;

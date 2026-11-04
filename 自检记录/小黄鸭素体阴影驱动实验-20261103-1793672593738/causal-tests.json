@@ -1,0 +1,7 @@
+{
+  "flatMaskAddsZeroShadows": true,
+  "mirroredShadowChangesClothing": true,
+  "example": "1_0_0",
+  "originalShadowPixels": 5,
+  "mirroredShadowPixels": 4
+}

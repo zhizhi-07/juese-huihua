@@ -1,0 +1,1 @@
+{"command":"node copy-eyes.cjs --save","stdout":"PID 81808\nSAVE OK; API readback exact; original project not written\n","stderr":"","status":0}

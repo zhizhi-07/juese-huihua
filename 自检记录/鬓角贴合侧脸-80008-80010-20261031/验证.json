@@ -1,0 +1,312 @@
+{
+  "candidateSHA256": "64798e274defdf62085922c2273f2ba9b2f24aa176ef0b689df4db988840e05e",
+  "beforeSHA256": "bba9b1097b3c10349be2ae513779b84d82ea983cea4e9b9cd3cc3ffb2062d0a1",
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "nonempty": true,
+      "mainPreviewNativeAndHDExportMatch": true
+    }
+  ],
+  "diff": [
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_0_0",
+      "changedPixels": 43
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_0_0",
+      "changedPixels": 1
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_0_0",
+      "changedPixels": 42
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_0_1",
+      "changedPixels": 43
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_0_1",
+      "changedPixels": 1
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_0_1",
+      "changedPixels": 42
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_0_2",
+      "changedPixels": 41
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_0_2",
+      "changedPixels": 1
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_0_2",
+      "changedPixels": 42
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_0_3",
+      "changedPixels": 41
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_0_3",
+      "changedPixels": 1
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_0_3",
+      "changedPixels": 42
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_1_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_1_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_1_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_1_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_1_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_1_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_1_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_1_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_1_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_1_3",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_1_3",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_1_3",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_2_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_2_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_2_0",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_2_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_2_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_2_1",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_2_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_2_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_2_2",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 底层后发",
+      "key": "8_2_3",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80010 / 侧面后发",
+      "key": "8_2_3",
+      "changedPixels": 0
+    },
+    {
+      "layer": "头发 / 80008 / 前发",
+      "key": "8_2_3",
+      "changedPixels": 0
+    }
+  ],
+  "sideburnChecks": [
+    {
+      "fi": 0,
+      "scale": 1,
+      "previouslyVisibleEyePixelsRetained": 41
+    },
+    {
+      "fi": 0,
+      "scale": 3,
+      "previouslyVisibleEyePixelsRetained": 387
+    },
+    {
+      "fi": 1,
+      "scale": 1,
+      "previouslyVisibleEyePixelsRetained": 41
+    },
+    {
+      "fi": 1,
+      "scale": 3,
+      "previouslyVisibleEyePixelsRetained": 387
+    },
+    {
+      "fi": 2,
+      "scale": 1,
+      "previouslyVisibleEyePixelsRetained": 41
+    },
+    {
+      "fi": 2,
+      "scale": 3,
+      "previouslyVisibleEyePixelsRetained": 387
+    },
+    {
+      "fi": 3,
+      "scale": 1,
+      "previouslyVisibleEyePixelsRetained": 41
+    },
+    {
+      "fi": 3,
+      "scale": 3,
+      "previouslyVisibleEyePixelsRetained": 387
+    }
+  ],
+  "acceptedFringeUnchanged": true,
+  "unchanged": [
+    "eyes and their subpixel placements",
+    "head/body/hands",
+    "all non-hair layers",
+    "layer order and properties",
+    "all sprite sheets, source backups, frame counts/durations",
+    "all other actions"
+  ],
+  "browserTested": false
+}

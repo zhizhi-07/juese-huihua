@@ -1,0 +1,1 @@
+PASS: exactly 52 isolated gray pixels removed from 26 front-facing hair cels; every other pixel and metadata unchanged; 26 main canvas/export checks; saved=true

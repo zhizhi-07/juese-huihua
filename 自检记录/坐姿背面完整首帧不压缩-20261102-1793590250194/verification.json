@@ -1,0 +1,11 @@
+{
+  "originalSHA256": "0c578d8d9c6e94e0dc10cafcb9d9d3e4afde938bfdb11fa4fd2c7afe76549904",
+  "allFourBackClothesExactlyEqualUserFirstCel": true,
+  "allFourHaveEightCompleteRows": true,
+  "noScalingNoRowRemovalNoMovement": true,
+  "allOtherDataExact": true,
+  "mainCanvasPngStudioPreview4FramesChecked": true,
+  "apiReadbackExact": true,
+  "restoreExtraCopyExact": true,
+  "browserChecked": false
+}

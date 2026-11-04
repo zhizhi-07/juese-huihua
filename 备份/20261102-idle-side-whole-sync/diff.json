@@ -1,0 +1,38 @@
+[
+  {
+    "layer": 11,
+    "frame": 1,
+    "changedPixels": 158,
+    "headOffsetY": -2
+  },
+  {
+    "layer": 11,
+    "frame": 2,
+    "changedPixels": 166,
+    "headOffsetY": -2
+  },
+  {
+    "layer": 11,
+    "frame": 4,
+    "changedPixels": 135,
+    "headOffsetY": 0
+  },
+  {
+    "layer": 191,
+    "frame": 1,
+    "changedPixels": 13,
+    "headOffsetY": -2
+  },
+  {
+    "layer": 191,
+    "frame": 2,
+    "changedPixels": 13,
+    "headOffsetY": -2
+  },
+  {
+    "layer": 191,
+    "frame": 4,
+    "changedPixels": 13,
+    "headOffsetY": 0
+  }
+]

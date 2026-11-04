@@ -1,0 +1,711 @@
+[
+  {
+    "label": "source",
+    "id": "draft-user-canvas-merged-1793608789349-dbd059d3",
+    "etag": "\"dab30d73034e123b242fe683374a415f32e1669bbed5083b0666ee02415973f6\"",
+    "sha256": "dab30d73034e123b242fe683374a415f32e1669bbed5083b0666ee02415973f6",
+    "name": "用户（草稿＋画布尺寸合并）",
+    "keys": [
+      "version",
+      "name",
+      "bgColor",
+      "gridColor",
+      "currentSheetIndex",
+      "currentActionIndex",
+      "currentFrameIndex",
+      "currentLayerIndex",
+      "palette",
+      "spriteSheets",
+      "layers"
+    ],
+    "current": [
+      8,
+      0,
+      3,
+      187
+    ],
+    "sheets": [
+      {
+        "i": 0,
+        "name": "run",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:8",
+          "down:8",
+          "up:8"
+        ]
+      },
+      {
+        "i": 1,
+        "name": "idle",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 2,
+        "name": "jump",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:6",
+          "down:6",
+          "up:6"
+        ]
+      },
+      {
+        "i": 3,
+        "name": "hurt",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 4,
+        "name": "death",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:6",
+          "down:6",
+          "up:6"
+        ]
+      },
+      {
+        "i": 5,
+        "name": "pick up",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:6",
+          "down:6",
+          "up:6"
+        ]
+      },
+      {
+        "i": 6,
+        "name": "walk",
+        "w": 79,
+        "h": 79,
+        "frames": [
+          "side:8",
+          "down:8",
+          "up:8"
+        ]
+      },
+      {
+        "i": 7,
+        "name": "original32_walk",
+        "w": 32,
+        "h": 36,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": -1,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 0,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 0,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            }
+          ]
+        },
+        "frames": [
+          "side:8",
+          "down:8",
+          "up:8"
+        ]
+      },
+      {
+        "i": 8,
+        "name": "original32_idle",
+        "w": 32,
+        "h": 36,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": -3,
+              "y": -2,
+              "width": 31,
+              "height": 36
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": -2,
+              "y": -2,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": -2,
+              "y": -2,
+              "width": 32,
+              "height": 36
+            }
+          ]
+        },
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 9,
+        "name": "original32_pickup",
+        "w": 44,
+        "h": 41,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": 0,
+              "y": -2,
+              "width": 42,
+              "height": 37
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 2,
+              "y": 0,
+              "width": 44,
+              "height": 41
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 2,
+              "y": -2,
+              "width": 44,
+              "height": 38
+            }
+          ]
+        },
+        "frames": [
+          "side:6",
+          "down:6",
+          "up:6"
+        ]
+      },
+      {
+        "i": 10,
+        "name": "original32_sit",
+        "w": 38,
+        "h": 34,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": 2,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 3,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 3,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            }
+          ]
+        },
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 11,
+        "name": "original32_sleep",
+        "w": 36,
+        "h": 38,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 2,
+              "y": 2,
+              "width": 36,
+              "height": 38
+            }
+          ]
+        },
+        "frames": [
+          "down:4"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "i": 0,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 7,
+        "parent": null,
+        "visible": false,
+        "frames": 24,
+        "extra": []
+      },
+      {
+        "i": 1,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 9,
+        "parent": null,
+        "visible": false,
+        "frames": 18,
+        "extra": []
+      },
+      {
+        "i": 2,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 10,
+        "parent": null,
+        "visible": false,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 3,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 11,
+        "parent": null,
+        "visible": true,
+        "frames": 4,
+        "extra": []
+      },
+      {
+        "i": 5,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 8,
+        "parent": null,
+        "visible": true,
+        "frames": 8,
+        "extra": []
+      },
+      {
+        "i": 11,
+        "name": "头发 / 灰色短卷发 / 后发",
+        "si": 8,
+        "parent": null,
+        "visible": false,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 191,
+        "name": "头发 / 灰色短卷发 / 前发",
+        "si": 8,
+        "parent": null,
+        "visible": false,
+        "frames": 8,
+        "extra": []
+      },
+      {
+        "i": 198,
+        "name": "前发",
+        "si": 8,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 202,
+        "name": "前发",
+        "si": 7,
+        "parent": null,
+        "visible": true,
+        "frames": 24,
+        "extra": []
+      },
+      {
+        "i": 204,
+        "name": "前发",
+        "si": 9,
+        "parent": null,
+        "visible": true,
+        "frames": 18,
+        "extra": []
+      },
+      {
+        "i": 206,
+        "name": "前发",
+        "si": 10,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 208,
+        "name": "前发",
+        "si": 11,
+        "parent": null,
+        "visible": true,
+        "frames": 4,
+        "extra": []
+      }
+    ]
+  },
+  {
+    "label": "before",
+    "id": "draft-zong-d8227d6f-eabc-4313-9503-48dbcac55ea7",
+    "etag": "\"91e8d42fbe9b3ec8a2da29b0060942aadb8f98cf9af66f1473e6c0f8e2b97d74\"",
+    "sha256": "91e8d42fbe9b3ec8a2da29b0060942aadb8f98cf9af66f1473e6c0f8e2b97d74",
+    "name": "总",
+    "keys": [
+      "version",
+      "name",
+      "bgColor",
+      "gridColor",
+      "currentSheetIndex",
+      "currentActionIndex",
+      "currentFrameIndex",
+      "currentLayerIndex",
+      "palette",
+      "spriteSheets",
+      "layers"
+    ],
+    "current": [
+      1,
+      1,
+      0,
+      86
+    ],
+    "sheets": [
+      {
+        "i": 0,
+        "name": "original32_walk",
+        "w": 32,
+        "h": 36,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": -1,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 0,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 0,
+              "y": 0,
+              "width": 32,
+              "height": 36
+            }
+          ]
+        },
+        "frames": [
+          "side:8",
+          "down:8",
+          "up:8"
+        ]
+      },
+      {
+        "i": 1,
+        "name": "original32_idle",
+        "w": 32,
+        "h": 36,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": -3,
+              "y": -2,
+              "width": 31,
+              "height": 36
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": -2,
+              "y": -2,
+              "width": 32,
+              "height": 36
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": -2,
+              "y": -2,
+              "width": 32,
+              "height": 36
+            }
+          ]
+        },
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 2,
+        "name": "original32_pickup",
+        "w": 44,
+        "h": 41,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": 0,
+              "y": -2,
+              "width": 42,
+              "height": 37
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 2,
+              "y": 0,
+              "width": 44,
+              "height": 41
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 2,
+              "y": -2,
+              "width": 44,
+              "height": 38
+            }
+          ]
+        },
+        "frames": [
+          "side:6",
+          "down:6",
+          "up:6"
+        ]
+      },
+      {
+        "i": 3,
+        "name": "original32_sit",
+        "w": 38,
+        "h": 34,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "side",
+              "direction": "side",
+              "x": 2,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            },
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 3,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            },
+            {
+              "name": "up",
+              "direction": "up",
+              "x": 3,
+              "y": -2,
+              "width": 38,
+              "height": 34
+            }
+          ]
+        },
+        "frames": [
+          "side:4",
+          "down:4",
+          "up:4"
+        ]
+      },
+      {
+        "i": 4,
+        "name": "original32_sleep",
+        "w": 36,
+        "h": 38,
+        "layout": {
+          "version": 1,
+          "margin": 4,
+          "actions": [
+            {
+              "name": "down",
+              "direction": "down",
+              "x": 2,
+              "y": 2,
+              "width": 36,
+              "height": 38
+            }
+          ]
+        },
+        "frames": [
+          "down:4"
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "i": 0,
+        "name": "头发 / 用户 / 后发",
+        "si": 0,
+        "parent": null,
+        "visible": true,
+        "frames": 24,
+        "extra": []
+      },
+      {
+        "i": 1,
+        "name": "头发 / 用户 / 后发",
+        "si": 2,
+        "parent": null,
+        "visible": true,
+        "frames": 18,
+        "extra": []
+      },
+      {
+        "i": 2,
+        "name": "头发 / 用户 / 后发",
+        "si": 3,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 3,
+        "name": "头发 / 用户 / 后发",
+        "si": 4,
+        "parent": null,
+        "visible": true,
+        "frames": 4,
+        "extra": []
+      },
+      {
+        "i": 5,
+        "name": "头发 / 用户 / 后发",
+        "si": 1,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 86,
+        "name": "前发",
+        "si": 1,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 88,
+        "name": "前发",
+        "si": 0,
+        "parent": null,
+        "visible": true,
+        "frames": 24,
+        "extra": []
+      },
+      {
+        "i": 90,
+        "name": "前发",
+        "si": 2,
+        "parent": null,
+        "visible": true,
+        "frames": 18,
+        "extra": []
+      },
+      {
+        "i": 92,
+        "name": "前发",
+        "si": 3,
+        "parent": null,
+        "visible": true,
+        "frames": 12,
+        "extra": []
+      },
+      {
+        "i": 94,
+        "name": "前发",
+        "si": 4,
+        "parent": null,
+        "visible": true,
+        "frames": 4,
+        "extra": []
+      }
+    ]
+  }
+]

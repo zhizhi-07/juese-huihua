@@ -1,0 +1,281 @@
+diff --git a/index.html b/index.html
+index 01eccf6..c61a9d6 100644
+--- a/index.html
++++ b/index.html
+@@ -294,11 +294,11 @@
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+   <script src="js/studio.js?v=image-transform-1"></script>
+-  <script src="js/visual-layers.js?v=frame-copy-1"></script>
++  <script src="js/visual-layers.js?v=hair-components-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=4"></script>
+   <script src="js/frame-tools.js?v=frame-copy-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=image-transform-1"></script>
++  <script src="js/pixel-import.js?v=color-key-gray-1"></script>
+ </body>
+ </html>
+diff --git a/js/pixel-import.js b/js/pixel-import.js
+index dceab70..faa5da6 100644
+--- a/js/pixel-import.js
++++ b/js/pixel-import.js
+@@ -22,21 +22,45 @@ PE.quantizeImage=function(image,maxColors){
+   for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;d.set(mapped.get((d[i]<<16)|(d[i+1]<<8)|d[i+2]),i);d[i+3]=255;}
+   return image;
+ };
+-// Pixel It uses a smoothed reduction and nearest-neighbor display: https://github.com/giventofly/pixelit
+-PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='smooth'}={}){
++PE.removeImageColor=function(image,{rgb,tolerance=0,neutralOnly=false}){
++  if(!Array.isArray(rgb)||rgb.length!==3||!rgb.every(v=>Number.isInteger(v)&&v>=0&&v<=255)||!Number.isInteger(tolerance)||tolerance<0||tolerance>255)throw new Error('抠图颜色或容差无效');
++  const d=image.data;
++  for(let i=0;i<d.length;i+=4){
++    if(!d[i+3])continue;
++    if(neutralOnly&&Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2])>20)continue;
++    if(rgb.every((v,c)=>Math.abs(d[i+c]-v)<=tolerance))d.fill(0,i,i+4);
++  }
++  return image;
++};
++PE.hairGrayImage=function(image){
++  const d=image.data,w=image.width,h=image.height;
++  for(let i=0;i<d.length;i+=4){
++    if(d[i+3]<128){d.fill(0,i,i+4);continue;}
++    const x=i/4%w,y=Math.floor(i/4/w),edge=x===0||y===0||x===w-1||y===h-1||[i-4,i+4,i-w*4,i+w*4].some(j=>d[j+3]<128);
++    // Dark filled regions are shadows, not thick outlines; retain dark ink only beside transparency.
++    const light=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2],v=light<145&&edge?119:light<195?178:209;
++    d.set([v,v,v,255],i);
++  }
++  return image;
++};
++// Existing pixel art defaults to nearest-neighbor; photos can explicitly select smooth reduction.
++PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='nearest',keyColor=null,palette='original'}={}){
+   if(!crop||![crop.x,crop.y,crop.w,crop.h,width].every(Number.isSafeInteger)||crop.x<0||crop.y<0||crop.w<1||crop.h<1||crop.x+crop.w>image.width||crop.y+crop.h>image.height)throw new Error('裁选范围超出原图');
+   const height=Math.max(1,Math.round(crop.h*width/crop.w));
+   if(width<1||width>512||height>512)throw new Error('输出宽高需要在 1–512 像素之间');
++  if(!['nearest','smooth'].includes(sampling)||!['original','hair-gray'].includes(palette))throw new Error('采样方式或色板无效');
+   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
+   const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=sampling==='smooth'&&(width!==crop.w||height!==crop.h);ctx.imageSmoothingQuality='high';
+   let source=image,sx=crop.x,sy=crop.y;
+   // Isolate the crop so the smoothing filter cannot pull colors from outside it.
+-  if(ctx.imageSmoothingEnabled&&(crop.x||crop.y||crop.w!==image.width||crop.h!==image.height)){
++  if(keyColor||ctx.imageSmoothingEnabled&&(crop.x||crop.y||crop.w!==image.width||crop.h!==image.height)){
+     source=document.createElement('canvas');source.width=crop.w;source.height=crop.h;
+     const cropped=source.getContext('2d');cropped.imageSmoothingEnabled=false;cropped.drawImage(image,crop.x,crop.y,crop.w,crop.h,0,0,crop.w,crop.h);sx=sy=0;
++    // Key before reducing so dark background pixels cannot blend into the hair edge.
++    if(keyColor)cropped.putImageData(PE.removeImageColor(cropped.getImageData(0,0,crop.w,crop.h),keyColor),0,0);
+   }
+   ctx.drawImage(source,sx,sy,crop.w,crop.h,0,0,width,height);
+-  const pixels=ctx.getImageData(0,0,width,height);return pixelize?PE.quantizeImage(pixels,colors):pixels;
++  const pixels=ctx.getImageData(0,0,width,height);if(palette==='hair-gray')return PE.hairGrayImage(pixels);return pixelize?PE.quantizeImage(pixels,colors):pixels;
+ };
+ PE.addImageLayer=function(app,pixels,name){
+   const p=app.project,frame=p.getCurrentFrame();
+@@ -69,30 +93,37 @@ document.addEventListener('DOMContentLoaded',()=>{
+     <label>选择图片 <input type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传源图片"></label>
+     <div class="image-crop-area"><section><h3>原图：拖动框选 · 框内移动 · 右下角缩放</h3><canvas data-source aria-label="原图裁选"></canvas>
+     <div class="crop-fields"><label>X <input type="number" min="0" value="0" aria-label="裁选 X"></label><label>Y <input type="number" min="0" value="0" aria-label="裁选 Y"></label><label>宽 <input type="number" min="1" value="1" aria-label="裁选宽度"></label><label>高 <input type="number" min="1" value="1" aria-label="裁选高度"></label></div>
+-    <button type="button" data-all class="studio-button">选整张图</button></section><section><h3>导入预览</h3><canvas data-preview aria-label="裁选结果预览"></canvas></section></div>
++    <button type="button" data-all class="studio-button">选整张图</button>
++    <div class="pixel-import-controls"><select data-row aria-label="精灵方向"><option value="0">正面</option><option value="1">左侧</option><option value="2">右侧</option><option value="3">背面</option></select><select data-column aria-label="精灵帧"><option value="0">第1帧</option><option value="1" selected>第2帧</option><option value="2">第3帧</option></select><button type="button" data-cell class="studio-button">按3×4精灵格裁选</button></div>
++    </section><section><h3>导入预览</h3><canvas data-preview aria-label="裁选结果预览"></canvas></section></div>
+     <div class="pixel-import-controls"><label>像素宽度 <input type="number" min="1" max="512" value="32" aria-label="像素宽度"></label><button type="button" data-fit class="studio-button">适合当前画布</button>
+     <label><input type="checkbox" data-pixel checked>转成像素图</label><label>颜色 <select data-colors aria-label="颜色数量"><option value="0" selected>保留原图颜色</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label>
+-    <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="smooth">平滑缩小（照片 / 大图）</option><option value="nearest">最近邻（已有像素画）</option></select></label></div>
++    <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="nearest">最近邻（保留像素形状）</option><option value="smooth">平滑缩小（照片 / 大图）</option></select></label>
++    <label>色板 <select data-palette aria-label="输出色板"><option value="original">原色</option><option value="hair-gray">头发规则灰色（三色）</option></select></label></div>
++    <div class="pixel-import-controls"><label><input type="checkbox" data-key>按颜色抠图</label><input type="color" data-key-color value="#303030" aria-label="抠除颜色"><button type="button" data-pick class="studio-button" aria-pressed="false">从原图取色</button><label>容差 <input type="number" data-tolerance value="32" min="0" max="255" aria-label="抠图容差"></label><label><input type="checkbox" data-neutral>只抠灰黑</label><button type="button" data-black class="studio-button">去黑色人形</button></div>
++    <p>头发灰色：描边 #777777 · 阴影 #B2B2B2 · 底色 #D1D1D1。缩小会丢失细节，先按格裁选再缩放；预览不会改动原文件。</p>
+     <p data-status aria-live="polite">选择图片后可框选局部，再调整尺寸和颜色。</p><div class="image-import-actions"><button type="button" data-place class="studio-button save-primary" disabled>放到当前画布</button><button type="button" data-import class="studio-button" disabled>新建独立素材</button></div>
+     <p>放入后拖动图片移动，拖动右下角白色方块等比缩放。取消选中后，用“移动 / 缩放”点回图片；方向键微调，Ctrl+Z 撤销。</p>`;
+   document.body.append(dialog);
+   const file=dialog.querySelector('input[type=file]'),width=dialog.querySelector('[aria-label="像素宽度"]'),colors=dialog.querySelector('[data-colors]'),sampling=dialog.querySelector('[data-sampling]'),pixelize=dialog.querySelector('[data-pixel]'),sourceCanvas=dialog.querySelector('[data-source]'),preview=dialog.querySelector('[data-preview]'),status=dialog.querySelector('[data-status]'),place=dialog.querySelector('[data-place]'),submit=dialog.querySelector('[data-import]'),fields=[...dialog.querySelectorAll('.crop-fields input')];
+-  let image=null,filename='',loading=false,crop=null,pixels=null,start=null;
++  const palette=dialog.querySelector('[data-palette]'),key=dialog.querySelector('[data-key]'),keyColor=dialog.querySelector('[data-key-color]'),tolerance=dialog.querySelector('[data-tolerance]'),neutral=dialog.querySelector('[data-neutral]'),pick=dialog.querySelector('[data-pick]');
++  let image=null,filename='',loading=false,crop=null,pixels=null,start=null,picking=false;
+   trigger.onclick=()=>dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();
+   function drawSource(){
+     if(!image)return;const scale=Math.min(360/image.width,200/image.height);sourceCanvas.width=Math.max(1,Math.round(image.width*scale));sourceCanvas.height=Math.max(1,Math.round(image.height*scale));
+-    const ctx=sourceCanvas.getContext('2d');ctx.drawImage(image,0,0,sourceCanvas.width,sourceCanvas.height);ctx.strokeStyle='#227865';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.strokeRect(crop.x*sourceCanvas.width/image.width,crop.y*sourceCanvas.height/image.height,crop.w*sourceCanvas.width/image.width,crop.h*sourceCanvas.height/image.height);
++    const ctx=sourceCanvas.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.drawImage(image,0,0,sourceCanvas.width,sourceCanvas.height);ctx.strokeStyle='#227865';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.strokeRect(crop.x*sourceCanvas.width/image.width,crop.y*sourceCanvas.height/image.height,crop.w*sourceCanvas.width/image.width,crop.h*sourceCanvas.height/image.height);
+     ctx.setLineDash([]);ctx.fillStyle='#fff';const x=(crop.x+crop.w)*sourceCanvas.width/image.width,y=(crop.y+crop.h)*sourceCanvas.height/image.height;ctx.fillRect(x-4,y-4,8,8);ctx.strokeRect(x-4,y-4,8,8);
+     fields.forEach((input,i)=>input.value=[crop.x,crop.y,crop.w,crop.h][i]);
+   }
+   function fit(){if(!crop)return;const f=app.project.getCurrentFrame();width.value=Math.max(1,Math.min(512,crop.w,f?.width||512,Math.floor((f?.height||512)*crop.w/crop.h)));}
+   function render(){
+-    submit.disabled=place.disabled=true;pixels=null;colors.disabled=!pixelize.checked;if(!image||loading)return;
++    submit.disabled=place.disabled=true;pixels=null;colors.disabled=!pixelize.checked||palette.value!=='original';if(!image||loading)return;
+     try{
+-      pixels=PE.imageToPixels(image,crop,Number(width.value),{pixelize:pixelize.checked,colors:Number(colors.value),sampling:sampling.value});
++      const rgb=keyColor.value.match(/[a-f0-9]{2}/gi).map(v=>parseInt(v,16));
++      pixels=PE.imageToPixels(image,crop,Number(width.value),{pixelize:pixelize.checked,colors:Number(colors.value),sampling:sampling.value,palette:palette.value,keyColor:key.checked?{rgb,tolerance:Number(tolerance.value),neutralOnly:neutral.checked}:null});
+       preview.width=pixels.width;preview.height=pixels.height;preview.getContext('2d').putImageData(pixels,0,0);
+       const f=app.project.getCurrentFrame(),fits=f&&!f.locked&&pixels.width<=f.width&&pixels.height<=f.height;
+-      status.textContent='裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
++      status.textContent='裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 头发三色灰':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色')+(key.checked?' · 已抠色':'')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
+       submit.disabled=false;place.disabled=!fits;
+     }catch(error){status.textContent=error.message;}
+   }
+@@ -102,9 +133,17 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(Math.abs(p.x-crop.x-crop.w)<=6*image.width/r.width&&Math.abs(p.y-crop.y-crop.h)<=6*image.height/r.height)return 'resize';
+     return (crop.w<image.width||crop.h<image.height)&&p.x>=crop.x&&p.x<crop.x+crop.w&&p.y>=crop.y&&p.y<crop.y+crop.h?'move':'select';
+   }
+-  sourceCanvas.onpointerdown=event=>{if(!image||loading||event.button!==0)return;const p=point(event);start={...p,crop:{...crop},mode:cropMode(p)};sourceCanvas.setPointerCapture(event.pointerId);};
++  sourceCanvas.onpointerdown=event=>{
++    if(!image||loading||event.button!==0)return;const p=point(event);
++    if(picking){
++      const c=document.createElement('canvas');c.width=c.height=1;const ctx=c.getContext('2d');ctx.drawImage(image,Math.min(image.width-1,p.x),Math.min(image.height-1,p.y),1,1,0,0,1,1);const rgb=ctx.getImageData(0,0,1,1).data;
++      if(!rgb[3]){status.textContent='这里已透明，请选择有颜色的像素';return;}
++      keyColor.value='#'+[...rgb.slice(0,3)].map(v=>v.toString(16).padStart(2,'0')).join('');key.checked=true;neutral.checked=false;picking=false;pick.setAttribute('aria-pressed','false');render();return;
++    }
++    start={...p,crop:{...crop},mode:cropMode(p)};sourceCanvas.setPointerCapture(event.pointerId);
++  };
+   sourceCanvas.onpointermove=event=>{
+-    if(!image||loading)return;const end=point(event);sourceCanvas.style.cursor=({resize:'nwse-resize',move:'move',select:'crosshair'})[start?.mode||cropMode(end)];if(!start)return;
++    if(!image||loading)return;const end=point(event);sourceCanvas.style.cursor=picking?'copy':({resize:'nwse-resize',move:'move',select:'crosshair'})[start?.mode||cropMode(end)];if(!start)return;
+     const s=start.crop;
+     if(start.mode==='move')crop={...s,x:Math.max(0,Math.min(image.width-s.w,s.x+end.x-start.x)),y:Math.max(0,Math.min(image.height-s.h,s.y+end.y-start.y))};
+     else if(start.mode==='resize')crop={...s,w:Math.max(1,end.x-s.x),h:Math.max(1,end.y-s.y)};
+@@ -116,8 +155,15 @@ document.addEventListener('DOMContentLoaded',()=>{
+   fields.forEach(input=>input.oninput=()=>{const [x,y,w,h]=fields.map(f=>Number(f.value));crop={x,y,w,h};fit();render();if(pixels)drawSource();});
+   dialog.querySelector('[data-all]').onclick=()=>{if(!image)return;crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();render();};
+   dialog.querySelector('[data-fit]').onclick=()=>{fit();render();};
++  dialog.querySelector('[data-cell]').onclick=()=>{
++    if(!image||loading)return;
++    if(image.width%3||image.height%4){status.textContent='此图不能均分为3列×4行，请手动裁选';return;}
++    crop={x:Number(dialog.querySelector('[data-column]').value)*image.width/3,y:Number(dialog.querySelector('[data-row]').value)*image.height/4,w:image.width/3,h:image.height/4};drawSource();fit();render();
++  };
++  pick.onclick=()=>{picking=!picking;pick.setAttribute('aria-pressed',String(picking));if(picking)status.textContent='点击原图选择要抠除的颜色；再次点取色按钮可取消';};
++  dialog.querySelector('[data-black]').onclick=()=>{key.checked=true;keyColor.value='#303030';tolerance.value=66;neutral.checked=true;render();};
+   file.onchange=async()=>{
+-    image?.close();image=null;pixels=null;submit.disabled=place.disabled=true;const selected=file.files[0];if(!selected)return;
++    image?.close();image=null;pixels=null;picking=false;pick.setAttribute('aria-pressed','false');submit.disabled=place.disabled=true;const selected=file.files[0];if(!selected)return;
+     if(!['image/png','image/jpeg','image/webp'].includes(selected.type)||selected.size>64*1024*1024){status.textContent='请选择 64 MB 以内的 PNG、JPEG 或 WebP 图片';return;}
+     loading=true;file.disabled=true;status.textContent='读取图片…';
+     try{const decoded=await createImageBitmap(selected);if(decoded.width*decoded.height>16*1024*1024){decoded.close();throw new Error('图片超过 1600 万像素，请先缩小原图');}image=decoded;filename=selected.name.replace(/\.[^/.]+$/,'');crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();}
+@@ -125,6 +171,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     finally{loading=false;file.disabled=false;render();}
+   };
+   width.oninput=colors.onchange=sampling.onchange=pixelize.onchange=render;
++  palette.onchange=key.onchange=keyColor.oninput=tolerance.oninput=neutral.onchange=render;
+   place.onclick=()=>{try{if(!pixels)return;PE.addImageLayer(app,pixels,filename);dialog.close();}catch(error){status.textContent=error.message;}};
+   submit.onclick=async()=>{
+     submit.disabled=place.disabled=true;
+diff --git a/js/visual-layers.js b/js/visual-layers.js
+index 3749946..8d48eb2 100644
+--- a/js/visual-layers.js
++++ b/js/visual-layers.js
+@@ -20,7 +20,7 @@ PE.VisualLayers={
+   },
+   partName(layer){
+     if(layer.isGroup)return null;
+-    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim();
++    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim()||s.trim();
+     if(n.startsWith('头发 /')&&this.slot(layer))return this.slot(layer)+'-'+clean(pieces[1]);
+     if(n.startsWith('发饰 /'))return '饰品-'+clean(pieces[1]);
+     if(n.startsWith('服装 /'))return pieces.at(-1)+'-'+clean(pieces[1]);
+@@ -31,6 +31,11 @@ PE.VisualLayers={
+     const name=this.partName(layer);
+     return name?project.layers.filter(l=>this.partName(l)===name&&project.spriteSheets?.[l.sheetIndex]?.name.startsWith('original32_')):[];
+   },
++  components(project,layer){
++    const group=project.layers[layer.parent],slot=this.slot(layer);
++    if(layer.parent==null||!group?.isGroup||!slot||this.slot(group)!==slot)return [layer];
++    return project.layers.filter(l=>!l.isGroup&&l.parent===layer.parent&&this.slot(l)===slot&&l.name.split(' / ')[1]===layer.name.split(' / ')[1]);
++  },
+   toggleFamily(app,index){
+     const p=app.project,members=this.family(p,p.layers[index]);if(!members.length)return;
+     const visible=!members.every(l=>l.visible),before=p.layers.map(l=>l.visible),slot=this.slot(p.layers[index]);
+@@ -54,8 +59,9 @@ PE.VisualLayers={
+   },
+   choose(app,index){
+     const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isHandLayer(l))return;
+-    const slot=this.slot(l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
+-    if(slot)for(const other of p.layers){if(other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=other===l;}
++    const slot=this.slot(l),members=this.components(p,l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
++    if(slot)for(const other of p.layers){if(!other.isGroup&&other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=members.includes(other);}
++    let parent=l.parent;const seen=new Set();while(parent!=null&&p.layers[parent]?.isGroup&&!seen.has(parent)){seen.add(parent);p.layers[parent].visible=true;parent=p.layers[parent].parent;}
+     l.visible=true;p.currentLayerIndex=index;app.animationPlayer.pause();
+     const after=p.layers.map(x=>x.visible),restore=(values,li)=>{p.layers.forEach((x,i)=>x.visible=values[i]);p.currentLayerIndex=li;};
+     app.history.undoStack.push({description:'选用'+(slot||'图层'),changes:[],undo:()=>restore(before,selected),redo:()=>restore(after,index)});
+@@ -91,7 +97,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+       b.onclick=event=>{event.stopPropagation();this.visualLayerCategory=name;this.updateLayerList();};nav.append(b);
+     }
+     const panel=element('div','part-panel');panel.setAttribute('role','tabpanel');const groups=new Map();
+-    const entries=rows.filter(row=>V.category(p.layers[Number(row.dataset.layerIndex)])===this.visualLayerCategory);
++    const prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_',hasPixels=l=>[...l.frameData].some(([k,d])=>k.startsWith(prefix)&&d.data.some((v,i)=>i%4===3&&v));
++    const entries=rows.filter(row=>{const l=p.layers[Number(row.dataset.layerIndex)],members=V.components(p,l);return V.category(l)===this.visualLayerCategory&&(members.length===1||hasPixels(l)||!members.some(hasPixels));});
+     for(const row of entries){
+       const index=Number(row.dataset.layerIndex),l=p.layers[index],slot=V.slot(l)||'图层';
+       if(!groups.has(slot)){const group=element('section','part-slot'),title=element('h5','part-slot-title',slot);group.append(title);groups.set(slot,group);}
+@@ -99,7 +106,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+       const label=row.querySelector('.layer-name'),icons=[...row.querySelectorAll('.layer-icon-btn')],opacity=row.querySelector('input'),clone=row.querySelector('.layer-mini'),remove=row.querySelector('.layer-delete');
+       const thumb=element('canvas','part-thumb');thumb.width=48;thumb.height=48;thumb.setAttribute('aria-label',(l.name||'图层')+'预览');drawThumbnail(thumb,V.thumbnail(l,p));
+       const main=element('div','part-card-main');
+-      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?l.name.split(' / ')[1].replace(/^\d+\s*/,''):l.name.split(' / ').at(-1);
++      const partLabel=l.name.split(' / ')[1]||'';
++      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+       const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
+       const state=element('small','part-state',l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''));
+       const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
+diff --git a/test/image-import-browser.cjs b/test/image-import-browser.cjs
+index d06564c..da654d1 100644
+--- a/test/image-import-browser.cjs
++++ b/test/image-import-browser.cjs
+@@ -23,7 +23,17 @@ async function main(){
+     await page.getByRole('button',{name:'上传图片',exact:true}).click();
+     await page.getByLabel('上传源图片').setInputFiles({name:'测试图片.png',mimeType:'image/png',buffer:source.toBuffer('image/png')});
+     await page.getByRole('button',{name:'放到当前画布',exact:true}).waitFor({state:'visible'});
+-    assert.equal(await page.getByLabel('颜色数量').inputValue(),'0');assert.equal(await page.getByLabel('缩小方式').inputValue(),'smooth');
++    assert.equal(await page.getByLabel('颜色数量').inputValue(),'0');assert.equal(await page.getByLabel('缩小方式').inputValue(),'nearest');
++    await page.getByLabel('精灵方向').selectOption('1');await page.getByLabel('精灵帧',{exact:true}).selectOption('2');await page.getByRole('button',{name:'按3×4精灵格裁选',exact:true}).click();
++    assert.deepEqual(await page.locator('.crop-fields input').evaluateAll(inputs=>inputs.map(i=>Number(i.value))),[16,4,8,4]);await page.getByRole('button',{name:'选整张图',exact:true}).click();
++    await page.getByRole('button',{name:'从原图取色',exact:true}).click();const pickBox=await page.getByLabel('原图裁选').boundingBox();await page.mouse.click(pickBox.x+pickBox.width/8,pickBox.y+pickBox.height/4);
++    assert.equal(await page.getByLabel('抠除颜色').inputValue(),'#ff0000');assert.equal(await page.getByLabel('按颜色抠图',{exact:true}).isChecked(),true);
++    assert.deepEqual(await page.locator('[data-preview]').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return [d[3],d[(c.width-1)*4+3]];}),[0,255]);
++    const black=createCanvas(24,16),blackCtx=black.getContext('2d');blackCtx.fillStyle='#303030';blackCtx.fillRect(0,0,12,16);blackCtx.fillStyle='#f0d040';blackCtx.fillRect(12,0,12,16);blackCtx.fillStyle='#6e4008';blackCtx.fillRect(12,0,2,16);
++    await page.getByLabel('上传源图片').setInputFiles({name:'黑色人形.png',mimeType:'image/png',buffer:black.toBuffer('image/png')});await page.getByRole('button',{name:'去黑色人形',exact:true}).click();await page.getByLabel('输出色板').selectOption('hair-gray');
++    const keyed=await page.locator('[data-preview]').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return {left:[...d.slice(0,4)],outline:[...d.slice(12*4,13*4)],base:[...d.slice(20*4,21*4)]};});assert.deepEqual(keyed,{left:[0,0,0,0],outline:[119,119,119,255],base:[209,209,209,255]});assert.equal(await page.getByLabel('颜色数量').isDisabled(),true);
++    await page.screenshot({path:path.join(root,'test/image-key-gray-preview.png')});await page.getByLabel('按颜色抠图',{exact:true}).uncheck();await page.getByLabel('输出色板').selectOption('original');
++    await page.getByLabel('上传源图片').setInputFiles({name:'测试图片.png',mimeType:'image/png',buffer:source.toBuffer('image/png')});
+     const cropCanvas=page.getByLabel('原图裁选'),box=await cropCanvas.boundingBox();
+     const cropPoint=(x,y)=>({x:box.x+x*box.width/24,y:box.y+y*box.height/16});
+     async function cropDrag(x,y,dx,dy){const a=cropPoint(x,y),b=cropPoint(dx,dy);await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:5});await page.mouse.up();}
+diff --git a/test/image-import.cjs b/test/image-import.cjs
+index 522710b..a312768 100644
+--- a/test/image-import.cjs
++++ b/test/image-import.cjs
+@@ -11,9 +11,18 @@ const checker=createCanvas(2,1),c=checker.getContext('2d');c.fillStyle='#000';c.
+ const nearest=PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false,sampling:'nearest'}),smooth=PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false,sampling:'smooth'});assert.notDeepEqual([...nearest.data],[...smooth.data],'sampling choice must change the conversion');
+ const gradient=createCanvas(32,1),g=gradient.getContext('2d');for(let i=0;i<32;i++){g.fillStyle=`rgb(${i*8},${255-i*8},0)`;g.fillRect(i,0,1,1);}
+ const preserved=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32);assert.deepEqual(preserved.data,g.getImageData(0,0,32,1).data,'default conversion must preserve more than 16 original colors');
+-const blueOnly=PE.imageToPixels(source,crop,2,{pixelize:false});for(let i=0;i<blueOnly.data.length;i+=4)assert.equal(blueOnly.data[i],0,'smooth resizing must not pull red from outside the blue crop');
++const blueOnly=PE.imageToPixels(source,crop,2,{pixelize:false,sampling:'smooth'});for(let i=0;i<blueOnly.data.length;i+=4)assert.equal(blueOnly.data[i],0,'smooth resizing must not pull red from outside the blue crop');
+ const reduced=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32,{colors:8}),palette=new Set();for(let i=0;i<reduced.data.length;i+=4)palette.add([...reduced.data.slice(i,i+3)].join(','));assert(palette.size<=8);
+-assert.deepEqual(PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false}).data,smooth.data,'default downsampling must average detail instead of selecting a single source pixel');
++assert.deepEqual(PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false}).data,nearest.data,'default downsampling preserves existing pixel art without blending colors');
++const keyed={data:new Uint8ClampedArray([48,48,48,255,90,90,90,255,110,65,8,255,255,220,80,255])};
++PE.removeImageColor(keyed,{rgb:[48,48,48],tolerance:66,neutralOnly:true});assert.deepEqual([...keyed.data.slice(0,8)],[0,0,0,0,0,0,0,0]);assert.equal(keyed.data[11],255,'warm hair outlines survive gray/black keying');
++assert.throws(()=>PE.removeImageColor(keyed,{rgb:[0,0],tolerance:0}),/容差/);assert.throws(()=>PE.removeImageColor(keyed,{rgb:[0,0,0],tolerance:-1}),/容差/);
++const gray=PE.hairGrayImage({width:4,height:1,data:new Uint8ClampedArray([100,60,0,255,220,170,30,255,255,240,120,255,10,20,30,0])});assert.deepEqual([...gray.data],[119,119,119,255,178,178,178,255,209,209,209,255,0,0,0,0]);
++const shadow=new ImageData(3,3);for(let i=0;i<shadow.data.length;i+=4)shadow.data.set([100,60,0,255],i);PE.hairGrayImage(shadow);assert.equal(shadow.data[16],178,'filled dark interior becomes shadow, not a solid outline block');assert.equal(shadow.data[0],119);
++const blackAndGold=createCanvas(4,2),kg=blackAndGold.getContext('2d');kg.fillStyle='#303030';kg.fillRect(0,0,2,2);kg.fillStyle='#f0d040';kg.fillRect(2,0,2,2);const untouched=kg.getImageData(0,0,4,2).data.slice();
++const cut=PE.imageToPixels(blackAndGold,{x:0,y:0,w:4,h:2},4,{keyColor:{rgb:[48,48,48],tolerance:0}});assert.equal(cut.data[3],0);assert.equal(cut.data[11],255);assert.deepEqual(kg.getImageData(0,0,4,2).data,untouched,'keying never mutates the original image');
++const softCut=PE.imageToPixels(blackAndGold,{x:0,y:0,w:4,h:2},2,{pixelize:false,sampling:'smooth',keyColor:{rgb:[48,48,48],tolerance:0}});for(let i=0;i<softCut.data.length;i+=4)if(softCut.data[i+3])assert([240,208,64].every((v,c)=>Math.abs(softCut.data[i+c]/softCut.data[i]-v/240)<.01),'optional photo filtering preserves gold hue rather than blending black into the edge');
++assert.throws(()=>PE.imageToPixels(source,crop,2,{palette:'unknown'}),/色板/);
+ const p=new PE.Project(),sheet=new PE.SpriteSheet('canvas'),action=new PE.Action('idle','down');sheet.actions.push(action);action.frames.push(new PE.Frame(0,0,0,8,8),new PE.Frame(0,0,0,8,8));p.spriteSheets=[sheet];p.currentSheetIndex=p.currentActionIndex=p.currentFrameIndex=0;
+ const original=p.layers[0],before=new ImageData(8,8);before.data.set([17,18,19,255]);original.frameData.set('0_0_0',before);original.frameData.set('0_0_1',new ImageData(8,8));p.currentLayerIndex=0;
+ const history=new PE.HistoryManager(),tools=new PE.ToolManager(),cm=new PE.CanvasManager(Object.assign(createCanvas(64,64),{style:{}}),p);tools.init(p,cm,history);let dirty=0;
+diff --git a/test/visual-layers.cjs b/test/visual-layers.cjs
+index 86b4575..ea53cb3 100644
+--- a/test/visual-layers.cjs
++++ b/test/visual-layers.cjs
+@@ -35,3 +35,9 @@ assert.deepEqual(layers.map(l=>[...l.frameData]),pixels);
+ assert.equal(V.partName(layer('头发 / 02 齐刘海 / 前发')),'前发-齐刘海');
+ assert.equal(V.partName(layer('头发 / 02 双马尾侧扎发束 / 侧发')),'侧发-双马尾侧扎发束');
+ console.log('PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.');
++
++const groupIndex=layers.length,group={...layer('头发 / 80009 / 后发'),isGroup:true,frameData:new Map()},bottom={...layer('头发 / 80009 / 底层后发'),parent:groupIndex},side={...layer('头发 / 80009 / 侧面后发'),parent:groupIndex,frameData:new Map([['8_0_0',data]])},different={...layer('头发 / 80010 / 后发'),parent:groupIndex};
++layers.push(group,bottom,side,different);assert.deepEqual(V.components(p,bottom),[bottom,side]);assert.notEqual(V.partName(bottom),V.partName(different),'numeric source IDs remain distinct');
++V.choose(app,groupIndex+1);assert(group.visible&&bottom.visible&&side.visible);assert(!different.visible&&!layers[2].visible);app.history.undoStack.at(-1).undo();assert(!group.visible&&!bottom.visible&&!side.visible);app.history.undoStack.at(-1).redo();assert(group.visible&&bottom.visible&&side.visible);
++app.visualLayerCategory='头发';app.updateLayerList();assert(!list.querySelectorAll('.visual-layer-card').some(r=>Number(r.dataset.layerIndex)===groupIndex+2),'blank directional component card is hidden');assert(list.querySelectorAll('.layer-name').some(e=>e.textContent==='80009'),'numeric source ID has a visible label');
++console.log('PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.');

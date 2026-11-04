@@ -1,0 +1,29 @@
+{
+  "target": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+  "approved": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+  "etag": "\"201b748096fddf2159d2f78d75e7d982701c13a288912c1f40e0c183595147ae\"",
+  "apiReadback": true,
+  "all48HairCelsMatchApproved": true,
+  "serverInheritedHandFrames": [
+    [
+      130,
+      "8_2_3"
+    ],
+    [
+      135,
+      "8_1_3"
+    ],
+    [
+      137,
+      "8_0_3"
+    ],
+    [
+      140,
+      "8_0_3"
+    ]
+  ],
+  "inheritedHandPixelsEqualOriginalTarget": true,
+  "allOtherDataEqualsSubmitted": true,
+  "actualSavedMainPreviewPNGComparisons": 24,
+  "browserChecked": false
+}

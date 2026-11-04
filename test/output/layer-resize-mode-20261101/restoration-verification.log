@@ -1,0 +1,3 @@
+COMMAND: & ./restore.ps1 -TargetRoot 'C:\Users\Administrator\Desktop\角色绘画\test\output\layer-resize-mode-20261101\restoration-drill' (extra copy, not live workspace)
+PASS: restored all five existing files; original SHA256 checksums match. New regression test files are retained.
+PASS: final modified files retained unchanged after the restoration drill.

@@ -1,0 +1,13 @@
+animation syntax exit=0
+studio syntax exit=0
+image tools syntax exit=0
+workbench syntax exit=0
+{"firstWait":100,"nextWait":60,"playbackComposites":4,"afterEdit":8,"afterHands":12,"toolbarStates":[{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":false},{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":true},{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":true}]}
+PASS: compensated frame timing, cached action previews, edit/hand invalidation, stable toolbar across mixed frames.
+playback test exit=0
+PASS: correct selected frame before UI render; non-drawing mouseup preserves timeline target; manual next/previous pause playback.
+timeline test exit=0
+PASS: arms switch, auxiliary/copy/timing controls directly visible; original listeners retained; only user can collapse auxiliary bars; reset without reload.
+layout test exit=0
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+cleanup test exit=0

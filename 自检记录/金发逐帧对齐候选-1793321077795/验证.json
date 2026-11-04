@@ -1,0 +1,41 @@
+{
+  "log": [
+    {
+      "reference": "C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-9a692d1e-37d2-47ab-b661-d5a7ff0dc498.png",
+      "removed": 905
+    },
+    {
+      "reference": "C:/Users/ADMINI~1/AppData/Local/Temp/codex-clipboard-2e9fe18e-5c27-451b-b321-8441ebc20d3a.png",
+      "removed": 766
+    },
+    {
+      "name": "TV_FrontHair1_p80011.png",
+      "sha256": "70571362b21bc501f1e65369afe130179be24220340abbe7b82f3e75804db789"
+    },
+    {
+      "name": "TV_RearHair1_p80009.png",
+      "sha256": "1c0345b37e67864e9311192e8b00381e3cc4d86a7e70ea3b7f65fdffaff1cac8"
+    },
+    {
+      "name": "TV_RearHair2_p80009.png",
+      "sha256": "1b5534040955eb26d0b16a1268032dccdceeb4f160b4f37befd5f08fbb233001"
+    }
+  ],
+  "scale": 0.82,
+  "sourceColumns": [
+    1,
+    2,
+    1,
+    0
+  ],
+  "checks": [
+    "body/head/hand pixel data unchanged",
+    "only selected branch saved with ETag",
+    "API readback matches",
+    "black silhouette removed from references",
+    "nearest-neighbor opaque pixels"
+  ],
+  "notChecked": [
+    "browser live rendering"
+  ]
+}

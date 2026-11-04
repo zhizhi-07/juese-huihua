@@ -1,0 +1,282 @@
+{
+  "changedCels": [
+    {
+      "li": 198,
+      "key": "8_0_0",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 198,
+      "key": "8_0_1",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 198,
+      "key": "8_0_2",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 198,
+      "key": "8_0_3",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 201,
+      "key": "10_0_0",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 201,
+      "key": "10_0_1",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 201,
+      "key": "10_0_2",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 201,
+      "key": "10_0_3",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_0",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_1",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_2",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_3",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_4",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_5",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_6",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 203,
+      "key": "7_0_7",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_0",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_1",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_2",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_3",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_4",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 205,
+      "key": "9_0_5",
+      "sheet": 9,
+      "direction": "side"
+    }
+  ],
+  "pixelChanges": [
+    {
+      "li": 198,
+      "key": "8_0_0",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 198,
+      "key": "8_0_1",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 198,
+      "key": "8_0_2",
+      "count": 6,
+      "top": 6
+    },
+    {
+      "li": 198,
+      "key": "8_0_3",
+      "count": 6,
+      "top": 6
+    },
+    {
+      "li": 201,
+      "key": "10_0_0",
+      "count": 15,
+      "top": 4
+    },
+    {
+      "li": 201,
+      "key": "10_0_1",
+      "count": 15,
+      "top": 4
+    },
+    {
+      "li": 201,
+      "key": "10_0_2",
+      "count": 15,
+      "top": 5
+    },
+    {
+      "li": 201,
+      "key": "10_0_3",
+      "count": 15,
+      "top": 5
+    },
+    {
+      "li": 203,
+      "key": "7_0_0",
+      "count": 6,
+      "top": 2
+    },
+    {
+      "li": 203,
+      "key": "7_0_1",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 203,
+      "key": "7_0_2",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 203,
+      "key": "7_0_3",
+      "count": 6,
+      "top": 2
+    },
+    {
+      "li": 203,
+      "key": "7_0_4",
+      "count": 6,
+      "top": 2
+    },
+    {
+      "li": 203,
+      "key": "7_0_5",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 203,
+      "key": "7_0_6",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 203,
+      "key": "7_0_7",
+      "count": 6,
+      "top": 2
+    },
+    {
+      "li": 205,
+      "key": "9_0_0",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 205,
+      "key": "9_0_1",
+      "count": 6,
+      "top": 6
+    },
+    {
+      "li": 205,
+      "key": "9_0_2",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 205,
+      "key": "9_0_3",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 205,
+      "key": "9_0_4",
+      "count": 6,
+      "top": 4
+    },
+    {
+      "li": 205,
+      "key": "9_0_5",
+      "count": 6,
+      "top": 4
+    }
+  ],
+  "auditedCrownFrames": 48,
+  "headCoverageInTopThreeRows": true,
+  "checkedCompositeFrames": 70,
+  "unrelatedDataExact": true,
+  "backViewsExact": true,
+  "outsideCrownHolesExact": true,
+  "crownRepaired": true,
+  "mainCanvasAndAnimationAndExport": true,
+  "browserTested": false,
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-修复发顶露肤",
+  "saved": true,
+  "etag": "\"37648fbcf54bc61f96ed0b0d1d4ac881edd6b02dda3ce5302ec3960cca836094\""
+}

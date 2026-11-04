@@ -1,0 +1,198 @@
+{
+  "sourceSHA256": "b1679c7a99a6e959c5d6d731f704e2aeb3bc99da2fdad14a8e65506b4deed789",
+  "sourceETag": "\"b1679c7a99a6e959c5d6d731f704e2aeb3bc99da2fdad14a8e65506b4deed789\"",
+  "candidateSHA256": "a3e93475721e0be2ee7988530c02d92cadd371e3fc67615b32386ea79aeec369",
+  "plans": [
+    [
+      {
+        "direction": "side",
+        "beforeBounds": [
+          2,
+          1,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 1,
+        "width": 23,
+        "height": 19
+      },
+      {
+        "direction": "down",
+        "beforeBounds": [
+          2,
+          1,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 1,
+        "width": 23,
+        "height": 19
+      },
+      {
+        "direction": "up",
+        "beforeBounds": [
+          2,
+          1,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 1,
+        "width": 23,
+        "height": 19
+      }
+    ],
+    [
+      {
+        "direction": "side",
+        "beforeBounds": [
+          3,
+          1,
+          14,
+          16
+        ],
+        "dx": 2,
+        "dy": 1,
+        "width": 21,
+        "height": 19
+      },
+      {
+        "direction": "down",
+        "beforeBounds": [
+          2,
+          1,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 1,
+        "width": 23,
+        "height": 19
+      },
+      {
+        "direction": "up",
+        "beforeBounds": [
+          2,
+          1,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 1,
+        "width": 23,
+        "height": 19
+      }
+    ],
+    [
+      {
+        "direction": "side",
+        "beforeBounds": [
+          2,
+          2,
+          20,
+          18
+        ],
+        "dx": 3,
+        "dy": 0,
+        "width": 28,
+        "height": 20
+      },
+      {
+        "direction": "down",
+        "beforeBounds": [
+          1,
+          1,
+          20,
+          19
+        ],
+        "dx": 4,
+        "dy": 1,
+        "width": 29,
+        "height": 22
+      },
+      {
+        "direction": "up",
+        "beforeBounds": [
+          1,
+          2,
+          20,
+          18
+        ],
+        "dx": 4,
+        "dy": 0,
+        "width": 29,
+        "height": 20
+      }
+    ],
+    [
+      {
+        "direction": "side",
+        "beforeBounds": [
+          2,
+          2,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 0,
+        "width": 23,
+        "height": 18
+      },
+      {
+        "direction": "down",
+        "beforeBounds": [
+          2,
+          2,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 0,
+        "width": 23,
+        "height": 18
+      },
+      {
+        "direction": "up",
+        "beforeBounds": [
+          2,
+          2,
+          15,
+          16
+        ],
+        "dx": 3,
+        "dy": 0,
+        "width": 23,
+        "height": 18
+      }
+    ]
+  ],
+  "check": {
+    "frames": 66,
+    "cels": 535,
+    "generatedHairFrames": 189,
+    "paintedPixelsUnchanged": true,
+    "allActionMargins": [
+      5,
+      2,
+      5,
+      2
+    ],
+    "timingAndLayersUnchanged": true
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "route": "/api/projects",
+      "status": 200,
+      "etag": null
+    },
+    {
+      "method": "GET",
+      "route": "/api/project?id=main",
+      "status": 200,
+      "etag": "\"b1679c7a99a6e959c5d6d731f704e2aeb3bc99da2fdad14a8e65506b4deed789\""
+    }
+  ]
+}

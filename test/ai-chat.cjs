@@ -22,7 +22,7 @@ assert.throws(()=>completion('data: '+JSON.stringify({choices:[{delta:{content:'
 let browser,child,upstream,dir;
 (async()=>{
   dir=fs.mkdtempSync(path.join(os.tmpdir(),'pixel-ai-test-'));
-  for(const file of ['server.js','ai-service.cjs','index.html','后台工程读写约定.md','人物绘制AI要求与自检.md','像素发型教程与自检.md','眼睛绘制AI要求与自检.md','衣服绘制AI要求与自检.md','建筑绘制AI要求与自检.md','物品绘制AI要求与自检.md'])fs.copyFileSync(path.join(root,file),path.join(dir,file));
+  for(const file of ['server.js','ai-service.cjs','index.html','后台工程读写约定.md'])fs.copyFileSync(path.join(root,file),path.join(dir,file));
   for(const folder of ['js','css'])fs.cpSync(path.join(root,folder),path.join(dir,folder),{recursive:true});
   const blank=createCanvas(32,32).toDataURL();
   const fixture={version:'1.0',name:'AI 接入测试分支',currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,currentLayerIndex:0,palette:[],layers:[{name:'头发 / 测试 / 前发',sheetIndex:0,visible:true,locked:false,opacity:1,frameData:{'0_0_0':{width:32,height:32,dataURL:blank}}}],spriteSheets:[{name:'待机测试素材表',frameWidth:32,frameHeight:32,imageDataURL:blank,columns:1,rows:1,actions:[{name:'正面',direction:'down',frames:[{sheetIndex:0,sourceX:0,sourceY:0,width:32,height:32}]}]}]};
@@ -67,7 +67,7 @@ let browser,child,upstream,dir;
   assert((await page.locator('[data-id="change-title"]').textContent()).includes('待应用'));assert.equal(await page.locator('[data-id="change-frames"] img').count(),2);assert((await page.locator('.ai-message.assistant').last().textContent()).includes('尚未应用'));
   fs.mkdirSync(path.join(root,'自检记录/AI网页接入-20261027'),{recursive:true});await page.locator('[data-id="changes"]').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(root,'自检记录/AI网页接入-20261027/修改位置与前后预览.png')});
   await page.locator('[data-id="change-frames"] button').first().click();assert.equal(await page.locator('#ai-chat').isVisible(),false);await page.getByRole('button',{name:'AI 对话',exact:true}).click();
-  assert(received.messages[0].content.includes('像素发型教程与自检.md'));assert(!received.messages[0].content.includes('## 建筑绘制AI要求与自检.md'));
+  assert(received.messages[0].content.includes('## 后台工程读写约定.md'));assert(!received.messages[0].content.includes('像素发型教程与自检.md'));assert(!received.messages[0].content.includes('## 建筑绘制AI要求与自检.md'));
   assert.equal(received.messages.at(-1).content.filter(c=>c.type==='image_url').length,2);assert(received.messages.at(-1).content.some(c=>c.text==='用户参考图：红色参考.png'));
   const beforeDisk=fs.readFileSync(path.join(dir,'data/projects/ai-test.json'),'utf8');
   await page.locator('[data-id="apply"]').click();await page.waitForFunction(()=>!document.querySelector('[data-id="undo"]').disabled);
@@ -84,13 +84,13 @@ let browser,child,upstream,dir;
   assert((await page.locator('[data-id="status"]').textContent()).includes('已变化'));
   assert.equal(await page.evaluate(()=>PE.app.project.layers[0].getPixel('0_0_0',1,1).a),255);
   await page.locator('[data-id="category"]').selectOption('building');await page.locator('[data-id="input"]').fill('画一块建筑测试像素');await page.locator('[data-id="send"]').click();await page.waitForFunction(()=>!document.querySelector('[data-id="apply"]').disabled);
-  assert(received.messages[0].content.includes('## 建筑绘制AI要求与自检.md'));assert(!received.messages[0].content.includes('## 人物绘制AI要求与自检.md'));
+  assert(received.messages[0].content.includes('## 后台工程读写约定.md'));assert(!received.messages[0].content.includes('## 建筑绘制AI要求与自检.md'));assert(!received.messages[0].content.includes('## 人物绘制AI要求与自检.md'));
   await page.locator('[data-id="apply"]').click();await page.waitForFunction(()=>!document.querySelector('[data-id="undo"]').disabled);
   await page.waitForFunction(()=>document.querySelector('[data-id="status"]').textContent.includes('看图检查已完成'));
   await page.evaluate(()=>PE.app.persistence.saveNow());assert.notEqual(fs.readFileSync(path.join(dir,'data/projects/ai-test.json'),'utf8'),beforeDisk);
   assert.deepEqual(errors,[]);
   for(const [category,specific,excluded] of [['eyes','眼睛绘制AI要求与自检.md','衣服绘制AI要求与自检.md'],['clothes','衣服绘制AI要求与自检.md','眼睛绘制AI要求与自检.md']]){
-    const r=await fetch(base+'/api/ai/chat',{method:'POST',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1'},body:JSON.stringify({baseURL:'http://127.0.0.1:18769',model:'gpt-6-sol',category,messages:[{role:'user',content:'测试分类文档'}],image:blank,context:{sheetIndex:0,actions:[{actionIndex:0,isIdle:true}]}})});const data=await r.json();assert.equal(r.status,200,JSON.stringify(data));assert.deepEqual(data.documents,['后台工程读写约定.md','人物绘制AI要求与自检.md',specific]);assert(received.messages[0].content.includes('## '+specific));assert(!received.messages[0].content.includes('## '+excluded));
+    const r=await fetch(base+'/api/ai/chat',{method:'POST',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1'},body:JSON.stringify({baseURL:'http://127.0.0.1:18769',model:'gpt-6-sol',category,messages:[{role:'user',content:'测试分类文档'}],image:blank,context:{sheetIndex:0,actions:[{actionIndex:0,isIdle:true}]}})});const data=await r.json();assert.equal(r.status,200,JSON.stringify(data));assert.deepEqual(data.documents,['后台工程读写约定.md']);assert(!received.messages[0].content.includes('## '+specific));assert(!received.messages[0].content.includes('## '+excluded));
   }
   for(const motionPolicy of [undefined,{idleConfirmed:true},{idleConfirmed:true,explicitOtherActions:true}]){const r=await fetch(base+'/api/ai/chat',{method:'POST',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1'},body:JSON.stringify({baseURL:'http://127.0.0.1:18769',model:'gpt-6-sol',category:'hair',messages:[{role:'user',content:'测试其他动作授权'}],image:blank,context:{sheetIndex:0,actions:[{actionIndex:0,isIdle:false}],motionPolicy}})});assert.equal(r.status,motionPolicy?.explicitOtherActions?200:502);}
   await page.locator('[data-id="other-actions"]').check();await page.locator('[data-id="input"]').fill('无像素测试');await page.locator('[data-id="send"]').click();await page.waitForFunction(()=>document.querySelector('[data-id="status"]').textContent.includes('未产生任何像素'));assert.equal(await page.locator('[data-id="apply"]').isDisabled(),true);assert((await page.locator('.ai-message.assistant').last().textContent()).includes('画面没有改变'));assert.equal(await page.locator('[data-id="other-actions"]').isChecked(),false);

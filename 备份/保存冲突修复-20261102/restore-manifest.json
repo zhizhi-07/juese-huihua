@@ -1,0 +1,32 @@
+[
+  {
+    "target": "js/persistence.js",
+    "backup": "persistence.js",
+    "before": "c05cbaf9dba6df015b0986e524a6f0e04fbb940808f5fe78f388b311cb56ecff",
+    "after": "0f60883f9217f50d9d131944bd8ea5c376dd5955cbed23ee130727bee34e35d4"
+  },
+  {
+    "target": "js/export.js",
+    "backup": "export.js",
+    "before": "dedc6e789fd66afc815c7bfe43dbdc3f85ee16549900fd42d71693b741cd1975",
+    "after": "5566a657204cc4dd0d489bc2e23f672945e65c1d3635dec3ada70c0785f7a89b"
+  },
+  {
+    "target": "test/persistence.cjs",
+    "backup": "persistence.cjs",
+    "before": "f7865cfa4a8dc0fcc0da70cacc34bbd4a2a84e04c5908549463e156acd1a4ab8",
+    "after": "b66683e8f64a6e20c48d691f4aabb0c4c020b32f55ac8d0cf74533aa8102702e"
+  },
+  {
+    "target": "draft-rescue-user.html",
+    "backup": "draft-rescue-user.html",
+    "before": "267f27ebec925a3591ea4ccf164c2ffc3e7988482b6b5dc080ed832a184c1aac",
+    "after": "9bb48626753103584489fcb6a19d8c6c1c1afabd67e72a4c97dee807e7dd6678"
+  },
+  {
+    "target": "test/draft-rescue-user.cjs",
+    "backup": "draft-rescue-user.cjs",
+    "before": "26e682ae84b29154e7c417ef667293862df39250fad0d35c818baf5cb9019dc7",
+    "after": "be769cc88cdc3294515204bc24f56972c4e4adec8e552056b04502f966201aa0"
+  }
+]

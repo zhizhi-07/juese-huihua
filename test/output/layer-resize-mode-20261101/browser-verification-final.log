@@ -1,0 +1,20 @@
+AssertionError [ERR_ASSERTION]: drag handle follows pixel mode
++ actual - expected
+
++ {
++   h: 1,
++   w: 2,
++   x: 2,
++   y: 3
++ }
+- null
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\layer-resize-mode-browser.cjs:46:63 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Object],
+  expected: null,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+EXIT: 1

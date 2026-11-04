@@ -1,0 +1,10 @@
+
+Algorithm Hash                                                             Path
+--------- ----                                                             ----
+SHA256    3A9397BDC126CD6BEE01A283ACCAB29E6CDDE7A39AD9AE6FA23E54AC1FF442CC C:\Users\Administrator\Desktop\角色绘画\js\tools.js
+SHA256    3F9C9838143E39DBFBFBF617C633D5511676912B1693252058A9F18A2B382FE3 C:\Users\Administrator\Desktop\角色绘画\js\pixel-import.js
+SHA256    E999366652F8394677E43AA241AFF2CDF3962BF762964D8579CDCBFC71AFF016 C:\Users\Administrator\Desktop\角色绘画\css\studio.css
+SHA256    96CC76AB9683D4207754AEF73D214D9B3E9FA7A5F44A4D2C0B0FB4C6FA619677 C:\Users\Administrator\Desktop\角色绘画\index.html
+SHA256    317E722F5DBBFDF0704DFA6059387B0DF3CE0165E2ED76D6D0C2FCCD37A0D700 C:\Users\Administrator\Desktop\角色绘画\test\image-edit.cjs
+
+

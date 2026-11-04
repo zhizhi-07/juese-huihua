@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "isolatedFixture": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\native16-wiring-qa-1793761240707",
+  "realWorkspaceProjectWritten": false,
+  "checks": [
+    "five visual layer tabs and four actions",
+    "actual pencil gesture edits main sitting arm",
+    "native16 hair dialog contains four actions and three directions",
+    "mask and paint use 16 actual source pixels",
+    "native hair defaults one pixel",
+    "AI new-project entry creates current live character branch",
+    "branch inherits latest drawn sitting with protected arms",
+    "no browser runtime errors"
+  ]
+}

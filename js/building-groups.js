@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const app=PE.app,update=app.updateLayerList.bind(app),open=new Map();
   app.updateLayerList=function(){
     update();
-    const p=this.project;if(p.getCurrentSheet()?.name.startsWith('original32_'))return;
+    const p=this.project;if(PE.isCharacterSheet(p.getCurrentSheet()))return;
     const list=document.getElementById('layer-list');
     const rows=[...list.children].filter(row=>row.dataset.layerIndex!==undefined);
     const byIndex=new Map(rows.map(row=>[Number(row.dataset.layerIndex),row]));

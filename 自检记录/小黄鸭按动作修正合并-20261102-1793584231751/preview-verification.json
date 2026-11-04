@@ -1,0 +1,30 @@
+[
+  {
+    "sheet": 7,
+    "sourceFrames": 8,
+    "gifFrames": 8,
+    "gifDurationMs": 800,
+    "note": "GIF uses 10 ms precision and merges identical frames; project timing is unchanged."
+  },
+  {
+    "sheet": 9,
+    "sourceFrames": 6,
+    "gifFrames": 6,
+    "gifDurationMs": 1000,
+    "note": "GIF uses 10 ms precision and merges identical frames; project timing is unchanged."
+  },
+  {
+    "sheet": 10,
+    "sourceFrames": 4,
+    "gifFrames": 4,
+    "gifDurationMs": 400,
+    "note": "GIF uses 10 ms precision and merges identical frames; project timing is unchanged."
+  },
+  {
+    "sheet": 11,
+    "sourceFrames": 4,
+    "gifFrames": 3,
+    "gifDurationMs": 570,
+    "note": "GIF uses 10 ms precision and merges identical frames; project timing is unchanged."
+  }
+]

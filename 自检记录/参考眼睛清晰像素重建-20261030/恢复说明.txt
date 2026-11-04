@@ -1,0 +1,2 @@
+原工程备份：C:\Users\Administrator\Desktop\角色绘画\备份\20261030-eyes-reference-1793348240422\original.json
+恢复时先读取当前API和ETag，只合并原稿layers[197]眼层；如眼层已有后续修改，先比较再恢复。PUT同一工程接口，带X-Pixel-Editor: 1和最新If-Match；不要用整份旧工程覆盖后续编辑。

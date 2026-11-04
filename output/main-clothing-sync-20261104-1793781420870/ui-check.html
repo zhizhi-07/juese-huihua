@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><base href="/"><title>衣服同步验证 · 不写工程</title>
+<style>body{font:16px sans-serif;background:#ddd5ed;color:#292b40;padding:24px}button{padding:10px;margin:8px}canvas{image-rendering:pixelated;background:#eee}output{display:block;margin:14px}label{margin:10px}</style>
+<h2>衣服同步验证（内存副本，不保存主工程）</h2><span><button id="hair-edit-master">头发原控件</button></span>
+<div><button id="fixture-stroke">测试画一笔</button><button id="fixture-undo">测试撤销</button><button id="fixture-redo">测试重做</button></div>
+<output id="fixture-status">正在读取试算副本…</output><canvas id="fixture-canvas" width="600" height="250"></canvas>
+<script src="js/core.js"></script><script src="js/history.js"></script><script src="js/canvas.js"></script><script src="js/tools.js"></script><script src="js/export.js"></script><script src="js/frame-tools.js"></script><script src="js/clothing-fit.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',async()=>{
+ try{
+  const raw=await(await fetch('output/main-clothing-sync-20261104-1793781420870/candidate.json')).json(),p=(await new PE.ExportManager().importProject(new Blob([JSON.stringify(raw)]))).project;
+  const history=new PE.HistoryManager(),tools=new PE.ToolManager(),cm=new PE.CanvasManager(document.createElement('canvas'),p),status=document.querySelector('#fixture-status');
+  function draw(){const c=document.querySelector('#fixture-canvas').getContext('2d');c.clearRect(0,0,600,250);c.imageSmoothingEnabled=false;for(const [column,si]of [1,2,3].entries()){const ai=p.spriteSheets[si].actions.findIndex(a=>a.direction==='down'),f=p.spriteSheets[si].actions[ai].frames[0],cv=document.createElement('canvas');cv.width=f.width;cv.height=f.height;const ctx=cv.getContext('2d');for(const l of PE.getRenderLayers(p,si,ai)){if(l.isGroup||!PE.isLayerVisible(p,l,si))continue;const im=l.getFrameData(`${si}_${ai}_0`);if(im)PE.utils.drawImageData(ctx,im);}c.drawImage(cv,column*200,20,f.width*6,f.height*6);}}
+  cm.render=draw;tools.init(p,cm,history);PE.app={project:p,history,toolManager:tools,canvasManager:cm,animationPlayer:{pause(){}},persistence:{markDirty(){}},updateAll(){draw();},selectFrame(si,ai,fi){p.currentSheetIndex=si;p.currentActionIndex=ai;p.currentFrameIndex=fi;}};
+  const s=p.layers.find(l=>l.clothingSync),ai=p.spriteSheets[1].actions.findIndex(a=>a.direction==='down');p.currentSheetIndex=1;p.currentActionIndex=ai;p.currentFrameIndex=0;p.currentLayerIndex=p.layers.indexOf(s);
+  const script=document.createElement('script');script.src='js/clothing-sync.js';script.onload=()=>{document.dispatchEvent(new Event('DOMContentLoaded'));cm.render();status.textContent='READY · 衣服实时同步控件已加载';};document.head.append(script);
+  function changed(){return p.layers.some(l=>l.sheetIndex===2&&l.clothingSyncId&&[...l.frameData.values()].some(im=>im.data.some((v,i)=>i%4===0&&v===192&&im.data[i+1]===80&&im.data[i+2]===64)));}
+  document.querySelector('#fixture-stroke').onclick=()=>{try{tools.drawPixel(p.layers.indexOf(s),`1_${ai}_0`,8,14,192,80,64,255);cm.render();if(!changed())throw Error('笔画未同步');status.textContent='PASS · 待机画一笔，拾取已实时改变；未写工程';}catch(e){status.textContent='FAIL · '+e.message;}};
+  document.querySelector('#fixture-undo').onclick=()=>{history.undo(p);cm.render();status.textContent=changed()?'FAIL · 撤销未同步':'PASS · 撤销同时恢复待机和拾取';};
+  document.querySelector('#fixture-redo').onclick=()=>{history.redo(p);cm.render();status.textContent=changed()?'PASS · 重做同时更新待机和拾取':'FAIL · 重做未同步';};
+ }catch(e){document.querySelector('#fixture-status').textContent='FAIL · '+e.message;}
+},{once:true});
+</script>

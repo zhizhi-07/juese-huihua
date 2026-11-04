@@ -1,0 +1,32 @@
+{
+  "source": "main",
+  "etag": "\"659c0f4fecbec628636f58cc744efcc8db06fc56f01dd4832c8314053cab7f78\"",
+  "frames": [
+    {
+      "label": "正面",
+      "direction": "down",
+      "source": [
+        36,
+        36
+      ]
+    },
+    {
+      "label": "侧面",
+      "direction": "side",
+      "source": [
+        36,
+        36
+      ]
+    },
+    {
+      "label": "背面",
+      "direction": "up",
+      "source": [
+        36,
+        36
+      ]
+    }
+  ],
+  "method": "原像素不缩放，居中透明扩边至每格64x64",
+  "projectUnchanged": true
+}

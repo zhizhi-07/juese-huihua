@@ -1,0 +1,4 @@
+$ node test/ctrl-rectangle.cjs
+PASS: Ctrl rectangle pencil/eraser preview/commit; reverse/clipped drag; brush ignored; one-step undo/redo; selection intersection; frame/layer/protection/cancel safety; native HD rectangles without resampling; ordinary brush unchanged.
+
+exit=0

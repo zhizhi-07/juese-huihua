@@ -1,0 +1,412 @@
+{
+  "changes": [
+    {
+      "layer": 202,
+      "key": "7_0_0",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_0",
+      "pixels": 205,
+      "maskPixels": 154
+    },
+    {
+      "layer": 202,
+      "key": "7_0_1",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_1",
+      "pixels": 172,
+      "maskPixels": 133
+    },
+    {
+      "layer": 202,
+      "key": "7_0_2",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_2",
+      "pixels": 178,
+      "maskPixels": 134
+    },
+    {
+      "layer": 202,
+      "key": "7_0_3",
+      "pixels": 30,
+      "maskPixels": 9
+    },
+    {
+      "layer": 0,
+      "key": "7_0_3",
+      "pixels": 195,
+      "maskPixels": 144
+    },
+    {
+      "layer": 202,
+      "key": "7_0_4",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_4",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 202,
+      "key": "7_0_5",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_5",
+      "pixels": 172,
+      "maskPixels": 133
+    },
+    {
+      "layer": 202,
+      "key": "7_0_6",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 0,
+      "key": "7_0_6",
+      "pixels": 178,
+      "maskPixels": 134
+    },
+    {
+      "layer": 202,
+      "key": "7_0_7",
+      "pixels": 30,
+      "maskPixels": 9
+    },
+    {
+      "layer": 0,
+      "key": "7_0_7",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 202,
+      "key": "7_1_0",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 202,
+      "key": "7_1_1",
+      "pixels": 13,
+      "maskPixels": 3
+    },
+    {
+      "layer": 202,
+      "key": "7_1_2",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 202,
+      "key": "7_1_3",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 202,
+      "key": "7_1_4",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 202,
+      "key": "7_1_5",
+      "pixels": 13,
+      "maskPixels": 3
+    },
+    {
+      "layer": 202,
+      "key": "7_1_6",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 202,
+      "key": "7_1_7",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 204,
+      "key": "9_0_0",
+      "pixels": 31,
+      "maskPixels": 10
+    },
+    {
+      "layer": 1,
+      "key": "9_0_0",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 204,
+      "key": "9_0_1",
+      "pixels": 29,
+      "maskPixels": 9
+    },
+    {
+      "layer": 1,
+      "key": "9_0_1",
+      "pixels": 183,
+      "maskPixels": 142
+    },
+    {
+      "layer": 204,
+      "key": "9_0_2",
+      "pixels": 31,
+      "maskPixels": 10
+    },
+    {
+      "layer": 1,
+      "key": "9_0_2",
+      "pixels": 223,
+      "maskPixels": 161
+    },
+    {
+      "layer": 204,
+      "key": "9_0_3",
+      "pixels": 29,
+      "maskPixels": 9
+    },
+    {
+      "layer": 1,
+      "key": "9_0_3",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 204,
+      "key": "9_0_4",
+      "pixels": 29,
+      "maskPixels": 9
+    },
+    {
+      "layer": 1,
+      "key": "9_0_4",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 204,
+      "key": "9_0_5",
+      "pixels": 29,
+      "maskPixels": 9
+    },
+    {
+      "layer": 1,
+      "key": "9_0_5",
+      "pixels": 200,
+      "maskPixels": 149
+    },
+    {
+      "layer": 204,
+      "key": "9_1_0",
+      "pixels": 16,
+      "maskPixels": 5
+    },
+    {
+      "layer": 204,
+      "key": "9_1_1",
+      "pixels": 14,
+      "maskPixels": 4
+    },
+    {
+      "layer": 204,
+      "key": "9_1_2",
+      "pixels": 15,
+      "maskPixels": 4
+    },
+    {
+      "layer": 1,
+      "key": "9_1_2",
+      "pixels": 24,
+      "maskPixels": 6
+    },
+    {
+      "layer": 204,
+      "key": "9_1_3",
+      "pixels": 15,
+      "maskPixels": 4
+    },
+    {
+      "layer": 204,
+      "key": "9_1_4",
+      "pixels": 16,
+      "maskPixels": 6
+    },
+    {
+      "layer": 204,
+      "key": "9_1_5",
+      "pixels": 16,
+      "maskPixels": 5
+    },
+    {
+      "layer": 1,
+      "key": "9_1_5",
+      "pixels": 16,
+      "maskPixels": 8
+    },
+    {
+      "layer": 1,
+      "key": "9_2_2",
+      "pixels": 30,
+      "maskPixels": 6
+    },
+    {
+      "layer": 1,
+      "key": "9_2_4",
+      "pixels": 30,
+      "maskPixels": 6
+    },
+    {
+      "layer": 206,
+      "key": "10_0_0",
+      "pixels": 30,
+      "maskPixels": 9
+    },
+    {
+      "layer": 2,
+      "key": "10_0_0",
+      "pixels": 178,
+      "maskPixels": 134
+    },
+    {
+      "layer": 206,
+      "key": "10_0_1",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 2,
+      "key": "10_0_1",
+      "pixels": 178,
+      "maskPixels": 134
+    },
+    {
+      "layer": 206,
+      "key": "10_0_2",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 2,
+      "key": "10_0_2",
+      "pixels": 152,
+      "maskPixels": 116
+    },
+    {
+      "layer": 206,
+      "key": "10_0_3",
+      "pixels": 28,
+      "maskPixels": 8
+    },
+    {
+      "layer": 2,
+      "key": "10_0_3",
+      "pixels": 164,
+      "maskPixels": 125
+    },
+    {
+      "layer": 206,
+      "key": "10_1_0",
+      "pixels": 57,
+      "maskPixels": 46
+    },
+    {
+      "layer": 206,
+      "key": "10_1_1",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 206,
+      "key": "10_1_2",
+      "pixels": 13,
+      "maskPixels": 3
+    },
+    {
+      "layer": 206,
+      "key": "10_1_3",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 208,
+      "key": "11_0_0",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 208,
+      "key": "11_0_1",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 208,
+      "key": "11_0_2",
+      "pixels": 13,
+      "maskPixels": 3
+    },
+    {
+      "layer": 3,
+      "key": "11_0_2",
+      "pixels": 74,
+      "maskPixels": 38
+    },
+    {
+      "layer": 208,
+      "key": "11_0_3",
+      "pixels": 13,
+      "maskPixels": 2
+    },
+    {
+      "layer": 3,
+      "key": "11_0_3",
+      "pixels": 12,
+      "maskPixels": 6
+    }
+  ],
+  "updatedCels": 64,
+  "shapeChangedCels": 64,
+  "sourceLayers": {
+    "front": 198,
+    "rear": 11
+  },
+  "idleExact": true,
+  "allNonHairAndMetadataExact": true,
+  "existingTargetRearTailEndpointsPreserved": true,
+  "frontSourcePixelsExactAfterHeadAlignment": true,
+  "allOriginalArchivesUnchanged": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false,
+  "all70FramesBeforeAfterMainStudioPreviewPNGChecked": true,
+  "frameChecks": 140,
+  "all70TestedWithBothHairSlotsAndSeparately": true,
+  "sourceIdleAndHiddenLayerFlagsPreserved": true,
+  "gifTimingNote": "GIF uses 10ms units; JSON timings, including sleep 101ms, are unchanged.",
+  "putStatus": 200,
+  "getStatus": 200,
+  "exactLiveAPIReadback": true,
+  "sourceAndTargetEditsCheckedBeforeSave": true,
+  "latestUnrelatedEditsPreserved": true,
+  "preSaveRestoreCopyVerified": true
+}

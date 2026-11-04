@@ -1,0 +1,246 @@
+diff --git "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/js/hair-animation.js" b/js/hair-animation.js
+index a7ba000..551904b 100644
+--- "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/js/hair-animation.js"
++++ b/js/hair-animation.js
+@@ -9,6 +9,22 @@ window.PE = window.PE || {};
+   const supported = sheet => Object.hasOwn(actions, sheet?.name?.replace(/^original32_/, '')) && sheet.name.startsWith('original32_');
+   const address = (sheet, direction, fi) => `${sheet.name}/${direction}/${fi}`;
+   const params = () => ({ampV:0, ampH:2, cycles:1, lag:0.6, masks:{}, protectedMasks:{}});
++  const settingKey = (sheet, direction) => `${sheet}/${direction}`;
++  const settingsFor = (g, sheet, direction) => g.directionOverrides?.[settingKey(sheet,direction)] || g.overrides[sheet] || g.params;
++  function editSettings(g, sheet, direction, scope, sheets) {
++    if(scope==='all'){g.overrides={};g.directionOverrides={};return g.params;}
++    if(!['current','direction'].includes(scope))throw Error('调节范围无效');
++    const key=settingKey(sheet,direction);g.directionOverrides??={};
++    if(scope==='current')return g.directionOverrides[key]=clone(settingsFor(g,sheet,direction));
++    const value=clone(settingsFor(g,sheet,direction));
++    for(const s of sheets)if(supported(s)&&s.actions.some(a=>a.direction===direction))g.directionOverrides[settingKey(s.name,direction)]=value;
++    return value;
++  }
++  function previewLayers(p, si, ai, id) {
++    return PE.getRenderLayers(p,si,ai).filter(l=>!l.isGroup&&
++      (PE.classifyPart(l.name)?.category==='头发'||l.hairAnimationId
++        ? l.hairAnimationId===id : PE.isLayerVisible(p,l,si)));
++  }
+   function editable(layer) {
+     if (!layer || layer.isGroup || layer.locked || layer.inheritedBase || PE.isHandLayer(layer)) throw Error('请选择未锁定的头发图层');
+     if (PE.classifyPart(layer.name)?.category !== '头发') throw Error('此功能只处理选中的头发部件');
+@@ -75,6 +91,7 @@ window.PE = window.PE || {};
+   }
+   function validate(p) {
+     const ids=new Set();
++    const directionKeys=new Set(p.spriteSheets.filter(supported).flatMap(s=>s.actions.map(a=>settingKey(s.name,a.direction))));
+     for(const l of p.layers) {
+       if(l.hairAnimationId!==undefined&&(typeof l.hairAnimationId!=='string'||l.hairAnimationId.length>80))throw Error('头发关联编号无效');
+       const g=l.hairAnimation;if(!g)continue;
+@@ -84,7 +101,9 @@ window.PE = window.PE || {};
+       if(!g.offsets||Array.isArray(g.offsets)||Object.keys(g.offsets).length>4096||!g.overrides||Array.isArray(g.overrides)||Object.keys(g.overrides).length>5)throw Error('头发偏移/动作设置无效');
+       for(const offset of Object.values(g.offsets))if(!offset||![offset.x,offset.y].every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=4096))throw Error('头发偏移必须是有效整数');
+       for(const a of p.spriteSheets[l.sheetIndex].actions){const o=g.offsets[address(p.spriteSheets[l.sheetIndex],a.direction,0)];if(!o||o.x!==0||o.y!==0)throw Error('各方向待机第一帧是基准，偏移必须为 0');}
+-      for(const v of [g.params,...Object.values(g.overrides)]) {
++      const perDirection=g.directionOverrides??{};
++      if(!perDirection||typeof perDirection!=='object'||Array.isArray(perDirection)||Object.keys(perDirection).length>20||Object.keys(perDirection).some(k=>!directionKeys.has(k)))throw Error('头发分方向设置无效');
++      for(const v of [g.params,...Object.values(g.overrides),...Object.values(perDirection)]) {
+         if(!v||![v.ampV,v.ampH,v.cycles,v.lag].every(Number.isFinite)||v.ampV<0||v.ampV>4||v.ampH<0||v.ampH>6||!Number.isInteger(v.cycles)||v.cycles<1||v.cycles>4||v.lag<0||v.lag>1.5||!v.masks||Object.keys(v.masks).length>4)throw Error('头发飘动参数无效');
+         for(const maps of [v.masks,v.protectedMasks??{}]) {
+           if(!maps||typeof maps!=='object'||Array.isArray(maps)||Object.keys(maps).length>4)throw Error('头发涂抹区域无效');
+@@ -135,7 +154,7 @@ window.PE = window.PE || {};
+       for(const [ai,a]of s.actions.entries()) {
+         const baseAI=idle.actions.findIndex(b=>b.direction===a.direction);if(baseAI<0)continue;
+         const src=source.getFrameData(p.getFrameKey(source.sheetIndex,baseAI,0));
+-        const settings=g.overrides[s.name]||g.params,mask=settings.masks[a.direction];
++        const settings=settingsFor(g,s.name,a.direction),mask=settings.masks[a.direction];
+         const durations=a.frames.map(f=>s.useFrameDurations!==false&&Number.isFinite(f.duration)&&f.duration>0?f.duration:1000/(s.fps||8));
+         const total=durations.reduce((n,v)=>n+v,0);let elapsed=0;
+         for(const [fi,frame]of a.frames.entries()) {
+@@ -207,7 +226,7 @@ window.PE = window.PE || {};
+       return down(...args);
+     };
+   }
+-  PE.HairAnimation={actions,directions,master,setup,validate,calibrate,plan,applyPlan,refresh,transaction,sync,install,deform,params,address};
++  PE.HairAnimation={actions,directions,master,setup,validate,calibrate,plan,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
+ })();
+ 
+ document.addEventListener('DOMContentLoaded',()=>{
+@@ -236,37 +255,95 @@ document.addEventListener('DOMContentLoaded',()=>{
+   });
+   bar.querySelector('#hair-sway').onclick=()=>run(()=>openSway());
+   function openSway(){
+-    const p=app.project,source=current();if(!source)throw Error('请先开启实时同步或点击同步全部，再调整飘动');
+-    const stamp=JSON.stringify(source.hairAnimation),draft=JSON.parse(stamp),idle=p.spriteSheets[source.sheetIndex];let result=null,frame=0,playing=true,start=null,paintMode='move',erasing=false,painting=false,previous=null;
++    const p=app.project,idleSI=p.spriteSheets.findIndex(s=>s.name==='original32_idle');
++    const candidates=p.layers.filter(l=>l.sheetIndex===idleSI&&!l.isGroup&&!l.locked&&!l.inheritedBase&&PE.classifyPart(l.name)?.category==='头发'&&(l.parent==null||l.hairAnimation));
++    if(!candidates.length)throw Error('待机中没有可调节的独立头发部件，请先新建前发或后发');
++    const entries=new Map();let entry,result=null,frame=0,playing=true,start=null,paintMode='move',erasing=false,painting=false,previous=null,request;
+     const dialog=document.createElement('dialog');dialog.className='advanced-dialog hair-sway-dialog';dialog.setAttribute('aria-label','头发持续飘动');
+-    dialog.innerHTML=`<h2>头发飘动 · 持续生效</h2><p>设置和涂抹区域随工程保存；修改基准稿后继续生效，不会自动关闭。确定前仅预览。</p>
+-      <div class="hair-sway-fields"><label><input data-enabled type="checkbox">开启飘动</label><label>调节范围 <select data-scope aria-label="飘动调节范围"><option value="all">全部动作（修改参数时统一）</option></select></label><label>预览动作 <select data-action aria-label="飘动预览动作"></select></label><label>方向 <select data-direction aria-label="飘动方向"></select></label></div>
+-      <div class="hair-sway-grid"><section><h3>可动 / 保护区域</h3><canvas data-paint aria-label="涂抹头发可动区域"></canvas><div><label>画笔半径 <input data-radius type="number" min="1" max="8" value="3" aria-label="飘动画笔半径"></label><button data-move class="studio-button" aria-pressed="true">可动画笔</button><button data-protect class="studio-button" aria-pressed="false">保护画笔</button><button data-erase class="studio-button" aria-pressed="false">橡皮擦</button><button data-clear class="studio-button">全部可动</button><button data-clear-protection class="studio-button">清空保护</button></div><p class="hair-mask-legend">蓝色：可动区域；红色：保护区域（优先）。默认不保护任何位置，头顶也可动。</p></section><section><h3>合成动画预览</h3><canvas data-preview aria-label="头发飘动合成预览"></canvas><div><button data-play class="studio-button">暂停</button><span data-frame></span></div></section></div>
+-      <div class="hair-sway-fields" data-params></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>`;
+-    const $=sel=>dialog.querySelector(sel),scope=$('[data-scope]'),action=$('[data-action]'),direction=$('[data-direction]'),enabled=$('[data-enabled]'),paint=$('[data-paint]'),preview=$('[data-preview]'),note=$('[data-note]');enabled.checked=draft.enabled;
+-    const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>Object.hasOwn(H.actions,v.s.name.slice(11))&&v.s.name.startsWith('original32_'));
+-    for(const {s,i}of sheets){const o=new Option(H.actions[s.name.slice(11)],s.name);scope.append(o);action.append(new Option(o.textContent,String(i)));}
+-    action.value=String(p.currentSheetIndex);if(![...action.options].some(o=>o.value===action.value))action.value=String(source.sheetIndex);
+-    for(const a of idle.actions)direction.append(new Option(H.directions[a.direction]||a.name,a.direction));direction.value=p.getCurrentAction().direction;
+-    if(!direction.value)direction.selectedIndex=0;
+-    const fields={};for(const [key,label,min,max,step]of [['ampV','上下起伏（强度）',0,4,.5],['ampH','左右轻摆',0,6,.5],['cycles','每循环摆动次数',1,4,1],['lag','发梢延迟',0,1.5,.1]]){const l=document.createElement('label');l.textContent=label+' ';const input=document.createElement('input');input.type='number';input.min=min;input.max=max;input.step=step;input.setAttribute('aria-label',label);fields[key]=input;l.append(input);$('[data-params]').append(l);input.oninput=()=>{const v=Number(input.value);settings(true)[key]=v;rebuild();};}
+-    function settings(write=false){if(scope.value==='all'){if(write)draft.overrides={};return draft.params;}if(write&&!draft.overrides[scope.value])draft.overrides[scope.value]=JSON.parse(JSON.stringify(draft.params));return draft.overrides[scope.value]||draft.params;}
+-    function sourceImage(){const ai=idle.actions.findIndex(a=>a.direction===direction.value);return source.getFrameData(p.getFrameKey(source.sheetIndex,ai,0));}
+-    function paintView(){const im=sourceImage(),w=im?.width||p.spriteSheets[source.sheetIndex].frameWidth,h=im?.height||p.spriteSheets[source.sheetIndex].frameHeight;paint.width=w;paint.height=h;const c=paint.getContext('2d');if(im)c.putImageData(im,0,0);for(const [maps,color]of [[settings().masks,'rgba(50,180,240,.6)'],[settings().protectedMasks||{},'rgba(240,70,80,.7)']]){const m=maps[direction.value];if(m){c.fillStyle=color;for(let y=0;y<Math.min(h,m.height);y++)for(let x=0;x<Math.min(w,m.width);x++)if(m.data[y*m.width+x])c.fillRect(x,y,1,1);}}}
+-    function rebuild(){try{draft.enabled=enabled.checked;const test=Object.assign(Object.create(p),{layers:p.layers.map(l=>l===source?Object.assign(Object.create(l),{hairAnimation:draft}):l)});H.validate(test);result=H.plan(p,source,draft);note.textContent=(result.clipped?`有 ${result.clipped} 个源像素超出画布（像素仍保留）。`:'')+'红色保护区只跟随人物位置，不参与额外飘动。原生像素按整像素取整，0.5 强度不是半像素插值，峰值可移动 1 像素。';$('[data-apply]').disabled=false;paintView();start=null;frame=0;}catch(e){result=null;note.textContent=e.message;$('[data-apply]').disabled=true;}}
+-    function loadFields(){for(const [key,input]of Object.entries(fields))input.value=settings()[key];rebuild();}
+-    scope.onchange=()=>{if(scope.value!=='all')action.value=String(sheets.find(v=>v.s.name===scope.value).i);loadFields();};direction.onchange=loadFields;action.onchange=()=>{start=null;frame=0;};enabled.onchange=rebuild;
+-    function stampMask(e){const im=sourceImage();if(!im)return;const box=paint.getBoundingClientRect(),point={x:Math.floor((e.clientX-box.left)/box.width*paint.width),y:Math.floor((e.clientY-box.top)/box.height*paint.height)},v=settings(true),maps=paintMode==='protect'?(v.protectedMasks??={}):v.masks;let m=maps[direction.value];if(!m||m.width!==im.width||m.height!==im.height){const next={width:im.width,height:im.height,data:Array(im.width*im.height).fill(!m&&paintMode==='move'&&erasing?1:0)};if(m)for(let y=0;y<Math.min(m.height,next.height);y++)for(let x=0;x<Math.min(m.width,next.width);x++)next.data[y*next.width+x]=m.data[y*m.width+x];m=maps[direction.value]=next;}
++    dialog.innerHTML=`<h2>头发飘动 · 分部件 / 分动作 / 分方向</h2><p>默认只调整当前动作、当前方向。切换头发时保留本次调节，确定后一并应用；取消不修改工程。</p>
++      <div class="hair-sway-fields"><label>头发部件 <select data-hair aria-label="飘动头发部件"></select></label><label><input data-enabled type="checkbox">开启本部件飘动（总开关）</label></div>
++      <div class="hair-sway-fields"><label>应用范围 <select data-scope aria-label="飘动调节范围"><option value="current">当前动作＋当前方向</option><option value="direction">全部动作＋当前方向</option><option value="all">全部动作＋全部方向（统一覆盖）</option></select></label><label>动作 <select data-action aria-label="飘动动作"></select></label><label>方向 <select data-direction aria-label="飘动方向"></select></label></div>
++      <div class="hair-sway-grid"><section><h3>所选头发：可动 / 保护区域</h3><canvas data-paint aria-label="涂抹头发可动区域"></canvas><div><label>画笔半径 <input data-radius type="number" min="1" max="8" value="3" aria-label="飘动画笔半径"></label><button data-move class="studio-button" aria-pressed="true">可动画笔</button><button data-protect class="studio-button" aria-pressed="false">保护画笔</button><button data-erase class="studio-button" aria-pressed="false">橡皮擦</button><button data-clear class="studio-button">全部可动</button><button data-clear-protection class="studio-button">清空保护</button></div><p class="hair-mask-legend">蓝色：可动；红色：保护（优先）。不自动锁头顶。</p></section><section><h3>预览：只显示所选头发＋人物</h3><canvas data-preview aria-label="所选头发隔离动画预览"></canvas><div><button data-play class="studio-button">暂停</button><span data-frame></span></div></section></div>
++      <div class="hair-sway-fields" data-params></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-cancel class="studio-button">取消全部</button><button data-apply class="studio-button save-primary">确定</button></div>`;
++    const $=sel=>dialog.querySelector(sel),hair=$('[data-hair]'),scope=$('[data-scope]'),action=$('[data-action]'),direction=$('[data-direction]'),enabled=$('[data-enabled]'),paint=$('[data-paint]'),preview=$('[data-preview]'),note=$('[data-note]');
++    for(const l of candidates)hair.append(new Option(l.name,String(p.layers.indexOf(l))));
++    const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>v.s.name.startsWith('original32_')&&Object.hasOwn(H.actions,v.s.name.slice(11)));
++    for(const {s,i}of sheets)action.append(new Option(H.actions[s.name.slice(11)],String(i)));
++    action.value=String(p.currentSheetIndex);if(!action.value)action.value=String(idleSI);
++    const fields={};for(const [key,label,min,max,step]of [['ampV','上下起伏（强度）',0,4,.1],['ampH','左右轻摆',0,6,.1],['cycles','每循环摆动次数',1,4,1],['lag','发梢延迟',0,1.5,.1]]){
++      const labelNode=document.createElement('label');labelNode.textContent=label+' ';const input=document.createElement('input');input.type='number';input.min=min;input.max=max;input.step=String(step);input.setAttribute('aria-label',label);fields[key]=input;labelNode.append(input);$('[data-params]').append(labelNode);
++      input.oninput=()=>{settings(true)[key]=input.value===''?NaN:Number(input.value);rebuild();};
++    }
++    function settings(write=false){
++      const g=entry.source.hairAnimation,s=entry.work.spriteSheets[Number(action.value)];
++      if(write){entry.dirty=true;return H.editSettings(g,s.name,direction.value,scope.value,entry.work.spriteSheets);}
++      return scope.value==='all'?g.params:H.settingsFor(g,s.name,direction.value);
++    }
++    function sourceImage(){const idle=entry.work.spriteSheets[entry.source.sheetIndex],ai=idle.actions.findIndex(a=>a.direction===direction.value);return entry.source.getFrameData(entry.work.getFrameKey(entry.source.sheetIndex,ai,0));}
++    function populateDirections(keep){
++      const idle=entry.work.spriteSheets[entry.source.sheetIndex],target=entry.work.spriteSheets[Number(action.value)];direction.replaceChildren();
++      for(const a of target.actions)if(idle.actions.some(b=>b.direction===a.direction))direction.append(new Option(H.directions[a.direction]||a.name,a.direction));
++      direction.value=keep;if(!direction.value)direction.selectedIndex=0;
++    }
++    function chooseHair(){
++      const original=p.layers[Number(hair.value)];entry=entries.get(original);
++      if(!entry){
++        const work=Object.assign(Object.create(p),{layers:p.layers.map(l=>{const copy=Object.assign(Object.create(l),l,{frameData:new Map(l.frameData)});if(l.hairAnimation)copy.hairAnimation=JSON.parse(JSON.stringify(l.hairAnimation));return copy;})});
++        const source=H.setup(work,work.layers[p.layers.indexOf(original)]);
++        entry={original,work,source,stamp:JSON.stringify(original.hairAnimation||null),dirty:false};entries.set(original,entry);
++      }
++      enabled.checked=entry.source.hairAnimation.enabled;populateDirections(direction.value||p.getCurrentAction()?.direction);loadFields();
++    }
++    function paintView(){
++      const im=sourceImage(),idle=entry.work.spriteSheets[entry.source.sheetIndex],w=im?.width||idle.frameWidth,h=im?.height||idle.frameHeight;paint.width=w;paint.height=h;const ctx=paint.getContext('2d');if(im)ctx.putImageData(im,0,0);
++      for(const [maps,color]of [[settings().masks,'rgba(50,180,240,.6)'],[settings().protectedMasks||{},'rgba(240,70,80,.7)']]){const mask=maps[direction.value];if(!mask)continue;ctx.fillStyle=color;for(let y=0;y<Math.min(h,mask.height);y++)for(let x=0;x<Math.min(w,mask.width);x++)if(mask.data[y*mask.width+x])ctx.fillRect(x,y,1,1);}
++    }
++    function rebuild(){
++      try{
++        H.validate(entry.work);result=H.plan(entry.work,entry.source);$('[data-apply]').disabled=false;paintView();
++        note.textContent=`${entry.original.name} · ${action.selectedOptions[0]?.textContent} · ${direction.selectedOptions[0]?.textContent}；已调整 ${[...entries.values()].filter(e=>e.dirty).length} 个部件。`+(result.clipped?'有像素超出画布，原像素仍保留。':'')+'支持 0.1、0.2 等强度；原生像素仍取整，小强度可能生成相同画面。';
++        start=null;frame=0;
++      }catch(e){result=null;note.textContent=e.message;$('[data-apply]').disabled=true;}
++    }
++    function loadFields(){painting=false;previous=null;for(const [key,input]of Object.entries(fields))input.value=settings()[key];rebuild();}
++    hair.onchange=()=>{try{chooseHair();}catch(e){note.textContent=e.message;$('[data-apply]').disabled=true;}};
++    scope.onchange=loadFields;direction.onchange=loadFields;action.onchange=()=>{populateDirections(direction.value);loadFields();};
++    enabled.onchange=()=>{entry.dirty=true;entry.source.hairAnimation.enabled=enabled.checked;rebuild();};
++    function stampMask(e){
++      const im=sourceImage();if(!im)return;const box=paint.getBoundingClientRect(),point={x:Math.floor((e.clientX-box.left)/box.width*paint.width),y:Math.floor((e.clientY-box.top)/box.height*paint.height)},v=settings(true),maps=paintMode==='protect'?(v.protectedMasks??={}):v.masks;
++      let mask=maps[direction.value];if(!mask||mask.width!==im.width||mask.height!==im.height){const next={width:im.width,height:im.height,data:Array(im.width*im.height).fill(!mask&&paintMode==='move'&&erasing?1:0)};if(mask)for(let y=0;y<Math.min(mask.height,next.height);y++)for(let x=0;x<Math.min(mask.width,next.width);x++)next.data[y*next.width+x]=mask.data[y*mask.width+x];mask=maps[direction.value]=next;}
+       const from=previous||point,steps=Math.max(1,Math.abs(point.x-from.x),Math.abs(point.y-from.y)),radius=Math.max(1,Math.min(8,Number($('[data-radius]').value)||1));
+-      for(let step=0;step<=steps;step++){const cx=Math.round(from.x+(point.x-from.x)*step/steps),cy=Math.round(from.y+(point.y-from.y)*step/steps);for(let y=-radius;y<=radius;y++)for(let x=-radius;x<=radius;x++){const X=cx+x,Y=cy+y;if(x*x+y*y<=radius*radius&&X>=0&&Y>=0&&X<m.width&&Y<m.height)m.data[Y*m.width+X]=erasing?0:1;}}
++      for(let step=0;step<=steps;step++){const cx=Math.round(from.x+(point.x-from.x)*step/steps),cy=Math.round(from.y+(point.y-from.y)*step/steps);for(let y=-radius;y<=radius;y++)for(let x=-radius;x<=radius;x++){const X=cx+x,Y=cy+y;if(x*x+y*y<=radius*radius&&X>=0&&Y>=0&&X<mask.width&&Y<mask.height)mask.data[Y*mask.width+X]=erasing?0:1;}}
+       previous=point;rebuild();
+     }
+     paint.onpointerdown=e=>{if(e.button!==0)return;painting=true;previous=null;paint.setPointerCapture(e.pointerId);stampMask(e);};paint.onpointermove=e=>{if(painting)stampMask(e);};paint.onpointerup=paint.onpointercancel=()=>{painting=false;previous=null;};
+     function chooseBrush(mode){paintMode=mode;erasing=false;$('[data-move]').setAttribute('aria-pressed',String(mode==='move'));$('[data-protect]').setAttribute('aria-pressed',String(mode==='protect'));$('[data-erase]').setAttribute('aria-pressed','false');paint.setAttribute('aria-label',mode==='protect'?'涂抹头发保护区域':'涂抹头发可动区域');}
+-    $('[data-move]').onclick=()=>chooseBrush('move');$('[data-protect]').onclick=()=>chooseBrush('protect');
+-    $('[data-erase]').onclick=()=>{erasing=!erasing;$('[data-erase]').setAttribute('aria-pressed',String(erasing));};$('[data-clear]').onclick=()=>{const v=settings(true);delete v.masks[direction.value];if(v.protectedMasks)delete v.protectedMasks[direction.value];rebuild();};$('[data-clear-protection]').onclick=()=>{const v=settings(true);if(v.protectedMasks)delete v.protectedMasks[direction.value];rebuild();};$('[data-play]').onclick=()=>{playing=!playing;start=null;$('[data-play]').textContent=playing?'暂停':'播放';};
+-    let request;function tick(now){if(!dialog.open)return;if(result){const si=Number(action.value),s=p.spriteSheets[si],ai=s.actions.findIndex(a=>a.direction===direction.value);if(ai>=0){const a=s.actions[ai],durations=a.frames.map(f=>s.useFrameDurations!==false&&f.duration>0?f.duration:1000/(s.fps||8)),total=durations.reduce((n,v)=>n+v,0);if(start===null)start=now-durations.slice(0,frame).reduce((n,v)=>n+v,0);if(playing){let t=(now-start)%total;frame=0;while(frame<durations.length-1&&t>=durations[frame])t-=durations[frame++];}const f=a.frames[frame],key=p.getFrameKey(si,ai,frame);preview.width=f.width;preview.height=f.height;const ctx=preview.getContext('2d');for(const l of PE.getRenderLayers(p,si,ai)){if(!PE.isLayerVisible(p,l,si))continue;const replacement=result.edits.find(e=>e.layer===l&&e.key===key),im=replacement?.image||l.getFrameData(key);if(im){ctx.globalAlpha=l.opacity??1;PE.utils.drawImageData(ctx,im);}}$('[data-frame]').textContent=`第 ${frame+1}/${a.frames.length} 帧`;}}request=requestAnimationFrame(tick);}
+-    $('[data-cancel]').onclick=()=>dialog.close();$('[data-apply]').onclick=()=>{try{if(app.project!==p||!p.layers.includes(source)||JSON.stringify(source.hairAnimation)!==stamp)throw Error('工程或头发设置已变化，请重新打开，未覆盖');H.transaction(app,'设置持续头发飘动',()=>{source.hairAnimation=JSON.parse(JSON.stringify(draft));H.applyPlan(H.plan(p,source));});say(draft.enabled?'飘动已开启，修改基准稿后继续生效；Ctrl+S 保存。':'飘动已关闭，参数和涂抹区域仍保留。');dialog.close();}catch(e){note.textContent=e.message;}};
+-    dialog.onclose=()=>{cancelAnimationFrame(request);dialog.remove();};document.body.append(dialog);dialog.showModal();loadFields();request=requestAnimationFrame(tick);
++    $('[data-move]').onclick=()=>chooseBrush('move');$('[data-protect]').onclick=()=>chooseBrush('protect');$('[data-erase]').onclick=()=>{erasing=!erasing;$('[data-erase]').setAttribute('aria-pressed',String(erasing));};
++    $('[data-clear]').onclick=()=>{const v=settings(true);delete v.masks[direction.value];if(v.protectedMasks)delete v.protectedMasks[direction.value];rebuild();};$('[data-clear-protection]').onclick=()=>{const v=settings(true);if(v.protectedMasks)delete v.protectedMasks[direction.value];rebuild();};
++    $('[data-play]').onclick=()=>{playing=!playing;start=null;$('[data-play]').textContent=playing?'暂停':'播放';};
++    function tick(now){
++      if(!dialog.open)return;
++      if(result){const work=entry.work,si=Number(action.value),sheet=work.spriteSheets[si],ai=sheet.actions.findIndex(a=>a.direction===direction.value),a=sheet.actions[ai];if(a){
++        const durations=a.frames.map(f=>sheet.useFrameDurations!==false&&f.duration>0?f.duration:1000/(sheet.fps||8)),total=durations.reduce((n,v)=>n+v,0);if(start===null)start=now-durations.slice(0,frame).reduce((n,v)=>n+v,0);
++        if(playing){let t=(now-start)%total;frame=0;while(frame<durations.length-1&&t>=durations[frame])t-=durations[frame++];}
++        const f=a.frames[frame],key=work.getFrameKey(si,ai,frame);preview.width=f.width;preview.height=f.height;const ctx=preview.getContext('2d');
++        for(const l of H.previewLayers(work,si,ai,entry.source.hairAnimation.id)){const replacement=result.edits.find(e=>e.layer===l&&e.key===key),im=replacement?.image||l.getFrameData(key);if(im){ctx.globalAlpha=l.opacity??1;PE.utils.drawImageData(ctx,im);}}
++        $('[data-frame]').textContent=`第 ${frame+1}/${a.frames.length} 帧`;
++      }}request=requestAnimationFrame(tick);
++    }
++    $('[data-cancel]').onclick=()=>dialog.close();
++    $('[data-apply]').onclick=()=>{try{
++      if(app.project!==p)throw Error('工程已变化，请重新打开，未覆盖');
++      const changed=[...entries.values()].filter(e=>e.dirty);
++      for(const e of changed)if(!p.layers.includes(e.original)||JSON.stringify(e.original.hairAnimation||null)!==e.stamp)throw Error('头发设置已变化，请重新打开，未覆盖');
++      if(changed.length)H.transaction(app,'设置头发分方向飘动',()=>{
++        const sources=changed.map(e=>{const source=H.setup(p,e.original),next=JSON.parse(JSON.stringify(e.source.hairAnimation));next.id=source.hairAnimation.id;source.hairAnimation=next;return source;});
++        H.validate(p);for(const source of sources)H.applyPlan(H.plan(p,source));
++      });
++      say(`已应用 ${changed.length} 个头发部件的独立方向设置；Ctrl+S 保存。`);dialog.close();
++    }catch(e){note.textContent=e.message;}};
++    dialog.onclose=()=>{cancelAnimationFrame(request);dialog.remove();};document.body.append(dialog);
++    const selected=current();hair.value=String(p.layers.indexOf(candidates.includes(selected)?selected:candidates.find(l=>l.visible)||candidates[0]));
++    chooseHair();dialog.showModal();request=requestAnimationFrame(tick);
+   }
+ });
+
+diff --git "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/test/hair-animation.cjs" b/test/hair-animation.cjs
+index 46e8b5f..79c60c2 100644
+--- "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/test/hair-animation.cjs"
++++ b/test/hair-animation.cjs
+@@ -20,6 +20,22 @@ function fixture(){
+ function raster(im,w=12,h=12){const c=createCanvas(w,h),ctx=c.getContext('2d');if(im)PE.utils.drawImageData(ctx,im);return ctx.getImageData(0,0,w,h).data;}
+ function pixel(im,x,y){return Array.from(raster(im).slice((y*12+x)*4,(y*12+x+1)*4));}
+ (async()=>{
++ const independent=fixture();H.sync(independent.app);const dg=independent.hair.hairAnimation;
++ H.editSettings(dg,'original32_idle','down','current',independent.p.spriteSheets).ampV=.1;
++ H.editSettings(dg,'original32_idle','side','current',independent.p.spriteSheets).ampV=.2;
++ H.editSettings(dg,'original32_idle','up','current',independent.p.spriteSheets).ampV=.3;
++ assert.deepEqual(['down','side','up'].map(d=>H.settingsFor(dg,'original32_idle',d).ampV),[.1,.2,.3],'front, side and back keep independent decimal strengths');H.validate(independent.p);
++ const sideBefore=JSON.stringify(H.settingsFor(dg,'original32_idle','side'));
++ H.editSettings(dg,'original32_idle','down','direction',independent.p.spriteSheets).ampV=1.2;
++ assert.equal(H.settingsFor(dg,'original32_walk','down').ampV,1.2);assert.equal(JSON.stringify(H.settingsFor(dg,'original32_idle','side')),sideBefore);
++ H.editSettings(dg,'original32_idle','down','current',independent.p.spriteSheets).ampV=.4;
++ assert.equal(H.settingsFor(dg,'original32_walk','down').ampV,1.2,'single-action editing detaches a previously unified direction');
++ for(const [dir,value]of [['down',0],['side',1],['up',2]]){const v=H.editSettings(dg,'original32_idle',dir,'current',independent.p.spriteSheets);v.ampV=value;v.ampH=0;}
++ dg.enabled=true;const directionsPlan=H.plan(independent.p,independent.hair),imageFor=ai=>directionsPlan.edits.find(e=>e.layer===independent.hair&&e.key===`0_${ai}_1`).image;
++ assert.equal(pixel(imageFor(0),3,7)[3],255);assert.equal(pixel(imageFor(1),3,7)[3],0);assert.equal(pixel(imageFor(2),3,6)[3],0,'generation uses direction-specific settings, not just the UI');
++ const front=new PE.Layer('头发 / 前发测试 / 前发');front.sheetIndex=0;front.visible=false;front.frameData.set('0_0_0',new ImageData(12,12));independent.p.layers.push(front);H.setup(independent.p,front);
++ const isolated=H.previewLayers(independent.p,0,0,front.hairAnimation.id);assert(isolated.includes(front),'selected hidden hair is visible in preview');assert(!isolated.includes(independent.hair),'other hair is excluded');assert(isolated.some(l=>l.name==='head'),'body reference remains');assert.equal(front.visible,false,'preview isolation never changes project visibility');
++ H.editSettings(dg,'original32_idle','down','all',independent.p.spriteSheets).ampV=.2;assert.equal(Object.keys(dg.directionOverrides).length,0);assert.equal(H.settingsFor(dg,'original32_walk','side').ampV,.2);
+  const native=new ImageData(12,12);native.data.set([230,50,60,255],(2*12+3)*4);native.data.set([50,60,230,255],(7*12+8)*4);
+  const motion={...H.params(),ampH:0,ampV:.5},testFrame=new PE.Frame(0,0,0,12,12),shift={x:0,y:0};
+  const half=H.deform(native,testFrame,shift,Math.PI/2,motion,null,true).image;
+@@ -59,14 +75,17 @@ function pixel(im,x,y){return Array.from(raster(im).slice((y*12+x)*4,(y*12+x+1)*
+  H.transaction(app,'live off',()=>hair.hairAnimation.live=false);const paused=walk.getFrameData('1_0_2').data.slice();p.currentLayerIndex=p.layers.indexOf(hair);
+  app.toolManager.drawPixel(p.layers.indexOf(hair),'0_0_0',7,7,25,50,75,255);assert.deepEqual(walk.getFrameData('1_0_2').data,paused,'live off does not synchronize a stroke, even with sway enabled');assert(hair.hairAnimation.enabled);
+  H.sync(app);assert.deepEqual(pixel(walk.getFrameData('1_0_2'),8,9),[25,50,75,255],'manual sync reapplies persistent sway after editing with live off');
++ H.transaction(app,'decimal directions',()=>{H.editSettings(hair.hairAnimation,'original32_idle','down','current',p.spriteSheets).ampV=.1;H.editSettings(hair.hairAnimation,'original32_idle','side','current',p.spriteSheets).ampV=.2;H.applyPlan(H.plan(p,hair));});
+  const ex=new PE.ExportManager();ex.project=p;const blob=ex.exportProject(false),saved=JSON.parse(await blob.text());assert(saved.layers.some(l=>l.hairAnimation));
+  const restored=(await new PE.ExportManager().importProject(blob)).project,loaded=restored.layers.find(l=>l.hairAnimation);assert.deepEqual(loaded.hairAnimation,hair.hairAnimation);H.refresh(restored,true);
+  assert.deepEqual(loaded.hairAnimation.params.protectedMasks.down,protect);assert.deepEqual(loaded.hairAnimation.overrides.original32_sit.protectedMasks.side,protect);
++ assert.equal(H.settingsFor(loaded.hairAnimation,'original32_idle','down').ampV,.1);assert.equal(H.settingsFor(loaded.hairAnimation,'original32_idle','side').ampV,.2);
+  for(const l of p.layers.filter(l=>l.hairAnimationId))for(const [k,d]of l.frameData)assert.deepEqual(raster(restored.layers.find(r=>r.sheetIndex===l.sheetIndex&&r.hairAnimationId===l.hairAnimationId).getFrameData(k)),raster(d),'save/reopen reproduces exact pixels');
+  const cm=new PE.CanvasManager(Object.assign(createCanvas(120,120),{style:{}}),restored);ex.init(restored,cm);const png=await ex.exportFrameAsBlob(1,0,1);assert(png.size>50,'actual PNG export');
+  H.transaction(app,'off',()=>{hair.hairAnimation.enabled=false;H.applyPlan(H.plan(p,hair));});assert(hair.hairAnimation.params.masks.down);assert(hair.hairAnimation.overrides.original32_sit);assert(!hair.hairAnimation.enabled);
+  const bad=JSON.parse(await blob.text());bad.layers.find(l=>l.hairAnimation).hairAnimation.params.ampH=999;await assert.rejects(()=>new PE.ExportManager().importProject(new Blob([JSON.stringify(bad)])),/参数无效/);
+  const badProtection=JSON.parse(await blob.text());badProtection.layers.find(l=>l.hairAnimation).hairAnimation.params.protectedMasks.down.data[0]=2;await assert.rejects(()=>new PE.ExportManager().importProject(new Blob([JSON.stringify(badProtection)])),/涂抹区域无效/);
++ const badDirection=JSON.parse(await blob.text());badDirection.layers.find(l=>l.hairAnimation).hairAnimation.directionOverrides['not-an-action/down']=H.params();await assert.rejects(()=>new PE.ExportManager().importProject(new Blob([JSON.stringify(badDirection)])),/分方向设置无效/);
+  const legacy=JSON.parse(await blob.text());for(const l of legacy.layers)if(l.hairAnimation)for(const v of [l.hairAnimation.params,...Object.values(l.hairAnimation.overrides)])delete v.protectedMasks;await new PE.ExportManager().importProject(new Blob([JSON.stringify(legacy)]));
+  const old=walk.getFrameData('1_0_1'),config=JSON.stringify(hair.hairAnimation);p.spriteSheets[2].actions[0].frames[1].locked=true;
+  assert.throws(()=>H.transaction(app,'atomic rejection',()=>{hair.hairAnimation.params.ampH=5;H.applyPlan(H.plan(p,hair));}),/保护/);assert.equal(walk.getFrameData('1_0_1'),old);assert.equal(JSON.stringify(hair.hairAnimation),config);p.spriteSheets[2].actions[0].frames[1].locked=false;
+
+diff --git "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/index.html" b/index.html
+index f420733..19b0ec7 100644
+--- "a/\345\244\207\344\273\275/20261103-hair-directions-1793670008689/index.html"
++++ b/index.html
+@@ -320,6 +320,6 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=hair-protection-2">
+-  <script src="js/hair-animation.js?v=hair-protection-2"></script>
++  <script src="js/hair-animation.js?v=hair-directions-3"></script>
+ </body>
+ </html>
+

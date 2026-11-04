@@ -1,0 +1,43 @@
+{
+  "changes": [
+    {
+      "layer": 225,
+      "name": "hand 2",
+      "key": "10_0_1",
+      "sourceKey": "8_0_1",
+      "sourceIsCurrentIdle": true
+    },
+    {
+      "layer": 225,
+      "name": "hand 2",
+      "key": "10_0_2",
+      "sourceKey": "8_0_2",
+      "sourceIsCurrentIdle": true
+    },
+    {
+      "layer": 228,
+      "name": "hand",
+      "key": "10_0_1",
+      "sourceKey": "8_0_1",
+      "sourceIsCurrentIdle": true
+    },
+    {
+      "layer": 228,
+      "name": "hand",
+      "key": "10_0_2",
+      "sourceKey": "8_0_2",
+      "sourceIsCurrentIdle": true
+    }
+  ],
+  "handTopRows": [
+    25,
+    23,
+    23,
+    25
+  ],
+  "exactCurrentIdleHandPixelsAfterTransparentCrop": true,
+  "bodyHeadEyesHairFeetAndFrameMetadataUnchanged": true,
+  "secondFrameBodyUserEditsUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

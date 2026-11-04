@@ -1,0 +1,183 @@
+{
+  "report": [
+    {
+      "key": "8_0_0",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 1,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 1,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_0_1",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 1,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 1,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_0_2",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 1,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_0_2",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 1,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_0_3",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 1,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_0_3",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 1,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_1_0",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 0,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 0,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_1_1",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 0,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 0,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_1_2",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 0,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 0,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_1_3",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 0,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_1_3",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 0,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_2_0",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 3,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 3,
+      "sourceColumn": 1,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_2_1",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 3,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 3,
+      "sourceColumn": 2,
+      "bodyOffset": 0
+    },
+    {
+      "key": "8_2_2",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 3,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_2_2",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 3,
+      "sourceColumn": 1,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_2_3",
+      "layer": "头发 / 80009 / 后发",
+      "sourceRow": 3,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    },
+    {
+      "key": "8_2_3",
+      "layer": "头发 / 80011 / 前发",
+      "sourceRow": 3,
+      "sourceColumn": 0,
+      "bodyOffset": 2
+    }
+  ],
+  "checks": [
+    "Only two hair layers modified",
+    "Source columns 1,2,1,0",
+    "Back front hair transparent",
+    "ETag conditional PUT and API readback verified"
+  ],
+  "limitations": [
+    "Original 90-degree side source on existing body; no redraw",
+    "Outer curls and tips compressed to fit 32x32; not native 48x48",
+    "Browser renderer not tested"
+  ]
+}

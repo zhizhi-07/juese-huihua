@@ -1,0 +1,189 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\js\\wardrobe.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\wardrobe.js"
+index 258601e..5f0597a 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\js\\wardrobe.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\wardrobe.js"
+@@ -120,10 +120,11 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const node=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e;};
+   const dialog=node('dialog','wardrobe-dialog');dialog.setAttribute('aria-labelledby','wardrobe-title');document.body.append(dialog);
+   const status=node('p','wardrobe-status');status.setAttribute('role','status');
++  let busy=0,loading=false;
+   function report(text,error=false){status.textContent=text;status.classList.toggle('save-error',error);}
+-  function button(text,fn,parent){const b=node('button','studio-button',text);b.type='button';b.onclick=async()=>{b.disabled=true;try{await fn();}catch(e){report(e.message,true);}finally{b.disabled=false;}};parent?.append(b);return b;}
++  function button(text,fn,parent){const b=node('button','studio-button',text);b.type='button';b.onclick=async()=>{b.disabled=true;busy++;try{await fn();}catch(e){report(e.message,true);}finally{b.disabled=false;busy--;}};parent?.append(b);return b;}
+   const title=node('div','dialog-title'),heading=node('h2','','成品衣柜 / 换装测试');heading.id='wardrobe-title';title.append(heading);button('关闭衣柜',()=>dialog.close(),title);dialog.append(title);
+-  dialog.append(node('p','wardrobe-note','分支是草稿，衣柜只存你确认完成的部件。试穿不会修改当前工程；缺动作会提示，不自动补画。导出包包含单件的“全部动作.png”和独立成品JSON。'));
++  dialog.append(node('p','wardrobe-note','首次勾选收录后，成品自动同步原工程已保存的修改，无需再选中更新；未保存草稿不参与同步。试穿不修改当前工程，缺动作不自动补画。'));
+   const grid=node('div','wardrobe-grid'),library=node('section','wardrobe-library'),stage=node('section','wardrobe-stage');grid.append(library,stage);dialog.append(grid,status);
+   const register=node('details','wardrobe-register'),summary=node('summary','','＋ 标记当前工程的成品');register.append(summary);library.append(register);
+   const form=node('div','wardrobe-form'),nameLabel=node('label','','成品名称 '),nameInput=node('input');nameInput.maxLength=60;nameInput.placeholder='例如：灰色长发 / 深蓝JK套装';nameLabel.append(nameInput);
+@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const choices=node('div','wardrobe-choices');form.append(node('p','wardrobe-note','勾选属于这一件成品的部件；会收录这些部件的全部已有动作，不带身体和其他草稿。自定义命名的图层也可勾选。'),choices);register.append(form);
+   const saveRow=node('div','wardrobe-buttons');form.append(saveRow);
+   const filter=node('select');filter.setAttribute('aria-label','衣柜类别筛选');filter.append(new Option('全部成品',''),new Option('头发','头发'),new Option('衣服','衣服'));library.append(filter);
+-  const list=node('div','wardrobe-items');library.append(list);button('刷新成品列表',async()=>{await load();report('已刷新成品列表');},library);
++  const list=node('div','wardrobe-items');library.append(list);button('刷新成品列表',async()=>{report('正在刷新成品列表…');await load();if(!status.classList.contains('save-error'))report('已刷新成品列表');},library);
+   const scene=node('canvas','wardrobe-scene');scene.width=320;scene.height=224;scene.tabIndex=0;scene.setAttribute('aria-label','换装测试场景：方向键或WASD移动，C坐下或站起，E拾取');
+   stage.append(node('h3','','换装试验场'),scene);
+   const help=node('p','wardrobe-note','可多件叠穿，点每件的“脱下”可单独移除；同一部位后穿的叠在前面。点击场景后：方向键 / WASD 移动，C 坐下 / 站起，E 拾取。走到黄色物件旁可拾取；也可直接测试动作。');stage.append(help);
+@@ -155,8 +156,11 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(!p.ready)throw new Error('当前工程尚未读取完成');
+     if(existing&&(!selected||selected.data.wardrobe.category!==category.value))throw new Error('请先选择同类别成品，再更新');
+     if(existing&&!confirm('用当前勾选的部件更新「'+selected.data.name+'」？旧成品保留一份服务端备份。'))return;
+-    const raw=JSON.parse(await app.exportManager.exportProject(false).text()),data=W.snapshot(raw,[...choices.querySelectorAll('input:checked')].map(e=>e.value),nameInput.value,category.value,p.projectId);
+     const id=existing?selected.id:'finished-'+crypto.randomUUID(),revision=existing?selected.revision:'none';
++    const source=await fetch(p.base+'/api/project?id='+p.projectId,{headers:p.headers,cache:'no-store'});
++    if(!source.ok&&source.status!==404)throw new Error('原工程版本读取失败：'+source.status);
++    const parts=[...choices.querySelectorAll('input:checked')].map(e=>e.value),raw=JSON.parse(await app.exportManager.exportProject(false).text()),data=W.snapshot(raw,parts,nameInput.value,category.value,p.projectId);
++    data.wardrobe.sourceParts=parts;data.wardrobe.sourceRevision=source.ok?source.headers.get('ETag'):'none';
+     const response=await fetch(p.base+'/api/project?id='+id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':revision},body:JSON.stringify(data)});
+     if(response.status===409)throw new Error('成品已被其他窗口修改，未覆盖。请刷新成品列表后比较，再决定是否更新。');
+     if(!response.ok)throw new Error('成品保存失败：'+response.status);
+@@ -202,18 +206,51 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(!list.childElementCount)list.append(node('p','wardrobe-empty','这里还没有成品。展开上方“标记当前工程的成品”，手动勾选收录；不会自动把旧半成品放进来。'));
+   }
+   filter.onchange=renderList;
++  const sources=new Map();
++  async function syncSource(entry){
++    const meta=entry.data.wardrobe,id=meta.sourceProjectId;
++    if(!/^[a-z0-9-]{1,80}$/.test(id)||id.startsWith('finished-'))return entry;
++    let source=sources.get(id);
++    if(!source?.checked){
++      const r=await fetch(p.base+'/api/project?id='+id,{headers:{...p.headers,...(source?{'If-None-Match':source.revision}:{})},cache:'no-store'});
++      if(r.status===404)return entry;
++      if(r.status!==304){if(!r.ok)throw new Error('原工程读取失败：'+r.status);source={revision:r.headers.get('ETag'),data:await r.json()};}
++      source.checked=true;sources.set(id,source);
++    }
++    if(meta.sourceRevision===source.revision)return entry;
++    const parts=meta.sourceParts||[...new Set(entry.data.layers.map(l=>W.family(l)))];
++    const available=new Set(source.data.layers.filter(l=>!l.isGroup&&!W.isBase(l)).map(l=>W.family(l)));
++    if(!parts.length||parts.some(part=>!available.has(part)))throw new Error('「'+entry.data.name+'」的原部件被删除或改名，已保留上次成品，请重新勾选更新。');
++    const data=W.snapshot(source.data,parts,entry.data.name,meta.category,id);
++    data.wardrobe={...meta,sourceName:source.data.name,sourceParts:parts,sourceRevision:source.revision};
++    const r=await fetch(p.base+'/api/project?id='+entry.id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':entry.revision},body:JSON.stringify(data)});
++    if(!r.ok)throw new Error(r.status===409?'成品同步遇到版本变化，已保留现有文件，稍后自动重试。':'成品同步失败：'+r.status);
++    return {id:entry.id,data,revision:r.headers.get('ETag'),project:await W.decode(data)};
++  }
+   async function load(selectId){
++    if(loading)return;
++    loading=true;
++    try{
++    for(const source of sources.values())source.checked=false;
+     const response=await fetch(p.base+'/api/projects',{headers:p.headers,cache:'no-store'});if(!response.ok)throw new Error('衣柜读取失败：'+response.status);
+-    const projects=await response.json(),next=[];
++    const projects=await response.json(),next=[];let syncError='';
+     for(const {id}of projects.filter(e=>e.id.startsWith('finished-'))){
+-      const r=await fetch(p.base+'/api/project?id='+id,{headers:p.headers,cache:'no-store'});if(!r.ok)throw new Error('成品读取失败：'+id+' · '+r.status);
+-      const data=await r.json();if(data.wardrobe?.archived||!['头发','衣服'].includes(data.wardrobe?.category))continue;
+-      next.push({id,data,revision:r.headers.get('ETag'),project:await W.decode(data)});
++      const cached=entries.find(e=>e.id===id),r=await fetch(p.base+'/api/project?id='+id,{headers:{...p.headers,...(cached?{'If-None-Match':cached.revision}:{})},cache:'no-store'});
++      if(r.status!==304&&!r.ok)throw new Error('成品读取失败：'+id+' · '+r.status);
++      let entry=cached;
++      if(r.status!==304){const data=await r.json();if(data.wardrobe?.archived||!['头发','衣服'].includes(data.wardrobe?.category))continue;entry={id,data,revision:r.headers.get('ETag'),project:await W.decode(data)};}
++      try{entry=await syncSource(entry);}catch(e){syncError=e.message;}
++      next.push(entry);
+     }
++    if(syncError)report(syncError,true);
++    else if(status.classList.contains('save-error'))report('成品自动同步已恢复');
++    if(!selectId&&list.childElementCount&&next.length===entries.length&&next.every((e,i)=>e.id===entries[i].id&&e.revision===entries[i].revision))return;
+     entries=next;selected=entries.find(e=>e.id===(selectId||selected?.id))||null;
+     for(const id of Object.keys(equipped)){const updated=entries.find(e=>e.id===id);if(updated)equipped[id]=updated;else delete equipped[id];}
+     equipText();renderList();
++    }finally{loading=false;}
+   }
++  setInterval(()=>{if(dialog.open&&!register.open&&!busy&&!loading)load().catch(e=>report(e.message,true));},2000);
+   function setAction(value){if(action!==value){action=value;elapsed=0;}actionSelect.value=value;}
+   actionSelect.onchange=()=>{setAction(actionSelect.value);scene.focus();};direction.onchange=()=>scene.focus();
+   button('坐下 / 站起 (C)',()=>{setAction(action==='sit'?'idle':'sit');scene.focus();},controls);
+@@ -272,7 +309,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(!p.ready)throw new Error('请等待当前工程读取完成');
+     app.animationPlayer.pause();base=await W.decode(JSON.parse(await app.exportManager.exportProject(false).text()));
+     dialog.showModal();report('正在读取成品衣柜…');updateChoices();equipText();last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(render);scene.focus();
+-    try{await load();report('衣柜只显示手动收录的成品；试穿不会写入绘画工程。');}catch(e){report(e.message,true);}
++    try{report('已启用自动同步；试穿不会写入绘画工程。');await load();}catch(e){report(e.message,true);}
+   }
+   const entry=button('成品衣柜 / 换装测试',open);entry.id='wardrobe-open';document.querySelector('.project-bar').append(entry);
+ });
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\index.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+index 50856d2..619edbb 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+@@ -299,7 +299,7 @@
+   <script src="js/visual-layers.js?v=hd-image-layers-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+-  <script src="js/wardrobe.js?v=hd-image-layers-multiwear-rear-2"></script>
++  <script src="js/wardrobe.js?v=auto-source-sync-1"></script>
+   <script src="js/frame-tools.js?v=hd-inline-native-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+   <script src="js/pixel-import.js?v=hd-inline-native-1"></script>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\README.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+index e2f94ff..43c99a4 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\README.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+@@ -32,9 +32,9 @@
+ 
+ ## 工作台操作
+ 
+-- 顶部“成品衣柜 / 换装测试”：手动勾选完成的头发或衣服，收录为独立成品；不会自动搬入旧分支或半成品。成品复用现有保存接口，按 `data/projects/finished-<编号>.json` 一件一文件保存，与原草稿脱离。
++- 顶部“成品衣柜 / 换装测试”：首次手动勾选完成的头发或衣服，收录为成品；不会自动搬入旧分支或半成品。成品复用现有保存接口，按 `data/projects/finished-<编号>.json` 一件一文件保存，自动跟随原工程已保存的对应部件。
+ - 衣柜支持多件叠穿：前发、后发、发饰或多件衣服可分别穿上，每件点“脱下”可单独移除，也可“脱下全部”。同一部位后穿的叠在前面，不自动替换；筛选类别或刷新成品列表不会脱下其他部件。点击测试场景，方向键 / WASD 移动，C 坐下或站起，E 拾取；按钮和下拉框也可测试动作、朝向。缺少的动作、方向、帧会提示，不用待机图冒充。仅支持现有 `original32_*` 人物动作，其他尺寸素材请先在编辑器中处理。
+-- “一键导出”下载单件 ZIP：含透明 `全部动作.png`（各动作依次纵向排列，各方向分行、帧横排）、各动作 PNG、`阵列说明.json`（尺寸、偏移、方向和时长）及只含勾选部件的 `成品.json`。不包含身体或未勾选草稿。更新成品需要手动选择并确认，带 ETag 冲突保护；“移出衣柜”只归档，不删除独立文件。
++- “一键导出”下载单件 ZIP：含透明 `全部动作.png`（各动作依次纵向排列，各方向分行、帧横排）、各动作 PNG、`阵列说明.json`（尺寸、偏移、方向和时长）及只含勾选部件的 `成品.json`。不包含身体或未勾选草稿。打开衣柜自动同步，停留期间约每2秒检查原工程和成品更新，保留穿戴、筛选和成品名，无需选择或确认；展开收录表单时暂停定时检查。只同步已经收录的部件，未保存草稿不自动写入成品。写入仍有 ETag 校验和 `.bak` 备份；原部件删除或改名时保留上次成品并提示，可用手动更新重新勾选；“移出衣柜”只归档，不删除独立文件。
+ - 试穿不写回工程，不保存角色位置或穿戴搭配；重新打开衣柜时读取当前工程的身体和已显示五官。衣柜不会修改或保存当前未保存的绘画草稿。
+ 
+ - 动画帧上方提供“复制 / 剪切 / 粘贴”（Ctrl+C / X / V）：有选区时操作选区，无选区时操作当前图层；切换帧或朝向后仍能粘贴。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\test\\wardrobe-browser.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\wardrobe-browser.cjs"
+index 23d9cd8..73494f6 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261031-\350\241\243\346\237\234\350\207\252\345\212\250\345\220\214\346\255\245\\test\\wardrobe-browser.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\wardrobe-browser.cjs"
+@@ -48,6 +48,7 @@ async function main(){
+     r=await fetch(base+'/api/project?id=finished-rear-test',{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(rear)});assert.equal(r.status,200);
+     const refresh=async()=>{await dialog.getByRole('button',{name:'刷新成品列表',exact:true}).click();await page.waitForFunction(()=>![...document.querySelectorAll('.wardrobe-dialog button')].find(b=>b.textContent==='刷新成品列表').disabled);};
+     await refresh();const rearCard=page.locator('.wardrobe-item').filter({has:page.getByText('独立后发',{exact:true})}),frontCard=page.locator('.wardrobe-item').filter({has:page.getByText('其他窗口更新的头发',{exact:true})});
++    assert((await fetch(base+'/api/project?id=finished-rear-test').then(r=>r.json())).wardrobe.sourceRevision,'legacy finished pieces acquire automatic sync metadata');
+     await rearCard.getByRole('button',{name:'试穿',exact:true}).click();assert.equal(await page.locator('.wardrobe-item button[aria-pressed=true]').count(),3,'front hair, rear hair and clothing must stay equipped together');
+     await dialog.getByRole('button',{name:'重置场景',exact:true}).click();await page.waitForTimeout(70);
+     const hairPixels=()=>scene.evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let front=0,rear=0;for(let i=0;i<d.length;i+=4){if(d[i]===40&&d[i+1]===87&&d[i+2]===106)front++;if(d[i]===68&&d[i+1]===111&&d[i+2]===131)rear++;}return {front,rear};});
+@@ -70,12 +71,40 @@ async function main(){
+     fs.mkdirSync(path.join(root,'test/output'),{recursive:true});await page.screenshot({path:path.join(root,'test/output/wardrobe-desktop-fixture.png')});
+     await page.setViewportSize({width:620,height:860});await page.screenshot({path:path.join(root,'test/output/wardrobe-narrow-fixture.png')});
+     assert(await dialog.evaluate(d=>d.scrollWidth<=d.clientWidth+1),'no horizontal overflow at 620px');
++    // Automatic sync reads only saved API data, not this window's dirty draft.
++    const savedSource=structuredClone(source);savedSource.name='已保存的新版原工程';
++    const beforeSync=await fetch(base+'/api/project?id='+hairId).then(r=>r.text());let rejectSync=true;
++    await page.route(base+'/api/project?id='+hairId,route=>{if(route.request().method()==='PUT'&&rejectSync){rejectSync=false;return route.fulfill({status:409,contentType:'application/json',body:'{}'});}return route.continue();});
++    const changedPNG=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=36;c.height=36;c.getContext('2d').fillStyle='#123456';c.getContext('2d').fillRect(14,7,8,5);return c.toDataURL();});
++    for(const l of savedSource.layers.filter(l=>l.sheetIndex===0&&l.name.endsWith('前发')))for(const d of Object.values(l.frameData))d.dataURL=changedPNG;
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test');rev=r.headers.get('ETag');
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test',{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':rev},body:JSON.stringify(savedSource)});assert.equal(r.status,200);
++    await page.getByText('成品同步遇到版本变化，已保留现有文件，稍后自动重试。',{exact:true}).waitFor();
++    assert.equal(await fetch(base+'/api/project?id='+hairId).then(r=>r.text()),beforeSync,'failed automatic PUT never overwrites the finished file');
++    await frontCard.locator('small').getByText('头发 · 已保存的新版原工程',{exact:true}).waitFor();
++    const synced=await fetch(base+'/api/project?id='+hairId).then(r=>r.json());
++    assert.equal(synced.name,'其他窗口更新的头发','sync retains finished name');assert(synced.layers.every(l=>l.name.endsWith('前发')),'sync retains originally selected parts only');
++    assert.equal(synced.layers.find(l=>l.sheetIndex===0).frameData['0_0_0'].dataURL,changedPNG,'actual source pixels reach the saved finished file without selection or confirmation');
++    await dialog.getByLabel('测试动作').selectOption('idle');await dialog.getByLabel('测试朝向').selectOption('down');
++    await page.waitForFunction(()=>{const d=document.querySelector('.wardrobe-scene').getContext('2d').getImageData(0,0,320,224).data;return d.some((v,i)=>i%4===0&&v===18&&d[i+1]===52&&d[i+2]===86);});
++    assert.equal(await page.locator('.wardrobe-item button[aria-pressed=true]').count(),2,'automatic refresh retains equipment');
++    const unchangedRevision=(await fetch(base+'/api/project?id='+hairId)).headers.get('ETag');await page.waitForTimeout(2300);
++    assert.equal((await fetch(base+'/api/project?id='+hairId)).headers.get('ETag'),unchangedRevision,'unchanged sources do not trigger repeated writes');
++    assert.deepEqual(await page.evaluate(async()=>({data:await PE.app.exportManager.exportProject(false).text(),version:PE.app.persistence.version,tool:PE.app.toolManager.currentTool})),original,'saved-source synchronization never replaces the dirty editor');
++    const renamed=structuredClone(savedSource);for(const l of renamed.layers.filter(l=>l.name.endsWith('前发')))l.name='头发 / 已改名 / 前发';
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test');rev=r.headers.get('ETag');
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test',{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':rev},body:JSON.stringify(renamed)});assert.equal(r.status,200);
++    await page.getByText('的原部件被删除或改名，已保留上次成品',{exact:false}).waitFor();
++    assert.equal((await fetch(base+'/api/project?id='+hairId)).headers.get('ETag'),unchangedRevision,'missing or renamed source parts never erase a finished piece');
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test');rev=r.headers.get('ETag');
++    r=await fetch(base+'/api/project?id=draft-wardrobe-test',{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':rev},body:JSON.stringify(savedSource)});assert.equal(r.status,200);
++    await page.getByText('成品自动同步已恢复',{exact:true}).waitFor();
+     await dialog.getByRole('button',{name:'关闭衣柜',exact:true}).click();
+     await page.getByRole('button',{name:'成品衣柜 / 换装测试',exact:true}).click();await page.getByText('其他窗口更新的头发',{exact:true}).waitFor();assert.equal(await page.locator('.wardrobe-item').count(),2,'items survive close/reopen');
+     await clothing.getByRole('button',{name:'移出衣柜',exact:true}).click();await page.getByText('已移出衣柜；独立文件仍保留。',{exact:true}).waitFor();assert.equal(await page.locator('.wardrobe-item').count(),1);assert(fs.existsSync(path.join(dir,'data/projects',clothesId+'.json')));
+     const fresh=await browser.newPage();fresh.on('pageerror',e=>errors.push(e.message));await fresh.goto(base+'/index.html?project=draft-wardrobe-test');await fresh.waitForFunction(()=>PE.app.persistence.ready&&document.querySelector('.studio-loading')?.hidden);await fresh.getByRole('button',{name:'成品衣柜 / 换装测试',exact:true}).click();await fresh.getByText('其他窗口更新的头发',{exact:true}).waitFor();assert.equal(await fresh.locator('.wardrobe-item').count(),1,'finished pieces persist into a fresh page');
+-    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/draft-wardrobe-test.json'),'utf8')),source,'no source project save');assert.deepEqual(errors,[]);
+-    console.log('PASS: real isolated save API + browser: same-category multi-piece layering with actual front/rear pixels, individual/all removal, refresh/filter/archive retention, manual curation, walk/idle, facing, sit, proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, fresh-page persistence, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.');
++    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/draft-wardrobe-test.json'),'utf8')),savedSource,'wardrobe never writes to the source project');assert.deepEqual(errors,[]);
++    console.log('PASS: real isolated save API + browser: automatic saved-source pixel sync without selection/confirmation, equipped rendering refresh, no repeated writes, dirty-draft protection; same-category multi-piece layering, individual/all removal, filter/archive retention, manual curation, walk/idle, facing, sit, pickup, stale-update rejection, backup, missing-action warning, ZIP download, fresh-page persistence; 1440x980 and 620x860 layouts.');
+     console.log('Isolated test files retained at '+dir);
+   }finally{await browser?.close();server.kill();}
+ }

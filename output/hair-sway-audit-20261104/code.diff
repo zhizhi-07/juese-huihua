@@ -1,0 +1,16 @@
+diff --git a/output/hair-sway-audit-20261104/before/js/hair-animation.js b/js/hair-animation.js
+index 36a861f..081aced 100644
+--- a/output/hair-sway-audit-20261104/before/js/hair-animation.js
++++ b/js/hair-animation.js
+@@ -243,9 +243,9 @@ window.PE = window.PE || {};
+         dx=Math.round(off.x*weight*depth);
+         dy=Math.round(off.y*weight*depth);
+       } else {
+-        // Depth delays the wave, but never silently locks or weakens the top row.
++        // Match the approved demo: horizontal sway grows from roots to tips.
+         const wave=Math.sin(settings.cycles*phase-settings.lag*depth)-Math.sin(-settings.lag*depth);
+-        dx=Math.round(settings.ampH*weight*wave);
++        dx=Math.round(settings.ampH*weight*depth*wave);
+         // Missing mode retains old saved motion; explicit vertical edits use the delayed local wave.
+         dy=-Math.round(settings.ampV*weight*(settings.verticalMode==='wave'?wave:(.5-.5*Math.cos(2*phase))));
+       }

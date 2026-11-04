@@ -1,0 +1,27 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "29C942C5B269EAD3621F4452996D2D53F1DC6A4F172B2969D459369A0A3A54E9",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B67E977CF9F5BDFF5C95AD783675DFF29DD3E7C7D70BA06D10A927CCE2591556",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\visual-layers.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F191F536C820529B3E99936CA93E6448735137624296F697A76847FA80035B47",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\workbench.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "703732B2944353798B507D004F84BA5D0BF802DACAD8D8353E0AA338E6E4CC8E",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\layer-order.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "DA8285CAF3F0AFF95C2C55A9C94F29EB482B5A43CD92992CFFCE5C7D589ADD14",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\visual-layers.cjs"
+  }
+]

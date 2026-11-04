@@ -1,0 +1,1 @@
+PUT status: 200; new clothing frames: 66; existing layers preserved: 88

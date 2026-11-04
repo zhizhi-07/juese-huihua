@@ -1,0 +1,8 @@
+{
+  "index.html": "90f59d58202adf626b508e04b7eb79851014e6f07d3a0598ed4e9e3f863af50e",
+  "js/workspace-layout.js": "b16bd59464bd6bc372442ca3a1231a9ff45fe837be3c6f16afa8e2814e8f2ea3",
+  "css/workspace-layout.css": "75bceca4c39551a143aa361a41dad1867008fc8f692bc71be35b11c71ec9a4f1",
+  "js/draw-kit.js": "b2d4aebd35f5281add53c553519e099b3537d26af4f473686849336b76f535a1",
+  "js/studio.js": "ea79a8b7b5786b1b3655da97d18f1d5ac4fc9d0a1eca75ed2d2cced26b30008d",
+  "test/workspace-layout.cjs": "78d8d7868d61ebb047592517c2c8e4c2fc59eec93b17b1ef570952fa4a25e2b2"
+}

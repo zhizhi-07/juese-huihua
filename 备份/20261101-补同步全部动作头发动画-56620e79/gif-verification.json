@@ -1,0 +1,22 @@
+[
+  {
+    "action": 7,
+    "gifMs": 800,
+    "originalMs": 800
+  },
+  {
+    "action": 9,
+    "gifMs": 1000,
+    "originalMs": 1000
+  },
+  {
+    "action": 10,
+    "gifMs": 400,
+    "originalMs": 400
+  },
+  {
+    "action": 11,
+    "gifMs": 570,
+    "originalMs": 571
+  }
+]

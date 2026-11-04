@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "name": "未命名项目",
+  "bgColor": "#1a1a2e",
+  "gridColor": "#333333",
+  "currentSheetIndex": 0,
+  "currentActionIndex": 0,
+  "currentFrameIndex": 0,
+  "currentLayerIndex": 1,
+  "palette": [
+    {
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255,
+      "name": "黑色"
+    },
+    {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255,
+      "name": "白色"
+    },
+    {
+      "r": 231,
+      "g": 76,
+      "b": 60,
+      "a": 255,
+      "name": "红色"
+    },
+    {
+      "r": 230,
+      "g": 126,
+      "b": 34,
+      "a": 255,
+      "name": "橙色"
+    },
+    {
+      "r": 241,
+      "g": 196,
+      "b": 15,
+      "a": 255,
+      "name": "黄色"
+    },
+    {
+      "r": 46,
+      "g": 204,
+      "b": 113,
+      "a": 255,
+      "name": "绿色"
+    },
+    {
+      "r": 52,
+      "g": 152,
+      "b": 219,
+      "a": 255,
+      "name": "蓝色"
+    },
+    {
+      "r": 155,
+      "g": 89,
+      "b": 182,
+      "a": 255,
+      "name": "紫色"
+    },
+    {
+      "r": 52,
+      "g": 73,
+      "b": 94,
+      "a": 255,
+      "name": "深蓝灰"
+    },
+    {
+      "r": 149,
+      "g": 165,
+      "b": 166,
+      "a": 255,
+      "name": "浅灰色"
+    }
+  ],
+  "spriteSheets": [
+    {
+      "name": "fixture",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 1,
+      "rows": 1,
+      "spacingX": 0,
+      "spacingY": 0,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fps": 8,
+      "imageDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAeSURBVGiB7cEBDQAAAMKg909tDwcUAAAAAAAAAPBuICAAATsETKkAAAAASUVORK5CYII=",
+      "actions": [
+        {
+          "name": "idle",
+          "direction": "down",
+          "frames": [
+            {
+              "sheetIndex": 0,
+              "sourceX": 0,
+              "sourceY": 0,
+              "width": 32,
+              "height": 32,
+              "locked": false,
+              "lockedRegions": [],
+              "status": "pending",
+              "duration": 0,
+              "notes": ""
+            },
+            {
+              "sheetIndex": 0,
+              "sourceX": 32,
+              "sourceY": 0,
+              "width": 32,
+              "height": 32,
+              "locked": false,
+              "lockedRegions": [],
+              "status": "pending",
+              "duration": 0,
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "name": "图层 1",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "frameData": {}
+    },
+    {
+      "sheetIndex": 0,
+      "name": "高清 · 高清眼睛",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "frameData": {
+        "0_0_0": {
+          "width": 32,
+          "height": 16,
+          "placement": {
+            "x": 12,
+            "y": 14,
+            "w": 8,
+            "h": 4
+          },
+          "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAYAAAB3AH1ZAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA6SURBVEiJ7dChDQAxDATBsRRg9mnp+y/KKcPk0MKVpjBttLLR4w4KOz3u3lwEIhCBCEQgAtsC/dX/ABJBA4viqeHeAAAAAElFTkSuQmCC"
+        }
+      }
+    }
+  ]
+}

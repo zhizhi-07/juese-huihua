@@ -1,0 +1,13 @@
+{
+  "url": "http://127.0.0.1:8765/api/project?id=character-gold-mix-1793320553623",
+  "etag": "\"9bb92e67c80391cdd404c6f9c26ab1e18e8c376b867a5eb93d47413ab203c714\"",
+  "sha256": "9bb92e67c80391cdd404c6f9c26ab1e18e8c376b867a5eb93d47413ab203c714",
+  "codeSHA256": {
+    "js/core.js": "dd9651a26870ca982069e729c7d7f67ee3f917fa47ce2900686b6984afe0eacb",
+    "js/tools.js": "e15269f1db8b0f90f125a3fc19fea9015f382b9cbdbfce492ffee5e9382a8ce7",
+    "js/pixel-import.js": "3a5d7203d5728a296ba2e717f6bc6987082ff14a9476158370efec500f56331e",
+    "index.html": "32922dc7d506bfafd11211fcb5ebf1642d63173046a671b0537f79c36a6a71ed",
+    "test/free-image-placement.cjs": "75ae86478d0601e65acf0e4d52d17ea7bddd427ce0077e3f9892f7a5ff12d06b",
+    "test/free-image-placement-browser.cjs": "73d77db7fbff9786368ce0cd86ca755fce7397fbd3aeebfa4444bb1aed05d00c"
+  }
+}

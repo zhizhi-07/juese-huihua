@@ -1,0 +1,138 @@
+diff --git a/output/hair-gentle-follow-20261104/before/js/hair-animation.js b/js/hair-animation.js
+index 081aced..0e3308e 100644
+--- a/output/hair-gentle-follow-20261104/before/js/hair-animation.js
++++ b/js/hair-animation.js
+@@ -161,6 +161,7 @@ window.PE = window.PE || {};
+       for(const v of [g.params,...Object.values(g.overrides),...Object.values(perDirection)]) {
+         if(!v||![v.ampV,v.ampH,v.cycles,v.lag].every(Number.isFinite)||v.ampV<0||v.ampV>4||v.ampH<0||v.ampH>6||!Number.isInteger(v.cycles)||v.cycles<1||v.cycles>4||v.lag<0||v.lag>1.5||!v.masks||Object.keys(v.masks).length>4)throw Error('头发飘动参数无效');
+         if(v.verticalMode!==undefined&&v.verticalMode!=='wave')throw Error('头发上下算法无效');
++        if(v.followHead!==undefined&&typeof v.followHead!=='boolean')throw Error('头发跟随设置无效');
+         for(const maps of [v.masks,v.protectedMasks??{}]) {
+           if(!maps||typeof maps!=='object'||Array.isArray(maps)||Object.keys(maps).length>4)throw Error('头发涂抹区域无效');
+           for(const m of Object.values(maps))if(m&&(!Number.isSafeInteger(m.width)||!Number.isSafeInteger(m.height)||m.width<1||m.height<1||m.width*m.height>262144||!Array.isArray(m.data)||m.data.length!==m.width*m.height||m.data.some(v=>v!==0&&v!==1)))throw Error('头发涂抹区域无效');
+@@ -206,7 +207,7 @@ window.PE = window.PE || {};
+     }
+     return {width:w,height:h,data:d,placement:src.placement};
+   }
+-  function deform(src, frame, offset, phase, settings, mask, enabled, protectedMask=null, trajectory=null, stitchMask=null) {
++  function deform(src, frame, offset, phase, settings, mask, enabled, protectedMask=null, trajectory=null, stitchMask=null, followOffset=null) {
+     const base=src;
+     const stitched=stitchMask?stitchSource(src,stitchMask):null;
+     const useSrc=stitched||src;
+@@ -233,7 +234,9 @@ window.PE = window.PE || {};
+       const weight=enabled&&selected(x,y)?1:0,depth=Math.max(0,Math.min(1,(y-top)/span));
+       if((weight===0?0:1)!==pass)continue;
+       let dx,dy;
+-      if(path) {
++      if(!path&&followOffset!==null) {
++        dx=0;dy=-Math.round(followOffset*weight*depth*depth);
++      } else if(path) {
+         // Trajectory brush: hair travels out along the drawn path and back each cycle.
+         // Baseline-normalised so the cycle starts exactly at the path origin (no first-frame jump);
+         // roots stay anchored (×depth) and tips lag (lag×depth).
+@@ -250,7 +253,7 @@ window.PE = window.PE || {};
+         dy=-Math.round(settings.ampV*weight*(settings.verticalMode==='wave'?wave:(.5-.5*Math.cos(2*phase))));
+       }
+       const X=x+r.x+offset.x+dx,Y=y+r.y+offset.y+dy;
+-      if(pass&&(path||settings.verticalMode==='wave')) {
++      if(pass&&(path||settings.verticalMode==='wave'||followOffset!==null)) {
+         const prev=previous[x];
+         // Stretch adjacent pixels with nearest colours, never bridge transparent or protected gaps.
+         if(prev&&prev.y===y-1&&Y>prev.Y+1)for(let yy=prev.Y+1;yy<Y;yy++) {
+@@ -271,7 +274,7 @@ window.PE = window.PE || {};
+     if(left||topOut||w!==frame.width||h!==frame.height)out.placement={x:left,y:topOut,w,h};
+     return {image:out,clipped};
+   }
+-  function plan(p,source,g=source.hairAnimation) {
++  function plan(p,source,g=source.hairAnimation,only=null) {
+     const idle=p.spriteSheets[source.sheetIndex],edits=[];let clipped=0;
+     for(const layer of p.layers.filter(l=>l.hairAnimationId===g.id)) {
+       const si=layer.sheetIndex,s=p.spriteSheets[si];if(!supported(s))throw Error('关联层动作不存在');
+@@ -286,11 +289,20 @@ window.PE = window.PE || {};
+         const total=durations.reduce((n,v)=>n+v,0);let elapsed=0;
+         for(const [fi,frame]of a.frames.entries()) {
+           const phase=2*Math.PI*elapsed/total;elapsed+=durations[fi];
++          if(only&&!only.has(p.getFrameKey(si,ai,fi)))continue;
+           if(layer===source&&fi===0)continue;
+           if(g.part==='eyes'&&g.preserved.includes(address(s,a.direction,fi)))continue;
+           if(frame.locked||frame.lockedRegions?.length)throw Error(`${actions[s.name.slice(11)]||s.name} 第${fi+1}帧有保护区域，同步未写入`);
+           const offset=g.offsets[address(s,a.direction,fi)];if(!offset)throw Error('帧结构已变化，请先重新标定偏移');
+-          const result=deform(src,frame,offset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction]);clipped+=result.clipped;
++          let followOffset=null;
++          if(g.enabled&&g.part!=='eyes'&&settings.followHead){
++            // shortcut: one-frame lag ignores uneven frame timing; use time-based dynamics if required.
++            const prev=fi?g.offsets[address(s,a.direction,fi-1)]:offset;
++            const earlier=fi>1?g.offsets[address(s,a.direction,fi-2)]:prev;
++            if(!prev||!earlier)throw Error('帧结构已变化，请先重新标定偏移');
++            followOffset=Math.max(-2,Math.min(2,offset.y-prev.y+(prev.y-earlier.y)*.5));
++          }
++          const result=deform(src,frame,offset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction],followOffset);clipped+=result.clipped;
+           edits.push({layer,key:p.getFrameKey(si,ai,fi),image:result.image});
+         }
+       }
+@@ -397,7 +409,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+       <div class="hair-sway-fields"><label>头发部件 <select data-hair aria-label="飘动头发部件"></select></label><label><input data-enabled type="checkbox">开启本部件飘动（总开关）</label></div>
+       <div class="hair-sway-fields"><label>应用范围 <select data-scope aria-label="飘动调节范围"><option value="current">当前动作＋当前方向</option><option value="direction">全部动作＋当前方向</option><option value="all">全部动作＋全部方向（统一覆盖）</option></select></label><label>动作 <select data-action aria-label="飘动动作"></select></label><label>方向 <select data-direction aria-label="飘动方向"></select></label></div>
+       <div class="hair-sway-grid"><section><h3>所选头发：可动 / 保护区域</h3><canvas data-paint aria-label="涂抹头发可动区域"></canvas><div><label>画笔半径 <input data-radius type="number" min="1" max="8" value="3" aria-label="飘动画笔半径"></label><button data-move class="studio-button" aria-pressed="true">可动画笔</button><button data-protect class="studio-button" aria-pressed="false">保护画笔</button><button data-traj class="studio-button" aria-pressed="false">轨迹画笔</button><button data-stitch class="studio-button" aria-pressed="false">补全画笔</button><button data-erase class="studio-button" aria-pressed="false">橡皮擦</button><button data-clear class="studio-button">全部可动</button><button data-clear-protection class="studio-button">清空保护</button><button data-clear-traj class="studio-button">清除轨迹</button><button data-clear-stitch class="studio-button">清除补全</button></div><p class="hair-mask-legend">蓝色：可动；红色：保护（优先）；橙色：轨迹；绿色：补全区。补全画笔涂在会露头皮的位置，那里会先补上头发颜色再一起飘动。不自动锁头顶。</p></section><section><h3>预览：只显示所选头发＋人物</h3><canvas data-preview aria-label="所选头发隔离动画预览"></canvas><div><button data-play class="studio-button">暂停</button><span data-frame></span></div></section></div>
+-      <div class="hair-sway-fields" data-params></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-cancel class="studio-button">取消全部</button><button data-apply class="studio-button save-primary">确定</button></div>`;
++      <div class="hair-sway-fields"><label><input data-follow type="checkbox">参考式轻微跟随头部</label><span>头部上下移动时发尾稍后跟上；头部不动时不额外飘。此模式不使用上下和左右波动参数，已绘制轨迹优先。</span></div><div class="hair-sway-fields" data-params></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-cancel class="studio-button">取消全部</button><button data-apply class="studio-button save-primary">确定</button></div>`;
+     const $=sel=>dialog.querySelector(sel),hair=$('[data-hair]'),scope=$('[data-scope]'),action=$('[data-action]'),direction=$('[data-direction]'),enabled=$('[data-enabled]'),paint=$('[data-paint]'),preview=$('[data-preview]'),note=$('[data-note]');
+     for(const l of candidates)hair.append(new Option(l.name,String(p.layers.indexOf(l))));
+     const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>PE.isEditorSheet(v.s)&&v.s.name.startsWith('original32_')&&Object.hasOwn(H.actions,v.s.name.slice(11)));
+@@ -409,7 +421,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     }
+     function settings(write=false){
+       const g=entry.source.hairAnimation,s=entry.work.spriteSheets[Number(action.value)];
+-      if(write){entry.dirty=true;return H.editSettings(g,s.name,direction.value,scope.value,entry.work.spriteSheets);}
++      if(write){entry.dirty=true;entry.followOnly=null;entry.enabledOnly=false;return H.editSettings(g,s.name,direction.value,scope.value,entry.work.spriteSheets);}
+       return scope.value==='all'?g.params:H.settingsFor(g,s.name,direction.value);
+     }
+     function sourceImage(){const idle=entry.work.spriteSheets[entry.source.sheetIndex],ai=idle.actions.findIndex(a=>a.direction===direction.value);return entry.source.getFrameData(entry.work.getFrameKey(entry.source.sheetIndex,ai,0));}
+@@ -438,16 +450,30 @@ document.addEventListener('DOMContentLoaded',()=>{
+     }
+     function rebuild(){
+       try{
+-        H.validate(entry.work);result=H.plan(entry.work,entry.source);$('[data-apply]').disabled=false;paintView();
+-        note.textContent=(entry.source.hairAnimation.enabled?'':'⚠ 总开关「开启本部件飘动」没勾选：确定后只会按动作对齐位置，不会真的飘动。')+(entry.last&&entry.last.scope!=='current'?`应用范围：${scope.selectedOptions[0]?.textContent}——确定后${H.directions[direction.value]||direction.value}的待机、行走、拾取、坐姿都会写成这套参数（睡觉不在编辑器动作内）。`:'')+`${entry.original.name} · ${action.selectedOptions[0]?.textContent} · ${direction.selectedOptions[0]?.textContent}；已调整 ${[...entries.values()].filter(e=>e.dirty).length} 个部件。`+(result.clipped?'有像素超出画布，原像素仍保留。':'')+(settings().verticalMode==='wave'?'上下：局部迟滞、压缩与回落（受发梢延迟控制）。':'上下：旧版整块平移；调整上下数值后改用局部起伏。')+(settings().trajectories?.[direction.value]?.length?'轨迹模式：头发沿你画的线来回飘动（轨迹幅度=距离，每循环次数=速度，发梢延迟=拖尾）。':'')+(settings().stitch?.[direction.value]?.some(v=>v)?'补全区：涂到的地方会先补上头发颜色，再跟着一起飘动。':'补全区为空：会露头皮的位置请用补全画笔涂一下。')+'原生像素取整；0.4 可出现局部变化，但不足半格的位置仍可能不动。';
++        const si=Number(action.value),sheet=entry.work.spriteSheets[si],ai=sheet.actions.findIndex(a=>a.direction===direction.value);
++        const keys=new Set(sheet.actions[ai].frames.map((_,fi)=>entry.work.getFrameKey(si,ai,fi)));
++        H.validate(entry.work);result=H.plan(entry.work,entry.source,entry.source.hairAnimation,keys);$('[data-apply]').disabled=false;paintView();
++        note.textContent=(entry.source.hairAnimation.enabled?'':'⚠ 总开关「开启本部件飘动」没勾选：确定后只会按动作对齐位置，不会真的飘动。')+(entry.last&&entry.last.scope!=='current'?`应用范围：${scope.selectedOptions[0]?.textContent}——确定后${H.directions[direction.value]||direction.value}的待机、行走、拾取、坐姿都会写成这套参数（睡觉不在编辑器动作内）。`:'')+`${entry.original.name} · ${action.selectedOptions[0]?.textContent} · ${direction.selectedOptions[0]?.textContent}；已调整 ${[...entries.values()].filter(e=>e.dirty).length} 个部件。`+(result.clipped?'有像素超出画布，原像素仍保留。':'')+(settings().followHead&&!settings().trajectories?.[direction.value]?.length?'参考式：发根跟头部，发尾稍后跟随。':settings().verticalMode==='wave'?'上下：局部迟滞、压缩与回落（受发梢延迟控制）。':'上下：旧版整块平移；调整上下数值后改用局部起伏。')+(settings().trajectories?.[direction.value]?.length?'轨迹模式：头发沿你画的线来回飘动（轨迹幅度=距离，每循环次数=速度，发梢延迟=拖尾）。':'')+(settings().stitch?.[direction.value]?.some(v=>v)?'补全区：涂到的地方会先补上头发颜色，再跟着一起飘动。':'补全区为空：会露头皮的位置请用补全画笔涂一下。')+'原生像素取整；0.4 可出现局部变化，但不足半格的位置仍可能不动。';
+         start=null;frame=0;
+       }catch(e){result=null;note.textContent=e.message;$('[data-apply]').disabled=true;}
+     }
+-    function loadFields(){painting=false;previous=null;const cur=settings();const def={trajAmp:0.1};for(const [key,input]of Object.entries(fields)){const val=cur[key];input.value=val!==undefined?val:(def[key]!==undefined?def[key]:'');}remember();rebuild();}
++    function loadFields(){painting=false;previous=null;const cur=settings();$('[data-follow]').checked=!!cur.followHead;const def={trajAmp:0.1};for(const [key,input]of Object.entries(fields)){const val=cur[key];input.value=val!==undefined?val:(def[key]!==undefined?def[key]:'');}remember();rebuild();}
+     function remember(){const s=entry?.work.spriteSheets[Number(action.value)];if(entry&&s)entry.last={sheet:s.name,direction:direction.value,scope:scope.value};}
+     hair.onchange=()=>{try{chooseHair();}catch(e){note.textContent=e.message;$('[data-apply]').disabled=true;}};
+-    scope.onchange=()=>{if(entry&&scope.value!=='current')entry.dirty=true;loadFields();};direction.onchange=loadFields;action.onchange=()=>{populateDirections(direction.value);loadFields();};
+-    enabled.onchange=()=>{entry.dirty=true;entry.source.hairAnimation.enabled=enabled.checked;rebuild();};
++    scope.onchange=()=>{if(entry&&scope.value!=='current'){entry.dirty=true;entry.followOnly=null;}loadFields();};direction.onchange=loadFields;action.onchange=()=>{populateDirections(direction.value);loadFields();};
++    enabled.onchange=()=>{entry.enabledOnly=!entry.dirty||!!entry.enabledOnly||!!entry.followOnly;entry.dirty=true;entry.source.hairAnimation.enabled=enabled.checked;rebuild();};
++    $('[data-follow]').onchange=()=>{
++      const hadOtherChanges=entry.dirty&&!entry.followOnly&&!entry.enabledOnly, prior=entry.followOnly, mode=scope.value, si=Number(action.value),dir=direction.value;
++      settings(true).followHead=$('[data-follow]').checked;
++      if(!hadOtherChanges){
++        const keys=prior||new Set();
++        for(const [i,s] of entry.work.spriteSheets.entries())for(const [ai,a] of s.actions.entries())
++          if((mode==='all'||(a.direction===dir&&(mode==='direction'||i===si)))&&PE.isEditorSheet(s))
++            a.frames.forEach((_,fi)=>keys.add(entry.work.getFrameKey(i,ai,fi)));
++        entry.followOnly=keys;
++      }
++      rebuild();
++    };
+     function stampMask(e){
+       const im=sourceImage();if(!im)return;const box=paint.getBoundingClientRect(),point={x:Math.floor((e.clientX-box.left)/box.width*paint.width),y:Math.floor((e.clientY-box.top)/box.height*paint.height)};
+       if(point.x<0||point.y<0||point.x>=im.width||point.y>=im.height){previous=point;return;}
+@@ -490,7 +516,10 @@ document.addEventListener('DOMContentLoaded',()=>{
+           // 应用范围是最后一步选择：即使只动了下拉框，也按它把参数真正写进对应动作，而不是只留在当前动作里。
+           if(e.last)H.editSettings(source.hairAnimation,e.last.sheet,e.last.direction,e.last.scope,p.spriteSheets);
+           return source;});
+-        H.validate(p);for(const source of sources)H.applyPlan(H.plan(p,source));
++        H.validate(p);for(const [i,source] of sources.entries()){
++          const only=changed[i].followOnly,result=H.plan(p,source,source.hairAnimation,only);
++          H.applyPlan(result);
++        }
+       });
+       say(`已应用 ${changed.length} 个头发部件的独立方向设置${spread.length?`；${spread.map(e=>`${e.original.name}已写入${H.directions[e.last.direction]||e.last.direction}的全部可编辑动作（待机/行走/拾取/坐姿，睡觉不在编辑器动作内）`).join('；')}`:''}；Ctrl+S 保存。`);dialog.close();
+     }catch(e){note.textContent=e.message;}};

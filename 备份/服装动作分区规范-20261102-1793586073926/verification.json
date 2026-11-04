@@ -1,0 +1,31 @@
+{
+  "task": "用户要求记录服装动作分区、姿势与阴影规范",
+  "newDocument": "服装动作适配与分区保留规范.md",
+  "newDocumentSHA256": "b5f94ed439227a17c06dbe348606b701f8ef5e2452c611558de54920496f10c7",
+  "modifiedExistingDocuments": [
+    {
+      "file": "AGENTS.md",
+      "backupSHA256": "4dc90ceb7137493b55332a06483b63dc6551b46de4863567a9c4b0f2ff17c47e",
+      "onlyAddedRequiredReadParagraph": true
+    },
+    {
+      "file": "人物绘制AI要求与自检.md",
+      "backupSHA256": "9cb72bb8ab12f8d0ec1e77eb9fc7ef8203c8ca9dbc0677487775553de1ac0ec8",
+      "onlyAddedRequiredReadParagraph": true
+    },
+    {
+      "file": "衣服绘制AI要求与自检.md",
+      "backupSHA256": "22f3eb6ca9d71704142cf5b95bb5a730b0ee8468cd219cac88bd437700c028de",
+      "onlyAddedRequiredReadParagraph": true
+    },
+    {
+      "file": "贴合衣服裤子画法与自检.md",
+      "backupSHA256": "927828abdb3e09f2f0cf1946b70a1201fadeed41324552a1a3d2e1755a03a39f",
+      "onlyAddedRequiredReadParagraph": true
+    }
+  ],
+  "referencesAllExist": true,
+  "projectJsonWritten": false,
+  "editorCodeModified": false,
+  "restore": "四份原文保存在本目录，已有其他改动未撤销；新文档可单独移除。若文档后续又有修改，先比较差异再恢复。"
+}

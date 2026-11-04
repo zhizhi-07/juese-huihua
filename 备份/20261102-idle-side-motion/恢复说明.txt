@@ -1,0 +1,3 @@
+仅撤回本次动画修正：GET当前工程并保留ETag；对比diff（verification.json changes）中6个frameData与after.json。仍相同的帧替换为before.json对应帧；有后续修改须逐像素合并。PUT带If-Match，禁止整工程强盖。恢复已在restore-extra-copy.json验证。
+原始第三帧、身体、头部、眼睛、手、其他动作方向和4×100ms设置未改。
+主画布、预览、PNG离屏路径已测；GIF四帧100ms逐像素解码核对；未操作浏览器。

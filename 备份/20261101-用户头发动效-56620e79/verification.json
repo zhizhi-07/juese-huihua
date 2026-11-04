@@ -1,0 +1,73 @@
+{
+  "originalSHA256": "c7d8818a00c1f9e4cdae50efeecd245ddf96706d519c4e4c0d66b94c2a5a7bc2",
+  "changed": [
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_3"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_3"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_3"
+    }
+  ],
+  "firstFrameUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "restoreExtraCopyVerified": true,
+  "all12IdleFramesMainPreviewPNGMatch": true,
+  "headOffsets": [
+    0,
+    0,
+    2,
+    2
+  ],
+  "rearTailOffsets": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "rearTipSpread": [
+    0,
+    1,
+    1,
+    0
+  ],
+  "browserChecked": false
+}

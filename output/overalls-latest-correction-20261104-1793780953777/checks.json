@@ -1,0 +1,26 @@
+{
+  "changed": [
+    {
+      "layer": 33,
+      "key": "1_0_2",
+      "pixels": 2
+    },
+    {
+      "layer": 33,
+      "key": "1_0_3",
+      "pixels": 2
+    }
+  ],
+  "sitRegression": [
+    "3_0_0",
+    "3_0_1",
+    "3_0_2",
+    "3_0_3",
+    "3_1_0",
+    "3_1_1",
+    "3_1_2",
+    "3_1_3"
+  ],
+  "allSitFramesBytePreserved": true,
+  "otherActionsPreserved": true
+}

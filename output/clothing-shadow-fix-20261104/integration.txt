@@ -1,0 +1,1 @@
+PASS clothing: 3 masters; 63 generated/preserved targets; base/geometry unchanged; atomic locks; undo/redo; live brush; manual keep/unkeep; PNG/config roundtrip; invalid config rejected.

@@ -1,0 +1,19 @@
+{
+  "verifiedOutfitAlreadyPresent": true,
+  "allLayersAndPixelsUnchanged": true,
+  "view": {
+    "before": [
+      8,
+      0,
+      0,
+      195
+    ],
+    "after": [
+      8,
+      1,
+      0,
+      188
+    ]
+  },
+  "restoration": "Restore only four current* selection fields from original.json using fresh ETag."
+}

@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : B798B4955D240DECFE8754B1FAB7B4F737B2BB1EC774C91A44D107391070C297
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\clothing-fit.js
+

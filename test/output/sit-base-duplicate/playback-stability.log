@@ -1,0 +1,5 @@
+$ node test/playback-stability.cjs
+{"firstWait":100,"nextWait":60,"playbackComposites":4,"afterEdit":8,"afterHands":12,"toolbarStates":[{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":false},{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":true},{"widthDisplay":"flex","positionDisplay":"flex","positionDisabled":true}]}
+PASS: compensated frame timing, cached action previews, edit/hand invalidation, stable toolbar across mixed frames.
+
+exit=0

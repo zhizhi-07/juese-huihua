@@ -1,0 +1,44 @@
+{
+  "status": 200,
+  "body": "{\"saved\":true,\"revision\":\"\\\"230e7a0f8ac417393daaf468db9071b84df7f4bf17ca1d0125c59e6fb65be5a0\\\"\"}",
+  "etag": "\"8d3167429fbbb42b338fc9d72126ab8faa59bc7645f1d12f0d6368e529aec3d4\"",
+  "sourceSHA256": "8d3167429fbbb42b338fc9d72126ab8faa59bc7645f1d12f0d6368e529aec3d4",
+  "changes": [
+    {
+      "index": 49,
+      "name": "hand 2",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    },
+    {
+      "index": 52,
+      "name": "hand",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    },
+    {
+      "index": 54,
+      "name": "hand 2",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    },
+    {
+      "index": 57,
+      "name": "hand",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    },
+    {
+      "index": 59,
+      "name": "hand 2",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    },
+    {
+      "index": 62,
+      "name": "hand",
+      "wasLocked": true,
+      "wasReferenceOnly": true
+    }
+  ]
+}

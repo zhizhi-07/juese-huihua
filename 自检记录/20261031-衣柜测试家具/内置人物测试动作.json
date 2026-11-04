@@ -1,0 +1,79 @@
+[
+  {
+    "name": "idle",
+    "frames": [
+      {
+        "direction": "side",
+        "count": 4
+      },
+      {
+        "direction": "down",
+        "count": 4
+      },
+      {
+        "direction": "up",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "name": "original32_idle",
+    "frames": [
+      {
+        "direction": "side",
+        "count": 4
+      },
+      {
+        "direction": "down",
+        "count": 4
+      },
+      {
+        "direction": "up",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "name": "original32_walk",
+    "frames": [
+      {
+        "direction": "side",
+        "count": 8
+      },
+      {
+        "direction": "down",
+        "count": 8
+      },
+      {
+        "direction": "up",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "name": "original32_sit",
+    "frames": [
+      {
+        "direction": "side",
+        "count": 4
+      },
+      {
+        "direction": "down",
+        "count": 4
+      },
+      {
+        "direction": "up",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "name": "original32_sleep",
+    "frames": [
+      {
+        "direction": "down",
+        "count": 4
+      }
+    ]
+  }
+]

@@ -1,0 +1,191 @@
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/index.html" b/index.html
+index 72aa41e..99c12c2 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/index.html"
++++ b/index.html
+@@ -13,7 +13,7 @@
+   <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
+   <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
+   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+-  <link rel="stylesheet" href="css/workspace-layout.css?v=1">
++  <link rel="stylesheet" href="css/workspace-layout.css?v=2">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -300,7 +300,7 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=ctrl-rect-1"></script>
++  <script src="js/studio.js?v=visible-hands-2"></script>
+   <script src="js/visual-layers.js?v=layer-order-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+@@ -313,10 +313,10 @@
+   <script src="js/pixel-import.js?v=layer-resize-mode-1"></script>
+   <script src="js/hd-canvas.js?v=hd-drag-create-1"></script>
+   <script src="js/frame-timing.js?v=frame-timing-1"></script>
+-  <script src="js/draw-kit.js?v=draw-kit-2"></script>
++  <script src="js/draw-kit.js?v=visible-aux-3"></script>
+   <script src="js/select-plus.js?v=select-plus-1"></script>
+   <script src="js/outline.js?v=select-plus-1"></script>
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+-  <script src="js/workspace-layout.js?v=2"></script>
++  <script src="js/workspace-layout.js?v=3"></script>
+ </body>
+ </html>
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__workspace-layout.js" b/js/workspace-layout.js
+index 6b57fb4..a7257b8 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__workspace-layout.js"
++++ b/js/workspace-layout.js
+@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
+   const auxiliary = controls.filter(control => control.matches('.aux-toggle, .perfect-toggle, .plus-selection-toggle, .plus-outline-toggle'));
+   const view = controls.filter(control => control !== zoom && !auxiliary.includes(control));
+   menu('视图', view, actions);
+-  menu('辅助工具', auxiliary, actions);
++  actions.append(...auxiliary);
+   if (zoom) actions.append(zoom);
+ 
+   const layers = $('#layer-list')?.closest('section');
+@@ -39,10 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
+     menu('更多', [...layerActions.children].filter(control => !['add-layer-btn', 'mirror-layer-btn', 'mirror-live-btn'].includes(control.id) && !control.classList.contains('layer-move')), layerActions);
+   }
+ 
+-  const timing = $('.timeline-timing');
+-  if (timing) menu('帧设置', [timing], $('.timeline-header'));
+-  const hands = $('#show-hands')?.closest('label');
+-  if (hands) $('.canvas-options')?.append(hands);
+   const caption = $('.section-caption');
+   if (caption) caption.hidden = true;
+ 
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/css__workspace-layout.css" b/css/workspace-layout.css
+index f5cc17c..5384999 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/css__workspace-layout.css"
++++ b/css/workspace-layout.css
+@@ -21,13 +21,13 @@
+ .studio .sheet-icon{width:24px;height:28px}
+ .studio .source-archive{margin-top:12px}
+ .studio #center-viewport{margin:12px 0;border-radius:8px;min-width:240px;box-shadow:none}
+-.studio .canvas-header{height:50px;min-height:50px;padding:0 14px}
++.studio .canvas-header{height:auto;min-height:50px;padding:8px 14px;flex-wrap:wrap}
+ .studio .canvas-title strong{font-size:13px}
+ .studio .canvas-title span{color:#6f7d74}
+ .studio .canvas-viewbar{min-height:44px;padding:6px 10px;gap:6px}
+ .studio .direction-tabs{flex-wrap:wrap;min-width:0}
+ .studio .direction-tab{padding:5px 10px;font-size:11px}
+-.studio .view-actions{gap:6px;margin-left:auto;flex-shrink:0}
++.studio .view-actions{gap:6px;margin-left:auto;flex:1 1 380px;min-width:0;flex-wrap:wrap;justify-content:flex-end}
+ .studio .view-actions>.zoom-control{margin-left:0}
+ .studio .view-actions button{font-size:11px;color:#52695a}
+ .studio .canvas-help{font-size:10px;letter-spacing:0;bottom:10px;left:10px}
+@@ -45,11 +45,12 @@
+ .studio .preview-card>.section-header{margin:0;padding-right:20px}
+ .studio .preview-label{display:none}
+ .studio #preview-canvas{width:76px;height:76px}
+-.studio .timeline-header{height:38px;gap:10px;padding:0 12px;position:relative}
++.studio .timeline-header{height:auto;min-height:38px;gap:8px;padding:6px 12px;position:relative;flex-wrap:wrap}
++.studio .timeline-header .timeline-timing{flex-wrap:wrap}
++.studio .hand-switch{color:#43564b;flex-shrink:0}
+ .studio .timeline-playback{gap:3px}
+ .studio .timeline-playback button{font-size:11px}
+ .studio .timeline-hint{display:none}
+-.studio .timeline-header>.workspace-menu{margin-left:auto}
+ .studio .workspace-menu{position:relative;flex-shrink:0;font-size:11px}
+ .studio .workspace-menu>summary{list-style:none;cursor:pointer;padding:5px 9px;border:1px solid #d7dfd3;border-radius:5px;background:#fff;color:#52695a;white-space:nowrap}
+ .studio .workspace-menu>summary::after{content:'⌄';margin-left:7px;color:#7b897f}
+@@ -61,11 +62,6 @@
+ .studio .workspace-menu-content>button{display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:4px;background:transparent;font-size:12px;white-space:nowrap;color:#435c4d}
+ .studio .workspace-menu-content>button:hover{background:#edf4ee}
+ .studio .workspace-menu-content>button.active{background:#e4eee3;color:#26705b}
+-.studio .workspace-menu-content .timeline-timing{display:flex;align-items:stretch;flex-direction:column;gap:12px;padding:6px;min-width:178px;color:#52695a}
+-.studio .workspace-menu-content .timing-total,.studio .workspace-menu-content .timing-toggle span{display:block}
+-.studio .workspace-menu-content .timing-button{height:28px;font-size:11px}
+-.studio .workspace-menu-content .timing-field{gap:6px}
+-.studio .timeline-header>.workspace-menu .workspace-menu-content{top:auto;bottom:calc(100% + 5px)}
+ .studio .save-status{overflow:hidden;text-overflow:ellipsis;min-width:0}
+ @media(max-width:1100px){
+   .studio #left-sidebar{width:145px;min-width:145px;padding:12px 9px}
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__draw-kit.js" b/js/draw-kit.js
+index 4579273..440aa74 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__draw-kit.js"
++++ b/js/draw-kit.js
+@@ -172,8 +172,8 @@ window.PE = window.PE || {};
+       toggle.setAttribute('aria-pressed', !hidden ? 'true' : 'false');
+       PE.app?.canvasManager?.render();
+     };
+-    document.body.classList.add('hide-aux-bars');
+-    toggle.setAttribute('aria-pressed', 'false');
++    toggle.classList.add('active');
++    toggle.setAttribute('aria-pressed', 'true');
+     viewbar.append(toggle);
+   }
+ })();
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__studio.js" b/js/studio.js
+index 0841d89..62e9b52 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/js__studio.js"
++++ b/js/studio.js
+@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const builtinReset=button('重新载入内置角色',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
+   const center=$('center-viewport'),canvasHeader=node('div','canvas-header');
+   const heading=node('div','canvas-title');const drawingTitle=node('strong','','正在载入角色…'),drawingMeta=node('span','','');heading.append(drawingTitle,drawingMeta);
+-  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手部');handSwitch.append(handCheckbox,node('span','','显示手部'));
++  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手臂');handSwitch.append(handCheckbox,node('span','','显示手臂'));
+   const background=node('label','background-control','背景 '),backgroundColor=node('input'),backgroundHex=node('input');
+   backgroundColor.type='color';backgroundColor.setAttribute('aria-label','画布背景颜色');
+   backgroundHex.type='text';backgroundHex.setAttribute('aria-label','背景颜色十六进制');backgroundHex.maxLength=7;
+diff --git "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/test__workspace-layout.cjs" b/test/workspace-layout.cjs
+index aa1eaf4..85577b4 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\201\242\345\244\215\345\270\270\347\224\250\345\205\245\345\217\243/test__workspace-layout.cjs"
++++ b/test/workspace-layout.cjs
+@@ -42,27 +42,28 @@ let mirrorClicks = 0; mirror.onclick = () => mirrorClicks++;
+ layerActions.append(add, move, mirror, liveMirror, remove); header.append(layerActions);
+ const list = new Element('div'); layers.append(header, list);
+ const timing = new Element('div','timeline-timing'), timeline = new Element(); timeline.append(timing);
+-const hands = new Element('label'), checkbox = new Element('input'), options = new Element(), caption = new Element(); hands.append(checkbox);
++const hands = new Element('label'), checkbox = new Element('input'), options = new Element(), caption = new Element(), canvasHeader = new Element(); hands.append(checkbox); canvasHeader.append(hands);
+ const lookup = {'.canvas-viewbar .view-actions':actions, '#layer-list':list, '.timeline-timing':timing, '.timeline-header':timeline, '#show-hands':checkbox, '.canvas-options':options, '.section-caption':caption};
+ const events = {};
+ const document = {querySelector: key => lookup[key], createElement: tag => new Element(tag), addEventListener:(event,callback) => {events[event]=callback;}};
+ vm.runInNewContext(fs.readFileSync(path.join(root,'js/workspace-layout.js'),'utf8'), {document});
+ events.DOMContentLoaded();
+ const menus = actions.children.filter(node => node.tag === 'details');
+-assert.equal(menus.length,2);
++assert.equal(menus.length,1);
+ assert.equal(actions.children.at(-1),zoom);
+-const viewContent = menus[0].children[1], auxContent = menus[1].children[1];
++const viewContent = menus[0].children[1];
+ assert.deepEqual(viewContent.children,[grid,reset]);
+-assert.deepEqual(auxContent.children,auxiliary);
++assert(auxiliary.every(control => control.parentElement === actions),'all auxiliary controls stay directly visible');
+ grid.onclick(); assert.equal(gridClicks,1,'moving a control retains its original listener');
+ assert.equal(layerActions.parentElement,layers);
+ assert.deepEqual(layerActions.children.slice(0,4),[add,move,mirror,liveMirror], 'both mirror controls stay visible, outside More');
+ assert.deepEqual(layerActions.children[4].children[1].children,[remove]);
+ mirror.onclick(); assert.equal(mirrorClicks,1,'the visible mirror control keeps its listener');
+-assert.equal(timeline.children[0].children[1].children[0],timing);
+-assert.equal(hands.parentElement,options); assert.equal(caption.hidden,true);
+-menus[0].open=true; menus[1].open=true; menus[1].events.toggle(); assert.equal(menus[0].open,false);
+-events.keydown({key:'Escape'}); assert.equal(menus[1].open,false); assert(menus[1].children[0].focused);
++assert.equal(timing.parentElement,timeline,'frame timing controls stay directly visible');
++assert.equal(hands.parentElement,canvasHeader,'show arms stays in the canvas header, not Settings'); assert.equal(caption.hidden,true);
++const layerMenu = layerActions.children[4];
++menus[0].open=true; layerMenu.open=true; layerMenu.events.toggle(); assert.equal(menus[0].open,false);
++events.keydown({key:'Escape'}); assert.equal(layerMenu.open,false); assert(layerMenu.children[0].focused);
+ menus[0].open=true; events.click({target:new Element()}); assert.equal(menus[0].open,false);
+ menus[0].open=true; viewContent.events.click({target:grid}); assert.equal(menus[0].open,false);
+ 
+@@ -76,4 +77,14 @@ assert.deepEqual(calls, [['layers','right',Infinity],['actions',sidebar,Infinity
+ assert.deepEqual(anchors,[['actions',guide]],'reset also preserves non-panel guide positions');
+ assert.equal(saves,1);
+ assert(!resetSource.includes('reload'),'reset must not reload or discard an unsaved drawing');
+-console.log('PASS: original controls/listeners preserved; view/tool/layer/timing menus; outside click/Escape; in-place panel reset without reload.');
++const drawKitSource = fs.readFileSync(path.join(root,'js/draw-kit.js'),'utf8');
++const auxSource = drawKitSource.match(/function buildAuxToggle\(\) \{([\s\S]*?)\n  \}\n/)[1];
++const classes=new Set(), body={classList:{toggle(name){if(classes.has(name)){classes.delete(name);return false;}classes.add(name);return true;}}};
++const auxActions=new Element();
++const auxDocument={...document,body,querySelector:()=>auxActions,createElement:tag=>{const e=new Element(tag);e.setAttribute=(key,value)=>e[key]=value;e.classList.add=()=>{};e.classList.toggle=()=>{};return e;}};
++vm.runInNewContext(`(() => {${auxSource}})()`,{document:auxDocument,PE:{}});
++assert.equal(classes.has('hide-aux-bars'),false,'image and copy toolbars are visible on startup');
++assert.equal(auxActions.children[0]['aria-pressed'],'true');
++auxActions.children[0].onclick(); assert(classes.has('hide-aux-bars'),'only the user can collapse the toolbars');
++auxActions.children[0].onclick(); assert.equal(classes.has('hide-aux-bars'),false);
++console.log('PASS: arms switch, auxiliary/copy/timing controls directly visible; original listeners retained; only user can collapse auxiliary bars; reset without reload.');

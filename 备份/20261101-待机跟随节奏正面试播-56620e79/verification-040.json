@@ -1,0 +1,15 @@
+{
+  "sourceCandidateSHA256": "50ce87273e7015b14c37c28a588a0f3126757828d0c605b5b3e5d762cec12b99",
+  "candidateSHA256": "1fb4aa34413e29ce15c2d01e7547168935cdfd6db893380617fde26184fd31d1",
+  "frontDurations": [
+    100,
+    100,
+    100,
+    100
+  ],
+  "totalMs": 400,
+  "allPixelDataUnchangedFromFollowthroughTrial": true,
+  "onlyFourTimingFieldsChanged": true,
+  "offlineOnly": true,
+  "apiWritten": false
+}

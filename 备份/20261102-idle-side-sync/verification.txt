@@ -1,0 +1,21 @@
+{
+  "putStatus": 200,
+  "getStatus": 200,
+  "changes": [
+    {
+      "frame": 1,
+      "pixels": 21
+    },
+    {
+      "frame": 2,
+      "pixels": 21
+    },
+    {
+      "frame": 4,
+      "pixels": 21
+    }
+  ],
+  "unchanged": "all except rear-hair side frames 1,2,4; frame3 preserved",
+  "restoration": "copy tested: replace these three frameData entries with before.json values; deep equality passed",
+  "browserPlayback": "not tested"
+}

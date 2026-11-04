@@ -1,0 +1,144 @@
+{
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "headTop": 4,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "headTop": 6,
+      "hairNotAboveHead": true,
+      "canvasMatchesExport": true
+    }
+  ],
+  "fringeDepth": 9,
+  "nonHairUnchanged": true,
+  "saved": true,
+  "browserTested": true,
+  "revision": "\"6685b65d8c12cfd5e32accab7e2ea42f463f1903f70ae720c04111cd9f650288\"",
+  "browserReadOnly": true,
+  "browserFrames": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ]
+}

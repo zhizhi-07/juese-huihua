@@ -1,0 +1,24 @@
+{
+  "id": "character-gold-mix-1793320553623",
+  "layerIndex": 192,
+  "source": [
+    36,
+    16
+  ],
+  "placement": [
+    18,
+    8
+  ],
+  "uniformCell": [
+    0.5,
+    0.5
+  ],
+  "keys": [
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3"
+  ],
+  "allOtherDataUnchanged": true,
+  "sourceSHA256": "4b3fa7c11e2428398fb9464ba417d5694229ea344811610e7c1d47b9d06d224d"
+}

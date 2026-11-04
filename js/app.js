@@ -142,6 +142,7 @@ window.PE = window.PE || {};
     // ==========================================
     bindCanvasEvents(canvas) {
       canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+      const mousePixel=e=>this.canvasManager.screenToPixel(e.clientX,e.clientY,!(this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement||this.toolManager.currentTool==='move'&&this.toolManager.freeImagePlacement));
       const resizeHandleAt=e=>{
         const s=this.toolManager.selection,cm=this.canvasManager;if(!s)return false;
         const r=canvas.getBoundingClientRect(),x=(e.clientX-r.left)*canvas.width/r.width,y=(e.clientY-r.top)*canvas.height/r.height;
@@ -158,9 +159,9 @@ window.PE = window.PE || {};
           return;
         }
 
-        const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
+        const pixel = mousePixel(e);
         if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
-        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e));
+        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e), e.ctrlKey&&!e.altKey&&!e.metaKey);
         if(this.toolManager.currentTool==='move')this.updateLayerList();
         this.canvasManager.render();
       });
@@ -183,7 +184,7 @@ window.PE = window.PE || {};
           e.clientY >= rect.top &&
           e.clientY <= rect.bottom || this.toolManager._transform
         ) {
-          const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
+          const pixel = mousePixel(e);
           if(this.toolManager.currentTool==='move'){
             canvas.style.cursor=resizeHandleAt(e)?'nwse-resize':'move';
           }else canvas.style.cursor=this.isSpacePressed?'grab':'crosshair';
@@ -200,7 +201,7 @@ window.PE = window.PE || {};
           return;
         }
         const wasDrawing=this.toolManager.isDrawing;
-        const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY);
+        const pixel = mousePixel(e);
         this.toolManager.onMouseUp(pixel.x, pixel.y);
         this.canvasManager.render();
         if(wasDrawing){this.updateFrameList();this.updatePalette();}
@@ -262,14 +263,13 @@ window.PE = window.PE || {};
       });
 
       // 笔刷大小
-      const brushInput = document.getElementById('brush-size');
-      const brushVal = document.getElementById('brush-size-val');
-      if (brushInput) {
-        brushInput.addEventListener('input', (e) => {
-          const val = parseInt(e.target.value, 10) || 1;
-          this.toolManager.setBrushSize(val);
-          if (brushVal) brushVal.textContent = `${val}px`;
+      for (const id of ['brush-size', 'brush-size-number']) {
+        const input = document.getElementById(id);
+        input?.addEventListener('input', () => {
+          if (input.value !== '') this.setBrushSize(Number(input.value));
         });
+        input?.addEventListener('change', () => this.setBrushSize(Number(input.value)));
+        input?.addEventListener('blur', () => this.setBrushSize(Number(input.value)));
       }
 
       // 主颜色选择器
@@ -596,10 +596,18 @@ window.PE = window.PE || {};
     // ==========================================
     // 键盘快捷键
     // ==========================================
+    setBrushSize(size) {
+      this.toolManager.setBrushSize(size);
+      for (const id of ['brush-size', 'brush-size-number']) {
+        const input = document.getElementById(id);
+        if (input) input.value = this.toolManager.brushSize;
+      }
+    }
+
     bindKeyboardShortcuts() {
       window.addEventListener('keydown', (e) => {
         // 如果焦点在输入框内，不拦截快捷键
-        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName) || document.activeElement?.isContentEditable) {
           return;
         }
 
@@ -609,6 +617,10 @@ window.PE = window.PE || {};
           const canvas = document.getElementById('main-canvas');
           if (canvas) canvas.style.cursor = 'grab';
           e.preventDefault();
+        }
+
+        if(e.key==='Escape'&&(this.toolManager._rectStroke||this.toolManager._nativeEdit?.tools._rectStroke)){
+          e.preventDefault();this.toolManager.clearSelection();return;
         }
 
         // 撤销 / 重做 (Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z)
@@ -646,6 +658,16 @@ window.PE = window.PE || {};
             this.persistence?.saveNow();
             return;
           }
+          // 不把 Ctrl+Shift+E（合并可见图层）误当成向下合并。
+          if (['j', 'e'].includes(e.key.toLowerCase())) {
+            if (e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            if (!e.repeat) {
+              if (e.key.toLowerCase() === 'j') this.duplicateCurrentLayer?.();
+              else this.mergeLayerDown?.();
+            }
+            return;
+          }
         }
 
         const selectionStep={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];
@@ -681,24 +703,10 @@ window.PE = window.PE || {};
             this.toolManager.setTool('select');
             this.updateToolbar();
             break;
-          case '[': {
-            const curSize = this.toolManager.brushSize || 1;
-            const newSize = Math.max(1, curSize - 1);
-            this.toolManager.setBrushSize(newSize);
-            const brushInput = document.getElementById('brush-size');
-            const brushVal = document.getElementById('brush-size-val');
-            if (brushInput) brushInput.value = newSize;
-            if (brushVal) brushVal.textContent = `${newSize}px`;
-            break;
-          }
+          case '[':
           case ']': {
-            const curSize = this.toolManager.brushSize || 1;
-            const newSize = Math.min(32, curSize + 1);
-            this.toolManager.setBrushSize(newSize);
-            const brushInput = document.getElementById('brush-size');
-            const brushVal = document.getElementById('brush-size-val');
-            if (brushInput) brushInput.value = newSize;
-            if (brushVal) brushVal.textContent = `${newSize}px`;
+            e.preventDefault();
+            this.setBrushSize(this.toolManager.brushSize + (e.key === ']' ? 1 : -1));
             break;
           }
           case 'arrowleft': {
@@ -802,6 +810,11 @@ window.PE = window.PE || {};
     // 界面同步与刷新 (UI Update Methods)
     // ==========================================
     updateAll() {
+      const p=this.project;
+      if(!PE.isEditorSheet(p.spriteSheets[p.currentSheetIndex])){
+        const idle=p.spriteSheets.findIndex(s=>/^original(?:16|32)_idle$/.test(s.name)),si=idle<0?p.spriteSheets.findIndex(PE.isEditorSheet):idle;
+        if(si>=0){p.currentSheetIndex=si;p.currentActionIndex=p.currentFrameIndex=0;p.currentLayerIndex=Math.max(0,p.layers.findIndex(l=>l.sheetIndex===si&&!l.isGroup));}
+      }
       if (this.animationPlayer) {
         const selectedFrame=this.project.currentFrameIndex;
         this.animationPlayer.setAction(this.project.currentSheetIndex, this.project.currentActionIndex);
@@ -828,6 +841,7 @@ window.PE = window.PE || {};
       const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
       const sheets = this.project.spriteSheets || [];
       sheets.forEach((sheet, idx) => {
+        if (!PE.isEditorSheet(sheet)) return;
         const item = document.createElement('div');
         item.className = `sheet-item ${idx === this.project.currentSheetIndex ? 'active' : ''}`;
         item.innerHTML = `
@@ -937,12 +951,12 @@ window.PE = window.PE || {};
         // 眼睛按钮 (可见性)
         const visBtn = document.createElement('button');
         visBtn.className = `layer-icon-btn ${layer.visible !== false ? 'visible' : 'hidden'}`;
-        visBtn.innerHTML = layer.visible !== false ? '👁' : '🚫';
+        visBtn.innerHTML = layer.visible !== false ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
         visBtn.title = '切换图层显示/隐藏';
         visBtn.addEventListener('click', () => {
           layer.visible = !layer.visible;
           this.persistence?.markDirty();
-          visBtn.innerHTML = layer.visible ? '👁' : '🚫';
+          visBtn.innerHTML = layer.visible ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
           this.canvasManager.render();
           this.updatePalette();
         });
@@ -950,14 +964,30 @@ window.PE = window.PE || {};
         // 锁按钮
         const lockBtn = document.createElement('button');
         lockBtn.className = `layer-icon-btn ${layer.locked ? 'locked' : 'unlocked'}`;
-        lockBtn.innerHTML = layer.locked ? '🔒' : '🔓';
+        lockBtn.innerHTML = layer.locked ? '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0m-4 9v2"/></svg>';
         lockBtn.title = '锁定/解锁图层';
         lockBtn.addEventListener('click', () => {
           layer.locked = !layer.locked;
           this.persistence?.markDirty();
-          lockBtn.innerHTML = layer.locked ? '🔒' : '🔓';
+          lockBtn.innerHTML = layer.locked ? '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0m-4 9v2"/></svg>';
           this.updateLayerList();
         });
+
+        // 独显 / 隔离预览按钮：只显示此图层，其余暂时隐藏；再次点击恢复（不改变原有显隐）
+        let soloBtn = null;
+        if (!layer.isGroup) {
+          const soloing = this.project._soloLayer === layer;
+          soloBtn = document.createElement('button');
+          soloBtn.className = `layer-icon-btn solo-btn ${soloing ? 'soloing' : ''}`;
+          soloBtn.title = soloing ? '退出独显（恢复全部图层）' : '独显此图层（隔离预览，可播放帧）';
+          soloBtn.setAttribute('aria-label', soloing ? '退出独显' : '仅显示此图层');
+          soloBtn.setAttribute('aria-pressed', String(soloing));
+          soloBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5A1.5 1.5 0 0 1 18.5 20H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="12" r="2.6"/></svg>';
+          soloBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            PE.LayerSolo?.toggle(this, layer);
+          });
+        }
 
         // 图层名称
         const nameSpan = document.createElement('span');
@@ -980,6 +1010,7 @@ window.PE = window.PE || {};
 
         row.appendChild(visBtn);
         row.appendChild(lockBtn);
+        if (soloBtn) row.appendChild(soloBtn);
         row.appendChild(nameSpan);
         row.appendChild(opacityInput);
 

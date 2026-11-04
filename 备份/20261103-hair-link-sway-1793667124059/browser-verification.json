@@ -1,0 +1,24 @@
+{
+  "realBrushChangedFrames": 26,
+  "onlySelectedRearFamilyChanged": true,
+  "recipePreservedAfterBrush": true,
+  "oneUndoRestoredAllLayers": true,
+  "perActionSitAmplitudeSaved": 1,
+  "selectedMaskPixelsSaved": 29,
+  "reopenEnabled": true,
+  "reopenSitAmplitude": 1,
+  "offsetTableEntries": 70,
+  "idleFrontVerticalOffsets": [
+    0,
+    0,
+    2,
+    2
+  ],
+  "idleMasterOffsetsReadOnly": true,
+  "screenshot": "C:/Users/Administrator/.codex/visualizations/2026/11/03/01a19ec6-bc3f-70a0-9246-95090534dbd1/hair-sway-panel.png",
+  "sourceUnchangedAtCopy": true,
+  "sourceSameAtFinalCheck": true,
+  "servedCodeMatchesDisk": true,
+  "mainTestProject": "draft-hair-link-test-1793667505308",
+  "qaProject": "draft-hair-link-qa-1793667805120"
+}

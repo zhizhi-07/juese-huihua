@@ -1,0 +1,18 @@
+{
+  "js/core.js": {
+    "before": "1e5b7d6691a1f03f498b5db352aed6459e96e19896adedb5e83047fdc61e0124",
+    "after": "74db17385142d80e8deb2b16102fd681ec53b19d6ef384ddd568eb8bbbb1e454"
+  },
+  "js/workbench.js": {
+    "before": "13a8405c0b3be8767cd9369a653f192d2aa511a6a4953844a2f12f83084575c8",
+    "after": "f191f536c820529b3e99936ca93e6448735137624296f697a76847fa80035b47"
+  },
+  "js/frame-tools.js": {
+    "before": "82724c5eb13f28fdaeb3e7889071837c56750f3167dee68f7e1db8d1af99c4af",
+    "after": "786c5c8e659a54ca408c096c8cb8fecc2c4b37914a33a792d95b04befa105367"
+  },
+  "data/shared-project.json": {
+    "before": "fd74eda83ee7218407b8c86d250d1b8cb2b4c2ebc469fc22a8672e65f22a3848",
+    "after": "419c529e4e94089dd632f8a847e47268e9c5b376d82883a586863907603c7f55"
+  }
+}

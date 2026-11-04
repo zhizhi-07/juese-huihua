@@ -1,0 +1,27 @@
+{
+  "files": [
+    {
+      "path": "js/hair-animation.js",
+      "sha256": "a06280c4fc17ee0193a73f5199c75d6c01f448711b60113a10c54b1abfb200e8",
+      "afterSHA256": "79e512c89ef3e52bd522352caa8ad38b302d7e9847ed62e9c85610f7cbeea144"
+    },
+    {
+      "path": "css/hair-animation.css",
+      "sha256": "48db0578702dda41f95333cc478f81e2b85e359c523e1b35347d2761791e1707",
+      "afterSHA256": "2e4a115ea599d68eb6fba967964dff3e2cf65a51be9d8682cd33679b509e4cf4"
+    },
+    {
+      "path": "test/hair-animation.cjs",
+      "sha256": "2f7d8bbada6ea5b06a05a3a772aef90a70493a9243b95124fd5fe28c3492f577",
+      "afterSHA256": "4342e07850b8b6f3bf310d00446c4f8dc971b743f90df9c145221944456aa5de"
+    },
+    {
+      "path": "index.html",
+      "sha256": "9b4d5c1d4555ae5be7673dad79ad128cbebe4efb8b06cc8634b142e8ca5c6245",
+      "afterSHA256": "215d4e5b440d0960afea7d13fde741a0f588ba4271f291eebe6e1575d9a36a58"
+    }
+  ],
+  "projectId": "draft-hair-link-test-1793667505308",
+  "etag": "\"cb104f1c60d7fd342d833dbf87c484cf65a5ff339f91533d3d3778f810d81c9c\"",
+  "projectSHA256": "cb104f1c60d7fd342d833dbf87c484cf65a5ff339f91533d3d3778f810d81c9c"
+}

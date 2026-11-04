@@ -1,0 +1,62 @@
+{
+  "originalSHA256": "3d6c4a87016be486157ba5ffa11d709ab2cf2b2f0d06e44e3ecab3ef34ec9354",
+  "changed": [
+    {
+      "index": 6,
+      "name": "头发后发",
+      "key": "8_0_1"
+    },
+    {
+      "index": 6,
+      "name": "头发后发",
+      "key": "8_0_2"
+    },
+    {
+      "index": 6,
+      "name": "头发后发",
+      "key": "8_0_3"
+    },
+    {
+      "index": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_0_1"
+    },
+    {
+      "index": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_0_2"
+    },
+    {
+      "index": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_0_3"
+    },
+    {
+      "index": 187,
+      "name": "前发",
+      "key": "8_0_1"
+    },
+    {
+      "index": 187,
+      "name": "前发",
+      "key": "8_0_2"
+    },
+    {
+      "index": 187,
+      "name": "前发",
+      "key": "8_0_3"
+    }
+  ],
+  "renamedLayer": {
+    "index": 6,
+    "from": "头发后发",
+    "to": "头发 / 用户 / 后发"
+  },
+  "sideFirstFrameUnchanged": true,
+  "frontAndBackPixelsUnchanged": true,
+  "otherDataUnchanged": true,
+  "backBodyPixelsCovered": 52,
+  "mainPreviewPNGAll12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

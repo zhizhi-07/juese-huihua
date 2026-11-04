@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),{createCanvas,ImageData}=require('@napi-rs/canvas');
+global.window=global;global.ImageData=ImageData;global.document={addEventListener(){},createElement(){return Object.assign(createCanvas(1,1),{style:{}});}};
+for(const f of ['core','history','canvas','tools','pixel-import','hd-canvas'])vm.runInThisContext(fs.readFileSync('js/'+f+'.js','utf8'),{filename:f});
+const p=new PE.Project(),s=new PE.SpriteSheet('idle'),a=new PE.Action('idle','down');s.actions=[a];a.frames=[new PE.Frame(0,0,0,36,36)];p.spriteSheets=[s];
+const h=new PE.HistoryManager(),tm=new PE.ToolManager(),cm=new PE.CanvasManager(Object.assign(createCanvas(288,288),{style:{}}),p);tm.init(p,cm,h);
+let dirty=0;const app={project:p,history:h,toolManager:tm,animationPlayer:{pause(){}},updateToolbar(){},updateAll(){},persistence:{markDirty(){dirty++;}}};
+const pixels=new ImageData(96,48);pixels.placement={x:0,y:0,w:16,h:8};const layer=PE.addImageLayer(app,pixels,'eye'),key=p.getFrameKey(),original=layer.getFrameData(key);dirty=0;
+let edit=new PE.HDCanvasSession(app);assert(!edit.apply());assert.equal(dirty,0);assert.equal(layer.getFrameData(key),original);
+const work=edit.project.layers[0].getFrameData('0_0_0');assert(!work.placement);work.data.set([10,20,255,255],(12*96+30)*4);assert.equal(original.data[(12*96+30)*4+3],0);
+assert(edit.apply());const applied=layer.getFrameData(key);assert.equal(dirty,1);assert.deepEqual(applied.placement,original.placement);assert.equal(applied.width,96);assert.equal(applied.data[(12*96+30)*4],10);h.undo(p);assert.equal(layer.getFrameData(key),original);h.redo(p);assert.equal(layer.getFrameData(key),applied);
+edit=new PE.HDCanvasSession(app);edit.project.layers[0].getFrameData('0_0_0').data[0]=123;layer.frameData.set(key,PE.utils.cloneImageData(applied));assert.throws(()=>edit.apply(),/变化/);layer.frameData.set(key,applied);
+edit=new PE.HDCanvasSession(app);p.getCurrentFrame().addLockedRegion(applied.placement.x,applied.placement.y,1,1);assert.throws(()=>edit.apply(),/保护/);p.getCurrentFrame().lockedRegions=[];
+for(const flag of ['locked','inheritedBase']){layer[flag]=true;assert.throws(()=>new PE.HDCanvasSession(app),/保护/);layer[flag]=false;}
+edit=new PE.HDCanvasSession(app);app.project=new PE.Project();assert.throws(()=>edit.apply(),/变化/);app.project=p;
+layer.frameData.set(key,Object.assign(new ImageData(513,1),{placement:{x:1,y:1,w:10,h:1}}));assert.throws(()=>new PE.HDCanvasSession(app),/512/);
+const blank=new ImageData(60,30);blank.placement={x:11,y:7,w:10,h:5};
+const count=p.layers.length;const placed=PE.addImageLayer(app,blank,'框选画布',blank.placement);assert.deepEqual(placed.getFrameData(key).placement,blank.placement);assert(!placed.getFrameData(key).data.some(Boolean),'new region is transparent, not a reference copy');
+h.undo(p);assert.equal(p.layers.length,count);h.redo(p);assert.deepEqual(tm.selection,blank.placement);assert.deepEqual(placed.getFrameData(key).placement,blank.placement);
+p.getCurrentFrame().addLockedRegion(11,7,1,1);assert.throws(()=>PE.addImageLayer(app,blank,'protected',blank.placement),/保护/);assert.equal(p.layers.length,count+1,'lock checks use selected position, not the old centered position');p.getCurrentFrame().lockedRegions=[];
+assert.throws(()=>PE.addImageLayer(app,blank,'invalid',{x:NaN,y:7}),/范围/);assert.equal(p.layers.length,count+1);
+console.log('PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.');

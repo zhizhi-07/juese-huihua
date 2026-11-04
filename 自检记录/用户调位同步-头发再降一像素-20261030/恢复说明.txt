@@ -1,0 +1,2 @@
+原稿：C:\Users\Administrator\Desktop\角色绘画\备份\20261030-用户调位后头发下移-1793349082924\original.json
+需要恢复时先GET当前工程及ETag，仅合并备份的layers[7,197,198]中8_1_0至8_1_3帧；比较后续用户改动，禁止整份旧稿覆盖。PUT原工程URL，使用X-Pixel-Editor:1与If-Match版本校验。

@@ -1,0 +1,95 @@
+{
+  "records": [
+    {
+      "project": "主工程",
+      "url": "http://127.0.0.1:8765/api/project?id=main",
+      "currentETag": "\"4ce3e6af5c0569a19ec14b834afba4bf8d5d26a4cc06dfe693551f6d6cf6c643\"",
+      "savedApiSha256": "4ce3e6af5c0569a19ec14b834afba4bf8d5d26a4cc06dfe693551f6d6cf6c643",
+      "currentApiSha256": "4ce3e6af5c0569a19ec14b834afba4bf8d5d26a4cc06dfe693551f6d6cf6c643",
+      "fullProjectStillExact": true,
+      "allAuthorizedFutureCelsStillMatch": true,
+      "changed": [
+        [
+          227,
+          "10_0_1"
+        ],
+        [
+          227,
+          "10_0_2"
+        ],
+        [
+          227,
+          "10_0_3"
+        ],
+        [
+          259,
+          "10_0_1"
+        ],
+        [
+          259,
+          "10_0_2"
+        ],
+        [
+          259,
+          "10_0_3"
+        ]
+      ]
+    },
+    {
+      "project": "当前分支",
+      "url": "http://127.0.0.1:8765/api/project?id=character-gold-mix-1793320553623",
+      "currentETag": "\"b6ce55c73da94dcaad31446f3a61e9dc7793cb41dc6d642ad4477706c08aa370\"",
+      "savedApiSha256": "b6ce55c73da94dcaad31446f3a61e9dc7793cb41dc6d642ad4477706c08aa370",
+      "currentApiSha256": "b6ce55c73da94dcaad31446f3a61e9dc7793cb41dc6d642ad4477706c08aa370",
+      "fullProjectStillExact": true,
+      "allAuthorizedFutureCelsStillMatch": true,
+      "changed": [
+        [
+          169,
+          "10_0_2"
+        ],
+        [
+          169,
+          "10_0_3"
+        ],
+        [
+          199,
+          "10_0_1"
+        ],
+        [
+          199,
+          "10_0_2"
+        ],
+        [
+          199,
+          "10_0_3"
+        ],
+        [
+          200,
+          "10_0_1"
+        ],
+        [
+          200,
+          "10_0_2"
+        ],
+        [
+          200,
+          "10_0_3"
+        ],
+        [
+          201,
+          "10_0_1"
+        ],
+        [
+          201,
+          "10_0_2"
+        ],
+        [
+          201,
+          "10_0_3"
+        ]
+      ]
+    }
+  ],
+  "scriptSha256": "626633eeda17a81ffe89d72f509b04808cf5fc7bc1e54befcee1593280e61035"
+}

@@ -1,0 +1,77 @@
+diff --git "a/\345\244\207\344\273\275\\20261101-\344\277\235\347\225\231\344\270\211\350\211\262\344\270\216\345\216\273\350\211\262\345\217\214\351\200\211\351\241\271\\js_pixel-import.js" b/js/pixel-import.js
+index fe1ee56..5e08b3e 100644
+--- "a/\345\244\207\344\273\275\\20261101-\344\277\235\347\225\231\344\270\211\350\211\262\344\270\216\345\216\273\350\211\262\345\217\214\351\200\211\351\241\271\\js_pixel-import.js"
++++ b/js/pixel-import.js
+@@ -49,13 +49,24 @@ PE.hairGrayImage=function(image){
+   }
+   return image;
+ };
++PE.hairThreeGrayImage=function(image){
++  const d=image.data,w=image.width,h=image.height;
++  for(let i=0;i<d.length;i+=4){
++    if(d[i+3]<128){d.fill(0,i,i+4);continue;}
++    const x=i/4%w,y=Math.floor(i/4/w),edge=x===0||y===0||x===w-1||y===h-1||[i-4,i+4,i-w*4,i+w*4].some(j=>d[j+3]<128);
++    // Dark filled regions are shadows, not thick outlines; retain dark ink only beside transparency.
++    const light=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2],v=light<145&&edge?119:light<195?178:209;
++    d.set([v,v,v,255],i);
++  }
++  return image;
++};
+ // Existing pixel art defaults to nearest-neighbor; photos can explicitly select smooth reduction.
+ PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='nearest',keyColor=null,palette='original',flipX=false,flipY=false,preserveThin=false,keepSource=false}={}){
+   if(!crop||![crop.x,crop.y,crop.w,crop.h,width].every(Number.isSafeInteger)||crop.w<1||crop.h<1||crop.w>16384||crop.h>16384||crop.w*crop.h>16*1024*1024||crop.x>=image.width||crop.y>=image.height||crop.x+crop.w<=0||crop.y+crop.h<=0)throw new Error('裁选范围无效或与原图没有交集（最大1600万像素）');
+   if(keepSource){width=crop.w;pixelize=false;sampling='nearest';palette='original';preserveThin=false;}
+   const height=Math.max(1,Math.round(crop.h*width/crop.w)),limit=keepSource?16384:512;
+   if(width<1||width>limit||height>limit)throw new Error('输出宽高需要在 1–'+limit+' 像素之间');
+-  if(!['nearest','smooth'].includes(sampling)||!['original','hair-gray'].includes(palette))throw new Error('采样方式或色板无效');
++  if(!['nearest','smooth'].includes(sampling)||!['original','hair-gray','hair-gray-three'].includes(palette))throw new Error('采样方式或色板无效');
+   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
+   const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=sampling==='smooth'&&(width!==crop.w||height!==crop.h);ctx.imageSmoothingQuality='high';
+   const source=document.createElement('canvas');source.width=crop.w;source.height=crop.h;
+@@ -78,7 +89,9 @@ PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='nea
+       if(best>=0)pixels.data.set(original.subarray(best,best+4),i);
+     }
+   }
+-  if(palette==='hair-gray')return PE.hairGrayImage(pixels);return pixelize?PE.quantizeImage(pixels,colors):pixels;
++  if(palette==='hair-gray')return PE.hairGrayImage(pixels);
++  if(palette==='hair-gray-three')return PE.hairThreeGrayImage(pixels);
++  return pixelize?PE.quantizeImage(pixels,colors):pixels;
+ };
+ PE.addImageLayer=function(app,pixels,name,position){
+   const p=app.project,frame=p.getCurrentFrame();
+@@ -190,10 +203,10 @@ document.addEventListener('DOMContentLoaded',()=>{
+     <div class="pixel-import-controls"><label><span data-width-label>像素宽度</span> <input type="number" min="1" max="512" value="32" aria-label="像素宽度"></label><button type="button" data-fit class="studio-button">适合当前画布</button>
+     <label><input type="checkbox" data-pixel checked>转成像素图</label><label>颜色 <select data-colors aria-label="颜色数量"><option value="0" selected>保留原图颜色</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label>
+     <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="nearest">最近邻（保留像素形状）</option><option value="smooth">平滑缩小（照片 / 大图）</option></select></label>
+-    <label>色板 <select data-palette aria-label="输出色板"><option value="original">原色</option><option value="hair-gray">灰色去色（保留阴影）</option></select></label></div>
++    <label>色板 <select data-palette aria-label="输出色板"><option value="original">原色</option><option value="hair-gray">灰色去色（保留阴影）</option><option value="hair-gray-three">头发规则灰色（三色）</option></select></label></div>
+     <div class="pixel-import-controls"><button type="button" data-flip-x class="studio-button" aria-pressed="false">水平翻转</button><button type="button" data-flip-y class="studio-button" aria-pressed="false">上下翻转</button><label><input type="checkbox" data-thin aria-label="保细线轮廓">保细线轮廓（可能增粗，默认关闭）</label><button type="button" data-photo class="studio-button">原图缩放（不做像素化）</button></div>
+     <div class="pixel-import-controls"><label><input type="checkbox" data-key>按颜色抠图</label><input type="color" data-key-color value="#303030" aria-label="抠除颜色"><button type="button" data-pick class="studio-button" aria-pressed="false">从原图取色</button><label>容差 <input type="number" data-tolerance value="32" min="0" max="255" aria-label="抠图容差"></label><label><input type="checkbox" data-neutral>只抠灰黑</label><button type="button" data-black class="studio-button">去黑色人形</button></div>
+-    <p>灰色去色：按原图亮度转灰，保留高光、阴影、深色描边与透明度，不限制为三色。裁框可拖出原图，外部留透明边；高清素材可用原图缩放保留半透明，不减色。预览不改原文件。</p>
++    <p>灰色去色：按原图亮度转灰，保留高光、阴影、深色描边与透明度，不限制为三色。头发规则灰色（三色）：描边 #777777 · 阴影 #B2B2B2 · 底色 #D1D1D1。裁框可拖出原图，外部留透明边；高清素材可用原图缩放保留半透明，不减色。预览不改原文件。</p>
+     <p data-status aria-live="polite">选择图片后可框选局部，再调整尺寸和颜色。</p><div class="image-import-actions"><button type="button" data-place class="studio-button save-primary" disabled>放到当前画布</button><button type="button" data-import class="studio-button" disabled>新建独立素材</button></div>
+     <p>放入后拖动图片移动，拖动右下角白色方块等比缩放。取消选中后，用“移动 / 缩放”点回图片；方向键微调，Ctrl+Z 撤销。</p>`;
+   document.body.append(dialog);
+@@ -222,7 +235,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+       if(hd.checked)pixels.placement={x:0,y:0,w,h};
+       preview.width=pixels.width;preview.height=pixels.height;preview.getContext('2d').putImageData(pixels,0,0);
+       const f=app.project.getCurrentFrame(),fits=f&&!f.locked&&w<=f.width&&h<=f.height;
+-      status.textContent=(hd.checked?'高清原图 '+pixels.width+' × '+pixels.height+' 像素保持不变 · 放置 '+w+' × '+h+' 画布单位':'裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 灰色去色，保留阴影':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色'))+(key.checked?' · 已抠色':'')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
++      status.textContent=(hd.checked?'高清原图 '+pixels.width+' × '+pixels.height+' 像素保持不变 · 放置 '+w+' × '+h+' 画布单位':'裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 灰色去色，保留阴影':palette.value==='hair-gray-three'?' · 头发三色灰':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色'))+(key.checked?' · 已抠色':'')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
+       submit.disabled=false;place.disabled=!fits;
+     }catch(error){status.textContent=error.message;}
+   }
+diff --git "a/\345\244\207\344\273\275\\20261101-\344\277\235\347\225\231\344\270\211\350\211\262\344\270\216\345\216\273\350\211\262\345\217\214\351\200\211\351\241\271\\test_image-import.cjs" b/test/image-import.cjs
+index bffd287..44bf374 100644
+--- "a/\345\244\207\344\273\275\\20261101-\344\277\235\347\225\231\344\270\211\350\211\262\344\270\216\345\216\273\350\211\262\345\217\214\351\200\211\351\241\271\\test_image-import.cjs"
++++ b/test/image-import.cjs
+@@ -27,6 +27,9 @@ const gray=PE.hairGrayImage({width:4,height:1,data:new Uint8ClampedArray([100,60
+ const shadow=new ImageData(3,3);for(let i=0;i<shadow.data.length;i+=4)shadow.data.set([100,60,0,255],i);PE.hairGrayImage(shadow);assert.equal(shadow.data[16],64,'interior shadow retains its brightness');assert.equal(shadow.data[0],64,'the same color must not change with edge position');
+ const grayRamp=new ImageData(256,1);for(let i=0;i<256;i++)grayRamp.data.set([i,i,i,i],i*4);const rampBefore=grayRamp.data.slice();assert.equal(PE.hairGrayImage(grayRamp),grayRamp);assert.deepEqual(grayRamp.data,rampBefore,'all 256 gray shades and alpha levels survive unchanged');
+ const partial=PE.hairGrayImage({data:new Uint8ClampedArray([100,60,0,64,220,170,30,128])});assert.deepEqual([...partial.data],[64,64,64,64,171,171,171,128],'desaturation retains semi-transparent colored pixels');
++const three=PE.hairThreeGrayImage({width:4,height:1,data:new Uint8ClampedArray([100,60,0,255,220,170,30,255,255,240,120,255,10,20,30,0])});assert.deepEqual([...three.data],[119,119,119,255,178,178,178,255,209,209,209,255,0,0,0,0],'legacy three-tone mapping remains available');
++const threeShadow=new ImageData(3,3);for(let i=0;i<threeShadow.data.length;i+=4)threeShadow.data.set([100,60,0,255],i);PE.hairThreeGrayImage(threeShadow);assert.equal(threeShadow.data[16],178);assert.equal(threeShadow.data[0],119);
++const threePixels=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32,{palette:'hair-gray-three'});for(let i=0;i<threePixels.data.length;i+=4){assert([119,178,209].includes(threePixels.data[i]));assert.equal(threePixels.data[i],threePixels.data[i+1]);assert.equal(threePixels.data[i],threePixels.data[i+2]);}
+ const grayPixels=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32,{palette:'hair-gray',colors:8});const grayLevels=new Set();for(let i=0;i<grayPixels.data.length;i+=4){assert.equal(grayPixels.data[i],grayPixels.data[i+1]);assert.equal(grayPixels.data[i],grayPixels.data[i+2]);assert.equal(grayPixels.data[i+3],255);grayLevels.add(grayPixels.data[i]);}assert.equal(grayLevels.size,32,'gray mode bypasses color reduction to keep the sampled shading');assert.deepEqual(g.getImageData(0,0,32,1).data,preserved.data,'desaturation does not mutate the source image');
+ const blackAndGold=createCanvas(4,2),kg=blackAndGold.getContext('2d');kg.fillStyle='#303030';kg.fillRect(0,0,2,2);kg.fillStyle='#f0d040';kg.fillRect(2,0,2,2);const untouched=kg.getImageData(0,0,4,2).data.slice();
+ const cut=PE.imageToPixels(blackAndGold,{x:0,y:0,w:4,h:2},4,{keyColor:{rgb:[48,48,48],tolerance:0}});assert.equal(cut.data[3],0);assert.equal(cut.data[11],255);assert.deepEqual(kg.getImageData(0,0,4,2).data,untouched,'keying never mutates the original image');

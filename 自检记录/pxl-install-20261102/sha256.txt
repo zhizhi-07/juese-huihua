@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : 48D249E5C533E1530E2B3E3ABE6536F149D5FB1A472753F1BABCF942E74C117C
+Path      : C:\Users\Administrator\.codex\skills\pxl-pixel-art\SKILL.md
+
+Algorithm : SHA256
+Hash      : 10B73FEE6BF2A80718E6A5229C55C6562E22DE95D891553DB84D3E5210BFCD98
+Path      : C:\Users\Administrator\.codex\skills\pxl-pixel-art\bin\pxl.js
+

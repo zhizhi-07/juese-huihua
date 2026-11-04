@@ -1,0 +1,6 @@
+PASS: card naming an unclassified layer 后发 puts its pixels behind the face; undo/redo restores names and order
+PASS: one down arrow crosses the current face, not a layer belonging to another sheet
+PASS: explicitly renaming front hair 正面后发 changes its type and moves it behind the face
+PASS: arrows skip other-direction groups; crossing a group boundary changes the composite immediately
+PASS: naming front hair in sheet 1 does not place it below that sheet's head because of sheet 0 accessories
+PASS: explicit manual order, selected layer and original pixels survive JSON/PNG save and reopen

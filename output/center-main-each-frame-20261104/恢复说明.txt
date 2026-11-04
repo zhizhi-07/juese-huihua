@@ -1,0 +1,3 @@
+main-before.json 是本次开始时 API 原始响应，SHA256 与原 ETag 见 report.json。
+本次逐帧整体平移并改变透明画布，不缩放和重画人物；每帧坐标变换见 plans，每帧原点保存在 canvasLayout.actions[].frames[]。逐帧居中会改变原先相对于画布边界的起伏位置。独立工程和浏览器草稿未操作。
+恢复：先 GET /api/project?id=main，确认没有后续修改，以读取到的 ETag 作为 If-Match，附 X-Pixel-Editor: 1、Content-Type: application/json，PUT 备份。409 必须停止，不盲目重传。恢复后回读，逐字段与备份比对。

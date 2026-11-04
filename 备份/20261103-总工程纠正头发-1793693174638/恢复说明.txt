@@ -1,0 +1,2 @@
+本次仅替换总工程的10个前后发图层的name与frameData；源为用户指定的draft-user-canvas-merged-1793608789349-dbd059d3。待机后发取完整12帧层11，不取8帧层5；前发取当前前发层198，其他动作对应同名完整层。未更改衣服、眼睛、素体、图层关系、显隐、锁定、画布、帧数、时长。
+恢复时GET总工程和ETag，对照after.json确认本次头发层未有后续编辑，仅把diff.json对应层的name和frameData恢复为before.json。保留其余最新数据，If-Match PUT；冲突先合并，不强盖。restore-extra-copy.json已验证与before.json相等。未刷新或操作网页。

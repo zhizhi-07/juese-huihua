@@ -1,0 +1,39 @@
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByLabel('图层缩放方式', { exact: true })
+    - locator resolved to <select aria-label="图层缩放方式">…</select>
+  - attempting select option action
+    2 × waiting for element to be visible and enabled
+      - element is not visible
+    - retrying select option action
+    - waiting 20ms
+    2 × waiting for element to be visible and enabled
+      - element is not visible
+    - retrying select option action
+      - waiting 100ms
+    58 × waiting for element to be visible and enabled
+       - element is not visible
+     - retrying select option action
+       - waiting 500ms
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\layer-resize-mode-browser.cjs:30:16 {
+  log: [
+    "  - waiting for getByLabel('图层缩放方式', { exact: true })",
+    '    - locator resolved to <select aria-label="图层缩放方式">…</select>',
+    '  - attempting select option action',
+    '    2 × waiting for element to be visible and enabled',
+    '      - element is not visible',
+    '    - retrying select option action',
+    '    - waiting 20ms',
+    '    2 × waiting for element to be visible and enabled',
+    '      - element is not visible',
+    '    - retrying select option action',
+    '      - waiting 100ms',
+    '    58 × waiting for element to be visible and enabled',
+    '       - element is not visible',
+    '     - retrying select option action',
+    '       - waiting 500ms'
+  ],
+  name: 'TimeoutError'
+}
+EXIT: 1

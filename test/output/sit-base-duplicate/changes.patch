@@ -1,0 +1,97 @@
+diff --git a/test/output/sit-base-duplicate/before/core.js b/js/core.js
+index 7a5b670..b6275d1 100644
+--- a/test/output/sit-base-duplicate/before/core.js
++++ b/js/core.js
+@@ -663,6 +663,23 @@ window.PE = window.PE || {};
+ 
+   // Export to window.PE
+   PE.isHandLayer = layer => !!layer && (layer.referenceOnly === true || /^(?:hand(?:\s|$)|手(?:部|臂)?(?:\s|$))/i.test(layer.name));
++  PE.isLayerInAction = (project, layer, sheetIndex = project.currentSheetIndex, actionIndex = project.currentActionIndex) => {
++    if (layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) return false;
++    const actions = project.spriteSheets?.[sheetIndex]?.actions || [], action = actions[actionIndex];
++    let parent = layer.parent;
++    const seen = new Set();
++    while (parent != null) {
++      if (seen.has(parent)) return false;
++      seen.add(parent);
++      const group = project.layers[parent];
++      if (!group) return false;
++      if (!group.isGroup) return true;
++      if (actions.some(a => a.name === group.name || a.direction === group.name)
++        && action?.name !== group.name && action?.direction !== group.name) return false;
++      parent = group.parent;
++    }
++    return true;
++  };
+   PE.isLayerVisible = (project, layer, sheetIndex = project.currentSheetIndex) => {
+     if (!layer.visible || layer.isGroup) return false;
+     if (layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) return false;
+@@ -822,7 +839,8 @@ window.PE = window.PE || {};
+   };
+   // Rear-view hair belongs to the rear-hair slot but must cover the back of the head.
+   PE.getRenderLayers = (project, sheetIndex, actionIndex) => {
+-    const layers=project.layers;
++    const filtered=project.layers.filter(l=>PE.isLayerInAction(project,l,sheetIndex,actionIndex));
++    const layers=filtered.length===project.layers.length?project.layers:filtered;
+     if(project.spriteSheets[sheetIndex]?.actions[actionIndex]?.direction!=='up')return layers;
+     const isRear=l=>l.sheetIndex===sheetIndex&&l.name.startsWith('头发 /')&&l.name.endsWith('后发');
+     const isAccessory=l=>l.sheetIndex===sheetIndex&&l.name.startsWith('发饰 /');
+diff --git a/test/output/sit-base-duplicate/before/workbench.js b/js/workbench.js
+index bf29c35..08755ba 100644
+--- a/test/output/sit-base-duplicate/before/workbench.js
++++ b/js/workbench.js
+@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
+   const updateLayers=app.updateLayerList.bind(app);
+   app.updateLayerList=function(){
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-    const available=l=>!l.isGroup&&!PE.isHandLayer(l)&&(l.sheetIndex===undefined||l.sheetIndex===p.currentSheetIndex)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
+-    if(!available(p.getCurrentLayer()||{frameData:new Map()})){const i=p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
++    const available=l=>!l.isGroup&&!PE.isHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
++    if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
+     updateLayers();
+     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
+     if(remove){const reason=!selected?'请先选择图层':selected.inheritedBase?'头部、身体和手部跟随主工程，请到主工程修改':PE.isHandLayer(selected)?'手部参考层受保护':selected.isGroup?'请先选择组内图层':selected.locked?'请先解锁图层':p.layers.length<2?'至少保留一个图层':'';remove.disabled=!!reason;remove.title=reason||'删除当前选中图层，可撤销';}
+@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
+     rows.forEach((row,i)=>{
+       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
+       if(PE.isHandLayer(l)){row.remove();return;}
+-      if(l.sheetIndex!==undefined && l.sheetIndex!==p.currentSheetIndex){row.remove();return;}
++      if(!PE.isLayerInAction(p,l)){row.remove();return;}
+       const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+       const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
+       if (l.isGroup ? !p.layers.some(child=>child.parent===index && (used(child)||child===p.getCurrentLayer())) : l.parent!=null && !used(l) && index!==p.currentLayerIndex) {row.remove();return;}
+diff --git a/test/output/sit-base-duplicate/before/frame-tools.js b/js/frame-tools.js
+index 3fb3945..dfd7c00 100644
+--- a/test/output/sit-base-duplicate/before/frame-tools.js
++++ b/js/frame-tools.js
+@@ -23,6 +23,7 @@ PE.FrameEditing={
+     const action=p.spriteSheets[sheetIndex]?.actions[actionIndex],frame=action?.frames[frameIndex],layer=p.layers[layerIndex];
+     if(!frame||!layer)throw new Error('图层、动作或帧不存在');
+     if(layer.isGroup||layer.sheetIndex!==undefined&&layer.sheetIndex!==sheetIndex)throw new Error('请选择属于目标素材表的具体图层');
++    if(!PE.isLayerInAction(p,layer,sheetIndex,actionIndex))throw new Error('图层属于其他朝向，请选择目标朝向的图层');
+     return {sheetIndex,actionIndex,frameIndex,layerIndex,action,frame,layer,key:p.getFrameKey(sheetIndex,actionIndex,frameIndex)};
+   },
+   editable(ref){
+@@ -65,10 +66,10 @@ PE.FrameEditing={
+     const edits=[],seen=new Set(),p=app.project,layers=p.layers.slice(),plannedProject=Object.assign(Object.create(p),{layers});
+     for(const target of targets){
+       if(!target||typeof target!=='object'||Array.isArray(target))throw new Error('目标帧需要是对象');
+-      const sheetIndex=target.sheetIndex??p.currentSheetIndex;let layerIndex=target.layerIndex;
++      const sheetIndex=target.sheetIndex??p.currentSheetIndex,actionIndex=target.actionIndex??p.currentActionIndex;let layerIndex=target.layerIndex;
+       // 跨动作时按源图层名匹配，不能把自动选中的身体底稿当作粘贴目标。
+-      if(layerIndex===undefined&&sheetIndex!==clip.ref.sheetIndex&&clip.ref.layer.sheetIndex!==undefined){
+-        const matches=layers.filter(l=>!l.isGroup&&l.sheetIndex===sheetIndex&&l.name===clip.ref.layer.name);
++      if(layerIndex===undefined&&clip.ref.layer.sheetIndex!==undefined&&(sheetIndex!==clip.ref.sheetIndex||!PE.isLayerInAction(p,clip.ref.layer,sheetIndex,actionIndex))){
++        const matches=layers.filter(l=>!l.isGroup&&l.sheetIndex===sheetIndex&&l.name===clip.ref.layer.name&&PE.isLayerInAction(plannedProject,l,sheetIndex,actionIndex));
+         if(matches.length>1)throw new Error('目标动作有多个同名图层，请明确选择目标图层');
+         let layer=matches[0];
+         if(!layer){
+@@ -154,7 +155,7 @@ PE.FrameEditing={
+   copyToFrames(app,source,targets,options){
+     const clip=this.read(app,source);
+     if(!Array.isArray(targets))throw new Error('请提供目标帧数组');
+-    const list=targets.map(t=>{if(!t||typeof t!=='object'||Array.isArray(t))throw new Error('目标帧需要是对象');return {sheetIndex:clip.ref.sheetIndex,...((t.sheetIndex??clip.ref.sheetIndex)===clip.ref.sheetIndex?{layerIndex:clip.ref.layerIndex}:{}),...t};});
++    const list=targets.map(t=>{if(!t||typeof t!=='object'||Array.isArray(t))throw new Error('目标帧需要是对象');return {sheetIndex:clip.ref.sheetIndex,...(PE.isLayerInAction(app.project,clip.ref.layer,t.sheetIndex??clip.ref.sheetIndex,t.actionIndex??app.project.currentActionIndex)?{layerIndex:clip.ref.layerIndex}:{}),...t};});
+     return this.apply(app,this.plan(app,clip,list,options),'批量复制图层 / 选区');
+   },
+   duplicate(app){

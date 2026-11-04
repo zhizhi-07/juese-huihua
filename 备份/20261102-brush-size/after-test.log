@@ -1,0 +1,3 @@
+PASS ordinary canvas: exact brush/eraser area, boundaries, reference protection, undo/redo.
+PASS HD source: exact brush/eraser area, boundaries, reference protection, undo/redo.
+PASS: visible slider + numeric input; range 1–128; bracket sync and clamping; narrow layouts; zero page errors; no project writes.

@@ -1,0 +1,1 @@
+原始完整工程：original.json。只撤销本次操作可依据 changes.json 的 oldToNewLayerIndex 取回所有原层、恢复原 parent 与 currentLayerIndex，并移除四个新衣服层；额外副本 restore-extra-copy.json 已验证与原稿完全一致。恢复到在线工程仍须先 GET 并比较后续修改，再以当前 ETag 条件 PUT，禁止直接覆盖用户后续修改。

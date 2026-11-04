@@ -1,0 +1,122 @@
+{
+  "saved": true,
+  "etag": "\"1a9a3004fe24b10ea20cb4b96fe09c84d809be933a7b415f6066016a739d6616\"",
+  "originalSHA256": "7c28900442c4cd7623a97ec8dd1b9838030d5a1885603d704b10aa517840439a",
+  "checks": [
+    {
+      "direction": "side",
+      "frame": 0,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "side",
+      "frame": 1,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "down",
+      "frame": 0,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "up",
+      "frame": 0,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handUncovered": true,
+      "noArmPixels": true
+    }
+  ],
+  "browserTested": false,
+  "changes": [
+    "Removed all outfit pixels outside torso x11..24",
+    "Right-facing side: broad left side panel, right front opening, right-offset collar and trouser division",
+    "Original near-hand layers composited above outfit, all their pixels preserved"
+  ],
+  "unchanged": "All non-outfit pixels, all action/frame/timing data and editor code"
+}

@@ -1,0 +1,13 @@
+{
+  "project": "当前分支",
+  "onlySideFrames2to4": true,
+  "allFirstCelsAndCompositeExact": true,
+  "otherDirectionsAndActionsExact": true,
+  "clothingGroundRowsFrom27Exact": true,
+  "headLowerRowsFrom25Exact": true,
+  "hdSourcePixelsExact": true,
+  "mainRenderAndPngMatch": true,
+  "actualStudioPreviewFunctionChecked": true,
+  "loop12341Exact": true,
+  "browserNotRefreshed": true
+}

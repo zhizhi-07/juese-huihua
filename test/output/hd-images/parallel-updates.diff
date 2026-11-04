@@ -1,0 +1,68 @@
+
+diff --git "a/test\\output\\hd-images\\task-only-snapshot\\js\\wardrobe.js" b/js/wardrobe.js
+index 0c1f1d1..26ccc0a 100644
+--- "a/test\\output\\hd-images\\task-only-snapshot\\js\\wardrobe.js"
++++ b/js/wardrobe.js
+@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const list=node('div','wardrobe-items');library.append(list);button('刷新成品列表',async()=>{await load();report('已刷新成品列表');},library);
+   const scene=node('canvas','wardrobe-scene');scene.width=320;scene.height=224;scene.tabIndex=0;scene.setAttribute('aria-label','换装测试场景：方向键或WASD移动，C坐下或站起，E拾取');
+   stage.append(node('h3','','换装试验场'),scene);
+-  const help=node('p','wardrobe-note','点击场景后：方向键 / WASD 移动，C 坐下 / 站起，E 拾取。走到黄色物件旁可拾取；也可直接测试动作。');stage.append(help);
++  const help=node('p','wardrobe-note','可多件叠穿，点每件的“脱下”可单独移除；同一部位后穿的叠在前面。点击场景后：方向键 / WASD 移动，C 坐下 / 站起，E 拾取。走到黄色物件旁可拾取；也可直接测试动作。');stage.append(help);
+   const controls=node('div','wardrobe-buttons');stage.append(controls);
+   const direction=node('select');direction.setAttribute('aria-label','测试朝向');for(const [value,label]of [['down','正面'],['left','左侧'],['right','右侧'],['up','背面']])direction.append(new Option(label,value));controls.append(direction);
+   const actionSelect=node('select');actionSelect.setAttribute('aria-label','测试动作');for(const [key,label]of Object.entries(W.actions))actionSelect.append(new Option(label,key));controls.append(actionSelect);
+@@ -164,7 +164,10 @@ document.addEventListener('DOMContentLoaded',()=>{
+       return label+'：'+rows.join(' ');
+     }).join('；');
+   }
+-  function equipText(){equipment.textContent='试穿：头发 · '+(equipped['头发']?.data.name||'未穿戴')+'　/　衣服 · '+(equipped['衣服']?.data.name||'未穿戴');}
++  function equipText(){
++    const worn=Object.values(equipped);
++    equipment.textContent='试穿：'+['头发','衣服'].map(c=>c+' · '+(worn.filter(e=>e.data.wardrobe.category===c).map(e=>e.data.name).join('、')||'未穿戴')).join('　/　');
++  }
+   function renderList(){
+     list.replaceChildren();
+     for(const entry of entries.filter(e=>!filter.value||e.data.wardrobe.category===filter.value)){
+@@ -176,14 +179,17 @@ document.addEventListener('DOMContentLoaded',()=>{
+       const details=node('details'),s=node('summary','','动作覆盖（有像素帧 / 总帧）');details.append(s,node('p','wardrobe-note',coverage(entry)));content.append(details);
+       const row=node('div','wardrobe-buttons');
+       button('选中',()=>{selected=entry;nameInput.value=entry.data.name;category.value=entry.data.wardrobe.category;updateChoices();renderList();report('已选中 '+entry.data.name+'；可试穿、导出或更新。');},row);
+-      const wear=button(equipped[entry.data.wardrobe.category]?.id===entry.id?'已穿戴':'试穿',()=>{equipped[entry.data.wardrobe.category]=entry;equipText();renderList();},row);wear.setAttribute('aria-pressed',String(equipped[entry.data.wardrobe.category]?.id===entry.id));
++      const wear=button(equipped[entry.id]?'脱下':'试穿',()=>{
++        if(equipped[entry.id])delete equipped[entry.id];else equipped[entry.id]=entry;
++        equipText();renderList();
++      },row);wear.setAttribute('aria-pressed',String(!!equipped[entry.id]));
+       button('一键导出',()=>W.exportItem(entry),row);
+       button('移出衣柜',async()=>{
+         if(!confirm('将「'+entry.data.name+'」移出成品衣柜？原草稿不变，独立文件保留。'))return;
+         const data=structuredClone(entry.data);data.wardrobe.archived=true;
+         const r=await fetch(p.base+'/api/project?id='+entry.id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':entry.revision},body:JSON.stringify(data)});
+         if(!r.ok)throw new Error(r.status===409?'成品版本已变化，请刷新列表后重试':'移出失败：'+r.status);
+-        for(const c of Object.keys(equipped))if(equipped[c]?.id===entry.id)delete equipped[c];await load();report('已移出衣柜；独立文件仍保留。');
++        delete equipped[entry.id];await load();report('已移出衣柜；独立文件仍保留。');
+       },row);content.append(row);card.append(thumb,content);list.append(card);
+     }
+     if(!list.childElementCount)list.append(node('p','wardrobe-empty','这里还没有成品。展开上方“标记当前工程的成品”，手动勾选收录；不会自动把旧半成品放进来。'));
+@@ -198,7 +204,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+       next.push({id,data,revision:r.headers.get('ETag'),project:await W.decode(data)});
+     }
+     entries=next;selected=entries.find(e=>e.id===(selectId||selected?.id))||null;
+-    for(const category of Object.keys(equipped)){const updated=entries.find(e=>e.id===equipped[category].id);if(updated)equipped[category]=updated;else delete equipped[category];}
++    for(const id of Object.keys(equipped)){const updated=entries.find(e=>e.id===id);if(updated)equipped[id]=updated;else delete equipped[id];}
+     equipText();renderList();
+   }
+   function setAction(value){if(action!==value){action=value;elapsed=0;}actionSelect.value=value;}
+diff --git "a/test\\output\\hd-images\\task-only-snapshot\\index.html" b/index.html
+index 196ee0a..b314f22 100644
+--- "a/test\\output\\hd-images\\task-only-snapshot\\index.html"
++++ b/index.html
+@@ -298,7 +298,7 @@
+   <script src="js/visual-layers.js?v=hd-image-layers-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+-  <script src="js/wardrobe.js?v=hd-image-layers-1"></script>
++  <script src="js/wardrobe.js?v=hd-image-layers-multiwear-1"></script>
+   <script src="js/frame-tools.js?v=hd-image-layers-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+   <script src="js/pixel-import.js?v=hd-image-layers-1"></script>

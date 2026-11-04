@@ -1,0 +1,77 @@
+FAIL: card naming an unclassified layer 后发 puts its pixels behind the face; undo/redo restores names and order 
+Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   80,
++   40,
++   30,
+-   240,
+-   190,
+-   160,
+    255
+  ]
+
+FAIL: one down arrow crosses the current face, not a layer belonging to another sheet 
+Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   80,
++   40,
++   30,
+-   240,
+-   190,
+-   160,
+    255
+  ]
+
+FAIL: explicitly renaming front hair 正面后发 changes its type and moves it behind the face 
+Expected values to be strictly equal:
+
+'前发' !== '后发'
+
+FAIL: arrows skip other-direction groups; crossing a group boundary changes the composite immediately 
+Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   80,
++   40,
++   30,
+-   240,
+-   190,
+-   160,
+    255
+  ]
+
+FAIL: naming front hair in sheet 1 does not place it below that sheet's head because of sheet 0 accessories 
+The expression evaluated to a falsy value:
+
+  assert(p.layers.indexOf(front)>p.layers.indexOf(head))
+
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: 5 layer-control regressions
+
+5 !== 0
+
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\layer-controls.cjs:61:8)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 5,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

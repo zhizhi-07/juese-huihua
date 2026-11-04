@@ -1,0 +1,106 @@
+{
+  "saved": true,
+  "etag": "\"fa5cd6d5aa514e877b8c2d6d1b6ee1c6be214c2a00f422c78e8fc1ea8eeedf38\"",
+  "originalSHA256": "7fb5ca999e570f08dbcd746fff64a7ddfaea65fa639a43ed69e52b7088c63014",
+  "checks": [
+    {
+      "direction": "side",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "side",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "down",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "up",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableContact": true
+    }
+  ],
+  "scope": "One new sitting outfit layer only. Front foot soles, side forward foot end, rear blue hip treated separately; no new hand pixels.",
+  "unchanged": "All original layer pixels/visibility/locks, idle outfit including rear collar fix, other actions, frames/timings/sizes and editor code. Only parent/current-layer indexes rebased after layer insertion.",
+  "browserTested": false
+}

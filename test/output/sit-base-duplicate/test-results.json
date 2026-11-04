@@ -1,0 +1,50 @@
+[
+  {
+    "name": "directional-base",
+    "exit": 0
+  },
+  {
+    "name": "frame-copy",
+    "exit": 0
+  },
+  {
+    "name": "cross-action-copy",
+    "exit": 0
+  },
+  {
+    "name": "frame-delete",
+    "exit": 0
+  },
+  {
+    "name": "layer-order",
+    "exit": 0
+  },
+  {
+    "name": "layer-shortcuts",
+    "exit": 0
+  },
+  {
+    "name": "wardrobe",
+    "exit": 0
+  },
+  {
+    "name": "wardrobe-rear-order",
+    "exit": 1
+  },
+  {
+    "name": "playback-selection",
+    "exit": 0
+  },
+  {
+    "name": "playback-stability",
+    "exit": 0
+  },
+  {
+    "name": "timeline",
+    "exit": 0
+  },
+  {
+    "name": "ctrl-rectangle",
+    "exit": 0
+  }
+]

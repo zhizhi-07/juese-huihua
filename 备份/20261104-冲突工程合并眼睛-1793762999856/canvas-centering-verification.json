@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "browser": "Microsoft Edge headless, isolated context",
+  "project": "main",
+  "sheets": 4,
+  "directions": [
+    "side",
+    "down",
+    "up"
+  ],
+  "combinationsTested": 12,
+  "maximumCenteringErrorPx": 0.5,
+  "pageErrors": 0,
+  "details": "Viewport center from rendered non-transparent sprite bounds; existing app.selectSheet/selectAction calls focusCharacter, ResizeObserver refits after resize; no editor code change needed."
+}

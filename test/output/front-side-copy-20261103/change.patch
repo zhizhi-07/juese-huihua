@@ -1,0 +1,46 @@
+diff --git a/test/output/front-side-copy-20261103/before/frame-tools.js b/js/frame-tools.js
+index 623db75..e34d8f6 100644
+--- a/test/output/front-side-copy-20261103/before/frame-tools.js
++++ b/js/frame-tools.js
+@@ -93,7 +93,8 @@ PE.FrameEditing={
+     return shared;
+   },
+   copy(app,source){const clip=this.read(app,source);clip.copiedAt=Date.now();app.frameClipboard=clip;this.publish(app,clip);return this.info(clip);},
+-  plan(app,clip,targets=[{}],{mode='overlay',x=clip?.x,y=clip?.y}={}){
++  plan(app,clip,targets=[{}],options={}){
++    const {mode='overlay',x=clip?.x,y=clip?.y}=options;
+     if(!clip)throw new Error('请先复制图层或选区');
+     // 跨窗口复制的内容没有工程对象绑定，只要像素本身有效即可粘贴。
+     const detached=!!clip.detached;
+@@ -101,6 +102,15 @@ PE.FrameEditing={
+     if(app.toolManager.isDrawing)throw new Error('请先结束当前绘画或拖动');
+     if(!['overlay','replace'].includes(mode)||![x,y].every(clip.pixels.placement?Number.isFinite:Number.isSafeInteger))throw new Error('粘贴方式或坐标无效');
+     if(!Array.isArray(targets)||!targets.length||targets.length>256)throw new Error('一次请选择 1–256 个目标帧');
++    // 默认叠加只按有色像素最小平移；明确坐标、透明覆盖和高清图片保留原有边界语义。
++    let bounds=null;
++    if(!clip.pixels.placement&&mode==='overlay'&&options.x===undefined&&options.y===undefined){
++      let left=Infinity,top=Infinity,right=-1,bottom=-1;
++      for(let row=0;row<clip.pixels.height;row++)for(let col=0;col<clip.pixels.width;col++)if(clip.pixels.data[(row*clip.pixels.width+col)*4+3]){
++        left=Math.min(left,col);top=Math.min(top,row);right=Math.max(right,col);bottom=Math.max(bottom,row);
++      }
++      if(right>=0)bounds={left,top,right,bottom};
++    }
+     const edits=[],seen=new Set(),p=app.project,layers=p.layers.slice(),plannedProject=Object.assign(Object.create(p),{layers});
+     for(const target of targets){
+       if(!target||typeof target!=='object'||Array.isArray(target))throw new Error('目标帧需要是对象');
+@@ -153,8 +163,13 @@ PE.FrameEditing={
+       if(before?.placement)throw new Error('不能把像素选区直接写入高清图片，请选择像素图层');
+       const after=before?PE.utils.cloneImageData(before):new ImageData(ref.frame.width,ref.frame.height);let modified=0;
+       // 跨窗口粘贴：来源坐标按原帧算，目标帧可能更小，需要夹到可见范围内。
+-      const baseX=detached?Math.max(0,Math.min(x,Math.max(0,ref.frame.width-clip.pixels.width))):x;
+-      const baseY=detached?Math.max(0,Math.min(y,Math.max(0,ref.frame.height-clip.pixels.height))):y;
++      let baseX=detached?Math.max(0,Math.min(x,Math.max(0,ref.frame.width-clip.pixels.width))):x;
++      let baseY=detached?Math.max(0,Math.min(y,Math.max(0,ref.frame.height-clip.pixels.height))):y;
++      if(bounds){
++        if(bounds.right-bounds.left+1>ref.frame.width||bounds.bottom-bounds.top+1>ref.frame.height)throw new Error('复制内容放不下目标画布，请扩大目标画布或缩小选区；没有修改任何目标');
++        baseX=Math.max(-bounds.left,Math.min(x,ref.frame.width-1-bounds.right));
++        baseY=Math.max(-bounds.top,Math.min(y,ref.frame.height-1-bounds.bottom));
++      }
+       for(let row=0;row<clip.pixels.height;row++)for(let col=0;col<clip.pixels.width;col++){
+         const i=(row*clip.pixels.width+col)*4;if(mode==='overlay'&&!clip.pixels.data[i+3])continue;
+         const dx=baseX+col,dy=baseY+row;

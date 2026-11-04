@@ -1,0 +1,14 @@
+{"mode":"before","checks":456,"mismatches":297,"projectUnchanged":true,"sha256":"5c40951ce6b431056eefceda7d28427ecdd72ac36afdddd6d3501993125c8835"}
+AssertionError [ERR_ASSERTION]: editor horizontal sway must match approved demo for the same source, timing, mask and parameters
+
+297 !== 0
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\hair-demo-parity.cjs:65:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 297,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

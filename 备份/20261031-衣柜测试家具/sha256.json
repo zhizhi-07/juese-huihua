@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A020F450EA38A41DB2171A6824B3E391BDB0FDF6B7102F40783FA2B37E3D7D03",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\wardrobe.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2664A5A8A4733CB961D66A983F8F93D1F50A1B5683D1A4B1C74764EFBBC05BDA",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "18E10433335181A6E9F3049F5666BB10CD6AFB3D0A6F9AFF71BE19D01877E2B1",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\wardrobe-browser.cjs"
+  }
+]

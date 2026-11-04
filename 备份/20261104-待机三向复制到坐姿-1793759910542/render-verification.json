@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "compositeFrames": 66,
+  "sittingLayerFramesCopiedFromIdle": 48,
+  "sittingDimensions": [
+    {
+      "direction": "side",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "direction": "down",
+      "width": 16,
+      "height": 16
+    },
+    {
+      "direction": "up",
+      "width": 16,
+      "height": 16
+    }
+  ],
+  "checks": [
+    "four actions only",
+    "no old wardrobe pixels",
+    "current skin colors",
+    "sitting is exact three-direction idle copy",
+    "import/export round trip",
+    "branch sync",
+    "AI idle recognition",
+    "native16 wardrobe snapshot"
+  ]
+}

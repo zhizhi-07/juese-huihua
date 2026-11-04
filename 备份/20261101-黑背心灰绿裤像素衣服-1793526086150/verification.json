@@ -1,0 +1,25 @@
+{
+  "originalSHA256": "95a47932bc7b52baee708b04b0f6bc9d550d8ba906b992d3fa689b2587c84429",
+  "onlyIdle12Cels": true,
+  "threeDirectionalOutfitLayers": true,
+  "sourceResolution": [
+    144,
+    144
+  ],
+  "logicalResolution": [
+    36,
+    36
+  ],
+  "scale": 4,
+  "oldPixelsAndVisibilityUnchanged": true,
+  "parentsRemappedByIdentity": true,
+  "hairEyesBodyHandsUnchanged": true,
+  "allTimingsSizesAndOtherActionsUnchanged": true,
+  "shoesInSameOutfitLayers": true,
+  "frontHandsProtected": true,
+  "HDMainAndPNG12FramesMatch": true,
+  "actualStudioPreviewFunctionTested": true,
+  "restoreExtraCopyVerified": true,
+  "imageGenerationUsed": false,
+  "browserChecked": false
+}

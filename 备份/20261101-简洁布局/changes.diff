@@ -1,0 +1,276 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261101-\347\256\200\346\264\201\345\270\203\345\261\200\\index.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+index c458c17..2697322 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261101-\347\256\200\346\264\201\345\270\203\345\261\200\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+@@ -13,6 +13,7 @@
+   <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
+   <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
+   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
++  <link rel="stylesheet" href="css/workspace-layout.css?v=1">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -314,6 +315,7 @@
+   <script src="js/draw-kit.js?v=draw-kit-2"></script>
+   <script src="js/select-plus.js?v=select-plus-1"></script>
+   <script src="js/outline.js?v=select-plus-1"></script>
+-  <script src="js/panel-dock.js?v=panel-dock-1"></script>
++  <script src="js/panel-dock.js?v=panel-dock-2"></script>
++  <script src="js/workspace-layout.js?v=1"></script>
+ </body>
+ </html>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261101-\347\256\200\346\264\201\345\270\203\345\261\200\\panel-dock.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\panel-dock.js"
+index 409cbd3..1159e41 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261101-\347\256\200\346\264\201\345\270\203\345\261\200\\panel-dock.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\panel-dock.js"
+@@ -242,6 +242,7 @@ window.PE = window.PE || {};
+       }
+     }
+ 
++    const defaults = [...panels.values()].map(section => ({ section, sidebar: section.parentElement, next: section.nextSibling }));
+     restore();
+ 
+     window.addEventListener('resize', () => {
+@@ -253,8 +254,11 @@ window.PE = window.PE || {};
+     });
+ 
+     PE.resetPanelLayout = () => {
+-      try { localStorage.removeItem(STORAGE_KEY); } catch (error) { /* ignore */ }
+-      location.reload();
++      for (const { section, sidebar, next } of defaults.slice().reverse()) {
++        dockInto(section, sidebar, Infinity);
++        if (next?.parentElement === sidebar) sidebar.insertBefore(section, next);
++      }
++      save();
+     };
+ 
+     const viewbar = document.querySelector('#center-viewport .canvas-viewbar .view-actions');
+--- /dev/null
++++ after/js/workspace-layout.js
+@@ -0,0 +1,59 @@
++/* Move existing controls, keeping their listeners and the unsaved drawing intact. */
++document.addEventListener('DOMContentLoaded', () => {
++  const $ = selector => document.querySelector(selector);
++  const menus = [];
++  function menu(label, controls, host) {
++    const details = document.createElement('details');
++    details.className = 'workspace-menu';
++    const summary = document.createElement('summary');
++    summary.textContent = label;
++    const content = document.createElement('div');
++    content.className = 'workspace-menu-content';
++    content.append(...controls.filter(Boolean));
++    details.append(summary, content);
++    host.append(details);
++    details.addEventListener('toggle', () => {
++      if (details.open) for (const other of menus) if (other !== details) other.open = false;
++    });
++    content.addEventListener('click', event => {
++      if (event.target.closest('button')) details.open = false;
++    });
++    menus.push(details);
++    return details;
++  }
++
++  const actions = $('.canvas-viewbar .view-actions');
++  if (!actions) return;
++  const controls = [...actions.children];
++  const zoom = actions.querySelector('.zoom-control');
++  const auxiliary = controls.filter(control => control.matches('.aux-toggle, .perfect-toggle, .plus-selection-toggle, .plus-outline-toggle'));
++  const view = controls.filter(control => control !== zoom && !auxiliary.includes(control));
++  menu('视图', view, actions);
++  menu('辅助工具', auxiliary, actions);
++  if (zoom) actions.append(zoom);
++
++  const layers = $('#layer-list')?.closest('section');
++  const layerActions = layers?.querySelector('.layer-header-actions');
++  if (layerActions) {
++    layers.querySelector('.section-header').after(layerActions);
++    menu('更多', [...layerActions.children].filter(control => control.id !== 'add-layer-btn' && !control.classList.contains('layer-move')), layerActions);
++  }
++
++  const timing = $('.timeline-timing');
++  if (timing) menu('帧设置', [timing], $('.timeline-header'));
++  const hands = $('#show-hands')?.closest('label');
++  if (hands) $('.canvas-options')?.append(hands);
++  const caption = $('.section-caption');
++  if (caption) caption.hidden = true;
++
++  document.addEventListener('click', event => {
++    for (const details of menus) if (!details.contains(event.target)) details.open = false;
++  });
++  document.addEventListener('keydown', event => {
++    if (event.key !== 'Escape') return;
++    for (const details of menus) if (details.open) {
++      details.open = false;
++      details.querySelector('summary').focus();
++    }
++  });
++});
+--- /dev/null
++++ after/css/workspace-layout.css
+@@ -0,0 +1,85 @@
++/* A quiet hierarchy: tools | actions | canvas | color and layers. */
++.studio .studio-header{height:54px;min-height:54px;padding:0 16px}
++.studio .project-bar{min-height:44px;padding:6px 16px;gap:8px}
++.studio .project-bar>strong{font-size:12px}
++.studio #workspace{min-height:0}
++.studio .tool-rail{width:58px;min-width:58px;padding:10px 5px;gap:3px;overflow-y:auto;overflow-x:hidden}
++.studio .tool-rail .tool-btn{width:100%;height:42px;min-height:42px;padding:3px 2px;gap:2px;font-size:10px;border-radius:6px;flex-shrink:0;box-shadow:none}
++.studio .tool-rail .tool-btn svg{width:18px;height:18px}
++.studio .tool-rail .tool-btn kbd{font-size:8px;top:2px;right:2px}
++.studio .rail-history{padding-top:8px;flex-shrink:0}
++.studio .rail-history .tool-btn{height:28px;min-height:28px;padding:0;gap:0;font-size:20px}
++.studio #left-sidebar{width:176px;min-width:176px;padding:16px 12px;gap:12px}
++.studio #left-sidebar:has(> .dock-panel #layer-list){width:280px;min-width:280px}
++.studio #right-sidebar{width:290px;min-width:290px;padding:16px 14px;gap:18px}
++.studio .sidebar{overflow-x:hidden}
++.studio .section-header{position:relative;min-height:22px;margin-bottom:10px;padding-right:22px;gap:6px}
++.studio .section-header h3{font-size:12px;letter-spacing:0;white-space:nowrap;flex-shrink:0;color:#43564b}
++.studio .sheet-item{min-height:48px;padding:9px 8px;gap:8px;box-shadow:none}
++.studio .sheet-copy strong{font-size:12px}
++.studio .sheet-copy small{font-size:10px}
++.studio .sheet-icon{width:24px;height:28px}
++.studio .source-archive{margin-top:12px}
++.studio #center-viewport{margin:12px 0;border-radius:8px;min-width:240px;box-shadow:none}
++.studio .canvas-header{height:50px;min-height:50px;padding:0 14px}
++.studio .canvas-title strong{font-size:13px}
++.studio .canvas-title span{color:#6f7d74}
++.studio .canvas-viewbar{min-height:44px;padding:6px 10px;gap:6px}
++.studio .direction-tabs{flex-wrap:wrap;min-width:0}
++.studio .direction-tab{padding:5px 10px;font-size:11px}
++.studio .view-actions{gap:6px;margin-left:auto;flex-shrink:0}
++.studio .view-actions>.zoom-control{margin-left:0}
++.studio .view-actions button{font-size:11px;color:#52695a}
++.studio .canvas-help{font-size:10px;letter-spacing:0;bottom:10px;left:10px}
++.studio .layer-header-actions{flex-wrap:wrap;gap:5px;padding-bottom:10px;flex-shrink:0}
++.studio .layer-header-actions>button{height:28px;padding:4px 8px;font-size:11px;border:1px solid #d7dfd3;border-radius:5px;background:#fff}
++.studio .layer-header-actions>.layer-move{width:28px;min-width:28px;padding:0}
++.studio #right-sidebar>.panel-section:has(#layer-list){min-height:180px}
++.studio .part-tabs{gap:4px;padding-top:0}
++.studio .part-tab{padding:6px 2px;font-size:11px}
++.studio .paint-controls{margin:0 0 8px}
++.studio .palette-caption{display:none}
++.studio #palette-container{max-height:66px;gap:5px}
++.studio .brush-control{margin-top:10px;color:#52695a}
++.studio .preview-card{min-height:88px;padding:8px 10px;border:1px solid #dce3d7;border-radius:7px;background:#edf0e9}
++.studio .preview-card>.section-header{margin:0;padding-right:20px}
++.studio .preview-label{display:none}
++.studio #preview-canvas{width:76px;height:76px}
++.studio .timeline-header{height:38px;gap:10px;padding:0 12px;position:relative}
++.studio .timeline-playback{gap:3px}
++.studio .timeline-playback button{font-size:11px}
++.studio .timeline-hint{display:none}
++.studio .timeline-header>.workspace-menu{margin-left:auto}
++.studio .workspace-menu{position:relative;flex-shrink:0;font-size:11px}
++.studio .workspace-menu>summary{list-style:none;cursor:pointer;padding:5px 9px;border:1px solid #d7dfd3;border-radius:5px;background:#fff;color:#52695a;white-space:nowrap}
++.studio .workspace-menu>summary::after{content:'⌄';margin-left:7px;color:#7b897f}
++.studio .workspace-menu>summary::-webkit-details-marker{display:none}
++.studio .workspace-menu>summary:focus-visible{outline:2px solid #389c80;outline-offset:2px}
++.studio .workspace-menu[open]>summary{background:#edf4ee;border-color:#a6c8b6}
++.studio .workspace-menu-content{position:absolute;right:0;top:calc(100% + 5px);z-index:70;min-width:178px;max-width:calc(100vw - 24px);max-height:55vh;overflow:auto;padding:6px;background:#fff;border:1px solid #d7dfd3;border-radius:7px;box-shadow:0 8px 24px #203c2820}
++.studio .workspace-menu:not([open])>.workspace-menu-content{display:none}
++.studio .workspace-menu-content>button{display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:4px;background:transparent;font-size:12px;white-space:nowrap;color:#435c4d}
++.studio .workspace-menu-content>button:hover{background:#edf4ee}
++.studio .workspace-menu-content>button.active{background:#e4eee3;color:#26705b}
++.studio .workspace-menu-content .timeline-timing{display:flex;align-items:stretch;flex-direction:column;gap:12px;padding:6px;min-width:178px;color:#52695a}
++.studio .workspace-menu-content .timing-total,.studio .workspace-menu-content .timing-toggle span{display:block}
++.studio .workspace-menu-content .timing-button{height:28px;font-size:11px}
++.studio .workspace-menu-content .timing-field{gap:6px}
++.studio .timeline-header>.workspace-menu .workspace-menu-content{top:auto;bottom:calc(100% + 5px)}
++.studio .save-status{overflow:hidden;text-overflow:ellipsis;min-width:0}
++@media(max-width:1100px){
++  .studio #left-sidebar{width:145px;min-width:145px;padding:12px 9px}
++  .studio #right-sidebar{width:260px;min-width:260px;padding:12px 10px}
++  .studio .canvas-viewbar{align-items:flex-start}
++  .studio .direction-tab{padding:5px 8px}
++  .studio .primary-actions{gap:5px}
++}
++@media(max-height:700px){
++  .studio #right-sidebar{gap:12px}
++  .studio .preview-card{display:none}
++  .studio #left-sidebar{padding-top:12px}
++  .studio .tool-rail .tool-btn{height:36px;min-height:36px;padding:2px;line-height:1.1}
++  .studio .tool-rail .tool-btn svg{width:16px;height:16px}
++  .studio .tool-rail{gap:2px}
++  .studio .rail-history .tool-btn{height:26px;min-height:26px}
++}
+--- /dev/null
++++ after/test/workspace-layout.cjs
+@@ -0,0 +1,76 @@
++const assert = require('node:assert/strict');
++const fs = require('node:fs');
++const vm = require('node:vm');
++const path = require('node:path');
++const root = path.resolve(__dirname, '..');
++
++class Element {
++  constructor(tag = 'div', className = '', id = '') {
++    Object.assign(this, {tag, className, id, children: [], events: {}, open: false});
++    this.classList = {contains: name => this.className.split(' ').includes(name)};
++  }
++  append(...nodes) {
++    for (const node of nodes) {
++      if (node.parentElement) node.parentElement.children.splice(node.parentElement.children.indexOf(node), 1);
++      this.children.push(node); node.parentElement = this;
++    }
++  }
++  after(node) { this.parentElement.append(node); }
++  addEventListener(event, callback) { this.events[event] = callback; }
++  matches(selector) { return selector.split(', ').some(name => this.classList.contains(name.slice(1))); }
++  querySelector(selector) {
++    for (const node of this.children) {
++      if (selector === node.tag || (selector[0] === '.' && node.classList.contains(selector.slice(1)))) return node;
++      const nested = node.querySelector(selector);
++      if (nested) return nested;
++    }
++  }
++  closest(selector) { return this.tag === selector ? this : this.parentElement?.closest(selector); }
++  contains(node) { return this === node || this.children.some(child => child.contains(node)); }
++  focus() { this.focused = true; }
++}
++const actions = new Element(), zoom = new Element('div', 'zoom-control');
++const grid = new Element('button'), reset = new Element('button');
++const auxiliary = ['aux-toggle','perfect-toggle','plus-selection-toggle','plus-outline-toggle'].map(name => new Element('button', name));
++let gridClicks = 0; grid.onclick = () => gridClicks++;
++actions.append(grid, zoom, ...auxiliary, reset);
++const layers = new Element('section'), header = new Element('div','section-header');
++const layerActions = new Element('div','layer-header-actions');
++const add = new Element('button','','add-layer-btn'), move = new Element('button','layer-move'), mirror = new Element('button');
++layerActions.append(add, move, mirror); header.append(layerActions);
++const list = new Element('div'); layers.append(header, list);
++const timing = new Element('div','timeline-timing'), timeline = new Element(); timeline.append(timing);
++const hands = new Element('label'), checkbox = new Element('input'), options = new Element(), caption = new Element(); hands.append(checkbox);
++const lookup = {'.canvas-viewbar .view-actions':actions, '#layer-list':list, '.timeline-timing':timing, '.timeline-header':timeline, '#show-hands':checkbox, '.canvas-options':options, '.section-caption':caption};
++const events = {};
++const document = {querySelector: key => lookup[key], createElement: tag => new Element(tag), addEventListener:(event,callback) => {events[event]=callback;}};
++vm.runInNewContext(fs.readFileSync(path.join(root,'js/workspace-layout.js'),'utf8'), {document});
++events.DOMContentLoaded();
++const menus = actions.children.filter(node => node.tag === 'details');
++assert.equal(menus.length,2);
++assert.equal(actions.children.at(-1),zoom);
++const viewContent = menus[0].children[1], auxContent = menus[1].children[1];
++assert.deepEqual(viewContent.children,[grid,reset]);
++assert.deepEqual(auxContent.children,auxiliary);
++grid.onclick(); assert.equal(gridClicks,1,'moving a control retains its original listener');
++assert.equal(layerActions.parentElement,layers);
++assert.deepEqual(layerActions.children.slice(0,2),[add,move]);
++assert.equal(layerActions.children[2].children[1].children[0],mirror);
++assert.equal(timeline.children[0].children[1].children[0],timing);
++assert.equal(hands.parentElement,options); assert.equal(caption.hidden,true);
++menus[0].open=true; menus[1].open=true; menus[1].events.toggle(); assert.equal(menus[0].open,false);
++events.keydown({key:'Escape'}); assert.equal(menus[1].open,false); assert(menus[1].children[0].focused);
++menus[0].open=true; events.click({target:new Element()}); assert.equal(menus[0].open,false);
++menus[0].open=true; viewContent.events.click({target:grid}); assert.equal(menus[0].open,false);
++
++const dockSource = fs.readFileSync(path.join(root,'js/panel-dock.js'),'utf8');
++const resetSource = dockSource.match(/PE\.resetPanelLayout = \(\) => \{([\s\S]*?)\n    \};/)[1];
++const sidebar = {insertBefore:(...args)=>anchors.push(args)}, guide = {parentElement:sidebar};
++const defaults = [{section:'actions',sidebar,next:guide},{section:'layers',sidebar:'right'}], calls=[], anchors=[];
++let saves=0;
++vm.runInNewContext(`(() => {${resetSource}})()`, {defaults,dockInto:(...args)=>calls.push(args),save:()=>saves++});
++assert.deepEqual(calls, [['layers','right',Infinity],['actions',sidebar,Infinity]]);
++assert.deepEqual(anchors,[['actions',guide]],'reset also preserves non-panel guide positions');
++assert.equal(saves,1);
++assert(!resetSource.includes('reload'),'reset must not reload or discard an unsaved drawing');
++console.log('PASS: original controls/listeners preserved; view/tool/layer/timing menus; outside click/Escape; in-place panel reset without reload.');

@@ -1,0 +1,1 @@
+本次只将 shoe-pixel-patch.json 中明确鞋区的灰像素改白；坐姿全部未改。原工程 original.json、原 SHA256 与 ETag 在 source.json。restore-extra-copy.json 已在额外副本上验证与原工程一致。若要撤销，按像素补丁逐点还原；先比较后续用户修改，带当前版本 ETag 保存，不能整稿强盖。

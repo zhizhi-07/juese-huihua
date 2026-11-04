@@ -1,0 +1,141 @@
+{
+  "checks": [
+    {
+      "key": "7_1_0",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_1",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_2",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_3",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_4",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_5",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_6",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "7_1_7",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "8_1_0",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "8_1_1",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "8_1_2",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "8_1_3",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_0",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_1",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_2",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_3",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_4",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "9_1_5",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "10_1_0",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "10_1_1",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "10_1_2",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "10_1_3",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "11_0_0",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "11_0_1",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "11_0_2",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "key": "11_0_3",
+      "onlyTwoDotsRemoved": true,
+      "mainCanvasMatchesExport": true
+    }
+  ],
+  "frames": 26,
+  "removedPixels": 52,
+  "allOtherPixelsAndMetadataUnchanged": true,
+  "browserTested": false,
+  "saved": true,
+  "etag": "\"6344f276a8687553ec15c9cdc806231a037fe493f1c8c2ee40cf4295032d7187\"",
+  "sha256": "6344f276a8687553ec15c9cdc806231a037fe493f1c8c2ee40cf4295032d7187"
+}

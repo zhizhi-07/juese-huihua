@@ -1,5 +1,5 @@
 const fs=require('fs'),path=require('path');
-const documents={hair:['人物绘制AI要求与自检.md','像素发型教程与自检.md'],eyes:['人物绘制AI要求与自检.md','眼睛绘制AI要求与自检.md'],clothes:['人物绘制AI要求与自检.md','衣服绘制AI要求与自检.md'],character:['人物绘制AI要求与自检.md'],building:['建筑绘制AI要求与自检.md'],item:['物品绘制AI要求与自检.md']};
+const documents={hair:[],eyes:[],clothes:[],character:[],building:[],item:[]};
 function apiBase(value='http://127.0.0.1:9182'){
   const u=new URL(value);
   if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw new Error('请输入有效的 HTTP 服务地址');

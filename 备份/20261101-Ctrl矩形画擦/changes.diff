@@ -1,0 +1,185 @@
+diff --git "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_tools.js.before" b/js/tools.js
+index 2718b90..2da5165 100644
+--- "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_tools.js.before"
++++ b/js/tools.js
+@@ -31,6 +31,7 @@ window.PE = window.PE || {};
+       this._selectStartY = -1;
+       this._isMoving = false;
+       this._transform = null;
++      this._rectStroke = null;
+     }
+ 
+     /**
+@@ -53,6 +54,7 @@ window.PE = window.PE || {};
+      * @param {string} name 
+      */
+     setTool(name) {
++      if(this._rectStroke||this._nativeEdit?.tools._rectStroke)this.clearSelection();
+       if(this._nativeEdit)this.onMouseUp();
+       if (this._transform) this.clearSelection();
+       this.currentTool = name;
+@@ -106,7 +108,7 @@ window.PE = window.PE || {};
+      * @param {number} py 
+      * @param {number} [button=0] 0: left, 2: right
+      */
+-    onMouseDown(px, py, button = 0, resizeHandle = null) {
++    onMouseDown(px, py, button = 0, resizeHandle = null, rectangle = false) {
+       this._mouseButton = button;
+       if (!this.project) return;
+ 
+@@ -121,7 +123,14 @@ window.PE = window.PE || {};
+ 
+       const image=layer.getFrameData(frameKey),r=image?.placement;
+       if(r&&['pencil','eraser','fill'].includes(this.currentTool)){
+-        this._beginNativeEdit(px,py,button);return;
++        this._beginNativeEdit(px,py,button,rectangle);return;
++      }
++      if(rectangle&&button===0&&['pencil','eraser'].includes(this.currentTool)){
++        if(layer.locked||layer.inheritedBase||layer.isGroup||PE.isHandLayer(layer)||!PE.isLayerVisible(this.project,layer)||frame.locked)return;
++        px=Math.floor(px);py=Math.floor(py);
++        if(!this._isInBounds(px,py,frame.width,frame.height))return;
++        this._rectStroke={project:this.project,layer,frame,index:layerIdx,key:frameKey,x:px,y:py,color:this.currentTool==='eraser'?{r:0,g:0,b:0,a:0}:{...this.primaryColor}};
++        this.isDrawing=true;this._updateRectStroke(px,py);return;
+       }
+       if(r&&this.currentTool==='select'){
+         const point=this._imagePoint(px,py,image);this._selectStartX=point.x;this._selectStartY=point.y;
+@@ -220,8 +229,12 @@ window.PE = window.PE || {};
+       if(this._nativeEdit){
+         const edit=this._nativeEdit;
+         if(this.project.getCurrentLayer()!==edit.session.layer||this.project.getFrameKey()!==edit.session.key){this._nativeEdit=null;this.isDrawing=false;return;}
+-        const point=this._sourcePoint(px,py,edit.session.original);edit.tools.onMouseMove(point.x,point.y);this.canvasManager?.render();return;
++        const point=this._sourcePoint(px,py,edit.session.original);edit.tools.onMouseMove(point.x,point.y);
++        const box=edit.tools._rectStroke?.rect,r=edit.session.original.placement;
++        if(box&&this.canvasManager)this.canvasManager.selection={x:r.x+box.x*r.w/edit.session.original.width,y:r.y+box.y*r.h/edit.session.original.height,w:box.w*r.w/edit.session.original.width,h:box.h*r.h/edit.session.original.height};
++        this.canvasManager?.render();return;
+       }
++      if(this._rectStroke){this._updateRectStroke(px,py);return;}
+       const frameKey = this.project.getFrameKey();
+       const layerIdx = this.project.currentLayerIndex;
+ 
+@@ -271,11 +284,24 @@ window.PE = window.PE || {};
+      */
+     onMouseUp(px, py) {
+       if(this._nativeEdit){
++        if(this._nativeEdit.tools._rectStroke&&Number.isFinite(px)&&Number.isFinite(py))this.onMouseMove(px,py);
+         const edit=this._nativeEdit;this._nativeEdit=null;this.isDrawing=false;edit.tools.onMouseUp();
+         try{
+           if(this.project.getCurrentLayer()!==edit.session.layer||this.project.getFrameKey()!==edit.session.key)throw new Error('图层或帧已切换，本笔修改未应用');
+           edit.session.apply();
+         }catch(e){this.onImageEditBlocked?.(e.message);}
++        if(this.canvasManager)this.canvasManager.selection=this.selection;
++        this.canvasManager?.render();return;
++      }
++      if(this._rectStroke){
++        if(Number.isFinite(px)&&Number.isFinite(py))this._updateRectStroke(px,py);
++        const s=this._rectStroke;this._rectStroke=null;this.isDrawing=false;
++        if(this.canvasManager)this.canvasManager.selection=this.selection;
++        if(this.project===s.project&&this.project.getCurrentLayer()===s.layer&&this.project.getCurrentFrame()===s.frame&&this.project.getFrameKey()===s.key&&!s.layer.inheritedBase&&PE.isLayerVisible(this.project,s.layer)){
++          let {x,y,w,h}=s.rect;
++          if(this.selection){const c=this.selection,right=Math.min(x+w,c.x+c.w),bottom=Math.min(y+h,c.y+c.h);x=Math.max(x,c.x);y=Math.max(y,c.y);w=right-x;h=bottom-y;}
++          if(w>0&&h>0){const c=s.color;this.historyManager?.beginBatch(c.a===0?'Ctrl 框选擦除':'Ctrl 矩形绘制');this.drawRect(s.index,s.key,x,y,w,h,c.r,c.g,c.b,c.a,true);this.historyManager?.commitBatch();}
++        }
+         this.canvasManager?.render();return;
+       }
+       if (this._transform) {
+@@ -314,7 +340,14 @@ window.PE = window.PE || {};
+       return {x:r.x+point.x*r.w/image.width,y:r.y+point.y*r.h/image.height};
+     }
+ 
+-    _beginNativeEdit(x,y,button) {
++    _updateRectStroke(x,y) {
++      const s=this._rectStroke;
++      x=Math.max(0,Math.min(s.frame.width-1,Math.floor(x)));y=Math.max(0,Math.min(s.frame.height-1,Math.floor(y)));
++      s.rect={x:Math.min(s.x,x),y:Math.min(s.y,y),w:Math.abs(s.x-x)+1,h:Math.abs(s.y-y)+1};
++      if(this.canvasManager){this.canvasManager.selection=s.rect;this.canvasManager.render();}
++    }
++
++    _beginNativeEdit(x,y,button,rectangle=false) {
+       try{
+         const app=PE.app?.project===this.project?PE.app:{project:this.project,history:this.historyManager,updateAll:()=>this.canvasManager?.render()};
+         const session=new PE.HDCanvasSession(app),point=this._sourcePoint(x,y,session.original);
+@@ -325,7 +358,8 @@ window.PE = window.PE || {};
+           if(!s.w||!s.h)return;
+           for(const box of [[0,0,w,s.y],[0,s.y+s.h,w,h-s.y-s.h],[0,s.y,s.x,s.h],[s.x+s.w,s.y,w-s.x-s.w,s.h]])if(box[2]>0&&box[3]>0)f.addLockedRegion(...box);
+         }
+-        this._nativeEdit={session,tools};this.isDrawing=true;tools.onMouseDown(point.x,point.y,button);
++        this._nativeEdit={session,tools};this.isDrawing=true;tools.onMouseDown(point.x,point.y,button,null,rectangle);
++        if(tools._rectStroke)this.onMouseMove(x,y);
+         if(!tools.isDrawing)this.onMouseUp();
+       }catch(e){this._nativeEdit=null;this.isDrawing=false;this.onImageEditBlocked?.(e.message);}
+     }
+@@ -723,6 +757,7 @@ window.PE = window.PE || {};
+      * Deselect and clear selection buffer.
+      */
+     clearSelection() {
++      if(this._rectStroke||this._nativeEdit?.tools._rectStroke){this._rectStroke=null;this._nativeEdit=null;this.isDrawing=false;}
+       if (this._transform) this.isDrawing=false;
+       this._transform=null;this._isMoving=false;
+       this.selection = null;
+diff --git "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_app.js.before" b/js/app.js
+index 6bd62a9..1c2cd82 100644
+--- "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_app.js.before"
++++ b/js/app.js
+@@ -161,7 +161,7 @@ window.PE = window.PE || {};
+ 
+         const pixel = mousePixel(e);
+         if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
+-        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e));
++        this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e), e.ctrlKey&&!e.altKey&&!e.metaKey);
+         if(this.toolManager.currentTool==='move')this.updateLayerList();
+         this.canvasManager.render();
+       });
+@@ -612,6 +612,10 @@ window.PE = window.PE || {};
+           e.preventDefault();
+         }
+ 
++        if(e.key==='Escape'&&(this.toolManager._rectStroke||this.toolManager._nativeEdit?.tools._rectStroke)){
++          e.preventDefault();this.toolManager.clearSelection();return;
++        }
++
+         // 撤销 / 重做 (Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z)
+         if (e.ctrlKey || e.metaKey) {
+           if (e.key === 'z' || e.key === 'Z') {
+diff --git "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_studio.js.before" b/js/studio.js
+index b4bca4a..0841d89 100644
+--- "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\js_studio.js.before"
++++ b/js/studio.js
+@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const rail=node('aside','tool-rail');rail.setAttribute('aria-label','绘画工具');
+   const labels=['铅笔','橡皮','吸色','填充','框选'],shortcuts=['B','E','I','G','M'];
+   const icons=['M5 19l3.5-1 10-10-2.5-2.5-10 10L5 19 M14 7l3 3','M5 14l8-9 7 6-8 9H9z M12 20h8','M5 19l2-5L17 4l3 3-10 10z M13 6l5 5','M4 12l8-8 8 8-8 8z M4 12h16','M4 8V4h4 M16 4h4v4 M20 16v4h-4 M8 20H4v-4'];
+-  toolButtons.forEach((b,i)=>{b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[i]}"/></svg><span>${labels[i]}</span><kbd>${shortcuts[i]}</kbd>`;b.title=labels[i]+' ('+shortcuts[i]+')';b.setAttribute('aria-label',labels[i]);rail.append(b);});
++  toolButtons.forEach((b,i)=>{b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[i]}"/></svg><span>${labels[i]}</span><kbd>${shortcuts[i]}</kbd>`;b.title=labels[i]+' ('+shortcuts[i]+')'+(i===0?' · 按住 Ctrl 拖动矩形填色':i===1?' · 按住 Ctrl 拖动矩形擦除':'');b.setAttribute('aria-label',labels[i]);rail.append(b);});
+   const undoGroup=node('div','rail-history');$('undo-btn').textContent='↶';$('undo-btn').setAttribute('aria-label','撤销');$('redo-btn').textContent='↷';$('redo-btn').setAttribute('aria-label','重做');undoGroup.append($('undo-btn'),$('redo-btn'));const moveButton=$('tool-move');moveButton.innerHTML='<span aria-hidden="true">↔</span><span>移动缩放</span>';moveButton.setAttribute('aria-label','移动 / 缩放');rail.append(moveButton,undoGroup);
+ 
+   const sources=$('sheet-list').closest('section');sources.querySelector('h3').textContent='动作素材';
+diff --git "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\index.html.before" b/index.html
+index 2863b4d..d7e8f35 100644
+--- "a/\345\244\207\344\273\275\\20261101-Ctrl\347\237\251\345\275\242\347\224\273\346\223\246\\index.html.before"
++++ b/index.html
+@@ -279,14 +279,14 @@
+   <script src="js/core.js?v=hd-inline-native-1"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=hd-inline-native-1"></script>
+-  <script src="js/tools.js?v=hd-inline-native-1"></script>
++  <script src="js/tools.js?v=ctrl-rect-1"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=hd-inline-native-1"></script>
++  <script src="js/app.js?v=ctrl-rect-1"></script>
+   <script src="js/workbench.js?v=off-canvas-placement-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+@@ -295,7 +295,7 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=hd-image-layers-1"></script>
++  <script src="js/studio.js?v=ctrl-rect-1"></script>
+   <script src="js/visual-layers.js?v=hd-image-layers-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>

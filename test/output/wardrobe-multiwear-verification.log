@@ -1,0 +1,54 @@
+REGRESSION BEFORE FIX: node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-3hqQav
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+AssertionError [ERR_ASSERTION]: front hair, rear hair and clothing must stay equipped together
+
+2 !== 3
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-browser.cjs:51:78) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2,
+  expected: 3,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+EXIT: 1
+
+AFTER FIX: node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-tqjcf4
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: same-category multi-piece layering with actual front/rear pixels, individual/all removal, refresh/filter/archive retention, manual curation, walk/idle, facing, sit, proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, fresh-page persistence, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-tqjcf4
+EXIT: 0
+
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+
+COMMAND: node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT: 0
+
+COMMAND: node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+EXIT: 0
+
+RESTORE CHECK: additional copy only
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜多件叠穿\wardrobe.js -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-multiwear-restore-65b00ad74dd34602b1c83e1ca446da6a\js\wardrobe.js SHA256=E54BF259E052AE9BB9D1D0470D2EA9D6FB5FA6483A234916184D5D627698C3A2
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜多件叠穿\wardrobe-browser.cjs -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-multiwear-restore-65b00ad74dd34602b1c83e1ca446da6a\test\wardrobe-browser.cjs SHA256=F5FF8BFCCA75E170656523CDC75EFFDC84FB3C95AA9AF6318104738399B723D6
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜多件叠穿\index.html -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-multiwear-restore-65b00ad74dd34602b1c83e1ca446da6a\index.html SHA256=866F5DE5559601B5C53C6CE9F220400D4397E1B6C85B6157440F19B82C4C515D
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜多件叠穿\README.md -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-multiwear-restore-65b00ad74dd34602b1c83e1ca446da6a\README.md SHA256=47108C3B3C79CD3563CEA026E9901AF3DC212C01C4C798998CCB5559598CDF49
+
+DELIVERED SHA256
+C442C5ED6F8E4C5FEDEA7C3F627C1239F3EB62DFC0A36F36479C340E32193777 C:\Users\Administrator\Desktop\角色绘画\js\wardrobe.js
+F5C84FF2C7CC2DB032AEEF433116E0B4840090DE58E5809DF3E0D7BBF18AFBCD C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-browser.cjs
+FF8CB3E4305213E6FB3A3D7FBB867E827335BB372A7A7B9C480C2EE40E254010 C:\Users\Administrator\Desktop\角色绘画\index.html
+74E6239AB643720A96B8BE4B30A5D8973C40B3714A6F3ADC7E35B781480E8A72 C:\Users\Administrator\Desktop\角色绘画\README.md
+PASS live HTTP matches disk: js/wardrobe.js
+PASS live HTTP matches disk: index.html
+LIVE HTTP EXIT: 0

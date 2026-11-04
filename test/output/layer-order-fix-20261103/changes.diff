@@ -1,0 +1,128 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\js\\core.js" b/js/core.js
+index 143a962..e7f99a0 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\js\\core.js"
++++ b/js/core.js
+@@ -799,6 +799,12 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+     });
+     return blocks;
+   };
++  const isOrderTarget = (project, layer) => {
++    if (layer.isGroup || layer.visible === false || layer.opacity === 0 || !PE.isLayerInAction(project, layer)) return false;
++    const si = project.currentSheetIndex, ai = project.currentActionIndex;
++    return si === undefined || ai === undefined || !layer.frameData?.size
++      || [...layer.frameData.keys()].some(key => key.startsWith(`${si}_${ai}_`));
++  };
+   /**
+    * 移动一个图层在绘制顺序中的位置：delta>0 向上（更靠前），delta<0 向下。
+    * 顶层图层与整组（组与组内成员）作为一块整体交换；组内图层只与同组兄弟交换。
+@@ -810,7 +816,7 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+     if (PE.isHandLayer(layer)) return { ok: false, reason: '手部参考层受保护，不能调整顺序' };
+     if (layer.inheritedBase) return { ok: false, reason: '头部、身体跟随主工程，不能调整顺序' };
+     if (layer.parent != null) {
+-      const siblings = layers.map((item, i) => [item, i]).filter(([item]) => item.parent === layer.parent);
++      const siblings = layers.map((item, i) => [item, i]).filter(([item]) => item.parent === layer.parent && (item === layer || isOrderTarget(project, item)));
+       const position = siblings.findIndex(([item]) => item === layer);
+       const target = siblings[position + delta];
+       if (!target) {
+@@ -824,6 +830,8 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+         ordered.splice(position, 0, layer);
+         rebuildLayers(project, ordered);
+         project.currentLayerIndex = layers.indexOf(layer);
++        // 越过组边界的这一次点击也要跨过相邻绘制块，不能只脱组而不改变遮挡。
++        PE.moveLayerOrder(project, project.currentLayerIndex, delta);
+         return { ok: true };
+       }
+       const a = siblings[position][1], b = target[1];
+@@ -833,7 +841,8 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+     }
+     const blocks = rootBlocks(layers);
+     const from = blocks.findIndex(block => block.indices.includes(index));
+-    const to = from + delta;
++    let to = from + delta;
++    while (blocks[to] && !blocks[to].indices.some(i => isOrderTarget(project, layers[i]))) to += delta;
+     if (!blocks[to]) return { ok: false, reason: delta > 0 ? '已经在最上层' : '已经在最下层' };
+     [blocks[from], blocks[to]] = [blocks[to], blocks[from]];
+     rebuildLayers(project, blocks.flatMap(block => block.indices.map(i => layers[i])));
+@@ -869,11 +878,13 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+       const rest = blocks.filter(block => block !== current);
+       // 后手低于后发，但不能因此把整个身体组也判成后手层级。
+       const blockRank = block => {
+-        const parts = block.indices.map(i => layers[i]);
++        const si = layer.sheetIndex ?? project.currentSheetIndex;
++        const parts = block.indices.map(i => layers[i]).filter(item => !item.isGroup && (item.sheetIndex === undefined || item.sheetIndex === si));
++        if (!parts.length) return null;
+         if (parts.some(item => item.name === 'body' || item.name === 'head')) return 2;
+         return Math.min(...parts.map(PE.layerPartRank));
+       };
+-      const position = rest.findIndex(block => blockRank(block) > rank);
++      const position = rest.findIndex(block => blockRank(block) !== null && blockRank(block) > rank);
+       rest.splice(position < 0 ? rest.length : position, 0, current);
+       rebuildLayers(project, rest.flatMap(block => block.indices.map(i => layers[i])));
+     }
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\js\\visual-layers.js" b/js/visual-layers.js
+index 0808283..b3e5b69 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\js\\visual-layers.js"
++++ b/js/visual-layers.js
+@@ -36,6 +36,9 @@ PE.VisualLayers={
+     if(!layer||layer.isGroup||layer.inheritedBase||PE.isHandLayer(layer)||!name)return false;
+     if(name.includes(' / '))throw new Error('这里只填写部件名称，不需要填写“头发 / 前发”等分类路径');
+     const current=layer.name.split(' / ');if(name===(current.length>=3?current[1]:current.at(-1)))return false;
++    // 首次分类或明确改部件类型时归位；同类型的款式改名不重排用户层序。
++    const info=this.info(layer),next=PE.classifyPart(name);
++    if(next&&(!info||next.category!==info.category||next.slot!==info.slot))return !!app.renameLayer(index,name);
+     const members=this.components(p,layer),before=members.map(l=>l.name),after=members.map(l=>{
+       const parts=l.name.split(' / '),info=this.info(l);
+       if(info?.category==='头发'){if(parts.length>=3)return [parts[0],name,...parts.slice(2)].join(' / ');if(parts[0]==='头发')return '头发 / '+name+' / '+info.slot;if(parts[0]==='发饰')return '发饰 / '+name;return name.endsWith(info.slot)?name:name+' '+info.slot;}
+@@ -119,13 +122,13 @@ document.addEventListener('DOMContentLoaded',()=>{
+       const partLabel=l.name.split(' / ')[1]||'';
+       label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+       if(partLabel==='用户')label.textContent='用户 · '+slot;
+-      const rename=event=>{event.stopPropagation();if(l.inheritedBase||PE.isHandLayer(l))return;const name=prompt('部件名称（前发、后发等分类会保留）',l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?partLabel:label.textContent);if(name===null)return;try{V.rename(this,p.layers.indexOf(l),name);}catch(error){alert(error.message);}};
++      const rename=event=>{event.stopPropagation();if(l.inheritedBase||PE.isHandLayer(l))return;const name=prompt('部件名称（写“后发”等新类型会自动分类并调整层级）',l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?partLabel:label.textContent);if(name===null)return;try{V.rename(this,p.layers.indexOf(l),name);}catch(error){alert(error.message);}};
+       label.title=l.name+'（点击“改名”或双击名称）';label.onclick=event=>event.stopPropagation();label.ondblclick=rename;
+       const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
+       const state=element('small','part-state',(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':''));
+       const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
+       for(const icon of icons)icon.onclick=()=>{state.textContent=(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);row.classList.toggle('part-soloed',p._soloLayer===l);app.animationPlayer._renderPreviewFrame();};
+-      const renameButton=element('button','part-choose part-rename','改名');renameButton.type='button';renameButton.setAttribute('aria-label','重命名 '+l.name);renameButton.disabled=!!l.inheritedBase||PE.isHandLayer(l);renameButton.title=renameButton.disabled?'同步底稿请到主工程修改':'只修改部件名称，不改变像素、显隐或层序';renameButton.onclick=rename;
++      const renameButton=element('button','part-choose part-rename','改名');renameButton.type='button';renameButton.setAttribute('aria-label','重命名 '+l.name);renameButton.disabled=!!l.inheritedBase||PE.isHandLayer(l);renameButton.title=renameButton.disabled?'同步底稿请到主工程修改':'款式改名不改变像素或层序；写其他部件类型（如后发）会重新分类归位';renameButton.onclick=rename;
+       const actions=element('div','part-card-actions');actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
+       if(V.family(p,l).length){
+         const bulk=element('div','part-bulk-actions'),toggle=element('button','part-choose part-toggle-all',V.family(p,l).every(x=>x.visible)?'全部动作隐藏':'全部动作显示'),save=element('button','part-choose part-export-all','导出全部动作');
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\test\\hair-slots.cjs" b/test/hair-slots.cjs
+index 0eda1b9..a46e277 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\test\\hair-slots.cjs"
++++ b/test/hair-slots.cjs
+@@ -9,6 +9,7 @@ const head={name:'head',sheetIndex:0,visible:true,opacity:1,getFrameData:()=>ski
+ const acc={name:'发饰 / 01 饰品',sheetIndex:0,visible:false,opacity:1,getFrameData:()=>accessory};
+ const front={name:'头发 / 01 斜刘海 / 前发',sheetIndex:0,visible:true,opacity:1,getFrameData:()=>new ImageData(4,4)};
+ const p={layers:[rear,head,front,acc],currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,getFrameKey:(si,ai,fi)=>`${si}_${ai}_${fi}`,spriteSheets:[{frameWidth:4,frameHeight:4,actions:[{direction:'down',frames:[{width:4,height:4}]},{direction:'up',frames:[{width:4,height:4}]}]}]};
++for(const layer of p.layers)layer.frameData=new Map([['0_0_0',layer.getFrameData()],['0_1_0',layer.getFrameData()]]);
+ const canvas=document.createElement('canvas'),cm=new PE.CanvasManager(canvas,p),exp=new PE.ExportManager();exp.project=p;
+ const pixel=(ai)=>Array.from(cm.getCompositeImageData(0,ai,0).data.slice(20,24));
+ assert.deepEqual(pixel(0),[254,237,225,255]);assert.deepEqual(pixel(1),[209,207,226,255]);
+
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\index.html" b/index.html
+index 733496c..809fb27 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\output\\layer-order-fix-20261103\\before\\index.html"
++++ b/index.html
+@@ -282,7 +282,7 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=eye-behind-fringe-20261103"></script>
++  <script src="js/core.js?v=layer-controls-20261103"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=select-wand-2"></script>
+   <script src="js/tools.js?v=select-wand-1"></script>
+@@ -302,7 +302,7 @@
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+   <script src="js/studio.js?v=eye-sync-no-sleep-20261103"></script>
+-  <script src="js/visual-layers.js?v=layer-solo-1"></script>
++  <script src="js/visual-layers.js?v=layer-controls-20261103"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+   <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>

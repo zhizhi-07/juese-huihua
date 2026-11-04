@@ -1,0 +1,9 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto');
+const out=__dirname,meta=JSON.parse(fs.readFileSync(path.join(out,'saved-meta.json'))),backup=fs.readFileSync(path.join(out,'branch-api-before-hair.json'),'utf8'),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+function restoreCopy(raw,etag){assert.equal(etag,meta.finalETag,'工程有后续保存，拒绝覆盖；请人工合并');assert.equal(hash(raw),meta.finalSHA256,'工程像素版本变化，拒绝覆盖');assert.equal(hash(backup),meta.beforeSHA256,'备份已被修改');return backup}
+(async()=>{
+if(process.argv.includes('--self-test')){let current=fs.readFileSync(path.join(out,'api-readback.json'),'utf8'),copy=restoreCopy(current,meta.finalETag),file=path.join(out,'restore-test-extra-copy.json');fs.writeFileSync(file,copy);assert.equal(fs.readFileSync(file,'utf8'),backup);assert.throws(()=>restoreCopy(current,'"changed"'));assert.equal(hash(fs.readFileSync(path.join(out,'api-readback.json'))),meta.finalSHA256);console.log('RESTORE SELF-TEST OK: extra local copy equals pre-hair backup; stale ETag rejected; final artifact retained');return}
+assert(process.argv.includes('--apply'),'只检查不修改：node restore.cjs --self-test；确认回退新工程头发：node restore.cjs --apply');
+let url='http://127.0.0.1:8765/api/project?id='+meta.id,r=await fetch(url);assert(r.ok);let raw=await r.text(),body=restoreCopy(raw,r.headers.get('etag'));
+fs.writeFileSync(path.join(out,'before-restore-'+Date.now()+'.json'),raw);r=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':meta.finalETag},body});let result=await r.text();assert(r.ok,result);let check=await fetch(url);assert(check.ok);assert.deepEqual(await check.json(),JSON.parse(backup));console.log('RESTORED NEW PROJECT ONLY',meta.id);
+})().catch(e=>{console.error(e);process.exitCode=1});

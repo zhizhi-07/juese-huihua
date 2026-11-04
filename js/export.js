@@ -10,6 +10,7 @@ window.PE = window.PE || {};
     constructor() {
       this.project = null;
       this.canvasManager = null;
+      this.originalPNGs = new WeakMap();
     }
 
     /**
@@ -26,10 +27,15 @@ window.PE = window.PE || {};
      * Internal helper to get composite ImageData for a given frame
      * @private
      */
-    _getCompositeImageData(sheetIdx, actionIdx, frameIdx) {
+    _getCompositeImageData(sheetIdx, actionIdx, frameIdx, scale=PE.utils.imageScale(this.project,sheetIdx)) {
       if (this.canvasManager && typeof this.canvasManager.getCompositeImageData === 'function') {
-        const comp = this.canvasManager.getCompositeImageData(sheetIdx, actionIdx, frameIdx);
+        const comp = this.canvasManager.getCompositeImageData(sheetIdx, actionIdx, frameIdx,true,scale);
         if (comp) return comp;
+      }
+
+      if(scale>1||this.project.layers.some(l=>l.getFrameData?.(`${sheetIdx}_${actionIdx}_${frameIdx}`)?.placement)){
+        if(!PE.CanvasManager)throw new Error('高清导出需要画布渲染模块');
+        return new PE.CanvasManager(document.createElement('canvas'),this.project).getCompositeImageData(sheetIdx,actionIdx,frameIdx,true,scale);
       }
 
       const frame = this.project?.spriteSheets?.[sheetIdx]?.actions?.[actionIdx]?.frames?.[frameIdx];
@@ -187,17 +193,20 @@ window.PE = window.PE || {};
         throw new Error('精灵表尺寸无效');
       }
 
+      const scale=PE.utils.imageScale(this.project,sheetIdx);
+      if(sw*scale>32767||sh*scale>32767||sw*sh*scale*scale>16*1024*1024)throw new Error('高清动作表超过1600万像素，请改为导出单帧或降低素材分辨率');
+
       const canvas = document.createElement('canvas');
-      canvas.width = sw;
-      canvas.height = sh;
+      canvas.width = sw*scale;
+      canvas.height = sh*scale;
       const ctx = canvas.getContext('2d');
       ctx.imageSmoothingEnabled = false;
 
       // Base: original sheet
       if (sheet.imageData) {
-        ctx.putImageData(sheet.imageData, 0, 0);
+        PE.utils.drawImageData(ctx,sheet.imageData,0,0,scale);
       } else if (sheet.image) {
-        ctx.drawImage(sheet.image, 0, 0);
+        ctx.drawImage(sheet.image, 0, 0,sw*scale,sh*scale);
       }
 
       // Draw composites for all frames
@@ -217,8 +226,8 @@ window.PE = window.PE || {};
               offCtx.imageSmoothingEnabled = false;
               offCtx.putImageData(comp, 0, 0);
 
-              ctx.clearRect(frame.sourceX, frame.sourceY, frame.width, frame.height);
-              ctx.drawImage(off, frame.sourceX, frame.sourceY);
+              ctx.clearRect(frame.sourceX*scale, frame.sourceY*scale, frame.width*scale, frame.height*scale);
+              ctx.drawImage(off, frame.sourceX*scale, frame.sourceY*scale);
             }
           }
         }
@@ -302,6 +311,8 @@ window.PE = window.PE || {};
         }
       }
 
+      const resolutions=spriteSheets.map((s,si)=>({sheetIndex:si,pixelScale:PE.utils.imageScale(this.project,si),logicalFrameWidth:s.frameWidth,logicalFrameHeight:s.frameHeight}));
+      if(resolutions.some(s=>s.pixelScale>1))rootFolder.file('高清导出说明.json',JSON.stringify({note:'PNG 已按 pixelScale 放大输出以保留高清图层；在游戏中按逻辑尺寸摆放。可编辑原始贴图与变换请保存工程 JSON。',sheets:resolutions},null,2));
       const zipBlob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
       this._downloadBlob(zipBlob, `${projName}_素材包.zip`);
 
@@ -319,7 +330,7 @@ window.PE = window.PE || {};
       const actionNames={walk:'行走',idle:'待机',pickup:'拾取',sit:'坐',sleep:'睡觉'},directions={side:'侧面',down:'正面',up:'背面'};
       const layerNames=new Map();
       for(let si=0;si<p.spriteSheets.length;si++){
-        const sheet=p.spriteSheets[si];if(!sheet.name.startsWith('original32_'))continue;
+        const sheet=p.spriteSheets[si];if(!/^original(?:16|32)_/.test(sheet.name))continue;
         const groups=new Map();
         for(const l of p.layers){
           const name=V.partName(l);
@@ -328,7 +339,9 @@ window.PE = window.PE || {};
         }
         const cols=Math.max(0,...sheet.actions.map(a=>a.frames.length)),rows=sheet.actions.length;
         if(!cols||!rows)continue;
-        const frames=sheet.actions.flatMap(a=>a.frames),fw=Math.max(...frames.map(f=>f.width)),fh=Math.max(...frames.map(f=>f.height));
+        let scale=1;
+        for(const layers of groups.values())for(const l of layers)for(const d of l.frameData.values())if(d.placement)scale=Math.max(scale,Math.ceil(d.width/d.placement.w),Math.ceil(d.height/d.placement.h));
+        const frames=sheet.actions.flatMap(a=>a.frames),logicalW=Math.max(...frames.map(f=>f.width)),logicalH=Math.max(...frames.map(f=>f.height)),fw=logicalW*scale,fh=logicalH*scale;
         if(cols*fw>32767||rows*fh>32767||cols*fw*rows*fh>16*1024*1024)throw new Error('部件图集尺寸过大，请减少动作帧');
         for(const [name,layers]of groups){
           const canvas=document.createElement('canvas');canvas.width=cols*fw;canvas.height=rows*fh;
@@ -338,7 +351,7 @@ window.PE = window.PE || {};
             for(const l of PE.getRenderLayers(p,si,ai)){
               if(!layers.includes(l))continue;
               const image=l.getFrameData(key);if(!image)continue;
-              tc.clearRect(0,0,fw,fh);tc.putImageData(image,0,0);
+              tc.clearRect(0,0,fw,fh);PE.utils.drawImageData(tc,image,0,0,scale);
               ctx.globalAlpha=Math.max(0,Math.min(1,l.opacity??1));ctx.drawImage(tmp,fi*fw,ai*fh);
               if(ctx.globalAlpha>0&&image.data.some((v,i)=>i%4===3&&v))nonempty=true;
             }
@@ -350,7 +363,7 @@ window.PE = window.PE || {};
           used.add(filename);
           zip.file(filename,canvas.toDataURL('image/png').split(',')[1],{base64:true});
           for(const l of layers)layerNames.set(l,filename);
-          files.push({file:filename,sheetIndex:si,part:name,action,frameWidth:fw,frameHeight:fh,columns:cols,rows:sheet.actions.map((a,ai)=>({row:ai,direction:a.direction,label:directions[a.direction]||a.name,frames:a.frames.length,durationsMs:a.frames.map(f=>sheet.useFrameDurations!==false&&f.duration?f.duration:1000/(sheet.fps||8))}))});
+          files.push({file:filename,sheetIndex:si,part:name,action,frameWidth:fw,frameHeight:fh,...(scale>1?{pixelScale:scale,logicalFrameWidth:logicalW,logicalFrameHeight:logicalH}:{}),columns:cols,rows:sheet.actions.map((a,ai)=>({row:ai,direction:a.direction,label:directions[a.direction]||a.name,frames:a.frames.length,durationsMs:a.frames.map(f=>sheet.useFrameDurations!==false&&f.duration?f.duration:1000/(sheet.fps||8))}))});
         }
       }
       if(!files.length)throw new Error('没有非透明部件可导出');
@@ -395,6 +408,7 @@ window.PE = window.PE || {};
         const sheet = spriteSheets[si];
         const sheetData = {
           sourceFormat: sheet.sourceFormat, sourceBytes: sheet.sourceBytes,
+          canvasLayout: sheet.canvasLayout,
           name: sheet.name || '',
           frameWidth: sheet.frameWidth || 32,
           frameHeight: sheet.frameHeight || 32,
@@ -443,6 +457,8 @@ window.PE = window.PE || {};
 
       // Serialize Layers
       const layers = this.project.layers || [];
+      const hairIds = new Set(layers.filter(l => l.hairAnimation).map(l => l.hairAnimation.id));
+      const clothingIds = new Set(layers.filter(l => l.clothingSync).map(l => l.clothingSync.id));
       for (let li = 0; li < layers.length; li++) {
         const layer = layers[li];
         const layerData = {
@@ -451,6 +467,10 @@ window.PE = window.PE || {};
           visible: layer.visible !== undefined ? layer.visible : true,
           locked: Boolean(layer.locked),
           opacity: layer.opacity !== undefined ? layer.opacity : 1,
+          ...(layer.hairAnimation ? {hairAnimation: JSON.parse(JSON.stringify(layer.hairAnimation))} : {}),
+          ...(layer.hairAnimationId && hairIds.has(layer.hairAnimationId) ? {hairAnimationId: layer.hairAnimationId} : {}),
+          ...(layer.clothingSync ? {clothingSync: JSON.parse(JSON.stringify(layer.clothingSync))} : {}),
+          ...(layer.clothingSyncId && clothingIds.has(layer.clothingSyncId) ? {clothingSyncId: layer.clothingSyncId} : {}),
           frameData: {}
         };
 
@@ -460,6 +480,7 @@ window.PE = window.PE || {};
               layerData.frameData[key] = {
                 width: imgData.width,
                 height: imgData.height,
+                ...(imgData.placement?{placement:{...imgData.placement}}:{}),
                 dataURL: this._imageDataToDataURL(imgData)
               };
             }
@@ -471,6 +492,7 @@ window.PE = window.PE || {};
               layerData.frameData[key] = {
                 width: imgData.width,
                 height: imgData.height,
+                ...(imgData.placement?{placement:{...imgData.placement}}:{}),
                 dataURL: this._imageDataToDataURL(imgData)
               };
             }
@@ -480,6 +502,8 @@ window.PE = window.PE || {};
         projectData.layers.push(layerData);
       }
 
+      PE.HairAnimation?.validate(projectData);
+      PE.ClothingSync?.validate(projectData);
       const jsonString = JSON.stringify(projectData, null, 2);
       const blob = new Blob([jsonString], { type: 'application/json' });
       const filename = `${this._sanitizeFilename(projectData.name)}_项目存档.json`;
@@ -568,6 +592,7 @@ window.PE = window.PE || {};
         }
 
         sheet.sourceFormat=sData.sourceFormat; sheet.sourceBytes=sData.sourceBytes;
+        sheet.canvasLayout=sData.canvasLayout;
         sheet.name = sData.name || `图集_${si}`;
         sheet.image = img;
         sheet.imageData = sheetImageData;
@@ -695,12 +720,21 @@ window.PE = window.PE || {};
         layer.locked = Boolean(lData.locked);
         layer.opacity = lData.opacity !== undefined ? lData.opacity : 1;
         layer.frameData = new Map();
+        if (lData.hairAnimation !== undefined) layer.hairAnimation = lData.hairAnimation;
+        if (lData.hairAnimationId !== undefined) layer.hairAnimationId = lData.hairAnimationId;
+        if (lData.clothingSync !== undefined) layer.clothingSync = lData.clothingSync;
+        if (lData.clothingSyncId !== undefined) layer.clothingSyncId = lData.clothingSyncId;
 
         if (lData.frameData) {
           for (const [key, fd] of Object.entries(lData.frameData)) {
             if (fd && fd.dataURL) {
               const imgData = await this._dataURLToImageData(fd.dataURL);
               if (imgData) {
+                if(fd.placement){
+                  const [si,ai,fi]=key.split('_').map(Number),frame=proj.spriteSheets[si]?.actions[ai]?.frames[fi];
+                  if(!frame||imgData.width*imgData.height>16*1024*1024||lData.sheetIndex!==undefined&&lData.sheetIndex!==si)throw new Error('高清图片源尺寸或所属帧无效');
+                  imgData.placement=PE.utils.validateImagePlacement(fd.placement,frame);
+                }
                 layer.frameData.set(key, imgData);
               }
             }
@@ -733,6 +767,8 @@ window.PE = window.PE || {};
         proj.layers.push(layer);
       }
 
+      PE.HairAnimation?.validate(proj);
+      PE.ClothingSync?.validate(proj);
       this.project = proj;
       return {
         success: true,
@@ -783,6 +819,9 @@ window.PE = window.PE || {};
      */
     _imageDataToDataURL(imageData) {
       if (!imageData || !imageData.width || !imageData.height) return '';
+      // Unchanged imported PNGs must not accumulate canvas alpha-rounding errors on every save.
+      const original=this.originalPNGs.get(imageData);
+      if(original&&original.width===imageData.width&&original.height===imageData.height&&original.pixels.length===imageData.data.length&&original.pixels.every((v,i)=>v===imageData.data[i]))return original.url;
       const canvas = document.createElement('canvas');
       canvas.width = imageData.width;
       canvas.height = imageData.height;
@@ -807,7 +846,9 @@ window.PE = window.PE || {};
           canvas.height = h;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0);
-          resolve(ctx.getImageData(0, 0, w, h));
+          const pixels=ctx.getImageData(0, 0, w, h);
+          this.originalPNGs.set(pixels,{url:dataURL,width:w,height:h,pixels:pixels.data.slice()});
+          resolve(pixels);
         };
         img.onerror = (err) => reject(new Error('转换 DataURL 失败: ' + err));
         img.src = dataURL;

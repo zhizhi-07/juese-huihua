@@ -1,0 +1,88 @@
+{
+  "sourceSHA256": "4d1ad4a293343aff1158c93b921d7a24edeba62c96088f0c4233db9b3caa8641",
+  "timing": [
+    40,
+    100,
+    40,
+    60,
+    40,
+    60,
+    30,
+    30
+  ],
+  "totalMs": 400,
+  "map": [
+    0,
+    1,
+    2,
+    2,
+    3,
+    3,
+    0,
+    0
+  ],
+  "distinctMotionDifferences": [
+    {
+      "a": "A",
+      "b": "B",
+      "direction": 0,
+      "changedPixelPositions": 142
+    },
+    {
+      "a": "A",
+      "b": "B",
+      "direction": 1,
+      "changedPixelPositions": 108
+    },
+    {
+      "a": "A",
+      "b": "B",
+      "direction": 2,
+      "changedPixelPositions": 215
+    },
+    {
+      "a": "A",
+      "b": "C",
+      "direction": 0,
+      "changedPixelPositions": 178
+    },
+    {
+      "a": "A",
+      "b": "C",
+      "direction": 1,
+      "changedPixelPositions": 155
+    },
+    {
+      "a": "A",
+      "b": "C",
+      "direction": 2,
+      "changedPixelPositions": 354
+    },
+    {
+      "a": "B",
+      "b": "C",
+      "direction": 0,
+      "changedPixelPositions": 169
+    },
+    {
+      "a": "B",
+      "b": "C",
+      "direction": 1,
+      "changedPixelPositions": 125
+    },
+    {
+      "a": "B",
+      "b": "C",
+      "direction": 2,
+      "changedPixelPositions": 281
+    }
+  ],
+  "mainPreviewPNGFrames": 72,
+  "layerTests": 288,
+  "allFirstAnchorsUnchanged": true,
+  "nonHairDrawingUnchanged": true,
+  "otherActionsUnchanged": true,
+  "restoreExtraCopiesVerified": true,
+  "backFrontHairTransparent": true,
+  "browserChecked": false
+}

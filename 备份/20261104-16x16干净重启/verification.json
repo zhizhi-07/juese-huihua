@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "compositeFrames": 66,
+  "sittingLayerFramesExactHalfScale": 56,
+  "sittingDimensions": [
+    {
+      "direction": "side",
+      "width": 14,
+      "height": 17
+    },
+    {
+      "direction": "down",
+      "width": 16,
+      "height": 17
+    },
+    {
+      "direction": "up",
+      "width": 18,
+      "height": 17
+    }
+  ],
+  "checks": [
+    "four actions only",
+    "no old wardrobe pixels",
+    "current skin colors",
+    "exact half-scale sitting, no redraw or translation",
+    "import/export round trip",
+    "branch sync",
+    "AI idle recognition",
+    "native16 wardrobe snapshot"
+  ]
+}

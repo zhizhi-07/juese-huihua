@@ -1,0 +1,17 @@
+[
+  {
+    "command": "git diff --no-index -- 备份\\头发自动对比页-20261103-081220\\hair-auto-demo.html hair-auto-demo.html",
+    "exitCode": 1,
+    "stderr": "warning: in the working copy of '备份\\头发自动对比页-20261103-081220\\hair-auto-demo.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'hair-auto-demo.html', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  {
+    "command": "git diff --no-index -- NUL js/hair-auto-demo.js",
+    "exitCode": 1,
+    "stderr": "warning: in the working copy of 'js/hair-auto-demo.js', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  {
+    "command": "git diff --no-index -- NUL test/hair-auto-demo.cjs",
+    "exitCode": 1,
+    "stderr": "warning: in the working copy of 'test/hair-auto-demo.cjs', LF will be replaced by CRLF the next time Git touches it\n"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "userFrontFirstFrameUnchanged": true,
+  "userEditPixels": 20,
+  "sourcePoseOrder": [
+    0,
+    1,
+    2,
+    1
+  ],
+  "checks": [
+    {
+      "fi": 1,
+      "sideKnotFull": true,
+      "nearTipX": 5,
+      "headOffset": 0,
+      "tailOffset": 0
+    },
+    {
+      "fi": 2,
+      "sideKnotFull": true,
+      "nearTipX": 6,
+      "headOffset": 2,
+      "tailOffset": 1
+    },
+    {
+      "fi": 3,
+      "sideKnotFull": true,
+      "nearTipX": 5,
+      "headOffset": 2,
+      "tailOffset": 1
+    }
+  ]
+}

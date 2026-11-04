@@ -1,0 +1,1 @@
+original.json 为原稿；source.json 记录 SHA256 和 ETag；changes.json 记录3个背面帧的差异。只撤销本次操作时仅恢复坐姿衣服的 10_2_1、10_2_2、10_2_3，额外副本 restore-extra-copy.json 已验证与原稿一致。在线恢复仍须先比较用户后续修改并条件保存，禁止整稿覆盖。

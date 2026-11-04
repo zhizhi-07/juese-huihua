@@ -1,0 +1,173 @@
+{
+  "sourceSHA256": "d1d8166f209a7f6672cd07869d788f80058dfc05cae570d39a05adb3270be808",
+  "candidateSHA256": "379a7a0960c80e08e448bbb2fb2c572aca00b66c204cedf1f8333b30954c1233",
+  "masterShadowPixels": 100,
+  "synchronized": 21,
+  "changedCels": 22,
+  "unchanged": [
+    "front/side views",
+    "all front hair",
+    "all non-hair layers",
+    "frame counts/sizes/durations",
+    "hair live and sway settings",
+    "master alpha silhouette and braids"
+  ],
+  "checks": [
+    {
+      "s": 7,
+      "fi": 0,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 1,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 2,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 3,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 4,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 5,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 6,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 7,
+      "fi": 7,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 8,
+      "fi": 0,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 8,
+      "fi": 1,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 8,
+      "fi": 2,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 8,
+      "fi": 3,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 0,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 1,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 2,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 3,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 4,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 9,
+      "fi": 5,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 10,
+      "fi": 0,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 10,
+      "fi": 1,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 10,
+      "fi": 2,
+      "main": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "s": 10,
+      "fi": 3,
+      "main": true,
+      "preview": true,
+      "export": true
+    }
+  ],
+  "restoreVerified": true,
+  "browserTested": false
+}

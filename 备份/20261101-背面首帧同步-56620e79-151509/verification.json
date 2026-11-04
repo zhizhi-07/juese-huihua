@@ -1,0 +1,31 @@
+{
+  "originalSHA256": "acdd7d5a298ed441a23a1bb0616f7dd41bd1dd375c4c4e59ebd0f4fdc9df86c6",
+  "changed": [
+    {
+      "index": 6,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_1"
+    },
+    {
+      "index": 6,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_2"
+    },
+    {
+      "index": 6,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_3"
+    }
+  ],
+  "firstFrameAndOtherDataUnchanged": true,
+  "frontHairBackTransparent": true,
+  "backHairBodyPixelsCovered": [
+    140,
+    139,
+    111,
+    112
+  ],
+  "mainPreviewPNGAll12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

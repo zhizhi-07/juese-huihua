@@ -1,0 +1,253 @@
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/core.js" b/js/core.js
+index 22b9d18..e9fce9b 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/core.js"
++++ b/js/core.js
+@@ -53,7 +53,7 @@ window.PE = window.PE || {};
+         if(!PE.isLayerVisible(project,layer,sheetIndex)||layer.opacity<=0)continue;
+         for(const [key,data]of layer.frameData){
+           const [si,ai,fi]=key.split('_').map(Number),r=data.placement;
+-          if(r&&si===sheetIndex&&(actionIndex===null||ai===actionIndex)&&(frameIndex===null||fi===frameIndex))scale=Math.max(scale,Math.ceil(data.width/r.w),Math.ceil(data.height/r.h));
++          if(r&&si===sheetIndex&&(actionIndex===null||ai===actionIndex)&&(frameIndex===null||fi===frameIndex))scale=Math.max(scale,Math.ceil(data.width/r.w),Math.ceil(data.height/r.h),!Number.isInteger(r.x)||!Number.isInteger(r.y)?10:1);
+         }
+       }
+       return scale;
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/tools.js" b/js/tools.js
+index 7a43b47..49b9f4e 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/tools.js"
++++ b/js/tools.js
+@@ -214,7 +214,7 @@ window.PE = window.PE || {};
+       if (this._transform) {
+         const t=this._transform,f=this.project.getCurrentFrame(),s=t.source;
+         if (frameKey!==t.frameKey || this.project.getCurrentLayer()!==t.layer) {this.clearSelection();return;}
+-        const position=v=>this.freeImagePlacement&&t.layer.getFrameData(frameKey)?.placement?v:Math.round(v);
++        const position=v=>this._canFreePlace(s,t.index,t.frameKey)?Math.round(v*1e6)/1e6:Math.round(v);
+         const target=t.resize?this._scaledSelection(s,Math.max((px-s.x)/s.w,(py-s.y)/s.h)):
+           {...s,x:Math.max(0,Math.min(f.width-s.w,position(s.x+px-t.px))),y:Math.max(0,Math.min(f.height-s.h,position(s.y+py-t.py)))};
+         const preview=this._selectionPixels(t.index,t.frameKey,s,target);
+@@ -651,8 +651,8 @@ window.PE = window.PE || {};
+       } else {
+         const hd=this.project?.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement;
+         this.selection = {
+-          x: hd?rx:Math.floor(rx),
+-          y: hd?ry:Math.floor(ry),
++          x: hd||this.currentTool==='move'&&this.freeImagePlacement?rx:Math.floor(rx),
++          y: hd||this.currentTool==='move'&&this.freeImagePlacement?ry:Math.floor(ry),
+           w: Math.floor(rw),
+           h: Math.floor(rh)
+         };
+@@ -772,8 +772,8 @@ window.PE = window.PE || {};
+     nudgeSelection(dx, dy) {
+       if (!this.selection || !this.project || this.isDrawing || this._isMoving) return false;
+       const {x,y,w,h}=this.selection;
+-      const hd=this.project.getCurrentLayer()?.getFrameData(this.project.getFrameKey())?.placement;
+-      const position=(v,step)=>hd&&this.freeImagePlacement?Math.round((v+step*.1)*1e6)/1e6:Math.round(v+step);
++      const free=this._canFreePlace(this.selection,this.project.currentLayerIndex,this.project.getFrameKey());
++      const position=(v,step)=>free?Math.round((v+step*.1)*1e6)/1e6:Math.round(v+step);
+       // Read the active layer again; never paste an old composite/copy buffer.
+       this.selectionData=null;
+       const moved=this.moveSelection(this.project.currentLayerIndex,this.project.getFrameKey(),x,y,w,h,position(x,dx),position(y,dy));
+@@ -785,6 +785,22 @@ window.PE = window.PE || {};
+       return this.transformSelection(layerIdx,frameKey,{x:srcX,y:srcY,w:srcW,h:srcH},{x:destX,y:destY,w:srcW,h:srcH});
+     }
+ 
++    getLayerPlacement(index=this.project.currentLayerIndex,key=this.project.getFrameKey()) {
++      const data=this.project.layers[index]?.getFrameData(key);if(!data)return null;
++      if(data.placement)return {...data.placement};
++      let left=data.width,top=data.height,right=-1,bottom=-1;
++      for(let y=0;y<data.height;y++)for(let x=0;x<data.width;x++)if(data.data[(y*data.width+x)*4+3]){
++        left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x);bottom=Math.max(bottom,y);
++      }
++      return right<0?null:{x:left,y:top,w:right-left+1,h:bottom-top+1};
++    }
++
++    _canFreePlace(source,index,key) {
++      const r=this.freeImagePlacement&&this.getLayerPlacement(index,key);
++      // Partial selections stay on-grid; separate the fragment into a layer before free placement.
++      return !!r&&source.x<=r.x&&source.y<=r.y&&source.x+source.w>=r.x+r.w&&source.y+source.h>=r.y+r.h;
++    }
++
+     selectLayerAt(x,y) {
+       const p=this.project,key=p.getFrameKey();this.clearSelection();
+       for (const layer of PE.getRenderLayers(p,p.currentSheetIndex,p.currentActionIndex).slice().reverse()) {
+@@ -797,11 +813,7 @@ window.PE = window.PE || {};
+         }
+         const px=Math.floor(x),py=Math.floor(y);
+         if (!data || !this._isInBounds(px,py,data.width,data.height) || !data.data[(py*data.width+px)*4+3]) continue;
+-        let left=data.width,top=data.height,right=0,bottom=0;
+-        for(let row=0;row<data.height;row++)for(let col=0;col<data.width;col++)if(data.data[(row*data.width+col)*4+3]){
+-          left=Math.min(left,col);top=Math.min(top,row);right=Math.max(right,col);bottom=Math.max(bottom,row);
+-        }
+-        p.currentLayerIndex=p.layers.indexOf(layer);this.setSelection(left,top,right-left+1,bottom-top+1);return true;
++        p.currentLayerIndex=p.layers.indexOf(layer);const r=this.getLayerPlacement();this.setSelection(r.x,r.y,r.w,r.h);return true;
+       }
+       return false;
+     }
+@@ -828,8 +840,9 @@ window.PE = window.PE || {};
+       const p=this.project,layer=p?.layers[layerIdx],[si,ai,fi]=key.split('_').map(Number),frame=p?.spriteSheets[si]?.actions[ai]?.frames[fi];
+       if (!layer || layer.isGroup || layer.sheetIndex!==undefined&&layer.sheetIndex!==si || layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || !PE.isLayerVisible(p,layer,si) || !frame || frame.locked) return null;
+       const data=layer.getFrameData(key);if(!data)return null;
++      const free=this._canFreePlace(source,layerIdx,key);
+       for(const s of [source,target]) {
+-        if(data.placement){
++        if(data.placement||free&&s===target){
+           try{PE.utils.validateImagePlacement(s,frame);}catch{return null;}
+           if(PE.utils.imagePlacementLocked(s,frame))return null;
+           continue;
+@@ -841,6 +854,11 @@ window.PE = window.PE || {};
+         if(!['x','y','w','h'].every(k=>source[k]===data.placement[k]))return null;
+         const result=new ImageData(data.data,data.width,data.height);result.placement={...target};return result;
+       }
++      if(free&&(!Number.isInteger(target.x)||!Number.isInteger(target.y))){
++        const result=new ImageData(source.w,source.h);
++        for(let y=0;y<source.h;y++)result.data.set(data.data.subarray(((source.y+y)*data.width+source.x)*4,((source.y+y)*data.width+source.x+source.w)*4),y*source.w*4);
++        result.placement={...target};return result;
++      }
+       const result=PE.utils.cloneImageData(data);
+       for(let y=source.y;y<source.y+source.h;y++)result.data.fill(0,(y*data.width+source.x)*4,(y*data.width+source.x+source.w)*4);
+       for(let y=0;y<target.h;y++)for(let x=0;x<target.w;x++){
+@@ -869,8 +887,8 @@ window.PE = window.PE || {};
+ 
+     _commitSelectionPixels(layerIdx,key,source,target,after,description) {
+       const before=this.project.layers[layerIdx].getFrameData(key),history=this.historyManager;
+-      if(before.placement){
+-        if(['x','y','w','h'].every(k=>source[k]===target[k])&&(before.data===after.data||after.data.every((v,i)=>v===before.data[i])))return true;
++      if(before.placement||after.placement){
++        if(before.placement&&['x','y','w','h'].every(k=>source[k]===target[k])&&(before.data===after.data||after.data.every((v,i)=>v===before.data[i])))return true;
+         const layer=this.project.layers[layerIdx],restore=(data,rect)=>{layer.frameData.set(key,data);this.clearSelection();if(this.project.getFrameKey()===key&&this.project.getCurrentLayer()===layer)this.setSelection(rect.x,rect.y,rect.w,rect.h);};
+         restore(after,target);
+         if(history){history.undoStack.push({description,changes:[],undo:()=>restore(before,source),redo:()=>restore(after,target)});if(history.undoStack.length>history.maxSteps)history.undoStack.shift();history.redoStack=[];history._notifyChange();}
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/pixel-import.js" b/js/pixel-import.js
+index 6b08ca0..2518258 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/js/pixel-import.js"
++++ b/js/pixel-import.js
+@@ -117,24 +117,25 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const imageSize=document.createElement('label'),placedWidth=document.createElement('input'),imageInfo=document.createElement('span');
+   imageSize.textContent='高清放置宽度 ';placedWidth.type='number';placedWidth.min='1';placedWidth.max='4096';placedWidth.setAttribute('aria-label','高清图层放置宽度');imageSize.append(placedWidth);editStatus.before(imageSize,imageInfo);
+   const freeLabel=document.createElement('label'),freePlacement=document.createElement('input'),positionFields=document.createElement('span');
+-  freePlacement.type='checkbox';freePlacement.setAttribute('aria-label','无视像素格放置');freeLabel.append(freePlacement,'无视像素格放置（高清图层）');
+-  positionFields.className='pixel-import-controls image-position-fields';positionFields.innerHTML='<label>X <input type="number" min="0" step="1" aria-label="高清图层位置 X"></label><label>Y <input type="number" min="0" step="1" aria-label="高清图层位置 Y"></label>';
+-  const positionX=positionFields.querySelector('[aria-label="高清图层位置 X"]'),positionY=positionFields.querySelector('[aria-label="高清图层位置 Y"]');editStatus.before(freeLabel,positionFields);
++  freePlacement.type='checkbox';freePlacement.setAttribute('aria-label','无视像素格放置');freeLabel.append(freePlacement,'无视像素格放置（普通 / 高清图层）');
++  positionFields.className='pixel-import-controls image-position-fields';positionFields.innerHTML='<label>X <input type="number" min="0" step="1" aria-label="图层位置 X"></label><label>Y <input type="number" min="0" step="1" aria-label="图层位置 Y"></label>';
++  const positionX=positionFields.querySelector('[aria-label="图层位置 X"]'),positionY=positionFields.querySelector('[aria-label="图层位置 Y"]');editStatus.before(freeLabel,positionFields);
+   function imageDetails(){
+     const p=app.project,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=data?.placement;
+     imageSize.style.display=r?'flex':'none';imageInfo.textContent=r?'原图 '+data.width+'×'+data.height+' 保持不变 → 放置 '+r.w+'×'+r.h+' · PNG 自动高清导出':'';
+     if(r)placedWidth.value=r.w;
+-    positionFields.style.display=r?'flex':'none';
+-    for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.step=freePlacement.checked?'0.1':'1';if(r&&document.activeElement!==input)input.value=Math.round(r[axis]*1e6)/1e6;}
++    const position=r||(freePlacement.checked?app.toolManager.getLayerPlacement():null);
++    positionFields.style.display=position?'flex':'none';
++    for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.step=freePlacement.checked?'0.1':'1';if(position&&document.activeElement!==input)input.value=Math.round(position[axis]*1e6)/1e6;}
+   }
+   freePlacement.onchange=()=>{
+     if(app.toolManager.isDrawing){freePlacement.checked=app.toolManager.freeImagePlacement;editStatus.textContent='请先结束当前拖动';return;}
+     app.toolManager.freeImagePlacement=freePlacement.checked;imageDetails();
+-    editStatus.textContent=freePlacement.checked?'高清图层可自由放置，方向键每次微调 0.1 格；源像素不变。普通像素绘画仍按格。':'按像素格放置；已有位置不会因取消勾选而改变，下次移动时吸附到格子。';
++    editStatus.textContent=freePlacement.checked?'普通 / 高清图层均可整层自由放置，方向键微调 0.1 格；部分框选仍按格。源像素不变，自由放置后可用“编辑高清画布”改源像素。':'按像素格放置；已有位置不会因取消勾选而改变，下次移动时吸附到格子。';
+   };
+   for(const [input,axis]of [[positionX,'x'],[positionY,'y']])input.onchange=()=>{
+     try{
+-      const p=app.project,tm=app.toolManager,r=p.getCurrentLayer()?.getFrameData(p.getFrameKey())?.placement,value=Number(input.value);
++      const p=app.project,tm=app.toolManager,r=tm.getLayerPlacement(),value=Number(input.value);
+       if(!r||tm.isDrawing||input.value.trim()===''||!Number.isFinite(value)||!freePlacement.checked&&!Number.isSafeInteger(value))throw new Error('自由小数坐标需先勾选“无视像素格放置”，否则请输入整数');
+       app.animationPlayer.pause();
+       if(!tm.transformSelection(p.currentLayerIndex,p.getFrameKey(),r,{...r,[axis]:value}))throw new Error('位置越界或包含保护区域，未修改');
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/index.html" b/index.html
+index ec5fa5e..d9bfadb 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/index.html"
++++ b/index.html
+@@ -276,10 +276,10 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=free-image-placement-1"></script>
++  <script src="js/core.js?v=normal-layer-free-placement-2"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=free-image-placement-1"></script>
+-  <script src="js/tools.js?v=free-image-placement-1"></script>
++  <script src="js/tools.js?v=normal-layer-free-placement-2"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+@@ -302,7 +302,7 @@
+   <script src="js/wardrobe.js?v=hd-image-layers-multiwear-rear-2"></script>
+   <script src="js/frame-tools.js?v=free-image-placement-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=free-image-placement-1"></script>
++  <script src="js/pixel-import.js?v=normal-layer-free-placement-2"></script>
+   <script src="js/hd-canvas.js?v=free-image-placement-1"></script>
+ </body>
+ </html>
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/test/free-image-placement.cjs" b/test/free-image-placement.cjs
+index 25cd099..b3c090d 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/test/free-image-placement.cjs"
++++ b/test/free-image-placement.cjs
+@@ -16,7 +16,22 @@ for(const f of ['core','history','canvas','tools','export','frame-tools','pixel-
+   const session=new PE.HDCanvasSession(app);assert.equal(session.original.placement.x,12.5);
+   const exporter=new PE.ExportManager();exporter.init(p,cm);const raw=JSON.parse(await exporter.exportProject(false).text()),loaded=(await new PE.ExportManager().importProject(new Blob([JSON.stringify(raw)]))).project;assert.deepEqual(loaded.layers[1].getFrameData(key).placement,bounds);assert.deepEqual(loaded.layers[1].getFrameData(key).data,original);
+   raw.spriteSheets[0].name='original32_idle';require('../js/idle-canvas.cjs')(raw,36);assert.equal(raw.layers[1].frameData[key].placement.x,14.5);assert.equal(raw.layers[1].frameData[key].placement.y,16.25);
+-  // Normal pixel drawing and placement still use whole pixels even with the HD-only option enabled.
+-  p.currentLayerIndex=0;const normal=new ImageData(32,32);normal.data.set([10,20,30,255],(2*32+2)*4);p.layers[0].frameData.set(key,normal);tm.clearSelection();tm.freeImagePlacement=true;assert(tm.selectLayerAt(2.25,2.25));assert.equal(p.currentLayerIndex,0);tm.onMouseDown(2.25,2.25,0,false);tm.onMouseMove(2.75,2.25);tm.onMouseUp();assert(Number.isInteger(tm.selection.x));
+-  console.log('PASS: free drag and snapped drag, 0.1 nudge, undo/redo, original pixels, fractional edge-lock protection, invalid inputs, copy/paste, source editor, JSON reload, idle padding and ordinary pixel layers verified.');
++  p.currentLayerIndex=0;const normal=new ImageData(32,32);normal.data.set([10,20,30,255],(2*32+2)*4);p.layers[0].frameData.set(key,normal);tm.clearSelection();tm.freeImagePlacement=true;assert(tm.selectLayerAt(2.25,2.25));assert.equal(p.currentLayerIndex,0);
++  tm.onMouseDown(2.25,2.25,0,false);tm.onMouseMove(2.75,2.25);assert.equal(p.layers[0].getFrameData(key),normal,'Normal free drag is preview-only');assert.deepEqual(tm.selection,{x:2.5,y:2,w:1,h:1});tm.onMouseUp();
++  const moved=()=>p.layers[0].getFrameData(key);assert.deepEqual(moved().placement,{x:2.5,y:2,w:1,h:1});assert.deepEqual([...moved().data],[10,20,30,255]);
++  history.undo(p);assert.equal(moved(),normal);assert.deepEqual(normal.data[(2*32+2)*4+3],255);history.redo(p);assert.equal(moved().placement.x,2.5);
++  assert(tm.nudgeSelection(1,0));assert.equal(moved().placement.x,2.6);assert.equal(PE.utils.imageScale(p,0),10,'Fractional native layers need higher-density export');
++  const normalRaw=JSON.parse(await exporter.exportProject(false).text()),normalLoaded=(await new PE.ExportManager().importProject(new Blob([JSON.stringify(normalRaw)]))).project;assert.deepEqual(normalLoaded.layers[0].getFrameData(key).placement,moved().placement);assert.deepEqual(normalLoaded.layers[0].getFrameData(key).data,moved().data);
++  assert.deepEqual([...(new PE.HDCanvasSession(app)).original.data],[10,20,30,255],'Native source remains editable without upscaling');
++  history.undo(p);history.undo(p);assert.equal(moved(),normal);tm.setSelection(2,2,1,1);
++  const startSteps=history.undoStack.length;
++  for(const protection of ['layer','hand','frame','region','inherited']){
++    p.layers[0].locked=protection==='layer';p.layers[0].referenceOnly=protection==='hand';p.layers[0].name=protection==='hand'?'hand':'Normal';p.layers[0].inheritedBase=protection==='inherited';p.getCurrentFrame().locked=protection==='frame';p.getCurrentFrame().lockedRegions=protection==='region'?[{x:3.05,y:2,w:.1,h:1}]:[];
++    assert.equal(tm.moveSelection(0,key,2,2,1,1,2.1,2),false);assert.equal(moved(),normal);assert.equal(history.undoStack.length,startSteps);
++  }
++  p.layers[0].locked=false;p.layers[0].referenceOnly=false;p.layers[0].name='Normal';p.layers[0].inheritedBase=false;p.getCurrentFrame().locked=false;p.getCurrentFrame().lockedRegions=[];
++  assert.equal(tm.moveSelection(0,key,2,2,1,1,-.1,2),false);assert.equal(moved(),normal);
++  normal.data.set([40,50,60,255],(5*32+5)*4);tm.setSelection(2,2,1,1);assert(tm.nudgeSelection(1,0));assert.equal(moved().placement,undefined,'Partial selections retain ordinary on-grid behavior');assert.equal(tm.selection.x,3);assert.deepEqual([...moved().data.slice((5*32+5)*4,(5*32+6)*4)],[40,50,60,255]);history.undo(p);
++  tm.freeImagePlacement=false;tm.clearSelection();assert(tm.selectLayerAt(2,2));tm.onMouseDown(2.25,2.25,0,false);tm.onMouseMove(2.75,2.25);tm.onMouseUp();assert.equal(moved().placement,undefined,'Unchecked native movement remains native');assert(Number.isInteger(tm.selection.x));
++  console.log('PASS: HD/native free drag, preview-only state, 0.1 nudge, exact native crop, native undo/redo, native JSON/source edit, fractional export density, protected native layers/frame/regions/hand, bounds, partial-selection isolation and unchecked snapping.');
+ })().catch(e=>{console.error(e);process.exitCode=1;});
+diff --git "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/test/free-image-placement-browser.cjs" b/test/free-image-placement-browser.cjs
+index 76230b0..19f84a2 100644
+--- "a/\345\244\207\344\273\275/20261030-v\345\230\264\344\270\216\346\231\256\351\200\232\345\261\202\350\207\252\347\224\261\346\224\276\347\275\256-1793349734165/code/test/free-image-placement-browser.cjs"
++++ b/test/free-image-placement-browser.cjs
+@@ -36,9 +36,9 @@ async function main(){
+     const state=()=>page.evaluate(()=>{const p=PE.app.project,d=p.getCurrentLayer().getFrameData(p.getFrameKey());return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};});
+     const original=await state();assert.equal(original.width,32);assert.equal(original.height,16);assert.deepEqual(original.placement,{x:12,y:14,w:8,h:4});
+     const free=page.getByLabel('无视像素格放置',{exact:true});assert.equal(await free.isChecked(),false);
+-    await free.check();await page.getByLabel('高清图层位置 X',{exact:true}).fill('12.5');await page.getByLabel('高清图层位置 X',{exact:true}).press('Tab');
++    await free.check();await page.getByLabel('图层位置 X',{exact:true}).fill('12.5');await page.getByLabel('图层位置 X',{exact:true}).press('Tab');
+     assert.equal((await state()).placement.x,12.5);assert.deepEqual((await state()).pixels,original.pixels);
+-    await page.getByLabel('高清图层位置 Y',{exact:true}).fill('14.25');await page.getByLabel('高清图层位置 Y',{exact:true}).press('Tab');assert.equal((await state()).placement.y,14.25);
++    await page.getByLabel('图层位置 Y',{exact:true}).fill('14.25');await page.getByLabel('图层位置 Y',{exact:true}).press('Tab');assert.equal((await state()).placement.y,14.25);
+     await page.getByRole('button',{name:'撤销',exact:true}).click();await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),original);
+     await page.evaluate(()=>{const c=PE.app.canvasManager;c.zoom=16;c.centerView();c.render();});
+     const start=await page.evaluate(()=>{const c=PE.app.canvasManager,b=c.canvas.getBoundingClientRect();return{x:b.x+(c.offsetX+14.25*c.zoom)*b.width/c.canvas.width,y:b.y+(c.offsetY+15.25*c.zoom)*b.height/c.canvas.height,dx:8*b.width/c.canvas.width,dy:4*b.height/c.canvas.height};});
+@@ -71,6 +71,25 @@ async function main(){
+     await reopened.goto(base+'/index.html?project=draft-hd-image-test');await reopened.waitForFunction(()=>PE.app.persistence.ready&&document.querySelector('.studio-loading')?.hidden);
+     assert.deepEqual(await reopened.evaluate(()=>{const d=PE.app.project.layers[1].getFrameData('0_0_0');return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};}),original);
+     assert(await reopened.locator('.image-edit-toolbar').evaluate(el=>el.scrollWidth<=el.clientWidth));await reopened.screenshot({path:path.join(output,'browser-hd-reopened-narrow.png')});
++    // Ordinary native layer, not imported or created as an HD layer.
++    await page.evaluate(()=>{const app=PE.app,p=app.project,l=new PE.Layer('普通图层自由移动测试'),d=new ImageData(32,32);for(let y=24;y<27;y++)for(let x=4;x<8;x++)d.data.set([80,90,100,255],(y*32+x)*4);l.sheetIndex=0;l.frameData.set('0_0_0',d);p.layers.push(l);p.currentLayerIndex=p.layers.length-1;app.toolManager.clearSelection();app.toolManager.setTool('move');app.toolManager.setSelection(4,24,4,3);app.canvasManager.zoom=16;app.canvasManager.centerView();app.updateAll();});
++    await free.check();const nativeBefore=await state();assert.deepEqual([nativeBefore.width,nativeBefore.height],[32,32]);assert.deepEqual(nativeBefore.placement,{});assert.equal(await page.getByLabel('图层位置 X',{exact:true}).inputValue(),'4');
++    await page.evaluate(()=>{const c=PE.app.canvasManager;c.zoom=16;c.centerView();c.render();});
++    const nativePoint=await page.evaluate(()=>{const c=PE.app.canvasManager,b=c.canvas.getBoundingClientRect();return {x:b.x+(c.offsetX+6*c.zoom)*b.width/c.canvas.width,y:b.y+(c.offsetY+25*c.zoom)*b.height/c.canvas.height,dx:8*b.width/c.canvas.width};});
++    await page.mouse.move(nativePoint.x,nativePoint.y);await page.mouse.down();await page.mouse.move(nativePoint.x+nativePoint.dx,nativePoint.y,{steps:4});assert.deepEqual(await state(),nativeBefore,'Native drag must remain preview-only');await page.mouse.up();
++    const nativeMoved=await state();assert.deepEqual(nativeMoved.placement,{x:4.5,y:24,w:4,h:3});assert.deepEqual([nativeMoved.width,nativeMoved.height],[4,3]);assert.deepEqual(nativeMoved.pixels,Array.from({length:12},()=>[80,90,100,255]).flat());
++    await page.getByRole('button',{name:'撤销',exact:true}).click();assert.deepEqual(await state(),nativeBefore);await page.getByRole('button',{name:'重做',exact:true}).click();assert.deepEqual(await state(),nativeMoved);
++    await page.keyboard.press('ArrowRight');assert.equal((await state()).placement.x,4.6);await page.getByLabel('图层位置 Y',{exact:true}).fill('24.1');await page.getByLabel('图层位置 Y',{exact:true}).press('Tab');const nativeFinal=await state();assert.equal(nativeFinal.placement.y,24.1);assert.deepEqual(nativeFinal.pixels,nativeMoved.pixels);
++    await page.screenshot({path:path.join(output,'browser-native-free-placement.png')});
++    await page.getByRole('button',{name:'保存工程',exact:true}).click();await page.waitForFunction(()=>!PE.app.persistence.dirty&&!PE.app.persistence.saving);
++    const nativeContext=await browser.newContext(),nativePage=await nativeContext.newPage();await nativePage.goto(base+'/index.html?project=draft-hd-image-test');await nativePage.waitForFunction(()=>PE.app.persistence.ready&&document.querySelector('.studio-loading')?.hidden);
++    assert.deepEqual(await nativePage.evaluate(()=>{const d=PE.app.project.layers.at(-1).getFrameData('0_0_0');return {width:d.width,height:d.height,placement:{...d.placement},pixels:[...d.data]};}),nativeFinal);await nativeContext.close();
++    const nativeDownload=page.waitForEvent('download');await page.locator('.dropdown-toggle').click();await page.getByRole('button',{name:'导出当前帧 (PNG)',exact:true}).click();const nativeExport=path.join(output,'browser-native-free-export.png');await(await nativeDownload).saveAs(nativeExport);const nativeImage=await loadImage(nativeExport);assert.equal(nativeImage.width,320);
++    const nativeCheck=createCanvas(320,320),nativeCtx=nativeCheck.getContext('2d');nativeCtx.drawImage(nativeImage,0,0);
++    for(const [x,y]of [[46,241],[85,241],[46,270],[85,270]])assert.deepEqual([...nativeCtx.getImageData(x,y,1,1).data],[80,90,100,255],'0.1-grid placement survives PNG export exactly');
++    assert.equal(nativeCtx.getImageData(45,241,1,1).data[3],0);assert.equal(nativeCtx.getImageData(86,241,1,1).data[3],0);
++    console.log('PASS: ordinary layer free mouse drag, untouched preview, exact source pixels, undo to native layer, redo, 0.1 arrows and X/Y, real save/fresh reopen and high-density PNG export.');
++    response=await fetch(base+'/api/project?id=draft-hd-image-test');etag=response.headers.get('ETag');saved=await response.json();
+     // Only this disposable fixture is changed by the simulated second writer.
+     saved.name='另一个窗口更新（测试）';response=await fetch(base+'/api/project?id=draft-hd-image-test',{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(saved)});assert.equal(response.status,200);
+     const conflict=await fetch(base+'/api/project?id=draft-hd-image-test',{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(fixture)});assert.equal(conflict.status,409);assert.equal(JSON.parse(fs.readFileSync(projectFile)).layers[1].frameData['0_0_0'].width,32);

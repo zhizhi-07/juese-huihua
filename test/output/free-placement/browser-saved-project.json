@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "name": "高清眼睛功能验证（临时工程）",
+  "bgColor": "#1a1a2e",
+  "gridColor": "#333333",
+  "currentSheetIndex": 0,
+  "currentActionIndex": 0,
+  "currentFrameIndex": 0,
+  "currentLayerIndex": 1,
+  "palette": [],
+  "spriteSheets": [
+    {
+      "name": "fixture",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 1,
+      "rows": 1,
+      "spacingX": 0,
+      "spacingY": 0,
+      "offsetX": 0,
+      "offsetY": 0,
+      "fps": 8,
+      "imageDataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAdklEQVR4AezUwQmAMBAF0cQSbMYePHixBMEmbMAaBJuwQcUKnCxICExgb5vw88imS5WXARRQAAms03JHikw4CkAOivYYoA2B4zrzvo2ppN495F20IUBuEu1RQAEFFMAC/TDnkqIfEw5ADyztM4ACCvwu8DWWDwAAAP//XQGJbQAAAAZJREFUAwBTlzhBgcKoqgAAAABJRU5ErkJggg==",
+      "actions": [
+        {
+          "name": "待机",
+          "direction": "down",
+          "frames": [
+            {
+              "sheetIndex": 0,
+              "sourceX": 0,
+              "sourceY": 0,
+              "width": 32,
+              "height": 32,
+              "locked": false,
+              "lockedRegions": [],
+              "status": "未开始",
+              "notes": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "sheetIndex": 0,
+      "name": "测试底图",
+      "visible": true,
+      "locked": true,
+      "opacity": 1,
+      "frameData": {
+        "0_0_0": {
+          "width": 32,
+          "height": 32,
+          "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAdklEQVR4AezUwQmAMBAF0cQSbMYePHixBMEmbMAaBJuwQcUKnCxICExgb5vw88imS5WXARRQAAms03JHikw4CkAOivYYoA2B4zrzvo2ppN495F20IUBuEu1RQAEFFMAC/TDnkqIfEw5ADyztM4ACCvwu8DWWDwAAAP//XQGJbQAAAAZJREFUAwBTlzhBgcKoqgAAAABJRU5ErkJggg=="
+        }
+      }
+    },
+    {
+      "sheetIndex": 0,
+      "name": "高清 · 功能测试高清眼睛",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "frameData": {
+        "0_0_0": {
+          "width": 32,
+          "height": 16,
+          "placement": {
+            "x": 12,
+            "y": 14,
+            "w": 8,
+            "h": 4
+          },
+          "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAYAAAB3AH1ZAAAA5klEQVR4AeyTPQrCQBCFJzmDYOMFLKwUu3QWegOx8gh2gkeyEhvt0wU7byA2Nlb2yrcwYQhJyBpxLQx8zOz8vLwsJJbAT3gDo8H06UPZhfnsM2s1vG+gKGDFmuZWIz6dj1FxMe4v5XJ/OMihOGPPbTTyG0izgyiI366pADnYHucydIZIn30gB+pAruQGtPDtWGmg20sE2hhiH+o0Kg3ULX2y95sGFuuJbPY7B/k7X8xeE438BpLxTJSyF9b1dF5niFqzkTrYmjPAf2xZDTuRJdvOI9u3AprbPrndJ6/ScAZUJET8G3gBAAD////51L8AAAAGSURBVAMAxAOeIe6gG6wAAAAASUVORK5CYII="
+        }
+      }
+    }
+  ]
+}

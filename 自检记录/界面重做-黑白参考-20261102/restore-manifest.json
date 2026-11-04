@@ -1,0 +1,38 @@
+[
+  {
+    "Target": "index.html",
+    "Backup": "index.html.before",
+    "BeforeHash": "8CA514BA2B54EA6C7AF2ED855ED0C58E7F35B856C3CC87E066AD52C1E250DC8D",
+    "AfterHash": "03E54096EDB5DF05260853428D8F6E732F918BABBE2F100EB97BB90226C365D2"
+  },
+  {
+    "Target": "css/studio-theme.css",
+    "Backup": "css__studio-theme.css.before",
+    "BeforeHash": "683EA29F71E8A0105EB91502F780A2B6953126A8264041E4404F5A1075406511",
+    "AfterHash": "2CD1EF98C5D747C148AE15F4861DA7A63FC460CDACC72C936783822F9764861A"
+  },
+  {
+    "Target": "js/workspace-layout.js",
+    "Backup": "js__workspace-layout.js.before",
+    "BeforeHash": "B16BD59464BD6BC372442CA3A1231A9FF45FE837BE3C6F16AFA8E2814E8F2EA3",
+    "AfterHash": "CB2A5EEA29E3B6DD7381C5344D81107B283E579C7DEBEE9E16C82936FD117DC0"
+  },
+  {
+    "Target": "js/canvas.js",
+    "Backup": "js__canvas.js.before",
+    "BeforeHash": "D23454F0EA8AE7DBF77A6119ACCAFDD7E3E1ED1ED86D34B626FEE977FD357D73",
+    "AfterHash": "15E8021CC353360B7A0B1922C6EB1830AD3B412E3CBC6188F94E41970A1EF96A"
+  },
+  {
+    "Target": "test/unslop-ui-browser.cjs",
+    "Backup": "test__unslop-ui-browser.cjs.before",
+    "BeforeHash": "52D4AEC98DA55A6F0A7F103C5706E2A67C79FF8947B30878C75C9C40EF1B135B",
+    "AfterHash": "65B7294B4FCE132CF25546F708D08CE6F8627BEBFB2E96ED808E0F80B55B11AB"
+  },
+  {
+    "Target": "test/workspace-layout.cjs",
+    "Backup": "test__workspace-layout.cjs.before",
+    "BeforeHash": "78D8D7868D61EBB047592517C2C8E4C2FC59EEC93B17B1EF570952FA4A25E2B2",
+    "AfterHash": "4A8822D22B08B07D72B455622B65F26DB100E7F60627DA27140CB12DE9F15A62"
+  }
+]

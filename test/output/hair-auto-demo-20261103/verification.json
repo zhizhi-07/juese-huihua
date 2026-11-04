@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "24 real original and generated composites match editor CanvasManager exactly; first pose intact; nonempty originals/generated; native and 8x views agree",
+    "12 synthetic source-over composites exact: 50% hair opacity, cropped placement, hidden parent, rear-view ordering, head-follow translation",
+    "Unequal frame durations, boundaries, wrap, pause/edit/reset frame retention, head anchor ignores isolated dot, mobile width",
+    "Real pointer brush/eraser, masked pixels alone deform with compression+sway, fixed pixels win, empty mask locks all, clear restores all, switch resets masks, fps fallback",
+    "Missing source/head and invalid dimensions fail visibly and recover; late requests cannot overwrite new selection; integer cycles; no JS errors or writes; actual project SHA256 and ETag unchanged"
+  ],
+  "errors": [],
+  "writes": [],
+  "projectSHA256": "6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96",
+  "etag": "\"6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96\""
+}

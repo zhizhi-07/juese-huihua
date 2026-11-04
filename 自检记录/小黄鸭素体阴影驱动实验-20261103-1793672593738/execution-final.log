@@ -1,0 +1,7 @@
+COMMAND: node scripts/duck-body-shadow-test-20261103/run.cjs build
+BUILT C:\Users\Administrator\Desktop\角色绘画\自检记录\小黄鸭素体阴影驱动实验-20261103-1793672593738 shadow changes=514; affectedFrames=68; equivalent=70; toggle-off=70
+EXIT: 0
+COMMAND: node scripts/duck-body-shadow-test-20261103/run.cjs publish
+PUT outfit-duck-body-shadow-test-1793672593738 200 {"saved":true,"revision":"\"387644c0b67f60cc0586b68943daec444425eae0af14b95428d429c98fc3cfbc\""}
+PUBLISHED http://localhost:8765/index.html?project=outfit-duck-body-shadow-test-1793672593738
+EXIT: 0

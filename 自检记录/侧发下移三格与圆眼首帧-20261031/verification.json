@@ -1,0 +1,38 @@
+{
+  "trialOnly": true,
+  "key": "8_0_0",
+  "layers": [
+    195,
+    197,
+    198
+  ],
+  "lowerHairShift": 3,
+  "crownExactRows": [
+    0,
+    9
+  ],
+  "extendedRows": [
+    11,
+    13
+  ],
+  "capShadowStripeNotRepeated": true,
+  "eyeNearOriginalRoundedCells": true,
+  "nearEyeWorldX": 15,
+  "farEyeWorldX": 23.333333333333336,
+  "eyeGapWorldPixels": 3,
+  "farColumns": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6
+  ],
+  "allOtherDataUnchanged": true,
+  "noBlur": true,
+  "other11IdleCelsUnchanged": true,
+  "mainRenderAndPngChecked": true,
+  "thumbnailRendered": true,
+  "otherFramesAwaitUserApproval": true,
+  "userBrowserNotRefreshed": true
+}

@@ -1,0 +1,7 @@
+COMMAND: node scripts/jk-three-source-test-20261103/run.cjs build
+BUILT C:\Users\Administrator\Desktop\角色绘画\自检记录\JK三首帧自动同步测试-20261103-1793669864187 old shoe errors=745; bound=0; sync=95.8ms
+EXIT: 0
+COMMAND: node scripts/jk-three-source-test-20261103/run.cjs publish
+PUT outfit-jk-three-source-test-1793669864187 200 {"saved":true,"revision":"\"0b4e6e282de2dc6327f6f834defaca1ff2c33f355db7222e6da61af0c5a20b32\""}
+PUBLISHED http://localhost:8765/index.html?project=outfit-jk-three-source-test-1793669864187
+EXIT: 0

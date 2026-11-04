@@ -1,0 +1,204 @@
+{
+  "checks": [
+    {
+      "si": 8,
+      "ai": 0,
+      "fi": 0,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 0,
+      "fi": 1,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 0,
+      "fi": 2,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 0,
+      "fi": 3,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 1,
+      "fi": 0,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 1,
+      "fi": 1,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 1,
+      "fi": 2,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 1,
+      "fi": 3,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 2,
+      "fi": 0,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 2,
+      "fi": 1,
+      "headTop": 4,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 2,
+      "fi": 2,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 8,
+      "ai": 2,
+      "fi": 3,
+      "headTop": 6,
+      "size": 36,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 0,
+      "fi": 0,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 0,
+      "fi": 1,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 0,
+      "fi": 2,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 0,
+      "fi": 3,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 1,
+      "fi": 0,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 1,
+      "fi": 1,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 1,
+      "fi": 2,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 1,
+      "fi": 3,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 2,
+      "fi": 0,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 2,
+      "fi": 1,
+      "headTop": 4,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 2,
+      "fi": 2,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    },
+    {
+      "si": 10,
+      "ai": 2,
+      "fi": 3,
+      "headTop": 5,
+      "size": 32,
+      "canvasMatchesExport": true
+    }
+  ],
+  "saved": true,
+  "userFrontFirstFramePreserved": true,
+  "bodyHeadHandsAndOtherActionsUnchanged": true,
+  "oldLayerRelationshipsPreserved": true,
+  "sittingProfileSeparate": true,
+  "browserTested": false,
+  "etag": "\"3fe1f7e0ad3529d9fb9b062dfc73c0318374c3ef9a53a5bcec1fea2e0a69cfa7\"",
+  "sha256": "3fe1f7e0ad3529d9fb9b062dfc73c0318374c3ef9a53a5bcec1fea2e0a69cfa7"
+}

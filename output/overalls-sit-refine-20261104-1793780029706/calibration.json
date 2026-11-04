@@ -1,0 +1,96 @@
+[
+  {
+    "direction": "side",
+    "body": {
+      "width": 19,
+      "height": 19,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAN0lEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJD7xh/94+BGMQG8aHsckyDNmF6GySvUkVw4YXAABuT28uB8f/kAAAAABJRU5ErkJggg=="
+    },
+    "clothes": {
+      "width": 19,
+      "height": 19,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAMElEQVR42mNgGAWjYBQMOfD/////RVP3/YcBEJsiw96c74UbgMwmGVDkEpoaNnwAAI9DIY/IG1M7AAAAAElFTkSuQmCC"
+    },
+    "soles": [
+      [
+        9,
+        14
+      ],
+      [
+        10,
+        14
+      ],
+      [
+        12,
+        14
+      ],
+      [
+        13,
+        14
+      ],
+      [
+        9,
+        15
+      ],
+      [
+        10,
+        15
+      ],
+      [
+        12,
+        15
+      ],
+      [
+        13,
+        15
+      ]
+    ]
+  },
+  {
+    "direction": "down",
+    "body": {
+      "width": 19,
+      "height": 19,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAANElEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJk2XYv7cPMTDZhsEwzBAYpsib6OyBNWx4AQARkWDLvnJPkgAAAABJRU5ErkJggg=="
+    },
+    "clothes": {
+      "width": 19,
+      "height": 19,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAJ0lEQVR42mNgGAWjYBQMOfD/////b873/kemKTa0aOq+/6NBOwQAAMmXFUcj4LeAAAAAAElFTkSuQmCC"
+    },
+    "soles": [
+      [
+        7,
+        14
+      ],
+      [
+        8,
+        14
+      ],
+      [
+        10,
+        14
+      ],
+      [
+        11,
+        14
+      ],
+      [
+        7,
+        15
+      ],
+      [
+        8,
+        15
+      ],
+      [
+        10,
+        15
+      ],
+      [
+        11,
+        15
+      ]
+    ]
+  }
+]

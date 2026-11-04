@@ -1,0 +1,8 @@
+{
+  "status": 200,
+  "etag": "\"b3f3b0bf447f62fb394a2195e91b154733f6e3a8455ac277e4fee5bade5cba86\"",
+  "sha256": "b3f3b0bf447f62fb394a2195e91b154733f6e3a8455ac277e4fee5bade5cba86",
+  "originalSHA256": "6a90b0f46ea096e01a007d8faeae6b77b364bffdde3ccf64133861041ff9cd96",
+  "apiReadbackExact": true,
+  "referenceUnchanged": true
+}

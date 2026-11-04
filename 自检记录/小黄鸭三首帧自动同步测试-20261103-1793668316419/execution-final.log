@@ -1,0 +1,20 @@
+COMMAND: node scripts/duck-three-source-test-20261103/run.cjs build
+EXIT: 
+LOGGING RETRY: Tee-Object -LiteralPath/-Append parameter conflict; using -FilePath/-Append.
+COMMAND: node scripts/duck-three-source-test-20261103/run.cjs build
+BUILT C:\Users\Administrator\Desktop\角色绘画\自检记录\小黄鸭三首帧自动同步测试-20261103-1793668316419 {
+  checked: 70,
+  sheets: [
+    'original32_idle',
+    'original32_walk',
+    'original32_pickup',
+    'original32_sit',
+    'original32_sleep'
+  ]
+}
+EXIT: 0
+VISUAL AND ASSERT CHECKS RECORDED
+COMMAND: node scripts/duck-three-source-test-20261103/run.cjs publish
+PUT outfit-duck-three-source-test-1793668316419 200 {"saved":true,"revision":"\"13f971a12b869d80d0f7cf683bb607027b3391f8aea0d13790d5951b1378c223\""}
+PUBLISHED http://localhost:8765/index.html?project=outfit-duck-three-source-test-1793668316419 original SHA256 unchanged; 70 cels exact API readback
+EXIT: 0

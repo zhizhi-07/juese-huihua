@@ -1,0 +1,65 @@
+{
+  "sourceClothingFrames": 3,
+  "total": 70,
+  "generatedOtherFrames": 67,
+  "firstThreeBaseCelsExact": true,
+  "lightingAlsoAppliedConsistentlyToSourcePoses": true,
+  "nonDestructiveShadowOverlayLayers": 5,
+  "changedPixels": 514,
+  "changedFrames": 68,
+  "sourceExistingYellowGoldRampOnly": true,
+  "otherClothingColorsAndAlphaExact": true,
+  "bodyHeadMetadataAndTimingsExact": true,
+  "existingOtherClothingFramesNotRead": true,
+  "whiteShoesAndSkirtExcludedFromBodyLegShadows": true,
+  "causalTests": {
+    "flatMaskAddsZeroShadows": true,
+    "mirroredShadowChangesClothing": true,
+    "example": "1_0_0",
+    "originalShadowPixels": 5,
+    "mirroredShadowPixels": 4
+  },
+  "restoreExtraCopyExact": true,
+  "before": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "after": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "layeredAndBakedEquivalentFrames": 70,
+  "toggleOffMatchesControlFrames": 70,
+  "idleSamePoseAdjacentShadowLayersExact": true,
+  "browserChecked": false,
+  "visualReviewPending": false,
+  "limitations": [
+    "仅实验黄色布料的明暗，白领/裙片/鞋仍保留原画",
+    "几何分区仍是当前短衣裙素体模板，不宣称全自动理解任何服装",
+    "上衣新增投影和自带金黄细节可能同色，需要视觉复核"
+  ],
+  "visualReview": {
+    "all70ClothingFrames": true,
+    "all70CompositeFrames": true,
+    "nativeAnd4xViews": true,
+    "lightAndDarkBackgrounds": true,
+    "sixPoseBodyMaskControlExperimentComparison": true,
+    "sourceDetailContrastNeedsUserJudgment": true
+  },
+  "published": true,
+  "apiReadbackExact": true,
+  "sourceProjectSHA256StillExact": true,
+  "publishedETag": "\"387644c0b67f60cc0586b68943daec444425eae0af14b95428d429c98fc3cfbc\""
+}

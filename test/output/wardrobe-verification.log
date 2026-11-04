@@ -1,0 +1,77 @@
+Before editing: node test/part-export.cjs; node test/project-branches.cjs; node test/persistence.cjs — all exited 0 (recorded in chat).
+
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+
+COMMAND: node test/project-branches.cjs
+PASS: all character branch entry points copy body/head/hands and their groups, preserve pixels/frames, remap parents/selection, retain current draft, and stop on invalid source.
+EXIT: 0
+
+COMMAND: node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT: 0
+
+COMMAND: node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+EXIT: 0
+
+COMMAND: node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+EXIT: 0
+
+COMMAND: node test/editor-cleanup.cjs
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+EXIT: 0
+
+COMMAND: node test/shared-server.cjs
+PASS: shared file atomic save, version conflict protection, last-file backup, schema rejection, private data/token routes and authenticated file-page bridge.
+EXIT: 0
+
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT: 0
+
+COMMAND: node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-q8cbLZ
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: manual curation, two-category equip, walk/idle, facing, sit, actual proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, close/reopen + fresh-page persistence, archive, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-q8cbLZ
+EXIT: 0
+
+FINAL VERSION RECHECK
+
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+
+COMMAND: node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-mpLROH
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: manual curation, two-category equip, walk/idle, facing, sit, actual proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, close/reopen + fresh-page persistence, archive, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-mpLROH
+EXIT: 0
+
+RESTORE CHECK: extra copy only: C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-restore-check-1c8b88530e764249ba6c4a828ac086d2
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-成品衣柜与换装测试\index.html -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-restore-check-1c8b88530e764249ba6c4a828ac086d2\index.html SHA256=22E14F32C05532F0CA6308D147423889BBECA6C6144A043F60E5A350F96F071D
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-成品衣柜与换装测试\projects.js -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-restore-check-1c8b88530e764249ba6c4a828ac086d2\js\projects.js SHA256=576E65F4E6D58EC32F890051CF7B3A83B179AA0F8B9A0BF1A5EF86647DC21AE5
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-成品衣柜与换装测试\README.md -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-restore-check-1c8b88530e764249ba6c4a828ac086d2\README.md SHA256=0A3BF03F10E4673CC00BDEA219DE7F55307C83D08278299B362F9F43B2B2FCA2
+
+DELIVERED SHA256
+9E306BED7C24C74E650D2217A97CC534176144911E5CB168785FECF274437126 C:\Users\Administrator\Desktop\角色绘画\index.html
+9FA126A965424EB606DC799D8BB03CF40C04F68E873CE98462137955A40FBBEF C:\Users\Administrator\Desktop\角色绘画\js\projects.js
+9EC868BA26DE61FC046E166C1A7AADCDA3B7E03F79355B7331D5A1892A3E7AFE C:\Users\Administrator\Desktop\角色绘画\js\wardrobe.js
+FA96F12EF1F80CED7595A069C2FEC10E69DFA030A4F4EFCC69FBF19E6436557C C:\Users\Administrator\Desktop\角色绘画\css\wardrobe.css
+47108C3B3C79CD3563CEA026E9901AF3DC212C01C4C798998CCB5559598CDF49 C:\Users\Administrator\Desktop\角色绘画\README.md
+D17AE10A170F9C5DE2CD8A5E4AA27CC31B80297B2390832CDBD3EB9B4C2DE655 C:\Users\Administrator\Desktop\角色绘画\test\wardrobe.cjs
+F5FF8BFCCA75E170656523CDC75EFFDC84FB3C95AA9AF6318104738399B723D6 C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-browser.cjs
+PASS live HTTP js/wardrobe.js matches delivered file
+PASS live HTTP css/wardrobe.css matches delivered file
+PASS live HTTP index.html matches delivered file
+LIVE HTTP EXIT: 0

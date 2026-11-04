@@ -1,0 +1,2 @@
+原稿：C:\Users\Administrator\Desktop\角色绘画\备份\20261031-后发上移3像素-1793426692483\original.json
+只撤销本次时，应从原稿恢复 verification.json 所列 changedCels，保留其他当前数据，再用最新读取的ETag提交；出现版本冲突停止，不得整稿强制覆盖。

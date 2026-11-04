@@ -1,0 +1,26 @@
+{
+  "originalSHA256": "5ebcd3af66a35034774d9a8fe39948e979186b16be480bc72ee289e3e1b64d09",
+  "userBackFirstCelExact": true,
+  "changedOnlySittingOutfitLayer": 175,
+  "changedFrames": [
+    "10_0_0",
+    "10_0_1",
+    "10_0_2",
+    "10_0_3",
+    "10_1_0",
+    "10_1_1",
+    "10_1_2",
+    "10_1_3",
+    "10_2_1",
+    "10_2_2",
+    "10_2_3"
+  ],
+  "noScaleOrResampling": true,
+  "backCollarMovesExactlyOnePixelWithHead": true,
+  "backNotchHemAndFloorFixed": true,
+  "visibleShoeSolesWhite": true,
+  "allOtherPixelsMetadataAndActionsExact": true,
+  "mainCanvasPngAndStudioPreview12FramesChecked": true,
+  "restorationExtraCopyExact": true,
+  "browserChecked": false
+}

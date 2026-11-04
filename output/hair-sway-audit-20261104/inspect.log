@@ -1,0 +1,186 @@
+{
+  "id": "draft-user-canvas-merged-1793608789349-dbd059d3",
+  "etag": "\"5c40951ce6b431056eefceda7d28427ecdd72ac36afdddd6d3501993125c8835\"",
+  "sha256": "5c40951ce6b431056eefceda7d28427ecdd72ac36afdddd6d3501993125c8835",
+  "name": "用户（草稿＋画布尺寸合并）",
+  "owner": "头发 / 灰色短卷发 / 后发",
+  "live": true,
+  "enabled": true,
+  "settings": [
+    {
+      "dir": "side",
+      "ampH": 2,
+      "ampV": 0,
+      "cycles": 1,
+      "lag": 0.6,
+      "protected": 0,
+      "movable": "all"
+    },
+    {
+      "dir": "down",
+      "ampH": 2,
+      "ampV": 0,
+      "cycles": 1,
+      "lag": 0.6,
+      "protected": 0,
+      "movable": "all"
+    },
+    {
+      "dir": "up",
+      "ampH": 0,
+      "ampV": 0.4,
+      "cycles": 1,
+      "lag": 0.6,
+      "protected": 363,
+      "movable": "all"
+    }
+  ],
+  "stats": [
+    {
+      "direction": "side",
+      "frame": 1,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 4,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 5,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 6,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 7,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "side",
+      "frame": 8,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 4,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 5,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 6,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 7,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "down",
+      "frame": 8,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 4,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 5,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 6,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 7,
+      "duration": 100,
+      "changed": 0
+    },
+    {
+      "direction": "up",
+      "frame": 8,
+      "duration": 100,
+      "changed": 0
+    }
+  ],
+  "clipped": 0,
+  "projectUnchanged": true
+}

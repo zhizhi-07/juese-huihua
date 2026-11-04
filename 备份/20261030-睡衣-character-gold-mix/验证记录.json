@@ -1,0 +1,120 @@
+{
+  "project": "character-gold-mix-1793320553623",
+  "originalSHA256": "6344f276a8687553ec15c9cdc806231a037fe493f1c8c2ee40cf4295032d7187",
+  "savedETag": "\"7c28900442c4cd7623a97ec8dd1b9838030d5a1885603d704b10aa517840439a\"",
+  "putResponse": "{\"saved\":true,\"revision\":\"\\\"7c28900442c4cd7623a97ec8dd1b9838030d5a1885603d704b10aa517840439a\\\"\"}",
+  "scope": "Only one new outfit layer, original layer pixels/visibility/locks unchanged; parent indexes adjusted for insertion; idle 3 directions x 4 frames only",
+  "checks": [
+    {
+      "direction": "side",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "side",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "side",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "side",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "down",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "down",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "down",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "down",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "up",
+      "frame": 0,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "up",
+      "frame": 1,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "up",
+      "frame": 2,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    },
+    {
+      "direction": "up",
+      "frame": 3,
+      "main": true,
+      "animation": true,
+      "png": true,
+      "stableFeet": true
+    }
+  ],
+  "browserTested": false,
+  "enginePathsTested": [
+    "main canvas",
+    "animation preview",
+    "PNG export"
+  ],
+  "noChanges": [
+    "hair",
+    "face",
+    "body",
+    "hands pixel data",
+    "all other actions",
+    "original source sheets",
+    "editor code"
+  ]
+}

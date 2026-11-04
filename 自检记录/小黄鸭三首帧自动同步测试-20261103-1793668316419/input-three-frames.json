@@ -1,0 +1,17 @@
+{
+  "side": {
+    "width": 31,
+    "height": 36,
+    "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAkCAYAAABxE+FXAAAAcElEQVR42mNgGAWjYBSMglEwCkbBKBgFo2BYgd2TRP+DMDrAJU41i93c4sAW/D7vh2IRTAybOEgP1S2HWYTORxenmeXEYLpZjk1u+Pj8zZs3JDmAJpYTi6luOSmYqvkchNGBkJAUGKMDqvl6FAxLAAAKmZCaerVp2gAAAABJRU5ErkJggg=="
+  },
+  "down": {
+    "width": 32,
+    "height": 36,
+    "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAgUlEQVR42mNgGAWjYBSMglEwCkbBKBgFo4BGwM0t7j9VDSPWQCEhqf8gTHUH7J4k+h8dgMRwiVPdAb/P+6FYBmKDxHCJ08QBMMvQLccmTjMHEIvp5gBkX9PUAbgsolsIvHnzhiRH0MwBxGKaOIAUTPViFYTRAazUQwdU9f0oGPYAAOYPoWKkOkTkAAAAAElFTkSuQmCC"
+  },
+  "up": {
+    "width": 32,
+    "height": 36,
+    "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAkCAYAAADo6zjiAAAAcElEQVR42mNgGAWjYBSMglEwCkbBKBgFo2AUEAl2TxL9D8KEAEjN7/N+/6lquZtbHNxgfI6AqQFhkB6aOADmCGwYJk9zBxCDRx1AdQe8efOGJEfQzAHEYpo4gBRM9XIAhNGBkJAUGKMDqvp+FAx7AACG5ZSGrOXytQAAAABJRU5ErkJggg=="
+  }
+}

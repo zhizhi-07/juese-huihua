@@ -1,0 +1,21 @@
+[
+  {
+    "file": "js/hair-animation.js",
+    "original": "3b589c05f62cb3204bea7fb58f9db404e111aae750b1ae679c2714f4df39f8db",
+    "modified": "19b680b1b0c9ed5423c529fe4a23f92e7e6a469212e79d8f265ef93c26cbc7d4",
+    "httpMatches": true,
+    "recoveryCopyMatches": true
+  },
+  {
+    "file": "index.html",
+    "original": "e11484fe6418def1b08dde02c0b28cc2e00daa5c810ff4667b0817e99ff71b3d",
+    "modified": "370ff7da7b52168c2c1f8658433ff31d19a407ea17ad8370a8990bd10c6f5231",
+    "httpMatches": true,
+    "recoveryCopyMatches": true
+  },
+  {
+    "referenceProjectUntouched": true,
+    "etag": "\"e6a61df3e46b9843d34c67f6873290caf50ec020142d1b610ec0fc5cfb1f7854\"",
+    "sha256": "e6a61df3e46b9843d34c67f6873290caf50ec020142d1b610ec0fc5cfb1f7854"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "result": "{\"saved\":true,\"revision\":\"\\\"3592a05b9615d2a81fb90f77f7355a6d9fc5c23280101edaa08261305f154e49\\\"\"}",
+  "etag": "\"3592a05b9615d2a81fb90f77f7355a6d9fc5c23280101edaa08261305f154e49\"",
+  "sha256": "3592a05b9615d2a81fb90f77f7355a6d9fc5c23280101edaa08261305f154e49",
+  "apiReadback": true
+}

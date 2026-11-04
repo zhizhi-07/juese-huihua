@@ -1,0 +1,364 @@
+TAP version 13
+# Subtest: anim: frame() items are patches over the shared items, with durations
+ok 1 - anim: frame() items are patches over the shared items, with durations
+  ---
+  duration_ms: 10.2348
+  type: 'test'
+  ...
+# Subtest: anim: procedural frames see c.frame / c.frames / c.phase
+ok 2 - anim: procedural frames see c.frame / c.frames / c.phase
+  ---
+  duration_ms: 2.5729
+  type: 'test'
+  ...
+# Subtest: anim: scenes that place anims animate; delay shifts, frame freezes
+ok 3 - anim: scenes that place anims animate; delay shifts, frame freezes
+  ---
+  duration_ms: 3.9082
+  type: 'test'
+  ...
+# Subtest: anim: loop false holds the last frame; anims combine to the lcm of their loops
+ok 4 - anim: loop false holds the last frame; anims combine to the lcm of their loops
+  ---
+  duration_ms: 2.015
+  type: 'test'
+  ...
+# Subtest: anim: frame() is only for anims; options are validated
+ok 5 - anim: frame() is only for anims; options are validated
+  ---
+  duration_ms: 3.9699
+  type: 'test'
+  ...
+# Subtest: anim: build writes a strip, Aseprite-style JSON, GIFs and animated sheets
+ok 6 - anim: build writes a strip, Aseprite-style JSON, GIFs and animated sheets
+  ---
+  duration_ms: 44.4599
+  type: 'test'
+  ...
+# Subtest: gif: frames decode back to the same pixels and delays
+ok 7 - gif: frames decode back to the same pixels and delays
+  ---
+  duration_ms: 0.8439
+  type: 'test'
+  ...
+# Subtest: gif: many colors are reduced to one palette and still decode
+ok 8 - gif: many colors are reduced to one palette and still decode
+  ---
+  duration_ms: 1.8168
+  type: 'test'
+  ...
+# Subtest: gif: big noisy frames survive LZW table resets exactly
+ok 9 - gif: big noisy frames survive LZW table resets exactly
+  ---
+  duration_ms: 31.6636
+  type: 'test'
+  ...
+# Subtest: grid: trimmed rows, short rows padded
+ok 10 - grid: trimmed rows, short rows padded
+  ---
+  duration_ms: 43.6293
+  type: 'test'
+  ...
+# Subtest: mirror even, odd and vertical
+ok 11 - mirror even, odd and vertical
+  ---
+  duration_ms: 6.0095
+  type: 'test'
+  ...
+# Subtest: outline grows the canvas; outline8 adds diagonals
+ok 12 - outline grows the canvas; outline8 adds diagonals
+  ---
+  duration_ms: 3.4097
+  type: 'test'
+  ...
+# Subtest: variants: swap, flip, rot
+ok 13 - variants: swap, flip, rot
+  ---
+  duration_ms: 4.7783
+  type: 'test'
+  ...
+# Subtest: overlay keeps with '.', erases with '_'
+ok 14 - overlay keeps with '.', erases with '_'
+  ---
+  duration_ms: 3.6562
+  type: 'test'
+  ...
+# Subtest: stamps resolve lazily and use the host palette for swaps
+ok 15 - stamps resolve lazily and use the host palette for swaps
+  ---
+  duration_ms: 5.0146
+  type: 'test'
+  ...
+# Subtest: primitives
+ok 16 - primitives
+  ---
+  duration_ms: 8.3413
+  type: 'test'
+  ...
+# Subtest: clip restricts any op to a region (half shapes)
+ok 17 - clip restricts any op to a region (half shapes)
+  ---
+  duration_ms: 2.4973
+  type: 'test'
+  ...
+# Subtest: function items get the canvas
+ok 18 - function items get the canvas
+  ---
+  duration_ms: 1.654
+  type: 'test'
+  ...
+# Subtest: tile, pattern and tilemap
+ok 19 - tile, pattern and tilemap
+  ---
+  duration_ms: 7.0274
+  type: 'test'
+  ...
+# Subtest: groups and globs: stable random picks, weighting
+ok 20 - groups and globs: stable random picks, weighting
+  ---
+  duration_ms: 12.3362
+  type: 'test'
+  ...
+# Subtest: scatter: count, on-mask, clip, below
+ok 21 - scatter: count, on-mask, clip, below
+  ---
+  duration_ms: 5.61
+  type: 'test'
+  ...
+# Subtest: layers: order, offset, hidden, blend, inferred size, outline after
+ok 22 - layers: order, offset, hidden, blend, inferred size, outline after
+  ---
+  duration_ms: 5.061
+  type: 'test'
+  ...
+# Subtest: ramps: shade/light step along, regions and density
+ok 23 - ramps: shade/light step along, regions and density
+  ---
+  duration_ms: 6.4822
+  type: 'test'
+  ...
+# Subtest: wire with hangs, text
+ok 24 - wire with hangs, text
+  ---
+  duration_ms: 2.5482
+  type: 'test'
+  ...
+# Subtest: reseed rebuilds a placed asset with fresh random choices
+ok 25 - reseed rebuilds a placed asset with fresh random choices
+  ---
+  duration_ms: 1.9594
+  type: 'test'
+  ...
+# Subtest: sheets expand globs (exported only) and groups
+ok 26 - sheets expand globs (exported only) and groups
+  ---
+  duration_ms: 2.2821
+  type: 'test'
+  ...
+# Subtest: trace records each top-level op, layer and post step
+ok 27 - trace records each top-level op, layer and post step
+  ---
+  duration_ms: 1.8476
+  type: 'test'
+  ...
+# Subtest: unknown color key: location, path, case hint, available keys
+ok 28 - unknown color key: location, path, case hint, available keys
+  ---
+  duration_ms: 6.5843
+  type: 'test'
+  ...
+# Subtest: grid errors point at row and column
+ok 29 - grid errors point at row and column
+  ---
+  duration_ms: 2.0557
+  type: 'test'
+  ...
+# Subtest: op argument checks at definition time, with usage
+ok 30 - op argument checks at definition time, with usage
+  ---
+  duration_ms: 2.7751
+  type: 'test'
+  ...
+# Subtest: unknown options get suggestions
+ok 31 - unknown options get suggestions
+  ---
+  duration_ms: 2.7355
+  type: 'test'
+  ...
+# Subtest: unknown assets get suggestions; cycles and groups-as-base are caught
+ok 32 - unknown assets get suggestions; cycles and groups-as-base are caught
+  ---
+  duration_ms: 6.7308
+  type: 'test'
+  ...
+# Subtest: definition mistakes: duplicates, bad items, nested layers, missing size
+ok 33 - definition mistakes: duplicates, bad items, nested layers, missing size
+  ---
+  duration_ms: 4.2674
+  type: 'test'
+  ...
+# Subtest: runtime errors inside functions point at the art file line
+ok 34 - runtime errors inside functions point at the art file line
+  ---
+  duration_ms: 1.3415
+  type: 'test'
+  ...
+# Subtest: syntax errors report the line
+ok 35 - syntax errors report the line
+  ---
+  duration_ms: 1.1243
+  type: 'test'
+  ...
+# Subtest: ramps validate their keys
+ok 36 - ramps validate their keys
+  ---
+  duration_ms: 2.6185
+  type: 'test'
+  ...
+# Subtest: glow: a halo in the source color that falls off with distance
+ok 37 - glow: a halo in the source color that falls off with distance
+  ---
+  duration_ms: 15.5432
+  type: 'test'
+  ...
+# Subtest: glow: color tints the halo, bands make crisp rings, transparent pixels stay empty
+ok 38 - glow: color tints the halo, bands make crisp rings, transparent pixels stay empty
+  ---
+  duration_ms: 4.6435
+  type: 'test'
+  ...
+# Subtest: glow: ramp mode steps neighbours lighter and stays in the palette
+ok 39 - glow: ramp mode steps neighbours lighter and stays in the palette
+  ---
+  duration_ms: 4.3467
+  type: 'test'
+  ...
+# Subtest: glow: only directly in a sprite or scene; options are validated
+ok 40 - glow: only directly in a sprite or scene; options are validated
+  ---
+  duration_ms: 4.5693
+  type: 'test'
+  ...
+# Subtest: glow: where limits which pixels glow
+ok 41 - glow: where limits which pixels glow
+  ---
+  duration_ms: 2.1922
+  type: 'test'
+  ...
+# Subtest: glow: after lighting(), lit pixels still glow by their palette key
+ok 42 - glow: after lighting(), lit pixels still glow by their palette key
+  ---
+  duration_ms: 3.6182
+  type: 'test'
+  ...
+# Subtest: lighting: lamps light nearby pixels, falling off to black
+ok 43 - lighting: lamps light nearby pixels, falling off to black
+  ---
+  duration_ms: 8.8316
+  type: 'test'
+  ...
+# Subtest: lighting: solid layers block light, but their edge catches some
+ok 44 - lighting: solid layers block light, but their edge catches some
+  ---
+  duration_ms: 8.683
+  type: 'test'
+  ...
+# Subtest: lighting: brighter light reaches deeper into blocks
+ok 45 - lighting: brighter light reaches deeper into blocks
+  ---
+  duration_ms: 6.5933
+  type: 'test'
+  ...
+# Subtest: lighting: lamps travel with stamps, flips and mirroring
+ok 46 - lighting: lamps travel with stamps, flips and mirroring
+  ---
+  duration_ms: 3.5942
+  type: 'test'
+  ...
+# Subtest: lighting: sky lights open columns, walls keep it out, unlit layers are skipped
+ok 47 - lighting: sky lights open columns, walls keep it out, unlit layers are skipped
+  ---
+  duration_ms: 3.4573
+  type: 'test'
+  ...
+# Subtest: lighting: emit keys ignore it; options are validated
+ok 48 - lighting: emit keys ignore it; options are validated
+  ---
+  duration_ms: 28.0244
+  type: 'test'
+  ...
+# Subtest: png: indexed with transparency, valid CRCs, inflatable
+ok 49 - png: indexed with transparency, valid CRCs, inflatable
+  ---
+  duration_ms: 4.3448
+  type: 'test'
+  ...
+# Subtest: png: RGBA when more than 256 colors
+ok 50 - png: RGBA when more than 256 colors
+  ---
+  duration_ms: 1.1089
+  type: 'test'
+  ...
+# Subtest: cli build writes sprites, previews, layered exports and sheets
+ok 51 - cli build writes sprites, previews, layered exports and sheets
+  ---
+  duration_ms: 48.4625
+  type: 'test'
+  ...
+# Subtest: cli build reports per-asset errors and still writes the rest
+ok 52 - cli build reports per-asset errors and still writes the rest
+  ---
+  duration_ms: 11.2345
+  type: 'test'
+  ...
+# Subtest: server: state, asset frames, rebuild on change
+ok 53 - server: state, asset frames, rebuild on change
+  ---
+  duration_ms: 650.0628
+  type: 'test'
+  ...
+# Subtest: bump: bevel slopes edges outward and leaves the top flat; dome peaks in the middle
+ok 54 - bump: bevel slopes edges outward and leaves the top flat; dome peaks in the middle
+  ---
+  duration_ms: 11.7947
+  type: 'test'
+  ...
+# Subtest: bump: `on` keys bevel each region separately
+ok 55 - bump: `on` keys bevel each region separately
+  ---
+  duration_ms: 1.9686
+  type: 'test'
+  ...
+# Subtest: normals: numpad grid; flips, rotations and mirroring turn the normals with the pixels
+ok 56 - normals: numpad grid; flips, rotations and mirroring turn the normals with the pixels
+  ---
+  duration_ms: 4.6745
+  type: 'test'
+  ...
+# Subtest: normals: stamped art carries them; flat art drawn over clears them
+ok 57 - normals: stamped art carries them; flat art drawn over clears them
+  ---
+  duration_ms: 3.9525
+  type: 'test'
+  ...
+# Subtest: lighting: surfaces facing the lamp get brighter, facing away darker, flat unchanged; relief 0 ignores normals
+ok 58 - lighting: surfaces facing the lamp get brighter, facing away darker, flat unchanged; relief 0 ignores normals
+  ---
+  duration_ms: 15.0724
+  type: 'test'
+  ...
+# Subtest: normal map image: engine encoding with green up, flat where unset
+ok 59 - normal map image: engine encoding with green up, flat where unset
+  ---
+  duration_ms: 1.4388
+  type: 'test'
+  ...
+1..59
+# tests 59
+# suites 0
+# pass 59
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4146.9921

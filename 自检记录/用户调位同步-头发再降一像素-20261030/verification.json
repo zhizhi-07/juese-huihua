@@ -1,0 +1,72 @@
+{
+  "userAnchor": "saved front idle cel 1",
+  "userCorrectionPixels": 64,
+  "changes": [
+    {
+      "key": "8_1_0",
+      "headDy": 0,
+      "eyePlacement": {
+        "x": 5.7,
+        "y": 15,
+        "w": 24,
+        "h": 16
+      },
+      "rearShiftFromCurrent": 1,
+      "frontLowerShift": 1,
+      "crownThroughRow": 10
+    },
+    {
+      "key": "8_1_1",
+      "headDy": 0,
+      "eyePlacement": {
+        "x": 5.7,
+        "y": 15,
+        "w": 24,
+        "h": 16
+      },
+      "rearShiftFromCurrent": 3,
+      "frontLowerShift": 1,
+      "crownThroughRow": 10
+    },
+    {
+      "key": "8_1_2",
+      "headDy": 2,
+      "eyePlacement": {
+        "x": 5.7,
+        "y": 17,
+        "w": 24,
+        "h": 16
+      },
+      "rearShiftFromCurrent": 3,
+      "frontLowerShift": 1,
+      "crownThroughRow": 12
+    },
+    {
+      "key": "8_1_3",
+      "headDy": 2,
+      "eyePlacement": {
+        "x": 5.7,
+        "y": 17,
+        "w": 24,
+        "h": 16
+      },
+      "rearShiftFromCurrent": 3,
+      "frontLowerShift": 1,
+      "crownThroughRow": 12
+    }
+  ],
+  "onlyLayers": [
+    7,
+    197,
+    198
+  ],
+  "onlyDirection": "front idle",
+  "eyePixelsUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "userCrownRetained": true,
+  "sideBackCompositesUnchanged": true,
+  "mainRenderChecked": true,
+  "pngRoundtripChecked": true,
+  "studioAnimationPathRendered": true,
+  "browserTested": false
+}

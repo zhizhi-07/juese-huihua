@@ -1,0 +1,14 @@
+{
+  "projectId": "character-gold-mix-1793320553623",
+  "onlyLayer": 197,
+  "addedKeys": [
+    "8_0_0",
+    "8_0_1",
+    "8_0_2",
+    "8_0_3"
+  ],
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画/备份/20261031-用户嘴巴同步与侧面眼睛-1793405367831/original.json",
+  "restoration": "GET current project and ETag; compare and remove only these four side-eye cels from layer 197. Keep all later user edits. PUT same API with X-Pixel-Editor:1 and If-Match. Do not restore a full old project.",
+  "validation": "prepare and commit logs exit 0; hard alpha, all eye pixels inside side-head mask, main render/composite, transparent PNG roundtrip, studio animation/thumbnail, unchanged front/back, exact API readback",
+  "userBrowser": "Existing draft observed; no refresh or overwrite; mouth excluded by latest request."
+}

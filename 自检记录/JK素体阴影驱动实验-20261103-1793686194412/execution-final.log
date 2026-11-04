@@ -1,0 +1,10 @@
+COMMAND: node scripts/jk-body-shadow-test-20261103/run.cjs build
+BUILT C:\Users\Administrator\Desktop\角色绘画\自检记录\JK素体阴影驱动实验-20261103-1793686194412 shadow pixels 1652 {
+  '72,91,122,255 -> 52,68,95,255': 886,
+  '255,250,240,255 -> 212,221,230,255': 766
+}
+EXIT: 0
+COMMAND: node scripts/jk-body-shadow-test-20261103/run.cjs publish
+PUT outfit-jk-body-shadow-test-1793686194412 200 {"saved":true,"revision":"\"764fc058659d2c57c3f65cb1696d4a1d8405df4cc97634edceb3f5fa841ede3c\""}
+PUBLISHED http://localhost:8765/index.html?project=outfit-jk-body-shadow-test-1793686194412
+EXIT: 0

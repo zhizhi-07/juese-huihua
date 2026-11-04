@@ -1,0 +1,2 @@
+const fs=require('fs'),o=JSON.parse(fs.readFileSync(__dirname+'/original.json')),n=JSON.parse(fs.readFileSync(__dirname+'/concurrent.json'));
+function diff(a,b,p=''){if(JSON.stringify(a)===JSON.stringify(b))return;if(a&&b&&typeof a==='object'&&typeof b==='object'){for(let k of new Set([...Object.keys(a),...Object.keys(b)]))diff(a[k],b[k],p+'.'+k)}else console.log(p,JSON.stringify(a)?.slice(0,140),'=>',JSON.stringify(b)?.slice(0,140))}diff(o,n);

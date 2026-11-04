@@ -1,0 +1,226 @@
+/* Reference-led monochrome workspace. Method: unslop by Damir Sokolovsky
+   (@heydamir), CC BY 4.0 — https://github.com/heydamir/unslop */
+.studio {
+  color-scheme:light;
+  --bg-primary:#f5f5f5; --bg-secondary:#fff; --bg-tertiary:#fafafa; --bg-surface:#fff; --bg-input:#fff;
+  --text-main:#202020; --text-muted:#595959; --text-dim:#707070;
+  --accent-color:#252525; --accent-hover:#404040; --accent-active:#111; --accent-blue:#ededed;
+  --border-light:#e6e6e6; --border-dark:#ededed; --border-active:#555;
+  background:#f5f5f5!important; color:var(--text-main); font-size:13px;
+  font-family:"Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
+  font-variant-numeric:tabular-nums;
+}
+.studio #app-container { min-width:0; background:#f5f5f5; }
+.studio button { font:inherit; transition:background-color .15s,color .15s,border-color .15s; }
+.studio :is(button,input,select,textarea,summary):focus-visible { outline:2px solid #444; outline-offset:2px; }
+.studio :is(input,select,textarea) { accent-color:#252525; }
+.studio :is(input:not([type=color]):not([type=range]):not([type=checkbox]):not([type=file]),select,textarea) { background:#fff; color:#292929; border:1px solid #ddd; border-radius:5px; font:inherit; }
+.studio :is(.studio-button,.primary-actions button,.layer-header-actions>button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose) { background:#f5f5f5; color:#303030; border:1px solid transparent; border-radius:5px; font-size:12px; }
+.studio :is(.studio-button,.primary-actions button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose):hover { background:#eaeaea; color:#111; }
+.studio .studio-header { height:56px; min-height:56px; margin:12px 16px 0; padding:0 20px; border:0; border-radius:12px 12px 0 0; background:#fff; }
+.studio .studio-brand { gap:10px; }
+.studio .brand-pixels { font-size:26px; color:#202020; }
+.studio .studio-brand strong { font-size:17px; font-weight:600; letter-spacing:0; color:#171717; }
+.studio .primary-actions { gap:8px; }
+.studio .primary-actions button { height:32px; padding:0 12px; }
+.studio .primary-actions .save-primary { background:#252525; border-color:#252525; color:#fff; }
+.studio .primary-actions .save-primary:hover { background:#404040; }
+.studio .project-bar { margin:0 16px 12px; min-height:44px; padding:6px 20px; gap:8px; border:0; border-top:1px solid #f0f0f0; border-radius:0 0 12px 12px; background:#fff; box-shadow:0 4px 16px #00000003; }
+.studio .project-bar>strong { font-size:12px; font-weight:400; color:#595959; }
+.studio .project-bar>select { padding:6px 8px; max-width:220px; font-size:12px; background:#fafafa; border-color:#eee; color:#444; }
+.studio :is(.project-menu,.import-menu)>summary { padding:6px 10px; }
+
+/* Four quiet regions; only the artwork carries color. */
+.studio #workspace { margin:0 16px 12px; gap:12px; }
+.studio .tool-rail { width:52px; min-width:52px; padding:8px 4px; gap:4px; background:#fff; border:0; border-radius:10px; }
+.studio .tool-rail .tool-btn { width:100%; height:44px; min-height:44px; padding:4px 2px; gap:4px; border:0; border-radius:5px; color:#606060; font-size:10px; }
+.studio .tool-rail .tool-btn svg { width:18px; height:18px; stroke-width:1.5; }
+.studio .tool-rail .tool-btn kbd { color:#777; font:8px/10px Consolas,monospace; }
+.studio .tool-rail .tool-btn:hover { color:#111; background:#f0f0f0; }
+.studio .tool-rail .tool-btn.active { color:#fff; background:#292929; border:0; }
+.studio .tool-rail .tool-btn.active kbd { color:#ccc; }
+.studio .tool-rail .symmetry-tool[data-mode=none] { color:#606060; }
+.studio .rail-history .tool-btn { height:28px; min-height:28px; padding:0; font-size:20px; }
+.studio #left-sidebar { width:156px; min-width:156px; padding:20px 12px; gap:16px; border:0; border-radius:12px; background:#fff; }
+.studio #right-sidebar { width:280px; min-width:280px; padding:0; gap:12px; border:0; background:transparent; }
+.studio #right-sidebar>.panel-section { padding:16px; background:#fff; border-radius:12px; }
+.studio #right-sidebar>.panel-section:has(#layer-list) { min-height:200px; }
+.studio .section-header { min-height:24px; margin-bottom:12px; padding-right:20px; }
+.studio .section-header :is(h3,strong) { color:#262626; font-size:13px; font-weight:600; letter-spacing:0; }
+.studio #sheet-list { gap:4px; }
+.studio .sheet-item { min-height:48px; padding:8px 10px; gap:0; border:0; border-radius:6px; color:#555; }
+.studio .sheet-item:hover { background:#f6f6f6; border:0; }
+.studio .sheet-item.active { color:#202020; background:#efefef; border:0; box-shadow:inset 2px 0 #333; }
+.studio .sheet-icon { display:none; }
+.studio .sheet-copy { gap:4px; }
+.studio .sheet-copy strong { font-size:13px; font-weight:500; }
+.studio .sheet-copy small { color:#727272; font-size:11px; }
+.studio .source-archive { border-color:#eee; margin-top:20px; padding-top:12px; }
+.studio .source-archive>summary { color:#707070; font-size:11px; }
+.studio .library-guide { display:none; }
+.studio #center-viewport { margin:0; min-width:240px; border:0; border-radius:12px; background:#fff; box-shadow:none; }
+.studio .canvas-header { min-height:64px; padding:12px 16px; gap:12px; border-color:#eee; }
+.studio .canvas-title { gap:4px; }
+.studio .canvas-title strong { font-size:15px; font-weight:500; color:#242424; }
+.studio .canvas-title span { font:11px/16px Consolas,"Microsoft YaHei",monospace; color:#707070; letter-spacing:0; }
+.studio .hand-switch,.studio .canvas-options>summary { color:#595959; font-size:12px; }
+.studio .hand-switch input,.studio .timeline-timing .timing-toggle input { accent-color:#333; }
+.studio .canvas-viewbar { min-height:48px; padding:8px 12px; gap:8px; background:#fff; border-bottom:1px solid #eee; }
+.studio .direction-tabs { gap:2px; padding:2px; border:0; background:#f3f3f3; border-radius:6px; }
+.studio .direction-tab { padding:6px 10px; font-size:12px; color:#595959; }
+.studio .direction-tab.active { color:#fff; background:#303030; box-shadow:none; }
+.studio .canvas-viewbar>.brush-control { gap:6px; color:#595959; font-size:11px; }
+.studio #brush-size { width:72px; min-width:48px; accent-color:#333; }
+.studio #brush-size-number { width:52px; height:28px; padding:4px; color:#333; background:#fff; border-color:#ddd; font-size:12px; }
+.studio .view-actions { gap:2px; flex-basis:280px; }
+.studio .view-actions button { padding:6px 7px; color:#595959; font-size:11px; background:transparent; }
+.studio .view-actions button:hover { color:#111; background:#eee; }
+.studio .view-actions button.active,.studio .view-actions .aux-toggle.active { background:#eee; color:#222; }
+.studio .zoom-control { border-color:#e5e5e5; }
+.studio .zoom-badge { color:#595959; font:11px Consolas,monospace; }
+.studio #canvas-container { background:#f2f2f2; background-image:none; }
+.studio .canvas-help { left:12px; bottom:12px; padding:4px 8px; color:#686868; background:#fffffff0; border-radius:4px; font-size:11px; letter-spacing:0; }
+.studio :is(.canvas-header,.canvas-viewbar,.image-edit-toolbar,.frame-edit-toolbar,#frame-strip-wrapper) { flex-shrink:0; }
+
+/* Common commands remain in place; technical controls share one menu. */
+.studio :is(.image-edit-toolbar,.frame-edit-toolbar) { padding:8px 12px; gap:6px; background:#fff; border-color:#eee; color:#595959; font-size:11px; align-items:center; }
+.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button { padding:5px 8px; font-size:11px; border:0; background:transparent; }
+.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button:hover { background:#eee; }
+.studio .image-edit-toolbar>strong { color:#707070; font-weight:400; margin-right:2px; }
+.studio .image-edit-toolbar [data-edit-status],.studio .frame-edit-status { order:99; width:100%; color:#727272; font-size:11px; line-height:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.studio .image-edit-toolbar>.workspace-menu { margin-left:auto; }
+.studio .image-edit-toolbar .workspace-menu-content { width:320px; padding:12px; display:flex; flex-direction:column; gap:12px; }
+.studio .image-edit-toolbar .workspace-menu-content label { display:flex; align-items:center; gap:8px; flex-wrap:wrap; color:#555; }
+.studio .image-edit-toolbar .workspace-menu-content input[type=number] { width:76px; padding:4px 6px; }
+.studio .image-edit-toolbar .workspace-menu-content select { min-width:140px; padding:6px; }
+.studio .image-edit-toolbar .workspace-menu-content>button { border-radius:5px; background:#f5f5f5; }
+.studio .frame-edit-toolbar>.workspace-menu { margin-left:auto; }
+.studio .workspace-menu>summary { font-size:11px; padding:5px 8px; color:#555; background:#f5f5f5; border:0; }
+.studio .workspace-menu>summary::after { color:#777; }
+.studio .workspace-menu[open]>summary { background:#eaeaea; border-color:transparent; }
+.studio :is(.workspace-menu-content,.dropdown-menu,.project-actions,.import-actions,.canvas-options[open],.plus-panel,.floating-panel,.dock-panel.is-floating,dialog) { background:#fff; color:#292929; border-color:#e3e3e3; border-radius:8px; box-shadow:0 8px 28px #00000012; }
+.studio .workspace-menu-content { max-height:min(420px,55vh); }
+.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button { color:#333; background:transparent; font-size:12px; }
+.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button:hover { background:#f0f0f0; }
+.studio .workspace-menu-content>button.active { color:#111; background:#eee; }
+.studio .dock-panel.is-floating>.section-header { background:#f7f7f7; border-color:#eee; }
+.studio .dock-panel>.section-header .dock-float-btn { color:#777; }
+.studio .dock-panel>.section-header .dock-float-btn:hover { color:#111; background:#eee; border-color:transparent; }
+.studio :is(#left-sidebar,#right-sidebar).dock-hover { background:#eee; outline-color:#777; }
+
+.studio .paint-controls { gap:8px; margin-bottom:12px; }
+.studio #color-primary { width:32px; height:32px; padding:3px; border-color:#e1e1e1; border-radius:5px; }
+.studio .paint-controls input[type=text] { height:30px; width:100px!important; border-color:#e1e1e1; color:#444; font-size:12px; }
+.studio #palette-container { gap:6px; max-height:64px; }
+.studio .palette-swatch { border-radius:4px; border:1px solid #00000018; }
+.studio .palette-swatch.active { outline:2px solid #444; outline-offset:2px; }
+.studio .layer-header-actions { gap:4px; padding-bottom:12px; }
+.studio .layer-header-actions>button { height:28px; padding:4px 7px; color:#555; background:#f5f5f5; border:0; font-size:11px; }
+.studio .layer-header-actions>.layer-move { width:24px; min-width:24px; padding:0; }
+.studio .layer-header-actions .mirror-live.active { background:#292929; color:#fff; border-color:transparent; font-weight:400; }
+.studio .part-tabs { padding:0 0 12px; gap:4px; background:#fff; }
+.studio .part-tab { padding:6px 2px; color:#666; background:#f5f5f5; border:0; font-size:12px; }
+.studio .part-tab[aria-selected=true] { background:#303030; color:#fff; border-color:transparent; }
+.studio .part-slot-title { margin:4px 0 8px; color:#707070; font-size:12px; font-weight:400; }
+.studio .layer-item.visual-layer-card { padding:8px; margin-bottom:8px; background:#fafafa; border:1px solid #eee; border-radius:7px; }
+.studio .layer-item.visual-layer-card.active { padding:8px; background:#f5f5f5; border:1px solid #b0b0b0; }
+.studio .part-thumb { border-color:#ddd; border-radius:4px; }
+.studio .visual-layer-card .layer-name { color:#292929; font-size:13px; }
+.studio .part-state,.studio .visual-layer-card.part-visible .part-state { color:#707070; font-size:11px; margin:4px 0 6px; }
+.studio .part-card-actions { gap:4px; }
+.studio .part-choose { padding:4px 6px; background:#eaeaea; font-size:11px; }
+.studio .layer-icon-btn { width:22px; min-width:22px; height:24px; color:#666; }
+.studio .layer-icon-btn svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.studio .layer-icon-btn.solo-btn { color:#8a94a0; }
+.studio .layer-icon-btn.solo-btn:hover { color:#e08600; }
+.studio .layer-icon-btn.solo-btn.soloing { color:#e08600; }
+.studio .layer-icon-btn.solo-btn.soloing svg circle { fill:#e08600; }
+.studio .layer-item.visual-layer-card.part-soloed { box-shadow:inset 0 0 0 2px #e08600; border-color:#e08600; }
+.studio .layer-delete { padding:4px 6px; background:transparent; border:0; color:#707070; font-size:11px; }
+.studio .layer-delete:hover { color:#a33; background:#f9eeee; }
+.studio .part-more { border-color:#e6e6e6; }
+.studio .part-more summary { padding:4px 0; color:#707070; font-size:11px; }
+.studio .part-empty { color:#707070; }
+.studio .preview-card { min-height:100px; padding:12px 16px; background:#fff; border:0; border-radius:12px; }
+.studio #preview-canvas { width:80px; height:80px; border-radius:4px; }
+
+.studio #frame-strip-wrapper { min-height:140px; background:#fff; border-color:#eee; }
+.studio .timeline-header { min-height:40px; padding:8px 12px; gap:8px; }
+.studio .timeline-header strong { color:#444; font-size:12px; }
+.studio .timeline-playback button { padding:4px 6px; color:#555; font-size:11px; }
+.studio .timeline-playback button:hover { color:#111; background:#eee; }
+.studio .timeline-timing { gap:4px; color:#595959; font-size:11px; }
+.studio .timeline-timing :is(.timing-unit,.timing-toggle,.timing-total) { color:#707070; }
+.studio .timeline-timing input[type=number] { height:24px; background:#fff; border-color:#ddd; color:#333; }
+.studio .timeline-timing .timing-button { background:#f5f5f5; border-color:transparent; color:#555; }
+.studio #frame-list { height:92px; padding:0 12px 12px; gap:8px; }
+.studio .frame-thumb { width:68px; min-width:68px; height:80px; background:#f7f7f7; border:1px solid #e3e3e3; border-radius:6px; }
+.studio .frame-thumb.active { background:#eee; border:1px solid #666; box-shadow:none; }
+.studio .frame-thumb canvas { width:58px; height:58px; }
+.studio :is(.frame-duration,.frame-duration.inherited,.frame-number) { color:#686868; background:transparent; font:10px/12px Consolas,monospace; letter-spacing:0; }
+.studio #bottom-panel { height:24px; min-height:24px; padding:0 20px; background:#f5f5f5; border:0; }
+.studio #status-bar { height:24px; color:#707070; font-size:11px; }
+.studio .save-status { color:#666; font-size:11px; }
+.studio .save-error { color:#a33; }
+.studio dialog { overflow:auto; }
+.studio dialog::backdrop { background:#0005; backdrop-filter:none; }
+.studio .advanced-grid .panel-section { background:#fafafa; border-color:#eee; }
+.studio .advanced-grid :is(input,textarea,select) { background:#fff!important; color:#333!important; border-color:#ddd!important; }
+.studio .advanced-grid .tool-btn,.studio .wardrobe-dialog .studio-button { color:#444; background:#f5f5f5; border-color:#e3e3e3; }
+.studio :is(.pixel-import-dialog p,.frame-copy-dialog p,.wardrobe-note,.wardrobe-item small,.wardrobe-empty,.plus-panel-head strong,.background-control) { color:#666; }
+.studio :is(.wardrobe-register,.wardrobe-item,.wardrobe-empty) { background:#fafafa; border-color:#e3e3e3; }
+.studio .wardrobe-item.selected { background:#f0f0f0; border-color:#999; }
+.studio .studio-loading { background:#fafafaf5; color:#333; }
+.studio .studio-loading>span:last-child { color:#707070; }
+.studio .loading-pixel { color:#333; animation:none; }
+.studio ::-webkit-scrollbar-thumb { background:#ccc; }
+
+@media(max-width:1200px) {
+  .studio #workspace { gap:8px; }
+  .studio #left-sidebar { width:140px; min-width:140px; padding:16px 8px; }
+  .studio #right-sidebar { width:260px; min-width:260px; }
+  .studio #right-sidebar>.panel-section { padding:12px; }
+  .studio .canvas-header { padding:12px; }
+  .studio .canvas-viewbar>.brush-control { gap:4px; }
+}
+@media(max-width:900px) {
+  .studio .studio-header { padding:0 12px; }
+  .studio .primary-actions { gap:4px; }
+  .studio .primary-actions button { padding:0 8px; }
+  .studio .project-bar { flex-wrap:wrap; padding:8px 12px; }
+  .studio .project-bar>strong { flex-basis:100%; }
+  .studio #workspace { display:grid; grid-template-columns:48px minmax(240px,1fr) 240px; grid-template-rows:80px minmax(640px,1fr); overflow:auto; }
+  .studio .tool-rail { grid-column:1; grid-row:1 / 3; width:48px; min-width:48px; }
+  .studio #left-sidebar { grid-column:2 / 4; grid-row:1; width:auto; min-width:0; padding:8px 12px; overflow:hidden; }
+  .studio #left-sidebar:has(> .dock-panel #layer-list) { width:auto; min-width:0; overflow:auto; }
+  .studio #left-sidebar .section-header { margin-bottom:4px; min-height:20px; }
+  .studio #left-sidebar #sheet-list { flex-direction:row; overflow:auto; }
+  .studio #left-sidebar .sheet-item { min-height:36px; width:auto; flex-shrink:0; padding:4px 10px; }
+  .studio #left-sidebar .source-archive { margin:0; padding:4px; border:0; flex-shrink:0; }
+  .studio #center-viewport { grid-column:2; grid-row:2; }
+  .studio #right-sidebar { grid-column:3; grid-row:2; width:240px; min-width:240px; }
+  .studio .canvas-header { min-height:60px; }
+  .studio .canvas-viewbar { padding:8px; }
+  .studio .view-actions { flex-basis:100%; }
+  .studio .image-edit-toolbar .workspace-menu-content { width:min(300px,70vw); }
+  .studio .advanced-grid { grid-template-columns:1fr; }
+}
+@media(max-width:700px) {
+  .studio .studio-header { height:auto; min-height:56px; flex-wrap:wrap; gap:8px; padding:12px; }
+  .studio .primary-actions { flex-wrap:wrap; }
+  .studio #workspace { grid-template-columns:48px minmax(240px,1fr); grid-template-rows:80px minmax(640px,1fr) 240px; }
+  .studio .tool-rail { grid-row:1 / 4; }
+  .studio #left-sidebar { grid-column:2; }
+  .studio #right-sidebar { grid-column:2; grid-row:3; width:auto; min-width:0; display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; overflow:auto; }
+  .studio #right-sidebar>.panel-section:has(#layer-list) { min-height:0; }
+  .studio .preview-card { grid-column:1; }
+  .studio .project-bar>select { flex:1; min-width:100px; max-width:100%; }
+}
+@media(max-height:760px) and (min-width:901px) {
+  .studio .tool-rail { gap:2px; }
+  .studio .tool-rail .tool-btn { height:34px; min-height:34px; padding:2px; gap:2px; }
+  .studio .rail-history .tool-btn { height:24px; min-height:24px; }
+  .studio .canvas-header { min-height:52px; }
+  .studio .preview-card { display:none; }
+}
+@media(prefers-reduced-motion:reduce) { .studio * { transition:none!important; animation:none!important; } }

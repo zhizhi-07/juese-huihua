@@ -1,0 +1,20 @@
+{
+  "sourceSHA256": "4c7b1792ad15fded39c682ce82c56942793ebae7f9ec2a2893ec0caccf2b1c2a",
+  "changedLayers": [
+    129,
+    141,
+    188
+  ],
+  "threeDirectionalFirstCelsExact": true,
+  "firstCompositePixelsExact": true,
+  "onlyOtherNineIdleCelsSynced": true,
+  "perLayerWrites": 15,
+  "allOtherDataExact": true,
+  "sourceByOwnDirection": true,
+  "noMetadataChanges": true,
+  "frameCountsAndTimingExact": true,
+  "solesFixed": true,
+  "mainCanvasPNGAndStudioPreview12FramesChecked": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

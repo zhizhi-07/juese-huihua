@@ -1,0 +1,47 @@
+[
+  {
+    "file": "js/core.js",
+    "before": "384d546da42643b2d9c59b65acf4f34316190b95baa1eb938c1a766582d3b267",
+    "after": "ebeb5b3331bc377c7cb4edfa76eb6a0f147f4fabaa975369974c833ff78ea062"
+  },
+  {
+    "file": "js/app.js",
+    "before": "6812711e2ddc93b54c50fdfb8bebf566d905b1490c2bf60a4cd7f1ed876f8486",
+    "after": "baacab16663d24b62359f5eb1b53123b7ec54dbf60d6805fbb4edfdadc1741e7"
+  },
+  {
+    "file": "js/studio.js",
+    "before": "c5675d4332de6dc125601b5190c713f22d554da53eca7a8a84556aad8e55b5a1",
+    "after": "11a0912d2fe4f8f2a1dca67ec8f96086717be7e2bdc2afa6006653a1c5191811"
+  },
+  {
+    "file": "js/wardrobe.js",
+    "before": "1529f43540f2079675b6693b04b0625371b6eb85a1ccb3f37d9b799451870739",
+    "after": "0360bc7c2bb84951900b696d2afd9e84e41b18f5aedd5f928219cf84c3006341"
+  },
+  {
+    "file": "js/frame-tools.js",
+    "before": "96196e9c1ece3198b48043781bfaaf525e0cbf29426f76b21f8634aa6803a072",
+    "after": "25a934b8b2a51dd1380c25c8d5c52ae2558046792058642be657600887a5a067"
+  },
+  {
+    "file": "js/hair-animation.js",
+    "before": "d26d808ce416d6a43c2fe2042b7625a49965824701a969ff740f2498867c69c5",
+    "after": "0fb8210f11314b77edb84edb31fe3ad2fcf84cf9cf4159977457df80d665b16f"
+  },
+  {
+    "file": "css/hair-animation.css",
+    "before": "b34c39b5c233b8ecf6813d714156210d090a9d08350a40842fa76f7de6997ef4",
+    "after": "3e94a4a193dad0b2939364e0d0e2e7fca51811f19852b6502e6484fee1a7aeab"
+  },
+  {
+    "file": "index.html",
+    "before": "a7c9129f5f2af9c2297e236df260ec3d0543ecbdf53a26d47a84d874b829b57d",
+    "after": "a463d0843d523c189537af698353a5c46b5e06879d7dba4420f1f818883a2b38"
+  },
+  {
+    "file": "test/timeline.cjs",
+    "before": "333db9edee2fc20a1887a870fe04813838fb6314f2a96a11cfe10b3059f02849",
+    "after": "422937f7d806bf93423a451aaafe92170035de77a53c84e50b9a658382950838"
+  }
+]

@@ -1,0 +1,2 @@
+{"original":false,"selected":3,"expected":3,"renderedBodies":1,"expectedBodies":1}
+PASS: direction switching; foreign-cel render guard; implicit and batch direction matching; explicit wrong-direction rejection; undo/redo; locks; shared layers; nested/cyclic groups.

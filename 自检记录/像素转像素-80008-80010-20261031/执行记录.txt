@@ -1,0 +1,32 @@
+VERIFY ERROR: TypeError: Cannot set properties of undefined (setting 'imageRendering')
+    at CanvasManager._initCanvasSettings (evalmachine.<anonymous>:47:42)
+    at new CanvasManager (evalmachine.<anonymous>:38:12)
+    at C:\Users\Administrator\Desktop\角色绘画\自检记录\像素转像素-80008-80010-20261031\verify.cjs:13:117
+{
+  "command": "node \"C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\像素转像素-80008-80010-20261031\\build.cjs\"",
+  "input": "none",
+  "stdout": "BUILD OK C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\像素转像素-80008-80010-20261031\n",
+  "stderr": "",
+  "exitStatus": 0
+}
+{
+  "command": "node \"C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\像素转像素-80008-80010-20261031\\verify.cjs\"",
+  "input": "none",
+  "stdout": "VERIFY OK: 12 frames x main/preview/export, palette, symmetry, base unchanged; 24 mix frames, 4 GIF frames\n",
+  "stderr": "",
+  "exitStatus": 0
+}
+{
+  "command": "node \"C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\像素转像素-80008-80010-20261031\\publish.cjs\"",
+  "input": "none",
+  "stdout": "SAVED character-pixel-mix-1793412618671 referenceUnchanged false API readback exact match\n",
+  "stderr": "",
+  "exitStatus": 0
+}
+{
+  "command": "node \"C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\像素转像素-80008-80010-20261031\\restore.cjs\" --self-test",
+  "input": "extra local copy only",
+  "stdout": "RESTORE SELF-TEST OK: extra local copy equals pre-hair backup; stale ETag rejected; final artifact retained\n",
+  "stderr": "",
+  "exitStatus": 0
+}

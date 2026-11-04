@@ -1,0 +1,27 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "82724C5EB13F28FDAEB3E7889071837C56750F3167DEE68F7E1DB8D1AF99C4AF",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F92478EF5DD5921572F6D00C0334BB0F256892A59FB18F7C6A85478B59194FBA",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5D748FBD3D7EEA5ABC03D87EECE9B2283C9CAE4A53C3110C539B6C5DE13B887F",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\API_DOCS.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F7A9984125FC3B30BE7A1FE0F34B2F705112D6786B8CCB7BE9E7E23C872B1C2A",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\frame-copy-browser.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A779C9E0C11F7C3F7D0E3324D5C7BF94B178637A8C54AB2CA24F8A5A7986F30D",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\cross-action-copy.cjs"
+  }
+]

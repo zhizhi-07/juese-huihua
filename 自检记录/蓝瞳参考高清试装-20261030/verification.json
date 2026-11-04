@@ -1,0 +1,81 @@
+{
+  "projectId": "character-gold-mix-1793320553623",
+  "asset": "五官素材/蓝瞳参考高清试装-20261030/参考蓝瞳-原色抠底.png",
+  "assetSHA256": "6ed2494067168d5b3561df833b320a99eb1a0848d8bf7642ecdf4db18c7c9968",
+  "method": "Existing editor imageToPixels keepSource + color key; generated redraw candidates rejected for shape drift.",
+  "sourceDimensions": [
+    234,
+    98
+  ],
+  "keyColor": [
+    244,
+    230,
+    207
+  ],
+  "tolerance": 22,
+  "remainingOpaquePixels": 6508,
+  "whitePixels": 656,
+  "bluePixels": 1270,
+  "layerIndex": 191,
+  "positions": [
+    {
+      "key": "8_1_0",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 4
+      },
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_1",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 4
+      },
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_2",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 6
+      },
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_3",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 6
+      },
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    }
+  ],
+  "onlyFrontIdle4Frames": true,
+  "oldLayersUnchanged": true,
+  "sideBackUnchanged": true
+}

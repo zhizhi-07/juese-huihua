@@ -1,0 +1,24 @@
+{
+  "originalSHA256": "966f946d9fc3b6b302a0a7372fc88e7ebe55bfe0124e5a8278040dabeb9736ae",
+  "layer": 175,
+  "changedKeys": [
+    "10_0_1",
+    "10_0_2",
+    "10_0_3",
+    "10_1_1",
+    "10_1_2",
+    "10_1_3"
+  ],
+  "firstFramesExact": true,
+  "otherLayersActionsAndBackExact": true,
+  "allSixOutfitCelsMatchOwnFirstFrame": true,
+  "noScalingCompressionRecolorOrMovement": true,
+  "frameTimingAndMetadataExact": true,
+  "restoreExtraCopyExact": true,
+  "mainCanvasPNGAnimationPreviewBefore": 12,
+  "mainCanvasPNGAnimationPreviewAfter": 12,
+  "browserChecked": false,
+  "saved": true,
+  "apiReadbackExact": true,
+  "etag": "\"1e2ddb5eec14c208f7f2d41cc90c91855314f22dc191ecdae16a6813ff07a5e0\""
+}

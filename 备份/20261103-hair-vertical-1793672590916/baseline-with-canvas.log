@@ -1,0 +1,10 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+    "test/hair-animation.cjs"
+  ],
+  "NODE_PATH": "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules",
+  "stdout": "PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.\n",
+  "stderr": "",
+  "status": 0
+}

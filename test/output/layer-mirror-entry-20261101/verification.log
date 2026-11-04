@@ -1,0 +1,817 @@
+COMMAND: node test/workspace-layout.cjs (before change)
+PASS: original controls/listeners preserved; view/tool/layer/timing menus; outside click/Escape; in-place panel reset without reload.
+EXIT: 0
+COMMAND: node test/workspace-layout.cjs (regression assertion, before fix)
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: both mirror controls stay visible, outside More
++ actual - expected
+... Skipped lines
+
+  [
+    <ref *1> Element {
+      children: [],
+      classList: {
+        contains: [Function: contains]
+...
+    },
++   <ref *3> Element {
++     children: [
++       Element {
++         children: [],
++         classList: {
++           contains: [Function: contains]
+-   <ref *7> Element {
+-     children: [],
+-     classList: {
+-       contains: [Function: contains]
+-     },
+-     className: '',
+-     events: {},
+-     id: 'mirror-layer-btn',
+-     onclick: [Function (anonymous)],
+-     open: false,
+-     parentElement: <ref *4> Element {
+-       children: [
+-         [Circular *7],
+-         Element {
+-           children: [],
+-           classList: {
+-             contains: [Function: contains]
+-           },
+-           className: '',
+-           events: {},
+-           id: 'mirror-live-btn',
+-           open: false,
+-           parentElement: [Circular *4],
+-           tag: 'button'
+          },
++         className: '',
++         events: {},
++         id: '',
++         open: false,
++         parentElement: [Circular *3],
++         tag: 'summary',
++         textContent: '更多'
+-         Element {
+-           children: [],
+-           classList: {
+-             contains: [Function: contains]
+-           },
+-           className: '',
+-           events: {},
+-           id: 'delete-layer-btn',
+-           open: false,
+-           parentElement: [Circular *4],
+-           tag: 'button'
+-         }
+-       ],
+-       classList: {
+-         contains: [Function: contains]
+        },
++       <ref *4> Element {
+-       className: 'workspace-menu-content',
+-       events: {
+-         click: [Function (anonymous)]
+-       },
+-       id: '',
+-       open: false,
+-       parentElement: <ref *3> Element {
+          children: [
+            Element {
+              children: [],
+              classList: {
+                contains: [Function: contains]
+...
+              events: {},
++             id: 'mirror-layer-btn',
++             onclick: [Function (anonymous)],
+-             id: '',
+              open: false,
++             parentElement: [Circular *4],
++             tag: 'button'
+-             parentElement: [Circular *3],
+-             tag: 'summary',
+-             textContent: '更多'
+            },
++           Element {
++             children: [],
++             classList: {
++               contains: [Function: contains]
+-           [Circular *4]
+-         ],
+-         classList: {
+-           contains: [Function: contains]
+-         },
+-         className: 'workspace-menu',
+-         events: {
+-           toggle: [Function (anonymous)]
+-         },
+-         id: '',
+-         open: false,
+-         parentElement: <ref *2> Element {
+-           children: [
+-             <ref *1> Element {
+-               children: [],
+-               classList: {
+-                 contains: [Function: contains]
+-               },
+-               className: '',
+-               events: {},
+-               id: 'add-layer-btn',
+-               open: false,
+-               parentElement: [Circular *2],
+-               tag: 'button'
+              },
++             className: '',
++             events: {},
++             id: 'mirror-live-btn',
++             open: false,
++             parentElement: [Circular *4],
++             tag: 'button'
+-             <ref *6> Element {
+-               children: [],
+-               classList: {
+-                 contains: [Function: contains]
+-               },
+-               className: 'layer-move',
+-               events: {},
+-               id: '',
+-               open: false,
+-               parentElement: [Circular *2],
+-               tag: 'button'
+-             },
+-             [Circular *3]
+-           ],
+-           classList: {
+-             contains: [Function: contains]
+            },
++           Element {
++             children: [],
+-           className: 'layer-header-actions',
+-           events: {},
+-           id: '',
+-           open: false,
+-           parentElement: <ref *5> Element {
+-             children: [
+-               Element {
+-                 children: [],
+-                 classList: {
+-                   contains: [Function: contains]
+-                 },
+-                 className: 'section-header',
+-                 events: {},
+-                 id: '',
+-                 open: false,
+-                 parentElement: [Circular *5],
+-                 tag: 'div'
+-               },
+-               Element {
+-                 children: [],
+-                 classList: {
+-                   contains: [Function: contains]
+-                 },
+-                 className: '',
+-                 events: {},
+-                 id: '',
+-                 open: false,
+-                 parentElement: [Circular *5],
+-                 tag: 'div'
+-               },
+-               [Circular *2]
+-             ],
+              classList: {
+                contains: [Function: contains]
+              },
+              className: '',
+              events: {},
++             id: 'delete-layer-btn',
+-             id: '',
+              open: false,
++             parentElement: [Circular *4],
++             tag: 'button'
+-             tag: 'section'
+            },
++         ],
++         classList: {
++           contains: [Function: contains]
+-           tag: 'div'
+          },
++         className: 'workspace-menu-content',
++         events: {
++           click: [Function (anonymous)]
++         },
++         id: '',
++         open: false,
++         parentElement: [Circular *3],
++         tag: 'div'
+-         tag: 'details'
+        },
++     ],
+-       tag: 'div'
+-     },
+-     tag: 'button'
+-   },
+-   <ref *8> Element {
+-     children: [],
+      classList: {
+        contains: [Function: contains]
+      },
++     className: 'workspace-menu',
++     events: {
++       toggle: [Function (anonymous)]
++     },
++     id: '',
+-     className: '',
+-     events: {},
+-     id: 'mirror-live-btn',
+      open: false,
++     parentElement: <ref *2> Element {
+-     parentElement: <ref *4> Element {
+        children: [
++         <ref *1> Element {
+-         <ref *7> Element {
+            children: [],
+            classList: {
+              contains: [Function: contains]
+            },
+            className: '',
+            events: {},
++           id: 'add-layer-btn',
+-           id: 'mirror-layer-btn',
+-           onclick: [Function (anonymous)],
+            open: false,
++           parentElement: [Circular *2],
+-           parentElement: [Circular *4],
+            tag: 'button'
+          },
++         <ref *6> Element {
+-         [Circular *8],
+-         Element {
+            children: [],
+            classList: {
+              contains: [Function: contains]
+            },
++           className: 'layer-move',
+-           className: '',
+            events: {},
++           id: '',
+-           id: 'delete-layer-btn',
+            open: false,
++           parentElement: [Circular *2],
+-           parentElement: [Circular *4],
+            tag: 'button'
+          },
++         [Circular *3]
+        ],
+        classList: {
+          contains: [Function: contains]
+        },
++       className: 'layer-header-actions',
++       events: {},
+-       className: 'workspace-menu-content',
+-       events: {
+-         click: [Function (anonymous)]
+-       },
+        id: '',
+        open: false,
++       parentElement: <ref *5> Element {
+-       parentElement: <ref *3> Element {
+          children: [
+            Element {
+              children: [],
+              classList: {
+                contains: [Function: contains]
+              },
++             className: 'section-header',
+-             className: '',
+              events: {},
+              id: '',
+              open: false,
++             parentElement: [Circular *5],
++             tag: 'div'
+-             parentElement: [Circular *3],
+-             tag: 'summary',
+-             textContent: '更多'
+            },
++           Element {
++             children: [],
+-           [Circular *4]
+-         ],
+-         classList: {
+-           contains: [Function: contains]
+-         },
+-         className: 'workspace-menu',
+-         events: {
+-           toggle: [Function (anonymous)]
+-         },
+-         id: '',
+-         open: false,
+-         parentElement: <ref *2> Element {
+-           children: [
+-             <ref *1> Element {
+-               children: [],
+-               classList: {
+-                 contains: [Function: contains]
+-               },
+-               className: '',
+-               events: {},
+-               id: 'add-layer-btn',
+-               open: false,
+-               parentElement: [Circular *2],
+-               tag: 'button'
+-             },
+-             <ref *6> Element {
+-               children: [],
+-               classList: {
+-                 contains: [Function: contains]
+-               },
+-               className: 'layer-move',
+-               events: {},
+-               id: '',
+-               open: false,
+-               parentElement: [Circular *2],
+-               tag: 'button'
+-             },
+-             [Circular *3]
+-           ],
+-           classList: {
+-             contains: [Function: contains]
+-           },
+-           className: 'layer-header-actions',
+-           events: {},
+-           id: '',
+-           open: false,
+-           parentElement: <ref *5> Element {
+-             children: [
+-               Element {
+-                 children: [],
+-                 classList: {
+-                   contains: [Function: contains]
+-                 },
+-                 className: 'section-header',
+-                 events: {},
+-                 id: '',
+-                 open: false,
+-                 parentElement: [Circular *5],
+-                 tag: 'div'
+-               },
+-               Element {
+-                 children: [],
+-                 classList: {
+-                   contains: [Function: contains]
+-                 },
+-                 className: '',
+-                 events: {},
+-                 id: '',
+-                 open: false,
+-                 parentElement: [Circular *5],
+-                 tag: 'div'
+-               },
+-               [Circular *2]
+-             ],
+              classList: {
+                contains: [Function: contains]
+              },
+              className: '',
+              events: {},
+              id: '',
+              open: false,
++             parentElement: [Circular *5],
++             tag: 'div'
+-             tag: 'section'
+            },
++           [Circular *2]
++         ],
++         classList: {
++           contains: [Function: contains]
+-           tag: 'div'
+          },
++         className: '',
++         events: {},
++         id: '',
++         open: false,
++         tag: 'section'
+-         tag: 'details'
+        },
+        tag: 'div'
+      },
++     tag: 'details'
+-     tag: 'button'
+    }
+  ]
+
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\workspace-layout.cjs:59:8)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    <ref *1> Element {
+      tag: 'button',
+      className: '',
+      id: 'add-layer-btn',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *2> Element {
+        tag: 'div',
+        className: 'layer-header-actions',
+        id: '',
+        children: [
+          [Circular *1],
+          Element {
+            tag: 'button',
+            className: 'layer-move',
+            id: '',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          Element {
+            tag: 'details',
+            className: 'workspace-menu',
+            id: '',
+            children: [Array],
+            events: [Object],
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          }
+        ],
+        events: {},
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: Element {
+          tag: 'section',
+          className: '',
+          id: '',
+          children: [ [Element], [Element], [Circular *2] ],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] }
+        }
+      }
+    },
+    <ref *3> Element {
+      tag: 'button',
+      className: 'layer-move',
+      id: '',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *2> Element {
+        tag: 'div',
+        className: 'layer-header-actions',
+        id: '',
+        children: [
+          <ref *1> Element {
+            tag: 'button',
+            className: '',
+            id: 'add-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          [Circular *3],
+          Element {
+            tag: 'details',
+            className: 'workspace-menu',
+            id: '',
+            children: [Array],
+            events: [Object],
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          }
+        ],
+        events: {},
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: Element {
+          tag: 'section',
+          className: '',
+          id: '',
+          children: [ [Element], [Element], [Circular *2] ],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] }
+        }
+      }
+    },
+    <ref *4> Element {
+      tag: 'details',
+      className: 'workspace-menu',
+      id: '',
+      children: [
+        Element {
+          tag: 'summary',
+          className: '',
+          id: '',
+          children: [],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] },
+          textContent: '更多',
+          parentElement: [Circular *4]
+        },
+        Element {
+          tag: 'div',
+          className: 'workspace-menu-content',
+          id: '',
+          children: [ [Element], [Element], [Element] ],
+          events: { click: [Function (anonymous)] },
+          open: false,
+          classList: { contains: [Function: contains] },
+          parentElement: [Circular *4]
+        }
+      ],
+      events: { toggle: [Function (anonymous)] },
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *2> Element {
+        tag: 'div',
+        className: 'layer-header-actions',
+        id: '',
+        children: [
+          <ref *1> Element {
+            tag: 'button',
+            className: '',
+            id: 'add-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          <ref *3> Element {
+            tag: 'button',
+            className: 'layer-move',
+            id: '',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          [Circular *4]
+        ],
+        events: {},
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: Element {
+          tag: 'section',
+          className: '',
+          id: '',
+          children: [ [Element], [Element], [Circular *2] ],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] }
+        }
+      }
+    }
+  ],
+  expected: [
+    <ref *1> Element {
+      tag: 'button',
+      className: '',
+      id: 'add-layer-btn',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *2> Element {
+        tag: 'div',
+        className: 'layer-header-actions',
+        id: '',
+        children: [
+          [Circular *1],
+          <ref *3> Element {
+            tag: 'button',
+            className: 'layer-move',
+            id: '',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          <ref *4> Element {
+            tag: 'details',
+            className: 'workspace-menu',
+            id: '',
+            children: [Array],
+            events: [Object],
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          }
+        ],
+        events: {},
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: Element {
+          tag: 'section',
+          className: '',
+          id: '',
+          children: [ [Element], [Element], [Circular *2] ],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] }
+        }
+      }
+    },
+    <ref *3> Element {
+      tag: 'button',
+      className: 'layer-move',
+      id: '',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *2> Element {
+        tag: 'div',
+        className: 'layer-header-actions',
+        id: '',
+        children: [
+          <ref *1> Element {
+            tag: 'button',
+            className: '',
+            id: 'add-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          },
+          [Circular *3],
+          <ref *4> Element {
+            tag: 'details',
+            className: 'workspace-menu',
+            id: '',
+            children: [Array],
+            events: [Object],
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *2]
+          }
+        ],
+        events: {},
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: Element {
+          tag: 'section',
+          className: '',
+          id: '',
+          children: [ [Element], [Element], [Circular *2] ],
+          events: {},
+          open: false,
+          classList: { contains: [Function: contains] }
+        }
+      }
+    },
+    <ref *5> Element {
+      tag: 'button',
+      className: '',
+      id: 'mirror-layer-btn',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      onclick: [Function (anonymous)],
+      parentElement: <ref *6> Element {
+        tag: 'div',
+        className: 'workspace-menu-content',
+        id: '',
+        children: [
+          [Circular *5],
+          Element {
+            tag: 'button',
+            className: '',
+            id: 'mirror-live-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *6]
+          },
+          Element {
+            tag: 'button',
+            className: '',
+            id: 'delete-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *6]
+          }
+        ],
+        events: { click: [Function (anonymous)] },
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: <ref *4> Element {
+          tag: 'details',
+          className: 'workspace-menu',
+          id: '',
+          children: [ [Element], [Circular *6] ],
+          events: { toggle: [Function (anonymous)] },
+          open: false,
+          classList: { contains: [Function: contains] },
+          parentElement: <ref *2> Element {
+            tag: 'div',
+            className: 'layer-header-actions',
+            id: '',
+            children: [Array],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Element]
+          }
+        }
+      }
+    },
+    <ref *7> Element {
+      tag: 'button',
+      className: '',
+      id: 'mirror-live-btn',
+      children: [],
+      events: {},
+      open: false,
+      classList: { contains: [Function: contains] },
+      parentElement: <ref *6> Element {
+        tag: 'div',
+        className: 'workspace-menu-content',
+        id: '',
+        children: [
+          <ref *5> Element {
+            tag: 'button',
+            className: '',
+            id: 'mirror-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            onclick: [Function (anonymous)],
+            parentElement: [Circular *6]
+          },
+          [Circular *7],
+          Element {
+            tag: 'button',
+            className: '',
+            id: 'delete-layer-btn',
+            children: [],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Circular *6]
+          }
+        ],
+        events: { click: [Function (anonymous)] },
+        open: false,
+        classList: { contains: [Function: contains] },
+        parentElement: <ref *4> Element {
+          tag: 'details',
+          className: 'workspace-menu',
+          id: '',
+          children: [ [Element], [Circular *6] ],
+          events: { toggle: [Function (anonymous)] },
+          open: false,
+          classList: { contains: [Function: contains] },
+          parentElement: <ref *2> Element {
+            tag: 'div',
+            className: 'layer-header-actions',
+            id: '',
+            children: [Array],
+            events: {},
+            open: false,
+            classList: [Object],
+            parentElement: [Element]
+          }
+        }
+      }
+    }
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1
+EXIT: 1
+COMMAND: node test/workspace-layout.cjs (after fix)
+PASS: original controls/listeners preserved; view/tool/layer/timing menus; outside click/Escape; in-place panel reset without reload.
+EXIT: 0
+COMMAND: node --check js/workspace-layout.js
+EXIT: 0

@@ -1,0 +1,458 @@
+diff --git a/index.html b/index.html
+index 01eccf6..36a807c 100644
+--- a/index.html
++++ b/index.html
+@@ -294,11 +294,13 @@
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+   <script src="js/studio.js?v=image-transform-1"></script>
+-  <script src="js/visual-layers.js?v=frame-copy-1"></script>
++  <script src="js/visual-layers.js?v=hair-components-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+-  <script src="js/projects.js?v=4"></script>
++  <script src="js/projects.js?v=finished-wardrobe-1"></script>
++  <link rel="stylesheet" href="css/wardrobe.css?v=1">
++  <script src="js/wardrobe.js?v=1"></script>
+   <script src="js/frame-tools.js?v=frame-copy-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=image-transform-1"></script>
++  <script src="js/pixel-import.js?v=flip-crop-detail-3"></script>
+ </body>
+ </html>
+diff --git a/js/character-sync.js b/js/character-sync.js
+index 6b9455b..56c4d17 100644
+--- a/js/character-sync.js
++++ b/js/character-sync.js
+@@ -29,6 +29,11 @@ function restoreHands(branch,main){
+   if(selected)branch.currentLayerIndex=branch.layers.indexOf(selected);
+ }
+ module.exports=function syncCharacterBase(branch,main){
++  // Old branch files follow an enlarged idle canvas before inheriting the new-size body/hands.
++  const idle=branch.spriteSheets.find(s=>s.name==='original32_idle'),sourceIdle=main.spriteSheets.find(s=>s.name==='original32_idle');
++  if(idle&&sourceIdle&&(idle.frameWidth<sourceIdle.frameWidth||idle.frameHeight<sourceIdle.frameHeight))require('./idle-canvas.cjs')(branch,sourceIdle.frameWidth,sourceIdle.frameHeight);
++  // A rollback may remove only the known empty 2px margin; painted borders fail closed.
++  if(idle?.frameWidth===36&&idle.frameHeight===36&&sourceIdle?.frameWidth===32&&sourceIdle.frameHeight===32)require('./idle-canvas.cjs')(branch,32,32,{allowCrop:true});
+   restoreHands(branch,main);
+   const isBase=l=>!l.isGroup&&(/^(body|head|身体|头部)$/.test(l.name)||isHand(l));
+   for(const layer of branch.layers.filter(isBase)){
+diff --git a/js/pixel-import.js b/js/pixel-import.js
+index dceab70..878e9c5 100644
+--- a/js/pixel-import.js
++++ b/js/pixel-import.js
+@@ -22,21 +22,56 @@ PE.quantizeImage=function(image,maxColors){
+   for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;d.set(mapped.get((d[i]<<16)|(d[i+1]<<8)|d[i+2]),i);d[i+3]=255;}
+   return image;
+ };
+-// Pixel It uses a smoothed reduction and nearest-neighbor display: https://github.com/giventofly/pixelit
+-PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='smooth'}={}){
+-  if(!crop||![crop.x,crop.y,crop.w,crop.h,width].every(Number.isSafeInteger)||crop.x<0||crop.y<0||crop.w<1||crop.h<1||crop.x+crop.w>image.width||crop.y+crop.h>image.height)throw new Error('裁选范围超出原图');
++PE.removeImageColor=function(image,{rgb,tolerance=0,neutralOnly=false}){
++  if(!Array.isArray(rgb)||rgb.length!==3||!rgb.every(v=>Number.isInteger(v)&&v>=0&&v<=255)||!Number.isInteger(tolerance)||tolerance<0||tolerance>255)throw new Error('抠图颜色或容差无效');
++  const d=image.data;
++  for(let i=0;i<d.length;i+=4){
++    if(!d[i+3])continue;
++    if(neutralOnly&&Math.max(d[i],d[i+1],d[i+2])-Math.min(d[i],d[i+1],d[i+2])>20)continue;
++    if(rgb.every((v,c)=>Math.abs(d[i+c]-v)<=tolerance))d.fill(0,i,i+4);
++  }
++  return image;
++};
++PE.hairGrayImage=function(image){
++  const d=image.data,w=image.width,h=image.height;
++  for(let i=0;i<d.length;i+=4){
++    if(d[i+3]<128){d.fill(0,i,i+4);continue;}
++    const x=i/4%w,y=Math.floor(i/4/w),edge=x===0||y===0||x===w-1||y===h-1||[i-4,i+4,i-w*4,i+w*4].some(j=>d[j+3]<128);
++    // Dark filled regions are shadows, not thick outlines; retain dark ink only beside transparency.
++    const light=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2],v=light<145&&edge?119:light<195?178:209;
++    d.set([v,v,v,255],i);
++  }
++  return image;
++};
++// Existing pixel art defaults to nearest-neighbor; photos can explicitly select smooth reduction.
++PE.imageToPixels=function(image,crop,width,{pixelize=true,colors=0,sampling='nearest',keyColor=null,palette='original',flipX=false,flipY=false,preserveThin=false}={}){
++  if(!crop||![crop.x,crop.y,crop.w,crop.h,width].every(Number.isSafeInteger)||crop.w<1||crop.h<1||crop.w>16384||crop.h>16384||crop.w*crop.h>16*1024*1024||crop.x>=image.width||crop.y>=image.height||crop.x+crop.w<=0||crop.y+crop.h<=0)throw new Error('裁选范围无效或与原图没有交集（最大1600万像素）');
+   const height=Math.max(1,Math.round(crop.h*width/crop.w));
+   if(width<1||width>512||height>512)throw new Error('输出宽高需要在 1–512 像素之间');
++  if(!['nearest','smooth'].includes(sampling)||!['original','hair-gray'].includes(palette))throw new Error('采样方式或色板无效');
+   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
+   const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=sampling==='smooth'&&(width!==crop.w||height!==crop.h);ctx.imageSmoothingQuality='high';
+-  let source=image,sx=crop.x,sy=crop.y;
+-  // Isolate the crop so the smoothing filter cannot pull colors from outside it.
+-  if(ctx.imageSmoothingEnabled&&(crop.x||crop.y||crop.w!==image.width||crop.h!==image.height)){
+-    source=document.createElement('canvas');source.width=crop.w;source.height=crop.h;
+-    const cropped=source.getContext('2d');cropped.imageSmoothingEnabled=false;cropped.drawImage(image,crop.x,crop.y,crop.w,crop.h,0,0,crop.w,crop.h);sx=sy=0;
++  const source=document.createElement('canvas');source.width=crop.w;source.height=crop.h;
++  const cropped=source.getContext('2d');cropped.imageSmoothingEnabled=false;
++  cropped.translate(flipX?crop.w:0,flipY?crop.h:0);cropped.scale(flipX?-1:1,flipY?-1:1);cropped.drawImage(image,-crop.x,-crop.y);cropped.resetTransform();
++  // Crop overflow stays transparent; key before resampling to avoid black fringes.
++  if(keyColor)cropped.putImageData(PE.removeImageColor(cropped.getImageData(0,0,crop.w,crop.h),keyColor),0,0);
++  ctx.drawImage(source,0,0,crop.w,crop.h,0,0,width,height);
++  const pixels=ctx.getImageData(0,0,width,height);
++  if(preserveThin&&sampling==='nearest'&&pixelize&&(width<crop.w||height<crop.h)){
++    const original=cropped.getImageData(0,0,crop.w,crop.h).data;
++    // Retain thin opaque strokes that nearest-neighbor misses inside each destination pixel's footprint.
++    for(let y=0;y<height;y++)for(let x=0;x<width;x++){
++      const i=(y*width+x)*4;if(pixels.data[i+3]>=128)continue;let best=-1,distance=Infinity;
++      const cx=(x+.5)*crop.w/width,cy=(y+.5)*crop.h/height;
++      for(let sy=Math.floor(y*crop.h/height);sy<Math.ceil((y+1)*crop.h/height);sy++)for(let sx=Math.floor(x*crop.w/width);sx<Math.ceil((x+1)*crop.w/width);sx++){
++        const j=(sy*crop.w+sx)*4,d=(sx+.5-cx)**2+(sy+.5-cy)**2;
++        if(original[j+3]>=128&&d<distance){distance=d;best=j;}
++      }
++      if(best>=0)pixels.data.set(original.subarray(best,best+4),i);
++    }
+   }
+-  ctx.drawImage(source,sx,sy,crop.w,crop.h,0,0,width,height);
+-  const pixels=ctx.getImageData(0,0,width,height);return pixelize?PE.quantizeImage(pixels,colors):pixels;
++  if(palette==='hair-gray')return PE.hairGrayImage(pixels);return pixelize?PE.quantizeImage(pixels,colors):pixels;
+ };
+ PE.addImageLayer=function(app,pixels,name){
+   const p=app.project,frame=p.getCurrentFrame();
+@@ -68,56 +103,85 @@ document.addEventListener('DOMContentLoaded',()=>{
+   dialog.innerHTML=`<div class="dialog-title"><h2>上传图片 · 裁选 / 转像素</h2><button type="button" data-close class="studio-button">关闭</button></div>
+     <label>选择图片 <input type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传源图片"></label>
+     <div class="image-crop-area"><section><h3>原图：拖动框选 · 框内移动 · 右下角缩放</h3><canvas data-source aria-label="原图裁选"></canvas>
+-    <div class="crop-fields"><label>X <input type="number" min="0" value="0" aria-label="裁选 X"></label><label>Y <input type="number" min="0" value="0" aria-label="裁选 Y"></label><label>宽 <input type="number" min="1" value="1" aria-label="裁选宽度"></label><label>高 <input type="number" min="1" value="1" aria-label="裁选高度"></label></div>
+-    <button type="button" data-all class="studio-button">选整张图</button></section><section><h3>导入预览</h3><canvas data-preview aria-label="裁选结果预览"></canvas></section></div>
++    <div class="crop-fields"><label>X <input type="number" min="-16384" value="0" aria-label="裁选 X"></label><label>Y <input type="number" min="-16384" value="0" aria-label="裁选 Y"></label><label>宽 <input type="number" min="1" value="1" aria-label="裁选宽度"></label><label>高 <input type="number" min="1" value="1" aria-label="裁选高度"></label></div>
++    <button type="button" data-all class="studio-button">选整张图</button><button type="button" data-reselect class="studio-button" aria-pressed="false">重新框选</button>
++    <div class="pixel-import-controls"><select data-row aria-label="精灵方向"><option value="0">正面</option><option value="1">左侧</option><option value="2">右侧</option><option value="3">背面</option></select><select data-column aria-label="精灵帧"><option value="0">第1帧</option><option value="1" selected>第2帧</option><option value="2">第3帧</option></select><button type="button" data-cell class="studio-button">按3×4精灵格裁选</button></div>
++    </section><section><h3>导入预览</h3><canvas data-preview aria-label="裁选结果预览"></canvas></section></div>
+     <div class="pixel-import-controls"><label>像素宽度 <input type="number" min="1" max="512" value="32" aria-label="像素宽度"></label><button type="button" data-fit class="studio-button">适合当前画布</button>
+     <label><input type="checkbox" data-pixel checked>转成像素图</label><label>颜色 <select data-colors aria-label="颜色数量"><option value="0" selected>保留原图颜色</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label>
+-    <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="smooth">平滑缩小（照片 / 大图）</option><option value="nearest">最近邻（已有像素画）</option></select></label></div>
++    <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="nearest">最近邻（保留像素形状）</option><option value="smooth">平滑缩小（照片 / 大图）</option></select></label>
++    <label>色板 <select data-palette aria-label="输出色板"><option value="original">原色</option><option value="hair-gray">头发规则灰色（三色）</option></select></label></div>
++    <div class="pixel-import-controls"><button type="button" data-flip-x class="studio-button" aria-pressed="false">水平翻转</button><button type="button" data-flip-y class="studio-button" aria-pressed="false">上下翻转</button><label><input type="checkbox" data-thin aria-label="保细线轮廓">保细线轮廓（可能增粗，默认关闭）</label><button type="button" data-photo class="studio-button">原图缩放（不做像素化）</button></div>
++    <div class="pixel-import-controls"><label><input type="checkbox" data-key>按颜色抠图</label><input type="color" data-key-color value="#303030" aria-label="抠除颜色"><button type="button" data-pick class="studio-button" aria-pressed="false">从原图取色</button><label>容差 <input type="number" data-tolerance value="32" min="0" max="255" aria-label="抠图容差"></label><label><input type="checkbox" data-neutral>只抠灰黑</label><button type="button" data-black class="studio-button">去黑色人形</button></div>
++    <p>头发灰色：描边 #777777 · 阴影 #B2B2B2 · 底色 #D1D1D1。裁框可拖出原图，外部留透明边；高清素材可用原图缩放保留半透明，不减色。预览不改原文件。</p>
+     <p data-status aria-live="polite">选择图片后可框选局部，再调整尺寸和颜色。</p><div class="image-import-actions"><button type="button" data-place class="studio-button save-primary" disabled>放到当前画布</button><button type="button" data-import class="studio-button" disabled>新建独立素材</button></div>
+     <p>放入后拖动图片移动，拖动右下角白色方块等比缩放。取消选中后，用“移动 / 缩放”点回图片；方向键微调，Ctrl+Z 撤销。</p>`;
+   document.body.append(dialog);
+   const file=dialog.querySelector('input[type=file]'),width=dialog.querySelector('[aria-label="像素宽度"]'),colors=dialog.querySelector('[data-colors]'),sampling=dialog.querySelector('[data-sampling]'),pixelize=dialog.querySelector('[data-pixel]'),sourceCanvas=dialog.querySelector('[data-source]'),preview=dialog.querySelector('[data-preview]'),status=dialog.querySelector('[data-status]'),place=dialog.querySelector('[data-place]'),submit=dialog.querySelector('[data-import]'),fields=[...dialog.querySelectorAll('.crop-fields input')];
+-  let image=null,filename='',loading=false,crop=null,pixels=null,start=null;
++  const palette=dialog.querySelector('[data-palette]'),key=dialog.querySelector('[data-key]'),keyColor=dialog.querySelector('[data-key-color]'),tolerance=dialog.querySelector('[data-tolerance]'),neutral=dialog.querySelector('[data-neutral]'),pick=dialog.querySelector('[data-pick]');
++  const flipX=dialog.querySelector('[data-flip-x]'),flipY=dialog.querySelector('[data-flip-y]'),thin=dialog.querySelector('[data-thin]'),reselect=dialog.querySelector('[data-reselect]');
++  let image=null,filename='',loading=false,crop=null,pixels=null,start=null,picking=false,selectAgain=false;
+   trigger.onclick=()=>dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();
+   function drawSource(){
+     if(!image)return;const scale=Math.min(360/image.width,200/image.height);sourceCanvas.width=Math.max(1,Math.round(image.width*scale));sourceCanvas.height=Math.max(1,Math.round(image.height*scale));
+-    const ctx=sourceCanvas.getContext('2d');ctx.drawImage(image,0,0,sourceCanvas.width,sourceCanvas.height);ctx.strokeStyle='#227865';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.strokeRect(crop.x*sourceCanvas.width/image.width,crop.y*sourceCanvas.height/image.height,crop.w*sourceCanvas.width/image.width,crop.h*sourceCanvas.height/image.height);
++    const ctx=sourceCanvas.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.drawImage(image,0,0,sourceCanvas.width,sourceCanvas.height);ctx.strokeStyle='#227865';ctx.lineWidth=2;ctx.setLineDash([4,3]);ctx.strokeRect(crop.x*sourceCanvas.width/image.width,crop.y*sourceCanvas.height/image.height,crop.w*sourceCanvas.width/image.width,crop.h*sourceCanvas.height/image.height);
+     ctx.setLineDash([]);ctx.fillStyle='#fff';const x=(crop.x+crop.w)*sourceCanvas.width/image.width,y=(crop.y+crop.h)*sourceCanvas.height/image.height;ctx.fillRect(x-4,y-4,8,8);ctx.strokeRect(x-4,y-4,8,8);
+     fields.forEach((input,i)=>input.value=[crop.x,crop.y,crop.w,crop.h][i]);
+   }
+   function fit(){if(!crop)return;const f=app.project.getCurrentFrame();width.value=Math.max(1,Math.min(512,crop.w,f?.width||512,Math.floor((f?.height||512)*crop.w/crop.h)));}
+   function render(){
+-    submit.disabled=place.disabled=true;pixels=null;colors.disabled=!pixelize.checked;if(!image||loading)return;
++    submit.disabled=place.disabled=true;pixels=null;colors.disabled=!pixelize.checked||palette.value!=='original';thin.disabled=!pixelize.checked||sampling.value!=='nearest';if(!image||loading)return;
+     try{
+-      pixels=PE.imageToPixels(image,crop,Number(width.value),{pixelize:pixelize.checked,colors:Number(colors.value),sampling:sampling.value});
++      const rgb=keyColor.value.match(/[a-f0-9]{2}/gi).map(v=>parseInt(v,16));
++      pixels=PE.imageToPixels(image,crop,Number(width.value),{pixelize:pixelize.checked,colors:Number(colors.value),sampling:sampling.value,palette:palette.value,keyColor:key.checked?{rgb,tolerance:Number(tolerance.value),neutralOnly:neutral.checked}:null,flipX:flipX.getAttribute('aria-pressed')==='true',flipY:flipY.getAttribute('aria-pressed')==='true',preserveThin:thin.checked});
+       preview.width=pixels.width;preview.height=pixels.height;preview.getContext('2d').putImageData(pixels,0,0);
+       const f=app.project.getCurrentFrame(),fits=f&&!f.locked&&pixels.width<=f.width&&pixels.height<=f.height;
+-      status.textContent='裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
++      status.textContent='裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 头发三色灰':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色')+(key.checked?' · 已抠色':'')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
+       submit.disabled=false;place.disabled=!fits;
+     }catch(error){status.textContent=error.message;}
+   }
+-  function point(event){const r=sourceCanvas.getBoundingClientRect();return {x:Math.max(0,Math.min(image.width,Math.floor((event.clientX-r.left)*image.width/r.width))),y:Math.max(0,Math.min(image.height,Math.floor((event.clientY-r.top)*image.height/r.height)))};}
++  function point(event){const r=sourceCanvas.getBoundingClientRect();return {x:Math.max(-16384,Math.min(image.width+16384,Math.floor((event.clientX-r.left)*image.width/r.width))),y:Math.max(-16384,Math.min(image.height+16384,Math.floor((event.clientY-r.top)*image.height/r.height)))};}
+   function cropMode(p){
++    if(selectAgain)return 'select';
+     const r=sourceCanvas.getBoundingClientRect();
+     if(Math.abs(p.x-crop.x-crop.w)<=6*image.width/r.width&&Math.abs(p.y-crop.y-crop.h)<=6*image.height/r.height)return 'resize';
+     return (crop.w<image.width||crop.h<image.height)&&p.x>=crop.x&&p.x<crop.x+crop.w&&p.y>=crop.y&&p.y<crop.y+crop.h?'move':'select';
+   }
+-  sourceCanvas.onpointerdown=event=>{if(!image||loading||event.button!==0)return;const p=point(event);start={...p,crop:{...crop},mode:cropMode(p)};sourceCanvas.setPointerCapture(event.pointerId);};
++  sourceCanvas.onpointerdown=event=>{
++    if(!image||loading||event.button!==0)return;const p=point(event);
++    if(picking){
++      const c=document.createElement('canvas');c.width=c.height=1;const ctx=c.getContext('2d');ctx.drawImage(image,Math.max(0,Math.min(image.width-1,p.x)),Math.max(0,Math.min(image.height-1,p.y)),1,1,0,0,1,1);const rgb=ctx.getImageData(0,0,1,1).data;
++      if(!rgb[3]){status.textContent='这里已透明，请选择有颜色的像素';return;}
++      keyColor.value='#'+[...rgb.slice(0,3)].map(v=>v.toString(16).padStart(2,'0')).join('');key.checked=true;neutral.checked=false;picking=false;pick.setAttribute('aria-pressed','false');render();return;
++    }
++    start={...p,crop:{...crop},mode:cropMode(p)};sourceCanvas.setPointerCapture(event.pointerId);
++  };
+   sourceCanvas.onpointermove=event=>{
+-    if(!image||loading)return;const end=point(event);sourceCanvas.style.cursor=({resize:'nwse-resize',move:'move',select:'crosshair'})[start?.mode||cropMode(end)];if(!start)return;
++    if(!image||loading)return;const end=point(event);sourceCanvas.style.cursor=picking?'copy':({resize:'nwse-resize',move:'move',select:'crosshair'})[start?.mode||cropMode(end)];if(!start)return;
+     const s=start.crop;
+-    if(start.mode==='move')crop={...s,x:Math.max(0,Math.min(image.width-s.w,s.x+end.x-start.x)),y:Math.max(0,Math.min(image.height-s.h,s.y+end.y-start.y))};
++    if(start.mode==='move')crop={...s,x:s.x+end.x-start.x,y:s.y+end.y-start.y};
+     else if(start.mode==='resize')crop={...s,w:Math.max(1,end.x-s.x),h:Math.max(1,end.y-s.y)};
+-    else{crop={x:Math.min(start.x,end.x),y:Math.min(start.y,end.y),w:Math.max(1,Math.abs(end.x-start.x)),h:Math.max(1,Math.abs(end.y-start.y))};crop.x=Math.min(crop.x,image.width-crop.w);crop.y=Math.min(crop.y,image.height-crop.h);}
++    else crop={x:Math.min(start.x,end.x),y:Math.min(start.y,end.y),w:Math.max(1,Math.abs(end.x-start.x)),h:Math.max(1,Math.abs(end.y-start.y))};
+     drawSource();
+   };
+-  sourceCanvas.onpointerup=()=>{if(!start)return;const mode=start.mode;start=null;if(mode!=='move')fit();render();};
++  sourceCanvas.onpointerup=()=>{if(!start)return;const mode=start.mode;start=null;selectAgain=false;reselect.setAttribute('aria-pressed','false');if(mode!=='move')fit();render();};
+   sourceCanvas.onpointercancel=()=>{if(!start)return;crop=start.crop;start=null;drawSource();render();};
+   fields.forEach(input=>input.oninput=()=>{const [x,y,w,h]=fields.map(f=>Number(f.value));crop={x,y,w,h};fit();render();if(pixels)drawSource();});
+   dialog.querySelector('[data-all]').onclick=()=>{if(!image)return;crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();render();};
+   dialog.querySelector('[data-fit]').onclick=()=>{fit();render();};
++  reselect.onclick=()=>{selectAgain=true;reselect.setAttribute('aria-pressed','true');status.textContent='从原图任意位置重新拖框；可拖出图像边界留透明边';};
++  for(const button of [flipX,flipY])button.onclick=()=>{button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));render();};
++  thin.onchange=render;
++  dialog.querySelector('[data-photo]').onclick=()=>{pixelize.checked=false;sampling.value='smooth';palette.value='original';colors.value='0';key.checked=false;render();};
++  dialog.querySelector('[data-cell]').onclick=()=>{
++    if(!image||loading)return;
++    if(image.width%3||image.height%4){status.textContent='此图不能均分为3列×4行，请手动裁选';return;}
++    crop={x:Number(dialog.querySelector('[data-column]').value)*image.width/3,y:Number(dialog.querySelector('[data-row]').value)*image.height/4,w:image.width/3,h:image.height/4};drawSource();fit();render();
++  };
++  pick.onclick=()=>{picking=!picking;pick.setAttribute('aria-pressed',String(picking));if(picking)status.textContent='点击原图选择要抠除的颜色；再次点取色按钮可取消';};
++  dialog.querySelector('[data-black]').onclick=()=>{key.checked=true;keyColor.value='#303030';tolerance.value=66;neutral.checked=true;render();};
+   file.onchange=async()=>{
+-    image?.close();image=null;pixels=null;submit.disabled=place.disabled=true;const selected=file.files[0];if(!selected)return;
++    image?.close();image=null;pixels=null;picking=selectAgain=false;for(const button of [pick,reselect,flipX,flipY])button.setAttribute('aria-pressed','false');submit.disabled=place.disabled=true;const selected=file.files[0];if(!selected)return;
+     if(!['image/png','image/jpeg','image/webp'].includes(selected.type)||selected.size>64*1024*1024){status.textContent='请选择 64 MB 以内的 PNG、JPEG 或 WebP 图片';return;}
+     loading=true;file.disabled=true;status.textContent='读取图片…';
+     try{const decoded=await createImageBitmap(selected);if(decoded.width*decoded.height>16*1024*1024){decoded.close();throw new Error('图片超过 1600 万像素，请先缩小原图');}image=decoded;filename=selected.name.replace(/\.[^/.]+$/,'');crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();}
+@@ -125,6 +189,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     finally{loading=false;file.disabled=false;render();}
+   };
+   width.oninput=colors.onchange=sampling.onchange=pixelize.onchange=render;
++  palette.onchange=key.onchange=keyColor.oninput=tolerance.oninput=neutral.onchange=render;
+   place.onclick=()=>{try{if(!pixels)return;PE.addImageLayer(app,pixels,filename);dialog.close();}catch(error){status.textContent=error.message;}};
+   submit.onclick=async()=>{
+     submit.disabled=place.disabled=true;
+diff --git a/js/visual-layers.js b/js/visual-layers.js
+index 3749946..8d48eb2 100644
+--- a/js/visual-layers.js
++++ b/js/visual-layers.js
+@@ -20,7 +20,7 @@ PE.VisualLayers={
+   },
+   partName(layer){
+     if(layer.isGroup)return null;
+-    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim();
++    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim()||s.trim();
+     if(n.startsWith('头发 /')&&this.slot(layer))return this.slot(layer)+'-'+clean(pieces[1]);
+     if(n.startsWith('发饰 /'))return '饰品-'+clean(pieces[1]);
+     if(n.startsWith('服装 /'))return pieces.at(-1)+'-'+clean(pieces[1]);
+@@ -31,6 +31,11 @@ PE.VisualLayers={
+     const name=this.partName(layer);
+     return name?project.layers.filter(l=>this.partName(l)===name&&project.spriteSheets?.[l.sheetIndex]?.name.startsWith('original32_')):[];
+   },
++  components(project,layer){
++    const group=project.layers[layer.parent],slot=this.slot(layer);
++    if(layer.parent==null||!group?.isGroup||!slot||this.slot(group)!==slot)return [layer];
++    return project.layers.filter(l=>!l.isGroup&&l.parent===layer.parent&&this.slot(l)===slot&&l.name.split(' / ')[1]===layer.name.split(' / ')[1]);
++  },
+   toggleFamily(app,index){
+     const p=app.project,members=this.family(p,p.layers[index]);if(!members.length)return;
+     const visible=!members.every(l=>l.visible),before=p.layers.map(l=>l.visible),slot=this.slot(p.layers[index]);
+@@ -54,8 +59,9 @@ PE.VisualLayers={
+   },
+   choose(app,index){
+     const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isHandLayer(l))return;
+-    const slot=this.slot(l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
+-    if(slot)for(const other of p.layers){if(other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=other===l;}
++    const slot=this.slot(l),members=this.components(p,l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
++    if(slot)for(const other of p.layers){if(!other.isGroup&&other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=members.includes(other);}
++    let parent=l.parent;const seen=new Set();while(parent!=null&&p.layers[parent]?.isGroup&&!seen.has(parent)){seen.add(parent);p.layers[parent].visible=true;parent=p.layers[parent].parent;}
+     l.visible=true;p.currentLayerIndex=index;app.animationPlayer.pause();
+     const after=p.layers.map(x=>x.visible),restore=(values,li)=>{p.layers.forEach((x,i)=>x.visible=values[i]);p.currentLayerIndex=li;};
+     app.history.undoStack.push({description:'选用'+(slot||'图层'),changes:[],undo:()=>restore(before,selected),redo:()=>restore(after,index)});
+@@ -91,7 +97,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+       b.onclick=event=>{event.stopPropagation();this.visualLayerCategory=name;this.updateLayerList();};nav.append(b);
+     }
+     const panel=element('div','part-panel');panel.setAttribute('role','tabpanel');const groups=new Map();
+-    const entries=rows.filter(row=>V.category(p.layers[Number(row.dataset.layerIndex)])===this.visualLayerCategory);
++    const prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_',hasPixels=l=>[...l.frameData].some(([k,d])=>k.startsWith(prefix)&&d.data.some((v,i)=>i%4===3&&v));
++    const entries=rows.filter(row=>{const l=p.layers[Number(row.dataset.layerIndex)],members=V.components(p,l);return V.category(l)===this.visualLayerCategory&&(members.length===1||hasPixels(l)||!members.some(hasPixels));});
+     for(const row of entries){
+       const index=Number(row.dataset.layerIndex),l=p.layers[index],slot=V.slot(l)||'图层';
+       if(!groups.has(slot)){const group=element('section','part-slot'),title=element('h5','part-slot-title',slot);group.append(title);groups.set(slot,group);}
+@@ -99,7 +106,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+       const label=row.querySelector('.layer-name'),icons=[...row.querySelectorAll('.layer-icon-btn')],opacity=row.querySelector('input'),clone=row.querySelector('.layer-mini'),remove=row.querySelector('.layer-delete');
+       const thumb=element('canvas','part-thumb');thumb.width=48;thumb.height=48;thumb.setAttribute('aria-label',(l.name||'图层')+'预览');drawThumbnail(thumb,V.thumbnail(l,p));
+       const main=element('div','part-card-main');
+-      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?l.name.split(' / ')[1].replace(/^\d+\s*/,''):l.name.split(' / ').at(-1);
++      const partLabel=l.name.split(' / ')[1]||'';
++      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+       const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
+       const state=element('small','part-state',l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''));
+       const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
+diff --git a/test/image-import-browser.cjs b/test/image-import-browser.cjs
+index d06564c..0d4d8b6 100644
+--- a/test/image-import-browser.cjs
++++ b/test/image-import-browser.cjs
+@@ -23,10 +23,25 @@ async function main(){
+     await page.getByRole('button',{name:'上传图片',exact:true}).click();
+     await page.getByLabel('上传源图片').setInputFiles({name:'测试图片.png',mimeType:'image/png',buffer:source.toBuffer('image/png')});
+     await page.getByRole('button',{name:'放到当前画布',exact:true}).waitFor({state:'visible'});
+-    assert.equal(await page.getByLabel('颜色数量').inputValue(),'0');assert.equal(await page.getByLabel('缩小方式').inputValue(),'smooth');
++    assert.equal(await page.getByLabel('颜色数量').inputValue(),'0');assert.equal(await page.getByLabel('缩小方式').inputValue(),'nearest');
++    await page.getByLabel('精灵方向').selectOption('1');await page.getByLabel('精灵帧',{exact:true}).selectOption('2');await page.getByRole('button',{name:'按3×4精灵格裁选',exact:true}).click();
++    assert.deepEqual(await page.locator('.crop-fields input').evaluateAll(inputs=>inputs.map(i=>Number(i.value))),[16,4,8,4]);await page.getByRole('button',{name:'选整张图',exact:true}).click();
++    await page.getByRole('button',{name:'从原图取色',exact:true}).click();const pickBox=await page.getByLabel('原图裁选').boundingBox();await page.mouse.click(pickBox.x+pickBox.width/8,pickBox.y+pickBox.height/4);
++    assert.equal(await page.getByLabel('抠除颜色').inputValue(),'#ff0000');assert.equal(await page.getByLabel('按颜色抠图',{exact:true}).isChecked(),true);
++    assert.deepEqual(await page.locator('[data-preview]').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return [d[3],d[(c.width-1)*4+3]];}),[0,255]);
++    const black=createCanvas(24,16),blackCtx=black.getContext('2d');blackCtx.fillStyle='#303030';blackCtx.fillRect(0,0,12,16);blackCtx.fillStyle='#f0d040';blackCtx.fillRect(12,0,12,16);blackCtx.fillStyle='#6e4008';blackCtx.fillRect(12,0,2,16);
++    await page.getByLabel('上传源图片').setInputFiles({name:'黑色人形.png',mimeType:'image/png',buffer:black.toBuffer('image/png')});await page.getByRole('button',{name:'去黑色人形',exact:true}).click();await page.getByLabel('输出色板').selectOption('hair-gray');
++    const keyed=await page.locator('[data-preview]').evaluate(c=>{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;return {left:[...d.slice(0,4)],outline:[...d.slice(12*4,13*4)],base:[...d.slice(20*4,21*4)]};});assert.deepEqual(keyed,{left:[0,0,0,0],outline:[119,119,119,255],base:[209,209,209,255]});assert.equal(await page.getByLabel('颜色数量').isDisabled(),true);
++    await page.screenshot({path:path.join(root,'test/image-key-gray-preview.png')});await page.getByLabel('按颜色抠图',{exact:true}).uncheck();await page.getByLabel('输出色板').selectOption('original');
++    const corners=createCanvas(4,4),cc=corners.getContext('2d');for(const [color,x,y]of [['red',0,0],['blue',2,0],['green',0,2],['yellow',2,2]]){cc.fillStyle=color;cc.fillRect(x,y,2,2);}cc.clearRect(0,0,1,1);cc.fillStyle='rgba(100,120,200,.25)';cc.fillRect(0,0,1,1);
++    await page.getByLabel('上传源图片').setInputFiles({name:'翻转与高清.png',mimeType:'image/png',buffer:corners.toBuffer('image/png')});
++    const firstPixel=()=>page.locator('[data-preview]').evaluate(c=>[...c.getContext('2d').getImageData(0,0,1,1).data]);await page.getByRole('button',{name:'水平翻转',exact:true}).click();assert.deepEqual(await firstPixel(),[0,0,255,255]);await page.getByRole('button',{name:'上下翻转',exact:true}).click();assert.deepEqual(await firstPixel(),[255,255,0,255]);await page.getByRole('button',{name:'水平翻转',exact:true}).click();await page.getByRole('button',{name:'上下翻转',exact:true}).click();
++    await page.getByRole('button',{name:'原图缩放（不做像素化）',exact:true}).click();assert.equal(await page.getByLabel('转成像素图',{exact:true}).isChecked(),false);assert.equal(await page.getByLabel('缩小方式').inputValue(),'smooth');assert((await firstPixel())[3]>0&&(await firstPixel())[3]<128);assert.equal(await page.getByLabel('保细线轮廓',{exact:true}).isDisabled(),true);await page.getByLabel('转成像素图',{exact:true}).check();await page.getByLabel('缩小方式').selectOption('nearest');
++    await page.getByLabel('上传源图片').setInputFiles({name:'测试图片.png',mimeType:'image/png',buffer:source.toBuffer('image/png')});
+     const cropCanvas=page.getByLabel('原图裁选'),box=await cropCanvas.boundingBox();
+     const cropPoint=(x,y)=>({x:box.x+x*box.width/24,y:box.y+y*box.height/16});
+     async function cropDrag(x,y,dx,dy){const a=cropPoint(x,y),b=cropPoint(dx,dy);await page.mouse.move(a.x,a.y);await page.mouse.down();await page.mouse.move(b.x,b.y,{steps:5});await page.mouse.up();}
++    await page.getByRole('button',{name:'重新框选',exact:true}).click();await cropDrag(1.1,1.1,-2.1,-2.1);assert(Number(await page.getByLabel('裁选 X',{exact:true}).inputValue())<0);assert(Number(await page.getByLabel('裁选 Y',{exact:true}).inputValue())<0);assert.equal((await firstPixel())[3],0);await page.getByRole('button',{name:'选整张图',exact:true}).click();
+     await cropDrag(2.1,2.1,18.1,14.1);assert.equal(await page.getByLabel('裁选宽度',{exact:true}).inputValue(),'16');
+     await cropDrag(8.1,7.1,10.1,8.1);assert.equal(await page.getByLabel('裁选 X',{exact:true}).inputValue(),'4');assert.equal(await page.getByLabel('裁选 Y',{exact:true}).inputValue(),'3');
+     await cropDrag(20,15,22.5,16);assert.equal(await page.getByLabel('裁选宽度',{exact:true}).inputValue(),'18');
+diff --git a/test/image-import.cjs b/test/image-import.cjs
+index 522710b..fd93ed2 100644
+--- a/test/image-import.cjs
++++ b/test/image-import.cjs
+@@ -6,14 +6,29 @@ for(const name of ['core','history','canvas','tools','export','pixel-import'])vm
+ const source=createCanvas(8,4),ctx=source.getContext('2d');ctx.fillStyle='#ff0000';ctx.fillRect(0,0,4,4);ctx.fillStyle='#0000ff';ctx.fillRect(4,0,4,4);ctx.clearRect(4,0,1,1);
+ const crop={x:4,y:0,w:4,h:4},pixels=PE.imageToPixels(source,crop,4,{pixelize:false});
+ assert.equal(pixels.width,4);assert.equal(pixels.height,4);assert.deepEqual([...pixels.data.slice(0,4)],[0,0,0,0]);assert.deepEqual([...pixels.data.slice(4,8)],[0,0,255,255]);
+-assert.throws(()=>PE.imageToPixels(source,{x:7,y:0,w:2,h:4},4),/裁选/);assert.throws(()=>PE.imageToPixels(source,crop,0),/宽高/);
++assert.throws(()=>PE.imageToPixels(source,{x:9,y:0,w:2,h:4},4),/裁选/);assert.throws(()=>PE.imageToPixels(source,crop,0),/宽高/);
++const padded=PE.imageToPixels(source,{x:7,y:0,w:2,h:4},2,{pixelize:false});assert.equal(padded.data[3],255);assert.equal(padded.data[7],0,'crop overflow adds transparent padding instead of clamping');
++const mirrored=PE.imageToPixels(source,{x:0,y:0,w:8,h:4},8,{flipX:true});assert.deepEqual([...mirrored.data.slice(0,4)],[0,0,255,255]);assert.deepEqual([...mirrored.data.slice(7*4,8*4)],[255,0,0,255]);
++const upside=PE.imageToPixels(source,{x:4,y:0,w:4,h:4},4,{flipY:true});assert.equal(upside.data[3],255);assert.equal(upside.data[(3*4)*4+3],0);
++const margin=PE.imageToPixels(source,{x:-1,y:-1,w:10,h:6},10,{pixelize:false});assert.equal(margin.data[3],0);assert.equal(margin.data[(1*10+1)*4+3],255);
++const fine=createCanvas(4,4),fineCtx=fine.getContext('2d');fineCtx.fillStyle='#d1b044';fineCtx.fillRect(1,1,1,1);const lost=PE.imageToPixels(fine,{x:0,y:0,w:4,h:4},2),kept=PE.imageToPixels(fine,{x:0,y:0,w:4,h:4},2,{preserveThin:true});assert(!lost.data.some((v,i)=>i%4===3&&v));assert(kept.data.some((v,i)=>i%4===3&&v),'preserve a thin curved-edge pixel missed by point sampling');
++const soft=createCanvas(2,2),softCtx=soft.getContext('2d');softCtx.fillStyle='rgba(100,120,200,.25)';softCtx.fillRect(0,0,2,2);assert(PE.imageToPixels(soft,{x:0,y:0,w:2,h:2},2,{pixelize:false,sampling:'smooth'}).data[3]>0);assert.equal(PE.imageToPixels(soft,{x:0,y:0,w:2,h:2},2).data[3],0);
+ const checker=createCanvas(2,1),c=checker.getContext('2d');c.fillStyle='#000';c.fillRect(0,0,1,1);c.fillStyle='#fff';c.fillRect(1,0,1,1);
+ const nearest=PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false,sampling:'nearest'}),smooth=PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false,sampling:'smooth'});assert.notDeepEqual([...nearest.data],[...smooth.data],'sampling choice must change the conversion');
+ const gradient=createCanvas(32,1),g=gradient.getContext('2d');for(let i=0;i<32;i++){g.fillStyle=`rgb(${i*8},${255-i*8},0)`;g.fillRect(i,0,1,1);}
+ const preserved=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32);assert.deepEqual(preserved.data,g.getImageData(0,0,32,1).data,'default conversion must preserve more than 16 original colors');
+-const blueOnly=PE.imageToPixels(source,crop,2,{pixelize:false});for(let i=0;i<blueOnly.data.length;i+=4)assert.equal(blueOnly.data[i],0,'smooth resizing must not pull red from outside the blue crop');
++const blueOnly=PE.imageToPixels(source,crop,2,{pixelize:false,sampling:'smooth'});for(let i=0;i<blueOnly.data.length;i+=4)assert.equal(blueOnly.data[i],0,'smooth resizing must not pull red from outside the blue crop');
+ const reduced=PE.imageToPixels(gradient,{x:0,y:0,w:32,h:1},32,{colors:8}),palette=new Set();for(let i=0;i<reduced.data.length;i+=4)palette.add([...reduced.data.slice(i,i+3)].join(','));assert(palette.size<=8);
+-assert.deepEqual(PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false}).data,smooth.data,'default downsampling must average detail instead of selecting a single source pixel');
++assert.deepEqual(PE.imageToPixels(checker,{x:0,y:0,w:2,h:1},1,{pixelize:false}).data,nearest.data,'default downsampling preserves existing pixel art without blending colors');
++const keyed={data:new Uint8ClampedArray([48,48,48,255,90,90,90,255,110,65,8,255,255,220,80,255])};
++PE.removeImageColor(keyed,{rgb:[48,48,48],tolerance:66,neutralOnly:true});assert.deepEqual([...keyed.data.slice(0,8)],[0,0,0,0,0,0,0,0]);assert.equal(keyed.data[11],255,'warm hair outlines survive gray/black keying');
++assert.throws(()=>PE.removeImageColor(keyed,{rgb:[0,0],tolerance:0}),/容差/);assert.throws(()=>PE.removeImageColor(keyed,{rgb:[0,0,0],tolerance:-1}),/容差/);
++const gray=PE.hairGrayImage({width:4,height:1,data:new Uint8ClampedArray([100,60,0,255,220,170,30,255,255,240,120,255,10,20,30,0])});assert.deepEqual([...gray.data],[119,119,119,255,178,178,178,255,209,209,209,255,0,0,0,0]);
++const shadow=new ImageData(3,3);for(let i=0;i<shadow.data.length;i+=4)shadow.data.set([100,60,0,255],i);PE.hairGrayImage(shadow);assert.equal(shadow.data[16],178,'filled dark interior becomes shadow, not a solid outline block');assert.equal(shadow.data[0],119);
++const blackAndGold=createCanvas(4,2),kg=blackAndGold.getContext('2d');kg.fillStyle='#303030';kg.fillRect(0,0,2,2);kg.fillStyle='#f0d040';kg.fillRect(2,0,2,2);const untouched=kg.getImageData(0,0,4,2).data.slice();
++const cut=PE.imageToPixels(blackAndGold,{x:0,y:0,w:4,h:2},4,{keyColor:{rgb:[48,48,48],tolerance:0}});assert.equal(cut.data[3],0);assert.equal(cut.data[11],255);assert.deepEqual(kg.getImageData(0,0,4,2).data,untouched,'keying never mutates the original image');
++const softCut=PE.imageToPixels(blackAndGold,{x:0,y:0,w:4,h:2},2,{pixelize:false,sampling:'smooth',keyColor:{rgb:[48,48,48],tolerance:0}});for(let i=0;i<softCut.data.length;i+=4)if(softCut.data[i+3])assert([240,208,64].every((v,c)=>Math.abs(softCut.data[i+c]/softCut.data[i]-v/240)<.01),'optional photo filtering preserves gold hue rather than blending black into the edge');
++assert.throws(()=>PE.imageToPixels(source,crop,2,{palette:'unknown'}),/色板/);
+ const p=new PE.Project(),sheet=new PE.SpriteSheet('canvas'),action=new PE.Action('idle','down');sheet.actions.push(action);action.frames.push(new PE.Frame(0,0,0,8,8),new PE.Frame(0,0,0,8,8));p.spriteSheets=[sheet];p.currentSheetIndex=p.currentActionIndex=p.currentFrameIndex=0;
+ const original=p.layers[0],before=new ImageData(8,8);before.data.set([17,18,19,255]);original.frameData.set('0_0_0',before);original.frameData.set('0_0_1',new ImageData(8,8));p.currentLayerIndex=0;
+ const history=new PE.HistoryManager(),tools=new PE.ToolManager(),cm=new PE.CanvasManager(Object.assign(createCanvas(64,64),{style:{}}),p);tools.init(p,cm,history);let dirty=0;
+@@ -22,3 +37,4 @@ const layer=PE.addImageLayer(app,pixels,'blue crop');assert.equal(p.layers.lengt
+ assert(tools.nudgeSelection(1,0));assert.deepEqual([...layer.getFrameData('0_0_0').data.slice((2*8+4)*4,(2*8+4)*4+4)],[0,0,255,255]);history.undo(p);history.undo(p);assert.equal(p.layers.length,1);assert.equal(p.currentLayerIndex,0);history.redo(p);assert.equal(p.layers[1],layer);
+ const count=p.layers.length;p.getCurrentFrame().addLockedRegion(3,2,1,1);assert.throws(()=>PE.addImageLayer(app,pixels,'protected'),/保护区域/);assert.equal(p.layers.length,count);p.getCurrentFrame().lockedRegions=[];assert.throws(()=>PE.addImageLayer(app,new ImageData(9,9),'large'),/比当前画布大/);assert.equal(p.layers.length,count);
+ const exporter=new PE.ExportManager();exporter.init(p,cm);exporter.exportProject(false).text().then(text=>{const saved=JSON.parse(text);assert.equal(saved.layers.at(-1).name,'导入 · blue crop');assert(saved.layers.at(-1).frameData['0_0_0'].dataURL.startsWith('data:image/png'));console.log('PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.');}).catch(error=>{console.error(error);process.exitCode=1;});
++
+diff --git a/test/visual-layers.cjs b/test/visual-layers.cjs
+index 86b4575..ea53cb3 100644
+--- a/test/visual-layers.cjs
++++ b/test/visual-layers.cjs
+@@ -35,3 +35,9 @@ assert.deepEqual(layers.map(l=>[...l.frameData]),pixels);
+ assert.equal(V.partName(layer('头发 / 02 齐刘海 / 前发')),'前发-齐刘海');
+ assert.equal(V.partName(layer('头发 / 02 双马尾侧扎发束 / 侧发')),'侧发-双马尾侧扎发束');
+ console.log('PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.');
++
++const groupIndex=layers.length,group={...layer('头发 / 80009 / 后发'),isGroup:true,frameData:new Map()},bottom={...layer('头发 / 80009 / 底层后发'),parent:groupIndex},side={...layer('头发 / 80009 / 侧面后发'),parent:groupIndex,frameData:new Map([['8_0_0',data]])},different={...layer('头发 / 80010 / 后发'),parent:groupIndex};
++layers.push(group,bottom,side,different);assert.deepEqual(V.components(p,bottom),[bottom,side]);assert.notEqual(V.partName(bottom),V.partName(different),'numeric source IDs remain distinct');
++V.choose(app,groupIndex+1);assert(group.visible&&bottom.visible&&side.visible);assert(!different.visible&&!layers[2].visible);app.history.undoStack.at(-1).undo();assert(!group.visible&&!bottom.visible&&!side.visible);app.history.undoStack.at(-1).redo();assert(group.visible&&bottom.visible&&side.visible);
++app.visualLayerCategory='头发';app.updateLayerList();assert(!list.querySelectorAll('.visual-layer-card').some(r=>Number(r.dataset.layerIndex)===groupIndex+2),'blank directional component card is hidden');assert(list.querySelectorAll('.layer-name').some(e=>e.textContent==='80009'),'numeric source ID has a visible label');
++console.log('PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.');
+diff --git "a/\344\272\272\347\211\251\347\273\230\345\210\266AI\350\246\201\346\261\202\344\270\216\350\207\252\346\243\200.md" "b/\344\272\272\347\211\251\347\273\230\345\210\266AI\350\246\201\346\261\202\344\270\216\350\207\252\346\243\200.md"
+index bb3a3ad..69ac324 100644
+--- "a/\344\272\272\347\211\251\347\273\230\345\210\266AI\350\246\201\346\261\202\344\270\216\350\207\252\346\243\200.md"
++++ "b/\344\272\272\347\211\251\347\273\230\345\210\266AI\350\246\201\346\261\202\344\270\216\350\207\252\346\243\200.md"
+@@ -22,13 +22,14 @@
+ 5. 保存为用户手动操作：保存工程按钮或 Ctrl+S 保存到本地共享工程，不能触发下载，也不能每画一笔自动保存。导出/下载是单独操作。
+ 
+ ## 角色与图层约束
+-- 沿用原角色及用户当前画稿。通常32×32；拾取40×40，不能裁掉伸出的手。不得换成被否决的32×64身体、纯侧面或双丸子头。
++- 沿用原角色及用户当前画稿。2026-10-30起，主工程及人物分支的当前待机 `original32_idle` 为36×36：原32×32像素整体向右、下各移2像素，四边透明扩边，不缩放人物。其他动作仍沿用原尺寸，拾取40×40，原始动作备份不变。不得换成被否决的32×64身体、纯侧面或双丸子头。
+ - 头、身体、手、眼睛、嘴巴、衣服、头发保持独立。手受保护，画衣服不侵入手层。当前一像素描边以用户稿为准，不得回到旧的粗描边。
+ - 肤色 #feede1；原始动作备份不改。主列表为行走、待机、拾取、坐姿、睡觉。
+ - 前发、后发、饰品三个槽；左右马尾并入后发。刘海按形状命名，如齐刘海、斜刘海，不能把前发叫双马尾或披发。
+ - 背面前发必须透明；后脑发帽在后发。正侧面后发在头身后，背面后发盖住后脑，饰品位置正确。所有合成路径统一使用 PE.getRenderLayers，不以原始数组顺序自行绘制。
+ - 前后发共用色阶，支持混搭；不把配件颜色烘入头发。保留当前获准明暗，不擅加高光条。
+-- 双马尾正背面对称，以实际人物中轴为准，不能直接按画布中心翻转。当前常见中轴x=16.5，仍须逐帧核实；侧面单独画。
++- 本次80011前发＋80009后发：发顶与对应帧素体头顶齐平，不额外抬高；正侧面刘海用同一垂直标尺核对，不因各方向独立缩放而变长短。自动保细线可能撑粗轮廓，默认关闭，不能代替逐像素核对。
++- 双马尾正背面对称，以实际人物中轴为准，不能直接按画布中心翻转。待机扩边后旧坐标需加2，不沿用旧稿固定中轴数值，须逐帧核实；侧面单独画，素材朝向相反时先水平翻转再对齐。
+ - 呼吸跟随原帧头身结构，脚稳定；不能整人漂浮、把单帧头层平移替代呼吸，不能添加颈部断线或阴影补丁。侧面阴影独立检查，不照抄正面去阴影。
+ 
+ ## 必须实际做的自检
+diff --git a/js/idle-canvas.cjs b/js/idle-canvas.cjs
+new file mode 100644
+index 0000000..5522338
+--- /dev/null
++++ b/js/idle-canvas.cjs
+@@ -0,0 +1,43 @@
++/* Transparent padding only: every existing idle pixel keeps its value and relative position. */
++const png=require('../scripts/png.cjs');
++module.exports=function padIdle(project,width,height=width,{allowCrop=false}={}){
++  const si=project.spriteSheets.findIndex(s=>s.name==='original32_idle');if(si<0)return false;
++  const sheet=project.spriteSheets[si],ow=sheet.frameWidth,oh=sheet.frameHeight;
++  if(ow===width&&oh===height)return false;
++  if(![ow,oh,width,height].every(Number.isSafeInteger)||width<1||height<1||(!allowCrop&&(width<ow||height<oh))||width>128||height>128)throw new Error('待机画布只支持扩边，最大128×128');
++  const dx=Math.floor((width-ow)/2),dy=Math.floor((height-oh)/2),updates=[],cache=new Map();
++  function decode(url){if(typeof url!=='string'||!url.startsWith('data:image/png;base64,'))throw new Error('待机像素不是PNG，未修改工程');return png.decode(Buffer.from(url.split(',')[1],'base64'));}
++  function url(w,h,data){return 'data:image/png;base64,'+png.encode(w,h,data).toString('base64');}
++  function blit(src,sx,sy,w,h,target,tw,tx,ty){
++    if(sx<0||sy<0||sx+w>src.width||sy+h>src.height)throw new Error('待机原图切帧越界，未修改工程');
++    for(let y=0;y<h;y++)target.set(src.data.subarray(((sy+y)*src.width+sx)*4,((sy+y)*src.width+sx+w)*4),((ty+y)*tw+tx)*4);
++  }
++  function resize(src){
++    const data=new Uint8Array(width*height*4);
++    for(let y=0;y<oh;y++)for(let x=0;x<ow;x++){
++      const i=(y*ow+x)*4,nx=x+dx,ny=y+dy;
++      if(nx<0||ny<0||nx>=width||ny>=height){if(src.data[i+3])throw new Error('扩边内已有绘画，拒绝裁掉像素');continue;}
++      data.set(src.data.subarray(i,i+4),(ny*width+nx)*4);
++    }
++    return data;
++  }
++  for(const layer of project.layers)for(const [key,frame]of Object.entries(layer.frameData||{})){
++    if(Number(key.split('_')[0])!==si)continue;
++    if(frame.width!==ow||frame.height!==oh)throw new Error('待机图层尺寸混杂，未修改工程');
++    let padded=cache.get(frame.dataURL);
++    if(!padded){const src=decode(frame.dataURL);if(src.width!==ow||src.height!==oh)throw new Error('PNG尺寸与待机图层不符，未修改工程');padded={width,height,dataURL:url(width,height,resize(src))};cache.set(frame.dataURL,padded);}
++    updates.push([layer,key,{...frame,...padded}]);
++  }
++  const columns=Math.max(...sheet.actions.map(a=>a.frames.length)),rows=sheet.actions.length;
++  if(!columns||!rows||columns*width*rows*height>16*1024*1024)throw new Error('待机素材表大小无效');
++  const source=sheet.imageDataURL?decode(sheet.imageDataURL):null,data=new Uint8Array(columns*width*rows*height*4);
++  const actions=sheet.actions.map((action,ai)=>({...action,frames:action.frames.map((frame,fi)=>{
++    if(frame.width!==ow||frame.height!==oh)throw new Error('待机动作尺寸混杂，未修改工程');
++    if(source){const cel=new Uint8Array(ow*oh*4);blit(source,frame.sourceX||0,frame.sourceY||0,ow,oh,cel,ow,0,0);blit({width,height,data:resize({data:cel})},0,0,width,height,data,columns*width,fi*width,ai*height);}
++    return {...frame,width,height,sourceX:fi*width,sourceY:ai*height,lockedRegions:(frame.lockedRegions||[]).map(r=>({...r,x:r.x+dx,y:r.y+dy}))};
++  })}));
++  const imageDataURL=url(columns*width,rows*height,data);
++  for(const [layer,key,value]of updates)layer.frameData[key]=value;
++  Object.assign(sheet,{frameWidth:width,frameHeight:height,columns,rows,spacingX:0,spacingY:0,offsetX:0,offsetY:0,actions,imageDataURL});
++  return true;
++};
+diff --git a/test/idle-canvas.cjs b/test/idle-canvas.cjs
+new file mode 100644
+index 0000000..e9c120f
+--- /dev/null
++++ b/test/idle-canvas.cjs
+@@ -0,0 +1,10 @@
++const fs=require('fs'),path=require('path'),assert=require('assert/strict'),{spawn}=require('child_process'),png=require('../scripts/png.cjs'),pad=require('../js/idle-canvas.cjs'),sync=require('../js/character-sync');
++const data=new Uint8Array(32*32*4);data.set([119,178,209,255],(8*32+10)*4);const url=(w,h,d)=>'data:image/png;base64,'+png.encode(w,h,d).toString('base64'),framePNG=url(32,32,data),sheetData=new Uint8Array(32*96*4);
++for(let a=0;a<3;a++)sheetData.set(data,a*32*32*4);
++const sheet={name:'original32_idle',frameWidth:32,frameHeight:32,columns:1,rows:3,imageDataURL:url(32,96,sheetData),actions:['side','down','up'].map((d,a)=>({name:d,direction:d,frames:[{sheetIndex:0,width:32,height:32,sourceX:0,sourceY:a*32,duration:180,lockedRegions:[{x:4,y:5,w:2,h:3}]}]}))};
++const layer=name=>({name,sheetIndex:0,visible:true,opacity:1,frameData:Object.fromEntries([0,1,2].map(a=>['0_'+a+'_0',{width:32,height:32,dataURL:framePNG}]))}),main={name:'main',spriteSheets:[sheet,{name:'original_backup',actions:[]}],layers:[layer('head'),layer('body'),layer('头发 / 独立 / 前发')],currentLayerIndex:2};
++const before=structuredClone(main),branch=structuredClone(main),other=JSON.stringify(main.spriteSheets[1]);assert(pad(main,36));assert.equal(main.spriteSheets[0].frameWidth,36);assert.equal(JSON.stringify(main.spriteSheets[1]),other);assert.deepEqual(main.spriteSheets[0].actions[0].frames[0].lockedRegions,[{x:6,y:7,w:2,h:3}]);
++for(const l of main.layers)for(const f of Object.values(l.frameData)){const im=png.decode(Buffer.from(f.dataURL.split(',')[1],'base64'));assert.equal(im.width,36);for(let y=0;y<36;y++)for(let x=0;x<36;x++){const expected=x>=2&&x<34&&y>=2&&y<34?data.subarray(((y-2)*32+x-2)*4,((y-2)*32+x-2)*4+4):[0,0,0,0];assert.deepEqual([...im.data.subarray((y*36+x)*4,(y*36+x)*4+4)],[...expected])}}
++assert.equal(pad(main,36),false);assert.throws(()=>pad(main,32),/只支持扩边/);const bad=structuredClone(before);bad.layers[1].frameData['0_0_0'].width=31;const badText=JSON.stringify(bad);assert.throws(()=>pad(bad,36),/尺寸混杂/);assert.equal(JSON.stringify(bad),badText,'invalid source cannot partially mutate a project');sync(branch,main);assert.equal(branch.spriteSheets[0].frameWidth,36);assert.deepEqual(branch.layers[2].frameData,main.layers[2].frameData,'independent hair is padded, not overwritten');
++const restored=structuredClone(main);pad(restored,32,32,{allowCrop:true});for(let i=0;i<before.layers.length;i++)for(let key of Object.keys(before.layers[i].frameData))assert.deepEqual(png.decode(Buffer.from(restored.layers[i].frameData[key].dataURL.split(',')[1],'base64')).data,data);assert.deepEqual(restored.spriteSheets[0].actions[0].frames[0].lockedRegions,before.spriteSheets[0].actions[0].frames[0].lockedRegions);const painted=structuredClone(main),ink=new Uint8Array(36*36*4);ink.set([119,119,119,255]);painted.layers[0].frameData['0_0_0'].dataURL=url(36,36,ink);const paintedText=JSON.stringify(painted);assert.throws(()=>pad(painted,32,32,{allowCrop:true}),/拒绝裁掉像素/);assert.equal(JSON.stringify(painted),paintedText);const reverseBranch=structuredClone(branch);sync(reverseBranch,before);assert.equal(reverseBranch.spriteSheets[0].frameWidth,32);
++(async()=>{const root=path.resolve(__dirname,'..'),dir=fs.mkdtempSync(path.join(require('os').tmpdir(),'idle-pad-test-'));for(let d of ['js','scripts','data/projects'])fs.mkdirSync(path.join(dir,d),{recursive:true});for(let f of ['server.js','js/character-base.js','js/character-sync.js','js/idle-canvas.cjs','scripts/png.cjs'])fs.copyFileSync(path.join(root,f),path.join(dir,f));fs.writeFileSync(path.join(dir,'data/shared-project.json'),JSON.stringify(before));fs.writeFileSync(path.join(dir,'data/projects/character-idle-test.json'),JSON.stringify(before));const child=spawn(process.execPath,[path.join(dir,'server.js'),'18773'],{windowsHide:true,stdio:['ignore','pipe','pipe']});try{await new Promise((resolve,reject)=>{let t=setTimeout(()=>reject(Error('server start timeout')),8000);child.stdout.once('data',()=>{clearTimeout(t);resolve()});child.once('error',reject)});const base='http://127.0.0.1:18773/api/project?id=';let r=await fetch(base+'character-idle-test'),oldETag=r.headers.get('etag'),draft=await r.json();fs.writeFileSync(path.join(dir,'data/shared-project.json'),JSON.stringify(main));r=await fetch(base+'character-idle-test');assert.equal(r.status,200);let latest=r.headers.get('etag'),upgraded=await r.json();assert.equal(upgraded.spriteSheets[0].frameWidth,36);assert.notEqual(latest,oldETag);const put=(p,e)=>fetch(base+'character-idle-test',{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':e},body:JSON.stringify(p)});assert.equal((await put(draft,oldETag)).status,409,'unsaved 32px drafts cannot overwrite resized branches');assert.equal((await put(upgraded,latest)).status,200);assert.equal(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/character-idle-test.json'))).spriteSheets[0].frameWidth,36);console.log('PASS: transparent centered expansion preserves all pixels, locks and backups; no partial mutation; old branch API upgrades and saves; stale 32px draft rejected.')}finally{child.kill()}})().catch(e=>{console.error(e);process.exitCode=1});
+diff --git a/test/hair-headtop-36.cjs b/test/hair-headtop-36.cjs
+new file mode 100644
+index 0000000..c0dddce
+--- /dev/null
++++ b/test/hair-headtop-36.cjs
+@@ -0,0 +1,5 @@
++const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict'),{createCanvas,ImageData,Image}=require('C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');global.window=global;global.ImageData=ImageData;global.Image=Image;global.document={createElement(){let c=createCanvas(1,1);c.style={};return c},body:{appendChild(){}}};global.File=class extends Blob{constructor(p,n){super(p);this.name=n}};global.FileReader=class{async readAsText(f){this.result=await f.text();this.onload()}};for(let n of ['core','history','canvas','tools','spritesheet','export','animation'])vm.runInThisContext(fs.readFileSync('js/'+n+'.js','utf8'));
++(async()=>{let out=path.resolve('自检记录/发顶齐平与刘海同长-1793324760694'),p=JSON.parse(fs.readFileSync(path.join(out,'candidate.json'))),before=JSON.parse(fs.readFileSync(path.join(out,'before.json'))),hair=l=>l.sheetIndex===8&&/^头发 \/ (80009|80011)/.test(l.name);assert.deepEqual(p.layers.filter(l=>!hair(l)),before.layers.filter(l=>!hair(l)));assert.deepEqual(p.spriteSheets,before.spriteSheets);let measures=JSON.parse(fs.readFileSync(path.join(out,'刘海深度核对.json')));assert(measures.every(m=>m.maxDepth===9));let {project}=await new PE.ExportManager().importProject(new File([JSON.stringify(p)],'candidate.json')),canvas=document.createElement('canvas');canvas.width=canvas.height=36;let cm=new PE.CanvasManager(canvas,project);cm.zoom=1;cm.showGrid=false;let ex=new PE.ExportManager();ex.init(project,null);let checks=[];
++for(let ai=0;ai<3;ai++)for(let fi=0;fi<4;fi++){project.currentSheetIndex=8;project.currentActionIndex=ai;project.currentFrameIndex=fi;let key=`8_${ai}_${fi}`,hd=project.layers.find(l=>l.name==='head'&&l.sheetIndex===8&&l.frameData.has(key)).getFrameData(key),top=36;for(let y=0;y<20;y++)for(let x=0;x<36;x++)if(hd.data[(y*36+x)*4+3])top=Math.min(top,y);let image=cm.getCompositeImageData(8,ai,fi);assert(image.data.some((v,i)=>i%4===3&&v));for(let l of project.layers.filter(l=>hair(l)&&!l.isGroup)){let im=l.getFrameData(key);if(!im)continue;for(let y=0;y<36;y++)for(let x=0;x<36;x++){let i=(y*36+x)*4;if(im.data[i+3]){assert(y>=top,'Hair above head');assert([119,178,209].includes(im.data[i])&&im.data[i]===im.data[i+1]&&im.data[i]===im.data[i+2])}}}cm.render();assert.deepEqual(cm.offscreenCtx.getImageData(0,0,36,36).data,image.data);assert.deepEqual(ex._getCompositeImageData(8,ai,fi).data,image.data);let t=createCanvas(36,36);t.getContext('2d').putImageData(image,0,0);fs.writeFileSync(path.join(out,`引擎回验-${ai}-${fi}.png`),t.toBuffer('image/png'));checks.push({ai,fi,headTop:top,hairNotAboveHead:true,canvasMatchesExport:true})}
++fs.writeFileSync(path.join(out,'验证结果.json'),JSON.stringify({...JSON.parse(fs.existsSync(path.join(out,'验证结果.json'))?fs.readFileSync(path.join(out,'验证结果.json'),'utf8'):'{}'),checks,fringeDepth:9,nonHairUnchanged:true},null,2));if(process.argv.includes('--save')){let url='http://127.0.0.1:8765/api/project?id=character-gold-mix-1793320553623',r=await fetch(url),etag=fs.readFileSync(path.join(out,'etag.txt'),'utf8');assert.equal(r.headers.get('etag'),etag,'Concurrent edit');r=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(p)});assert(r.ok,await r.text());r=await fetch(url);let saved=await r.json();assert.deepEqual(saved.layers,p.layers);fs.writeFileSync(path.join(out,'final-api-readback.json'),JSON.stringify(saved));let report=JSON.parse(fs.readFileSync(path.join(out,'验证结果.json')));report.saved=true;report.revision=r.headers.get('etag');fs.writeFileSync(path.join(out,'验证结果.json'),JSON.stringify(report,null,2))}console.log('PASS: 12 frames, hair never above head, side/front fringe both 9px, other pixels unchanged; saved_this_run='+process.argv.includes('--save'))
++})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,27 @@
+{
+  "originalSHA256": "42cead79c3e3638d87343edd5a5561e56d41d19aad13d6da1416f7bb58e5b5c1",
+  "targetSheets": [
+    7,
+    9,
+    10,
+    11
+  ],
+  "newLayers": 12,
+  "newPartCels": 174,
+  "targetFrames": 58,
+  "hiddenOldEyeLayers": [
+    182,
+    183,
+    184
+  ],
+  "bodyHeadHandPixelsUnchanged": true,
+  "allIdleDataUnchangedExceptIndexShift": true,
+  "originalBackupSheetsUnchanged": true,
+  "allSheetSizesAndDurationsUnchanged": true,
+  "checkedFrames": 70,
+  "mainPreviewPNGMatch": true,
+  "restoreExtraCopyVerified": true,
+  "verticalFitCels": 37,
+  "horizontalFitRows": 15,
+  "browserChecked": false
+}

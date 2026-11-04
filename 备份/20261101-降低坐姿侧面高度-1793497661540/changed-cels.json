@@ -1,0 +1,122 @@
+[
+  {
+    "layer": 225,
+    "name": "hand 2",
+    "key": "10_0_0",
+    "changedPixels": 22
+  },
+  {
+    "layer": 225,
+    "name": "hand 2",
+    "key": "10_0_1",
+    "changedPixels": 36
+  },
+  {
+    "layer": 225,
+    "name": "hand 2",
+    "key": "10_0_2",
+    "changedPixels": 36
+  },
+  {
+    "layer": 225,
+    "name": "hand 2",
+    "key": "10_0_3",
+    "changedPixels": 22
+  },
+  {
+    "layer": 226,
+    "name": "body",
+    "key": "10_0_0",
+    "changedPixels": 54
+  },
+  {
+    "layer": 226,
+    "name": "body",
+    "key": "10_0_1",
+    "changedPixels": 54
+  },
+  {
+    "layer": 226,
+    "name": "body",
+    "key": "10_0_2",
+    "changedPixels": 42
+  },
+  {
+    "layer": 226,
+    "name": "body",
+    "key": "10_0_3",
+    "changedPixels": 42
+  },
+  {
+    "layer": 227,
+    "name": "head",
+    "key": "10_0_0",
+    "changedPixels": 155
+  },
+  {
+    "layer": 227,
+    "name": "head",
+    "key": "10_0_1",
+    "changedPixels": 155
+  },
+  {
+    "layer": 227,
+    "name": "head",
+    "key": "10_0_2",
+    "changedPixels": 155
+  },
+  {
+    "layer": 227,
+    "name": "head",
+    "key": "10_0_3",
+    "changedPixels": 155
+  },
+  {
+    "layer": 228,
+    "name": "hand",
+    "key": "10_0_0",
+    "changedPixels": 22
+  },
+  {
+    "layer": 228,
+    "name": "hand",
+    "key": "10_0_1",
+    "changedPixels": 36
+  },
+  {
+    "layer": 228,
+    "name": "hand",
+    "key": "10_0_2",
+    "changedPixels": 36
+  },
+  {
+    "layer": 228,
+    "name": "hand",
+    "key": "10_0_3",
+    "changedPixels": 22
+  },
+  {
+    "layer": 287,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "10_0_0",
+    "changedPixels": 24
+  },
+  {
+    "layer": 287,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "10_0_1",
+    "changedPixels": 24
+  },
+  {
+    "layer": 287,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "10_0_2",
+    "changedPixels": 24
+  },
+  {
+    "layer": 287,
+    "name": "眼睛 / 原版豆豆眼·定位",
+    "key": "10_0_3",
+    "changedPixels": 24
+  }
+]

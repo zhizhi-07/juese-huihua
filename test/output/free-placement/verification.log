@@ -1,0 +1,64 @@
+BASELINE: backup core.js validateImagePlacement rejected x=1.5; observed before new tests.
+COMMAND node test/free-image-placement.cjs
+PASS: free drag and snapped drag, 0.1 nudge, undo/redo, original pixels, fractional edge-lock protection, invalid inputs, copy/paste, source editor, JSON reload, idle padding and ordinary pixel layers verified.
+EXIT 0
+COMMAND node test/free-image-placement-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: unchecked default, free X/Y, half-pixel drag, 0.1 arrow nudge, undo, real revision-checked fractional save and fresh-context exact reopen, original native pixels unchanged.
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\free-placement-test-WORAR8
+EXIT 0
+COMMAND node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT 0
+COMMAND node test/hd-canvas.cjs
+PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.
+EXIT 0
+COMMAND node test/hd-canvas-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: real UI create blank source, draw native pixel, local and main undo/redo, cancel confirmation, unchanged placement, manual ETag save, fresh-context exact reopen and re-edit; no user projects touched.
+Isolated fixture: C:\Users\ADMINI~1\AppData\Local\Temp\hd-canvas-test-Xfmpp9
+EXIT 0
+COMMAND node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+EXIT 0
+COMMAND node test/image-transform.cjs
+PASS: live drag preview; image picking; proportional resizing and handle; atomic undo/redo; bounds and lock protection; frame-switch cancellation.
+EXIT 0
+COMMAND node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT 0
+COMMAND node test/frame-copy-browser.cjs
+PASS: actual grouped-hair copy across directions; buttons and Ctrl+C/X/V; repeated next-frame copy and creation; batch range and all directions; undo; locked-target review; no page errors.
+EXIT 0
+COMMAND node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+EXIT 0
+COMMAND node test/idle-canvas.cjs
+PASS: transparent centered expansion preserves all pixels, locks and backups; no partial mutation; old branch API upgrades and saves; stale 32px draft rejected.
+EXIT 0
+COMMAND node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT 0
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: unchecked default, free X/Y, half-pixel drag, 0.1 arrow nudge, undo, real revision-checked fractional save and fresh-context exact reopen, original native pixels unchanged.
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\free-placement-test-IJHTgR
+FINAL BROWSER EXIT 0
+
+PASS actual 8765 serves new versioned HTML/JS/CSS and placement controls.

@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "FF0CB531BD71B5AF85D00B7DCE927A5417FD59DC0EA3DEFE25E8E817D75366F6",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E443D197D0D2107B364FCE2021938BB7C4BF37222CDD824F75E5DB75B47961C9",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\image-import.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CA0BFF15FD5CEAA7B63556AB3142ED1D60CF65FA28B672D739A0C4011604DAA6",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\image-import-browser.cjs"
+  }
+]

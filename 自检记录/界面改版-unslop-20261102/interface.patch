@@ -1,0 +1,382 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\350\207\252\346\243\200\350\256\260\345\275\225\\\347\225\214\351\235\242\346\224\271\347\211\210-unslop-20261102\\index.before.html" b/index.html
+index d3b8662..45000e6 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\350\207\252\346\243\200\350\256\260\345\275\225\\\347\225\214\351\235\242\346\224\271\347\211\210-unslop-20261102\\index.before.html"
++++ b/index.html
+@@ -14,6 +14,7 @@
+   <link rel="stylesheet" href="css/select-plus.css?v=select-plus-1">
+   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
+   <link rel="stylesheet" href="css/workspace-layout.css?v=brush-size-1">
++  <link rel="stylesheet" href="css/studio-theme.css?v=unslop-20261102">
+ </head>
+ <body class="dark-theme">
+   <!-- 页面主容器 -->
+@@ -291,7 +292,7 @@
+   <script src="js/export.js?v=character-canvas-borders-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=brush-size-1"></script>
++  <script src="js/app.js?v=unslop-icons-20261102"></script>
+   <script src="js/workbench.js?v=stable-playback-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\350\207\252\346\243\200\350\256\260\345\275\225\\\347\225\214\351\235\242\346\224\271\347\211\210-unslop-20261102\\app.before.js" b/js/app.js
+index 25fcbad..90b65a1 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\350\207\252\346\243\200\350\256\260\345\275\225\\\347\225\214\351\235\242\346\224\271\347\211\210-unslop-20261102\\app.before.js"
++++ b/js/app.js
+@@ -945,12 +945,12 @@ window.PE = window.PE || {};
+         // 眼睛按钮 (可见性)
+         const visBtn = document.createElement('button');
+         visBtn.className = `layer-icon-btn ${layer.visible !== false ? 'visible' : 'hidden'}`;
+-        visBtn.innerHTML = layer.visible !== false ? '👁' : '🚫';
++        visBtn.innerHTML = layer.visible !== false ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
+         visBtn.title = '切换图层显示/隐藏';
+         visBtn.addEventListener('click', () => {
+           layer.visible = !layer.visible;
+           this.persistence?.markDirty();
+-          visBtn.innerHTML = layer.visible ? '👁' : '🚫';
++          visBtn.innerHTML = layer.visible ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
+           this.canvasManager.render();
+           this.updatePalette();
+         });
+@@ -958,12 +958,12 @@ window.PE = window.PE || {};
+         // 锁按钮
+         const lockBtn = document.createElement('button');
+         lockBtn.className = `layer-icon-btn ${layer.locked ? 'locked' : 'unlocked'}`;
+-        lockBtn.innerHTML = layer.locked ? '🔒' : '🔓';
++        lockBtn.innerHTML = layer.locked ? '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0m-4 9v2"/></svg>';
+         lockBtn.title = '锁定/解锁图层';
+         lockBtn.addEventListener('click', () => {
+           layer.locked = !layer.locked;
+           this.persistence?.markDirty();
+-          lockBtn.innerHTML = layer.locked ? '🔒' : '🔓';
++          lockBtn.innerHTML = layer.locked ? '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v2"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0m-4 9v2"/></svg>';
+           this.updateLayerList();
+         });
+ 
+diff --git a/css/studio-theme.css b/css/studio-theme.css
+new file mode 100644
+--- /dev/null
++++ b/css/studio-theme.css
+@@ -0,0 +1,222 @@
++/* Design pass using unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
++   https://github.com/heydamir/unslop — presentation only; project pixels stay untouched. */
++.studio {
++  color-scheme:dark;
++  --bg-primary:#181a1b; --bg-secondary:#202223; --bg-tertiary:#202223;
++  --bg-surface:#282b2d; --bg-input:#191b1d;
++  --text-main:#eceeed; --text-muted:#b4bab7; --text-dim:#9ca5a0;
++  --border-light:#383d3a; --border-dark:#303532; --border-active:#6fc6a4;
++  --accent-color:#6fc6a4; --accent-hover:#8bd8b9; --accent-active:#57ae8d; --accent-blue:#283f36;
++  --panel:#202223; --raised:#292d2b; --line:#383d3a; --selected:#293e35;
++  background:var(--bg-primary)!important; color:var(--text-main); font-size:13px;
++  font-family:"Segoe UI","Microsoft YaHei UI","Microsoft YaHei",sans-serif;
++  font-variant-numeric:tabular-nums;
++}
++.studio #app-container { min-width:0; background:var(--bg-primary); }
++.studio button { transition:color .15s,background-color .15s,border-color .15s; }
++.studio :is(button,input,select,textarea,summary):focus-visible { outline:2px solid var(--accent-color); outline-offset:3px; }
++.studio :is(input,select,textarea) { accent-color:var(--accent-color); }
++.studio :is(input:not([type=color]):not([type=range]):not([type=checkbox]):not([type=file]),select,textarea) {
++  background:var(--bg-input); border:1px solid var(--line); color:var(--text-main); border-radius:6px; font:inherit;
++}
++.studio .studio-header { height:60px; min-height:60px; padding:0 20px; background:var(--panel); border-color:var(--line); }
++.studio .studio-brand { gap:12px; }
++.studio .studio-brand strong { font-size:18px; font-weight:600; letter-spacing:0; color:var(--text-main); }
++.studio .brand-pixels { font-size:28px; color:var(--accent-color); }
++.studio .primary-actions { gap:8px; }
++.studio :is(.studio-button,.primary-actions button,.layer-header-actions>button,.workspace-menu>summary,.project-menu>summary,.import-menu>summary,.part-choose,.timing-button) {
++  background:var(--raised); border:1px solid var(--line); border-radius:6px; color:var(--text-main); font-size:12px;
++}
++.studio .primary-actions button { height:36px; padding:0 12px; }
++.studio .primary-actions .save-primary { color:#14271e; background:var(--accent-color); border-color:var(--accent-color); font-weight:600; }
++.studio .primary-actions .save-primary:hover { background:var(--accent-hover); }
++.studio :is(.studio-button,.part-choose,.workspace-menu>summary,.project-menu>summary,.import-menu>summary):hover { background:#343b37; border-color:#5a6860; }
++.studio .project-bar { min-height:44px; padding:4px 20px; gap:8px; background:#1c1e1f; border-color:var(--line); }
++.studio .project-bar>strong { font-size:12px; font-weight:400; color:var(--text-muted); }
++.studio .project-bar>select { max-width:224px; padding:6px 8px; font-size:12px; }
++.studio :is(.project-menu,.import-menu)>summary { padding:6px 12px; }
++
++/* Persistent tools and action navigation frame the drawing. */
++.studio .tool-rail { width:64px; min-width:64px; padding:12px 6px; gap:4px; background:#1b1d1e; border-color:var(--line); }
++.studio .tool-rail .tool-btn { height:48px; min-height:48px; padding:4px; gap:4px; font-size:11px; line-height:1.2; color:var(--text-muted); }
++.studio .tool-rail .tool-btn svg { stroke-width:1.5; }
++.studio .tool-rail .tool-btn kbd { right:3px; top:3px; font:9px/12px Consolas,monospace; color:var(--text-dim); }
++.studio .tool-rail .tool-btn:hover { background:var(--raised); color:var(--text-main); }
++.studio .tool-rail .tool-btn.active { background:var(--selected); border-color:#4c7963; color:#a2e4c7; }
++.studio .rail-history .tool-btn { height:28px; min-height:28px; padding:0; gap:0; font-size:20px; }
++.studio #left-sidebar { width:184px; min-width:184px; padding:20px 12px; gap:16px; background:var(--panel); border-right:1px solid var(--line); }
++.studio #right-sidebar { width:304px; min-width:304px; padding:20px 16px; gap:24px; background:var(--panel); border-left:1px solid var(--line); }
++.studio .section-header { min-height:24px; margin-bottom:12px; padding-right:24px; gap:8px; }
++.studio .section-header :is(h3,strong) { font-size:13px; font-weight:600; letter-spacing:0; color:var(--text-main); }
++.studio #sheet-list { gap:4px; }
++.studio .sheet-item { min-height:56px; padding:8px; gap:8px; border-radius:6px; color:var(--text-muted); }
++.studio .sheet-item:hover { background:var(--raised); border-color:transparent; }
++.studio .sheet-item.active { background:var(--selected); border-color:#4c7963; color:var(--text-main); box-shadow:none; }
++.studio .sheet-copy { gap:4px; }
++.studio .sheet-copy strong { font-size:13px; font-weight:500; }
++.studio .sheet-copy small { font-size:11px; color:var(--text-dim); }
++.studio .sheet-icon { width:28px; height:32px; background:var(--raised); color:var(--text-muted); }
++.studio .sheet-item.active .sheet-icon { background:#365243; color:#a2e4c7; }
++.studio .source-archive,.studio .library-guide { border-color:var(--line); }
++.studio .source-archive>summary { color:var(--text-dim); font-size:11px; }
++.studio .library-guide { font-size:12px; color:var(--text-muted); }
++.studio .library-guide :is(strong,span) { font-size:11px; color:var(--text-dim); }
++
++.studio #center-viewport { margin:0; border:0; border-radius:0; background:var(--panel); }
++.studio .canvas-header { min-height:64px; padding:12px 16px; gap:12px; border-color:var(--line); }
++.studio .canvas-title { gap:4px; }
++.studio .canvas-title strong { font-size:15px; font-weight:500; }
++.studio .canvas-title span { font:11px/16px Consolas,"Microsoft YaHei",monospace; letter-spacing:0; color:var(--text-dim); }
++.studio .hand-switch,.studio .canvas-options>summary { font-size:12px; color:var(--text-muted); }
++.studio .canvas-viewbar { min-height:48px; padding:8px 12px; gap:8px; background:#242728; border-bottom:1px solid var(--line); }
++.studio .direction-tabs { gap:2px; padding:2px; background:#181b1a; border:1px solid var(--line); }
++.studio .direction-tab { padding:6px 10px; font-size:12px; color:var(--text-muted); }
++.studio .direction-tab.active { background:#35493e; color:#b0e9ce; box-shadow:none; }
++.studio .canvas-viewbar>.brush-control { gap:8px; color:var(--text-muted); font-size:12px; }
++.studio #brush-size { width:76px; accent-color:var(--accent-color); }
++.studio #brush-size-number { width:56px; height:28px; padding:4px; font-size:12px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
++.studio .view-actions { gap:4px; flex-basis:320px; }
++.studio .view-actions button,.studio .subtle-button { font-size:12px; color:var(--text-muted); padding:6px 8px; }
++.studio .view-actions button:hover { color:var(--text-main); background:var(--raised); }
++.studio .view-actions button.active { background:var(--selected); color:#a2e4c7; }
++.studio .view-actions .aux-toggle.active { background:var(--selected); color:#a2e4c7; }
++.studio .zoom-control { border-color:var(--line); }
++.studio .zoom-badge { font:11px Consolas,monospace; color:var(--text-muted); }
++.studio #canvas-container { background:#17191a; background-image:none; }
++.studio .canvas-help { left:12px; bottom:12px; padding:6px 8px; font-size:11px; letter-spacing:0; color:#d0d6d2; background:#202422e8; border:1px solid #57655c; }
++.studio :is(.image-edit-toolbar,.frame-edit-toolbar) { gap:8px; padding:8px 12px; background:var(--panel); border-color:var(--line); color:var(--text-muted); font-size:12px; }
++.studio :is(.image-edit-toolbar,.frame-edit-toolbar) .studio-button { font-size:12px; padding:6px 8px; }
++.studio .image-edit-toolbar input[type=number] { padding:4px; }
++.studio .image-edit-toolbar :is([data-edit-status],strong),.studio .frame-edit-status { color:var(--text-dim); font-size:11px; line-height:1.5; }
++.studio .frame-edit-status { overflow-wrap:anywhere; }
++.studio :is(.canvas-header,.canvas-viewbar,.image-edit-toolbar,.frame-edit-toolbar,#frame-strip-wrapper) { flex-shrink:0; }
++
++/* Artwork retains its colors; inspector chrome stays neutral. */
++.studio .paint-controls { margin:0 0 12px; gap:8px; }
++.studio #color-primary { width:36px; height:36px; background:var(--raised); border-color:var(--line); border-radius:6px; }
++.studio .paint-controls input[type=text] { height:32px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
++.studio #palette-container { max-height:72px; gap:6px; }
++.studio .palette-swatch { border-radius:4px; border:1px solid #ffffff26; }
++.studio .palette-swatch.active { outline:2px solid var(--accent-color); outline-offset:2px; }
++.studio .layer-header-actions { gap:4px; padding-bottom:12px; }
++.studio .layer-header-actions>button { height:28px; padding:4px 8px; font-size:12px; }
++.studio .layer-header-actions>.layer-move { width:28px; min-width:28px; padding:0; }
++.studio .layer-header-actions .mirror-live.active { color:#a2e4c7; background:var(--selected); border-color:#4c7963; }
++.studio .part-tabs { gap:4px; padding:0 0 12px; background:var(--panel); }
++.studio .part-tab { font-size:12px; padding:6px 2px; border-color:var(--line); background:var(--raised); color:var(--text-muted); }
++.studio .part-tab[aria-selected=true] { background:var(--selected); border-color:#4c7963; color:#a2e4c7; }
++.studio .part-slot-title { margin:4px 0 8px; color:var(--text-dim); font-size:12px; font-weight:400; }
++.studio .layer-item.visual-layer-card { padding:8px; margin-bottom:8px; background:#262a28; border:1px solid var(--line); border-radius:8px; }
++.studio .layer-item.visual-layer-card.active { padding:8px; background:#2b3831; border:1px solid #6caa8c; }
++.studio .part-thumb { border-color:#5c655f; }
++.studio .visual-layer-card .layer-name { color:var(--text-main); font-size:13px; }
++.studio .part-state,.studio .visual-layer-card.part-visible .part-state { color:var(--text-dim); font-size:11px; margin:4px 0 8px; }
++.studio .part-card-actions { gap:4px; }
++.studio .part-choose { padding:4px 8px; font-size:11px; }
++.studio .layer-icon-btn { width:24px; min-width:24px; height:24px; color:var(--text-muted); }
++.studio .layer-icon-btn svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
++.studio .layer-delete { border-color:#69504e; background:transparent; color:#e4aaa4; font-size:11px; padding:4px 6px; }
++.studio .part-more { border-color:var(--line); padding-top:4px; }
++.studio .part-more summary { color:var(--text-dim); font-size:11px; padding:4px 0; }
++.studio .part-empty { color:var(--text-dim); }
++.studio .preview-card { min-height:100px; padding:12px; border-color:var(--line); border-radius:8px; background:#191c1a; }
++.studio #preview-canvas { width:80px; height:80px; border-radius:4px; }
++
++.studio #frame-strip-wrapper { min-height:144px; background:#1e2120; border-color:var(--line); }
++.studio .timeline-header { min-height:44px; padding:8px 12px; gap:12px; }
++.studio .timeline-header strong { color:var(--text-main); font-size:12px; }
++.studio .timeline-playback button { height:28px; font-size:12px; color:var(--text-muted); }
++.studio .timeline-playback button:hover { background:var(--raised); color:var(--text-main); }
++.studio .timeline-timing { gap:6px; font-size:11px; color:var(--text-muted); }
++.studio .timeline-timing :is(.timing-unit,.timing-toggle,.timing-total) { color:var(--text-dim); }
++.studio .timeline-timing input[type=number] { height:28px; color:var(--text-main); background:var(--bg-input); border-color:var(--line); }
++.studio .timeline-timing .timing-button { height:28px; color:var(--text-muted); background:var(--raised); border-color:var(--line); font-size:11px; }
++.studio #frame-list { height:100px; padding:0 12px 12px; gap:8px; }
++.studio .frame-thumb { width:72px; min-width:72px; height:84px; background:#2a2f2c; border:1px solid #465149; border-radius:6px; }
++.studio .frame-thumb.active { background:#33483b; border:1px solid #89c9a7; box-shadow:inset 0 2px #89c9a7; }
++.studio .frame-thumb canvas { width:60px; height:60px; }
++.studio :is(.frame-duration,.frame-duration.inherited,.frame-number) { color:#b8c4bb; background:transparent; font:10px/12px Consolas,monospace; letter-spacing:0; }
++.studio #bottom-panel { height:28px; min-height:28px; background:#1b1e1c; border-color:var(--line); }
++.studio #status-bar { height:27px; color:var(--text-dim); font-size:11px; }
++.studio .save-status { color:var(--text-muted); font-size:11px; }
++.studio .save-error { color:#e4aaa4; }
++
++.studio :is(.workspace-menu-content,.dropdown-menu,.project-actions,.import-actions,.canvas-options[open],.plus-panel,.floating-panel,.dock-panel.is-floating,dialog) {
++  background:#282c29; color:var(--text-main); border:1px solid #4d5851; border-radius:8px; box-shadow:0 8px 24px #0004;
++}
++.studio .workspace-menu>summary { font-size:12px; }
++.studio .workspace-menu>summary::after { color:var(--text-dim); }
++.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button { background:transparent; color:var(--text-main); font-size:12px; padding:8px 12px; }
++.studio :is(.workspace-menu-content,.project-actions,.import-actions,.dropdown-menu)>button:hover { background:#39483e; }
++.studio .workspace-menu-content>button.active { background:var(--selected); color:#a2e4c7; }
++.studio .dock-panel.is-floating>.section-header { background:var(--raised); border-color:var(--line); }
++.studio .dock-panel>.section-header .dock-float-btn { opacity:1; color:var(--text-dim); }
++.studio .dock-panel>.section-header .dock-float-btn:hover { color:var(--text-main); background:var(--raised); border-color:var(--line); }
++.studio :is(#left-sidebar,#right-sidebar).dock-hover { background:#293e35; outline-color:#89c9a7; }
++.studio dialog { overflow:auto; }
++.studio dialog::backdrop { background:#101310b8; backdrop-filter:none; }
++.studio .advanced-grid .panel-section { border-color:var(--line); }
++.studio .advanced-grid :is(input,textarea,select) { color:var(--text-main)!important; background:var(--bg-input)!important; border-color:var(--line)!important; }
++.studio .advanced-grid .tool-btn,.studio .wardrobe-dialog .studio-button { color:var(--text-main); background:var(--raised); border-color:var(--line); }
++.studio :is(.pixel-import-dialog p,.frame-copy-dialog p,.wardrobe-note,.wardrobe-item small,.wardrobe-empty,.plus-panel-head strong,.background-control) { color:var(--text-muted); }
++.studio :is(.wardrobe-register,.wardrobe-item,.wardrobe-empty) { background:var(--panel); border-color:var(--line); }
++.studio .wardrobe-item.selected { background:var(--selected); border-color:#6caa8c; }
++.studio .studio-loading { background:#181a1bf5; color:var(--text-main); }
++.studio .studio-loading>span:last-child { color:var(--text-muted); }
++.studio .loading-pixel { color:var(--accent-color); animation:none; }
++.studio ::-webkit-scrollbar-thumb { background:#525b55; }
++
++@media(max-width:1200px) {
++  .studio #left-sidebar { width:152px; min-width:152px; padding:16px 8px; }
++  .studio #right-sidebar { width:264px; min-width:264px; padding:16px 12px; gap:20px; }
++  .studio .canvas-header { padding:12px; }
++  .studio .canvas-viewbar>.brush-control { gap:4px; }
++}
++@media(max-width:900px) {
++  .studio .studio-header { padding:0 12px; }
++  .studio .primary-actions { gap:4px; }
++  .studio .primary-actions button { padding:0 8px; }
++  .studio .studio-brand strong { font-size:16px; }
++  .studio .project-bar { flex-wrap:wrap; padding:8px 12px; }
++  .studio .project-bar>strong { flex-basis:100%; }
++  .studio #workspace { display:grid; grid-template-columns:56px minmax(240px,1fr) 240px; grid-template-rows:88px minmax(680px,1fr); overflow:auto; }
++  .studio .tool-rail { grid-column:1; grid-row:1 / 3; width:56px; min-width:56px; }
++  .studio #left-sidebar { grid-column:2 / 4; grid-row:1; width:auto; min-width:0; padding:8px 12px; border-bottom:1px solid var(--line); border-right:0; overflow:hidden; }
++  .studio #left-sidebar:has(> .dock-panel #layer-list) { width:auto; min-width:0; overflow:auto; }
++  .studio #left-sidebar .section-header { margin-bottom:4px; min-height:20px; }
++  .studio #left-sidebar #sheet-list { flex-direction:row; overflow:auto; }
++  .studio #left-sidebar .sheet-item { min-height:40px; width:auto; flex-shrink:0; padding:4px 8px; }
++  .studio #left-sidebar .sheet-icon,.studio .library-guide { display:none; }
++  .studio #left-sidebar .source-archive { margin:0; padding:4px; border:0; flex-shrink:0; }
++  .studio #center-viewport { grid-column:2; grid-row:2; }
++  .studio #right-sidebar { grid-column:3; grid-row:2; width:240px; min-width:240px; padding:12px; }
++  .studio .canvas-header { min-height:60px; }
++  .studio .canvas-viewbar { padding:8px; }
++  .studio .view-actions { flex-basis:100%; }
++  .studio .image-edit-toolbar { max-height:140px; overflow:auto; }
++  .studio .advanced-grid { grid-template-columns:1fr; }
++}
++@media(max-width:700px) {
++  .studio .studio-header { height:auto; min-height:60px; flex-wrap:wrap; gap:8px; padding:12px; }
++  .studio .primary-actions { flex-wrap:wrap; }
++  .studio #workspace { grid-template-columns:52px minmax(240px,1fr); grid-template-rows:88px minmax(680px,1fr) 220px; }
++  .studio .tool-rail { width:52px; min-width:52px; grid-row:1 / 4; }
++  .studio #left-sidebar { grid-column:2; }
++  .studio #right-sidebar { grid-column:2; grid-row:3; width:auto; min-width:0; display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; border-top:1px solid var(--line); }
++  .studio #right-sidebar>.panel-section:has(#layer-list) { min-height:0; }
++  .studio .preview-card { grid-column:1; }
++  .studio .project-bar>select { flex:1; min-width:100px; max-width:100%; }
++  .studio .canvas-title strong { font-size:14px; }
++  .studio .canvas-viewbar>.brush-control { font-size:11px; }
++  .studio .frame-edit-toolbar { max-height:100px; overflow:auto; }
++}
++@media(max-height:760px) and (min-width:901px) {
++  .studio .tool-rail { gap:2px; padding-top:8px; }
++  .studio .tool-rail .tool-btn { height:36px; min-height:36px; padding:2px; gap:2px; }
++  .studio .rail-history .tool-btn { height:24px; min-height:24px; }
++  .studio #right-sidebar { padding-top:12px; gap:16px; }
++  .studio .canvas-header { min-height:56px; }
++  .studio .preview-card { display:none; }
++  .studio .image-edit-toolbar { max-height:116px; overflow:auto; }
++}
++@media(prefers-reduced-motion:reduce) { .studio * { transition:none!important; animation:none!important; } }
+diff --git a/test/unslop-ui-browser.cjs b/test/unslop-ui-browser.cjs
+new file mode 100644
+--- /dev/null
++++ b/test/unslop-ui-browser.cjs
+@@ -0,0 +1,95 @@
++const assert = require('node:assert/strict');
++const fs = require('node:fs/promises');
++const http = require('node:http');
++const path = require('node:path');
++const {chromium} = require('playwright');
++const root = path.resolve(__dirname, '..');
++const output = path.join(root, '自检记录/界面改版-unslop-20261102');
++const before = process.argv.includes('--before');
++
++(async () => {
++  await fs.mkdir(output, {recursive:true});
++  let writes = 0;
++  const server = http.createServer(async (req, res) => {
++    if (req.method !== 'GET') { writes++; res.writeHead(405).end(); return; }
++    const url = new URL(req.url, 'http://localhost');
++    if (url.pathname.startsWith('/api/')) { res.writeHead(404, {'Content-Type':'application/json'}).end('{}'); return; }
++    const file = path.resolve(root, '.' + decodeURIComponent(url.pathname));
++    if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
++    try {
++      res.setHeader('Content-Type', ({'.js':'text/javascript', '.css':'text/css', '.html':'text/html'})[path.extname(file)] || 'application/octet-stream');
++      res.end(await fs.readFile(file));
++    } catch { res.writeHead(404).end(); }
++  });
++  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
++  let browser;
++  try {
++    browser = await chromium.launch({channel:'msedge', headless:true});
++    const page = await browser.newPage({viewport:{width:1440,height:960}});
++    const errors = [];
++    page.on('pageerror', e => errors.push(e.message));
++    await page.goto(`http://127.0.0.1:${server.address().port}/index.html`);
++    await page.waitForFunction(() => window.PE?.app?.persistence?.ready && document.querySelector('.studio-loading')?.hidden);
++    await page.screenshot({path:path.join(output, before ? 'before.png' : 'after.png')});
++    if (!before) {
++      assert(await page.locator('#mirror-layer-btn').isVisible());
++      assert(await page.locator('#mirror-live-btn').isVisible());
++      assert(await page.locator('.timeline-timing').isVisible());
++      const visibility = page.locator('.visual-layer-card.active .layer-icon-btn').first();
++      assert(await visibility.locator('svg').count());
++      const layerVisible = await page.evaluate(() => PE.app.project.getCurrentLayer().visible);
++      await visibility.click();
++      assert.equal(await page.evaluate(() => PE.app.project.getCurrentLayer().visible), !layerVisible);
++      await visibility.click();
++      assert.equal(await page.evaluate(() => PE.app.project.getCurrentLayer().visible), layerVisible);
++      await page.locator('#play-btn').click();
++      assert(await page.evaluate(() => PE.app.animationPlayer.playing));
++      await page.locator('#pause-btn').click();
++      assert.equal(await page.evaluate(() => PE.app.animationPlayer.playing), false);
++      await page.locator('#tool-eraser').click();
++      assert.equal(await page.evaluate(() => PE.app.toolManager.currentTool), 'eraser');
++      await page.locator('#tool-pencil').click();
++      const number = page.locator('#brush-size-number');
++      await number.fill('24'); await number.press('Tab');
++      assert.equal(await page.evaluate(() => PE.app.toolManager.brushSize), 24);
++      await page.locator('.view-actions .workspace-menu > summary').click();
++      assert(await page.locator('#grid-toggle').isVisible());
++      await page.keyboard.press('Escape');
++      assert.equal(await page.locator('.view-actions .workspace-menu').getAttribute('open'), null);
++      const initial = await page.evaluate(() => ({name:PE.app.project.name,layers:PE.app.project.layers.length,frames:PE.app.project.getCurrentAction().frames.length}));
++      await page.getByRole('button', {name:'更多 ···',exact:true}).click();
++      assert(await page.locator('#advanced-dialog').isVisible());
++      await page.locator('#advanced-dialog').getByRole('button', {name:'关闭',exact:true}).click();
++      assert.deepEqual(await page.evaluate(() => ({name:PE.app.project.name,layers:PE.app.project.layers.length,frames:PE.app.project.getCurrentAction().frames.length})), initial);
++      const untouched = await page.evaluate(async () => {
++        PE.app.persistence.dirty = true;
++        const before = await PE.app.exportManager.exportProject(false).text();
++        const theme = document.querySelector('link[href*="studio-theme.css"]');
++        theme.disabled = true;
++        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
++        theme.disabled = false;
++        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
++        return before === await PE.app.exportManager.exportProject(false).text() && PE.app.persistence.dirty;
++      });
++      assert(untouched, 'Theme application preserves the complete unsaved project');
++      for (const [width,height] of [[1440,960],[1100,800],[800,900],[620,900]]) {
++        await page.setViewportSize({width,height});
++        assert(await number.isVisible());
++        const metrics = await page.evaluate(() => {
++          const box = document.querySelector('#canvas-container').getBoundingClientRect();
++          const rect = document.querySelector('#brush-size-number').getBoundingClientRect();
++          const view = document.querySelector('.canvas-viewbar').getBoundingClientRect();
++          const tools = document.querySelector('.image-edit-toolbar').getBoundingClientRect();
++          return {width:box.width,height:box.height,inputRight:rect.right,overlap:view.bottom > tools.top + 1,overflow:document.documentElement.scrollWidth > innerWidth};
++        });
++        assert(metrics.width >= 220 && metrics.height >= 120, JSON.stringify({width,...metrics}));
++        assert(metrics.inputRight <= width && !metrics.overflow, JSON.stringify({width,...metrics}));
++        assert(!metrics.overlap, JSON.stringify({width,...metrics}));
++      }
++      await page.screenshot({path:path.join(output,'after-narrow.png')});
++    }
++    assert.deepEqual(errors, []);
++    assert.equal(writes, 0, 'Preview never writes projects');
++    console.log('PASS: ' + (before ? 'original UI renders' : 'new UI renders; tools, brush, menus, dialog, responsive canvas') + '; zero page errors; zero project writes.');
++  } finally { await browser?.close(); await new Promise(resolve => server.close(resolve)); }
++})().catch(error => {console.error(error); process.exitCode = 1;});

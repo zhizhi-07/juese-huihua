@@ -1,0 +1,58 @@
+NODE_PATH=C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules
+COMMAND: node --check js/tools.js
+EXIT: 0
+COMMAND: node --check js/pixel-import.js
+EXIT: 0
+COMMAND: node --check test/layer-resize-mode.cjs
+EXIT: 0
+COMMAND: node --check test/layer-resize-mode-browser.cjs
+EXIT: 0
+COMMAND: node --check test/hd-image-browser.cjs
+EXIT: 0
+COMMAND: node --check test/free-image-placement-browser.cjs
+EXIT: 0
+COMMAND: node test/layer-resize-mode.cjs
+INPUT: synthetic fixtures in test/layer-resize-mode.cjs
+PASS: selectable HD/pixel resizing, exact nearest RGBA, undo/redo, non-destructive drag preview, move-only preservation, off-canvas/fractional placement, dimension limits, locks, partial-selection and other-frame isolation.
+EXIT: 0
+
+COMMAND: node test/hd-image-layers.cjs
+INPUT: synthetic fixtures in test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT: 0
+
+COMMAND: node test/free-image-placement.cjs
+INPUT: synthetic fixtures in test/free-image-placement.cjs
+PASS: HD/native free drag, preview-only state, 0.1 nudge, exact native crop, native undo/redo, native JSON/source edit, fractional export density, protected native layers/frame/regions/hand, bounds, partial-selection isolation and unchecked snapping.
+EXIT: 0
+
+COMMAND: node test/off-canvas-placement.cjs
+INPUT: synthetic fixtures in test/off-canvas-placement.cjs
+PASS: outside drag preview/commit; negative and beyond-frame boxes; native/HD and partial preservation; pick/nudge; outside resize; undo/redo; JSON reload; frame copy; clipped output and exact return; locks and invalid coordinates.
+EXIT: 0
+
+COMMAND: node test/hd-partial-selection.cjs
+INPUT: synthetic fixtures in test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+EXIT: 0
+
+COMMAND: node test/image-edit.cjs
+INPUT: synthetic fixtures in test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+EXIT: 0
+
+COMMAND: node test/image-import.cjs
+INPUT: synthetic fixtures in test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+EXIT: 0
+
+COMMAND: node test/hd-inline.cjs
+INPUT: synthetic fixtures in test/hd-inline.cjs
+PASS: inline native eraser/pencil/fill/picker; exact fractional-density marquee; native-pixel move/nudge; selection paint isolation; copy/cut/paste/expansion; one-stroke main undo/redo; locks and frame-switch safety; render cache refresh; unchanged face and placement; JSON reload.
+EXIT: 0
+
+COMMAND: node test/hd-canvas.cjs
+INPUT: synthetic fixtures in test/hd-canvas.cjs
+PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.
+EXIT: 0
+

@@ -1,26 +1,57 @@
 /* Visual part picker layered over the existing editor. No project format changes. */
 window.PE=window.PE||{};
 PE.VisualLayers={
+  info(layer){return PE.classifyPart(layer?.name);},
   slot(layer){
-    const n=layer.name||'';
-    if(n.startsWith('头发 /'))return n.endsWith('前发')?'前发':n.endsWith('后发')?'后发':n.endsWith('侧发')?'侧发':null;
-    if(n.startsWith('发饰 /'))return '饰品';
-    if(n.includes('嘴'))return '嘴巴';
-    if(n.includes('眼'))return '眼睛';
-    if(n.startsWith('服装 /'))return n.split(' / ').at(-1);
+    const info=this.info(layer);
+    if(!info)return null;
+    if(info.category==='头发')return info.slot==='饰品'?'饰品':info.slot;
+    if(info.category==='五官')return info.slot;
+    if(info.category==='衣服')return info.clean;
     return null;
   },
   category(layer){
-    const n=layer.name||'';
-    if(n.startsWith('头发 /')||n.startsWith('发饰 /'))return '头发';
-    if(n.startsWith('服装 /'))return '衣服';
-    if(n.includes('眼')||n.includes('嘴'))return '五官';
-    if(n==='head'||n==='body')return '身体';
-    return '其他';
+    return this.info(layer)?.category||'其他';
+  },
+  eraseOverlap(app,index){
+    const p=app.project,layer=p.layers[index],key=p.getFrameKey(),image=layer?.frameData.get(key);
+    if(!layer||layer.isGroup||layer.inheritedBase||layer.locked||!PE.isLayerVisible(p,layer,p.currentSheetIndex)||this.slot(layer)!=='后发')throw new Error('请选择可编辑且显示的后发部件');
+    if(!image)return 0;
+    const masks=p.layers.filter(l=>!l.isGroup&&/^(head|body|头部|身体)$/.test(l.name)&&(l.sheetIndex===undefined||l.sheetIndex===p.currentSheetIndex)).map(l=>l.frameData.get(key)).filter(Boolean);
+    if(!masks.length)throw new Error('当前帧没有头部或身体底稿');
+    if(image.placement){
+      const [si,ai,fi]=key.split('_').map(Number),frame=p.spriteSheets[si]?.actions[ai]?.frames[fi],r=image.placement;
+      if(!frame||frame.locked)throw new Error('当前帧已锁定');
+      PE.utils.validateImagePlacement(r,frame);
+      if(PE.utils.imagePlacementLocked(r,frame))throw new Error('图片覆盖锁定区域，请先解除相应像素锁');
+      const next=PE.utils.cloneImageData(image);let count=0;
+      for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++){
+        const px=r.x+(x+.5)*r.w/image.width,py=r.y+(y+.5)*r.h/image.height,i=(y*image.width+x)*4;
+        if(px<0||py<0||px>=frame.width||py>=frame.height||!next.data[i+3]||!app.toolManager._pixelInSelection(Math.floor(px),Math.floor(py)))continue;
+        if(masks.some(m=>{const b=m.placement||{x:0,y:0,w:m.width,h:m.height},mx=Math.floor((px-b.x)*m.width/b.w),my=Math.floor((py-b.y)*m.height/b.h);return mx>=0&&my>=0&&mx<m.width&&my<m.height&&m.data[(my*m.width+mx)*4+3];})){
+          next.data.fill(0,i,i+4);count++;
+        }
+      }
+      if(!count)return 0;
+      app.animationPlayer.pause();layer.frameData.set(key,next);
+      const h=app.history;h.undoStack.push({description:'后发避开头身（当前帧）',changes:[],undo:()=>layer.frameData.set(key,image),redo:()=>layer.frameData.set(key,next)});
+      if(h.undoStack.length>h.maxSteps)h.undoStack.shift();h.redoStack=[];h._notifyChange();
+      app.updateLayerList();app.updateFrameList();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();return count;
+    }
+    if(masks.some(m=>m.placement))throw new Error('请先将头部和身体底稿转为原生像素');
+    app.animationPlayer.pause();app.history.beginBatch('头发避开头部身体（当前帧）');
+    let count=0;
+    try{
+      for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++){
+        if(image.data[(y*image.width+x)*4+3]&&masks.some(m=>x<m.width&&y<m.height&&m.data[(y*m.width+x)*4+3]))count+=app.toolManager.drawPixel(index,key,x,y,0,0,0,0).modifiedCount||0;
+      }
+    }finally{app.history.commitBatch();}
+    if(count){app.updateLayerList();app.updateFrameList();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();}
+    return count;
   },
   partName(layer){
     if(layer.isGroup)return null;
-    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim();
+    const n=layer.name||'',pieces=n.split(' / '),clean=s=>s.replace(/^\d+\s*/, '').trim()||s.trim();
     if(n.startsWith('头发 /')&&this.slot(layer))return this.slot(layer)+'-'+clean(pieces[1]);
     if(n.startsWith('发饰 /'))return '饰品-'+clean(pieces[1]);
     if(n.startsWith('服装 /'))return pieces.at(-1)+'-'+clean(pieces[1]);
@@ -29,7 +60,30 @@ PE.VisualLayers={
   },
   family(project,layer){
     const name=this.partName(layer);
-    return name?project.layers.filter(l=>this.partName(l)===name&&project.spriteSheets?.[l.sheetIndex]?.name.startsWith('original32_')):[];
+    return name?project.layers.filter(l=>this.partName(l)===name&&PE.isCharacterSheet(project.spriteSheets?.[l.sheetIndex])):[];
+  },
+  components(project,layer){
+    const group=project.layers[layer.parent],slot=this.slot(layer);
+    if(layer.parent==null||!group?.isGroup||!slot||this.slot(group)!==slot)return [layer];
+    return project.layers.filter(l=>!l.isGroup&&l.parent===layer.parent&&this.slot(l)===slot&&l.name.split(' / ')[1]===layer.name.split(' / ')[1]);
+  },
+  rename(app,index,name){
+    const p=app.project,layer=p.layers[index];name=String(name??'').trim();
+    if(!layer||layer.isGroup||layer.inheritedBase||PE.isHandLayer(layer)||!name)return false;
+    if(name.includes(' / '))throw new Error('这里只填写部件名称，不需要填写“头发 / 前发”等分类路径');
+    const current=layer.name.split(' / ');if(name===(current.length>=3?current[1]:current.at(-1)))return false;
+    // 首次分类或明确改部件类型时归位；同类型的款式改名不重排用户层序。
+    const info=this.info(layer),next=PE.classifyPart(name);
+    if(next&&(!info||next.category!==info.category||next.slot!==info.slot))return !!app.renameLayer(index,name);
+    const members=this.components(p,layer),before=members.map(l=>l.name),after=members.map(l=>{
+      const parts=l.name.split(' / '),info=this.info(l);
+      if(info?.category==='头发'){if(parts.length>=3)return [parts[0],name,...parts.slice(2)].join(' / ');if(parts[0]==='头发')return '头发 / '+name+' / '+info.slot;if(parts[0]==='发饰')return '发饰 / '+name;return name.endsWith(info.slot)?name:name+' '+info.slot;}
+      return parts.length>1?[...parts.slice(0,-1),name].join(' / '):name;
+    });
+    if(before.every((n,i)=>n===after[i]))return false;
+    const restore=names=>members.forEach((l,i)=>l.name=names[i]);restore(after);
+    app.history.undoStack.push({description:'部件重命名',changes:[],undo:()=>restore(before),redo:()=>restore(after)});
+    app.history.redoStack=[];app.history._notifyChange();app.updateLayerList();app.updateStatusBar();app.persistence?.markDirty();return true;
   },
   toggleFamily(app,index){
     const p=app.project,members=this.family(p,p.layers[index]);if(!members.length)return;
@@ -53,9 +107,10 @@ PE.VisualLayers={
     return current||[...layer.frameData].find(([k])=>k.startsWith(prefix))?.[1]||null;
   },
   choose(app,index){
-    const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isHandLayer(l))return;
-    const slot=this.slot(l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
-    if(slot)for(const other of p.layers){if(other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=other===l;}
+    const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isProtectedHandLayer(l))return;
+    const slot=this.slot(l),members=this.components(p,l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
+    if(slot)for(const other of p.layers){if(!other.isGroup&&other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=members.includes(other);}
+    let parent=l.parent;const seen=new Set();while(parent!=null&&p.layers[parent]?.isGroup&&!seen.has(parent)){seen.add(parent);p.layers[parent].visible=true;parent=p.layers[parent].parent;}
     l.visible=true;p.currentLayerIndex=index;app.animationPlayer.pause();
     const after=p.layers.map(x=>x.visible),restore=(values,li)=>{p.layers.forEach((x,i)=>x.visible=values[i]);p.currentLayerIndex=li;};
     app.history.undoStack.push({description:'选用'+(slot||'图层'),changes:[],undo:()=>restore(before,selected),redo:()=>restore(after,index)});
@@ -77,11 +132,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     const tmp=document.createElement('canvas');tmp.width=data.width;tmp.height=data.height;tmp.getContext('2d').putImageData(data,0,0);
     let x0=data.width,y0=data.height,x1=-1,y1=-1;
     for(let y=0;y<data.height;y++)for(let x=0;x<data.width;x++)if(data.data[(y*data.width+x)*4+3]){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
-    if(x1<0)return;const w=x1-x0+1,h=y1-y0+1,s=Math.min(4,Math.floor(44/Math.max(w,h))||1);
+    if(x1<0)return;const w=x1-x0+1,h=y1-y0+1,s=Math.min(4,44/Math.max(w,h),Math.floor(44/Math.max(w,h))||1);
     ctx.drawImage(tmp,x0,y0,w,h,Math.floor((48-w*s)/2),Math.floor((48-h*s)/2),w*s,h*s);
   }
   app.updateLayerList=function(){
-    original();if(!this.project.getCurrentSheet()?.name.startsWith('original32_'))return;
+    original();if(!PE.isCharacterSheet(this.project.getCurrentSheet()))return;
     const p=this.project,rows=[...list.querySelectorAll('.layer-item[data-layer-index]')].filter(row=>!p.layers[Number(row.dataset.layerIndex)]?.isGroup);
     this.visualLayerCategory??=V.category(p.layers[p.currentLayerIndex]||{});
     if(this.visualLayerSelection!==p.currentLayerIndex){this.visualLayerCategory=V.category(p.layers[p.currentLayerIndex]||{});this.visualLayerSelection=p.currentLayerIndex;}
@@ -91,20 +146,30 @@ document.addEventListener('DOMContentLoaded',()=>{
       b.onclick=event=>{event.stopPropagation();this.visualLayerCategory=name;this.updateLayerList();};nav.append(b);
     }
     const panel=element('div','part-panel');panel.setAttribute('role','tabpanel');const groups=new Map();
-    const entries=rows.filter(row=>V.category(p.layers[Number(row.dataset.layerIndex)])===this.visualLayerCategory);
+    const prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_',hasPixels=l=>[...l.frameData].some(([k,d])=>k.startsWith(prefix)&&d.data.some((v,i)=>i%4===3&&v));
+    const entries=rows.filter(row=>{const l=p.layers[Number(row.dataset.layerIndex)],members=V.components(p,l);return V.category(l)===this.visualLayerCategory&&(members.length===1||hasPixels(l)||!members.some(hasPixels));});
     for(const row of entries){
       const index=Number(row.dataset.layerIndex),l=p.layers[index],slot=V.slot(l)||'图层';
       if(!groups.has(slot)){const group=element('section','part-slot'),title=element('h5','part-slot-title',slot);group.append(title);groups.set(slot,group);}
-      row.classList.add('visual-layer-card');row.classList.toggle('part-visible',!!l.visible);
+      row.classList.add('visual-layer-card');row.classList.toggle('part-visible',!!l.visible);row.classList.toggle('part-soloed',p._soloLayer===l);
       const label=row.querySelector('.layer-name'),icons=[...row.querySelectorAll('.layer-icon-btn')],opacity=row.querySelector('input'),clone=row.querySelector('.layer-mini'),remove=row.querySelector('.layer-delete');
       const thumb=element('canvas','part-thumb');thumb.width=48;thumb.height=48;thumb.setAttribute('aria-label',(l.name||'图层')+'预览');drawThumbnail(thumb,V.thumbnail(l,p));
       const main=element('div','part-card-main');
-      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?l.name.split(' / ')[1].replace(/^\d+\s*/,''):l.name.split(' / ').at(-1);
+      const partLabel=l.name.split(' / ')[1]||'';
+      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name==='hand'?'前手 / 手臂':l.name==='hand 2'?'后手 / 手臂':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+      if(partLabel==='用户')label.textContent='用户 · '+slot;
+      const rename=event=>{event.stopPropagation();if(l.inheritedBase||PE.isHandLayer(l))return;const name=prompt('部件名称（写“后发”等新类型会自动分类并调整层级）',l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?partLabel:label.textContent);if(name===null)return;try{V.rename(this,p.layers.indexOf(l),name);}catch(error){alert(error.message);}};
+      label.title=l.name+'（点击“改名”或双击名称）';label.onclick=event=>event.stopPropagation();label.ondblclick=rename;
       const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
-      const state=element('small','part-state',l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''));
+      const state=element('small','part-state',(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':''));
       const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
-      for(const icon of icons)icon.onclick=()=>{state.textContent=l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);app.animationPlayer._renderPreviewFrame();};
-      const actions=element('div','part-card-actions');actions.append(choose,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
+      for(const icon of icons)icon.onclick=()=>{state.textContent=(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);row.classList.toggle('part-soloed',p._soloLayer===l);app.animationPlayer._renderPreviewFrame();};
+      const renameButton=element('button','part-choose part-rename','改名');renameButton.type='button';renameButton.setAttribute('aria-label','重命名 '+l.name);renameButton.disabled=!!l.inheritedBase||PE.isHandLayer(l);renameButton.title=renameButton.disabled?'同步底稿请到主工程修改':'款式改名不改变像素或层序；写其他部件类型（如后发）会重新分类归位';renameButton.onclick=rename;
+      const actions=element('div','part-card-actions');actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
+      if(slot==='后发'){
+        const erase=element('button','part-choose part-erase-overlap','避开头身');erase.type='button';erase.title='仅当前帧：擦除与头部、身体重叠的头发；不处理手臂，可撤销。遵守选区和像素锁。';erase.setAttribute('aria-label',l.name+'一键避开头部身体（当前帧）');erase.disabled=!!(l.locked||l.inheritedBase||!PE.isLayerVisible(p,l,p.currentSheetIndex));
+        erase.onclick=event=>{event.stopPropagation();try{const count=V.eraseOverlap(this,index);if(!count)alert('没有可擦除的重叠像素（请检查当前帧、选区和锁定状态）');}catch(error){alert(error.message);}};actions.append(erase);
+      }
       if(V.family(p,l).length){
         const bulk=element('div','part-bulk-actions'),toggle=element('button','part-choose part-toggle-all',V.family(p,l).every(x=>x.visible)?'全部动作隐藏':'全部动作显示'),save=element('button','part-choose part-export-all','导出全部动作');
         toggle.type=save.type='button';

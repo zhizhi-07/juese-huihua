@@ -1,0 +1,507 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\AGENTS.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\AGENTS.md"
+index 30ca213..9b700d8 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\AGENTS.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\AGENTS.md"
+@@ -1,30 +1,10 @@
+-# AI 接手入口：按任务读取，不要全读
+-
+-## 所有任务共用
+-
+-先读 `后台工程读写约定.md`：对应工程文件、后台代码修改、备份、ETag保存、前台同步与未保存草稿保护。
+-
+-只处理用户授权范围及分配的工程。没有明确要求，不改人物头发，不恢复被否决稿，不用旧稿/默认素材覆盖当前工程。绘画任务不顺手修改编辑器代码。
+-
+-## 再选择当前任务的一份规范
+-
+-| 当前任务 | 专用文档 |
+-|---|---|
+-| 建筑、商店、房屋、建筑外观场景 | `建筑绘制AI要求与自检.md` |
+-| 小物件、餐具、家具、室内设施 | `物品绘制AI要求与自检.md` |
+-| 人物、发型、服装、五官、角色动作 | `人物绘制AI要求与自检.md` |
+-| 只修改编辑器程序或保存/同步功能 | 通用规范及实际涉及代码即可，不读绘画规范 |
+-
+-制作、同步或修正带服装的人物动作时，必须再读 `服装动作适配与分区保留规范.md`，包括行走、待机、拾取、坐姿、睡觉。按用户当前稿分区复制、依姿势局部调整；阴影按所属衣片或腿脚处理，裙子不能直接套素体腿部阴影。只读规范不扩大修改授权。
+-
+-使用现成 TV / Variation 图片制作或混搭头发时，再读 `头发素材混搭与像素化流程.md`，按其中的图片部位对应、方向、抠图、对齐、简明光影、接缝和待机取帧流程执行；不默认生图或扩展其他动作。
+-
+-实际制作头发飘动、呼吸跟随、动作适配或同步用户头发首帧修正时，再读 `头发动画绘制与同步规范.md`；以用户当前获准稿为准，不擅自增帧、变速或恢复已删除的尖角。
+-
+-画建筑不读物品规范，画物品不读建筑规范；二者也不要求读取人物或发型教程。只有任务本身同时包含不同类别，才读取各自相关规范。不要因为都属于像素素材就全部加载。
+-
+-建筑的画法提示词、分组、分阶段绘制和自检已合并在建筑专用文档内，不再强制连读几份建筑补充文件。旧文档入口只作兼容指引，阶段记录和工程目录按需查阅。
+-
+-## 工作方式
+-
+-后台用代码处理各自工程，通过本地保存接口带版本校验写入对应JSON；前台留给用户查看和继续修改。以本地成图、自检与API回读为主；只有排查真实渲染问题或用户明确要求才操作网页。前台有未保存草稿时不得强制刷新覆盖。
++# 当前工作区：16×16 干净重启
++
++- 只按用户本次明确要求操作。主工程是 `data/shared-project.json`，独立工程是 `data/projects/<编号>.json`。
++- 当前只保留行走、待机、拾取、坐姿。不要恢复旧工程、旧头发、旧服装或其他动作。
++- 旧绘画规范已归档，不自动读取，不沿用旧教程或旧默认素材。新的绘画规则由用户重新制定。
++- 操作工程前读 `后台工程读写约定.md`，通过本地 API 和 ETag 保存；保留原始备份，回读验证。
++- 坐姿来自用户后画的32规格原稿，整张画布和各图层统一按50%缩小，不硬塞16×16，不擅自补线、改形或移位。
++- 原生16规格是素材尺度，不要求所有动作同一画布。拾取保留20×20，坐姿各方向保留原画布的一半，避免裁掉手部。
++- 当前主肤色 `#FEEDE1`，阴影 `#E0C5B4`，描边 `#46465E`；不擅自重新配色。
++- 默认在后台处理，通过本地成图和API回读检查。不得强制刷新前台，不覆盖未保存草稿。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\README.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+index ee1703c..69f4ec7 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\README.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+@@ -1,186 +1,14 @@
+-# 像素角色绘画编辑器 (Pixel Art Character Editor)
++# 16×16 像素工作台
+ 
+-面向 AI Agent 与像素画师深度协作的专业 Web 像素角色精灵图编辑器。支持导入素材大图、智能切帧、多动作与朝向管理、多图层混合、逐像素精密编辑、撤销/重做栈、实时洋葱皮透光、原图差异高亮、动画连续预览、帧质量校验及一键批量打包导出。
++运行 `启动编辑器.cmd`，打开 http://localhost:8765/index.html 。
+ 
+----
++当前主工程只保留干净素体：行走、待机、拾取、坐姿；无旧头发、衣服、成品和测试工程。
+ 
+-## 🚀 启动与使用指南
++- 行走、待机使用原生16规格备份。
++- 拾取使用原生像素，20×20画布保留伸手范围。
++- 坐姿使用用户后画的32规格坐姿，所有画布、坐标与图层统一缩小50%；不裁切、不补画、不移位。各方向画布为14×17、16×17、18×17。
++- 主肤色 #FEEDE1，阴影 #E0C5B4，描边 #46465E。
++- “重新载入16×16素体”只载入新的干净模板，不恢复旧32规格素材。
++- 手动保存：Ctrl+S；后台保存方式见 `后台工程读写约定.md`。
+ 
+-本项目为原生 Web 应用（Vanilla JavaScript + HTML5 Canvas + CSS3），无需安装任何大型 Node 构建依赖。
+-
+-### 本地启动方式
+-
+-系统已提供零依赖极速本地静态服务脚本 `server.js`（纯原生 Node.js 内置模块实现，无需安装 npm 依赖）：
+-
+-1. 打开终端（PowerShell 或 CMD），进入项目根目录：
+-   ```bash
+-   cd c:\Users\Administrator\Desktop\角色绘画
+-   ```
+-
+-2. 启动服务（推荐 Node.js，或 Python）：
+-   ```bash
+-   node server.js
+-   # 或者使用其它静态服务：python -m http.server 8080 / npx serve
+-   ```
+-
+-3. 打开现代浏览器（Chrome、Edge 或 Firefox）访问：
+-   - 🎨 **编辑工作台**: `http://localhost:8080`
+-   - 🧪 **自动化测试套件**: `http://localhost:8080/test.html`
+-   - 📑 **Agent API 文档**: `http://localhost:8080/API_DOCS.md`
+-
+----
+-
+-## 工作台操作
+-
+-- 顶部“成品衣柜 / 换装测试”：首次手动勾选完成的头发或衣服，收录为成品；不会自动搬入旧分支或半成品。成品复用现有保存接口，按 `data/projects/finished-<编号>.json` 一件一文件保存，自动跟随原工程已保存的对应部件。
+-- 衣柜支持多件叠穿：前发、后发、发饰或多件衣服可分别穿上，每件点“脱下”可单独移除，也可“脱下全部”。同一部位后穿的叠在前面，不自动替换；筛选类别或刷新成品列表不会脱下其他部件。点击测试场景，方向键 / WASD 移动，C 坐下或站起，E 拾取；按钮和下拉框也可测试动作、朝向。缺少的动作、方向、帧会提示，不用待机图冒充。仅支持现有 `original32_*` 人物动作，其他尺寸素材请先在编辑器中处理。
+-- “一键导出”下载单件 ZIP：含透明 `全部动作.png`（各动作依次纵向排列，各方向分行、帧横排）、各动作 PNG、`阵列说明.json`（尺寸、偏移、方向和时长）及只含勾选部件的 `成品.json`。不包含身体或未勾选草稿。打开衣柜自动同步，停留期间约每2秒检查原工程和成品更新，保留穿戴、筛选和成品名，无需选择或确认；展开收录表单时暂停定时检查。只同步已经收录的部件，未保存草稿不自动写入成品。写入仍有 ETag 校验和 `.bak` 备份；原部件删除或改名时保留上次成品并提示，可用手动更新重新勾选；“移出衣柜”只归档，不删除独立文件。
+-- 试穿不写回工程，不保存角色位置或穿戴搭配；重新打开衣柜时读取当前工程的身体和已显示五官。衣柜不会修改或保存当前未保存的绘画草稿。
+-
+-- 动画帧上方提供“复制 / 剪切 / 粘贴”（Ctrl+C / X / V）：有选区时操作选区，无选区时操作当前图层；切换帧或朝向后仍能粘贴。
+-- 复制内容跨窗口共享：在一个窗口（或一个工程标签页）复制后，可在另一个窗口 / 另一个工程里直接 Ctrl+V 粘贴。目标里已有同名图层就写进该图层，没有则自动新建同名独立图层；来源坐标超出目标帧时自动夹到可见范围。剪贴板 30 分钟过期，跨浏览器实例时走系统文本剪贴板兜底。
+-- “复制到下一帧”可连续点击；已存在下一帧时只复制当前图层，末帧时复制整帧新建下一帧。“复制整帧到末尾”会复制全部图层。均支持撤销。
+-- “批量复制”可选正面、侧面、背面或全部朝向，以及目标帧范围；默认叠加非透明像素，可显式选择覆盖粘贴范围。整批校验锁定和边界，一次撤销。复制不会自动把侧面画成正面。
+-- AI 可用 `pixelAPI.copyLayerToFrames(source, targets)` 直接跨帧、朝向批量复制；`getLayers()` 返回素材表、分组、保护状态和当前帧是否有内容。具体参数见 `API_DOCS.md`。
+-
+-- 色板自动显示当前帧可见画面的颜色，点击取色。
+-- 每个图层有独立删除按钮，删除后可用 Ctrl+Z 撤销；锁定图层先解锁。
+-- “上传图片”支持框选局部、拖动裁选框和右下角调整范围；默认平滑缩小并保留原图颜色，可手动选择 8–64 色或最近邻缩放。放入后拖动图片移动、拖动右下角白色方块等比缩放，也可用“缩小图片 / 放大图片”按钮；取消选中后用“移动 / 缩放”点回图片，方向键微调，Ctrl+Z 撤销。关闭“转成像素图”也会保留半透明像素。
+-- “新建高清画布”可直接在弹窗的当前帧参考画面拖框，自动确定新图层的位置、宽高和高清源尺寸（默认6倍，源尺寸单边最大512）；可反向拖动、重新框选，仍支持手动输入。创建的是独立透明图层，不会复制或修改参考图；确认后直接在主画布绘画，可撤销。
+-- “工程操作”中创建或管理分支；画布背景收在“画布设置”，“显示手部”直接放在画布上方。AI 助手入口已隐藏。
+-- 人物／衣服分支的头部、身体和手部跟随已保存的主工程，分支内只读；头发、五官、衣服独立。已有未保存草稿时暂停同步，保留草稿和版本冲突检查。独立稿与场景不参与同步。
+-
+----
+-
+-## ✨ 核心功能列表
+-
+-### 1. 绘图与工具箱
+-- **像素铅笔 (B/P)**：支持 1~16px 粗细无抗锯齿的精细像素绘制。
+-- **橡皮擦 (E)**：擦除指定图层像素至全透明。
+-- **吸色管 (I)**：从复合画布实时吸取目标坐标的 RGB 颜色并同步至前景色。
+-- **油漆桶 (G)**：基于广度优先搜索 (BFS) 快速填充闭合相同颜色区域。
+-- **选区框选 (M)**：矩形选区复制、粘贴与位移移动。
+-- **调色板系统**：内置经典 16 色复古像素调色板，支持动态添加自定义色彩与一键切换。
+-
+-### 2. 精灵图管理与切帧 (SpriteSheet Slicing)
+-- **素材表导入**：支持一键导入单张或多张 PNG/JPG 精灵图。
+-- **切帧配置面板**：实时调节帧宽 (Width)、帧高 (Height)、行列数 (Columns/Rows)、行列间距 (Spacing) 与起始偏移量 (Offset)。
+-- **动作与朝向分类**：支持将帧序列归类至特定动作（如 `walk`, `attack`, `idle`）及方向（`down`, `left`, `right`, `up`）。
+-
+-### 3. 多图层系统 (Layers)
+-- 独立图层新建、删除与排序。
+-- 图层可见性切换（👁/🚫）与锁定保护（🔒/🔓）。
+-- 0%~100% 不透明度实时无级调节。
+-- 复合图层实时渲染与非破坏性编辑。
+-
+-### 4. 辅助视效与检查 (Inspection)
+-- **无级缩放与平移**：支持鼠标滚轮平滑缩放与空格键按住拖拽平移画布。
+-- **高对比像素网格**：随缩放等级自适应显示的网格基线。
+-- **洋葱皮模式 (Onion Skin)**：透光显示前后相邻关键帧，辅助动画对齐与动态流畅度调整。
+-- **变更高亮模式 (Diff)**：一键高亮对比当前编辑效果与原始素材帧的差异像素。
+-- **质量校验**：自动检测空白帧、尺寸合规性、锁定区域破坏与色板规范。
+-- **Contact Sheet 与连环预览**：一键生成动作序列排版图及前后三帧对照预览。
+-
+-### 5. 动画实时预览 (Animation Player)
+-- 底部独立实时动画播放器。
+-- 支持 1~60 FPS 帧率实时无缝切换。
+-- 播放、暂停、停止、逐帧步进/后退控制。
+-
+-### 6. 导出与工程存储
+-- **单帧 PNG 导出**：无损像素导出当前选中帧。
+-- **整表 SpriteSheet 导出**：重构并生成整张高精度精灵图。
+-- **全动作 ZIP 打包**：基于 JSZip 将所有动作和分帧一键压缩打包下载。
+-- **JSON 工程文件保存与恢复**：完整保存图层数据、锁定区域与审核备注，方便随时继续创作。
+-
+----
+-
+-## 🤖 AI Agent 自动化接口 (pixelAPI)
+-
+-本编辑器在全局作用域注入了专门设计的 `window.pixelAPI`，供 AI Agent 或后台脚本自动化控制。所有接口均采用统一结构化返回：
+-
+-```javascript
+-{
+-  success: true,
+-  data: { ... },
+-  modifiedPixels: 42,
+-  rejectedPixels: []
+-}
+-```
+-
+-详细的 API 规范、完整方法清单及丰富的工作流代码示例，请参阅：
+-👉 [**Agent API 接口文档 (API_DOCS.md)**](file:///c:/Users/Administrator/Desktop/角色绘画/API_DOCS.md)
+-
+-### 常用快捷调用示例：
+-```javascript
+-// 获取当前帧信息
+-const info = pixelAPI.getFrameInfo();
+-
+-// 批量修改图层像素
+-pixelAPI.setPixels(0, 0, 0, 0, [
+-  { x: 16, y: 16, r: 255, g: 255, b: 255, a: 255 }
+-]);
+-
+-// 撤销上一步
+-pixelAPI.undo();
+-
+-// 标记审核通过
+-pixelAPI.setFrameStatus(0, 0, 0, 'confirmed', 'AI 修订完成');
+-```
+-
+----
+-
+-## ⌨️ 常用键盘快捷键
+-
+-| 快捷键 | 功能说明 |
+-| :--- | :--- |
+-| `B` 或 `P` | 切换为 **铅笔** 工具 |
+-| `E` | 切换为 **橡皮擦** 工具 |
+-| `I` | 切换为 **吸色管** 工具 |
+-| `G` | 切换为 **油漆桶** 填充工具 |
+-| `M` | 切换为 **选区** 工具 |
+-| `[` / `]` | 缩小 / 放大笔刷粗细 (1px ~ 16px) |
+-| `Space + 鼠标左键拖拽` | 平移移动画布视野 |
+-| `Ctrl + Z` | 撤销上一步 (Undo) |
+-| `Ctrl + Y` 或 `Ctrl + Shift + Z` | 重做 (Redo) |
+-| `Ctrl + J` | 复制当前图层到上方；有选区时，仅复制当前帧选区到新图层（原图不变） |
+-| `Ctrl + E` | 将当前图层向下合并到同组相邻图层，处理两层全部动作与帧；可撤销 |
+-| `Ctrl + S` | 导出项目工程文件 (.json) |
+-| `←` / `→` (方向键) | 快速切换上一帧 / 下一帧 |
+-
+----
+-
+-## 📁 项目目录结构
+-
+-```text
+-角色绘画/
+-├── index.html         # 主编辑器工作台页面
+-├── test.html          # 自动化测试套件页面 (一键验证30项核心指标)
+-├── server.js          # 本地静态服务启动脚本 (Node.js 零依赖)
+-├── API_DOCS.md        # 完整 Agent API 接口使用文档 (58 个结构化方法)
+-├── README.md          # 项目说明与操作指南
+-├── assets/
+-│   └── sample_character.png # 预置 4 帧标准角色动作表素材 (32x32)
+-├── test/
+-│   └── test_suite.js  # 全流程自动化测试套件
+-├── css/
+-│   └── style.css      # 暗黑主题、像素渲染与响应式样式
+-└── js/
+-    ├── core.js        # 数据核心结构 (Project, SpriteSheet, Layer, Frame)
+-    ├── history.js     # 撤销/重做历史管理器 (HistoryManager)
+-    ├── canvas.js      # 画布渲染与坐标映射器 (CanvasManager)
+-    ├── tools.js       # 交互工具控制器 (ToolManager)
+-    ├── spritesheet.js # 精灵图切割与导入管理器 (SpriteSheetManager)
+-    ├── animation.js   # 动画实时播放器 (AnimationPlayer)
+-    ├── inspection.js  # 检查、校验、Diff 对比器 (InspectionManager)
+-    ├── export.js      # 导出与 ZIP 压缩管理器 (ExportManager)
+-    ├── api.js         # 全局 Agent API 模块 (window.pixelAPI)
+-    └── app.js         # 应用入口与事件控制器 (PE.App)
+-```
+-
+----
+-
+-## ⚠️ 已知限制与注意事项
+-
+-1. **同源策略限制 (CORS)**：请务必通过 HTTP 服务（如 `python -m http.server`）打开网页，直接双击 `file://` 打开可能导致部分浏览器阻止跨域读取 Canvas 像素及导出 Blob。
+-2. **内存与超大图建议**：建议单个 SpriteSheet 分辨率控制在 2048x2048 以内，以保证全图层复合渲染与动画播放的最佳流畅度。
+-3. **坐标范围**：所有绘图 API 的像素坐标均受限于当前帧的 `frameWidth` 与 `frameHeight`，超出范围的像素将被自动拦截并在 `rejectedPixels` 中予以报告。
++旧工程、旧规范与本次变更前的文件均保存在 `备份/20261104-16x16干净重启/`。旧规范不再自动读取，新的绘画文档由用户重新制定。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\\345\220\216\345\217\260\345\267\245\347\250\213\350\257\273\345\206\231\347\272\246\345\256\232.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\220\216\345\217\260\345\267\245\347\250\213\350\257\273\345\206\231\347\272\246\345\256\232.md"
+index c5d8742..3a158ae 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\\345\220\216\345\217\260\345\267\245\347\250\213\350\257\273\345\206\231\347\272\246\345\256\232.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\220\216\345\217\260\345\267\245\347\250\213\350\257\273\345\206\231\347\272\246\345\256\232.md"
+@@ -1,39 +1,13 @@
+-# 通用：后台工程读写约定
+-
+-本文只说明所有任务共用的工程读写、保存、同步、防覆盖和交付方法，不包含建筑、物品或人物的专用画法。读完本文件，只再读当前任务对应的一份绘画规范。
+-
+-用户要求：每个工程有专门的存储文件，AI只修改对应工程；用户在前台查看和继续编辑。不要反复通过网页点击来制作、保存、分组或改帧。
+-
+-## 已有存储结构，继续使用
+-
+-实际编辑器：`C:\Users\Administrator\Desktop\角色绘画`。
+-
+-- 人物主工程：`data/shared-project.json`。
+-- 独立工程：`data/projects/<工程编号>.json`，每个编号独占一个文件。
+-- 中文显示名保存在JSON的 `name` 中；内部编号稳定，改中文名字不移动文件、不串工程。
+-- 一个工程文件完整保存图层、父子分组、显隐、帧与时长、像素等数据。不是每次展示都重新加载默认素材。
+-
+-不要再建另一套项目库、另一个网页或长期分叉的“前台工程/后台工程”。网页与AI最终读写同一份已保存工程。
+-
+-## AI实际执行流程
+-
+-1. 根据分配的工程编号定位工作对象。`GET http://127.0.0.1:8765/api/projects` 可查询中文名与编号。
+-2. 在后台 `GET /api/project?id=编号`，将原始响应保存为备份，记录ETag。没有明确授权时不读取/修改人物主稿或其他AI的工程。
+-3. 用Python、Node等代码处理这一工程的工作副本。后台绘画、生成分层、补遮挡底图、改动画帧；用本地成图和断言检查。写绘画脚本时使用各自目录与文件名，不互改共用脚本。
+-4. 完成后 `PUT /api/project?id=同一编号`，请求带 `Content-Type: application/json`、`X-Pixel-Editor: 1`、`If-Match: 刚才的ETag`。本地保存接口负责校验并原子写入对应JSON，保留备份。这个接口是后台文件保存入口，不需要操作网页。
+-5. 409表示这份工程在读取后已变化，保留候选文件，比较差异后再合并；禁止取新ETag盲目重传旧整稿。
+-6. 后台回读，检查数据与预期一致。通常到此完成。只有排查实际渲染问题或用户明确要求时才操作网页，不再重复开标签、截图、逐项点击验证。
+-
+-创建新工程时使用独立编号，`If-Match: none`。每个AI只处理分配给自己的工程；同一工程多人并行时先建立各自独立稿，不把一个工程粗暴拆为多人同时覆写的文件。
+-
+-## 前台显示与用户修改
+-
+-- 前台网址的 `project` 对应一个后台工程文件。你在网页选择中文工程名，就会打开该文件的显示。
+-- 当前实现约每2秒检查共享更新；页面没有本地未保存修改且没有正在绘画/保存时，自动拉取新版本并更新画面，尽量保留当前选层和选帧。
+-- 页面有未保存草稿时，自动同步会暂停，避免覆盖用户绘画。AI不强制刷新或关闭这种页面，也不能说共享文件已经包含这些尚未保存的像素。
+-- 网页的保存仍由用户点击保存或Ctrl+S触发。不同工程写不同文件，互不覆盖；同一工程的手动保存仍保留版本检查。
+-- 每个工程只保留必要的工作页面。AI不为证明每一步而不断新开标签页；用户现有未保存标签页不擅自关闭。
+-
+-## 多AI边界
+-
+-绘画任务只写自己的工程文件，不改编辑器HTML/JS/CSS、服务、他人项目或公共规则。确实要改工具功能时，作为单独的明确任务处理，先检查是否有其他代码修改。独立工程隔离的是绘画数据，不自动隔离编辑器程序。
++# 后台工程读写约定
++
++这份文件只规定数据安全与保存方式，不规定绘画风格。旧绘画文档已经归档，不自动读取；新规范由用户重新制定。
++
++- 本地服务：`http://127.0.0.1:8765`。
++- 主工程：`data/shared-project.json`；独立工程：`data/projects/<编号>.json`。
++- 先 `GET /api/projects` 查工程，再 `GET /api/project?id=编号` 获取完整JSON与ETag。保存原始响应、SHA256及ETag，在副本上处理。
++- 使用 `PUT /api/project?id=同一编号` 保存，请求头：`Content-Type: application/json`、`X-Pixel-Editor: 1`、`If-Match: 读取时的ETag`。新建工程使用 `If-Match: none`。
++- 409代表工程已经变化；保留候选稿，比较合并，不取新ETag盲目重传旧整稿。
++- 保存后回读并检查图层、帧、时长、像素、尺寸与改动范围。不要只检查提示文字。
++- 后台与前台使用同一份保存工程。前台有未保存草稿时，不强制刷新、关闭或覆盖。后台完成不代表浏览器未保存的草稿已被修改。
++- 只修改用户授权的工程与部位。绘画任务不顺手修改编辑器程序；工具修改另按用户明确要求执行。
++- 历史工程与旧规范仅归档，不自动读取或恢复。不要用旧素材覆盖当前16规格工程。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\index.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+index c2b5145..c153900 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+@@ -289,7 +289,7 @@
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js?v=playback-overlays-1"></script>
+   <script src="js/inspection.js"></script>
+-  <script src="js/export.js?v=hair-link-sway-1"></script>
++  <script src="js/export.js?v=native16-clean-20261104"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+   <script src="js/app.js?v=eye-sync-no-sleep-20261103"></script>
+@@ -301,12 +301,12 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=eye-sync-no-sleep-20261103"></script>
++  <script src="js/studio.js?v=native16-clean-20261104"></script>
+   <script src="js/visual-layers.js?v=layer-controls-20261103"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+-  <script src="js/projects.js?v=finished-wardrobe-1"></script>
++  <script src="js/projects.js?v=native16-clean-20261104"></script>
+   <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
+-  <script src="js/wardrobe.js?v=eye-behind-fringe-20261103"></script>
++  <script src="js/wardrobe.js?v=native16-clean-20261104"></script>
+   <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
+   <script src="js/frame-tools.js?v=eye-sync-no-sleep-20261103"></script>
+   <script src="js/layer-mirror.js?v=layer-mirror-2"></script>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\ai-service.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\ai-service.cjs"
+index 7addcb3..12771e0 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\ai-service.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\ai-service.cjs"
+@@ -1,5 +1,5 @@
+ const fs=require('fs'),path=require('path');
+-const documents={hair:['人物绘制AI要求与自检.md','像素发型教程与自检.md'],eyes:['人物绘制AI要求与自检.md','眼睛绘制AI要求与自检.md'],clothes:['人物绘制AI要求与自检.md','衣服绘制AI要求与自检.md'],character:['人物绘制AI要求与自检.md'],building:['建筑绘制AI要求与自检.md'],item:['物品绘制AI要求与自检.md']};
++const documents={hair:[],eyes:[],clothes:[],character:[],building:[],item:[]};
+ function apiBase(value='http://127.0.0.1:9182'){
+   const u=new URL(value);
+   if(!['http:','https:'].includes(u.protocol)||u.username||u.password||u.search||u.hash)throw new Error('请输入有效的 HTTP 服务地址');
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\studio.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+index 5e3f052..de44571 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\studio.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const toolButtons=['pencil','eraser','eyedropper','fill','select'].map(t=>$('tool-'+t));
+   const extraTools=['复制选区','粘贴选区','取消选区'].map(byText);
+   const header=node('header','studio-header');header.id='studio-header';
+-  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><strong>像素衣橱</strong>';
++  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><strong>16×16 像素工作台</strong>';
+   const primary=node('div','primary-actions');
+   $('import-btn').textContent='导入素材';$('import-project-btn').textContent='打开工程';$('export-project-btn').textContent='保存工程';$('export-project-btn').classList.add('save-primary');
+   const oldSave=$('export-project-btn'),save=oldSave.cloneNode(true);oldSave.replaceWith(save);save.onclick=()=>app.persistence.saveNow();
+@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const directionList=$('action-list');
+   const left=$('left-sidebar');left.replaceChildren(sources);
+   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
+-  const builtinReset=button('重新载入内置角色',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
++  const builtinReset=button('重新载入16×16素体',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
+   const center=$('center-viewport'),canvasHeader=node('div','canvas-header');
+   const heading=node('div','canvas-title');const drawingTitle=node('strong','','正在载入角色…'),drawingMeta=node('span','','');heading.append(drawingTitle,drawingMeta);
+   const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手臂');handSwitch.append(handCheckbox,node('span','','显示手臂'));
+@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   $('animation-bar').remove();$('bottom-panel').className='studio-footer';
+   const names=new Map((window.PE_BUILTIN_PACKS||[]).map(x=>[x.name.replace('.aseprite',''),x.title]));
+   names.set('sit','坐姿');
+-  const commonActions=[['original32_walk','行走'],['original32_idle','待机'],['original32_pickup','拾取'],['original32_sit','坐姿']];
++  const commonActions=[['original16_walk','行走'],['original16_idle','待机'],['original16_pickup','拾取'],['original16_sit','坐姿']];
+   for(const [name,title]of commonActions)names.set(name,title);
+   const directionNames={down:'正面',side:'侧面',up:'背面',left:'向左',right:'向右',none:'当前方向'};
+ 
+@@ -155,24 +155,15 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing&&!app.animationPlayer.playing)focusCharacter();});resizeObserver.observe($('canvas-container'));
+   const loading=node('div','studio-loading');loading.innerHTML='<span class="loading-pixel">▦</span><strong>正在打开你的角色素材</strong><span>保留原始图层与全部动作帧</span>';document.body.append(loading);
+   async function loadBuiltins(reset=false){
+-    if(reset&&!confirm('重新载入内置原始角色会替换当前工程，请先保存工程。继续吗？'))return;
++    if(reset&&!confirm('重新载入干净16×16素体会替换当前工程，请先保存工程。继续吗？'))return;
+     if(reset&&app.persistence.dirty&&!await app.persistence.saveNow()){alert('请先导出当前工程，避免覆盖尚未同步的绘画。');return;}
+     builtinReset.disabled=true;loading.hidden=false;app.suspendBackup=true;
+     try{
+-      // Build in a separate project; a failed import must never replace current edits.
+-      const project=new PE.Project();project.layers=[];project.spriteSheets=[];
+-      for(const item of window.PE_BUILTIN_PACKS){const bytes=Uint8Array.from(atob(item.base64),c=>c.charCodeAt(0));await PE.importAseprite(new File([bytes],item.name),project);}
+-      for(const [pack,name,pose,direction]of [
+-        ['walk.aseprite','original32_walk'],['idle.aseprite','original32_idle'],['pick up.aseprite','original32_pickup'],
+-        ['hurt.aseprite','original32_sit','sit']
+-      ]){const index=await PE.addOriginal32Action(project,pack,name,pose,direction);PE.addReferenceEyes32(project,index);}
+-      const base32Index=project.spriteSheets.findIndex(s=>s.name==='original32_idle');
+-      project.bgColor='#b8c8c3';project.gridColor='rgba(48,68,62,.2)';
+-      project.name='Hana Caraka · 角色衣橱';project.currentSheetIndex=base32Index;
+-      project.currentActionIndex=Math.max(0,project.spriteSheets[base32Index].actions.findIndex(a=>a.direction==='down'));project.currentFrameIndex=0;
+-      project.currentLayerIndex=project.layers.findIndex(l=>l.sheetIndex===base32Index&&!l.isGroup&&!PE.isHandLayer(l)&&l.name.includes('眼型'));
+-      app.animationPlayer.pause();app.project=project;PE.project=project;app.canvasManager.setProject(project);app.toolManager.init(project,app.canvasManager,app.history);app.animationPlayer.project=project;app.exportManager.init(project,app.canvasManager);app.inspectionManager.init(project,app.canvasManager);app.history.clear();app.updateAll();app.syncBackgroundControls();focusCharacter();
+-      const sample=project.getCurrentFrame()?.originalPixels;if(sample){const colors=new Map();for(let i=0;i<sample.data.length;i+=4){if(!sample.data[i+3])continue;const [r,g,b,a]=sample.data.slice(i,i+4);colors.set([r,g,b,a].join(','),{r,g,b,a});}project.palette=[...colors.values(),...[['#E8A6B6','柔粉'],['#A7CBB1','浅绿'],['#ECCF8D','奶黄'],['#9CB6D6','浅蓝'],['#B7A5CF','浅紫']].map(([hex,name])=>({...PE.utils.hexToRGBA(hex),name}))];app.updatePalette();}
++      const response=await fetch('assets/builtin/native16-clean.json',{cache:'no-store'});
++      if(!response.ok)throw new Error('16×16 素体读取失败：'+response.status);
++      await app.exportManager.importProject(await response.blob());
++      app.animationPlayer.setAction(app.project.currentSheetIndex,app.project.currentActionIndex);
++      app.updateAll();app.syncBackgroundControls();focusCharacter();
+     }catch(error){alert('内置素材载入失败：'+error.message+'。当前工程未被替换。');console.error(error);}
+     finally{loading.hidden=true;builtinReset.disabled=false;app.suspendBackup=false;}
+     if(reset)app.persistence.markDirty();
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\projects.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\projects.js"
+index ca9f182..fdceca9 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\projects.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\projects.js"
+@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(!name?.trim())return;
+     let data;
+     if(scene){
+-      const size=prompt('画布宽×高（像素，32格比例；最大1024×1024）','320x256');
++      const size=prompt('画布宽×高（像素，16格比例；最大1024×1024）','160x128');
+       if(size===null)return;
+       const match=/^(\d+)\s*[x×*]\s*(\d+)$/.exec(size.trim());
+       if(!match)throw new Error('请输入例如 320x256');
+@@ -61,21 +61,5 @@ document.addEventListener('DOMContentLoaded',()=>{
+     const list=await response.json();select.replaceChildren(new Option('打开已有工程…',''),...list.filter(item=>!item.id.startsWith('finished-')).map(item=>new Option(item.name,item.id)));
+   }
+   refresh().catch(console.error);
+-  button('建筑画法参考',()=>{
+-    let panel=document.getElementById('building-reference');if(panel){panel.remove();return;}
+-    panel=document.createElement('section');panel.id='building-reference';
+-    Object.assign(panel.style,{position:'fixed',right:'16px',top:'100px',zIndex:9999,background:'#252630',color:'#eee',padding:'16px',width:'min(440px,90vw)',maxHeight:'75vh',overflow:'auto',boxShadow:'0 5px 30px #0008'});
+-    const close=document.createElement('button');close.textContent='关闭';close.onclick=()=>panel.remove();panel.append(close);
+-    const text=document.createElement('p');text.textContent='用户建筑参考：直面略俯视，屋顶、墙体、门窗、招牌与材质细节按原素材比例绘制。建筑也保留图层和动画帧；门窗、灯光等单独画，主体坐标固定。尺寸随建筑适配，不压成几个大色块。';panel.append(text);
+-    ['木屋','市场','商场'].forEach((name,i)=>{const label=document.createElement('p');label.textContent=name;const img=document.createElement('img');img.src='assets/building-reference/'+i+'.png';img.alt=name;img.style.imageRendering='pixelated';img.style.maxWidth='100%';panel.append(label,img);});document.body.append(panel);
+-  });
+-  button('场景画法参考',()=>{
+-    let panel=document.getElementById('scene-reference');
+-    if(panel){panel.remove();return;}
+-    panel=document.createElement('section');panel.id='scene-reference';
+-    Object.assign(panel.style,{position:'fixed',right:'20px',top:'100px',zIndex:9999,background:'#252630',color:'#eee',padding:'16px',maxWidth:'440px',boxShadow:'0 5px 30px #0008'});
+-    const close=document.createElement('button');close.textContent='关闭';close.style.color='#243b33';close.style.background='#eef3ef';close.onclick=()=>panel.remove();panel.append(close);
+-    const text=document.createElement('p');text.textContent='按原生32×32地块比例逐像素绘制；正交直线，能看见顶部和正面。沿用参考的灰紫轮廓、低饱和色阶和块面阴影，避免模糊、平滑缩放。先吸取原素材颜色，再在场景独立稿上画。';panel.append(text);
+-    ['组合参考','厨房384','厨房162','厨房343'].forEach((name,i)=>{const img=document.createElement('img');img.src='assets/scene-reference/'+i+'.png';img.alt=name;img.style.imageRendering='pixelated';img.style.width=i===0?'256px':'96px';img.style.maxHeight='320px';img.style.objectFit='contain';panel.append(img);});document.body.append(panel);
+-  });
++
+ });
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\ai-chat.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\ai-chat.js"
+index 66ce0ba..87530ee 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\ai-chat.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\ai-chat.js"
+@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   panel.addEventListener('keydown',e=>{if(!(e.ctrlKey||e.metaKey)||e.key.toLowerCase()!=='s')e.stopPropagation();});
+   function render(){log.replaceChildren();for(const m of history){const item=document.createElement('div');item.className='ai-message '+m.role;const name=document.createElement('strong'),text=document.createElement('div');name.textContent=m.role==='user'?'你':'AI';text.textContent=m.content;item.append(name,text);log.append(item);}log.scrollTop=log.scrollHeight;}
+   function remember(){store('pixel-ai-settings',{baseURL:base.value.trim(),model:model.value,category:category.value});}
+-  function docs(){const names={hair:'人物绘制AI要求与自检.md ＋ 像素发型教程与自检.md',eyes:'人物绘制AI要求与自检.md ＋ 眼睛绘制AI要求与自检.md',clothes:'人物绘制AI要求与自检.md ＋ 衣服绘制AI要求与自检.md',character:'人物绘制AI要求与自检.md',building:'建筑绘制AI要求与自检.md',item:'物品绘制AI要求与自检.md'};$('docs').textContent='自动读取：后台工程读写约定.md ＋ '+names[category.value];}
++  function docs(){$('docs').textContent='只读取：后台工程读写约定.md；旧绘画规范已归档，新规范待用户制定。';}
+   category.onchange=()=>{pending=null;$('apply').disabled=true;$('changes').hidden=true;$('other-actions').checked=false;docs();remember();};model.onchange=remember;
+   $('other-actions').onchange=()=>{pending=null;$('apply').disabled=true;};
+   let controller;
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\export.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\export.js"
+index 43d9962..6fce180 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\export.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\export.js"
+@@ -330,7 +330,7 @@ window.PE = window.PE || {};
+       const actionNames={walk:'行走',idle:'待机',pickup:'拾取',sit:'坐',sleep:'睡觉'},directions={side:'侧面',down:'正面',up:'背面'};
+       const layerNames=new Map();
+       for(let si=0;si<p.spriteSheets.length;si++){
+-        const sheet=p.spriteSheets[si];if(!sheet.name.startsWith('original32_'))continue;
++        const sheet=p.spriteSheets[si];if(!/^original(?:16|32)_/.test(sheet.name))continue;
+         const groups=new Map();
+         for(const l of p.layers){
+           const name=V.partName(l);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\wardrobe.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\wardrobe.js"
+index 9fc9d1b..cb3a3f5 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16x16\345\271\262\345\207\200\351\207\215\345\220\257\\js\\wardrobe.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\wardrobe.js"
+@@ -9,7 +9,7 @@ PE.Wardrobe={
+     const groups=new Map();
+     for(const layer of project.layers){
+       if(layer.isGroup||this.isBase(layer))continue;
+-      const sheets=[...new Set([...layer.frameData].filter(([k,d])=>this.hasPixels(d)&&project.spriteSheets[Number(k.split('_')[0])]?.name.startsWith('original32_')).map(([k])=>Number(k.split('_')[0])))];
++      const sheets=[...new Set([...layer.frameData].filter(([k,d])=>this.hasPixels(d)&&project.spriteSheets[Number(k.split('_')[0])]?.name.match(/^original(?:16|32)_/)).map(([k])=>Number(k.split('_')[0])))];
+       if(!sheets.length)continue;
+       const key=this.family(layer);
+       if(!groups.has(key))groups.set(key,{key,category:PE.VisualLayers.category(layer),visible:false});
+@@ -23,7 +23,7 @@ PE.Wardrobe={
+       const sheets=new Set(Object.keys(l.frameData||{}).map(k=>Number(k.split('_')[0])));
+       return [...sheets].filter(si=>l.sheetIndex===undefined||l.sheetIndex===si).map(si=>({...l,sheetIndex:si}));
+     });
+-    const indices=[...new Set(layers.map(l=>l.sheetIndex))].filter(si=>raw.spriteSheets[si]?.name.startsWith('original32_'));
++    const indices=[...new Set(layers.map(l=>l.sheetIndex))].filter(si=>raw.spriteSheets[si]?.name.match(/^original(?:16|32)_/));
+     const mapping=new Map(indices.map((si,i)=>[si,i]));
+     const result={version:'1.0',name:name.trim().slice(0,60),currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,currentLayerIndex:0,palette:raw.palette||[],
+       wardrobe:{version:1,category,sourceProjectId,sourceName:raw.name,completedAt:new Date().toISOString()},spriteSheets:[],layers:[]};
+@@ -51,7 +51,7 @@ PE.Wardrobe={
+     return result;
+   },
+   locate(project,action,direction){
+-    const si=project.spriteSheets.findIndex(s=>s.name==='original32_'+action),s=project.spriteSheets[si];
++    const si=project.spriteSheets.findIndex(s=>['original16_'+action,'original32_'+action].includes(s.name)),s=project.spriteSheets[si];
+     if(!s)return null;
+     let ai=s.actions.findIndex(a=>a.direction===direction),flip=false;
+     if(ai<0&&['left','right'].includes(direction)){ai=s.actions.findIndex(a=>a.direction==='side');flip=direction==='left';}
+@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   button('收录为新成品',()=>save(false),saveRow);button('更新选中成品',()=>save(true),saveRow);
+   function coverage(entry){
+     return Object.entries(W.actions).map(([key,label])=>{
+-      const s=entry.project.spriteSheets.find(s=>s.name==='original32_'+key);if(!s)return label+'：缺少';
++      const s=entry.project.spriteSheets.find(s=>['original16_'+key,'original32_'+key].includes(s.name));if(!s)return label+'：缺少';
+       const si=entry.project.spriteSheets.indexOf(s);
+       const rows=s.actions.map((a,ai)=>{const filled=a.frames.filter((_,fi)=>entry.project.layers.some(l=>W.hasPixels(l.getFrameData(`${si}_${ai}_${fi}`)))).length;return ({down:'正',up:'背',side:'侧',left:'左',right:'右'}[a.direction]||a.direction)+filled+'/'+a.frames.length;});
+       return label+'：'+rows.join(' ');

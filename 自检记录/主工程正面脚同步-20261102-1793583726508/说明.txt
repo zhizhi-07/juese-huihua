@@ -1,0 +1,5 @@
+主工程 main：仅 original32_sit 正面 body 第2～4帧 y=26..31 同步用户已保存第1帧的脚部。第1帧、y<26 的呼吸动作、其他图层/方向/动作及元数据均不变。
+PUT 使用原 ETag，提交前重读比对，保存后 API 回读一致。
+备份 before.json；修改结果 candidate.json；对比图 对比.png；自检 verification.json。
+恢复时仅将 before.json 中 layer 221 的 10_1_1、10_1_2、10_1_3 三个脚部区域 y26..31 合并回最新 API 工程，必须带当前 ETag；不要整份覆盖后续用户修改。
+未操作浏览器，未刷新前台草稿。

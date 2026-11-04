@@ -1,0 +1,138 @@
+{
+  "originalSHA256": "dc0830442467e6a032486aac2120e00c3e6d2f44e57669a32126e94ad04df02f",
+  "colors": {
+    "outline": "332d2b",
+    "base": "796060",
+    "shadow": "644647",
+    "light": "eedbc1"
+  },
+  "changed": [
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_1_0",
+      "changedPixels": 365
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_1_1",
+      "changedPixels": 364
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_1_2",
+      "changedPixels": 344
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_1_3",
+      "changedPixels": 344
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_0_0",
+      "changedPixels": 353
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_0",
+      "changedPixels": 584
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_0_1",
+      "changedPixels": 353
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_0_2",
+      "changedPixels": 332
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_0_3",
+      "changedPixels": 331
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_1",
+      "changedPixels": 584
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_2",
+      "changedPixels": 534
+    },
+    {
+      "layer": 10,
+      "name": "头发 / 用户 / 后发",
+      "key": "8_2_3",
+      "changedPixels": 534
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_1_0",
+      "changedPixels": 302
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_0_0",
+      "changedPixels": 319
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_1_1",
+      "changedPixels": 302
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_1_2",
+      "changedPixels": 302
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_1_3",
+      "changedPixels": 302
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_0_1",
+      "changedPixels": 319
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_0_2",
+      "changedPixels": 319
+    },
+    {
+      "layer": 191,
+      "name": "前发",
+      "key": "8_0_3",
+      "changedPixels": 319
+    }
+  ],
+  "alphaAndSilhouetteUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "placementsAndTimingUnchanged": true,
+  "all12IdleFramesMainPreviewPNGMatch": true,
+  "rearFrontHairTransparent": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

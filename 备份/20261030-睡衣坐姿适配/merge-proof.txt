@@ -1,0 +1,1 @@
+Only existing layer 192, sheetIndex 8 (idle) differs; sit source layers and all other project data unchanged. Preserve concurrent version entirely, then add sitting-only outfit.

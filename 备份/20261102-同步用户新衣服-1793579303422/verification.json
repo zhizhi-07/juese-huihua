@@ -1,0 +1,18 @@
+{
+  "sourceSHA256": "72cb31b1bad0f5bd768833b9e3d9a4d43736aa8c46e776922688fed3975869af",
+  "sourceLayer": 188,
+  "userFirstTwoFrontCelsExact": true,
+  "changedLayers": [
+    188,
+    141,
+    129
+  ],
+  "tenCelsSynced": true,
+  "noAddedLayers": true,
+  "otherLayersAndActionsExact": true,
+  "frameCountsDurationsExact": true,
+  "mainCanvasAndPNGActualScaleChecked": true,
+  "studioPreview12FramesChecked": true,
+  "restoreExtraCopyExact": true,
+  "browserChecked": false
+}

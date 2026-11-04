@@ -1,0 +1,39 @@
+{
+  "time": "2026-11-03T02:23:10.917Z",
+  "files": [
+    {
+      "path": "js/hair-animation.js",
+      "sha256": "e647367423e9e25c7d347682917ba162c799b7d374f7b1591a068279f16243d8"
+    },
+    {
+      "path": "test/hair-animation.cjs",
+      "sha256": "503c108f8f3199d361e2b2eebb98769d0f637674b8b04823912f3dc4e4dadad8"
+    },
+    {
+      "path": "index.html",
+      "sha256": "7f15591384fb058d0adec1f51fd01eef92a001d5573548ea737e69ca477a6494"
+    }
+  ],
+  "projects": [
+    {
+      "id": "draft-hair-link-test-1793667505308",
+      "etag": "\"cb104f1c60d7fd342d833dbf87c484cf65a5ff339f91533d3d3778f810d81c9c\"",
+      "sha256": "cb104f1c60d7fd342d833dbf87c484cf65a5ff339f91533d3d3778f810d81c9c"
+    },
+    {
+      "id": "draft-hair-link-qa-1793667805120",
+      "etag": "\"01c66e45734cafd2c897ee48b6881eac0682b64c364707c3e163dd762ee22d18\"",
+      "sha256": "01c66e45734cafd2c897ee48b6881eac0682b64c364707c3e163dd762ee22d18"
+    },
+    {
+      "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+      "etag": "\"9ccf191062bc13c04431e04793fca9ca1ff3fb1be4140cce4a81f41711ee6f1d\"",
+      "sha256": "9ccf191062bc13c04431e04793fca9ca1ff3fb1be4140cce4a81f41711ee6f1d"
+    },
+    {
+      "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+      "etag": "\"6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96\"",
+      "sha256": "6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96"
+    }
+  ]
+}

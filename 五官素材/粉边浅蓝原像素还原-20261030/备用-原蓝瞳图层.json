@@ -1,0 +1,55 @@
+{
+  "name": "眼睛 / 蓝瞳·可编辑高清画布",
+  "sheetIndex": 8,
+  "parent": 132,
+  "depth": 1,
+  "visible": true,
+  "locked": false,
+  "opacity": 1,
+  "frameData": {
+    "8_1_0": {
+      "width": 36,
+      "height": 16,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAACsSURBVEiJY2AYBfgBI6katrdX/oexPSvbidJPjh6yALJFlKgZ+sBPwO4/OxMHCiZFP7pePwE78kIN3SByDMXmGbI8BjPo+////7////9fU6EXjmFihBzlJ2CHVz82j7EQ60DrY7kMkyVZGSwzbhHtKXL0E+2gzfPuMJx5zIwitunDIbxZGCr/H5d+bIAJn2HufGbEupcs4M5nhuEpnA5iICIEKAW0Nn8UjEwAAO+ffdUuxbrOAAAAAElFTkSuQmCC",
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    "8_1_1": {
+      "width": 36,
+      "height": 16,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAACsSURBVEiJY2AYBfgBI6katrdX/oexPSvbidJPjh6yALJFlKgZ+sBPwO4/OxMHCiZFP7pePwE78kIN3SByDMXmGbI8BjPo+////7////9fU6EXjmFihBzlJ2CHVz82j7EQ60DrY7kMkyVZGSwzbhHtKXL0E+2gzfPuMJx5zIwitunDIbxZGCr/H5d+bIAJn2HufGbEupcs4M5nhuEpnA5iICIEKAW0Nn8UjEwAAO+ffdUuxbrOAAAAAElFTkSuQmCC",
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    "8_1_2": {
+      "width": 36,
+      "height": 16,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAACsSURBVEiJY2AYBfgBI6katrdX/oexPSvbidJPjh6yALJFlKgZ+sBPwO4/OxMHCiZFP7pePwE78kIN3SByDMXmGbI8BjPo+////7////9fU6EXjmFihBzlJ2CHVz82j7EQ60DrY7kMkyVZGSwzbhHtKXL0E+2gzfPuMJx5zIwitunDIbxZGCr/H5d+bIAJn2HufGbEupcs4M5nhuEpnA5iICIEKAW0Nn8UjEwAAO+ffdUuxbrOAAAAAElFTkSuQmCC",
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    },
+    "8_1_3": {
+      "width": 36,
+      "height": 16,
+      "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAACsSURBVEiJY2AYBfgBI6katrdX/oexPSvbidJPjh6yALJFlKgZ+sBPwO4/OxMHCiZFP7pePwE78kIN3SByDMXmGbI8BjPo+////7////9fU6EXjmFihBzlJ2CHVz82j7EQ60DrY7kMkyVZGSwzbhHtKXL0E+2gzfPuMJx5zIwitunDIbxZGCr/H5d+bIAJn2HufGbEupcs4M5nhuEpnA5iICIEKAW0Nn8UjEwAAO+ffdUuxbrOAAAAAElFTkSuQmCC",
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    }
+  }
+}

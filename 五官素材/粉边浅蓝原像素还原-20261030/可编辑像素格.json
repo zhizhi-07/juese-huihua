@@ -1,0 +1,26 @@
+{
+  "width": 240,
+  "height": 160,
+  "placementWidth": 24,
+  "placementHeight": 16,
+  "method": "Exact source RGBA, two eye+brow regions, flood background only; no redraw, recolor or resampling",
+  "regions": [
+    {
+      "x": 8,
+      "y": 0,
+      "w": 55,
+      "h": 93
+    },
+    {
+      "x": 103,
+      "y": 0,
+      "w": 55,
+      "h": 93
+    }
+  ],
+  "offset": [
+    43,
+    0
+  ],
+  "retainedPixels": 7026
+}

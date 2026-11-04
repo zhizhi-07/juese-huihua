@@ -1,0 +1,24 @@
+[
+  {
+    "name": "头发 / 2 / 后发",
+    "params": {
+      "ampV": 0,
+      "ampH": 2,
+      "cycles": 1,
+      "lag": 0.6,
+      "masks": {}
+    },
+    "halfStrengthChangedChannels": 16
+  },
+  {
+    "name": "1 前发",
+    "params": {
+      "ampV": 0,
+      "ampH": 2,
+      "cycles": 1,
+      "lag": 0.6,
+      "masks": {}
+    },
+    "halfStrengthChangedChannels": 59
+  }
+]

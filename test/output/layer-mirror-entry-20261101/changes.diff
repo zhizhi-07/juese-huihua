@@ -1,0 +1,54 @@
+diff --git a/test/output/layer-mirror-entry-20261101/before/index.html b/index.html
+index 2697322..cb13e86 100644
+--- a/test/output/layer-mirror-entry-20261101/before/index.html
++++ b/index.html
+@@ -316,6 +316,6 @@
+   <script src="js/select-plus.js?v=select-plus-1"></script>
+   <script src="js/outline.js?v=select-plus-1"></script>
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+-  <script src="js/workspace-layout.js?v=1"></script>
++  <script src="js/workspace-layout.js?v=2"></script>
+ </body>
+ </html>
+diff --git a/test/output/layer-mirror-entry-20261101/before/js/workspace-layout.js b/js/workspace-layout.js
+index c16fe5a..6b57fb4 100644
+--- a/test/output/layer-mirror-entry-20261101/before/js/workspace-layout.js
++++ b/js/workspace-layout.js
+@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
+   const layerActions = layers?.querySelector('.layer-header-actions');
+   if (layerActions) {
+     layers.querySelector('.section-header').after(layerActions);
+-    menu('更多', [...layerActions.children].filter(control => control.id !== 'add-layer-btn' && !control.classList.contains('layer-move')), layerActions);
++    menu('更多', [...layerActions.children].filter(control => !['add-layer-btn', 'mirror-layer-btn', 'mirror-live-btn'].includes(control.id) && !control.classList.contains('layer-move')), layerActions);
+   }
+ 
+   const timing = $('.timeline-timing');
+diff --git a/test/output/layer-mirror-entry-20261101/before/test/workspace-layout.cjs b/test/workspace-layout.cjs
+index d01fbce..aa1eaf4 100644
+--- a/test/output/layer-mirror-entry-20261101/before/test/workspace-layout.cjs
++++ b/test/workspace-layout.cjs
+@@ -36,8 +36,10 @@ let gridClicks = 0; grid.onclick = () => gridClicks++;
+ actions.append(grid, zoom, ...auxiliary, reset);
+ const layers = new Element('section'), header = new Element('div','section-header');
+ const layerActions = new Element('div','layer-header-actions');
+-const add = new Element('button','','add-layer-btn'), move = new Element('button','layer-move'), mirror = new Element('button');
+-layerActions.append(add, move, mirror); header.append(layerActions);
++const add = new Element('button','','add-layer-btn'), move = new Element('button','layer-move');
++const mirror = new Element('button','','mirror-layer-btn'), liveMirror = new Element('button','','mirror-live-btn'), remove = new Element('button','','delete-layer-btn');
++let mirrorClicks = 0; mirror.onclick = () => mirrorClicks++;
++layerActions.append(add, move, mirror, liveMirror, remove); header.append(layerActions);
+ const list = new Element('div'); layers.append(header, list);
+ const timing = new Element('div','timeline-timing'), timeline = new Element(); timeline.append(timing);
+ const hands = new Element('label'), checkbox = new Element('input'), options = new Element(), caption = new Element(); hands.append(checkbox);
+@@ -54,8 +56,9 @@ assert.deepEqual(viewContent.children,[grid,reset]);
+ assert.deepEqual(auxContent.children,auxiliary);
+ grid.onclick(); assert.equal(gridClicks,1,'moving a control retains its original listener');
+ assert.equal(layerActions.parentElement,layers);
+-assert.deepEqual(layerActions.children.slice(0,2),[add,move]);
+-assert.equal(layerActions.children[2].children[1].children[0],mirror);
++assert.deepEqual(layerActions.children.slice(0,4),[add,move,mirror,liveMirror], 'both mirror controls stay visible, outside More');
++assert.deepEqual(layerActions.children[4].children[1].children,[remove]);
++mirror.onclick(); assert.equal(mirrorClicks,1,'the visible mirror control keeps its listener');
+ assert.equal(timeline.children[0].children[1].children[0],timing);
+ assert.equal(hands.parentElement,options); assert.equal(caption.hidden,true);
+ menus[0].open=true; menus[1].open=true; menus[1].events.toggle(); assert.equal(menus[0].open,false);

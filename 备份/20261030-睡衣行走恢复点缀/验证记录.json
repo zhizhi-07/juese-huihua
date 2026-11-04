@@ -1,0 +1,178 @@
+{
+  "saved": true,
+  "etag": "\"0b4761ef50c3bd313149b7ca654fc7eb97c581dffee40a2e238b6a4ba4ca4a7c\"",
+  "originalSHA256": "d8f1f72aae7494eb83af080bdc34470fccbb80164c6600b6da7e25d0201045ea",
+  "checks": [
+    {
+      "key": "7_0_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_0_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_1_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_0",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_1",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_2",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_3",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_4",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_5",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_6",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    },
+    {
+      "key": "7_2_7",
+      "main": true,
+      "preview": true,
+      "png": true,
+      "handsUnchanged": true
+    }
+  ],
+  "scope": "Only white ornament pixels restored in walking trousers, 24 frames. Corrected leg shadows and contours unchanged; ornament positions logged in 装饰恢复位置.json.",
+  "unchanged": "Shirt, all other actions, all other layers, opacity, dimensions/timings, hands/hair/face/body and layer order",
+  "browserTested": false
+}

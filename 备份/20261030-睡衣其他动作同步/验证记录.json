@@ -1,0 +1,379 @@
+{
+  "saved": true,
+  "etag": "\"7ab0ad28e63690a38152837a9c1ce52de429180d8a455ea66a6f6b2dfbf4079e\"",
+  "originalSHA256": "fa5cd6d5aa514e877b8c2d6d1b6ee1c6be214c2a00f422c78e8fc1ea8eeedf38",
+  "frames": 46,
+  "checks": [
+    {
+      "key": "7_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_0_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_1_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_6",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "7_2_7",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_0_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_1_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_4",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "9_2_5",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "11_0_0",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "11_0_1",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "11_0_2",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    },
+    {
+      "key": "11_0_3",
+      "main": true,
+      "animation": true,
+      "png": true,
+      "bodyCovered": true,
+      "originalHandAppearance": true
+    }
+  ],
+  "method": "Copy confirmed idle outfit pixels, move shirt/trouser patches with existing body frame coordinates; no redesign/new colors.",
+  "unchanged": "All existing pixel layers including confirmed idle and sitting outfits, all source animation frames/sizes/timings, hair, eyes, body and hands. Near-hand layer ordering adjusted only for new outfit occlusion.",
+  "browserTested": false
+}

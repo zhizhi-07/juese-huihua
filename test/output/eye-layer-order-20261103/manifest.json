@@ -1,0 +1,22 @@
+[
+  {
+    "file": "js/core.js",
+    "before": "ebeb5b3331bc377c7cb4edfa76eb6a0f147f4fabaa975369974c833ff78ea062",
+    "after": "29c942c5b269ead3621f4452996d2d53f1dc6a4f172b2969d459369a0a3a54e9"
+  },
+  {
+    "file": "js/wardrobe.js",
+    "before": "0360bc7c2bb84951900b696d2afd9e84e41b18f5aedd5f928219cf84c3006341",
+    "after": "91e4af1b7336c3df263e6433c10e69468c4265b06f6bad5092854e82a29264c6"
+  },
+  {
+    "file": "js/hair-animation.js",
+    "before": "0fb8210f11314b77edb84edb31fe3ad2fcf84cf9cf4159977457df80d665b16f",
+    "after": "1b0fcd3a364e80b8023e1e736c3ed4df93ffdeff074f14e702a8698c40e975d8"
+  },
+  {
+    "file": "index.html",
+    "before": "a463d0843d523c189537af698353a5c46b5e06879d7dba4420f1f818883a2b38",
+    "after": "0563515ee6c17980a3a3ea46bf306946a8a088bb6323febeed948eb439748208"
+  }
+]

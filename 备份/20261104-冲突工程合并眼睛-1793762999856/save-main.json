@@ -1,0 +1,6 @@
+{
+  "status": 200,
+  "etagBefore": "\"0bcc7d78237f1bbef5374a343f257a577b9bd7eaec249ae621e413396a39560b\"",
+  "etagAfter": "\"ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a\"",
+  "body": "{\"saved\":true,\"revision\":\"\\\"ecd1dfb896e717ac9abdf921208105c4815c5541f482ebbeb54f8993cbb5469a\\\"\"}"
+}

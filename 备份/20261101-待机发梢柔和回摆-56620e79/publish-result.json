@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "result": "{\"saved\":true,\"revision\":\"\\\"a230dd3c9292fce926af4107e64abc41c386e4aa6b5cb8985537d5c918a62300\\\"\"}",
+  "etag": "\"a230dd3c9292fce926af4107e64abc41c386e4aa6b5cb8985537d5c918a62300\"",
+  "sha256": "a230dd3c9292fce926af4107e64abc41c386e4aa6b5cb8985537d5c918a62300",
+  "apiReadback": true
+}

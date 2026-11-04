@@ -1,0 +1,71 @@
+[
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js",
+    "before": "a46c67bd9ff180bd038b1defdd99f7b0421005417b31b6e59338fd62a38810ea",
+    "after": "f012849313e0674f9a35d1836f3baa98371ab73d04b159692ee4d6254d3c4e37"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js",
+    "before": "4615599b0f89ed55a75605c4108214d5d647bda600791ad8d0b9118169822c20",
+    "after": "a1b3e22ad3ca6c7b4be87a19adb557bd32b5bc9f1eda8087ee7d738017d497a1"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\canvas.js",
+    "before": "065db7fcf4e7d56f692cfc05dcab93f007135d67c89fa524414974d6b262c30f",
+    "after": "b678fc21512167b0498533207729d2ba177400e6886440cd9e0e563bf48f2fcd"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\app.js",
+    "before": "fd13aeccc0020855b453171b9f9be9dadf4594a42af42c697ce824e973833f4f",
+    "after": "8ce9ea40cd65fcfafd2891d09b3934c5c634e5a538121af35c73674e156d3efe"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hd-canvas.js",
+    "before": "14f47a6da3749392882fed5e588748cd2dadea437814faba4b43c7882c56a963",
+    "after": "acd139fd34a5f3b3115ed3923ba71f1ef3ab825337da0059448a40fd71a67eb7"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js",
+    "before": "d4084c50f4bb7bb07205aa4fc2eac677ec0356feddd0253a6cd8658399465f3e",
+    "after": "b724d1de14657952a7472a1475e2a062aa2673b1ccfcff9e35a182e8469d5265"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\frame-tools.js",
+    "before": "8e2afd15fbf1025493f0918ecdfeab69801fe3b9e79daafbb2817ac10bb0006d",
+    "after": "92e3fb898c1abd00080f80a812093dde726c2e2b2506865fb50d55308b1e8644"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html",
+    "before": "f1a6c3800a98d2a7cad4aac943629fcaaa10d429b935d725af744387976c8ba4",
+    "after": "972391e7b537df91283d85a6dc210cf2504dca1d5cf8f4b9ec2f7c4cde79f7ee"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement.cjs",
+    "before": "6cd93585a9ce2775ead2e4e54f455293906156695b6c2153ef5afbaad1a04e93",
+    "after": "df0d3f8d0635686b541a5ba0d8e6f4a4403c65b218ad2a42b0d859b457306819"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-partial-selection.cjs",
+    "before": "75273c01708cf3fb797744f88af8ece8ca14730bfab7a2bf4536aef9ff9307c4",
+    "after": "5623a58ba23c681b5642f9ffdf8baa280a454784c322b2f22a0f68940fe97542"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\off-canvas-placement.cjs",
+    "before": "835f6efaea7384cdbd5647cc3a9476db9a25ccc2a332e96059c9a932b8f4458d",
+    "after": "f6990f14f8750c67c71fb590f997d45a55732f9788f2da033fd86399c6711df2"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-canvas-browser.cjs",
+    "before": "aa3c795021351e159fd68160db09dfcb560b984ac91332ea16d53abb0f551bb4",
+    "after": "f7bb23a734cbf02cafeca92d8d705f529f9b7e3459b15d511f2ed3ba5bf4fcda"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement-browser.cjs",
+    "before": "c87354144b7bf29e9308dc740d057d11f25529cb46efdfbc461a4967549f476a",
+    "after": "258dee9d6088356706025749772dcfceed4083a0387267ccacff8ce75a23722c"
+  },
+  {
+    "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-inline.cjs",
+    "after": "5a6fdd6b661f7ee4e5b962f8c03a882c28a4617544a20b13b53998621745a8d0"
+  }
+]

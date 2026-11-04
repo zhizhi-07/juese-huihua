@@ -1,0 +1,20 @@
+[
+  {
+    "target": "js/visual-layers.js",
+    "backup": "visual-layers.js",
+    "before": "4bf39d075e8ccb3868ebdedeaf0fe812da5555b2ac2f7c06978278935d79aa64",
+    "after": "a9cf2d8bd3579608e29520f699fe99c31f4c9bd2f7099286403dcf73c6269969"
+  },
+  {
+    "target": "css/visual-layers.css",
+    "backup": "visual-layers.css",
+    "before": "4a0fca6409abb024dffdbb97150b96bf815398fa2fba8e7d86774da70b7ef6fc",
+    "after": "95674e2cb95a9568dfb1edcfe2423847edf9e8228b713847423db6486ecfd0fe"
+  },
+  {
+    "target": "test/visual-layers.cjs",
+    "backup": "visual-layers.cjs",
+    "before": "e992d384ba135ba4b10753e20ae899dd7afa3b76da7c8cd3d25ac538aa2f6d59",
+    "after": "da8285caf3f0aff95c2c55a9c94f29eb482b5a43cd92992cffce5c7d589add14"
+  }
+]

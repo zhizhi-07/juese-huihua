@@ -1,0 +1,9 @@
+PASS: arms switch, auxiliary/copy/timing controls directly visible; original listeners retained; only user can collapse auxiliary bars; reset without reload.
+LAYOUT {"width":884,"height":420.421875,"inputRight":598.3125,"overlap":false,"overflow":false}
+LAYOUT {"width":592,"height":225.03125,"inputRight":788.484375,"overlap":false,"overflow":false}
+LAYOUT {"width":464,"height":195.640625,"inputRight":512.484375,"overlap":false,"overflow":false}
+LAYOUT {"width":532,"height":227.03125,"inputRight":580.484375,"overlap":false,"overflow":false}
+PASS: new UI renders; tools, brush, menus, dialog, responsive canvas; zero page errors; zero project writes.
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+PASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.

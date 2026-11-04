@@ -1,0 +1,471 @@
+{
+  "status": "PASS",
+  "mainSHA256": "aa8892823c01917582db315ac01defe1b32204d7ca0fc64a20188b40c14715ed",
+  "mainETag": "\"aa8892823c01917582db315ac01defe1b32204d7ca0fc64a20188b40c14715ed\"",
+  "archivedProjectFiles": [
+    {
+      "name": "ai3-computer.json",
+      "sha256": "1e6cb054262779b4fbbba1e694f8c47e0f1ebb24a2d701dc6a63e561c88cef46"
+    },
+    {
+      "name": "ai3-computer.json.bak",
+      "sha256": "de2aedc103bd6b1ee08a98813be321b2e617e4bc622336e3b692e9e7a66e138a"
+    },
+    {
+      "name": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4.json",
+      "sha256": "ddd61b811d79ca0205fed201b4b58d7668770829ce570d7ce738a41441a5bc93"
+    },
+    {
+      "name": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4.json.bak",
+      "sha256": "ba7ff8db9a99ebfe6eeb7d2f48cf78110ef3dabc450340c4d7c18bab3203489b"
+    },
+    {
+      "name": "character-2db91540-be07-40c3-a279-b1cd62aa657a.json",
+      "sha256": "fde7d271ce0c0891f6eaa4c13c46716b7ad8b0bb9063dd33c1cf47dbecf29406"
+    },
+    {
+      "name": "character-2db91540-be07-40c3-a279-b1cd62aa657a.json.bak",
+      "sha256": "06218ca84f6ebb1d3cb9c5bfeff5ac3bce8361949364e0d70480deaeaa90e2de"
+    },
+    {
+      "name": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67.json",
+      "sha256": "287f92dc67d166d914e1e9ec474c3c307c487d7a8c13e768721a1193ea210e40"
+    },
+    {
+      "name": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67.json.bak",
+      "sha256": "287f92dc67d166d914e1e9ec474c3c307c487d7a8c13e768721a1193ea210e40"
+    },
+    {
+      "name": "character-black-buns-idle-20261027.json",
+      "sha256": "3e2aa6b731ea91efe6b6b32ab12c383ceaab1472e421ae78e956cbd3eb72e167"
+    },
+    {
+      "name": "character-black-buns-idle-20261027.json.bak",
+      "sha256": "e3d305e447dc69adce23477e71b89b630a4cf6f2b626b07d7c13987ae7b7b0ea"
+    },
+    {
+      "name": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a.json",
+      "sha256": "8b7ac57831118a84e8c6e3841c72234b0c89fcf65fe794270818e36b6681700f"
+    },
+    {
+      "name": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a.json.bak",
+      "sha256": "a3c70a31a57451e3adeab9184851404eec0f31a32a84554dc11f36c6358def55"
+    },
+    {
+      "name": "character-cat-braids-imagegen-20261029.json",
+      "sha256": "3ef7b8c971741fe6b4c3d38a3ec8b64bf1bb8cf6b2d001ef8db15f26cfa58d9d"
+    },
+    {
+      "name": "character-cat-braids-imagegen-20261029.json.bak",
+      "sha256": "217399047f3ebd7a045a9caa30481315692478b8a50b9e7ce8e51d92e7c0aa0f"
+    },
+    {
+      "name": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e.json",
+      "sha256": "972f2871bba18b6fbaee1329db394e30cdc44b4e11dd8544d57682586e21e5f7"
+    },
+    {
+      "name": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e.json.bak",
+      "sha256": "6d02d1d0ea73642029d61e8cab48aa904f95a57b0d5896ebe4e3365f36b55ba0"
+    },
+    {
+      "name": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f.json",
+      "sha256": "1f725deea5dcc6edf49f7de756b7084ef4908504974a0d66763d5b4f17015707"
+    },
+    {
+      "name": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f.json.bak",
+      "sha256": "fe09e661f7209b673dcdbc4caa92e6a6e1b7e10256b71f699fc0d52e712b1078"
+    },
+    {
+      "name": "character-gold-mix-1793320553623.json",
+      "sha256": "dc5a229ba41f4a4e98ba73fd81b782f6540611b0fe29e697ff06bceefd3c00f0"
+    },
+    {
+      "name": "character-gold-mix-1793320553623.json.bak",
+      "sha256": "7272d279a0ff4008003f1bbb05486f42e8e4c8ffdb1c05872f3d457e0a4e7caf"
+    },
+    {
+      "name": "character-gray-long-study-20261029.json",
+      "sha256": "04b367dd6ab63a23b476f0803f28221a29721b87f780009fb387303c15af600a"
+    },
+    {
+      "name": "character-gray-long-study-20261029.json.bak",
+      "sha256": "c9cffe2b453d4fc8e11501c4df0209ca1f83881092718efdca0e2854a79c781a"
+    },
+    {
+      "name": "character-green-flower-idle-20261027.json",
+      "sha256": "c4f076dd45eaace385ec479df37630fe3f5206a1fd7f2807805c6097a8ee3dd6"
+    },
+    {
+      "name": "character-green-flower-idle-20261027.json.bak",
+      "sha256": "dee1b687a5216a56e7ec2460d14c40040566c81657e61e0a3c838ccf3a47cdd3"
+    },
+    {
+      "name": "character-pink-bob-trial-20261027.json",
+      "sha256": "03af6bd1ac75c5212fdc74162584469e25ad9c6399325ef77a753163ae549b91"
+    },
+    {
+      "name": "character-pink-bob-trial-20261027.json.bak",
+      "sha256": "586b105e82b38ed53f1e6e8e45ba0fc780cd4495ab85d448eb5ab6b4b2d65e5d"
+    },
+    {
+      "name": "character-pixel-mix-1793412618671.json",
+      "sha256": "c677abfef3fcc82409f7b60bbc42b7b0d6b638f19bbd830fedb3d12ae371fb0e"
+    },
+    {
+      "name": "character-pixel-mix-1793412618671.json.bak",
+      "sha256": "c7b4343e2917743addd61d0389f4a181a4e63b26d2eb65c6c2e00b1639b57a50"
+    },
+    {
+      "name": "character-strawberry-braids-idle-20261029.json",
+      "sha256": "d8cecb91a426ce1bb7f3379c4d0d992d3307f6588791bc9edf6f71f936f4e4bc"
+    },
+    {
+      "name": "character-strawberry-braids-idle-20261029.json.bak",
+      "sha256": "f3033c71de5752488a369b7c288c346118ebeb548ee09454cd118ad389826dc5"
+    },
+    {
+      "name": "draft-conflict-1793608335313-038e0c03.json",
+      "sha256": "e6a61df3e46b9843d34c67f6873290caf50ec020142d1b610ec0fc5cfb1f7854"
+    },
+    {
+      "name": "draft-conflict-1793608335313-038e0c03.json.bak",
+      "sha256": "e15e0e4634bf212263886c55f532611b536f60885f67d00233a24e153c9a2d5f"
+    },
+    {
+      "name": "draft-hair-link-qa-1793667805120.json",
+      "sha256": "01c66e45734cafd2c897ee48b6881eac0682b64c364707c3e163dd762ee22d18"
+    },
+    {
+      "name": "draft-hair-link-qa-1793667805120.json.bak",
+      "sha256": "5105adf494b7f3270d141bdee0b4a8029ebfe38382076fb56dcda04af1c61405"
+    },
+    {
+      "name": "draft-hair-link-test-1793667505308.json",
+      "sha256": "379a7a0960c80e08e448bbb2fb2c572aca00b66c204cedf1f8333b30954c1233"
+    },
+    {
+      "name": "draft-hair-link-test-1793667505308.json.bak",
+      "sha256": "d1d8166f209a7f6672cd07869d788f80058dfc05cae570d39a05adb3270be808"
+    },
+    {
+      "name": "draft-hair-mix-20261030-083412.json",
+      "sha256": "224a19ba2846080b26e761e81fb8636c98a48651b9744317bd169a72003a3652"
+    },
+    {
+      "name": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6.json",
+      "sha256": "5244c2c0b19c53e93e229660dde385ea33d58f075ee21bbf67e92b63429e6072"
+    },
+    {
+      "name": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6.json.bak",
+      "sha256": "279d4661cc439e51c3203d5d47f0f389c0c21525d34ce48d82b46aca749b8705"
+    },
+    {
+      "name": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e.json",
+      "sha256": "6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96"
+    },
+    {
+      "name": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e.json.bak",
+      "sha256": "801dbafbc11e6a3d63a083694972baa1962793347b405c94c4ebced65b5fdfb3"
+    },
+    {
+      "name": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163.json",
+      "sha256": "ebb2b3a2cb568be2f5bd1001243f6c0244aeaca4c5f76d02293e9245b7427daa"
+    },
+    {
+      "name": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163.json.bak",
+      "sha256": "089a52f2134183745c6d8f10e2693f36613768db833911465c624bff2d74bf18"
+    },
+    {
+      "name": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0.json",
+      "sha256": "9ccf191062bc13c04431e04793fca9ca1ff3fb1be4140cce4a81f41711ee6f1d"
+    },
+    {
+      "name": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0.json.bak",
+      "sha256": "133ecd718a583bd1a823fe19d43cf7547dfc48dce0601550324f7c9a88e9b663"
+    },
+    {
+      "name": "draft-rescue-user-1793606510885-0f5f5a07.json",
+      "sha256": "d5594cf0504fef25cbc898763032675170cc0e2280519bc30f6ffafd05b03359"
+    },
+    {
+      "name": "draft-rescue-user-1793606531005-ebee0f7e.json",
+      "sha256": "109a93b2351964c80b002d6d070ddf1ada05664a79ef4c3e1e981f036a02c712"
+    },
+    {
+      "name": "draft-rescue-user-1793606533990-88874a6a.json",
+      "sha256": "a5f9511bc056e2583c069f03a7635a52a956e501fe205a1a8ebb804c736fa11a"
+    },
+    {
+      "name": "draft-rescue-user-1793606533990-88874a6a.json.bak",
+      "sha256": "a5f9511bc056e2583c069f03a7635a52a956e501fe205a1a8ebb804c736fa11a"
+    },
+    {
+      "name": "draft-user-canvas-merged-1793608789349-dbd059d3.json",
+      "sha256": "5c40951ce6b431056eefceda7d28427ecdd72ac36afdddd6d3501993125c8835"
+    },
+    {
+      "name": "draft-user-canvas-merged-1793608789349-dbd059d3.json.bak",
+      "sha256": "c09658bad31cc2509363029355476d851014157c1738d5b68bd5009ec6f9b40e"
+    },
+    {
+      "name": "draft-zong-d8227d6f-eabc-4313-9503-48dbcac55ea7.json",
+      "sha256": "59b8ebb5c59d1ecd1fd06f6e0471efdc16f9ee34eecfc3c77074fc433dbca0c0"
+    },
+    {
+      "name": "draft-zong-d8227d6f-eabc-4313-9503-48dbcac55ea7.json.bak",
+      "sha256": "a92b1985604c8f279943b84384e26d478e2ef2c9005bf994ea71d5d8dde93a68"
+    },
+    {
+      "name": "finished-189f23ba-d7ce-46c9-b872-c829f8240474.json",
+      "sha256": "7a94da432c93496e24957b2b7fe951fe028780f2f949de28f0a7f436c7febdf1"
+    },
+    {
+      "name": "finished-189f23ba-d7ce-46c9-b872-c829f8240474.json.bak",
+      "sha256": "948771364767862e08ae517bf2aeaf71e1a84eb29a45231d05d0b64d57a33013"
+    },
+    {
+      "name": "finished-3ef317cc-7e2c-4c08-b0a2-74eb7f454b8c.json",
+      "sha256": "8ae4183248e93151b7902e2b30644666f604664cddeb5d75144ba2e8c2d92620"
+    },
+    {
+      "name": "finished-49b4ab59-a67a-453b-807e-5f42c2d21634.json",
+      "sha256": "0224ff9844270a16a72625dea00046b727569e5f57f3e2f07b2ff9393cf8621d"
+    },
+    {
+      "name": "finished-49b4ab59-a67a-453b-807e-5f42c2d21634.json.bak",
+      "sha256": "460e60111ccc1d83647bc527ff6cc04664a7ec36b7611deefc74bc48bd583a46"
+    },
+    {
+      "name": "finished-4b40123c-0792-4880-bff8-ea6d94113772.json",
+      "sha256": "9ce1f539539290add03db7734fc91ebf013d873e8272fdbbb91a8d57c7a05e7e"
+    },
+    {
+      "name": "finished-4b40123c-0792-4880-bff8-ea6d94113772.json.bak",
+      "sha256": "ba583ef8a9d4bb89b47130c8b0cfeded159332ad7b89fad1b3c5150dc3682331"
+    },
+    {
+      "name": "finished-615b67cd-37af-4398-860e-4ce231afca8d.json",
+      "sha256": "6c2983e1da86c38d0eda58013855b00791c9c0f2e6d60aea7e70ad684b8b931b"
+    },
+    {
+      "name": "finished-615b67cd-37af-4398-860e-4ce231afca8d.json.bak",
+      "sha256": "2c140ed49ae8c9a4070603785947d29a60a21514ad0ed9dcdfe98372704bfc1c"
+    },
+    {
+      "name": "finished-6164e956-fe63-4509-9934-47d46577a7a9.json",
+      "sha256": "45e45579e38f2ea9787debec09a388f289a90f00c7210f68ee10b13dfe20af5e"
+    },
+    {
+      "name": "finished-6164e956-fe63-4509-9934-47d46577a7a9.json.bak",
+      "sha256": "38d8b89e5269479dffed5b9d9a5f72cbadf3294e2920228dafe928d1a1f7ac75"
+    },
+    {
+      "name": "finished-6328f31c-b967-4edf-8735-26101dd47e70.json",
+      "sha256": "01dc03641155e9e9cc92215a2b25d1e9b6aa1152abd65a2915bb5ef014656fb5"
+    },
+    {
+      "name": "finished-787ef95d-2dfd-42a9-9bea-553c4c22b36b.json",
+      "sha256": "8ddb9925666e50b7479680f03cbf1ee051361c2486027214720442d3aca16f13"
+    },
+    {
+      "name": "finished-787ef95d-2dfd-42a9-9bea-553c4c22b36b.json.bak",
+      "sha256": "4fede10700dc54f41c4f52ce71b6335e02bc58e5faf77b40955ee56032a16c69"
+    },
+    {
+      "name": "finished-df81f7b2-482a-4314-9637-8dfdcf02a5f6.json",
+      "sha256": "f37eb9f583bb68702429328f4d2becf338a556f121f9f600f219c03466142a8e"
+    },
+    {
+      "name": "finished-df81f7b2-482a-4314-9637-8dfdcf02a5f6.json.bak",
+      "sha256": "e26b6614b85722b54f264769fac15bac9ddf07f309f61ed86df97b8132a0c712"
+    },
+    {
+      "name": "finished-f00f7189-0621-4217-8d72-29d30561d723.json",
+      "sha256": "819d9ec4a45843f18eaa43449a7731925c375119e6f212296a05613281e53117"
+    },
+    {
+      "name": "finished-f00f7189-0621-4217-8d72-29d30561d723.json.bak",
+      "sha256": "52630ac1aca309883682b9f6a66e282f61a30a74befe9fa13ca29a10141ed8d3"
+    },
+    {
+      "name": "outfit-duck-body-shadow-test-1793672593738.json",
+      "sha256": "387644c0b67f60cc0586b68943daec444425eae0af14b95428d429c98fc3cfbc"
+    },
+    {
+      "name": "outfit-duck-body-shadow-test-1793672593738.json.bak",
+      "sha256": "18cc41908e13d87e329361b510f0bfff97c94cf1c8e255789c834e3d512f4bb0"
+    },
+    {
+      "name": "outfit-duck-three-source-test-1793668316419.json",
+      "sha256": "39bea7110227155d3fb299debe44f421d4cee11cc67dc9d5023918680ca9e98f"
+    },
+    {
+      "name": "outfit-duck-three-source-test-1793668316419.json.bak",
+      "sha256": "27faa6737a93092deec2b88ae2b02f2ca739704dedf7927afff6174f27be69f1"
+    },
+    {
+      "name": "outfit-jk-body-shadow-test-1793686194412.json",
+      "sha256": "764fc058659d2c57c3f65cb1696d4a1d8405df4cc97634edceb3f5fa841ede3c"
+    },
+    {
+      "name": "outfit-jk-body-shadow-test-1793686194412.json.bak",
+      "sha256": "0fe50faa431ed091f52ae95c6a8113d263f2a99d89c19c78319d61a31788c490"
+    },
+    {
+      "name": "outfit-jk-three-source-test-1793669864187.json",
+      "sha256": "0b4e6e282de2dc6327f6f834defaca1ff2c33f355db7222e6da61af0c5a20b32"
+    },
+    {
+      "name": "outfit-jk-three-source-test-1793669864187.json.bak",
+      "sha256": "b3095beeffa3a8a091f289395e86daf207a740842ad2209361cecc3f44c332fe"
+    },
+    {
+      "name": "scene-3b05939d-a36b-4a09-a26d-717df25492ef.json",
+      "sha256": "cb5bed6595d385df5b4bd389c2fd393d2718f535cfbb8525400cc133dae49e16"
+    },
+    {
+      "name": "scene-84f43535-31be-4d20-a4f0-d8eaba6feb17.json",
+      "sha256": "6191ab5f949f58d4bdb1d35a0fcfa5719d1fb3dbd1156a6e4f76a1720facae9f"
+    },
+    {
+      "name": "scene-8c46e3b1-514a-4aea-87ca-3a600a58f88e.json",
+      "sha256": "2eaec21844a3ebca17b58f5dc8a6328ab847930f717e7dabe1db026201a029aa"
+    },
+    {
+      "name": "scene-chaji-bb9608a0-3e12-430c-8920-a7a6fa896d03.json",
+      "sha256": "7d4c2b5aecfbd857eabf9d73ad860f54ecefc86429cfbfd324ecd3db67df9957"
+    },
+    {
+      "name": "scene-chaji-bb9608a0-3e12-430c-8920-a7a6fa896d03.json.bak",
+      "sha256": "ef4b851e8c0f1760fa69e5d4305f0e1a2d36cfce9e2140ff2de398fa3da46b59"
+    },
+    {
+      "name": "scene-chaji-f1982d51-60aa-4332-947c-1e27b8e7169c.json",
+      "sha256": "2472e08b4c7fefccf16112d959cc7727c98ddedffaecf7fb72e94532beed4ad2"
+    },
+    {
+      "name": "scene-faeeabd0-6480-4579-8f2a-f25ed49eb96d.json",
+      "sha256": "5774b01be079976fdfe6ed0adc2ef157148653e6cc3050b6fa8ebf25e31f04d0"
+    },
+    {
+      "name": "scene-mixue-730a529b-e528-445b-84b3-2d7038072ca6.json",
+      "sha256": "929d4c4d151a4516369cae338d9d723a78da8d405e3f9cb45680142e6a5b1d1d"
+    },
+    {
+      "name": "scene-mixue-gen-9a947236-7763-4114-884c-785860eff134.json",
+      "sha256": "5fd1e0affe17640da88a8f6c913834ed4433d9fe08e7e4100ded9737ec9e8073"
+    },
+    {
+      "name": "scene-mixue-gen-9a947236-7763-4114-884c-785860eff134.json.bak",
+      "sha256": "7e6aabe550f73016d18af0d0749e9cb69ead91b42375024036348e519dc323db"
+    },
+    {
+      "name": "scene-sink-3fe215b7-f3b2-445d-b247-38a0a480ec65.json",
+      "sha256": "5dc12c07fc1b045857150facc9079ea6b041b00ee6404034fcc64422557d014e"
+    },
+    {
+      "name": "scene-store-study-d98166cb-6adb-45e2-a209-0919ae91b4f0.json",
+      "sha256": "1cce49ddc3424d3272fdda7d7b419146ffc20dcc7882badb2a7bb0a7cfd0a71c"
+    },
+    {
+      "name": "scene-tea-5282bf59-31a3-47f5-aee0-dbe6b1d57976.json",
+      "sha256": "76f2087cb731efcc7409b37feab7237353e17c3edb3f3cdf9b75d23a7af52745"
+    },
+    {
+      "name": "scene-tea-new-e76dbbc6-b792-44b3-8168-dbba6325072a.json",
+      "sha256": "6a7631374318c5db8f9e8d2e44a67bfb54dd68d2c2ef8d0290d28b6ce7911a21"
+    },
+    {
+      "name": "test-town-body02-idle-walk-20261031.json",
+      "sha256": "bb12b88b1994b850eba377fce782cd094ef18babba868f652d01a821ecf7a64e"
+    },
+    {
+      "name": "test-town-body02-idle-walk-20261031.json.bak",
+      "sha256": "8e74163fdf8400fa76b95a8eca301d7e7e3c2ff5289a598e61af1518a81d0a05"
+    },
+    {
+      "name": "trial16-gray-curls-20261031.json",
+      "sha256": "5473018218d3200a1fe31b7c2b5f32d6953e626bd33e063e1bcea5a3b30e23b7"
+    }
+  ],
+  "archivedDocuments": [
+    {
+      "name": "交接说明.md",
+      "sha256": "d9107a8095e55a07a5650e7b433ec5ce64610d12183b4c63a29f8678b6206375"
+    },
+    {
+      "name": "人物绘制AI要求与自检.md",
+      "sha256": "444f5f5f365ae93696c4f2b70aadf49b1b277d63a7bb7eb14715969965a20048"
+    },
+    {
+      "name": "修复版使用说明.md",
+      "sha256": "502201c21d478eb53d16b4e3f08449f1572e0c049306c180f2231542f9464ae9"
+    },
+    {
+      "name": "像素发型教程与自检.md",
+      "sha256": "62b940f450a860a2c65db477bc94d74a2ced4c5138d5661f9f927764c365b3ca"
+    },
+    {
+      "name": "后台工程目录.md",
+      "sha256": "91dabb4dbf676d4dcba40b1fbb39fa1e69166a30fcf3bede2dbde72642c379e7"
+    },
+    {
+      "name": "坐姿绘制AI要求与自检.md",
+      "sha256": "38e6eb5d0295ff9b3dda2623260a73453431c39c93355b03a65d0bcbbc78ecb2"
+    },
+    {
+      "name": "多AI与场景使用说明.md",
+      "sha256": "35005c063d5c0e6e4cedf3d6a0d5b21cc63d8e8db83ff1d4e5a00c75107b83a7"
+    },
+    {
+      "name": "头发动画绘制与同步规范.md",
+      "sha256": "8ee20406fcd56bfbb393008346a7017ba44abc6df957baed52eb32d1d8363cbe"
+    },
+    {
+      "name": "头发素材混搭与像素化流程.md",
+      "sha256": "4898bc174202c5f9742442ad83cbab81f89d69c3780f37f3eaba92fcde3f39ec"
+    },
+    {
+      "name": "建筑分组与分阶段绘制规范.md",
+      "sha256": "a77f5ed843083b88bb1c84b19176d5550794377dda17c61b77d8b1b90835bde3"
+    },
+    {
+      "name": "建筑场景绘制与动画要求.md",
+      "sha256": "a77f5ed843083b88bb1c84b19176d5550794377dda17c61b77d8b1b90835bde3"
+    },
+    {
+      "name": "建筑绘制AI提示词.md",
+      "sha256": "a77f5ed843083b88bb1c84b19176d5550794377dda17c61b77d8b1b90835bde3"
+    },
+    {
+      "name": "建筑绘制AI要求与自检.md",
+      "sha256": "4c244e0b51614a0053008d8bd48ae50f6e5e398ec6e93d5d826779318dfe6538"
+    },
+    {
+      "name": "服装动作适配与分区保留规范.md",
+      "sha256": "b5f94ed439227a17c06dbe348606b701f8ef5e2452c611558de54920496f10c7"
+    },
+    {
+      "name": "物品绘制AI要求与自检.md",
+      "sha256": "99147ccb07a02c0705a6491da579671479fc640a5dc1827ff52ec9be0a77d56d"
+    },
+    {
+      "name": "眼睛绘制AI要求与自检.md",
+      "sha256": "4bdf5d10b5d7047bff8970ec2965217df358608e7e185e3b069993b01daf991f"
+    },
+    {
+      "name": "衣服绘制AI要求与自检.md",
+      "sha256": "fe30bb167703eee83480a50c105c6264e799e40869dedec25137959a5302e8f5"
+    },
+    {
+      "name": "贴合衣服裤子画法与自检.md",
+      "sha256": "0cd0f373639697c9460acf3957eb9c5f1f55e85f397ecb18e4c561d506292df1"
+    }
+  ],
+  "visibleProjects": [
+    {
+      "id": "main",
+      "name": "人物主工程"
+    }
+  ]
+}

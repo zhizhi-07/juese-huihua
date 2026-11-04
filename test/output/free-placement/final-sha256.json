@@ -1,0 +1,12 @@
+{
+  "index.html": "32922dc7d506bfafd11211fcb5ebf1642d63173046a671b0537f79c36a6a71ed",
+  "css/studio.css": "0877dd3204d0ea3b4c6ff3bb62cbab94c05ce530c3428739626b8caf6ebb2623",
+  "js/core.js": "dd9651a26870ca982069e729c7d7f67ee3f917fa47ce2900686b6984afe0eacb",
+  "js/canvas.js": "065db7fcf4e7d56f692cfc05dcab93f007135d67c89fa524414974d6b262c30f",
+  "js/tools.js": "e15269f1db8b0f90f125a3fc19fea9015f382b9cbdbfce492ffee5e9382a8ce7",
+  "js/app.js": "fd13aeccc0020855b453171b9f9be9dadf4594a42af42c697ce824e973833f4f",
+  "js/pixel-import.js": "3a5d7203d5728a296ba2e717f6bc6987082ff14a9476158370efec500f56331e",
+  "js/frame-tools.js": "8e2afd15fbf1025493f0918ecdfeab69801fe3b9e79daafbb2817ac10bb0006d",
+  "js/hd-canvas.js": "14f47a6da3749392882fed5e588748cd2dadea437814faba4b43c7882c56a963",
+  "js/idle-canvas.cjs": "acd11bd0d0b0779285cada7a90c348a457730e8865dbfee19c9090c33e4ba943"
+}

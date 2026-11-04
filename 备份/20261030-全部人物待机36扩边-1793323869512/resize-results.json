@@ -1,0 +1,98 @@
+[
+  {
+    "id": "main",
+    "name": "Hana Caraka · 角色衣橱",
+    "revision": "\"0549532d40147d1ff98474f2e3cd92920e312439a8a1e346287ae8ca395adfb8\"",
+    "pixelCelsVerified": 238,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+    "name": "ai",
+    "revision": "\"f46926f84c8d1a302ac08c99b380928ea69ed45587059b1ae3490ef64606eeb1\"",
+    "pixelCelsVerified": 48,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-black-buns-idle-20261027",
+    "name": "炭黑双丸子·白发罩·待机分支",
+    "revision": "\"edfb19eda183ae28edd38c783f6d8774e4bee8546c4b0ea02a5df23add5e29f4\"",
+    "pixelCelsVerified": 100,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+    "name": "可爱-萌衣服",
+    "revision": "\"e175d2925fab88d9f698493c84689cfbc558949bf6e89b80d25fbe60dc480c03\"",
+    "pixelCelsVerified": 238,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-cat-braids-imagegen-20261029",
+    "name": "猫耳栗棕双辫·生图正面试稿",
+    "revision": "\"3ec4e3501be7dc237a3eea9b3336f07c5742c95effecefddc824404527996a57\"",
+    "pixelCelsVerified": 53,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+    "name": "萌",
+    "revision": "\"c3b5be8d224a373877edb7fc422f31ca6939c42d19672d73967bb221545d3505\"",
+    "pixelCelsVerified": 48,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+    "name": "萌",
+    "revision": "\"941f7bff3bcec72dc3cf42a42f8fdfc571ac114bddb8b1aa30c42a0f5b0321f9\"",
+    "pixelCelsVerified": 52,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-gold-mix-1793320553623",
+    "name": "人物 · 灰色混搭前80011＋后80009",
+    "revision": "\"c4a13b2682a2f51165bbaf192a32052de55e5c6a92a402b56624e8512cf263dc\"",
+    "pixelCelsVerified": 76,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-gray-long-study-20261029",
+    "name": "灰色长发·尖发束待机",
+    "revision": "\"4c9c8ff0e7d53cd6af055d5e14208399dfb67790a3f754cdd52cf2f1049ff335\"",
+    "pixelCelsVerified": 84,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-green-flower-idle-20261027",
+    "name": "灰色长披发·待机分支",
+    "revision": "\"ed027a0ee6edebf965bdad58a341ceda2bd7136c34e9897ff1178eed7cb9775e\"",
+    "pixelCelsVerified": 136,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-pink-bob-trial-20261027",
+    "name": "粉色外翻短发·正面首帧试稿",
+    "revision": "\"925ad4f886bc160e4da79c131cae5c7c1ac9214019a3a002225d0816b138014c\"",
+    "pixelCelsVerified": 100,
+    "width": 36,
+    "height": 36
+  },
+  {
+    "id": "character-strawberry-braids-idle-20261029",
+    "name": "蓬松双麻花辫·待机",
+    "revision": "\"441a6c5e0d05a042c026328e7854d85e5ac1def6befab191f4640b7e1ade7dcc\"",
+    "pixelCelsVerified": 84,
+    "width": 36,
+    "height": 36
+  }
+]

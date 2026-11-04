@@ -1,0 +1,630 @@
+{
+  "records": [
+    {
+      "type": "head",
+      "k": "7_2_0",
+      "dir": "up",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_2_1",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_2_2",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_2_3",
+      "dir": "up",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_2_4",
+      "dir": "up",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_2_5",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_2_6",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_2_7",
+      "dir": "up",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_1_0",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_1_1",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_1_2",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_1_3",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_1_4",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_1_5",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_1_6",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_1_7",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_0_0",
+      "dir": "side",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_0_1",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_0_2",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_0_3",
+      "dir": "side",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_0_4",
+      "dir": "side",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "7_0_5",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_0_6",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "7_0_7",
+      "dir": "side",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_3",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_4",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_5",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_6",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_0_7",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_3",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_4",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_5",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_6",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "7_1_7",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "8_0_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "8_0_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "8_0_3",
+      "dy": 2
+    },
+    {
+      "type": "head",
+      "k": "9_2_0",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_2_1",
+      "dir": "up",
+      "oldTop": 10,
+      "newTop": 12
+    },
+    {
+      "type": "head",
+      "k": "9_2_2",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_2_3",
+      "dir": "up",
+      "oldTop": 6,
+      "newTop": 8
+    },
+    {
+      "type": "head",
+      "k": "9_2_4",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_2_5",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_1_0",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_1_1",
+      "dir": "down",
+      "oldTop": 6,
+      "newTop": 8
+    },
+    {
+      "type": "head",
+      "k": "9_1_2",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "9_1_3",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "9_1_4",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_1_5",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_0_0",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_0_1",
+      "dir": "side",
+      "oldTop": 6,
+      "newTop": 8
+    },
+    {
+      "type": "head",
+      "k": "9_0_2",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_0_3",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_0_4",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "9_0_5",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_3",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_4",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_0_5",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_3",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_4",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "9_1_5",
+      "dy": 2
+    },
+    {
+      "type": "head",
+      "k": "10_2_0",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_2_1",
+      "dir": "up",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_2_2",
+      "dir": "up",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "head",
+      "k": "10_2_3",
+      "dir": "up",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "head",
+      "k": "10_1_0",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_1_1",
+      "dir": "down",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_1_2",
+      "dir": "down",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "head",
+      "k": "10_1_3",
+      "dir": "down",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "head",
+      "k": "10_0_0",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_0_1",
+      "dir": "side",
+      "oldTop": 4,
+      "newTop": 6
+    },
+    {
+      "type": "head",
+      "k": "10_0_2",
+      "dir": "side",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "head",
+      "k": "10_0_3",
+      "dir": "side",
+      "oldTop": 5,
+      "newTop": 7
+    },
+    {
+      "type": "eyes",
+      "k": "10_0_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_0_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_0_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_0_3",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_1_0",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_1_1",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_1_2",
+      "dy": 2
+    },
+    {
+      "type": "eyes",
+      "k": "10_1_3",
+      "dy": 2
+    },
+    {
+      "type": "head",
+      "k": "11_0_0",
+      "dir": "down",
+      "oldTop": 0,
+      "newTop": 2
+    },
+    {
+      "type": "head",
+      "k": "11_0_1",
+      "dir": "down",
+      "oldTop": 0,
+      "newTop": 2
+    },
+    {
+      "type": "head",
+      "k": "11_0_2",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "head",
+      "k": "11_0_3",
+      "dir": "down",
+      "oldTop": 2,
+      "newTop": 4
+    },
+    {
+      "type": "closedEyes",
+      "k": "11_0_0",
+      "dy": 2
+    },
+    {
+      "type": "closedEyes",
+      "k": "11_0_1",
+      "dy": 2
+    },
+    {
+      "type": "closedEyes",
+      "k": "11_0_2",
+      "dy": 2
+    },
+    {
+      "type": "closedEyes",
+      "k": "11_0_3",
+      "dy": 2
+    }
+  ],
+  "otherLayersUnchanged": true,
+  "originalBackupSheetsUnchanged": true,
+  "idleHeadsUnchanged": true,
+  "closedEyesPreserved": true,
+  "browserChecked": false
+}

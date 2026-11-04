@@ -1,0 +1,26 @@
+COMMAND: node test/hd-image-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\hd-image-test-iE7tcl
+EXIT: 0
+
+COMMAND: node test/free-image-placement-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: unchecked default, free X/Y, half-pixel drag, 0.1 arrow nudge, undo, real revision-checked fractional save and fresh-context exact reopen, original native pixels unchanged.
+PASS: real negative X and beyond-bottom Y, unchanged full source, intact outside selection box, revision-checked save/fresh reopen, real drag across canvas boundary, undo/redo and exact return.
+PASS: real HD marquee, switch to move, partial mouse drag without whole-image reset, exact unselected eye, expansion, undo and redo.
+PASS: ordinary layer free mouse drag, untouched preview, exact source pixels, undo to native layer, redo, 0.1 arrows and X/Y, real save/fresh reopen and high-density PNG export.
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\free-placement-test-qdu8zQ
+EXIT: 0
+

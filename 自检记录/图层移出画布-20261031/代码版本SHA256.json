@@ -1,0 +1,51 @@
+[
+  {
+    "file": "js/core.js",
+    "before": "47f83e7876fd078a65053a8b6e0ccd3161e8b501e021a45c6e5b984562362ff6",
+    "after": "a46c67bd9ff180bd038b1defdd99f7b0421005417b31b6e59338fd62a38810ea"
+  },
+  {
+    "file": "js/tools.js",
+    "before": "a1ad3e5e0277b8a3bbb82c9b25703bb4c91e8d0b5c898ee264b56c15e78c66e2",
+    "after": "4615599b0f89ed55a75605c4108214d5d647bda600791ad8d0b9118169822c20"
+  },
+  {
+    "file": "js/pixel-import.js",
+    "before": "19b02e6b6961017f2384b97430118148e450c3c218fb08ba85f770c07040ebad",
+    "after": "d4084c50f4bb7bb07205aa4fc2eac677ec0356feddd0253a6cd8658399465f3e"
+  },
+  {
+    "file": "js/workbench.js",
+    "before": "5152467ff8fed0d362f03fa13f1b4e5c17deda5e2e2d468b554eadadc8793500",
+    "after": "5abfb6abe317955c3383fdfc9505694bfe3975cdcea8c6335e8da7200b401ed4"
+  },
+  {
+    "file": "index.html",
+    "before": "ff7cee25ebb3309f47d1ce4041c9bffd40e1a8bca69754d186aca4f4fc37c2ff",
+    "after": "f1a6c3800a98d2a7cad4aac943629fcaaa10d429b935d725af744387976c8ba4"
+  },
+  {
+    "file": "test/free-image-placement.cjs",
+    "before": "73fdc3c49f89980af761b5d5da9d91e9ebb7b38f2eeec023e4f94e8966c65a2a",
+    "after": "6cd93585a9ce2775ead2e4e54f455293906156695b6c2153ef5afbaad1a04e93"
+  },
+  {
+    "file": "test/hd-partial-selection.cjs",
+    "before": "789a76f327d31fdb05257547e39685df32846b60ffe3d5d7a19611bc0ee4555d",
+    "after": "75273c01708cf3fb797744f88af8ece8ca14730bfab7a2bf4536aef9ff9307c4"
+  },
+  {
+    "file": "test/hd-image-layers.cjs",
+    "before": "94e9d5fbb8528de28cc44416fb130ee06a709984cbc64baef2c41d4c7828b412",
+    "after": "1bf74caff5dba2f625d5692f2a1ca061223425e1504c0d184b5f148135a90b28"
+  },
+  {
+    "file": "test/free-image-placement-browser.cjs",
+    "before": "09a52a86d84c97e5e4870895c22c681bdc32b349409887f58faa3ee6db5651f7",
+    "after": "c87354144b7bf29e9308dc740d057d11f25529cb46efdfbc461a4967549f476a"
+  },
+  {
+    "file": "test/off-canvas-placement.cjs",
+    "after": "835f6efaea7384cdbd5647cc3a9476db9a25ccc2a332e96059c9a932b8f4458d"
+  }
+]

@@ -1,0 +1,722 @@
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\core.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\core.js"
+index e7f99a0..d966113 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\core.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\core.js"
+@@ -5,7 +5,8 @@
+ 
+ window.PE = window.PE || {};
+ // Hide the retired action without deleting or reindexing saved sheets and cels.
+-PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name);
++PE.isEditorSheet = sheet => !['sleep', 'original16_sleep', 'original32_sleep'].includes(sheet?.name);
++PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
+ 
+ (() => {
+   'use strict';
+@@ -492,7 +493,7 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+      * @returns {boolean}
+      */
+     setPixel(frameKey, x, y, r, g, b, a = 255) {
+-      if (PE.isHandLayer(this) || this.frameData.get(frameKey)?.placement) return false;
++      if (PE.isProtectedHandLayer(this) || this.frameData.get(frameKey)?.placement) return false;
+       const data = this.frameData.get(frameKey);
+       if (!data) return false;
+       return utils.setPixelInImageData(data, x, y, r, g, b, a);
+@@ -665,6 +666,7 @@ PE.isEditorSheet = sheet => !['sleep', 'original32_sleep'].includes(sheet?.name)
+ 
+   // Export to window.PE
+   PE.isHandLayer = layer => !!layer && (layer.referenceOnly === true || /^(?:hand(?:\s|$)|手(?:部|臂)?(?:\s|$))/i.test(layer.name));
++  PE.isProtectedHandLayer = layer => PE.isHandLayer(layer) && (layer.referenceOnly !== false || !!layer.inheritedBase);
+   PE.isLayerInAction = (project, layer, sheetIndex = project.currentSheetIndex, actionIndex = project.currentActionIndex) => {
+     if (layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) return false;
+     const actions = project.spriteSheets?.[sheetIndex]?.actions || [], action = actions[actionIndex];
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\visual-layers.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\visual-layers.js"
+index b3e5b69..3ec9da5 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\visual-layers.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\visual-layers.js"
+@@ -24,7 +24,7 @@ PE.VisualLayers={
+   },
+   family(project,layer){
+     const name=this.partName(layer);
+-    return name?project.layers.filter(l=>this.partName(l)===name&&project.spriteSheets?.[l.sheetIndex]?.name.startsWith('original32_')):[];
++    return name?project.layers.filter(l=>this.partName(l)===name&&PE.isCharacterSheet(project.spriteSheets?.[l.sheetIndex])):[];
+   },
+   components(project,layer){
+     const group=project.layers[layer.parent],slot=this.slot(layer);
+@@ -71,7 +71,7 @@ PE.VisualLayers={
+     return current||[...layer.frameData].find(([k])=>k.startsWith(prefix))?.[1]||null;
+   },
+   choose(app,index){
+-    const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isHandLayer(l))return;
++    const p=app.project,l=p.layers[index];if(!l||l.isGroup||PE.isProtectedHandLayer(l))return;
+     const slot=this.slot(l),members=this.components(p,l),before=p.layers.map(x=>x.visible),selected=p.currentLayerIndex;
+     if(slot)for(const other of p.layers){if(!other.isGroup&&other.sheetIndex===l.sheetIndex&&this.slot(other)===slot)other.visible=members.includes(other);}
+     let parent=l.parent;const seen=new Set();while(parent!=null&&p.layers[parent]?.isGroup&&!seen.has(parent)){seen.add(parent);p.layers[parent].visible=true;parent=p.layers[parent].parent;}
+@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     ctx.drawImage(tmp,x0,y0,w,h,Math.floor((48-w*s)/2),Math.floor((48-h*s)/2),w*s,h*s);
+   }
+   app.updateLayerList=function(){
+-    original();if(!this.project.getCurrentSheet()?.name.startsWith('original32_'))return;
++    original();if(!PE.isCharacterSheet(this.project.getCurrentSheet()))return;
+     const p=this.project,rows=[...list.querySelectorAll('.layer-item[data-layer-index]')].filter(row=>!p.layers[Number(row.dataset.layerIndex)]?.isGroup);
+     this.visualLayerCategory??=V.category(p.layers[p.currentLayerIndex]||{});
+     if(this.visualLayerSelection!==p.currentLayerIndex){this.visualLayerCategory=V.category(p.layers[p.currentLayerIndex]||{});this.visualLayerSelection=p.currentLayerIndex;}
+@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+       const thumb=element('canvas','part-thumb');thumb.width=48;thumb.height=48;thumb.setAttribute('aria-label',(l.name||'图层')+'预览');drawThumbnail(thumb,V.thumbnail(l,p));
+       const main=element('div','part-card-main');
+       const partLabel=l.name.split(' / ')[1]||'';
+-      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
++      label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name==='hand'?'前手 / 手臂':l.name==='hand 2'?'后手 / 手臂':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+       if(partLabel==='用户')label.textContent='用户 · '+slot;
+       const rename=event=>{event.stopPropagation();if(l.inheritedBase||PE.isHandLayer(l))return;const name=prompt('部件名称（写“后发”等新类型会自动分类并调整层级）',l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?partLabel:label.textContent);if(name===null)return;try{V.rename(this,p.layers.indexOf(l),name);}catch(error){alert(error.message);}};
+       label.title=l.name+'（点击“改名”或双击名称）';label.onclick=event=>event.stopPropagation();label.ondblclick=rename;
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\hair-animation.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\hair-animation.js"
+index 0e3308e..c391a63 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\hair-animation.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\hair-animation.js"
+@@ -6,12 +6,13 @@ window.PE = window.PE || {};
+   const directions = {down:'正面', side:'侧面', up:'背面'};
+   const clone = value => JSON.parse(JSON.stringify(value));
+   const cache = new WeakMap();
+-  const supported = sheet => Object.hasOwn(actions, sheet?.name?.replace(/^original32_/, '')) && sheet.name.startsWith('original32_');
++  const supported = sheet => Object.hasOwn(actions, sheet?.name?.replace(/^original(?:16|32)_/, '')) && PE.isCharacterSheet(sheet);
++  const isIdle = sheet => /^original(?:16|32)_idle$/.test(sheet?.name || '');
+   const active = sheet => supported(sheet) && PE.isEditorSheet(sheet);
+   const isEyes = layer => PE.classifyPart(layer?.name)?.slot === '眼睛';
+   const partName = layer => isEyes(layer) ? '眼睛' : '头发';
+   const address = (sheet, direction, fi) => `${sheet.name}/${direction}/${fi}`;
+-  const params = () => ({ampV:0, ampH:2, cycles:1, lag:0.6, verticalMode:'wave', masks:{}, protectedMasks:{}, trajAmp:0.1, trajectories:{}, stitch:{}});
++  const params = sheet => ({ampV:0, ampH:sheet?.name?.startsWith('original16_')?1:2, cycles:1, lag:0.6, verticalMode:'wave', masks:{}, protectedMasks:{}, trajAmp:0.1, trajectories:{}, stitch:{}});
+   const isPoint = p => Array.isArray(p) && p.length===2 && p.every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=4096);
+   // Build an arc-length sampler for a drawn trajectory: returns the offset from
+   // the first point at parameter s in [0,1].
+@@ -100,13 +101,13 @@ window.PE = window.PE || {};
+   function setup(p, layer=p.getCurrentLayer()) {
+     const known=master(p,layer);if(known)return known;
+     editable(layer);
+-    if(p.spriteSheets[layer.sheetIndex]?.name!=='original32_idle')throw Error('首次关联请在待机中选择头发或眼睛；各方向第一帧作为基准');
++    if(!isIdle(p.spriteSheets[layer.sheetIndex]))throw Error('首次关联请在待机中选择头发或眼睛；各方向第一帧作为基准');
+     if(layer.parent!=null)throw Error('请先把此部件作为独立部件层；不自动合并方向分组');
+     const matches=p.layers.filter(l=>l!==layer&&!l.isGroup&&l.name===layer.name&&active(p.spriteSheets[l.sheetIndex]));
+     if(matches.some(l=>l.parent!=null||l.hairAnimationId)||new Set(matches.map(l=>l.sheetIndex)).size!==matches.length)throw Error('其他动作存在重复或已关联同名层，请先明确部件名称');
+     matches.forEach(editable);
+     const offsets=calibrate(p,layer),id=crypto.randomUUID();
+-    layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(),overrides:{},offsets};
++    layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(p.spriteSheets[layer.sheetIndex]),overrides:{},offsets};
+     // Keep the existing serialized recipe key so both parts use the same save/undo path.
+     if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=preservedEyes(p,layer,matches,offsets);}
+     layer.hairAnimationId=id;
+@@ -148,11 +149,11 @@ window.PE = window.PE || {};
+     for(const l of p.layers) {
+       if(l.hairAnimationId!==undefined&&(typeof l.hairAnimationId!=='string'||l.hairAnimationId.length>80))throw Error('头发关联编号无效');
+       const g=l.hairAnimation;if(!g)continue;
+-      if(g.version!==1||typeof g.id!=='string'||g.id.length>80||!g.id||ids.has(g.id)||l.hairAnimationId!==g.id||p.spriteSheets[l.sheetIndex]?.name!=='original32_idle'||typeof g.live!=='boolean'||typeof g.enabled!=='boolean')throw Error('头发联动设置无效');
++      if(g.version!==1||typeof g.id!=='string'||g.id.length>80||!g.id||ids.has(g.id)||l.hairAnimationId!==g.id||!isIdle(p.spriteSheets[l.sheetIndex])||typeof g.live!=='boolean'||typeof g.enabled!=='boolean')throw Error('头发联动设置无效');
+       ids.add(g.id);
+       if(l.isGroup||l.inheritedBase||PE.isHandLayer(l)||(g.part==='eyes'?!isEyes(l):PE.classifyPart(l.name)?.category!=='头发'))throw Error('同步基准层身份无效');
+       if(g.part!==undefined&&g.part!=='eyes')throw Error('同步部件类型无效');
+-      if(g.part==='eyes'&&(g.enabled||!Array.isArray(g.preserved)||g.preserved.length>4096||g.preserved.some(k=>typeof k!=='string'||!Object.hasOwn(g.offsets||{},k)||/original32_idle\/[^/]+\/0$/.test(k))))throw Error('眼睛保留帧设置无效');
++      if(g.part==='eyes'&&(g.enabled||!Array.isArray(g.preserved)||g.preserved.length>4096||g.preserved.some(k=>typeof k!=='string'||!Object.hasOwn(g.offsets||{},k)||/original(?:16|32)_idle\/[^/]+\/0$/.test(k))))throw Error('眼睛保留帧设置无效');
+       if(!g.offsets||Array.isArray(g.offsets)||Object.keys(g.offsets).length>4096||!g.overrides||Array.isArray(g.overrides)||Object.keys(g.overrides).length>5)throw Error('头发偏移/动作设置无效');
+       for(const offset of Object.values(g.offsets))if(!offset||![offset.x,offset.y].every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=4096))throw Error('头发偏移必须是有效整数');
+       for(const a of p.spriteSheets[l.sheetIndex].actions){const o=g.offsets[address(p.spriteSheets[l.sheetIndex],a.direction,0)];if(!o||o.x!==0||o.y!==0)throw Error('各方向待机第一帧是基准，偏移必须为 0');}
+@@ -371,7 +372,7 @@ window.PE = window.PE || {};
+       return down(...args);
+     };
+   }
+-  PE.HairAnimation={actions,directions,master,setup,validate,calibrate,plan,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
++  PE.HairAnimation={actions,directions,isIdle,master,setup,validate,calibrate,plan,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
+ })();
+ 
+ document.addEventListener('DOMContentLoaded',()=>{
+@@ -400,7 +401,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   });
+   bar.querySelector('#hair-sway').onclick=()=>run(()=>openSway());
+   function openSway(){
+-    const p=app.project,idleSI=p.spriteSheets.findIndex(s=>s.name==='original32_idle');
++    const p=app.project,idleSI=p.spriteSheets.findIndex(H.isIdle);
+     const candidates=p.layers.filter(l=>l.sheetIndex===idleSI&&!l.isGroup&&!l.locked&&!l.inheritedBase&&PE.classifyPart(l.name)?.category==='头发'&&(l.parent==null||l.hairAnimation));
+     if(!candidates.length)throw Error('待机中没有可调节的独立头发部件，请先新建前发或后发');
+     const entries=new Map();let entry,result=null,frame=0,playing=true,start=null,paintMode='move',erasing=false,painting=false,previous=null,request;
+@@ -408,11 +409,11 @@ document.addEventListener('DOMContentLoaded',()=>{
+     dialog.innerHTML=`<h2>头发飘动 · 分部件 / 分动作 / 分方向</h2><p>「应用范围」决定这套参数写进哪些动作：选「全部动作＋当前方向」时，正面会把待机、行走、拾取、坐姿一起设成同一套飘动（睡觉已不在编辑器动作里，不会写入）。只要动过下拉框或参数，确定时就会真正写入；切换头发时保留本次调节，取消不修改工程。</p>
+       <div class="hair-sway-fields"><label>头发部件 <select data-hair aria-label="飘动头发部件"></select></label><label><input data-enabled type="checkbox">开启本部件飘动（总开关）</label></div>
+       <div class="hair-sway-fields"><label>应用范围 <select data-scope aria-label="飘动调节范围"><option value="current">当前动作＋当前方向</option><option value="direction">全部动作＋当前方向</option><option value="all">全部动作＋全部方向（统一覆盖）</option></select></label><label>动作 <select data-action aria-label="飘动动作"></select></label><label>方向 <select data-direction aria-label="飘动方向"></select></label></div>
+-      <div class="hair-sway-grid"><section><h3>所选头发：可动 / 保护区域</h3><canvas data-paint aria-label="涂抹头发可动区域"></canvas><div><label>画笔半径 <input data-radius type="number" min="1" max="8" value="3" aria-label="飘动画笔半径"></label><button data-move class="studio-button" aria-pressed="true">可动画笔</button><button data-protect class="studio-button" aria-pressed="false">保护画笔</button><button data-traj class="studio-button" aria-pressed="false">轨迹画笔</button><button data-stitch class="studio-button" aria-pressed="false">补全画笔</button><button data-erase class="studio-button" aria-pressed="false">橡皮擦</button><button data-clear class="studio-button">全部可动</button><button data-clear-protection class="studio-button">清空保护</button><button data-clear-traj class="studio-button">清除轨迹</button><button data-clear-stitch class="studio-button">清除补全</button></div><p class="hair-mask-legend">蓝色：可动；红色：保护（优先）；橙色：轨迹；绿色：补全区。补全画笔涂在会露头皮的位置，那里会先补上头发颜色再一起飘动。不自动锁头顶。</p></section><section><h3>预览：只显示所选头发＋人物</h3><canvas data-preview aria-label="所选头发隔离动画预览"></canvas><div><button data-play class="studio-button">暂停</button><span data-frame></span></div></section></div>
++      <div class="hair-sway-grid"><section><h3>所选头发：可动 / 保护区域</h3><canvas data-paint aria-label="涂抹头发可动区域"></canvas><div><label>画笔半径 <input data-radius type="number" min="1" max="8" value="${p.spriteSheets[idleSI].name.startsWith('original16_')?1:3}" aria-label="飘动画笔半径"></label><button data-move class="studio-button" aria-pressed="true">可动画笔</button><button data-protect class="studio-button" aria-pressed="false">保护画笔</button><button data-traj class="studio-button" aria-pressed="false">轨迹画笔</button><button data-stitch class="studio-button" aria-pressed="false">补全画笔</button><button data-erase class="studio-button" aria-pressed="false">橡皮擦</button><button data-clear class="studio-button">全部可动</button><button data-clear-protection class="studio-button">清空保护</button><button data-clear-traj class="studio-button">清除轨迹</button><button data-clear-stitch class="studio-button">清除补全</button></div><p class="hair-mask-legend">蓝色：可动；红色：保护（优先）；橙色：轨迹；绿色：补全区。补全画笔涂在会露头皮的位置，那里会先补上头发颜色再一起飘动。不自动锁头顶。</p></section><section><h3>预览：只显示所选头发＋人物</h3><canvas data-preview aria-label="所选头发隔离动画预览"></canvas><div><button data-play class="studio-button">暂停</button><span data-frame></span></div></section></div>
+       <div class="hair-sway-fields"><label><input data-follow type="checkbox">参考式轻微跟随头部</label><span>头部上下移动时发尾稍后跟上；头部不动时不额外飘。此模式不使用上下和左右波动参数，已绘制轨迹优先。</span></div><div class="hair-sway-fields" data-params></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-cancel class="studio-button">取消全部</button><button data-apply class="studio-button save-primary">确定</button></div>`;
+     const $=sel=>dialog.querySelector(sel),hair=$('[data-hair]'),scope=$('[data-scope]'),action=$('[data-action]'),direction=$('[data-direction]'),enabled=$('[data-enabled]'),paint=$('[data-paint]'),preview=$('[data-preview]'),note=$('[data-note]');
+     for(const l of candidates)hair.append(new Option(l.name,String(p.layers.indexOf(l))));
+-    const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>PE.isEditorSheet(v.s)&&v.s.name.startsWith('original32_')&&Object.hasOwn(H.actions,v.s.name.slice(11)));
++    const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>PE.isEditorSheet(v.s)&&PE.isCharacterSheet(v.s)&&Object.hasOwn(H.actions,v.s.name.slice(11)));
+     for(const {s,i}of sheets)action.append(new Option(H.actions[s.name.slice(11)],String(i)));
+     action.value=String(p.currentSheetIndex);if(!action.value)action.value=String(idleSI);
+     const fields={};for(const [key,label,min,max,step]of [['ampV','上下起伏（强度）',0,4,.1],['ampH','左右轻摆',0,6,.1],['cycles','每循环摆动次数',1,4,1],['lag','发梢延迟',0,1.5,.1],['trajAmp','轨迹幅度',0,2,.05]]){
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\workbench.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\workbench.js"
+index 08755ba..24aedee 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\workbench.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\workbench.js"
+@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
+   const updateLayers=app.updateLayerList.bind(app);
+   app.updateLayerList=function(){
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-    const available=l=>!l.isGroup&&!PE.isHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
++    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
+     if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
+     updateLayers();
+     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
+@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
+     const rows=[...$('layer-list').children];
+     rows.forEach((row,i)=>{
+       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
+-      if(PE.isHandLayer(l)){row.remove();return;}
++      if(PE.isProtectedHandLayer(l)&&!l.inheritedBase){row.remove();return;}
+       if(!PE.isLayerInAction(p,l)){row.remove();return;}
+       const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+       const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
+@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
+         const remove=document.createElement('button');remove.className='layer-delete';remove.textContent='删除';remove.setAttribute('aria-label','删除图层 '+l.name);remove.disabled=!!l.inheritedBase;remove.title=l.inheritedBase?'同步底稿请到主工程修改':'删除此图层，可以撤销';remove.onclick=()=>app.deleteLayer(index);row.append(remove);
+       }
+     });
+-    if(p.getCurrentSheet()?.name.startsWith('original32_')){
++    if(PE.isCharacterSheet(p.getCurrentSheet())){
+       this.layerSectionOpen??=new Map();
+       const sections=new Map();
+       function category(l){
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\api.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\api.js"
+index d95d3bc..4a4f46d 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\api.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\api.js"
+@@ -141,7 +141,7 @@ window.PE = window.PE || {};
+   }
+ 
+   function _applyPixelsToLayer(layer, layerIdx, frame, frameKey, pixelList, batchDescription) {
+-    if (layer.locked || PE.isHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==frame.sheetIndex)) {
++    if (layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==frame.sheetIndex)) {
+       return {
+         modifiedPixels: 0,
+         rejectedPixels: pixelList.map(p => ({ x: p.x, y: p.y, reason: '目标图层已被锁定' }))
+@@ -646,7 +646,7 @@ window.PE = window.PE || {};
+         const p = _getProject();
+         if (!p) return _fail('项目未初始化');
+         const lRes = _resolveLayer(p, index);
+-        if (PE.isHandLayer(lRes.layer)) return _fail('请使用手部预览开关，原始手部可见性受保护');
++        if (PE.isProtectedHandLayer(lRes.layer)) return _fail('请使用手部预览开关，原始手部可见性受保护');
+         lRes.layer.visible = !!visible;
+         _notifyCanvasAndUI();
+         return _success({ layerIndex: lRes.layerIndex, visible: lRes.layer.visible });
+@@ -661,7 +661,7 @@ window.PE = window.PE || {};
+         if (!p) return _fail('项目未初始化');
+         const lRes = _resolveLayer(p, index);
+         if (lRes.layer.inheritedBase && !locked) return _fail('头部、身体和手部跟随主工程，请到主工程修改');
+-        if (PE.isHandLayer(lRes.layer) && !locked) return _fail('手部是独立参考层，不能解锁绘画');
++        if (PE.isProtectedHandLayer(lRes.layer) && !locked) return _fail('手部是独立参考层，不能解锁绘画');
+         lRes.layer.locked = !!locked;
+         _notifyCanvasAndUI();
+         return _success({ layerIndex: lRes.layerIndex, locked: lRes.layer.locked });
+@@ -675,7 +675,7 @@ window.PE = window.PE || {};
+         const p = _getProject();
+         if (!p) return _fail('项目未初始化');
+         const lRes = _resolveLayer(p, index);
+-        if (PE.isHandLayer(lRes.layer)) return _fail('手部原始透明度受保护');
++        if (PE.isProtectedHandLayer(lRes.layer)) return _fail('手部原始透明度受保护');
+         const op = Math.max(0, Math.min(1, Number(opacity)));
+         lRes.layer.opacity = op;
+         _notifyCanvasAndUI();
+@@ -814,7 +814,7 @@ window.PE = window.PE || {};
+         const lRes = _resolveLayer(ref.project, layerIdx);
+         const layer = lRes.layer;
+ 
+-        if (layer.locked || PE.isHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==ref.frame.sheetIndex)) {
++        if (layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || (layer.sheetIndex!==undefined && layer.sheetIndex!==ref.frame.sheetIndex)) {
+           return _fail('目标图层已被锁定', { modifiedPixels: 0, rejectedPixels: [{ x, y, reason: '图层已锁定' }] });
+         }
+         if (ref.frame.locked) {
+@@ -994,7 +994,7 @@ window.PE = window.PE || {};
+         const lRes = _resolveLayer(ref.project, layerIdx);
+         const layer = lRes.layer;
+ 
+-        if (layer.locked || PE.isHandLayer(layer)) return _fail('图层已锁定');
++        if (layer.locked || PE.isProtectedHandLayer(layer)) return _fail('图层已锁定');
+         if (ref.frame.locked) return _fail('帧已锁定');
+ 
+         const sx = Math.round(srcX);
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\tools.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\tools.js"
+index c8df392..febd048 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\tools.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\tools.js"
+@@ -159,7 +159,7 @@ window.PE = window.PE || {};
+         this._beginNativeEdit(px,py,button,rectangle);return;
+       }
+       if(rectangle&&button===0&&['pencil','eraser'].includes(this.currentTool)){
+-        if(layer.locked||layer.inheritedBase||layer.isGroup||PE.isHandLayer(layer)||!PE.isLayerVisible(this.project,layer)||frame.locked)return;
++        if(layer.locked||layer.inheritedBase||layer.isGroup||PE.isProtectedHandLayer(layer)||!PE.isLayerVisible(this.project,layer)||frame.locked)return;
+         px=Math.floor(px);py=Math.floor(py);
+         if(!this._isInBounds(px,py,frame.width,frame.height))return;
+         this._rectStroke={project:this.project,layer,frame,index:layerIdx,key:frameKey,x:px,y:py,color:this.currentTool==='eraser'?{r:0,g:0,b:0,a:0}:{...this.primaryColor}};
+@@ -177,7 +177,7 @@ window.PE = window.PE || {};
+ 
+       switch (this.currentTool) {
+         case 'pencil': {
+-          if (layer.locked || PE.isHandLayer(layer) || !layer.visible || frame.locked) return;
++          if (layer.locked || PE.isProtectedHandLayer(layer) || !layer.visible || frame.locked) return;
+           this.isDrawing = true;
+           this.lastX = px;
+           this.lastY = py;
+@@ -198,7 +198,7 @@ window.PE = window.PE || {};
+         }
+ 
+         case 'eraser': {
+-          if (layer.locked || PE.isHandLayer(layer) || !layer.visible || frame.locked) return;
++          if (layer.locked || PE.isProtectedHandLayer(layer) || !layer.visible || frame.locked) return;
+           this.isDrawing = true;
+           this.lastX = px;
+           this.lastY = py;
+@@ -232,7 +232,7 @@ window.PE = window.PE || {};
+         }
+ 
+         case 'fill': {
+-          if (layer.locked || PE.isHandLayer(layer) || !layer.visible || frame.locked) return;
++          if (layer.locked || PE.isProtectedHandLayer(layer) || !layer.visible || frame.locked) return;
+           const color = (button === 2) ? { r: 0, g: 0, b: 0, a: 0 } : this.primaryColor;
+           this.fillArea(layerIdx, frameKey, px, py, color.r, color.g, color.b, color.a);
+           if (this.canvasManager) this.canvasManager.render();
+@@ -242,7 +242,7 @@ window.PE = window.PE || {};
+         case 'line':
+         case 'rect':
+         case 'ellipse': {
+-          if (layer.locked || PE.isHandLayer(layer) || !layer.visible || frame.locked) return;
++          if (layer.locked || PE.isProtectedHandLayer(layer) || !layer.visible || frame.locked) return;
+           px = Math.floor(px);
+           py = Math.floor(py);
+           if (!this._isInBounds(px, py, frame.width, frame.height)) return;
+@@ -532,7 +532,7 @@ window.PE = window.PE || {};
+       if (!shape || !this.project) return;
+       const layer = this.project.getCurrentLayer();
+       const frame = this.project.getCurrentFrame();
+-      if (!layer || !frame || layer.locked || PE.isHandLayer(layer) || frame.locked) return;
++      if (!layer || !frame || layer.locked || PE.isProtectedHandLayer(layer) || frame.locked) return;
+       const pixels = this._withSymmetry(this._shapePixels(shape), this.activeSymmetry());
+       if (!pixels.length) return;
+       const label = { line: '直线', rect: '矩形', ellipse: '椭圆' }[shape.tool] || '形状';
+@@ -684,7 +684,7 @@ window.PE = window.PE || {};
+       const layer = this.project.layers[layerIdx];
+       if (!layer) return { success: false, rejected: { reason: 'layer_not_found' } };
+       if(layer.getFrameData(frameKey)?.placement)return {success:false,rejected:{reason:'hd_image_layer'}};
+-      if (layer.locked || PE.isHandLayer(layer) || layer.isGroup) return { success: false, rejected: { reason: 'layer_locked' } };
++      if (layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup) return { success: false, rejected: { reason: 'layer_locked' } };
+       if (!layer.visible) return { success: false, rejected: { reason: 'layer_invisible' } };
+ 
+       const [si,ai,fi]=frameKey.split('_').map(Number);
+@@ -744,7 +744,7 @@ window.PE = window.PE || {};
+ 
+       const layer = this.project.layers[layerIdx];
+       if(layer?.getFrameData(frameKey)?.placement)return {success:false,modifiedCount:0,rejectedPixels:pixels.map(p=>({x:p.x,y:p.y,reason:'hd_image_layer'}))};
+-      if (!layer || layer.locked || PE.isHandLayer(layer) || layer.isGroup || !layer.visible) {
++      if (!layer || layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || !layer.visible) {
+         const reason = !layer ? 'layer_not_found' : (layer.locked ? 'layer_locked' : 'layer_invisible');
+         return {
+           success: false,
+@@ -998,7 +998,7 @@ window.PE = window.PE || {};
+       if(this.project.layers[layerIdx]?.getFrameData(frameKey)?.placement)return {success:false,modifiedCount:0,reason:'hd_image_layer'};
+ 
+       const layer = this.project.layers[layerIdx];
+-      if (!layer || layer.locked || PE.isHandLayer(layer) || layer.isGroup || !layer.visible) {
++      if (!layer || layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || !layer.visible) {
+         return { success: false, modifiedCount: 0, reason: 'layer_invalid_or_locked' };
+       }
+ 
+@@ -1254,7 +1254,7 @@ window.PE = window.PE || {};
+     selectLayerAt(x,y) {
+       const p=this.project,key=p.getFrameKey();this.clearSelection();
+       for (const layer of PE.getRenderLayers(p,p.currentSheetIndex,p.currentActionIndex).slice().reverse()) {
+-        if (layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || layer.opacity<=0 || !PE.isLayerVisible(p,layer)) continue;
++        if (layer.locked || layer.inheritedBase || PE.isProtectedHandLayer(layer) || layer.opacity<=0 || !PE.isLayerVisible(p,layer)) continue;
+         const data=layer.getFrameData(key);
+         if(data?.placement){
+           const r=data.placement;
+@@ -1300,7 +1300,7 @@ window.PE = window.PE || {};
+ 
+     _selectionPixels(layerIdx,key,source,target) {
+       const p=this.project,layer=p?.layers[layerIdx],[si,ai,fi]=key.split('_').map(Number),frame=p?.spriteSheets[si]?.actions[ai]?.frames[fi];
+-      if (!layer || layer.isGroup || layer.sheetIndex!==undefined&&layer.sheetIndex!==si || layer.locked || layer.inheritedBase || PE.isHandLayer(layer) || !PE.isLayerVisible(p,layer,si) || !frame || frame.locked) return null;
++      if (!layer || layer.isGroup || layer.sheetIndex!==undefined&&layer.sheetIndex!==si || layer.locked || layer.inheritedBase || PE.isProtectedHandLayer(layer) || !PE.isLayerVisible(p,layer,si) || !frame || frame.locked) return null;
+       let data=layer.getFrameData(key);if(!data)return null;
+       const free=this._canFreePlace(source,layerIdx,key);
+       const resizing=source.w!==target.w||source.h!==target.h,mode=this.imageResizeMode||(data.placement?'hd':'pixel');
+@@ -1552,7 +1552,7 @@ window.PE = window.PE || {};
+       if (!frame || frame.locked || frame.isPixelLocked(x, y)) return true;
+ 
+       const layer = project.getCurrentLayer();
+-      if (!layer || layer.locked || PE.isHandLayer(layer) || layer.isGroup || !layer.visible) return true;
++      if (!layer || layer.locked || PE.isProtectedHandLayer(layer) || layer.isGroup || !layer.visible) return true;
+ 
+       return false;
+     }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\frame-tools.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\frame-tools.js"
+index e34d8f6..880b915 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\frame-tools.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\frame-tools.js"
+@@ -27,7 +27,7 @@ PE.FrameEditing={
+     return {sheetIndex,actionIndex,frameIndex,layerIndex,action,frame,layer,key:p.getFrameKey(sheetIndex,actionIndex,frameIndex)};
+   },
+   editable(ref){
+-    if(ref.layer.locked||ref.layer.inheritedBase||PE.isHandLayer(ref.layer))throw new Error('目标图层锁定或属于受保护底稿');
++    if(ref.layer.locked||ref.layer.inheritedBase||PE.isProtectedHandLayer(ref.layer))throw new Error('目标图层锁定或属于受保护底稿');
+     if(ref.frame.locked)throw new Error('目标帧已锁定');
+   },
+   read(app,source={}){
+@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   function openBatch(){
+     copied=F.read(app,source());const p=copied.project,ref=copied.ref;
+     dialog.querySelector('[data-source]').textContent='源：'+ref.layer.name+' · '+(p.getCurrentAction().name||'当前朝向')+' 第 '+(ref.frameIndex+1)+' 帧 · '+copied.pixels.width+' × '+copied.pixels.height+' 像素';
+-    const names={original32_walk:'行走',original32_idle:'待机',original32_pickup:'拾取',original32_sit:'坐姿',original32_sleep:'睡觉'};
++    const names={original16_walk:'行走',original16_idle:'待机',original16_pickup:'拾取',original16_sit:'坐姿',original32_walk:'行走',original32_idle:'待机',original32_pickup:'拾取',original32_sit:'坐姿',original32_sleep:'睡觉'};
+     sheet.replaceChildren();for(const [i,s]of p.spriteSheets.entries()){if(!PE.isEditorSheet(s))continue;const o=document.createElement('option');o.value=i;o.textContent=names[s.name]||s.name;sheet.append(o);}
+     if(!sheet.options.length)throw Error('没有可编辑的目标动作');
+     sheet.value=PE.isEditorSheet(p.spriteSheets[ref.sheetIndex])?ref.sheetIndex:sheet.options[0].value;all.checked=false;mode.value='overlay';resetActions();dialog.showModal();
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\layer-mirror.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\layer-mirror.js"
+index b4d093b..a95abc9 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\layer-mirror.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\layer-mirror.js"
+@@ -231,7 +231,7 @@ window.PE = window.PE || {};
+     if (!action || !layer) throw new Error('请先选择有效图层与朝向');
+     if (layer.isGroup) throw new Error('这里是图层分组，请选择组里的具体图层');
+     if (layer.locked || layer.inheritedBase) throw new Error('当前图层已锁定或属于跟随底稿，不能镜像');
+-    if (PE.isHandLayer(layer)) throw new Error('手部参考层受保护，不能镜像');
++    if (PE.isProtectedHandLayer(layer)) throw new Error('手部参考层受保护，不能镜像');
+     if (layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) throw new Error('当前图层不属于这个素材表');
+     return { project, sheetIndex, action, layer, layerIndex };
+   }
+@@ -338,7 +338,7 @@ window.PE = window.PE || {};
+     }
+ 
+     function protectedLayer(layer) {
+-      return !layer || layer.locked || layer.inheritedBase || layer.isGroup || PE.isHandLayer(layer);
++      return !layer || layer.locked || layer.inheritedBase || layer.isGroup || PE.isProtectedHandLayer(layer);
+     }
+ 
+     function syncLiveButton() {
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\select-plus.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\select-plus.js"
+index b43de76..ef8c644 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\select-plus.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\select-plus.js"
+@@ -296,7 +296,7 @@ window.PE = window.PE || {};
+     if (layer.locked) return { success: false, modifiedCount: 0, reason: '当前图层已锁定' };
+     if (layer.isGroup) return { success: false, modifiedCount: 0, reason: '请选择具体图层，不要选组' };
+     if (layer.inheritedBase) return { success: false, modifiedCount: 0, reason: '跟随主工程的图层只读' };
+-    if (PE.isHandLayer && PE.isHandLayer(layer)) return { success: false, modifiedCount: 0, reason: '手部参考层受保护' };
++    if (PE.isProtectedHandLayer && PE.isProtectedHandLayer(layer)) return { success: false, modifiedCount: 0, reason: '手部参考层受保护' };
+     if (frame.locked) return { success: false, modifiedCount: 0, reason: '当前帧已锁定' };
+ 
+     const key = project.getFrameKey();
+@@ -353,7 +353,7 @@ window.PE = window.PE || {};
+     if (layer.locked) { toast('当前图层已锁定'); return { success: false, modifiedCount: 0 }; }
+     if (layer.isGroup) { toast('请选择具体图层，不要选组'); return { success: false, modifiedCount: 0 }; }
+     if (layer.inheritedBase) { toast('跟随主工程的图层只读'); return { success: false, modifiedCount: 0 }; }
+-    if (PE.isHandLayer && PE.isHandLayer(layer)) { toast('手部参考层受保护'); return { success: false, modifiedCount: 0 }; }
++    if (PE.isProtectedHandLayer && PE.isProtectedHandLayer(layer)) { toast('手部参考层受保护'); return { success: false, modifiedCount: 0 }; }
+     if (frame.locked) { toast('当前帧已锁定'); return { success: false, modifiedCount: 0 }; }
+ 
+     const key = project.getFrameKey();
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\outline.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\outline.js"
+index 4fc4bbd..643dd23 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\outline.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\outline.js"
+@@ -45,7 +45,7 @@ window.PE = window.PE || {};
+     if (layer.isGroup) return '请选择具体图层，不要选组';
+     if (layer.locked) return '当前图层已锁定，请先解锁';
+     if (layer.inheritedBase) return '头部、身体跟随主工程，请到主工程描边';
+-    if (PE.isHandLayer && PE.isHandLayer(layer)) return '手部参考层受保护，不能描边';
++    if (PE.isProtectedHandLayer && PE.isProtectedHandLayer(layer)) return '手部参考层受保护，不能描边';
+     if (frame && frame.locked) return '当前帧已锁定';
+     return '';
+   }
+@@ -302,7 +302,7 @@ window.PE = window.PE || {};
+     const frame = project.getCurrentFrame();
+     if (!layer || !frame) return;
+     if (layer.isGroup || layer.locked || layer.inheritedBase) return;
+-    if (PE.isHandLayer && PE.isHandLayer(layer)) return;
++    if (PE.isProtectedHandLayer && PE.isProtectedHandLayer(layer)) return;
+     if (!layer.visible) return;
+     if (frame.locked) return;
+ 
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\hd-canvas.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\hd-canvas.js"
+index 747e763..3a1b426 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\hd-canvas.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\hd-canvas.js"
+@@ -17,7 +17,7 @@ PE.HDCanvasSession=class{
+     const p=this.target,l=this.layer,f=this.frame,d=this.original,r=d?.placement;
+     const [si,ai,fi]=this.key.split('_').map(Number);
+     if(this.app.project!==p||p.spriteSheets[si]?.actions[ai]?.frames[fi]!==f||!p.layers.includes(l)||l?.getFrameData(this.key)!==d)throw new Error('原图层已变化；请保留当前画布，取消后重新打开，未覆盖工程');
+-    if(!r||l.isGroup||l.locked||l.inheritedBase||PE.isHandLayer(l)||!PE.isLayerVisible(p,l)||!f||f.locked)throw new Error('请选择当前帧可编辑的高清图层（受保护图层不能编辑）');
++    if(!r||l.isGroup||l.locked||l.inheritedBase||PE.isProtectedHandLayer(l)||!PE.isLayerVisible(p,l)||!f||f.locked)throw new Error('请选择当前帧可编辑的高清图层（受保护图层不能编辑）');
+     PE.utils.validateImagePlacement(r,f);
+     if(PE.utils.imagePlacementLocked(r,f))throw new Error('高清画布覆盖保护区域，不能编辑');
+   }
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\ai-edits.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\ai-edits.js"
+index d4a1ea4..c70b874 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\ai-edits.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\ai-edits.js"
+@@ -17,7 +17,7 @@
+     },
+     validate(project,layerIndex,edits){
+       const layer=project.layers[layerIndex];
+-      if(!Number.isSafeInteger(layerIndex)||!layer||layer.locked||layer.isGroup||layer.referenceOnly||layer.isOriginal||root.PE?.isHandLayer?.(layer))throw new Error('请选择一个可编辑的绘画图层');
++      if(!Number.isSafeInteger(layerIndex)||!layer||layer.locked||layer.isGroup||layer.referenceOnly||layer.isOriginal||root.PE?.isProtectedHandLayer?.(layer))throw new Error('请选择一个可编辑的绘画图层');
+       if(!Array.isArray(edits)||edits.length>256)throw new Error('绘画结果过大或格式错误');
+       let count=0;
+       for(const edit of edits){
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\projects.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\projects.js"
+index fdceca9..6c9c606 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\projects.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\projects.js"
+@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+         spriteSheets:[{name:'场景画布',frameWidth:w,frameHeight:h,columns:1,rows:1,imageDataURL:blank,actions:[{name:'场景',direction:'none',frames:[{sheetIndex:0,sourceX:0,sourceY:0,width:w,height:h}]}]}],
+         layers:['地面','家具与设施','装饰'].map(name=>({name,sheetIndex:0,visible:true,locked:false,opacity:1,frameData:{'0_0_0':{width:w,height:h,dataURL:blank}}}))};
+     }else{
+-      if(character&&p.projectId!=='main'){
++      if(character){
++        if(p.projectId==='main'&&p.dirty&&!await p.saveNow())throw new Error('主工程保存未完成，未新建分支；请先处理保存冲突');
+         const source=await fetch(p.base+'/api/project?id=main',{headers:p.headers,cache:'no-store'});
+         if(!source.ok)throw new Error('人物主工程读取失败：'+source.status);
+         data=await source.json();
+@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   }
+   button('新建人物／衣服分支',()=>create(false,true));
+   button('分出当前工程独立稿',()=>create(false));
+-  PE.createProjectBranch=()=>create(false);
++  PE.createProjectBranch=()=>create(false,true);
+   button('＋ 场景绘制',()=>create(true));
+   const select=document.createElement('select');select.setAttribute('aria-label','打开已有工程');bar.insertBefore(select,menu);
+   select.onchange=()=>{if(!select.value)return;const url=new URL(location.href);url.searchParams.set('project',select.value);window.open(url.href,'_blank','noopener');select.value='';};
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\app.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\app.js"
+index ba67e88..75f960d 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\app.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\app.js"
+@@ -812,7 +812,7 @@ window.PE = window.PE || {};
+     updateAll() {
+       const p=this.project;
+       if(!PE.isEditorSheet(p.spriteSheets[p.currentSheetIndex])){
+-        const idle=p.spriteSheets.findIndex(s=>s.name==='original32_idle'),si=idle<0?p.spriteSheets.findIndex(PE.isEditorSheet):idle;
++        const idle=p.spriteSheets.findIndex(s=>/^original(?:16|32)_idle$/.test(s.name)),si=idle<0?p.spriteSheets.findIndex(PE.isEditorSheet):idle;
+         if(si>=0){p.currentSheetIndex=si;p.currentActionIndex=p.currentFrameIndex=0;p.currentLayerIndex=Math.max(0,p.layers.findIndex(l=>l.sheetIndex===si&&!l.isGroup));}
+       }
+       if (this.animationPlayer) {
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\building-groups.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\building-groups.js"
+index 2ca06ad..0d020b6 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\building-groups.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\building-groups.js"
+@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const app=PE.app,update=app.updateLayerList.bind(app),open=new Map();
+   app.updateLayerList=function(){
+     update();
+-    const p=this.project;if(p.getCurrentSheet()?.name.startsWith('original32_'))return;
++    const p=this.project;if(PE.isCharacterSheet(p.getCurrentSheet()))return;
+     const list=document.getElementById('layer-list');
+     const rows=[...list.children].filter(row=>row.dataset.layerIndex!==undefined);
+     const byIndex=new Map(rows.map(row=>[Number(row.dataset.layerIndex),row]));
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\studio.js" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+index de44571..9712bfa 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\js\\studio.js"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\js\\studio.js"
+@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const builtinReset=button('重新载入16×16素体',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
+   const center=$('center-viewport'),canvasHeader=node('div','canvas-header');
+   const heading=node('div','canvas-title');const drawingTitle=node('strong','','正在载入角色…'),drawingMeta=node('span','','');heading.append(drawingTitle,drawingMeta);
+-  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手臂');handSwitch.append(handCheckbox,node('span','','显示手臂'));
++  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.checked=true;handCheckbox.setAttribute('aria-label','显示手臂');handSwitch.append(handCheckbox,node('span','','显示手臂'));
+   const background=node('label','background-control','背景 '),backgroundColor=node('input'),backgroundHex=node('input');
+   backgroundColor.type='color';backgroundColor.setAttribute('aria-label','画布背景颜色');
+   backgroundHex.type='text';backgroundHex.setAttribute('aria-label','背景颜色十六进制');backgroundHex.maxLength=7;
+@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const sizeControl=node('div','brush-control');sizeControl.setAttribute('role','group');sizeControl.setAttribute('aria-label','画笔 / 橡皮大小设置');
+   sizeControl.title='普通画布按画布像素；高清图层按源像素。也可用 [ / ] 调整大小。';
+   sizeControl.append(node('span','','画笔 / 橡皮'),$('brush-size'),$('brush-size-number'),node('span','','px'));viewbar.insertBefore(sizeControl,viewActions);
+-  const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','只读保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','不参与绘画，导出时原样保留。'));
++  const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','分支保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','主工程已开放的手臂可在身体分类修改；人物分支跟随主工程。'));
+   const preview=node('section','preview-card');preview.append(node('div','preview-label','动画预览'),$('preview-canvas'));
+   right.replaceChildren(palette,layers,preview);secondary.append(handCard);
+   const layerControls=layers.querySelector('.button-row');if(layerControls){layerControls.prepend(node('span','','图层顺序与删除 '));secondary.append(layerControls);}
+@@ -120,10 +120,10 @@ document.addEventListener('DOMContentLoaded', async () => {
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';handList.replaceChildren();for(const l of p.layers){if(!PE.isHandLayer(l)||l.sheetIndex!==p.currentSheetIndex||![...l.frameData.keys()].some(k=>k.startsWith(prefix)))continue;handList.append(node('span','hand-name',l.name));}if(!handList.children.length)handList.append(node('span','hand-name','此动作无独立手层'));};
+   app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
+   function focusCharacter(){const p=app.project,cm=app.canvasManager,density=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex,6),image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands,density);if(!image)return;const raw=bounds(image);if(!raw){cm.centerView();return;}const box={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
+-  app.canvasManager.hideHands=true;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
++  app.canvasManager.hideHands=!handCheckbox.checked;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
+   handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updatePalette();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};
+-  pixelAPI.setHandsPreviewVisible=show=>{handCheckbox.checked=!!show;handCheckbox.onchange();return {success:true,visible:handCheckbox.checked,referenceOnly:true};};
+-  pixelAPI.getHandsInfo=()=>({success:true,visible:handCheckbox.checked,layers:app.project.layers.map((l,index)=>({layer:l,index})).filter(({layer:l})=>PE.isHandLayer(l)&&l.sheetIndex===app.project.currentSheetIndex).map(({layer:l,index})=>({index,name:l.name,referenceOnly:true}))});
++  pixelAPI.setHandsPreviewVisible=show=>{handCheckbox.checked=!!show;handCheckbox.onchange();return {success:true,visible:handCheckbox.checked,referenceOnly:app.project.layers.filter(l=>PE.isHandLayer(l)).every(PE.isProtectedHandLayer)};};
++  pixelAPI.getHandsInfo=()=>({success:true,visible:handCheckbox.checked,layers:app.project.layers.map((l,index)=>({layer:l,index})).filter(({layer:l})=>PE.isHandLayer(l)&&l.sheetIndex===app.project.currentSheetIndex).map(({layer:l,index})=>({index,name:l.name,referenceOnly:PE.isProtectedHandLayer(l),editable:!l.locked&&!PE.isProtectedHandLayer(l)}))});
+   const selectedSheet=app.selectSheet.bind(app),selectedAction=app.selectAction.bind(app);
+   app.selectSheet=i=>{selectedSheet(i);focusCharacter();};app.selectAction=i=>{selectedAction(i);focusCharacter();};
+   // Tight, stable animation framing uses the union of every frame, never per-frame centering.
+@@ -159,9 +159,11 @@ document.addEventListener('DOMContentLoaded', async () => {
+     if(reset&&app.persistence.dirty&&!await app.persistence.saveNow()){alert('请先导出当前工程，避免覆盖尚未同步的绘画。');return;}
+     builtinReset.disabled=true;loading.hidden=false;app.suspendBackup=true;
+     try{
+-      const response=await fetch('assets/builtin/native16-clean.json',{cache:'no-store'});
+-      if(!response.ok)throw new Error('16×16 素体读取失败：'+response.status);
+-      await app.exportManager.importProject(await response.blob());
++      let response=await fetch(app.persistence.base+'/api/project?id=main',{headers:app.persistence.headers,cache:'no-store'});
++      if(response.status===404)response=await fetch('assets/builtin/native16-clean.json',{cache:'no-store'});
++      if(!response.ok)throw new Error('当前素体读取失败：'+response.status);
++      const data=await response.json();PE.characterBase(data);
++      await app.exportManager.importProject(new Blob([JSON.stringify(data)],{type:'application/json'}));
+       app.animationPlayer.setAction(app.project.currentSheetIndex,app.project.currentActionIndex);
+       app.updateAll();app.syncBackgroundControls();focusCharacter();
+     }catch(error){alert('内置素材载入失败：'+error.message+'。当前工程未被替换。');console.error(error);}
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\index.html" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+index c153900..6f6c4cc 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\index.html"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\index.html"
+@@ -282,18 +282,18 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=layer-controls-20261103"></script>
++  <script src="js/core.js?v=native16-wiring-20261104"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=select-wand-2"></script>
+-  <script src="js/tools.js?v=select-wand-1"></script>
++  <script src="js/tools.js?v=native16-wiring-20261104"></script>
+   <script src="js/spritesheet.js"></script>
+   <script src="js/animation.js?v=playback-overlays-1"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=native16-clean-20261104"></script>
+-  <script src="js/api.js?v=frame-delete-1"></script>
++  <script src="js/api.js?v=native16-wiring-20261104"></script>
+   <script src="js/aseprite.js"></script>
+-  <script src="js/app.js?v=eye-sync-no-sleep-20261103"></script>
+-  <script src="js/workbench.js?v=stable-playback-1"></script>
++  <script src="js/app.js?v=native16-wiring-20261104"></script>
++  <script src="js/workbench.js?v=native16-wiring-20261104"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+   <script src="js/builtin-packs.js"></script>
+@@ -301,26 +301,26 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=native16-clean-20261104"></script>
+-  <script src="js/visual-layers.js?v=layer-controls-20261103"></script>
++  <script src="js/studio.js?v=native16-wiring-20261104"></script>
++  <script src="js/visual-layers.js?v=native16-wiring-20261104"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+-  <script src="js/projects.js?v=native16-clean-20261104"></script>
++  <script src="js/projects.js?v=native16-wiring-20261104"></script>
+   <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
+   <script src="js/wardrobe.js?v=native16-clean-20261104"></script>
+   <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
+-  <script src="js/frame-tools.js?v=eye-sync-no-sleep-20261103"></script>
+-  <script src="js/layer-mirror.js?v=layer-mirror-2"></script>
++  <script src="js/frame-tools.js?v=native16-wiring-20261104"></script>
++  <script src="js/layer-mirror.js?v=native16-wiring-20261104"></script>
+   <script src="js/layer-shortcuts.js?v=ps-layer-shortcuts-2"></script>
+-  <script src="js/building-groups.js?v=1"></script>
++  <script src="js/building-groups.js?v=native16-wiring-20261104"></script>
+   <script src="js/pixel-import.js?v=stable-toolbar-1"></script>
+-  <script src="js/hd-canvas.js?v=hd-drag-create-1"></script>
++  <script src="js/hd-canvas.js?v=native16-wiring-20261104"></script>
+   <script src="js/frame-timing.js?v=frame-timing-1"></script>
+   <script src="js/draw-kit.js?v=visible-aux-3"></script>
+-  <script src="js/select-plus.js?v=select-plus-2"></script>
+-  <script src="js/outline.js?v=auto-outline-2"></script>
++  <script src="js/select-plus.js?v=native16-wiring-20261104"></script>
++  <script src="js/outline.js?v=native16-wiring-20261104"></script>
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=gentle-head-follow-20261104-2"></script>
++  <script src="js/hair-animation.js?v=native16-wiring-20261104"></script>
+ </body>
+ </html>
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\AGENTS.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\AGENTS.md"
+index 1f46195..afab1cf 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\AGENTS.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\AGENTS.md"
+@@ -4,7 +4,10 @@
+ - 当前只保留行走、待机、拾取、坐姿。不要恢复旧工程、旧头发、旧服装或其他动作。
+ - 旧绘画规范已归档，不自动读取，不沿用旧教程或旧默认素材。新的绘画规则由用户重新制定。
+ - 操作工程前读 `后台工程读写约定.md`，通过本地 API 和 ETag 保存；保留原始备份，回读验证。
+-- 坐姿已改用待机的正面、侧面、背面整套图层和帧作为重画底稿。用户会重新画坐姿；不要恢复之前缩小的32规格坐姿。
++- 用户已重新画好坐姿，以当前工程为准；禁止再用待机覆盖坐姿，也不恢复之前缩小的32规格坐姿。
++- 主工程坐姿手臂可编辑；人物分支的头部、身体和手臂跟随当前主工程并保持底稿保护。
++- 可视化图层、头发/眼睛联动支持当前16规格。头发按实际源像素和当前头部位置对齐，不套旧32规格的双倍格。
++- 新建人物分支必须读当前主工程；主工程有草稿时先通过原保存流程保存，保存冲突时停止新建，不用旧模板替代。
+ - 原生16规格是素材尺度，不要求所有动作同一画布。拾取保留20×20；坐姿当前与待机相同，为16×16。
+ - 当前主肤色 `#FEEDE1`，阴影 `#E0C5B4`，描边 `#46465E`；不擅自重新配色。
+ - 默认在后台处理，通过本地成图和API回读检查。不得强制刷新前台，不覆盖未保存草稿。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\README.md" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+index a3de6b1..fe1bfee 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\README.md"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\README.md"
+@@ -6,9 +6,9 @@
+ 
+ - 行走、待机使用原生16规格备份。
+ - 拾取使用原生像素，20×20画布保留伸手范围。
+-- 坐姿暂用待机正面、侧面、背面的完整图层和动画帧，16×16，作为用户重新绘制坐姿的底稿；不再使用缩小的旧坐姿。
++- 坐姿已经由用户重新画好，按当前工程保留；主工程坐姿手臂可在“身体”可视化分类中编辑。人物分支底稿仍受保护。
+ - 主肤色 #FEEDE1，阴影 #E0C5B4，描边 #46465E。
+-- “重新载入16×16素体”只载入新的干净模板，不恢复旧32规格素材。
++- 新建人物分支及“重新载入16×16素体”优先使用当前主工程素体（含当前坐姿），不拿旧模板替代。可视化图层与头发联动已接通16规格，1格按实际源像素计算。
+ - 手动保存：Ctrl+S；后台保存方式见 `后台工程读写约定.md`。
+ 
+ 旧工程、旧规范与本次变更前的文件均保存在 `备份/20261104-16x16干净重启/`。旧规范不再自动读取，新的绘画文档由用户重新制定。
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\test\\project-branches.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\project-branches.cjs"
+index c1b21e2..89fc40f 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\test\\project-branches.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\project-branches.cjs"
+@@ -1,5 +1,5 @@
+ const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+-async function check(projectId,mode='character',failSource=false,invalid=false){
++async function check(projectId,mode='character',failSource=false,invalid=false,saveFails=false){
+  const buttons=[],writes=[],opened=[],alerts=[];
+  const layers=[
+   {name:'头发',sheetIndex:0,frameData:{hair:'old'}},
+@@ -15,19 +15,19 @@ async function check(projectId,mode='character',failSource=false,invalid=false){
+  const current={name:'当前草稿',currentSheetIndex:0,currentLayerIndex:6,layers:structuredClone(layers),spriteSheets:[{actions:[{frames:[{width:32,height:32,duration:100}]}]}]};
+  const main=structuredClone(current);main.name='人物主工程';main.layers[2].frameData.body='main pixels';
+  if(invalid)main.layers=main.layers.filter(l=>!['body','head'].includes(l.name));
+- const before=JSON.stringify(current),p={ready:true,projectId,base:'',headers:{'X-Pixel-Editor':'1'},show(){}};
++ const before=JSON.stringify(current),p={ready:true,projectId,dirty:saveFails,saveNow:async()=>false,base:'',headers:{'X-Pixel-Editor':'1'},show(){}};
+  const element=()=>({style:{},setAttribute(){},after(){},prepend(){},append(){},insertBefore(){},addEventListener(){},replaceChildren(){},click(){opened.push(this.href);}});
+  const context={PE:{app:{persistence:p,project:current,exportManager:{exportProject:()=>new Blob([JSON.stringify(current)])}}},document:{addEventListener:(_,fn)=>fn(),createElement:tag=>{const e=element();if(tag==='button')buttons.push(e);return e;},getElementById:()=>element()},location:{href:'http://localhost/?project='+projectId},URL,Blob,crypto:{randomUUID:()=> 'unique-id'},Option:function(){},localStorage:{getItem(){return null;}},prompt:()=> 'AI1-上衣',alert:m=>alerts.push(m),console,fetch:async(url,options)=>{if(options.method==='PUT'){writes.push({url,options});return {ok:true};}if(url.includes('id=main'))return {ok:!failSource,status:404,json:async()=>structuredClone(main)};return {ok:true,json:async()=>[]};}};
+  vm.runInNewContext(fs.readFileSync(require.resolve('../js/character-base.js'),'utf8'),context);
+  vm.runInNewContext(fs.readFileSync(require.resolve('../js/projects.js'),'utf8'),context);
+  if(mode==='api'){try{await context.PE.createProjectBranch();}catch(e){alerts.push(e.message);}}
+  else await buttons.find(b=>b.textContent===(mode==='current'?'分出当前工程独立稿':'新建人物／衣服分支')).onclick();
+- if(failSource||invalid){assert.equal(writes.length,0);assert.equal(opened.length,0);assert(alerts.length);return;}
++ if(failSource||invalid||saveFails){assert.equal(writes.length,0);assert.equal(opened.length,0);assert(alerts.length);return;}
+  assert.equal(writes.length,1);assert.equal(writes[0].options.headers['If-Match'],'none');
+- const saved=JSON.parse(writes[0].options.body),source=mode==='character'&&projectId!=='main'?main:current;
++ const saved=JSON.parse(writes[0].options.body),source=['character','api'].includes(mode)?main:current;
+  assert.deepEqual(saved.layers.map(l=>l.name),['down','body','head','hand']);
+  assert.equal(saved.layers[1].parent,0);assert.equal(saved.layers[2].parent,0);assert.equal(saved.layers[3].parent,0);assert.deepEqual(saved.layers[3].frameData,source.layers[4].frameData);assert.equal(saved.currentLayerIndex,1);
+  assert.deepEqual(saved.layers[1].frameData,source.layers[2].frameData);assert.deepEqual(saved.layers[2].frameData,source.layers[3].frameData);assert.deepEqual(saved.spriteSheets,source.spriteSheets);
+  assert.equal(JSON.stringify(current),before,'Do not mutate current project or unsaved pixels');assert.equal(saved.name,'AI1-上衣');assert.equal(opened.length,1);
+ }
+-(async()=>{await check('main');await check('scene-kitchen');await check('character-outfit');await check('main','current');await check('character-outfit','api');await check('scene-kitchen','character',true);await check('scene-kitchen','character',false,true);console.log('PASS: all character branch entry points copy body/head/hands and their groups, preserve pixels/frames, remap parents/selection, retain current draft, and stop on invalid source.');})().catch(e=>{console.error(e);process.exitCode=1;});
++(async()=>{await check('main','character',false,false,true);await check('main');await check('scene-kitchen');await check('character-outfit');await check('main','current');await check('character-outfit','api');await check('scene-kitchen','character',true);await check('scene-kitchen','character',false,true);console.log('PASS: all character branch entry points copy body/head/hands and their groups, preserve pixels/frames, remap parents/selection, retain current draft, and stop on invalid source.');})().catch(e=>{console.error(e);process.exitCode=1;});
+diff --git "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\test\\visual-layers.cjs" "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\visual-layers.cjs"
+index 555d106..f6ddf6c 100644
+--- "a/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\\345\244\207\344\273\275\\20261104-16\350\247\204\346\240\274\345\212\237\350\203\275\346\216\245\351\200\232-1793760904805\\test\\visual-layers.cjs"
++++ "b/C:\\Users\\Administrator\\Desktop\\\350\247\222\350\211\262\347\273\230\347\224\273\\test\\visual-layers.cjs"
+@@ -13,7 +13,7 @@ global.document={addEventListener(name,fn){if(name==='DOMContentLoaded')initiali
+ const data=new ImageData(32,32);data.data.set([209,207,226,255],(4*32+8)*4);
+ const layer=(name,si=8,visible=false)=>({name,sheetIndex:si,visible,locked:false,frameData:new Map([['8_1_0',data]])});
+ const layers=[layer('头发 / 01 披发 / 前发',8,true),layer('头发 / 02 双马尾 / 前发'),layer('头发 / 01 披发 / 后发',8,true),layer('发饰 / 02 双马尾 / 饰品'),layer('眼睛 / 02 青蓝'),layer('嘴巴 / 下垂嘴'),layer('头发 / 02 双马尾 / 前发',7,true)];
+-const p={layers,currentLayerIndex:0,currentSheetIndex:8,currentActionIndex:1,getFrameKey:()=> '8_1_0',getCurrentSheet:()=>({name:'original32_idle'})};let dirty=0;
++const p={layers,currentLayerIndex:0,currentSheetIndex:8,currentActionIndex:1,getFrameKey:()=> '8_1_0',getCurrentSheet:()=>({name:'original16_idle'})};let dirty=0;
+ const app={project:p,animationPlayer:{pause(){},_renderPreviewFrame(){}},history:{undoStack:[],redoStack:[],_notifyChange(){}},canvasManager:{render(){}},updatePalette(){},updateStatusBar(){},persistence:{markDirty(){dirty++}},updateLayerList(){list.replaceChildren();layers.forEach((l,i)=>{if(l.sheetIndex!==8)return;const row=new Element('div');row.className='layer-item';row.dataset.layerIndex=i;for(const cls of ['layer-icon-btn','layer-icon-btn','layer-name','layer-mini']){const e=new Element(cls==='layer-name'?'span':'button');e.className=cls;row.append(e);}row.append(new Element('input'));list.append(row);});}};
+ global.PE={app,isHandLayer:()=>false};global.ImageData=ImageData;vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/core.js'),'utf8'));vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/visual-layers.js'),'utf8'));
+ const V=PE.VisualLayers;initialize();assert.equal(list.querySelectorAll('.part-tab').length,5);assert.equal(list.querySelectorAll('.visual-layer-card').length,4);assert.deepEqual(list.querySelectorAll('.part-slot-title').map(e=>e.textContent),['前发','后发','饰品']);assert.equal(list.querySelectorAll('.layer-name')[0].textContent,'披发');
+@@ -22,7 +22,7 @@ const tabs=list.querySelectorAll('.part-tab');tabs.find(e=>e.textContent==='五
+ const other=layer('x');other.frameData=new Map([['8_0_0',data]]);assert.equal(V.thumbnail(other,p),null);assert.equal(V.slot(layers[2]),'后发');
+ console.log('PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.');
+ 
+-p.spriteSheets=[];p.spriteSheets[7]={name:'original32_walk'};p.spriteSheets[8]={name:'original32_idle'};
++p.spriteSheets=[];p.spriteSheets[7]={name:'original16_walk'};p.spriteSheets[8]={name:'original16_idle'};
+ app.visualLayerCategory='头发';app.updateLayerList();
+ assert.equal(list.querySelectorAll('.part-toggle-all').length,4);
+ assert.equal(list.querySelectorAll('.part-export-all').length,4);

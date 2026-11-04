@@ -1,0 +1,11 @@
+REGRESSION input correction only: open auxiliary toolbar only when hidden; original test file unchanged.
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: '缩小图片', exact: true })
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\layer-resize-mode-browser.cjs:34:61 {
+  log: [
+    "  - waiting for getByRole('button', { name: '缩小图片', exact: true })"
+  ],
+  name: 'TimeoutError'
+}

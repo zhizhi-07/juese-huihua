@@ -1,0 +1,138 @@
+{
+  "changes": [
+    {
+      "frame": 1,
+      "key": "10_1_0",
+      "head": {
+        "x": 6,
+        "y": 6,
+        "w": 20,
+        "h": 19
+      },
+      "beforeEye": {
+        "x": 10,
+        "y": 19,
+        "w": 13,
+        "h": 4
+      },
+      "afterEye": {
+        "x": 11,
+        "y": 18,
+        "w": 10,
+        "h": 4
+      },
+      "referenceEye": {
+        "x": 13,
+        "y": 18,
+        "w": 10,
+        "h": 4
+      },
+      "translation": {
+        "dx": -2,
+        "dy": 0
+      }
+    },
+    {
+      "frame": 2,
+      "key": "10_1_1",
+      "head": {
+        "x": 6,
+        "y": 6,
+        "w": 20,
+        "h": 19
+      },
+      "beforeEye": {
+        "x": 10,
+        "y": 19,
+        "w": 13,
+        "h": 4
+      },
+      "afterEye": {
+        "x": 11,
+        "y": 18,
+        "w": 10,
+        "h": 4
+      },
+      "referenceEye": {
+        "x": 13,
+        "y": 18,
+        "w": 10,
+        "h": 4
+      },
+      "translation": {
+        "dx": -2,
+        "dy": 0
+      }
+    },
+    {
+      "frame": 3,
+      "key": "10_1_2",
+      "head": {
+        "x": 6,
+        "y": 7,
+        "w": 20,
+        "h": 19
+      },
+      "beforeEye": {
+        "x": 10,
+        "y": 20,
+        "w": 13,
+        "h": 4
+      },
+      "afterEye": {
+        "x": 11,
+        "y": 19,
+        "w": 10,
+        "h": 4
+      },
+      "referenceEye": {
+        "x": 13,
+        "y": 20,
+        "w": 10,
+        "h": 4
+      },
+      "translation": {
+        "dx": -2,
+        "dy": -1
+      }
+    },
+    {
+      "frame": 4,
+      "key": "10_1_3",
+      "head": {
+        "x": 6,
+        "y": 7,
+        "w": 20,
+        "h": 19
+      },
+      "beforeEye": {
+        "x": 10,
+        "y": 20,
+        "w": 13,
+        "h": 4
+      },
+      "afterEye": {
+        "x": 11,
+        "y": 19,
+        "w": 10,
+        "h": 4
+      },
+      "referenceEye": {
+        "x": 13,
+        "y": 20,
+        "w": 10,
+        "h": 4
+      },
+      "translation": {
+        "dx": -2,
+        "dy": -1
+      }
+    }
+  ],
+  "headsAlreadyIdentical": true,
+  "allHeadPixelsUnchanged": true,
+  "onlySitFrontDotEyes4FramesChanged": true,
+  "allOtherLayersAndActionsUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

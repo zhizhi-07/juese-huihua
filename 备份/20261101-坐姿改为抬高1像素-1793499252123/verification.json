@@ -1,0 +1,78 @@
+{
+  "reference25pxVersion": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261101-降低坐姿侧面高度-1793497661540",
+  "changes": [
+    {
+      "layer": 226,
+      "key": "10_0_0",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 226,
+      "key": "10_0_1",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 226,
+      "key": "10_0_2",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 226,
+      "key": "10_0_3",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 227,
+      "key": "10_0_0",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 227,
+      "key": "10_0_1",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 227,
+      "key": "10_0_2",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 227,
+      "key": "10_0_3",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 287,
+      "key": "10_0_0",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 287,
+      "key": "10_0_1",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 287,
+      "key": "10_0_2",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    },
+    {
+      "layer": 287,
+      "key": "10_0_3",
+      "relativeTo25pxVersion": "head/eyes up one pixel; torso reconstructed 2px shorter than standing"
+    }
+  ],
+  "heights": [
+    26,
+    26,
+    25,
+    25
+  ],
+  "originalOnePixelHeadBreathingRestored": true,
+  "handLayerDataUnchanged": true,
+  "userFootPixelsRows26To31Unchanged": true,
+  "headNotResized": true,
+  "otherDirectionsActionsHairMetadataUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

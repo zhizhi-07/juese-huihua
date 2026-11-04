@@ -1,0 +1,50 @@
+[
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=character-pixel-mix-1793412618671",
+    "label": "new target must not exist",
+    "status": 404,
+    "etag": null,
+    "sha256": "e39f603a5ebcff23859d200f9c9dc20f6c19d48aa185d09445bd42e31abcc3ff"
+  },
+  {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=character-pixel-mix-1793412618671",
+    "inputSHA256": "1a55d55c18ead0cce3cb00240ba762d30d0bb837b5c04d9553c575ab5c6d7a4e",
+    "ifMatch": "none",
+    "status": 200,
+    "output": "{\"saved\":true,\"revision\":\"\\\"1a55d55c18ead0cce3cb00240ba762d30d0bb837b5c04d9553c575ab5c6d7a4e\\\"\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=character-pixel-mix-1793412618671",
+    "label": "new project before hair",
+    "status": 200,
+    "etag": "\"1a55d55c18ead0cce3cb00240ba762d30d0bb837b5c04d9553c575ab5c6d7a4e\"",
+    "sha256": "1a55d55c18ead0cce3cb00240ba762d30d0bb837b5c04d9553c575ab5c6d7a4e"
+  },
+  {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=character-pixel-mix-1793412618671",
+    "inputSHA256": "4bbc426b9e33be37d300af8170c8822fd0462389d1eab02ac666a194da620f53",
+    "ifMatch": "\"1a55d55c18ead0cce3cb00240ba762d30d0bb837b5c04d9553c575ab5c6d7a4e\"",
+    "status": 200,
+    "output": "{\"saved\":true,\"revision\":\"\\\"4bbc426b9e33be37d300af8170c8822fd0462389d1eab02ac666a194da620f53\\\"\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=character-pixel-mix-1793412618671",
+    "label": "final readback",
+    "status": 200,
+    "etag": "\"4bbc426b9e33be37d300af8170c8822fd0462389d1eab02ac666a194da620f53\"",
+    "sha256": "4bbc426b9e33be37d300af8170c8822fd0462389d1eab02ac666a194da620f53"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=character-gold-mix-1793320553623",
+    "label": "reference still unchanged",
+    "status": 200,
+    "etag": "\"3249f685db91e4b34e4051318cdb2148a0f444c61d495d34ffa48a0423779d74\"",
+    "sha256": "3249f685db91e4b34e4051318cdb2148a0f444c61d495d34ffa48a0423779d74"
+  }
+]

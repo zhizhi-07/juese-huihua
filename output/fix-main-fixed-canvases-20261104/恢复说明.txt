@@ -1,0 +1,2 @@
+本次基于最新主工程，仅撤销先前记录的逐帧平移，恢复动作内统一坐标原点与固定画布；保留当前像素、图层、时长和绘画修改，不回滚旧素材。每个动作三个方向和全部帧使用相同尺寸。最小左右留白3、上下2；较窄帧允许留白更多。
+原始响应 main-before.json，SHA256 和 ETag 见 report.json。需要撤回本次修正时，GET /api/project?id=main 确认无后续编辑，再用该 ETag、X-Pixel-Editor: 1、Content-Type: application/json，PUT 此备份。409 停止，不能盲目重传。恢复后回读逐字段比较。浏览器未保存草稿未操作。

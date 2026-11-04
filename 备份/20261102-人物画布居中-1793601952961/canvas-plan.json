@@ -1,0 +1,2813 @@
+{
+  "margin": 17,
+  "report": [
+    {
+      "id": "main",
+      "name": "人物主工程",
+      "checkedCels": 871,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 9,
+                "y": 11,
+                "width": 54,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 17,
+                "width": 64,
+                "height": 66
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "name": "ai",
+      "checkedCels": 324,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 9,
+                "y": 11,
+                "width": 54,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+      "name": "用户",
+      "checkedCels": 593,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 10,
+                "y": 11,
+                "width": 57,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 15,
+                "width": 62,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "name": "炭黑双丸子·白发罩·待机分支",
+      "checkedCels": 460,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 12,
+                "y": 15,
+                "width": 60,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 12,
+                "y": 15,
+                "width": 60,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "name": "可爱-萌衣服",
+      "checkedCels": 844,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 17,
+                "y": 17,
+                "width": 66,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 17,
+                "width": 64,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 17,
+                "width": 64,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 15,
+                "width": 63,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 15,
+                "width": 58,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 16,
+                "y": 15,
+                "width": 71,
+                "height": 67
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 17,
+                "width": 70,
+                "height": 71
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 15,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 56,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 17,
+                "width": 64,
+                "height": 66
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-cat-braids-imagegen-20261029",
+      "name": "猫耳栗棕双辫·生图正面试稿",
+      "checkedCels": 329,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 9,
+                "y": 11,
+                "width": 54,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 15,
+                "width": 66,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "name": "萌",
+      "checkedCels": 324,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 9,
+                "y": 11,
+                "width": 54,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 0,
+                "width": 54,
+                "height": 49
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "name": "萌",
+      "checkedCels": 328,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 9,
+                "y": 11,
+                "width": 54,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 13,
+                "width": 63,
+                "height": 64
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 61
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-gold-mix-1793320553623",
+      "name": "人物 · 灰色混搭前80011＋后80009",
+      "checkedCels": 601,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 15,
+                "width": 63,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 13,
+                "width": 63,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 13,
+                "width": 64,
+                "height": 64
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 14,
+                "y": 13,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 13,
+                "width": 69,
+                "height": 65
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 15,
+                "width": 70,
+                "height": 69
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 13,
+                "width": 57,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 17,
+                "width": 64,
+                "height": 66
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-gray-long-study-20261029",
+      "name": "灰色长发·尖发束待机",
+      "checkedCels": 360,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 15,
+                "width": 63,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 15,
+                "width": 66,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "name": "灰色长披发·待机分支",
+      "checkedCels": 844,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 17,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 17,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 17,
+                "width": 62,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 15,
+                "width": 68,
+                "height": 67
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 17,
+                "width": 70,
+                "height": 71
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 15,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 13,
+                "width": 56,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 13,
+                "width": 60,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 13,
+                "width": 62,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 17,
+                "width": 62,
+                "height": 66
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "name": "粉色外翻短发·正面首帧试稿",
+      "checkedCels": 460,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 14,
+                "width": 63,
+                "height": 65
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 15,
+                "width": 64,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 11,
+                "y": 11,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-pixel-mix-1793412618671",
+      "name": "像素转像素 · 前发80008＋后发80010",
+      "checkedCels": 360,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 13,
+                "width": 64,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 13,
+                "width": 64,
+                "height": 64
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 62,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-strawberry-braids-idle-20261029",
+      "name": "蓬松双麻花辫·待机",
+      "checkedCels": 360,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 13,
+                "width": 58,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 12,
+                "y": 15,
+                "width": 60,
+                "height": 66
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 13,
+                "y": 15,
+                "width": 62,
+                "height": 66
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 64
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 11,
+                "y": 11,
+                "width": 54,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 11,
+                "width": 58,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 62,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 13,
+                "y": 15,
+                "width": 58,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6",
+      "name": "用户头发·三向待机动效学习实验",
+      "checkedCels": 609,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+      "name": "头发动效学习A·自然垂坠",
+      "checkedCels": 613,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 64,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 14,
+                "y": 11,
+                "width": 64,
+                "height": 63
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 14,
+                "y": 11,
+                "width": 64,
+                "height": 63
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+      "name": "头发动效学习B·分束柔摆",
+      "checkedCels": 613,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+      "name": "头发动效学习C·轻弹回落",
+      "checkedCels": 613,
+      "sheets": [
+        {
+          "name": "original32_walk",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 13,
+                "width": 64,
+                "height": 62
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_idle",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 14,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 66,
+                "height": 63
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_pickup",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 13,
+                "y": 11,
+                "width": 68,
+                "height": 64
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 15,
+                "y": 13,
+                "width": 70,
+                "height": 67
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 15,
+                "y": 11,
+                "width": 70,
+                "height": 68
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sit",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "side",
+                "direction": "side",
+                "x": 15,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              },
+              {
+                "name": "up",
+                "direction": "up",
+                "x": 16,
+                "y": 11,
+                "width": 64,
+                "height": 60
+              }
+            ]
+          }
+        },
+        {
+          "name": "original32_sleep",
+          "layout": {
+            "version": 1,
+            "margin": 17,
+            "actions": [
+              {
+                "name": "down",
+                "direction": "down",
+                "x": 16,
+                "y": 15,
+                "width": 64,
+                "height": 64
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

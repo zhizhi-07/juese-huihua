@@ -1,0 +1,67 @@
+{
+  "changes": [
+    {
+      "layer": 11,
+      "key": "8_0_0"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_0"
+    },
+    {
+      "layer": 11,
+      "key": "8_0_1"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_1"
+    },
+    {
+      "layer": 11,
+      "key": "8_0_3"
+    },
+    {
+      "layer": 191,
+      "key": "8_0_3"
+    }
+  ],
+  "metrics": [
+    {
+      "frame": 1,
+      "rootY": 4,
+      "tailY": 31
+    },
+    {
+      "frame": 2,
+      "rootY": 4,
+      "tailY": 30
+    },
+    {
+      "frame": 3,
+      "rootY": 6,
+      "tailY": 31
+    },
+    {
+      "frame": 4,
+      "rootY": 6,
+      "tailY": 32
+    }
+  ],
+  "thirdFrameUntouched": true,
+  "nonHairAndMetadataUntouched": true,
+  "restoreCopyVerified": true,
+  "mainPreviewPNGFrames": 12,
+  "gifFrames": 4,
+  "gifDurations": [
+    100,
+    100,
+    100,
+    100
+  ],
+  "gifPixelsExact": true,
+  "browserPlayback": false,
+  "putStatus": 200,
+  "getStatus": 200,
+  "exactAPIReadback": true,
+  "approvedCapAndUpperContourUnchanged": true
+}

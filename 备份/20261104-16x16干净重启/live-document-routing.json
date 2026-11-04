@@ -1,0 +1,48 @@
+{
+  "mockUpstream": true,
+  "realModelCalled": false,
+  "checks": [
+    {
+      "category": "hair",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    },
+    {
+      "category": "eyes",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    },
+    {
+      "category": "clothes",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    },
+    {
+      "category": "character",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    },
+    {
+      "category": "building",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    },
+    {
+      "category": "item",
+      "status": 200,
+      "documents": [
+        "后台工程读写约定.md"
+      ]
+    }
+  ]
+}

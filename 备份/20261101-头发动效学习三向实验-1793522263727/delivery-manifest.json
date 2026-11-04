@@ -1,0 +1,62 @@
+[
+  {
+    "file": "experiment.json",
+    "bytes": 296,
+    "sha256": "af180f2e12353bc73ba6fe2047606bfa482f0b83c27d74a302d82ec220a3bb6e"
+  },
+  {
+    "file": "verification.json",
+    "bytes": 3862,
+    "sha256": "6fc4b1c11ccf697dc596e023c77e1590486bab694645d15d766e32d21f640b36"
+  },
+  {
+    "file": "media-verification.json",
+    "bytes": 291,
+    "sha256": "087443d2843da5aa5af65414c250ef15cd20f21148060375e451a250ec0c029f"
+  },
+  {
+    "file": "publish-verification.json",
+    "bytes": 326,
+    "sha256": "7212307d586f138e50a1a704b307c702ab45589f87180880bc480117736be56f"
+  },
+  {
+    "file": "学习与交付说明.md",
+    "bytes": 5980,
+    "sha256": "50f51bd7543d4c412893114c54d6ef8c6a25f9d300771cba755817aef68f09ba"
+  },
+  {
+    "file": "正面-动效预览.gif",
+    "bytes": 30459,
+    "sha256": "1feb4f868cbe33c7afd2b837ecabf78cc3f26f42672c9d5e7b71180559f8ed10"
+  },
+  {
+    "file": "侧面-动效预览.gif",
+    "bytes": 35362,
+    "sha256": "a0d4866505dab8692bef801e01849047da7c261cebacd51c7ac48874f2f4caa9"
+  },
+  {
+    "file": "背面-动效预览.gif",
+    "bytes": 24426,
+    "sha256": "f02dece30e0824bee68160fdb8ac80586a5473c408e917895a2d12f3d7967525"
+  },
+  {
+    "file": "三方向-动效总览.gif",
+    "bytes": 80807,
+    "sha256": "49ab00cb80aaf64c787691c5bd9935c02fdfc488b35aee662e3784eb2978d56a"
+  },
+  {
+    "file": "candidate.json",
+    "bytes": 881384,
+    "sha256": "84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531"
+  },
+  {
+    "file": "api-readback.json",
+    "bytes": 881384,
+    "sha256": "84db566befb11817a7d3c59bb530b72c04893ee75e2c7da9f28f4075dd282531"
+  },
+  {
+    "file": "逐帧前后对照.png",
+    "bytes": 41646,
+    "sha256": "72f817c7cdbec6f1173458d798b560680e16511f111f3eaf09cf30fb208a78fa"
+  }
+]

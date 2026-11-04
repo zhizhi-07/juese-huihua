@@ -1,0 +1,81 @@
+{
+  "changes": [
+    {
+      "layer": 198,
+      "key": "8_0_0",
+      "headOffset": -2,
+      "changedPixels": 10
+    },
+    {
+      "layer": 198,
+      "key": "8_0_1",
+      "headOffset": -2,
+      "changedPixels": 10
+    },
+    {
+      "layer": 198,
+      "key": "8_0_3",
+      "headOffset": 0,
+      "changedPixels": 10
+    }
+  ],
+  "exceptions": [
+    {
+      "key": "8_0_0",
+      "sourceCoordinates": {
+        "centralFringe": [
+          13,
+          15,
+          22,
+          18
+        ],
+        "outerCurl": [
+          7,
+          24
+        ]
+      },
+      "separateUserTip": [
+        [
+          22,
+          21
+        ],
+        [
+          22,
+          22
+        ]
+      ]
+    },
+    {
+      "key": "8_0_1",
+      "sourceCoordinates": {
+        "centralFringe": [
+          13,
+          15,
+          22,
+          18
+        ],
+        "outerCurl": [
+          7,
+          24
+        ]
+      },
+      "separateUserTip": []
+    },
+    {
+      "key": "8_0_3",
+      "sourceCoordinates": {
+        "centralFringe": [
+          13,
+          15,
+          22,
+          18
+        ],
+        "outerCurl": [
+          7,
+          24
+        ]
+      },
+      "separateUserTip": []
+    }
+  ]
+}

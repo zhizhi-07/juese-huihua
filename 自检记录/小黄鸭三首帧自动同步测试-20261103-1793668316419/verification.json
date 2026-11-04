@@ -1,0 +1,47 @@
+{
+  "sourceOnlyThreeClothingCels": true,
+  "generated": 67,
+  "total": 70,
+  "firstThreeExact": true,
+  "sourceRGBOnly": true,
+  "whiteShoeInteriors": true,
+  "bodyHeadAndFramesMetadataUnchanged": true,
+  "existingOtherClothingCelsNotRead": true,
+  "restoreExtraCopyExact": true,
+  "before": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "after": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "browserChecked": false,
+  "visualReviewPending": false,
+  "visualReview": {
+    "all70ClothingFramesLightAndDarkContactSheets": true,
+    "all70CompositeFramesInspected": true,
+    "nativeAnd4xInspected": true,
+    "firstLastLoopFramesCompared": true,
+    "sittingSolePositionsFixedAcross4Frames": true,
+    "generatedTorsoHasNoUncoveredBodyInterior": true,
+    "notes": "已修正坐姿鞋底随呼吸漂移，以及拾取侧面宽度扩张时右侧漏覆盖。保留三源原稿全部像素；当前只验证小黄鸭短衣裙模板，不代表任意衣型。"
+  },
+  "candidateSHA256": "244d3d0fbd826ed1970ecf431c4eb47b4e5d158c8508d634ad038dadfa76da09",
+  "published": true,
+  "apiReadbackExact": true,
+  "originalSHA256StillExact": true,
+  "publishedETag": "\"13f971a12b869d80d0f7cf683bb607027b3391f8aea0d13790d5951b1378c223\""
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>头发自动飘动 · 对比原型</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #14161a; color: #e7e9ee;
+    font: 14px/1.5 system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
+  }
+  header { padding: 16px 20px 10px; }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  .note { color: #9aa3b2; font-size: 12px; margin: 0; }
+  .note b { color: #ffd479; }
+  .wrap { display: flex; flex-wrap: wrap; gap: 20px; padding: 16px 20px 28px; align-items: flex-start; }
+  .panel { background: #1d2026; border: 1px solid #2c313b; border-radius: 12px; padding: 14px; }
+  .panel h2 { font-size: 13px; margin: 0 0 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .tag { font-size: 11px; padding: 1px 7px; border-radius: 20px; font-weight: 600; }
+  .tag.orig { background: #2f3a2f; color: #9ad19a; }
+  .tag.auto { background: #3a3320; color: #ffd479; }
+  canvas {
+    display: block; image-rendering: pixelated;
+    background: repeating-conic-gradient(#23262d 0 25%, #1a1c21 0 50%) 0 0 / 16px 16px;
+    border-radius: 8px; max-width: 100%;
+  }
+  .controls { width: 340px; max-width: 100%; }
+  .field { margin: 10px 0; }
+  .field label { display: block; color: #b8c0cc; font-size: 12px; margin-bottom: 4px; }
+  select {
+    width: 100%; background: #2a2f38; color: #e7e9ee; border: 1px solid #3a414d;
+    border-radius: 8px; padding: 7px 8px; font-size: 13px;
+  }
+  .row { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+  .row label { width: 96px; color: #b8c0cc; font-size: 13px; }
+  .row input[type=range] { flex: 1; min-width: 0; }
+  .row .val { width: 40px; text-align: right; color: #ffd479; font-variant-numeric: tabular-nums; }
+  .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  button {
+    background: #2a2f38; color: #e7e9ee; border: 1px solid #3a414d;
+    border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 13px;
+  }
+  button:hover { background: #333a45; }
+  button.active { background: #ffd479; color: #1a1c21; border-color: #ffd479; font-weight: 600; }
+  .status { color: #9aa3b2; font-size: 12px; margin-top: 10px; }
+  body[data-background="light"] canvas { background: #ece8e0; }
+  body[data-background="dark"] canvas { background: #090b10; }
+  .err { color: #ff8b8b; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>头发自动飘动 · 左右对比原型</h1>
+  <p class="note">
+    左 = <b>原版成品</b>　·　右 = <b>算法从「一帧」自动生成的草稿</b>（只替换这块后发，身体/头/衣服仍用原版）。
+    仅在本页预览行走，不保存或修改工程。发根跟随头部，涂抹控制额外摆动。
+  </p>
+</header>
+
+<div class="wrap">
+  <div class="panel">
+    <h2>原版成品 <span class="tag orig">原版</span></h2>
+    <canvas id="left" width="256" height="288" aria-label="原版放大预览"></canvas>
+    <p class="status">原尺寸</p><canvas id="leftNative" aria-label="原版原尺寸预览"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>算法自动生成（草稿） <span class="tag auto">作者：算法</span></h2>
+    <canvas id="right" width="256" height="288" aria-label="自动生成放大预览"></canvas>
+    <p class="status">原尺寸</p><canvas id="rightNative" aria-label="自动生成原尺寸预览"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>涂一下「只让它动的区域」 <span class="tag auto">例：只涂马尾</span></h2>
+    <canvas id="paint" aria-label="后发活动区域涂抹画布" style="touch-action:none"></canvas>
+    <div class="row"><label for="brush">画笔半径</label><input id="brush" type="range" min="1" max="8" step="1" value="3"><span class="val" id="brushv">3</span></div>
+    <div class="btns"><button id="eraseMask" aria-pressed="false">橡皮擦</button><button id="clearMask">清空涂抹（全部可动）</button></div>
+    <p class="status" style="margin-top:6px">拖亮活动区域；未涂处只跟随头部，不额外变形。橡皮擦擦空 = 全部锁定；清空涂抹 = 全部可动。切换工程、方向或发型会清空涂抹。</p>
+  </div>
+
+  <div class="panel controls">
+    <div class="field"><label for="projSel">工程</label><select id="projSel"></select></div>
+    <div class="field"><label for="hairSel">后发发型</label><select id="hairSel"></select></div>
+    <h2 style="margin-top:14px">参数</h2>
+    <div class="btns" id="dirBtns">
+      <button data-ai="0">侧面</button>
+      <button data-ai="1" class="active">正面</button>
+      <button data-ai="2">背面</button>
+    </div>
+    <div class="row"><label for="ampV">上下压缩</label><input id="ampV" type="range" min="0" max="4" step="0.5" value="0"><span class="val" id="ampVv">0</span></div>
+    <div class="row"><label for="ampH">左右轻摆</label><input id="ampH" type="range" min="0" max="6" step="0.5" value="2"><span class="val" id="ampHv">2</span></div>
+    <div class="row"><label for="cycles">每循环摆动次数</label><input id="cycles" type="range" min="1" max="4" step="1" value="1"><span class="val" id="cyclesv">1</span></div>
+    <div class="row"><label for="lag">发梢延迟</label><input id="lag" type="range" min="0" max="1.5" step="0.1" value="0.6"><span class="val" id="lagv">0.6</span></div>
+    <div class="btns">
+      <button id="playBtn" class="active">暂停</button>
+      <button id="prevFrame">上一帧</button><button id="nextFrame">下一帧</button>
+      <button id="reset">恢复参数默认</button>
+    </div>
+    <div class="status" id="frameInfo" aria-live="polite"></div>
+    <div class="field"><label for="background">检查背景</label><select id="background"><option value="checker">透明棋盘</option><option value="light">浅色</option><option value="dark">深色</option></select></div>
+    <div class="status" id="status" role="status">加载中…</div>
+  </div>
+</div>
+
+<script src="js/core.js?v=layer-solo-1"></script>
+<script src="js/hair-auto-demo.js?v=20261103-1"></script>
+</body>
+</html>

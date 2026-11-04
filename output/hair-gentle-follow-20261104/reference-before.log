@@ -1,0 +1,3 @@
+Error: 待机 第3帧有保护区域，同步未写入
+    at Object.plan (evalmachine.<anonymous>:291:62)
+    at C:\Users\Administrator\Desktop\角色绘画\test\hair-gentle-follow.cjs:20:17

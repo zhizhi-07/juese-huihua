@@ -1,0 +1,19 @@
+{
+  "layer": 11,
+  "referenceFrame": 3,
+  "region": "left upper rear hair; aligned to head and frame placement",
+  "changes": [
+    {
+      "frame": 1,
+      "pixels": 21
+    },
+    {
+      "frame": 2,
+      "pixels": 21
+    },
+    {
+      "frame": 4,
+      "pixels": 21
+    }
+  ]
+}

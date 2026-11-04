@@ -1,0 +1,1 @@
+original.json 是本次 API 原始备份；SHA256 与 ETag 见 source.json。changes.json 记录6帧逐像素差异。只撤销本次同步时，仅恢复坐姿服装层所列6个 frameData，不覆盖整份工程；恢复副本 restore-extra-copy.json 已验证与原稿一致。在线恢复须先比较用户后续修改，再以当前 ETag 条件保存。

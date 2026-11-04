@@ -1,0 +1,287 @@
+{
+  "checks": [
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 6,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 0,
+      "fi": 7,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 6,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 1,
+      "fi": 7,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 6,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 7,
+      "ai": 2,
+      "fi": 7,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 4,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 9,
+      "ai": 2,
+      "fi": 5,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 11,
+      "ai": 0,
+      "fi": 0,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 11,
+      "ai": 0,
+      "fi": 1,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 11,
+      "ai": 0,
+      "fi": 2,
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "si": 11,
+      "ai": 0,
+      "fi": 3,
+      "mainCanvasMatchesExport": true
+    }
+  ],
+  "copyMode": "existing-pixels-only",
+  "idleSittingAndAllOldCelsUnchanged": true,
+  "noScalingRepaintingOrCropping": true,
+  "browserTested": false,
+  "saved": true,
+  "etag": "\"1f13b6df5532b823d35af8d51021e541a6d360034e70083938d2dee137f4bc34\"",
+  "sha256": "1f13b6df5532b823d35af8d51021e541a6d360034e70083938d2dee137f4bc34"
+}

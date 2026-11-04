@@ -1,0 +1,72 @@
+[
+  {
+    "li": 141,
+    "key": "8_0_0",
+    "shoulder": 24,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 141,
+    "key": "8_0_1",
+    "shoulder": 24,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 141,
+    "key": "8_0_2",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 141,
+    "key": "8_0_3",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 188,
+    "key": "8_1_2",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 188,
+    "key": "8_1_3",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 129,
+    "key": "8_2_0",
+    "shoulder": 24,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 129,
+    "key": "8_2_1",
+    "shoulder": 24,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 129,
+    "key": "8_2_2",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  },
+  {
+    "li": 129,
+    "key": "8_2_3",
+    "shoulder": 26,
+    "source": "8_1_0",
+    "feetFixed": true
+  }
+]

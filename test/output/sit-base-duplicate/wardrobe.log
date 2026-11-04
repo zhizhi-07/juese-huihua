@@ -1,0 +1,4 @@
+$ node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+
+exit=0

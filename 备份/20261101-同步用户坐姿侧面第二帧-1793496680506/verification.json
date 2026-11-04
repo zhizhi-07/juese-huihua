@@ -1,0 +1,36 @@
+{
+  "changes": [
+    {
+      "layerIndex": 226,
+      "key": "10_0_0",
+      "upperBodyDown": 0,
+      "groundedFromRow": 26
+    },
+    {
+      "layerIndex": 226,
+      "key": "10_0_2",
+      "upperBodyDown": 1,
+      "groundedFromRow": 26
+    },
+    {
+      "layerIndex": 226,
+      "key": "10_0_3",
+      "upperBodyDown": 1,
+      "groundedFromRow": 26
+    }
+  ],
+  "userAnchorUnchangedAllLayers": true,
+  "screenshotMatchesSavedAnchorWithoutHands": true,
+  "onlyBodyThreeOtherSideFramesChanged": true,
+  "feetFixed": true,
+  "breath": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "headEyesHairHandsUnchanged": true,
+  "otherActionsDirectionsMetadataUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

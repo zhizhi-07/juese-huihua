@@ -1,0 +1,52 @@
+{
+  "qaProject": "draft-hair-link-qa-1793667805120",
+  "ampV": 0.5,
+  "ampH": 0,
+  "protectedPixels": 5,
+  "actualTopPixelProtected": true,
+  "halfStrengthHasVisibleChanges": true,
+  "etag": "\"5105adf494b7f3270d141bdee0b4a8029ebfe38382076fb56dcda04af1c61405\"",
+  "eraserSavedCount": 0,
+  "undoRestoredCount": 5,
+  "reopenedVertical": 0.5,
+  "userProjectUnchanged": true,
+  "servedCodeMatches": true,
+  "regressions": [
+    {
+      "name": "hair-animation",
+      "exit": 0
+    },
+    {
+      "name": "cross-action-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-copy",
+      "exit": 0
+    },
+    {
+      "name": "frame-delete",
+      "exit": 0
+    },
+    {
+      "name": "hd-image-layers",
+      "exit": 0
+    },
+    {
+      "name": "off-canvas-placement",
+      "exit": 0
+    },
+    {
+      "name": "part-export",
+      "exit": 0
+    },
+    {
+      "name": "persistence",
+      "exit": 0
+    },
+    {
+      "name": "layer-order",
+      "exit": 0
+    }
+  ]
+}

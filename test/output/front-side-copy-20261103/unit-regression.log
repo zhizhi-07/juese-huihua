@@ -1,0 +1,28 @@
+COMMAND: node test/front-side-copy.cjs
+PASS: actual 中性 front 32x36 -> side 28x36; all 428 pixels exact, minimum shift -1; source intact; undo/redo; shared clipboard; vertical fit; oversized/explicit/replace/lock guards; no project writes.
+EXIT: 0
+COMMAND: node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT: 0
+COMMAND: node test/cross-action-copy.cjs
+PASS: walk/front to idle and sit; matching or new independent hair layer; protected-body safety; dry-run; atomic batch; layer order; undo/redo; ambiguous targets; project boundary; saved pixels.
+EXIT: 0
+COMMAND: node test/cross-window-copy.cjs
+PASS: 窗口 A 复制 → 共享剪贴板 → 窗口 B（另一工程）粘贴成功；像素一致；可撤销；本地优先。
+EXIT: 0
+COMMAND: node test/directional-base.cjs
+{"original":false,"selected":3,"expected":3,"renderedBodies":1,"expectedBodies":1}
+PASS: direction switching; foreign-cel render guard; implicit and batch direction matching; explicit wrong-direction rejection; undo/redo; locks; shared layers; nested/cyclic groups.
+EXIT: 0
+COMMAND: node test/off-canvas-placement.cjs
+PASS: outside drag preview/commit; negative and beyond-frame boxes; native/HD and partial preservation; pick/nudge; outside resize; undo/redo; JSON reload; frame copy; clipped output and exact return; locks and invalid coordinates.
+EXIT: 0
+COMMAND: node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT: 0
+COMMAND: node test/free-image-placement.cjs
+PASS: HD/native free drag, preview-only state, 0.1 nudge, exact native crop, native undo/redo, native JSON/source edit, fractional export density, protected native layers/frame/regions/hand, bounds, partial-selection isolation and unchecked snapping.
+EXIT: 0
+COMMAND: node test/hd-inline.cjs
+PASS: inline native eraser/pencil/fill/picker; exact fractional-density marquee; native-pixel move/nudge; selection paint isolation; copy/cut/paste/expansion; one-stroke main undo/redo; locks and frame-switch safety; render cache refresh; unchanged face and placement; JSON reload.
+EXIT: 0

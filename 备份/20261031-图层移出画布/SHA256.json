@@ -1,0 +1,34 @@
+[
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\core.js",
+    "Hash": "47F83E7876FD078A65053A8B6E0CCD3161E8B501E021A45C6E5B984562362FF6"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\tools.js",
+    "Hash": "A1AD3E5E0277B8A3BBB82C9B25703BB4C91E8D0B5C898EE264B56C15E78C66E2"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\pixel-import.js",
+    "Hash": "19B02E6B6961017F2384B97430118148E450C3C218FB08BA85F770C07040EBAD"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html",
+    "Hash": "FF7CEE25EBB3309F47D1CE4041C9BFFD40E1A8BCA69754D186ACA4F4FC37C2FF"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement.cjs",
+    "Hash": "73FDC3C49F89980AF761B5D5DA9D91E9EBB7B38F2EEEC023E4F94E8966C65A2A"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-partial-selection.cjs",
+    "Hash": "789A76F327D31FDB05257547E39685DF32846B60FFE3D5D7A19611BC0EE4555D"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\hd-image-layers.cjs",
+    "Hash": "94E9D5FBB8528DE28CC44416FB130EE06A709984CBC64BAEF2C41D4C7828B412"
+  },
+  {
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\free-image-placement-browser.cjs",
+    "Hash": "09A52A86D84C97E5E4870895C22C681BDC32B349409887F58FAA3EE6DB5651F7"
+  }
+]

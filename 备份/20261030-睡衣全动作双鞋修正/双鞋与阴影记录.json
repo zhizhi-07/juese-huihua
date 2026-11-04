@@ -1,0 +1,2772 @@
+{
+  "frames": [
+    {
+      "key": "7_0_0",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_0_1",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 10,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 3
+    },
+    {
+      "key": "7_0_2",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_0_3",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_0_4",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_0_5",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 10,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 31,
+          "shadow": true
+        }
+      ],
+      "dots": 3
+    },
+    {
+      "key": "7_0_6",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 31,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_0_7",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": true
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_0",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_1",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_2",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_3",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_4",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_5",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 17,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_6",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 17,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_1_7",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_0",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_1",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 12,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 13,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_2",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 12,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 13,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_3",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_4",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_5",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 17,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_6",
+      "waist": 27,
+      "shoes": [
+        {
+          "x": 17,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 29,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 29,
+          "shadow": true
+        },
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "7_2_7",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_0_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_0_1",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_0_2",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_0_3",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_1_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_1_1",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_1_2",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_1_3",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_2_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_2_1",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_2_2",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "8_2_3",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 13,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_0_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_0_1",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 25,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 26,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 3
+    },
+    {
+      "key": "9_0_2",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 25,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 26,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_0_3",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 25,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 26,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_0_4",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_0_5",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": true
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_1",
+      "waist": 29,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_2",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_3",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_4",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_1_5",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_0",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_1",
+      "waist": 31,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": true
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 35,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_2",
+      "waist": 30,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 35,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_3",
+      "waist": 30,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 35,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 35,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_4",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "9_2_5",
+      "waist": 28,
+      "shoes": [
+        {
+          "x": 15,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 16,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 21,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 22,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 23,
+          "y": 33,
+          "shadow": false
+        },
+        {
+          "x": 24,
+          "y": 33,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "11_0_0",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "11_0_1",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "11_0_2",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    },
+    {
+      "key": "11_0_3",
+      "waist": 26,
+      "shoes": [
+        {
+          "x": 11,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 12,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 13,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 14,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 18,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 19,
+          "y": 31,
+          "shadow": false
+        },
+        {
+          "x": 20,
+          "y": 31,
+          "shadow": false
+        }
+      ],
+      "dots": 2
+    }
+  ],
+  "migratedUserShoePixels": [
+    {
+      "key": "7_0_0",
+      "x": 12,
+      "y": 31
+    },
+    {
+      "key": "7_0_0",
+      "x": 13,
+      "y": 31
+    },
+    {
+      "key": "7_0_0",
+      "x": 14,
+      "y": 31
+    },
+    {
+      "key": "7_0_0",
+      "x": 15,
+      "y": 31
+    },
+    {
+      "key": "7_0_1",
+      "x": 10,
+      "y": 31
+    },
+    {
+      "key": "7_0_1",
+      "x": 11,
+      "y": 31
+    },
+    {
+      "key": "7_0_1",
+      "x": 12,
+      "y": 31
+    },
+    {
+      "key": "7_0_1",
+      "x": 13,
+      "y": 31
+    },
+    {
+      "key": "7_0_2",
+      "x": 12,
+      "y": 31
+    },
+    {
+      "key": "7_0_2",
+      "x": 13,
+      "y": 31
+    },
+    {
+      "key": "7_0_2",
+      "x": 14,
+      "y": 31
+    },
+    {
+      "key": "7_0_2",
+      "x": 15,
+      "y": 31
+    }
+  ]
+}

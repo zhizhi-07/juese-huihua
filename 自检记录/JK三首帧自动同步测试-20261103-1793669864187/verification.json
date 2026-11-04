@@ -1,0 +1,53 @@
+{
+  "sourceClothingFrames": 3,
+  "generated": 67,
+  "total": 70,
+  "firstThreeExact": true,
+  "allRGBFromCorrespondingDirectionSource": true,
+  "bodyHeadFramesAndTimingsUnchanged": true,
+  "geometryTemplateUnchanged": true,
+  "geometryTemplateSHA256": "472f23655f7b94dc2fbadd87ee248f62347c73ea9fa5234f74302fab6017857d",
+  "noJKPerPoseHandPainting": true,
+  "noOtherClothingFramesRead": true,
+  "oldUnboundShoeErrors": 745,
+  "boundShoeErrors": 0,
+  "materialRebindingRequired": true,
+  "syncMilliseconds": 95.80960000000005,
+  "restoreExtraCopyExact": true,
+  "before": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "after": {
+    "checked": 70,
+    "sheets": [
+      "original32_idle",
+      "original32_walk",
+      "original32_pickup",
+      "original32_sit",
+      "original32_sleep"
+    ]
+  },
+  "browserChecked": false,
+  "visualReviewPending": false,
+  "visualReview": {
+    "sourceThreeAndAll70ClothingFramesReviewed": true,
+    "all70CompositeFramesReviewed": true,
+    "lightAndDarkBackgrounds": true,
+    "nativeAnd4xViews": true,
+    "firstLastLoopFramesCompared": true
+  },
+  "sittingSolePositionsFixedAcrossFourFrames": true,
+  "noUncoveredBodyInterior": true,
+  "outlineBoundToNewOutfitMaterial": true,
+  "published": true,
+  "apiReadbackExact": true,
+  "sourceDuckSHA256StillExact": true,
+  "publishedETag": "\"0b4e6e282de2dc6327f6f834defaca1ff2c33f355db7222e6da61af0c5a20b32\""
+}

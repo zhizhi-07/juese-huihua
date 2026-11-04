@@ -1,0 +1,232 @@
+{
+  "sourceFile": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\保存冲突修复-20261102\\用户_项目存档.json",
+  "referenceFile": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\保存冲突修复-20261102\\user-followup-api.json",
+  "layersPreserved": 214,
+  "checkedCels": 626,
+  "placedCelsPreserved": 9,
+  "referencePixelsOutsideViewport": 168,
+  "completeOriginalAtlasRetainedIn": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\保存冲突修复-20261102\\用户_项目存档.json",
+  "rows": [
+    {
+      "sheet": "original32_walk",
+      "direction": "side",
+      "frames": 8,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        32,
+        36
+      ],
+      "translation": [
+        -1,
+        0
+      ]
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "down",
+      "frames": 8,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        32,
+        36
+      ],
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "sheet": "original32_walk",
+      "direction": "up",
+      "frames": 8,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        32,
+        36
+      ],
+      "translation": [
+        0,
+        0
+      ]
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "side",
+      "frames": 4,
+      "before": [
+        36,
+        36
+      ],
+      "after": [
+        31,
+        36
+      ],
+      "translation": [
+        -3,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "down",
+      "frames": 4,
+      "before": [
+        36,
+        36
+      ],
+      "after": [
+        32,
+        36
+      ],
+      "translation": [
+        -2,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_idle",
+      "direction": "up",
+      "frames": 4,
+      "before": [
+        36,
+        36
+      ],
+      "after": [
+        32,
+        36
+      ],
+      "translation": [
+        -2,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "side",
+      "frames": 6,
+      "before": [
+        40,
+        40
+      ],
+      "after": [
+        42,
+        37
+      ],
+      "translation": [
+        0,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "down",
+      "frames": 6,
+      "before": [
+        40,
+        40
+      ],
+      "after": [
+        44,
+        41
+      ],
+      "translation": [
+        2,
+        0
+      ]
+    },
+    {
+      "sheet": "original32_pickup",
+      "direction": "up",
+      "frames": 6,
+      "before": [
+        40,
+        40
+      ],
+      "after": [
+        44,
+        38
+      ],
+      "translation": [
+        2,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "side",
+      "frames": 4,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        38,
+        34
+      ],
+      "translation": [
+        2,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "down",
+      "frames": 4,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        38,
+        34
+      ],
+      "translation": [
+        3,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_sit",
+      "direction": "up",
+      "frames": 4,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        38,
+        34
+      ],
+      "translation": [
+        3,
+        -2
+      ]
+    },
+    {
+      "sheet": "original32_sleep",
+      "direction": "down",
+      "frames": 4,
+      "before": [
+        32,
+        32
+      ],
+      "after": [
+        36,
+        38
+      ],
+      "translation": [
+        2,
+        2
+      ]
+    }
+  ]
+}

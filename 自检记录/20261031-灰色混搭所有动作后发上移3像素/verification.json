@@ -1,0 +1,324 @@
+{
+  "changedCels": [
+    {
+      "li": 1,
+      "key": "7_1_0",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_1",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_2",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_3",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_4",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_5",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_6",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 1,
+      "key": "7_1_7",
+      "sheet": 7,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_0",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_1",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_2",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_3",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_4",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 3,
+      "key": "9_1_5",
+      "sheet": 9,
+      "direction": "down"
+    },
+    {
+      "li": 5,
+      "key": "11_0_0",
+      "sheet": 11,
+      "direction": "down"
+    },
+    {
+      "li": 5,
+      "key": "11_0_1",
+      "sheet": 11,
+      "direction": "down"
+    },
+    {
+      "li": 5,
+      "key": "11_0_2",
+      "sheet": 11,
+      "direction": "down"
+    },
+    {
+      "li": 5,
+      "key": "11_0_3",
+      "sheet": 11,
+      "direction": "down"
+    },
+    {
+      "li": 7,
+      "key": "8_1_0",
+      "sheet": 8,
+      "direction": "down"
+    },
+    {
+      "li": 7,
+      "key": "8_1_1",
+      "sheet": 8,
+      "direction": "down"
+    },
+    {
+      "li": 7,
+      "key": "8_1_2",
+      "sheet": 8,
+      "direction": "down"
+    },
+    {
+      "li": 7,
+      "key": "8_1_3",
+      "sheet": 8,
+      "direction": "down"
+    },
+    {
+      "li": 9,
+      "key": "10_1_0",
+      "sheet": 10,
+      "direction": "down"
+    },
+    {
+      "li": 9,
+      "key": "10_1_1",
+      "sheet": 10,
+      "direction": "down"
+    },
+    {
+      "li": 9,
+      "key": "10_1_2",
+      "sheet": 10,
+      "direction": "down"
+    },
+    {
+      "li": 9,
+      "key": "10_1_3",
+      "sheet": 10,
+      "direction": "down"
+    },
+    {
+      "li": 195,
+      "key": "8_0_0",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 195,
+      "key": "8_0_1",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 195,
+      "key": "8_0_2",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 195,
+      "key": "8_0_3",
+      "sheet": 8,
+      "direction": "side"
+    },
+    {
+      "li": 199,
+      "key": "10_0_0",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 199,
+      "key": "10_0_1",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 199,
+      "key": "10_0_2",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 199,
+      "key": "10_0_3",
+      "sheet": 10,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_0",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_1",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_2",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_3",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_4",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_5",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_6",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 202,
+      "key": "7_0_7",
+      "sheet": 7,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_0",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_1",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_2",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_3",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_4",
+      "sheet": 9,
+      "direction": "side"
+    },
+    {
+      "li": 204,
+      "key": "9_0_5",
+      "sheet": 9,
+      "direction": "side"
+    }
+  ],
+  "clippedWithUserApproval": [
+    {
+      "li": 202,
+      "key": "7_0_0",
+      "pixels": 9
+    },
+    {
+      "li": 202,
+      "key": "7_0_3",
+      "pixels": 9
+    },
+    {
+      "li": 202,
+      "key": "7_0_4",
+      "pixels": 9
+    },
+    {
+      "li": 202,
+      "key": "7_0_7",
+      "pixels": 9
+    }
+  ],
+  "clippedPixelsTotal": 36,
+  "checkedCompositeFrames": 70,
+  "unrelatedDataExact": true,
+  "backViewsExact": true,
+  "translationExact": true,
+  "mainCanvasAndAnimationAndExport": true,
+  "browserTested": false,
+  "backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261031-后发上移3像素-1793426692483",
+  "saved": true,
+  "etag": "\"5a174d2c959e3a7faef8ef1c7e572cd5ab18c0380032cb7091539469c12d8e84\""
+}

@@ -1,0 +1,13 @@
+{
+  "sitRegression": [
+    "3_0_0",
+    "3_0_1",
+    "3_0_2",
+    "3_0_3",
+    "3_1_0",
+    "3_1_1",
+    "3_1_2",
+    "3_1_3"
+  ],
+  "meaning": "collar tracks head, lower denim tracks leg shading; current manually corrected sitting frames are read-only regression fixtures"
+}

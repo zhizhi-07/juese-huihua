@@ -1,0 +1,12 @@
+{
+  "port": 8765,
+  "files": [
+    "index.html",
+    "js/core.js",
+    "js/tools.js",
+    "js/pixel-import.js"
+  ],
+  "exactFileBytes": true,
+  "browserFixture": "C:/Users/ADMINI~1/AppData/Local/Temp/free-placement-test-lRlqQG",
+  "userPageRefreshed": false
+}

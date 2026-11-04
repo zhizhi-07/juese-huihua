@@ -1,0 +1,341 @@
+{
+  "motion": [
+    {
+      "key": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_0_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_1_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_1_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_2_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_2_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_2_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_2_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_0_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_2",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_0_3",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_1_3",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    },
+    {
+      "key": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 0
+    },
+    {
+      "key": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 0,
+      "tipOffset": 0,
+      "curlInward": 1
+    },
+    {
+      "key": "8_2_2",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 1
+    },
+    {
+      "key": "8_2_3",
+      "layer": "头发 / 80011 / 前发",
+      "rootOffset": 2,
+      "tipOffset": 1,
+      "curlInward": 0
+    }
+  ],
+  "order": [
+    {
+      "i": 0,
+      "name": "头发 / 80009 / 后发",
+      "parent": null,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 1,
+      "name": "头发 / 80009 / 底层后发",
+      "parent": 0,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 123,
+      "name": "up",
+      "parent": null,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 124,
+      "name": "hand 2",
+      "parent": 123,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 125,
+      "name": "body",
+      "parent": 123,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 126,
+      "name": "head",
+      "parent": 123,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 127,
+      "name": "hand",
+      "parent": 123,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 128,
+      "name": "down",
+      "parent": null,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 129,
+      "name": "hand 2",
+      "parent": 128,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 130,
+      "name": "body",
+      "parent": 128,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 131,
+      "name": "head",
+      "parent": 128,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 132,
+      "name": "hand",
+      "parent": 128,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 133,
+      "name": "side",
+      "parent": null,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 134,
+      "name": "hand 2",
+      "parent": 133,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 135,
+      "name": "body",
+      "parent": 133,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 136,
+      "name": "head",
+      "parent": 133,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 137,
+      "name": "hand",
+      "parent": 133,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 182,
+      "name": "头发 / 80009 / 侧面后发",
+      "parent": 0,
+      "visible": true,
+      "sheetIndex": 8
+    },
+    {
+      "i": 183,
+      "name": "头发 / 80011 / 前发",
+      "parent": null,
+      "visible": true,
+      "sheetIndex": 8
+    }
+  ],
+  "palette": [
+    "#777777",
+    "#B2B2B2",
+    "#D1D1D1"
+  ],
+  "note": "Frame0 reference retained with a two-pixel side-strand trim; other source columns no longer shuffled. Cap follows head 2px; lower strands follow 1px with 1px inward curl delay."
+}

@@ -1,0 +1,112 @@
+{
+  "changes": [
+    {
+      "layer": "头发 / 80011 / 前发",
+      "oldLayerIndex": 198,
+      "newLayerIndex": 198,
+      "key": "8_0_1",
+      "beforeSha256": "24adad086685bda12d2250f72ac4314d6a55d7fda4ca15a6e6ebcb37b248b91a",
+      "afterSha256": "9767e0f334e7d784199dd9e062d044bf25ae8fa145a012d7290200add56e3280"
+    },
+    {
+      "layer": "头发 / 80009 / 侧面后发",
+      "oldLayerIndex": 195,
+      "newLayerIndex": 195,
+      "key": "8_0_1",
+      "beforeSha256": "b35e7fe94da2b93d164a57f86758c5c4b3f0d0b0437bf84d925d47fddd298177",
+      "afterSha256": "008d8916e410b252b164c5183ae304997a539d6227ceb07c9297c961e6689c19"
+    },
+    {
+      "layer": "眼睛 / 浅蓝·仅眼睛可编辑画布",
+      "oldLayerIndex": 197,
+      "newLayerIndex": 197,
+      "key": "8_0_1",
+      "beforeSha256": "57a55cbb530b968ecaef9c46a8bffb770ca94a66929715fc8f81315d39f24e90",
+      "afterSha256": "1bb4e43ea4802620ae30dc68c9e8ccd5315d8d708b71c035cba77f995af2747a",
+      "placement": {
+        "x": 16.0625,
+        "y": 15.3,
+        "w": 18,
+        "h": 16
+      }
+    },
+    {
+      "layer": "头发 / 80011 / 前发",
+      "oldLayerIndex": 198,
+      "newLayerIndex": 198,
+      "key": "8_0_2",
+      "beforeSha256": "7418e52882dfc5638fc08beb9ee7802b30c2dbc2a1ed7e44683edc84a2973f3b",
+      "afterSha256": "d927e5d53aecac486021c94dd02f3497136f8d6a056a413659b38c8e6976edb1"
+    },
+    {
+      "layer": "头发 / 80009 / 侧面后发",
+      "oldLayerIndex": 195,
+      "newLayerIndex": 195,
+      "key": "8_0_2",
+      "beforeSha256": "2b76463ce35d2488527ee5c762a077d1636ff27595ab41edb87b195604e6bc33",
+      "afterSha256": "c8dfd5f15dff5629a515389232b6cd74c443d17832dcb6d2b9ed2c51539453ce"
+    },
+    {
+      "layer": "眼睛 / 浅蓝·仅眼睛可编辑画布",
+      "oldLayerIndex": 197,
+      "newLayerIndex": 197,
+      "key": "8_0_2",
+      "beforeSha256": "1f03d31836c3880846982c51497fd9b9f62d80a544ea280632fbccad159a0fec",
+      "afterSha256": "6912d14c95f2153f572574da8d918f4216e60a040a95b620326f02b854663b37",
+      "placement": {
+        "x": 16.0625,
+        "y": 17.3,
+        "w": 18,
+        "h": 16
+      }
+    },
+    {
+      "layer": "头发 / 80011 / 前发",
+      "oldLayerIndex": 198,
+      "newLayerIndex": 198,
+      "key": "8_0_3",
+      "beforeSha256": "7418e52882dfc5638fc08beb9ee7802b30c2dbc2a1ed7e44683edc84a2973f3b",
+      "afterSha256": "d927e5d53aecac486021c94dd02f3497136f8d6a056a413659b38c8e6976edb1"
+    },
+    {
+      "layer": "头发 / 80009 / 侧面后发",
+      "oldLayerIndex": 195,
+      "newLayerIndex": 195,
+      "key": "8_0_3",
+      "beforeSha256": "36263fc32c6cb1c3cb93b077c0151b36b065c55d8dacb3dcd5635ab9edd806c3",
+      "afterSha256": "c8dfd5f15dff5629a515389232b6cd74c443d17832dcb6d2b9ed2c51539453ce"
+    },
+    {
+      "layer": "眼睛 / 浅蓝·仅眼睛可编辑画布",
+      "oldLayerIndex": 197,
+      "newLayerIndex": 197,
+      "key": "8_0_3",
+      "beforeSha256": "1f03d31836c3880846982c51497fd9b9f62d80a544ea280632fbccad159a0fec",
+      "afterSha256": "6912d14c95f2153f572574da8d918f4216e60a040a95b620326f02b854663b37",
+      "placement": {
+        "x": 16.0625,
+        "y": 17.3,
+        "w": 18,
+        "h": 16
+      }
+    },
+    {
+      "layer": "头发 / 80011 / 前发",
+      "oldLayerIndex": 200,
+      "newLayerIndex": 201,
+      "key": "10_0_0",
+      "beforeSha256": "26333e4b76a0b4c775008bfb10820265862a0bda951a849b5d1bfaa3bfbc079c",
+      "afterSha256": "8c502e3102c3f70530e535a296685c9a126f9f4cda6fa5ce0cbf4e8f64a412eb"
+    }
+  ],
+  "insertedLayer": {
+    "index": 200,
+    "name": "眼睛 / 浅蓝·坐姿侧面",
+    "parent": 165,
+    "keys": [
+      "10_0_0"
+    ]
+  },
+  "allOriginalIdleFirstCellsExact": true,
+  "bodyHandsClothingPixelsUnchanged": true
+}

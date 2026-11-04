@@ -1,0 +1,112 @@
+{
+  "saved": true,
+  "revision": "\"c02ede4203cb0e64b272f3120784997f817b4ed74cf859c922ea733b4214ea26\"",
+  "mainSHA256": "c6c0d2fafc06f52b52414a0da89a52beab4085c37dfc1e5f431337c38b853f8f",
+  "unchanged": [
+    "all non-hair pixel data",
+    "all actions, frame sizes, timings",
+    "main project"
+  ],
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "canvas": true,
+      "preview": true,
+      "export": true
+    }
+  ],
+  "motion": [
+    {
+      "ai": 0,
+      "uniqueAfterRootNormalization": 3
+    },
+    {
+      "ai": 1,
+      "uniqueAfterRootNormalization": 3
+    },
+    {
+      "ai": 2,
+      "uniqueAfterRootNormalization": 3
+    }
+  ],
+  "sideSource": "Both user supplied three-quarter thumbnails, neutral black removed",
+  "browserTested": false
+}

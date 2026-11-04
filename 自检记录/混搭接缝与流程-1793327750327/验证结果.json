@@ -1,0 +1,305 @@
+{
+  "checks": [
+    {
+      "ai": 0,
+      "fi": 0,
+      "headTop": 4,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": [
+            259,
+            48
+          ]
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            252
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 1,
+      "headTop": 4,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": [
+            259,
+            48
+          ]
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            252
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 2,
+      "headTop": 6,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": [
+            254,
+            44
+          ]
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            244
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 0,
+      "fi": 3,
+      "headTop": 6,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": [
+            254,
+            44
+          ]
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            244
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 0,
+      "headTop": 4,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            224
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            276
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 1,
+      "headTop": 4,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            224
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            276
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 2,
+      "headTop": 6,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            214
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            268
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 1,
+      "fi": 3,
+      "headTop": 6,
+      "bangDepth": 9,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            214
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": [
+            268
+          ]
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 0,
+      "headTop": 4,
+      "bangDepth": null,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            502
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": []
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 1,
+      "headTop": 4,
+      "bangDepth": null,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            502
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": []
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 2,
+      "headTop": 6,
+      "bangDepth": null,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            476
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": []
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    },
+    {
+      "ai": 2,
+      "fi": 3,
+      "headTop": 6,
+      "bangDepth": null,
+      "components": [
+        {
+          "layer": "头发 / 80009 / 底层后发",
+          "sizes": [
+            476
+          ]
+        },
+        {
+          "layer": "头发 / 80009 / 侧面后发",
+          "sizes": []
+        },
+        {
+          "layer": "头发 / 80011 / 前发",
+          "sizes": []
+        }
+      ],
+      "mainCanvasMatchesExport": true
+    }
+  ],
+  "onlyHairIdleChanged": true,
+  "saved": true,
+  "actualUserBrowserNotOperated": true,
+  "etag": "\"11269913cb0fe0024b12fe9da80197caaab3357db083e77a99c43755fcdbe607\"",
+  "sha256": "11269913cb0fe0024b12fe9da80197caaab3357db083e77a99c43755fcdbe607"
+}

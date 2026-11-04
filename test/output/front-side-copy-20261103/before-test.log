@@ -1,0 +1,4 @@
+Error: 粘贴超出目标帧，请调整位置；没有修改任何目标
+    at Object.plan (test/output/front-side-copy-20261103/before/frame-tools.js:161:72)
+    at Object.paste (test/output/front-side-copy-20261103/before/frame-tools.js:193:95)
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\front-side-copy.cjs:25:32)

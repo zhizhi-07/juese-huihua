@@ -1,0 +1,25 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+COMMAND: node test/eye-layer-order.cjs
+PASS: eye default below fringe and above head; wardrobe ordering; existing and generated synced eyes; all directions; unchanged hair/base pixels; source selection; undo/redo; grouped defaults.
+EXIT: 0
+COMMAND: node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+EXIT: 0
+COMMAND: node test/eye-sync-ui.cjs
+PASS UI DOM: shared eye/hair controls, no eye sway, preserved-frame cancel/apply, hidden sleep list without data deletion, and safe initial selection before preview. No live browser or project data used.
+EXIT: 0
+COMMAND: node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+EXIT: 0
+COMMAND: node test/layer-order.cjs
+PASS: rear naming behind grouped body; manual group escape and placement behind body; no layers lost
+EXIT: 0
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+COMMAND: node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+PASS: visible rename buttons, type-preserving names, grouped components renamed together, one-step undo/redo, no pixel/order/visibility/parent changes, protected/blank/invalid/no-op names safe.
+EXIT: 0

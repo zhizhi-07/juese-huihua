@@ -1,0 +1,3 @@
+COMMAND: node verify.cjs --save
+PASS: 12 native idle frames; other data unchanged; 3 colors; no detached 1-2px specks; head-top/fringe preserved; main render and PNG export agree; saved=true
+EXIT: 0

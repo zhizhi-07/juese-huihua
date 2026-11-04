@@ -1,0 +1,102 @@
+diff --git "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\js_frame-tools.js.before" b/js/frame-tools.js
+index f97be50..e91a991 100644
+--- "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\js_frame-tools.js.before"
++++ b/js/frame-tools.js
+@@ -143,6 +143,27 @@ PE.FrameEditing={
+     this.record(app,'复制整帧到末尾',()=>{a.frames.splice(index,1);restore(before);p.selectFrame(si,ai,fi);},()=>{a.frames[index]=frame;restore(after);p.selectFrame(si,ai,index);});
+     return {sheetIndex:si,actionIndex:ai,frameIndex:index};
+   },
++  delete(app){
++    if(app.toolManager.isDrawing)throw new Error('请先结束当前绘画或拖动');
++    const p=app.project,si=p.currentSheetIndex,ai=p.currentActionIndex,fi=p.currentFrameIndex,a=p.getCurrentAction(),frame=a?.frames[fi];
++    if(!Number.isSafeInteger(fi)||!frame)throw new Error('请先选择有效帧');
++    if(a.frames.length<=1)throw new Error('每个朝向至少保留一帧');
++    if(frame.locked||frame.lockedRegions?.length)throw new Error('当前帧已锁定或含保护区域，请先解除保护');
++    const layers=p.layers.filter(l=>l.sheetIndex===undefined||l.sheetIndex===si);
++    // shortcut: shared-base branches need stable frame mapping before independent deletion is safe.
++    if(layers.some(l=>l.inheritedBase))throw new Error('共享人物底稿分支暂不支持删帧，请在人物主工程操作');
++    const keys=a.frames.map((_,i)=>p.getFrameKey(si,ai,i)).slice(fi),before=layers.map(l=>keys.map(k=>{
++      const d=l.getFrameData(k);return d?PE.utils.cloneImageData(d):null;
++    }));
++    const restore=data=>layers.forEach((l,i)=>keys.forEach((k,j)=>{
++      if(data[i][j])l.frameData.set(k,PE.utils.cloneImageData(data[i][j]));else l.frameData.delete(k);
++    }));
++    const after=before.map(data=>[...data.slice(1),null]),selected=Math.min(fi,a.frames.length-2);
++    this.record(app,'删除当前帧',()=>{a.frames.splice(fi,0,frame);restore(before);p.selectFrame(si,ai,fi);},()=>{
++      a.frames.splice(fi,1);restore(after);p.selectFrame(si,ai,selected);
++    });
++    return {sheetIndex:si,actionIndex:ai,deletedFrameIndex:fi,frameIndex:selected,frameCount:a.frames.length};
++  },
+   next(app,source={}){
+     const clip=this.read(app,source),r=clip.ref;this.editable(r);
+     if(r.sheetIndex!==app.project.currentSheetIndex||r.actionIndex!==app.project.currentActionIndex||r.frameIndex!==app.project.currentFrameIndex)throw new Error('复制到下一帧请使用当前帧；指定源请用批量复制');
+@@ -166,6 +187,13 @@ document.addEventListener('DOMContentLoaded',()=>{
+   button('copy-next-cel-btn','复制到下一帧','复制当前图层或选区并跳到下一帧；末帧会复制整帧追加，可连续点击',()=>{const result=call('copyLayerToNextFrame',source());status.textContent=(result.createdFrame?'已复制整帧新建':'已复制到')+'第 '+(result.frameIndex+1)+' 帧，可继续复制。';});
+   button('batch-copy-cel-btn','批量复制…','复制当前图层或选区到指定朝向、帧范围',openBatch);
+   button('duplicate-frame-btn','复制整帧到末尾','把当前帧所有图层复制到末尾，可撤销',()=>{const r=call('duplicateFrame');status.textContent='已复制整帧到第 '+(r.frameIndex+1)+' 帧；Ctrl+Z 可撤销。';});
++  button('delete-frame-btn','删除当前帧','删除当前朝向的整帧（所有图层），至少保留一帧；Ctrl+Z 可撤销',()=>{
++    const p=app.project,a=p.getCurrentAction();
++    if(!a)throw new Error('请先打开工程');
++    if(a.frames.length<=1)throw new Error('每个朝向至少保留一帧');
++    if(!confirm('删除当前朝向第 '+(p.currentFrameIndex+1)+' 帧的所有图层内容？其他朝向不变，可用 Ctrl+Z 撤销。'))return;
++    const r=call('deleteFrame');status.textContent='已删除第 '+(r.deletedFrameIndex+1)+' 帧，当前朝向剩 '+r.frameCount+' 帧；Ctrl+Z 可撤销，保存工程后生效。';
++  });
+   bar.append(status);document.getElementById('frame-strip-wrapper').prepend(bar);
+ 
+   const dialog=document.createElement('dialog');dialog.className='advanced-dialog frame-copy-dialog';dialog.setAttribute('aria-label','批量复制图层');
+diff --git "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\js_api.js.before" b/js/api.js
+index cd09cbe..017d352 100644
+--- "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\js_api.js.before"
++++ b/js/api.js
+@@ -910,6 +910,9 @@ window.PE = window.PE || {};
+     duplicateFrame() {
+       try {return _success(PE.FrameEditing.duplicate(PE.app));} catch(error) {return _fail(error);}
+     },
++    deleteFrame() {
++      try {return _success(PE.FrameEditing.delete(PE.app));} catch(error) {return _fail(error);}
++    },
+     getFrameClipboard() {
+       const clip=PE.app?.frameClipboard;return _success(clip&&clip.project===PE.app?.project?PE.FrameEditing.info(clip):null);
+     },
+@@ -1525,6 +1528,7 @@ window.PE = window.PE || {};
+         copyLayerToFrames: 'copyLayerToFrames(source,targets,{mode="overlay",x?,y?}={}) -> 指定源图层帧复制到目标帧列表，不切换视图',
+         copyLayerToNextFrame: 'copyLayerToNextFrame(source={}) -> 复制当前图层到下一帧并跳转；末帧复制整帧追加，可撤销',
+         duplicateFrame: 'duplicateFrame() -> 复制当前整帧到末尾，可撤销',
++        deleteFrame: 'deleteFrame() -> 删除当前朝向的当前整帧并重排所有图层，可撤销；至少保留1帧，锁定帧及共享底稿分支禁止删除',
+         getFrameClipboard: 'getFrameClipboard() -> 查询图层剪贴板来源、位置和尺寸',
+         pasteRegion: 'pasteRegion(layerIdx, si, ai, fi, x, y) -> 将剪贴板像素粘贴到指定图层',
+         moveRegion: 'moveRegion(layerIdx, si, ai, fi, srcX, srcY, srcW, srcH, destX, destY) -> 移动图层上的局部像素',
+diff --git "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\index.html.before" b/index.html
+index a76fc3f..2863b4d 100644
+--- "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\index.html.before"
++++ b/index.html
+@@ -284,7 +284,7 @@
+   <script src="js/animation.js"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+-  <script src="js/api.js?v=frame-copy-1"></script>
++  <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+   <script src="js/app.js?v=hd-inline-native-1"></script>
+   <script src="js/workbench.js?v=off-canvas-placement-1"></script>
+@@ -301,7 +301,7 @@
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+   <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
+   <script src="js/wardrobe.js?v=chairs-bed-1"></script>
+-  <script src="js/frame-tools.js?v=hd-inline-native-1"></script>
++  <script src="js/frame-tools.js?v=frame-delete-1"></script>
+   <script src="js/building-groups.js?v=1"></script>
+   <script src="js/pixel-import.js?v=hd-drag-create-1"></script>
+   <script src="js/hd-canvas.js?v=hd-drag-create-1"></script>
+diff --git "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\API_DOCS.md.before" b/API_DOCS.md
+index adf0bfd..4d8d284 100644
+--- "a/\345\244\207\344\273\275\\20261101-\345\210\240\351\231\244\345\275\223\345\211\215\345\270\247\345\212\237\350\203\275\\API_DOCS.md.before"
++++ b/API_DOCS.md
+@@ -295,6 +295,7 @@ interface APIResult<T = any> {
+ - `copyLayerToFrames(source, targets, options={})`：一次指定源与目标列表，适合 AI 连续调用；不改变剪贴板或页面选择。目标项省略 `sheetIndex`、`layerIndex` 时沿用源，其余省略索引取当前项。跨素材表复制时需指定属于目标素材表的可编辑 `layerIndex`。
+ - `copyLayerToNextFrame(source={})`：复制当前图层并跳转下一帧。末帧时复制当前整帧追加，保留其他图层和保护设置；返回 `createdFrame`。源必须是页面当前帧。
+ - `duplicateFrame()`：将当前帧所有图层复制到当前动作末尾并跳转，可撤销。
++- `deleteFrame()`：删除当前朝向的当前整帧，所有图层（含隐藏层、手层）一起重排，其他朝向和素材表不变。返回 `deletedFrameIndex`、当前 `frameIndex` 和剩余 `frameCount`。支持撤销/重做，需手动保存工程；每个朝向至少保留一帧，绘画中、帧有锁定/保护区域时拒绝。共享人物底稿分支按主工程帧编号同步，暂不允许独立删帧，以免保存后错位。界面的“删除当前帧”按钮有确认提示；API 调用直接执行。
+ 
+ `options` 为 `{mode:'overlay'|'replace', x?, y?}`。默认 `overlay` 只写源非透明像素，目标其他像素保留；`replace` 包含透明像素，覆盖粘贴矩形范围；`x/y` 默认保留源位置。批量目标最多 256 项，会先校验所有目标，任一锁定、保护、错误图层或越界则整批不写；成功的批量修改仅占一次撤销。结果包含 `targetCount`（实际发生变化的帧数）、`modifiedPixels` 和已修改目标列表。原样复制不自动生成新朝向。
+ 

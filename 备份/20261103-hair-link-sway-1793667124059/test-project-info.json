@@ -1,0 +1,586 @@
+{
+  "sourceProject": "draft-rescue-user-1793606533990-88874a6a",
+  "sourceSHA256": "a5f9511bc056e2583c069f03a7635a52a956e501fe205a1a8ebb804c736fa11a",
+  "sourceUnchanged": true,
+  "id": "draft-hair-link-test-1793667505308",
+  "url": "http://localhost:8765/index.html?project=draft-hair-link-test-1793667505308",
+  "testETag": "\"7e6383759554ba698473c4add4f0284b8284489c95cc9a274750815c02c9b13c\"",
+  "layers": 212,
+  "groups": [
+    {
+      "name": "头发 / 2 / 后发",
+      "live": true,
+      "enabled": true,
+      "offsets": {
+        "original32_walk/side/0": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/1": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/2": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/3": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/4": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/5": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/6": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/7": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_idle/side/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/side/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/side/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/side/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/side/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/1": {
+          "x": 4,
+          "y": 2
+        },
+        "original32_pickup/side/2": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_pickup/side/3": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/side/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/side/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/side/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/side/3": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_walk/down/0": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/2": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/4": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/5": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/6": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/7": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_idle/down/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/down/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/down/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/down/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/down/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/down/1": {
+          "x": 2,
+          "y": 2
+        },
+        "original32_pickup/down/2": {
+          "x": 2,
+          "y": -2
+        },
+        "original32_pickup/down/3": {
+          "x": 2,
+          "y": -2
+        },
+        "original32_pickup/down/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/down/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/down/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/down/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/down/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/down/3": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sleep/down/0": {
+          "x": -2,
+          "y": -4
+        },
+        "original32_sleep/down/1": {
+          "x": -2,
+          "y": -4
+        },
+        "original32_sleep/down/2": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_sleep/down/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/0": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/2": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/4": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/5": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/6": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/7": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_idle/up/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/up/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/up/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/up/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/up/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/1": {
+          "x": 2,
+          "y": 6
+        },
+        "original32_pickup/up/2": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/3": {
+          "x": 2,
+          "y": 2
+        },
+        "original32_pickup/up/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/up/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/up/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/up/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/up/3": {
+          "x": -2,
+          "y": 1
+        }
+      }
+    },
+    {
+      "name": "1 前发",
+      "live": true,
+      "enabled": true,
+      "offsets": {
+        "original32_walk/side/0": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/1": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/2": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/3": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/4": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_walk/side/5": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/6": {
+          "x": -1,
+          "y": 0
+        },
+        "original32_walk/side/7": {
+          "x": -1,
+          "y": -2
+        },
+        "original32_idle/side/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/side/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/side/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/side/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/side/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/1": {
+          "x": 4,
+          "y": 2
+        },
+        "original32_pickup/side/2": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_pickup/side/3": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/side/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/side/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/side/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/side/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/side/3": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_walk/down/0": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/2": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/4": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/down/5": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/6": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/down/7": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_idle/down/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/down/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/down/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/down/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/down/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/down/1": {
+          "x": 2,
+          "y": 2
+        },
+        "original32_pickup/down/2": {
+          "x": 2,
+          "y": -2
+        },
+        "original32_pickup/down/3": {
+          "x": 2,
+          "y": -2
+        },
+        "original32_pickup/down/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/down/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/down/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/down/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/down/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/down/3": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sleep/down/0": {
+          "x": -2,
+          "y": -4
+        },
+        "original32_sleep/down/1": {
+          "x": -2,
+          "y": -4
+        },
+        "original32_sleep/down/2": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_sleep/down/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/0": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/2": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/3": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/4": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_walk/up/5": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/6": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_walk/up/7": {
+          "x": -2,
+          "y": -2
+        },
+        "original32_idle/up/0": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/up/1": {
+          "x": 0,
+          "y": 0
+        },
+        "original32_idle/up/2": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_idle/up/3": {
+          "x": 0,
+          "y": 2
+        },
+        "original32_pickup/up/0": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/1": {
+          "x": 2,
+          "y": 6
+        },
+        "original32_pickup/up/2": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/3": {
+          "x": 2,
+          "y": 2
+        },
+        "original32_pickup/up/4": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_pickup/up/5": {
+          "x": 2,
+          "y": 0
+        },
+        "original32_sit/up/0": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/up/1": {
+          "x": -2,
+          "y": 0
+        },
+        "original32_sit/up/2": {
+          "x": -2,
+          "y": 1
+        },
+        "original32_sit/up/3": {
+          "x": -2,
+          "y": 1
+        }
+      }
+    }
+  ],
+  "createdAt": "2026-11-03T00:58:25.386Z"
+}

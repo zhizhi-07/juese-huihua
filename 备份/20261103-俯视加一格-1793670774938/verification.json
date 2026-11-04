@@ -1,0 +1,17 @@
+{
+  "changedFrames": 69,
+  "changedPixels": 1380,
+  "actions": [
+    "original32_walk",
+    "original32_idle",
+    "original32_pickup",
+    "original32_sit",
+    "original32_sleep"
+  ],
+  "sourceFrameUnchanged": true,
+  "onlyCrownPixelsChanged": true,
+  "otherLayersTimingDimensionsAndOriginalSheetsUnchanged": true,
+  "renderPreviewPNGChecks": 420,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

@@ -1,0 +1,9 @@
+{
+  "index.html": "6b4149bb09072334f4fa7124bd28d3e9853ccddd6e49662b9ee9acb5c9ce4c72",
+  "js/animation.js": "714e6cd7c5a05843662c11d024db0be5d6e97edf47f9e1018330bba0a51336ee",
+  "js/studio.js": "4d8a8487d1d8976e8d614f2d644fbe39bfd64d9ab0e1a6d17f85a3c70780b995",
+  "js/workbench.js": "13a8405c0b3be8767cd9369a653f192d2aa511a6a4953844a2f12f83084575c8",
+  "js/pixel-import.js": "95479ca0c062fcfcb979d122ed8b5975118bbb93c43b21ddf1fedb9d05621998",
+  "test/timeline.cjs": "333db9edee2fc20a1887a870fe04813838fb6314f2a96a11cfe10b3059f02849",
+  "test/playback-stability.cjs": "bc1ab55d4dbd8c4bf2c3d084e8dda83f4886d51c082d91c11914ce8771be220a"
+}

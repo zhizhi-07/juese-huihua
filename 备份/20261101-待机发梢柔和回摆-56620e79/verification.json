@@ -1,0 +1,128 @@
+{
+  "originalSHA256": "9fc05731e382caff0b31171e5bdbf483cff6d3af559a343d7f55bf7b0d11c012",
+  "changed": [
+    {
+      "layer": 10,
+      "key": "8_0_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_0_3"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_1_3"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_1"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_2"
+    },
+    {
+      "layer": 10,
+      "key": "8_2_3"
+    }
+  ],
+  "motion": [
+    {
+      "key": "8_0_1",
+      "movedPixels": 3,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_0_2",
+      "movedPixels": 9,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_0_3",
+      "movedPixels": 8,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_1_1",
+      "movedPixels": 6,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_1_2",
+      "movedPixels": 12,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_1_3",
+      "movedPixels": 8,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_2_1",
+      "movedPixels": 6,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_2_2",
+      "movedPixels": 12,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    },
+    {
+      "key": "8_2_3",
+      "movedPixels": 8,
+      "rows": "31..33",
+      "maxDisplacement": 1
+    }
+  ],
+  "grayPaletteAndShadowUnchanged": true,
+  "frontHairAndUserPixelEditsUnchanged": true,
+  "allOtherDataUnchanged": true,
+  "breathingUpperHairUntouched": true,
+  "tipBendTravelsDownRows": true,
+  "maxTipMovement": 1,
+  "mainPreviewPNG12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false,
+  "frameDurations": [
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ],
+    [
+      100,
+      100,
+      100,
+      100
+    ]
+  ],
+  "noNewDisconnectedComponents": true,
+  "perFrameColorCountsUnchanged": true
+}

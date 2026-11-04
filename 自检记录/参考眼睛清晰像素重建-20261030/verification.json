@@ -1,0 +1,25 @@
+{
+  "project": "http://127.0.0.1:8765/api/project?id=character-gold-mix-1793320553623",
+  "layerIndex": 197,
+  "keys": [
+    "8_1_0",
+    "8_1_1",
+    "8_1_2",
+    "8_1_3"
+  ],
+  "source": [
+    72,
+    48
+  ],
+  "placementUnchanged": true,
+  "cellSizeInCharacter": 0.6666666666666666,
+  "referenceCells": 112,
+  "opaquePixels": 448,
+  "noBlur": true,
+  "allOtherDataUnchanged": true,
+  "sideBack8FramesUnchanged": true,
+  "mainRenderAndExportMatch": true,
+  "animationPreviewPathRendered": true,
+  "browserTested": false,
+  "sourceSHA256": "1bdfcc8d7cdf17a719b6122e3960e83394a219cfb932d85ff2b5de23e75668b8"
+}

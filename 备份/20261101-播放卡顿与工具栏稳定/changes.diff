@@ -1,0 +1,266 @@
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/index.html" b/index.html
+index 99c12c2..1b76d6d 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/index.html"
++++ b/index.html
+@@ -286,13 +286,13 @@
+   <script src="js/canvas.js?v=hd-inline-native-1"></script>
+   <script src="js/tools.js?v=layer-resize-mode-1"></script>
+   <script src="js/spritesheet.js"></script>
+-  <script src="js/animation.js"></script>
++  <script src="js/animation.js?v=stable-playback-1"></script>
+   <script src="js/inspection.js"></script>
+   <script src="js/export.js?v=hd-image-layers-1"></script>
+   <script src="js/api.js?v=frame-delete-1"></script>
+   <script src="js/aseprite.js"></script>
+   <script src="js/app.js?v=ps-layer-shortcuts-2"></script>
+-  <script src="js/workbench.js?v=layer-order-2"></script>
++  <script src="js/workbench.js?v=stable-playback-1"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+   <script src="js/builtin-packs.js"></script>
+@@ -300,7 +300,7 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/studio.js?v=visible-hands-2"></script>
++  <script src="js/studio.js?v=stable-playback-1"></script>
+   <script src="js/visual-layers.js?v=layer-order-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=finished-wardrobe-1"></script>
+@@ -310,7 +310,7 @@
+   <script src="js/layer-mirror.js?v=layer-mirror-2"></script>
+   <script src="js/layer-shortcuts.js?v=ps-layer-shortcuts-2"></script>
+   <script src="js/building-groups.js?v=1"></script>
+-  <script src="js/pixel-import.js?v=layer-resize-mode-1"></script>
++  <script src="js/pixel-import.js?v=stable-toolbar-1"></script>
+   <script src="js/hd-canvas.js?v=hd-drag-create-1"></script>
+   <script src="js/frame-timing.js?v=frame-timing-1"></script>
+   <script src="js/draw-kit.js?v=visible-aux-3"></script>
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__animation.js" b/js/animation.js
+index 5766093..b08492d 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__animation.js"
++++ b/js/animation.js
+@@ -14,6 +14,7 @@ window.PE = window.PE || {};
+       this.currentFrame = 0;
+       this.totalFrames = 0;
+       this.timer = null;
++      this.nextTick = null;
+       this.canvas = null;         // animation preview canvas element
+       this.ctx = null;
+       this.project = null;
+@@ -100,6 +101,7 @@ window.PE = window.PE || {};
+       if (this.totalFrames <= 0) return;
+ 
+       this.playing = true;
++      this.nextTick = null;
+ 
+       if (this.timer) {
+         clearTimeout(this.timer);
+@@ -112,6 +114,7 @@ window.PE = window.PE || {};
+      */
+     pause() {
+       this.playing = false;
++      this.nextTick = null;
+       if (this.timer) {
+         clearTimeout(this.timer);
+         this.timer = null;
+@@ -187,6 +190,7 @@ window.PE = window.PE || {};
+       this.fps = Math.max(1, Math.min(60, Number(fps) || 8));
+       if (this.playing) {
+         clearTimeout(this.timer);
++        this.nextTick = null;
+         this._schedule();
+       }
+     }
+@@ -218,7 +222,11 @@ window.PE = window.PE || {};
+       const sheet=this.project?.spriteSheets?.[this.sheetIndex];
+       const frame=sheet?.actions?.[this.actionIndex]?.frames?.[this.currentFrame];
+       const delay=sheet?.useFrameDurations!==false && frame?.duration ? frame.duration : 1000/this.fps;
+-      this.timer=setTimeout(()=>{this._tick();this._schedule();}, delay);
++      const now=performance.now();
++      this.nextTick=this.nextTick===null?now+delay:this.nextTick+delay;
++      // Compensate rendering time, but do not burst through frames after a suspended tab.
++      if(this.nextTick<now)this.nextTick=now+delay;
++      this.timer=setTimeout(()=>{this._tick();this._schedule();}, Math.max(0,this.nextTick-now));
+     }
+     _tick() {
+       const action = this.project?.spriteSheets?.[this.sheetIndex]?.actions?.[this.actionIndex];
+@@ -235,7 +243,7 @@ window.PE = window.PE || {};
+         } else {
+           this.currentFrame = this.totalFrames - 1;
+           this.pause();
+-          this._renderPreviewFrame();
++          this._renderPreviewFrame(true);
+           if (typeof this.onFrameChange === 'function') {
+             try {
+               this.onFrameChange(this.currentFrame);
+@@ -249,7 +257,7 @@ window.PE = window.PE || {};
+         this.currentFrame++;
+       }
+ 
+-      this._renderPreviewFrame();
++      this._renderPreviewFrame(true);
+ 
+       if (typeof this.onFrameChange === 'function') {
+         try {
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__studio.js" b/js/studio.js
+index 62e9b52..f74a5ab 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__studio.js"
++++ b/js/studio.js
+@@ -124,14 +124,32 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const selectedSheet=app.selectSheet.bind(app),selectedAction=app.selectAction.bind(app);
+   app.selectSheet=i=>{selectedSheet(i);focusCharacter();};app.selectAction=i=>{selectedAction(i);focusCharacter();};
+   // Tight, stable animation framing uses the union of every frame, never per-frame centering.
+-  app.animationPlayer._renderPreviewFrame=function(){
+-    const p=app.project,action=p.spriteSheets[this.sheetIndex]?.actions[this.actionIndex];if(!action||!action.frames.length)return;let union=null;const density=Math.max(1,Math.min(6,PE.utils.imageScale(p,this.sheetIndex,this.actionIndex),Math.floor(Math.sqrt(16*1024*1024/Math.max(...action.frames.map(f=>f.width*f.height))))));const images=action.frames.map((_,i)=>app.canvasManager.getCompositeImageData(this.sheetIndex,this.actionIndex,i,!app.canvasManager.hideHands,density));
+-    for(const image of images){const raw=bounds(image);if(!raw)continue;const b={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};if(!union)union={...b};else {const x=Math.min(union.x,b.x),y=Math.min(union.y,b.y),right=Math.max(union.x+union.w,b.x+b.w),bottom=Math.max(union.y+union.h,b.y+b.h);union={x,y,w:right-x,h:bottom-y};}}
+-    const canvas=this.canvas;canvas.width=144;canvas.height=144;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;const image=images[this.currentFrame];if(!union||!image)return;const tmp=document.createElement('canvas');tmp.width=image.width;tmp.height=image.height;tmp.getContext('2d').putImageData(image,0,0);const scale=Math.max(1,Math.min(6,Math.floor(124/Math.max(union.w,union.h))));ctx.drawImage(tmp,union.x*density,union.y*density,union.w*density,union.h*density,Math.floor((144-union.w*scale)/2),Math.floor((144-union.h*scale)/2),union.w*scale,union.h*scale);
++  app.animationPlayer._renderPreviewFrame=function(useCache=false){
++    const p=app.project,action=p.spriteSheets[this.sheetIndex]?.actions[this.actionIndex],hands=!app.canvasManager.hideHands;
++    if(!action||!action.frames.length)return;
++    let cache=this._previewCache;
++    if(!useCache||cache?.project!==p||cache.action!==action||cache.hands!==hands||cache.frames.length!==action.frames.length){
++      let union=null;
++      const density=Math.max(1,Math.min(6,PE.utils.imageScale(p,this.sheetIndex,this.actionIndex),Math.floor(Math.sqrt(16*1024*1024/Math.max(...action.frames.map(f=>f.width*f.height))))));
++      const images=action.frames.map((_,i)=>app.canvasManager.getCompositeImageData(this.sheetIndex,this.actionIndex,i,hands,density));
++      for(const image of images){const raw=bounds(image);if(!raw)continue;const b={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};if(!union)union={...b};else {const x=Math.min(union.x,b.x),y=Math.min(union.y,b.y),right=Math.max(union.x+union.w,b.x+b.w),bottom=Math.max(union.y+union.h,b.y+b.h);union={x,y,w:right-x,h:bottom-y};}}
++      const frames=images.map(image=>{
++        const canvas=document.createElement('canvas');canvas.width=144;canvas.height=144;
++        if(!union||!image)return canvas;
++        const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
++        const tmp=document.createElement('canvas');tmp.width=image.width;tmp.height=image.height;tmp.getContext('2d').putImageData(image,0,0);
++        const scale=Math.max(1,Math.min(6,Math.floor(124/Math.max(union.w,union.h))));
++        ctx.drawImage(tmp,union.x*density,union.y*density,union.w*density,union.h*density,Math.floor((144-union.w*scale)/2),Math.floor((144-union.h*scale)/2),union.w*scale,union.h*scale);
++        return canvas;
++      });
++      cache=this._previewCache={project:p,action,hands,frames};
++    }
++    const canvas=this.canvas;if(canvas.width!==144)canvas.width=144;if(canvas.height!==144)canvas.height=144;
++    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,144,144);ctx.drawImage(cache.frames[this.currentFrame],0,0);
+   };
+   const originalSetTool=app.toolManager.setTool.bind(app.toolManager);app.toolManager.setTool=t=>{originalSetTool(t);toolButtons.forEach((b,i)=>b.setAttribute('aria-pressed',['pencil','eraser','eyedropper','fill','select'][i]===t?'true':'false'));moveButton.setAttribute('aria-pressed',t==='move'?'true':'false');};
+   toolButtons[0].setAttribute('aria-pressed','true');
+-  const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing)focusCharacter();});resizeObserver.observe($('canvas-container'));
++  const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing&&!app.animationPlayer.playing)focusCharacter();});resizeObserver.observe($('canvas-container'));
+   const loading=node('div','studio-loading');loading.innerHTML='<span class="loading-pixel">▦</span><strong>正在打开你的角色素材</strong><span>保留原始图层与全部动作帧</span>';document.body.append(loading);
+   async function loadBuiltins(reset=false){
+     if(reset&&!confirm('重新载入内置原始角色会替换当前工程，请先保存工程。继续吗？'))return;
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__workbench.js" b/js/workbench.js
+index 090dd6f..bf29c35 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__workbench.js"
++++ b/js/workbench.js
+@@ -157,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
+   $('layer-list').addEventListener('input',markDirty);
+   // Clicking a timeline frame must also move the preview to that exact frame.
+   const selectFrame=app.selectFrame.bind(app);app.selectFrame=(si,ai,fi)=>{app.animationPlayer.pause();app.toolManager.clearSelection();selectFrame(si,ai,fi);app.animationPlayer.sheetIndex=si;app.animationPlayer.actionIndex=ai;app.animationPlayer.currentFrame=fi;app.animationPlayer.totalFrames=app.project.getCurrentAction().frames.length;app.animationPlayer._renderPreviewFrame();};
+-  app.animationPlayer.onFrameChange=fi=>{app.project.currentFrameIndex=fi;[...$('frame-list').children].forEach((thumb,i)=>thumb.classList.toggle('active',i===fi));app.updateFrameProperties();app.updatePalette();app.updateStatusBar();app.canvasManager.render();};
++  const pausePlayback=app.animationPlayer.pause.bind(app.animationPlayer);
++  app.animationPlayer.pause=()=>{const wasPlaying=app.animationPlayer.playing;pausePlayback();if(wasPlaying){app.updatePalette();app.updateFrameProperties();app.updateStatusBar();}};
++  app.animationPlayer.onFrameChange=fi=>{app.project.currentFrameIndex=fi;[...$('frame-list').children].forEach((thumb,i)=>thumb.classList.toggle('active',i===fi));app.updateFrameProperties();if(!app.animationPlayer.playing)app.updatePalette();app.updateStatusBar();app.canvasManager.render();};
+   const selectAction=app.selectAction.bind(app);app.selectAction=ai=>{app.animationPlayer.pause();app.toolManager.clearSelection();selectAction(ai);app.updateLayerList();};
+   const selectSheet=app.selectSheet.bind(app);app.selectSheet=si=>{app.animationPlayer.pause();selectSheet(si);app.toolManager.clearSelection();const l=app.project.layers.findLastIndex(l=>!l.isGroup&&!l.locked&&!PE.isHandLayer(l)&&(l.sheetIndex===undefined||l.sheetIndex===si));if(l>=0)app.project.currentLayerIndex=l;refresh();fit();};
+   app.updateAll();fit();
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__pixel-import.js" b/js/pixel-import.js
+index 5e08b3e..568f57c 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/js__pixel-import.js"
++++ b/js/pixel-import.js
+@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   for(const button of imageTools.querySelectorAll('button'))button.setAttribute('aria-label',button.textContent+'当前图层或选区');
+   const editStatus=imageTools.querySelector('[data-edit-status]'),editColor=imageTools.querySelector('input[type=color]'),editTolerance=imageTools.querySelector('input[type=number]'),editNeutral=imageTools.querySelector('[data-edit-neutral]');
+   const imageSize=document.createElement('label'),placedWidth=document.createElement('input'),imageInfo=document.createElement('span');
++  imageInfo.style.cssText='width:190px;flex:0 0 190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+   imageSize.textContent='图层宽度 ';placedWidth.type='number';placedWidth.min='1';placedWidth.max='4096';placedWidth.setAttribute('aria-label','图层缩放宽度');imageSize.append(placedWidth);editStatus.before(imageSize,imageInfo);
+   const resizeLabel=document.createElement('label'),resizeMode=document.createElement('select');
+   resizeLabel.textContent='缩放方式 ';resizeMode.setAttribute('aria-label','图层缩放方式');resizeMode.innerHTML='<option value="pixel">普通像素缩放</option><option value="hd">高清无损缩放</option>';resizeLabel.append(resizeMode);imageSize.before(resizeLabel);
+@@ -135,12 +136,13 @@ document.addEventListener('DOMContentLoaded',()=>{
+   const positionX=positionFields.querySelector('[aria-label="图层位置 X"]'),positionY=positionFields.querySelector('[aria-label="图层位置 Y"]');editStatus.before(freeLabel,positionFields);
+   function imageDetails(){
+     const p=app.project,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=data?.placement,bounds=app.toolManager.getLayerPlacement();
+-    imageSize.style.display=bounds?'flex':'none';imageInfo.textContent=r?'源像素 '+data.width+'×'+data.height+' → 放置 '+r.w+'×'+r.h:'';
++    imageSize.style.display='flex';placedWidth.disabled=!bounds||app.toolManager.isDrawing;
++    imageInfo.textContent=r?'源像素 '+data.width+'×'+data.height+' → 放置 '+r.w+'×'+r.h:bounds?'普通像素图层':'当前帧无图层内容';imageInfo.title=imageInfo.textContent;
+     resizeMode.value=app.toolManager.imageResizeMode||(r?'hd':'pixel');resizeMode.disabled=app.toolManager.isDrawing;
+-    if(bounds&&document.activeElement!==placedWidth)placedWidth.value=bounds.w;
++    if(document.activeElement!==placedWidth)placedWidth.value=bounds?bounds.w:'';
+     const position=r||(freePlacement.checked?app.toolManager.getLayerPlacement():null);
+-    positionFields.style.display=position?'flex':'none';
+-    for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.step=freePlacement.checked?'0.1':'1';if(position&&document.activeElement!==input)input.value=Math.round(position[axis]*1e6)/1e6;}
++    positionFields.style.display='flex';
++    for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.disabled=!position||app.toolManager.isDrawing;input.step=freePlacement.checked?'0.1':'1';if(document.activeElement!==input)input.value=position?Math.round(position[axis]*1e6)/1e6:'';}
+   }
+   resizeMode.onchange=()=>{
+     if(app.toolManager.isDrawing){imageDetails();return;}
+diff --git "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/test__timeline.cjs" b/test/timeline.cjs
+index 6483645..aa1f011 100644
+--- "a/\345\244\207\344\273\275/20261101-\346\222\255\346\224\276\345\215\241\351\241\277\344\270\216\345\267\245\345\205\267\346\240\217\347\250\263\345\256\232/test__timeline.cjs"
++++ b/test/timeline.cjs
+@@ -1,7 +1,7 @@
+ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
+ global.window=global;const listeners={};global.addEventListener=(name,fn)=>listeners[name]=fn;global.document={addEventListener(){}};global.PE={};
+ for(const name of ['app','animation'])vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/'+name+'.js'),'utf8'));
+-const app=Object.create(PE.App.prototype);app.project={currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:2};app.animationPlayer={setAction(){app.project.currentFrameIndex=0},_renderPreviewFrame(){}};
++const app=Object.create(PE.App.prototype);app.project={currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:2,getCurrentLayer:()=>null};app.animationPlayer={setAction(){app.project.currentFrameIndex=0},_renderPreviewFrame(){}};
+ for(const name of ['updateSheetList','updateActionList','updateFrameList','updateLayerList','updatePalette','updateToolbar','updateConfigPanels','updateStatusBar','updateZoomDisplay','updateHistoryButtons'])app[name]=()=>assert.equal(app.project.currentFrameIndex,2,'selected frame must be restored before rendering UI');
+ app.updateAll();assert.equal(app.animationPlayer.currentFrame,2);
+ let redraws=0;app.updateFrameList=()=>redraws++;app.canvasManager={screenToPixel(){return{x:1,y:1}},render(){}};app.toolManager={isDrawing:false,onMouseUp(){this.isDrawing=false}};
+--- /dev/null
++++ after/test/playback-stability.cjs
+@@ -0,0 +1,58 @@
++const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
++const root=path.resolve(__dirname,'..'),observe=process.argv.includes('--observe');
++const source=name=>fs.readFileSync(path.join(root,'js',name+'.js'),'utf8');
++let now=0,nextTimer;
++const context={window:{PE:{}},performance:{now:()=>now},setTimeout:(fn,delay)=>{nextTimer={fn,delay};return 1;},clearTimeout(){},console};
++vm.runInNewContext(source('animation'),context);
++const player=new context.window.PE.AnimationPlayer();
++player.project={spriteSheets:[{actions:[{frames:[{duration:100},{duration:100}]}]}]};
++player._renderPreviewFrame=()=>{now+=40;};
++player.play();const firstWait=nextTimer.delay;now=100;nextTimer.fn();const nextWait=nextTimer.delay;
++player.pause();assert.equal(player.playing,false);
++
++let composites=0,draws=0;
++const pixels={width:32,height:32,data:new Uint8ClampedArray(32*32*4)};pixels.data[(10*32+10)*4+3]=255;
++const action={frames:Array.from({length:4},()=>({width:32,height:32}))};
++const project={spriteSheets:[{actions:[action]}]};
++const fakeCanvas=()=>({width:144,height:144,getContext:()=>({putImageData(){},clearRect(){},drawImage(){draws++;}})});
++const app={project,canvasManager:{hideHands:false,getCompositeImageData(){composites++;return pixels;}}};
++const preview={canvas:fakeCanvas(),sheetIndex:0,actionIndex:0,currentFrame:0};app.animationPlayer=preview;
++const studio=source('studio');
++const bounds=studio.match(/  function bounds\(image\) \{[^\n]+\}/)[0];
++const render=studio.slice(studio.indexOf('  app.animationPlayer._renderPreviewFrame=function'),studio.indexOf('  const originalSetTool='));
++vm.runInNewContext(bounds+'\n'+render,{app,PE:{utils:{imageScale:()=>1}},document:{createElement:fakeCanvas},console});
++preview._renderPreviewFrame();
++for(let i=0;i<4;i++){preview.currentFrame=i;preview._renderPreviewFrame(true);}
++const playbackComposites=composites;
++preview._renderPreviewFrame();const afterEdit=composites;
++app.canvasManager.hideHands=true;preview._renderPreviewFrame(true);const afterHands=composites;
++
++const imageSource=source('pixel-import');
++const details=imageSource.slice(imageSource.indexOf('  function imageDetails(){'),imageSource.indexOf('  resizeMode.onchange='));
++const element=()=>({style:{},value:'',disabled:false});
++const ui=Object.fromEntries(['imageSize','placedWidth','imageInfo','resizeMode','freePlacement','positionFields','positionX','positionY'].map(k=>[k,element()]));
++let data;
++const imageApp={project:{getCurrentLayer:()=>({getFrameData:()=>data}),getFrameKey:()=>''},toolManager:{getLayerPlacement:()=>data?.placement||null,isDrawing:false}};
++const imageContext={app:imageApp,...ui,document:{activeElement:null}};vm.createContext(imageContext);vm.runInContext(details,imageContext);
++const states=[];
++for(const frame of [{width:34,height:36,placement:{x:4,y:0,w:34,h:36}},{width:36,height:36},null]){
++  data=frame;vm.runInContext('imageDetails()',imageContext);
++  states.push({widthDisplay:ui.imageSize.style.display,positionDisplay:ui.positionFields.style.display,positionDisabled:ui.positionX.disabled});
++}
++console.log(JSON.stringify({firstWait,nextWait,playbackComposites,afterEdit,afterHands,toolbarStates:states}));
++if(observe)process.exit(0);
++assert.equal(firstWait,100);assert.equal(nextWait,60,'40ms render cost must not be added to every 100ms frame');
++assert.equal(playbackComposites,4,'four preview frames compose once, not again on every tick');
++assert.equal(afterEdit,8,'explicit edit refresh rebuilds the preview');
++assert.equal(afterHands,12,'hand visibility change invalidates the preview');
++assert(states.every(s=>s.widthDisplay==='flex'&&s.positionDisplay==='flex'),'image/position fields keep their space across HD, raster and empty frames');
++assert.equal(states[2].positionDisabled,true,'empty frame coordinates cannot be edited');
++const calls={palette:0,status:0,properties:0,render:0};
++const playingApp={project:{currentFrameIndex:0},animationPlayer:{playing:true,pause(){this.playing=false;}},updatePalette(){calls.palette++;},updateFrameProperties(){calls.properties++;},updateStatusBar(){calls.status++;},canvasManager:{render(){calls.render++;}}};
++const workbench=source('workbench'),start=workbench.indexOf('  const pausePlayback=');
++vm.runInNewContext(workbench.slice(start,workbench.indexOf('  const selectAction=',start)),{app:playingApp,$:()=>({children:[]})});
++for(let i=0;i<4;i++)playingApp.animationPlayer.onFrameChange(i);
++assert.equal(calls.palette,0,'playback does not rebuild the palette each frame');
++assert.equal(calls.render,4,'main canvas still renders each played frame');
++playingApp.animationPlayer.pause();assert.equal(calls.palette,1,'pausing refreshes the current frame palette');
++console.log('PASS: compensated frame timing, cached action previews, edit/hand invalidation, stable toolbar across mixed frames.');

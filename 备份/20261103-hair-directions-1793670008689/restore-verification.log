@@ -1,0 +1,3 @@
+PASS restore: three original files restored; project JSON untouched
+
+EXIT 0

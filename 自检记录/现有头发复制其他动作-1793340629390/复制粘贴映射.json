@@ -1,0 +1,1212 @@
+{
+  "shift": 6,
+  "newLayers": 11,
+  "manifest": [
+    {
+      "key": "7_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 301,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 247,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_2",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_2",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 302,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_2",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 247,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_3",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_3",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_3",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_4",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_4",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_4",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_5",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_5",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 301,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_5",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 247,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_6",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_6",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 302,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_6",
+      "sourceKey": "8_0_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 247,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_7",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_7",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_0_7",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -1,
+      "dy": -2,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_2",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_2",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_2",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_5",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_5",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_5",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_6",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_6",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_6",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_7",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_7",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_1_7",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 502,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 476,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_2",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 480,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_2",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_2",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_3",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 500,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_3",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_3",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 502,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_5",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 476,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_5",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_5",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_6",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 480,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_6",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_6",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_7",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 500,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_7",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "7_2_7",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_0",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 4,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 4,
+      "dy": 0,
+      "pixels": 301,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_1",
+      "sourceKey": "8_0_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 4,
+      "dy": 0,
+      "pixels": 247,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_2",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 0,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_2",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 0,
+      "dy": 0,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_2",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 0,
+      "dy": 0,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_3",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_3",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_3",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_4",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_4",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_4",
+      "sourceKey": "8_0_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_5",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_5",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 307,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_0_5",
+      "sourceKey": "8_0_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 255,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_1",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_2",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_2",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_2",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_3",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": -2,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_4",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_5",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_5",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_1_5",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 502,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_0",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 4,
+      "pixels": 476,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 4,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_1",
+      "sourceKey": "8_2_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 4,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_2",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 500,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_2",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_2",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_3",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 480,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_3",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_3",
+      "sourceKey": "8_2_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 502,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_4",
+      "sourceKey": "8_2_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_5",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 500,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_5",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80009 / 侧面后发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "9_2_5",
+      "sourceKey": "8_2_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": 2,
+      "dy": 0,
+      "pixels": 0,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_0",
+      "sourceKey": "8_1_0",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_1",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 224,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_1",
+      "sourceKey": "8_1_1",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 290,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_2",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_2",
+      "sourceKey": "8_1_2",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_3",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80009 / 底层后发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 218,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    },
+    {
+      "key": "11_0_3",
+      "sourceKey": "8_1_3",
+      "layer": "头发 / 80011 / 前发",
+      "dx": -2,
+      "dy": -4,
+      "pixels": 282,
+      "mode": "exact-rgba-copy-no-scale-no-redraw"
+    }
+  ]
+}

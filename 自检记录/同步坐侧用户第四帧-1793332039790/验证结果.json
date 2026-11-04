@@ -1,0 +1,21 @@
+{
+  "sourceKey": "10_0_3",
+  "sourceFourthFramePreserved": true,
+  "changedOnlyFrontHairFrames": [
+    1,
+    2,
+    3
+  ],
+  "bodyRearHairOtherDirectionsAndActionsUnchanged": true,
+  "headTops": [
+    4,
+    4,
+    5,
+    5
+  ],
+  "allFourMainCanvasAndExportMatch": true,
+  "browserTested": false,
+  "saved": true,
+  "etag": "\"12601fa2fe205a185466530f11f443789eed32b078f0af6e5a295d8370a97493\"",
+  "sha256": "12601fa2fe205a185466530f11f443789eed32b078f0af6e5a295d8370a97493"
+}

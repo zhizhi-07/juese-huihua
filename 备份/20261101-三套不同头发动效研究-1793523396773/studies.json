@@ -1,0 +1,113 @@
+[
+  {
+    "code": "A",
+    "name": "自然垂坠",
+    "tipY": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    "mid": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "tip": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "lesson": "重发束：垂直拖曳，头先动、长发稍后跟上；不加横摆。",
+    "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+    "url": "http://localhost:8765/index.html?project=draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e"
+  },
+  {
+    "code": "B",
+    "name": "分束柔摆",
+    "tipY": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    "mid": [
+      0,
+      0,
+      0.9,
+      1,
+      0.4,
+      0,
+      -0.8,
+      -0.3
+    ],
+    "tip": [
+      0,
+      0,
+      0,
+      0.9,
+      1,
+      0.4,
+      0,
+      -0.7
+    ],
+    "lesson": "波浪传递：中段先弯、末端后到；侧面近远束错开响应。",
+    "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+    "url": "http://localhost:8765/index.html?project=draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163"
+  },
+  {
+    "code": "C",
+    "name": "轻弹回落",
+    "tipY": [
+      0,
+      0,
+      -1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    "mid": [
+      0,
+      0,
+      0.3,
+      0.9,
+      0.4,
+      -0.6,
+      -0.2,
+      0.2
+    ],
+    "tip": [
+      0,
+      0,
+      -0.9,
+      0.4,
+      1.2,
+      0,
+      -0.9,
+      0
+    ],
+    "lesson": "轻发束：受压时发梢上提，随后反向小回弹再回稳；不延长循环。",
+    "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+    "url": "http://localhost:8765/index.html?project=draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0"
+  }
+]

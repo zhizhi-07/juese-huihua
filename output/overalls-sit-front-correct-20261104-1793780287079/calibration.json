@@ -1,0 +1,49 @@
+{
+  "direction": "down",
+  "body": {
+    "width": 19,
+    "height": 19,
+    "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAANElEQVR42mNgGAWjYBTQGri5xf1/cHQLBgaJk2XYv7cPMTDZhsEwzBAYpsib6OyBNWx4AQARkWDLvnJPkgAAAABJRU5ErkJggg=="
+  },
+  "clothes": {
+    "width": 19,
+    "height": 19,
+    "dataURL": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAJUlEQVR42mNgGAWjYBQMOfD/////RVP3/UemKTYUZNBo0A4BAADHZRRB9DNKRgAAAABJRU5ErkJggg=="
+  },
+  "soles": [
+    [
+      7,
+      14
+    ],
+    [
+      8,
+      14
+    ],
+    [
+      10,
+      14
+    ],
+    [
+      11,
+      14
+    ],
+    [
+      7,
+      15
+    ],
+    [
+      8,
+      15
+    ],
+    [
+      10,
+      15
+    ],
+    [
+      11,
+      15
+    ]
+  ],
+  "reference": "user screenshot codex-clipboard-08e4d92e-dfd8-46eb-bc36-789605fa3588.png",
+  "correction": "two shoulder-strap pixels are blue, not yellow"
+}

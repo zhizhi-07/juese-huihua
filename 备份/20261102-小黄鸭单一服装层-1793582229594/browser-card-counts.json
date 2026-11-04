@@ -1,0 +1,14 @@
+[
+  {
+    "direction": "正面",
+    "clothingCards": 1
+  },
+  {
+    "direction": "侧面",
+    "clothingCards": 1
+  },
+  {
+    "direction": "背面",
+    "clothingCards": 1
+  }
+]

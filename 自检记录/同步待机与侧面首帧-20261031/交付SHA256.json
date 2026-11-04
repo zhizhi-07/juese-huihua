@@ -1,0 +1,40 @@
+{
+  "originalBackupSha256": "036cb1c50770f9a5963f14b2fc49e9c02491a2156e2fe449667d63007d9c1756",
+  "finalApiSha256": "3b3d24244a3e24242df7165320649c8c2ba4c3682c1eae128baf56eebad41800",
+  "finalETag": "\"3b3d24244a3e24242df7165320649c8c2ba4c3682c1eae128baf56eebad41800\"",
+  "scriptSha256": "969c0cd0c269c8e68b36ed94e9b6f35b1bab10042ad20b19e242ac4f46ebc60d",
+  "files": [
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\candidate.json",
+      "sha256": "3b3d24244a3e24242df7165320649c8c2ba4c3682c1eae128baf56eebad41800"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\api-readback.json",
+      "sha256": "3b3d24244a3e24242df7165320649c8c2ba4c3682c1eae128baf56eebad41800"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\verification.json",
+      "sha256": "4d222a70edeecad637c43b357b8dc0e0e22fbac87072b207d9f5ae175d98db4c"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\本次图层差异.json",
+      "sha256": "81c420a83423289f4f2fd2491468f39a268ab022a3da9e5d06fe2f0d63348b9d"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\待机侧面-实际动画预览路径-12341.png",
+      "sha256": "93c803dbce3e107e58f4f73031125aa50fed87a6acd0185c1147bef755a7e5b7"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\坐姿侧面首帧-预览.png",
+      "sha256": "b83906c2a28e1323be9d0cd2ac7a228d422a69bd15d83b1705a38fa7322ac6ed"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\待机侧面四帧-同步前后.png",
+      "sha256": "3db4bd70e43f9f4c4200f159857e7b1fbca17d689de69ad7faaa4cca522a1d1a"
+    },
+    {
+      "file": "C:\\Users\\Administrator\\Desktop\\角色绘画\\自检记录\\同步待机与侧面首帧-20261031\\坐姿侧面首帧-前后与脸内范围.png",
+      "sha256": "7e9c357d4312267bb0c8fc9ed1343dcb98fadb3e7da9387cb6b0ca329a814eea"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert');
 global.window=global;const listeners={};global.addEventListener=(name,fn)=>listeners[name]=fn;global.document={addEventListener(){}};global.PE={};
-for(const name of ['app','animation'])vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/'+name+'.js'),'utf8'));
-const app=Object.create(PE.App.prototype);app.project={currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:2};app.animationPlayer={setAction(){app.project.currentFrameIndex=0},_renderPreviewFrame(){}};
+for(const name of ['core','app','animation'])vm.runInThisContext(fs.readFileSync(path.resolve(__dirname,'../js/'+name+'.js'),'utf8'));
+const app=Object.create(PE.App.prototype);app.project={spriteSheets:[{name:"original32_idle"}],layers:[],currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:2,getCurrentLayer:()=>null};app.animationPlayer={setAction(){app.project.currentFrameIndex=0},_renderPreviewFrame(){}};
 for(const name of ['updateSheetList','updateActionList','updateFrameList','updateLayerList','updatePalette','updateToolbar','updateConfigPanels','updateStatusBar','updateZoomDisplay','updateHistoryButtons'])app[name]=()=>assert.equal(app.project.currentFrameIndex,2,'selected frame must be restored before rendering UI');
 app.updateAll();assert.equal(app.animationPlayer.currentFrame,2);
 let redraws=0;app.updateFrameList=()=>redraws++;app.canvasManager={screenToPixel(){return{x:1,y:1}},render(){}};app.toolManager={isDrawing:false,onMouseUp(){this.isDrawing=false}};

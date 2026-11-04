@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "ee97a0d06b6bb067d0be2c138fe147e7e4ac7c06840fdf61ddcb63835cff5bba",
+      "afterSHA256": "9b4d5c1d4555ae5be7673dad79ad128cbebe4efb8b06cc8634b142e8ca5c6245"
+    },
+    {
+      "path": "js/export.js",
+      "sha256": "5566a657204cc4dd0d489bc2e23f672945e65c1d3635dec3ada70c0785f7a89b",
+      "afterSHA256": "8b5c9e42ce2b7cb5aa48feea9376fe0b0edd889319ea7fbaf41caaeeea7dfc6d"
+    }
+  ],
+  "sourceProject": "draft-rescue-user-1793606533990-88874a6a",
+  "commands": [],
+  "sourceETag": "\"a5f9511bc056e2583c069f03a7635a52a956e501fe205a1a8ebb804c736fa11a\"",
+  "sourceSHA256": "a5f9511bc056e2583c069f03a7635a52a956e501fe205a1a8ebb804c736fa11a",
+  "added": [
+    {
+      "path": "js/hair-animation.js",
+      "sha256": "a06280c4fc17ee0193a73f5199c75d6c01f448711b60113a10c54b1abfb200e8"
+    },
+    {
+      "path": "css/hair-animation.css",
+      "sha256": "48db0578702dda41f95333cc478f81e2b85e359c523e1b35347d2761791e1707"
+    },
+    {
+      "path": "test/hair-animation.cjs",
+      "sha256": "2f7d8bbada6ea5b06a05a3a772aef90a70493a9243b95124fd5fe28c3492f577"
+    },
+    {
+      "path": "scripts/setup-hair-link-test.cjs",
+      "sha256": "ea981cf6d20bf8d0804cf1a1c202bf9aa468bb4bf5663a1f14250bdaa4cb6a7e"
+    }
+  ]
+}

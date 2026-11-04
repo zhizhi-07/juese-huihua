@@ -1,0 +1,7 @@
+{
+  "browserFixture": "C:/Users/ADMINI~1/AppData/Local/Temp/free-placement-test-BaOnMe/js/tools.js",
+  "browserToolsSHA256": "7c85d96fd6ba4bfe8e5cfc5b15ae3e3ddd5af85f055d1868db5a0b5f3448645b",
+  "finalToolsSHA256": "a1ad3e5e0277b8a3bbb82c9b25703bb4c91e8d0b5c898ee264b56c15e78c66e2",
+  "difference": "Final version additionally handles padded whole-image marquees and rejects source dimensions above 32767; final three unit suites cover these follow-up changes.",
+  "realUserPageReloaded": false
+}

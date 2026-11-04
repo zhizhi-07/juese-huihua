@@ -1,0 +1,1 @@
+PASS: side front hair frames 1-3 synced from user frame 4; roots follow head, lower tip fixed; frame 4 and all other data unchanged; render/export match; saved=true

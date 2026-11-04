@@ -1,0 +1,43 @@
+{
+  "changes": [
+    {
+      "layer": 64,
+      "key": "3_1_0",
+      "changedPixels": 2
+    },
+    {
+      "layer": 64,
+      "key": "3_1_1",
+      "changedPixels": 2
+    },
+    {
+      "layer": 64,
+      "key": "3_1_2",
+      "changedPixels": 2
+    },
+    {
+      "layer": 64,
+      "key": "3_1_3",
+      "changedPixels": 2
+    }
+  ],
+  "totalPixels": 8,
+  "allOtherDataUnchanged": true,
+  "referencePixelGrid": {
+    "origin": [
+      41,
+      12
+    ],
+    "step": 19,
+    "screenshotDifferencePixels": [
+      [
+        8,
+        12
+      ],
+      [
+        10,
+        12
+      ]
+    ]
+  }
+}

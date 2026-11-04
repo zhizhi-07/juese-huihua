@@ -1,0 +1,32 @@
+[
+  {
+    "path": "TV/Female/TV_FrontHair1_p80008.png",
+    "sha256": "e6a9212e1c45d852ce39a4ad504bd34fb9ec5901d72c2fb4b162f865a12741ba",
+    "width": 144,
+    "height": 192
+  },
+  {
+    "path": "TV/Female/TV_RearHair1_p80010.png",
+    "sha256": "0bfa56b730991822e55b62712af85d706343006614c547616f57f32d95ffaed8",
+    "width": 144,
+    "height": 192
+  },
+  {
+    "path": "TV/Female/TV_RearHair2_p80010.png",
+    "sha256": "c3e5002f29837522b9c3792e1aa8d0444d7a4309142a6624d34dfa101435cadd",
+    "width": 144,
+    "height": 192
+  },
+  {
+    "path": "Variation/Female/icon_FrontHair_p80008.png",
+    "sha256": "556d82cbbb0640298e0898a775948eb384023f0996cb421409587c914b4b53ea",
+    "width": 64,
+    "height": 64
+  },
+  {
+    "path": "Variation/Female/icon_RearHair_p80010.png",
+    "sha256": "d16329f45188bba26474e57d8629fb0e640824326d59b5e42eb0914b177182fb",
+    "width": 64,
+    "height": 64
+  }
+]

@@ -91,6 +91,17 @@ const server = http.createServer((req, res) => {
       try{
         const previous=fs.existsSync(projectFile)?fs.readFileSync(projectFile):null,current=previous?revision(projectBytes(projectFile,projectId)):'none';
         if(req.headers['if-match']!==current){res.writeHead(409);res.end('{"error":"Shared project changed; local draft retained"}');return;}
+        // Already-open pages may serialize the new borders without the new origin field.
+        if(previous){
+          const saved=JSON.parse(projectBytes(projectFile,projectId));
+          for(const sheet of project.spriteSheets){
+            const old=saved.spriteSheets.find(s=>s.name===sheet.name);if(!old?.canvasLayout||sheet.canvasLayout)continue;
+            const geometry=s=>JSON.stringify(s.actions.map(a=>[a.name,a.direction,a.frames.map(f=>[f.width,f.height,f.sourceX,f.sourceY])]));
+            if(geometry(sheet)!==geometry(old)){res.writeHead(409);res.end('{"error":"Canvas borders changed; local draft retained"}');return;}
+            sheet.canvasLayout=old.canvasLayout;
+          }
+          bytes=Buffer.from(JSON.stringify(project));
+        }
         if(!previous&&projectId.startsWith('character-')){
           try{require('./js/character-base.js')(project);bytes=Buffer.from(JSON.stringify(project));}
           catch(error){res.writeHead(400);res.end(JSON.stringify({error:error.message}));return;}

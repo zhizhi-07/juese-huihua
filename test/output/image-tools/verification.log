@@ -1,0 +1,24 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+> node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+exit=0
+> node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+exit=0
+> node test/image-transform.cjs
+PASS: live drag preview; image picking; proportional resizing and handle; atomic undo/redo; bounds and lock protection; frame-switch cancellation.
+exit=0
+> node test/image-import-browser.cjs
+PASS: browser upload; crop/move/resize; canvas toolbar flips and keying; selection and whole-layer editing; undo; reselect; keyboard nudge; no page errors.
+exit=0
+> node test/editor-cleanup.cjs
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+exit=0
+> node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+exit=0
+> node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+exit=0

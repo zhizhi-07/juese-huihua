@@ -1,0 +1,997 @@
+diff --git "a/\345\244\207\344\273\275\\\345\244\264\345\217\221\350\207\252\345\212\250\345\257\271\346\257\224\351\241\265-20261103-081220\\hair-auto-demo.html" b/hair-auto-demo.html
+index ef65b83..bc7c8d6 100644
+--- "a/\345\244\207\344\273\275\\\345\244\264\345\217\221\350\207\252\345\212\250\345\257\271\346\257\224\351\241\265-20261103-081220\\hair-auto-demo.html"
++++ b/hair-auto-demo.html
+@@ -26,7 +26,7 @@
+     background: repeating-conic-gradient(#23262d 0 25%, #1a1c21 0 50%) 0 0 / 16px 16px;
+     border-radius: 8px; max-width: 100%;
+   }
+-  .controls { min-width: 280px; }
++  .controls { width: 340px; max-width: 100%; }
+   .field { margin: 10px 0; }
+   .field label { display: block; color: #b8c0cc; font-size: 12px; margin-bottom: 4px; }
+   select {
+@@ -35,7 +35,7 @@
+   }
+   .row { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+   .row label { width: 96px; color: #b8c0cc; font-size: 13px; }
+-  .row input[type=range] { flex: 1; }
++  .row input[type=range] { flex: 1; min-width: 0; }
+   .row .val { width: 40px; text-align: right; color: #ffd479; font-variant-numeric: tabular-nums; }
+   .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+   button {
+@@ -45,6 +45,8 @@
+   button:hover { background: #333a45; }
+   button.active { background: #ffd479; color: #1a1c21; border-color: #ffd479; font-weight: 600; }
+   .status { color: #9aa3b2; font-size: 12px; margin-top: 10px; }
++  body[data-background="light"] canvas { background: #ece8e0; }
++  body[data-background="dark"] canvas { background: #090b10; }
+   .err { color: #ff8b8b; white-space: pre-wrap; }
+ </style>
+ </head>
+@@ -53,414 +55,56 @@
+   <h1>头发自动飘动 · 左右对比原型</h1>
+   <p class="note">
+     左 = <b>原版成品</b>　·　右 = <b>算法从「一帧」自动生成的草稿</b>（只替换这块后发，身体/头/衣服仍用原版）。
+-    顶部可切换不同工程和发型（例如双马尾）。参数随便拖，看哪种最接近。
++    仅在本页预览行走，不保存或修改工程。发根跟随头部，涂抹控制额外摆动。
+   </p>
+ </header>
+ 
+ <div class="wrap">
+   <div class="panel">
+     <h2>原版成品 <span class="tag orig">原版</span></h2>
+-    <canvas id="left" width="256" height="288"></canvas>
++    <canvas id="left" width="256" height="288" aria-label="原版放大预览"></canvas>
++    <p class="status">原尺寸</p><canvas id="leftNative" aria-label="原版原尺寸预览"></canvas>
+   </div>
+ 
+   <div class="panel">
+     <h2>算法自动生成（草稿） <span class="tag auto">作者：算法</span></h2>
+-    <canvas id="right" width="256" height="288"></canvas>
++    <canvas id="right" width="256" height="288" aria-label="自动生成放大预览"></canvas>
++    <p class="status">原尺寸</p><canvas id="rightNative" aria-label="自动生成原尺寸预览"></canvas>
+   </div>
+ 
+   <div class="panel">
+     <h2>涂一下「只让它动的区域」 <span class="tag auto">例：只涂马尾</span></h2>
+-    <canvas id="paint"></canvas>
+-    <div class="row"><label>画笔大小</label><input id="brush" type="range" min="1" max="8" step="1" value="3"><span class="val" id="brushv">3</span></div>
+-    <div class="btns"><button id="clearMask">清空涂抹</button></div>
+-    <p class="status" style="margin-top:6px">在上面这块，用鼠标把「只让它动」的地方（如马尾）拖亮。不涂 = 整块后发都动。</p>
++    <canvas id="paint" aria-label="后发活动区域涂抹画布" style="touch-action:none"></canvas>
++    <div class="row"><label for="brush">画笔半径</label><input id="brush" type="range" min="1" max="8" step="1" value="3"><span class="val" id="brushv">3</span></div>
++    <div class="btns"><button id="eraseMask" aria-pressed="false">橡皮擦</button><button id="clearMask">清空涂抹（全部可动）</button></div>
++    <p class="status" style="margin-top:6px">拖亮活动区域；未涂处只跟随头部，不额外变形。橡皮擦擦空 = 全部锁定；清空涂抹 = 全部可动。切换工程、方向或发型会清空涂抹。</p>
+   </div>
+ 
+   <div class="panel controls">
+-    <div class="field"><label>工程</label><select id="projSel"></select></div>
+-    <div class="field"><label>后发发型</label><select id="hairSel"></select></div>
++    <div class="field"><label for="projSel">工程</label><select id="projSel"></select></div>
++    <div class="field"><label for="hairSel">后发发型</label><select id="hairSel"></select></div>
+     <h2 style="margin-top:14px">参数</h2>
+     <div class="btns" id="dirBtns">
+       <button data-ai="0">侧面</button>
+       <button data-ai="1" class="active">正面</button>
+       <button data-ai="2">背面</button>
+     </div>
+-    <div class="row"><label>上下压缩</label><input id="ampV" type="range" min="0" max="4" step="0.5" value="0"><span class="val" id="ampVv">0</span></div>
+-    <div class="row"><label>左右轻摆</label><input id="ampH" type="range" min="0" max="6" step="0.5" value="2"><span class="val" id="ampHv">2</span></div>
+-    <div class="row"><label>摆动周期</label><input id="cycles" type="range" min="0.5" max="4" step="0.5" value="1"><span class="val" id="cyclesv">1</span></div>
+-    <div class="row"><label>发梢延迟</label><input id="lag" type="range" min="0" max="1.5" step="0.1" value="0.6"><span class="val" id="lagv">0.6</span></div>
++    <div class="row"><label for="ampV">上下压缩</label><input id="ampV" type="range" min="0" max="4" step="0.5" value="0"><span class="val" id="ampVv">0</span></div>
++    <div class="row"><label for="ampH">左右轻摆</label><input id="ampH" type="range" min="0" max="6" step="0.5" value="2"><span class="val" id="ampHv">2</span></div>
++    <div class="row"><label for="cycles">每循环摆动次数</label><input id="cycles" type="range" min="1" max="4" step="1" value="1"><span class="val" id="cyclesv">1</span></div>
++    <div class="row"><label for="lag">发梢延迟</label><input id="lag" type="range" min="0" max="1.5" step="0.1" value="0.6"><span class="val" id="lagv">0.6</span></div>
+     <div class="btns">
+       <button id="playBtn" class="active">暂停</button>
+-      <button id="reset">恢复默认</button>
++      <button id="prevFrame">上一帧</button><button id="nextFrame">下一帧</button>
++      <button id="reset">恢复参数默认</button>
+     </div>
+-    <div class="status" id="status">加载中…</div>
++    <div class="status" id="frameInfo" aria-live="polite"></div>
++    <div class="field"><label for="background">检查背景</label><select id="background"><option value="checker">透明棋盘</option><option value="light">浅色</option><option value="dark">深色</option></select></div>
++    <div class="status" id="status" role="status">加载中…</div>
+   </div>
+ </div>
+ 
+-<script>
+-(function () {
+-  'use strict';
+-  const qs = new URLSearchParams(location.search);
+-  const DEFAULT_ID = 'draft-user-canvas-merged-1793608789349-dbd059d3';
+-  const SHEET_NAME = 'original32_walk';
+-  const FPS = 10;
+-  const SCALE = 8;
+-
+-  let projectId = qs.get('id') || DEFAULT_ID;
+-  let project = null;
+-  let sheetIndex = -1;
+-  let ai = Number(qs.get('ai') || 1);   // 0=side 1=down 2=up
+-  let N = 8;
+-  let FW = 32, FH = 36;
+-  let hairLayerIndex = 0;
+-  let visibleLayers = [];
+-  let imgCache = {};
+-  let baseHairImg = null;
+-  let generated = [];
+-  let playing = true;
+-  let startTime = 0;
+-  let lastFrame = -1;
+-
+-  const params = { ampV: 0, ampH: 2, cycles: 1, lag: 0.6 };
+-
+-  const leftCanvas = document.getElementById('left');
+-  const rightCanvas = document.getElementById('right');
+-  const lctx = leftCanvas.getContext('2d');
+-  const rctx = rightCanvas.getContext('2d');
+-  const statusEl = document.getElementById('status');
+-  const projSel = document.getElementById('projSel');
+-  const hairSel = document.getElementById('hairSel');
+-
+-  // paint-to-select mask (which pixels are allowed to move)
+-  const paintCanvas = document.getElementById('paint');
+-  const pctx = paintCanvas.getContext('2d');
+-  let mask = null;         // Uint8Array FW*FH or null(=整块都动)
+-  let brushSize = 3;
+-  let painting = false;
+-
+-  // offscreen buffers (resized per project)
+-  const comp = document.createElement('canvas');
+-  const cctx = comp.getContext('2d');
+-  const gen = document.createElement('canvas');
+-  const gctx = gen.getContext('2d');
+-
+-  function setCanvasSize() {
+-    leftCanvas.width = rightCanvas.width = FW * SCALE;
+-    leftCanvas.height = rightCanvas.height = FH * SCALE;
+-    lctx.imageSmoothingEnabled = false;
+-    rctx.imageSmoothingEnabled = false;
+-    comp.width = gen.width = FW;
+-    comp.height = gen.height = FH;
+-    cctx.imageSmoothingEnabled = false;
+-    gctx.imageSmoothingEnabled = false;
+-    paintCanvas.width = FW * SCALE;
+-    paintCanvas.height = FH * SCALE;
+-    pctx.imageSmoothingEnabled = false;
+-    mask = null;
+-  }
+-
+-  function paintRender() {
+-    pctx.clearRect(0, 0, paintCanvas.width, paintCanvas.height);
+-    if (baseHairImg) {
+-      pctx.imageSmoothingEnabled = false;
+-      pctx.globalAlpha = 0.6;
+-      pctx.drawImage(baseHairImg, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+-      pctx.globalAlpha = 1;
+-    }
+-    // draw mask overlay
+-    if (mask) {
+-      const tmp = document.createElement('canvas');
+-      tmp.width = FW; tmp.height = FH;
+-      const tctx = tmp.getContext('2d');
+-      const im = tctx.createImageData(FW, FH);
+-      for (let i = 0; i < FW * FH; i++) {
+-        if (mask[i]) { im.data[i * 4] = 120; im.data[i * 4 + 1] = 220; im.data[i * 4 + 2] = 255; im.data[i * 4 + 3] = 150; }
+-      }
+-      tctx.putImageData(im, 0, 0);
+-      pctx.imageSmoothingEnabled = false;
+-      pctx.drawImage(tmp, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+-    }
+-  }
+-
+-  function stampMask(clientX, clientY) {
+-    const rect = paintCanvas.getBoundingClientRect();
+-    const px = Math.floor((clientX - rect.left) / rect.width * FW);
+-    const py = Math.floor((clientY - rect.top) / rect.height * FH);
+-    if (!mask) mask = new Uint8Array(FW * FH);
+-    const r = brushSize;
+-    for (let yy = -r; yy <= r; yy++) for (let xx = -r; xx <= r; xx++) {
+-      if (xx * xx + yy * yy > r * r) continue;
+-      const X = px + xx, Y = py + yy;
+-      if (X < 0 || X >= FW || Y < 0 || Y >= FH) continue;
+-      mask[Y * FW + X] = 1;
+-    }
+-    paintRender();
+-    generate();
+-    lastFrame = -1;
+-  }
+-
+-  function loadImg(dataURL) {
+-    return new Promise((resolve, reject) => {
+-      const img = new Image();
+-      img.onload = () => resolve(img);
+-      img.onerror = () => reject(new Error('图片加载失败'));
+-      img.src = dataURL;
+-    });
+-  }
+-
+-  // collect all visible 后发 layers that animate on this sheet
+-  function hairCandidates() {
+-    const out = [];
+-    project.layers.forEach((l, i) => {
+-      if (!/后发/.test(l.name || '')) return;
+-      if (l.visible === false) return;
+-      let cnt = 0;
+-      for (let t = 0; t < N; t++) if (l.frameData[`${sheetIndex}_${ai}_${t}`]) cnt++;
+-      if (cnt) out.push({ i, name: l.name, cnt });
+-    });
+-    out.sort((a, b) => b.cnt - a.cnt);
+-    return out;
+-  }
+-
+-  async function preloadDir() {
+-    imgCache = {};
+-    const tasks = [];
+-    for (const { i, layer } of visibleLayers) {
+-      for (let t = 0; t < N; t++) {
+-        const fd = layer.frameData[`${sheetIndex}_${ai}_${t}`];
+-        if (!fd) continue;
+-        tasks.push(loadImg(fd.dataURL).then(img => { imgCache[`${i}_${t}`] = img; }));
+-      }
+-    }
+-    await Promise.all(tasks);
+-    const hairLayer = project.layers[hairLayerIndex];
+-    const base0 = hairLayer.frameData[`${sheetIndex}_${ai}_0`];
+-    baseHairImg = await loadImg(base0.dataURL);
+-  }
+-
+-  // ---- generation: base frame -> N squashed/swayed frames ----
+-  function generate() {
+-    if (!baseHairImg) return;
+-    gctx.clearRect(0, 0, FW, FH);
+-    gctx.drawImage(baseHairImg, 0, 0);
+-    const base = gctx.getImageData(0, 0, FW, FH);
+-    const src = base.data, W = FW, H = FH;
+-
+-    let minY = H, maxY = -1;
+-    for (let y = 0; y < H; y++)
+-      for (let x = 0; x < W; x++)
+-        if (src[(y * W + x) * 4 + 3]) { if (y < minY) minY = y; if (y > maxY) maxY = y; }
+-    const span = Math.max(1, maxY - minY);
+-
+-    // mask bounds — only over pixels that are BOTH painted AND actual hair,
+-    // so painting a bit over empty space doesn't dilute the sway gradient.
+-    let hasMask = false, maskTop = minY, maskBot = maxY;
+-    if (mask) {
+-      maskTop = H; maskBot = -1;
+-      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+-        if (mask[y * W + x] && src[(y * W + x) * 4 + 3]) { hasMask = true; if (y < maskTop) maskTop = y; if (y > maskBot) maskBot = y; }
+-      }
+-      if (!hasMask) { maskTop = minY; maskBot = maxY; }
+-    }
+-    const maskSpan = Math.max(1, maskBot - maskTop);
+-
+-    generated = [];
+-    for (let t = 0; t < N; t++) {
+-      const bob = 0.5 - 0.5 * Math.cos(2 * Math.PI * 2 * t / N);        // 上下：每循环 2 次（跟步子）
+-      const swayPhase = 2 * Math.PI * params.cycles * t / N;            // 左右：每循环 cycles 次
+-      const out = new ImageData(W, H);
+-      const od = out.data;
+-      for (let y = 0; y < H; y++) {
+-        for (let x = 0; x < W; x++) {
+-          const si = (y * W + x) * 4;
+-          if (!src[si + 3]) continue;
+-          let w;
+-          if (hasMask) {
+-            if (!mask[y * W + x]) w = 0;                 // 没涂到 → 原地不动
+-            else w = Math.max(0, Math.min(1, (y - maskTop) / maskSpan));
+-          } else {
+-            w = Math.max(0, Math.min(1, (y - minY) / span));  // 0=发根 1=发梢
+-          }
+-          const dy = Math.round(params.ampV * bob * (1 - w));
+-          const dx = Math.round(params.ampH * w * Math.sin(swayPhase - params.lag * w));
+-          const X = x + dx, Y = y + dy;
+-          if (X < 0 || X >= W || Y < 0 || Y >= H) continue;
+-          const di = (Y * W + X) * 4;
+-          od[di] = src[si]; od[di + 1] = src[si + 1]; od[di + 2] = src[si + 2]; od[di + 3] = src[si + 3];
+-        }
+-      }
+-      generated.push(out);
+-    }
+-  }
+-
+-  function drawCompositeTo(dispCtx, frame, useAuto) {
+-    dispCtx.clearRect(0, 0, FW * SCALE, FH * SCALE);
+-    cctx.clearRect(0, 0, FW, FH);
+-    for (const { i, layer } of visibleLayers) {
+-      if (i === hairLayerIndex && useAuto) {
+-        if (generated[frame]) cctx.putImageData(generated[frame], 0, 0);
+-        continue;
+-      }
+-      const img = imgCache[`${i}_${frame}`];
+-      if (!img) continue;
+-      const fd = layer.frameData[`${sheetIndex}_${ai}_${frame}`];
+-      const p = fd && fd.placement;
+-      if (p) cctx.drawImage(img, p.x, p.y, p.w, p.h);
+-      else cctx.drawImage(img, 0, 0, FW, FH);
+-    }
+-    dispCtx.imageSmoothingEnabled = false;
+-    dispCtx.drawImage(comp, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+-  }
+-
+-  function render(now) {
+-    if (!project) { requestAnimationFrame(render); return; }
+-    let frame;
+-    if (playing) {
+-      if (!startTime) startTime = now;
+-      frame = Math.floor((now - startTime) / (1000 / FPS)) % N;
+-    } else {
+-      frame = lastFrame < 0 ? 0 : lastFrame;
+-    }
+-    if (frame !== lastFrame) {
+-      drawCompositeTo(lctx, frame, false);
+-      drawCompositeTo(rctx, frame, true);
+-      lastFrame = frame;
+-    }
+-    requestAnimationFrame(render);
+-  }
+-
+-  async function loadDir() {
+-    statusEl.textContent = '加载素材…';
+-    try {
+-      await preloadDir();
+-      generate();
+-      paintRender();
+-      lastFrame = -1;
+-      statusEl.textContent = `就绪 · ${FW}×${FH} · 左右同步播放（10fps）`;
+-    } catch (e) {
+-      statusEl.innerHTML = '<span class="err">' + e.message + '</span>';
+-    }
+-  }
+-
+-  async function pickHair(idx) {
+-    hairLayerIndex = idx;
+-    await loadDir();
+-  }
+-
+-  async function openProject() {
+-    statusEl.textContent = '读取工程…';
+-    const res = await fetch('/api/project?id=' + encodeURIComponent(projectId));
+-    if (!res.ok) throw new Error('读取工程失败 HTTP ' + res.status);
+-    project = await res.json();
+-    sheetIndex = project.spriteSheets.findIndex(s => s.name === SHEET_NAME);
+-    if (sheetIndex < 0) throw new Error('该工程没有 ' + SHEET_NAME + ' 动作表');
+-    const sheet = project.spriteSheets[sheetIndex];
+-    const act = sheet.actions[ai] || sheet.actions[0];
+-    N = (act.frames && act.frames.length) || 8;
+-
+-    visibleLayers = project.layers
+-      .map((layer, i) => ({ i, layer }))
+-      .filter(({ layer }) => layer.visible !== false && layer.frameData);
+-
+-    const cands = hairCandidates();
+-    hairSel.innerHTML = '';
+-    cands.forEach((c) => {
+-      const opt = document.createElement('option');
+-      opt.value = c.i; opt.textContent = c.name;
+-      hairSel.appendChild(opt);
+-    });
+-    if (!cands.length) throw new Error('这个工程在这张表里没有可动的后发');
+-    hairLayerIndex = cands[0].i;
+-    hairSel.value = String(hairLayerIndex);
+-
+-    // size to the actual art of the hair frame (cells may be padded larger than the art)
+-    const baseFd = project.layers[hairLayerIndex].frameData[`${sheetIndex}_${ai}_0`];
+-    FW = (baseFd && baseFd.width) || sheet.frameWidth;
+-    FH = (baseFd && baseFd.height) || sheet.frameHeight;
+-    setCanvasSize();
+-
+-    await loadDir();
+-  }
+-
+-  // ---- controls ----
+-  function bindRange(id, key) {
+-    const el = document.getElementById(id);
+-    const out = document.getElementById(id + 'v');
+-    el.addEventListener('input', () => {
+-      params[key] = parseFloat(el.value);
+-      out.textContent = el.value;
+-      generate(); lastFrame = -1;
+-    });
+-  }
+-  bindRange('ampV', 'ampV'); bindRange('ampH', 'ampH'); bindRange('cycles', 'cycles'); bindRange('lag', 'lag');
+-
+-  // brush size + clear
+-  const brushEl = document.getElementById('brush');
+-  brushEl.addEventListener('input', () => { brushSize = parseInt(brushEl.value, 10); document.getElementById('brushv').textContent = brushEl.value; });
+-  document.getElementById('clearMask').addEventListener('click', () => { mask = null; paintRender(); generate(); lastFrame = -1; });
+-
+-  // paint strokes
+-  paintCanvas.addEventListener('pointerdown', (e) => { painting = true; try { paintCanvas.setPointerCapture(e.pointerId); } catch (_) {} stampMask(e.clientX, e.clientY); });
+-  paintCanvas.addEventListener('pointermove', (e) => { if (painting) stampMask(e.clientX, e.clientY); });
+-  paintCanvas.addEventListener('pointerup', (e) => { painting = false; try { paintCanvas.releasePointerCapture(e.pointerId); } catch (_) {} });
+-  paintCanvas.addEventListener('pointercancel', () => { painting = false; });
+-  paintCanvas.addEventListener('pointerleave', () => { painting = false; });
+-
+-  document.querySelectorAll('#dirBtns button').forEach(b => {
+-    b.classList.toggle('active', Number(b.dataset.ai) === ai);
+-    b.addEventListener('click', async () => {
+-      ai = Number(b.dataset.ai);
+-      document.querySelectorAll('#dirBtns button').forEach(x => x.classList.toggle('active', x === b));
+-      await openProject();
+-    });
+-  });
+-
+-  const playBtn = document.getElementById('playBtn');
+-  playBtn.addEventListener('click', () => {
+-    playing = !playing;
+-    playBtn.textContent = playing ? '暂停' : '播放';
+-    playBtn.classList.toggle('active', playing);
+-    if (playing) startTime = 0;
+-  });
+-
+-  document.getElementById('reset').addEventListener('click', () => {
+-    params.ampV = 0; params.ampH = 2; params.cycles = 1; params.lag = 0.6;
+-    for (const [k, v] of [['ampV', 0], ['ampH', 2], ['cycles', 1], ['lag', 0.6]]) {
+-      document.getElementById(k).value = v; document.getElementById(k + 'v').textContent = v;
+-    }
+-    generate(); lastFrame = -1;
+-  });
+-
+-  hairSel.addEventListener('change', () => pickHair(Number(hairSel.value)));
+-  projSel.addEventListener('change', () => {
+-    projectId = projSel.value;
+-    const u = new URL(location.href); u.searchParams.set('id', projectId); history.replaceState(null, '', u);
+-    openProject().catch(e => { statusEl.innerHTML = '<span class="err">' + e.message + '</span>'; });
+-  });
+-
+-  // ---- boot ----
+-  (async function boot() {
+-    try {
+-      // populate project list
+-      try {
+-        const list = await (await fetch('/api/projects')).json();
+-        projSel.innerHTML = '';
+-        list.forEach(pr => {
+-          const opt = document.createElement('option');
+-          opt.value = pr.id; opt.textContent = pr.name + '  [' + pr.id + ']';
+-          projSel.appendChild(opt);
+-        });
+-        projSel.value = projectId;
+-      } catch (_) { projSel.style.display = 'none'; }
+-      await openProject();
+-      requestAnimationFrame(render);
+-    } catch (e) {
+-      statusEl.innerHTML = '<span class="err">' + e.message + '</span>';
+-    }
+-  })();
+-
+-  window.__demo = { getGenerated: () => generated, getMask: () => mask, getFrame: () => lastFrame, getFW: () => FW, getFH: () => FH, params, generate };
+-})();
+-</script>
++<script src="js/core.js?v=layer-solo-1"></script>
++<script src="js/hair-auto-demo.js?v=20261103-1"></script>
+ </body>
+ </html>
+diff --git a/js/hair-auto-demo.js b/js/hair-auto-demo.js
+new file mode 100644
+index 0000000..f6ee574
+--- /dev/null
++++ b/js/hair-auto-demo.js
+@@ -0,0 +1,312 @@
++/* Read-only comparison: never writes project data. */
++(() => {
++  'use strict';
++  const $ = id => document.getElementById(id);
++  const qs = new URLSearchParams(location.search), SCALE = 8;
++  const defaults = { ampV: 0, ampH: 2, cycles: 1, lag: 0.6 };
++  const params = { ...defaults };
++  let projectId = qs.get('id') || 'draft-user-canvas-merged-1793608789349-dbd059d3';
++  let ai = [0, 1, 2].includes(Number(qs.get('ai'))) ? Number(qs.get('ai')) : 1;
++  if (!qs.has('ai')) ai = 1;
++  let project, sheetIndex, hairLayerIndex, visibleLayers = [], imgCache = {};
++  let N = 0, FW = 32, FH = 36, baseHair = null, headOffsets = [], generated = [];
++  let durations = [], starts = [], total = 0, clipped = 0;
++  let mask = null, painting = false, erasing = false, previousPoint = null;
++  let ready = false, loadVersion = 0, playing = true, currentFrame = 0, lastFrame = -1, startTime = null;
++  const comp = document.createElement('canvas'), cctx = comp.getContext('2d');
++  const gen = document.createElement('canvas'), gctx = gen.getContext('2d');
++  const paint = $('paint'), pctx = paint.getContext('2d');
++
++  function sizeCanvases() {
++    for (const id of ['left', 'right', 'paint', 'leftNative', 'rightNative']) {
++      const c = $(id), scale = id.endsWith('Native') ? 1 : SCALE;
++      c.width = FW * scale; c.height = FH * scale;
++      c.getContext('2d').imageSmoothingEnabled = false;
++    }
++    comp.width = gen.width = FW; comp.height = gen.height = FH;
++    cctx.imageSmoothingEnabled = gctx.imageSmoothingEnabled = false;
++    paint.closest('.panel').style.width = `${FW * SCALE + 30}px`;
++    paint.closest('.panel').style.maxWidth = '100%';
++    mask = null; painting = false; previousPoint = null;
++  }
++
++  function loadImg(url) {
++    return new Promise((resolve, reject) => {
++      const img = new Image();
++      img.onload = () => resolve(img);
++      img.onerror = () => reject(new Error('图片加载失败'));
++      img.src = url;
++    });
++  }
++
++  function drawImage(ctx, img, fd) {
++    const r = fd.placement || { x: 0, y: 0, w: img.width, h: img.height };
++    ctx.drawImage(img, r.x, r.y, r.w, r.h);
++  }
++
++  // Ignore isolated stray pixels: anchor to the largest connected head component.
++  function headAnchor(data, w, h) {
++    const seen = new Uint8Array(w * h);
++    let best = null;
++    for (let i = 0; i < seen.length; i++) {
++      if (seen[i] || !data[i * 4 + 3]) continue;
++      const queue = [i]; seen[i] = 1;
++      let left = w, right = 0, top = h;
++      for (let j = 0; j < queue.length; j++) {
++        const at = queue[j], x = at % w, y = Math.floor(at / w);
++        left = Math.min(left, x); right = Math.max(right, x); top = Math.min(top, y);
++        for (const next of [x > 0 ? at - 1 : -1, x + 1 < w ? at + 1 : -1, at - w, at + w]) {
++          if (next < 0 || next >= seen.length || seen[next] || !data[next * 4 + 3]) continue;
++          seen[next] = 1; queue.push(next);
++        }
++      }
++      if (!best || queue.length > best.count) best = { x: (left + right) / 2, y: top, count: queue.length };
++    }
++    return best;
++  }
++
++  function frameAt(elapsed) {
++    const t = ((elapsed % total) + total) % total;
++    for (let i = 0; i < N; i++) if (t < starts[i] + durations[i]) return i;
++    return N - 1;
++  }
++
++  function generate() {
++    if (!baseHair) return;
++    const src = baseHair.data;
++    let top = FH, bottom = -1;
++    for (let i = 0; i < FW * FH; i++) {
++      if (!src[i * 4 + 3] || (mask && !mask[i])) continue;
++      top = Math.min(top, Math.floor(i / FW)); bottom = Math.max(bottom, Math.floor(i / FW));
++    }
++    const span = Math.max(1, bottom - top);
++    generated = []; clipped = 0;
++    for (let t = 0; t < N; t++) {
++      const phase = 2 * Math.PI * starts[t] / total;
++      const bob = 0.5 - 0.5 * Math.cos(2 * phase);
++      const out = new ImageData(FW, FH), locked = new Uint8Array(FW * FH);
++      const offset = headOffsets[t];
++      // Fixed pixels win collisions, so moving a selected fragment cannot erase its neighbours.
++      for (let pass = 0; pass < 2; pass++) for (let y = 0; y < FH; y++) for (let x = 0; x < FW; x++) {
++        const i = y * FW + x, si = i * 4;
++        if (!src[si + 3]) continue;
++        const w = mask && !mask[i] ? 0 : Math.max(0, Math.min(1, (y - top) / span));
++        if ((w === 0 ? 0 : 1) !== pass) continue;
++        // Subtract the initial displacement to keep the source pose intact at frame one.
++        const dx = Math.round(params.ampH * w * (Math.sin(params.cycles * phase - params.lag * w) - Math.sin(-params.lag * w)));
++        const dy = -Math.round(params.ampV * bob * w);
++        const X = x + offset.x + dx, Y = y + offset.y + dy;
++        if (X < 0 || X >= FW || Y < 0 || Y >= FH) { clipped++; continue; }
++        const di = Y * FW + X;
++        if (pass && locked[di]) continue;
++        out.data.set(src.subarray(si, si + 4), di * 4);
++        if (!pass) locked[di] = 1;
++      }
++      generated.push(out);
++    }
++    lastFrame = -1;
++    $('status').textContent = `就绪 · 行走 · ${FW}×${FH} · ${N}帧 / ${Math.round(total)}ms · 按工程时长播放` +
++      (clipped ? ` · 警告：各帧合计${clipped}个源像素超出画布，请减小幅度` : '');
++  }
++
++  function paintRender() {
++    pctx.clearRect(0, 0, paint.width, paint.height);
++    if (!baseHair) return;
++    gctx.clearRect(0, 0, FW, FH); gctx.putImageData(baseHair, 0, 0);
++    pctx.globalAlpha = 0.6;
++    pctx.drawImage(gen, 0, 0, paint.width, paint.height); pctx.globalAlpha = 1;
++    if (mask) {
++      pctx.fillStyle = 'rgba(120,220,255,.6)';
++      for (let i = 0; i < mask.length; i++) if (mask[i]) pctx.fillRect(i % FW * SCALE, Math.floor(i / FW) * SCALE, SCALE, SCALE);
++    }
++  }
++
++  function stampMask(e) {
++    if (!ready) return;
++    const rect = paint.getBoundingClientRect();
++    const point = { x: Math.floor((e.clientX - rect.left) / rect.width * FW), y: Math.floor((e.clientY - rect.top) / rect.height * FH) };
++    if (!mask) mask = new Uint8Array(FW * FH);
++    const from = previousPoint || point, steps = Math.max(1, Math.abs(point.x - from.x), Math.abs(point.y - from.y));
++    const r = Number($('brush').value);
++    for (let step = 0; step <= steps; step++) {
++      const cx = Math.round(from.x + (point.x - from.x) * step / steps), cy = Math.round(from.y + (point.y - from.y) * step / steps);
++      for (let y = -r; y <= r; y++) for (let x = -r; x <= r; x++) {
++        const X = cx + x, Y = cy + y;
++        if (x * x + y * y <= r * r && X >= 0 && X < FW && Y >= 0 && Y < FH) mask[Y * FW + X] = erasing ? 0 : 1;
++      }
++    }
++    previousPoint = point; paintRender(); generate();
++  }
++
++  function drawComposite(frame, auto) {
++    cctx.globalAlpha = 1; cctx.clearRect(0, 0, FW, FH);
++    for (const { i, layer } of visibleLayers) {
++      cctx.globalAlpha = Math.max(0, Math.min(1, layer.opacity ?? 1));
++      if (i === hairLayerIndex && auto) {
++        gctx.clearRect(0, 0, FW, FH); gctx.putImageData(generated[frame], 0, 0);
++        cctx.drawImage(gen, 0, 0);
++      } else {
++        const img = imgCache[`${i}_${frame}`], fd = layer.frameData[`${sheetIndex}_${ai}_${frame}`];
++        if (img) drawImage(cctx, img, fd);
++      }
++    }
++    const id = auto ? 'right' : 'left';
++    for (const name of [id, id + 'Native']) {
++      const canvas = $(name), ctx = canvas.getContext('2d');
++      ctx.clearRect(0, 0, canvas.width, canvas.height);
++      ctx.drawImage(comp, 0, 0, canvas.width, canvas.height);
++    }
++  }
++
++  function render(now) {
++    if (ready) {
++      if (playing) {
++        if (startTime === null) startTime = now - starts[currentFrame];
++        currentFrame = frameAt(now - startTime);
++      }
++      if (lastFrame !== currentFrame) {
++        drawComposite(currentFrame, false); drawComposite(currentFrame, true);
++        $('frameInfo').textContent = `第 ${currentFrame + 1} / ${N} 帧 · ${Math.round(durations[currentFrame])}ms`;
++        lastFrame = currentFrame;
++      }
++    }
++    requestAnimationFrame(render);
++  }
++
++  function showError(e) {
++    ready = false; $('status').classList.add('err'); $('status').textContent = e.message;
++  }
++
++  function beginLoad() {
++    ready = false; baseHair = null; generated = []; mask = null;
++    $('status').classList.remove('err'); $('status').textContent = '加载素材…'; $('frameInfo').textContent = '';
++    for (const id of ['left', 'right', 'leftNative', 'rightNative', 'paint']) {
++      const c = $(id); c.getContext('2d').clearRect(0, 0, c.width, c.height);
++    }
++    return ++loadVersion;
++  }
++
++  async function loadDir(version) {
++    const p = project, si = sheetIndex, dir = ai, hi = hairLayerIndex, layers = visibleLayers;
++    const count = N, cache = {};
++    await Promise.all(layers.flatMap(({ i, layer }) => Array.from({ length: count }, async (_, t) => {
++      const fd = layer.frameData[`${si}_${dir}_${t}`];
++      if (fd) cache[`${i}_${t}`] = await loadImg(fd.dataURL);
++    })));
++    if (version !== loadVersion) return;
++    if (!cache[`${hi}_0`]) throw new Error('所选后发没有第一帧，不能生成');
++    const head = layers.find(({ i, layer }) => /^(head|头部)$/.test(layer.name) && cache[`${i}_0`]);
++    if (!head) throw new Error('缺少可见独立头部层，无法可靠跟随发根');
++    const anchors = [];
++    for (let t = 0; t < count; t++) {
++      const img = cache[`${head.i}_${t}`];
++      if (!img) throw new Error(`头部第${t + 1}帧缺失，无法跟随`);
++      gctx.clearRect(0, 0, FW, FH); drawImage(gctx, img, head.layer.frameData[`${si}_${dir}_${t}`]);
++      const a = headAnchor(gctx.getImageData(0, 0, FW, FH).data, FW, FH);
++      if (!a) throw new Error(`头部第${t + 1}帧为空，无法跟随`);
++      anchors.push(a);
++    }
++    // shortcut: track head translation, not head reshaping; larger pose changes need a separate adapter.
++    headOffsets = anchors.map(a => ({ x: Math.round(a.x - anchors[0].x), y: a.y - anchors[0].y }));
++    imgCache = cache;
++    gctx.clearRect(0, 0, FW, FH); drawImage(gctx, cache[`${hi}_0`], p.layers[hi].frameData[`${si}_${dir}_0`]);
++    baseHair = gctx.getImageData(0, 0, FW, FH);
++    if (!baseHair.data.some((v, i) => i % 4 === 3 && v)) throw new Error('所选后发第一帧为空');
++    currentFrame = 0; startTime = null; ready = true;
++    generate(); paintRender();
++  }
++
++  async function openProject() {
++    const version = beginLoad();
++    try {
++      const res = await fetch('/api/project?id=' + encodeURIComponent(projectId));
++      if (!res.ok) throw new Error('读取工程失败 HTTP ' + res.status);
++      const p = await res.json();
++      if (version !== loadVersion) return;
++      project = p;
++      sheetIndex = p.spriteSheets.findIndex(s => s.name === 'original32_walk');
++      if (sheetIndex < 0) throw new Error('该工程没有 original32_walk 动作表');
++      const sheet = p.spriteSheets[sheetIndex], act = sheet.actions[ai];
++      if (!act?.frames?.length) throw new Error('该方向没有动作帧');
++      N = act.frames.length;
++      if (!act.frames.every(f => Number.isSafeInteger(f.width) && Number.isSafeInteger(f.height) && f.width > 0 && f.height > 0)) throw new Error('动作帧尺寸无效');
++      FW = Math.max(...act.frames.map(f => f.width)); FH = Math.max(...act.frames.map(f => f.height));
++      if (FW * SCALE > 32767 || FH * SCALE > 32767 || FW * FH * SCALE * SCALE > 16 * 1024 * 1024) throw new Error('预览尺寸过大');
++      const fps = Number.isFinite(sheet.fps) && sheet.fps > 0 ? sheet.fps : 8;
++      durations = act.frames.map(f => sheet.useFrameDurations !== false && Number.isFinite(f.duration) && f.duration > 0 ? f.duration : 1000 / fps);
++      total = 0; starts = durations.map(d => { const start = total; total += d; return start; });
++      visibleLayers = PE.getRenderLayers(p, sheetIndex, ai)
++        .filter(layer => PE.isLayerVisible(p, layer, sheetIndex) && (layer.opacity ?? 1) > 0 && layer.frameData)
++        .map(layer => ({ i: p.layers.indexOf(layer), layer }));
++      const candidates = visibleLayers.filter(({ layer }) => /后发/.test(layer.name) && layer.frameData[`${sheetIndex}_${ai}_0`]);
++      $('hairSel').replaceChildren(...candidates.map(({ i, layer }) => new Option(layer.name, i)));
++      if (!candidates.length) throw new Error('该方向没有可见且含第一帧的后发');
++      hairLayerIndex = candidates[0].i; sizeCanvases();
++      await loadDir(version);
++    } catch (e) { if (version === loadVersion) showError(e); }
++  }
++
++  function setPlaying(value) {
++    playing = value; startTime = null;
++    $('playBtn').textContent = playing ? '暂停' : '播放';
++    $('playBtn').classList.toggle('active', playing);
++  }
++  $('playBtn').addEventListener('click', () => setPlaying(!playing));
++  for (const [id, step] of [['prevFrame', -1], ['nextFrame', 1]]) $(id).addEventListener('click', () => {
++    if (!ready) return;
++    setPlaying(false); currentFrame = (currentFrame + step + N) % N; lastFrame = -1;
++  });
++  for (const key of Object.keys(params)) $(key).addEventListener('input', () => {
++    params[key] = Number($(key).value); $(key + 'v').textContent = $(key).value; generate();
++  });
++  $('reset').addEventListener('click', () => {
++    Object.assign(params, defaults);
++    for (const [key, value] of Object.entries(defaults)) { $(key).value = value; $(key + 'v').textContent = value; }
++    generate();
++  });
++  $('brush').addEventListener('input', () => { $('brushv').textContent = $('brush').value; });
++  $('eraseMask').addEventListener('click', () => {
++    erasing = !erasing; $('eraseMask').classList.toggle('active', erasing); $('eraseMask').setAttribute('aria-pressed', String(erasing));
++  });
++  $('clearMask').addEventListener('click', () => { mask = null; paintRender(); generate(); });
++  paint.addEventListener('pointerdown', e => {
++    if (!ready || e.button !== 0) return;
++    painting = true; previousPoint = null; paint.setPointerCapture(e.pointerId); stampMask(e);
++  });
++  paint.addEventListener('pointermove', e => { if (painting) stampMask(e); });
++  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) paint.addEventListener(event, () => { painting = false; previousPoint = null; });
++  $('background').addEventListener('change', () => { document.body.dataset.background = $('background').value; });
++  document.querySelectorAll('#dirBtns button').forEach(b => {
++    b.classList.toggle('active', Number(b.dataset.ai) === ai);
++    b.addEventListener('click', () => {
++      ai = Number(b.dataset.ai);
++      document.querySelectorAll('#dirBtns button').forEach(x => x.classList.toggle('active', x === b));
++      openProject();
++    });
++  });
++  $('hairSel').addEventListener('change', async () => {
++    const version = beginLoad(); hairLayerIndex = Number($('hairSel').value);
++    try { await loadDir(version); } catch (e) { if (version === loadVersion) showError(e); }
++  });
++  $('projSel').addEventListener('change', () => {
++    projectId = $('projSel').value;
++    const u = new URL(location.href); u.searchParams.set('id', projectId); history.replaceState(null, '', u);
++    openProject();
++  });
++  (async () => {
++    const version = loadVersion;
++    try {
++      const res = await fetch('/api/projects');
++      if (!res.ok) throw new Error('工程列表读取失败');
++      const list = await res.json();
++      $('projSel').replaceChildren(...list.map(p => new Option(p.name, p.id)));
++      if (!list.some(p => p.id === projectId)) $('projSel').add(new Option(projectId, projectId));
++      $('projSel').value = projectId;
++    } catch (_) { $('projSel').add(new Option(projectId, projectId)); }
++    if (version === loadVersion) openProject();
++  })();
++  requestAnimationFrame(render);
++  window.__demo = { getGenerated: () => generated, getMask: () => mask, getFrame: () => currentFrame,
++    getFW: () => FW, getFH: () => FH, getHeadOffsets: () => headOffsets,
++    getTiming: () => ({ durations, starts, total }), frameAt, headAnchor, params, generate };
++})();
+diff --git a/test/hair-auto-demo.cjs b/test/hair-auto-demo.cjs
+new file mode 100644
+index 0000000..92b044b
+--- /dev/null
++++ b/test/hair-auto-demo.cjs
+@@ -0,0 +1,205 @@
++const assert = require('node:assert/strict');
++const fs = require('node:fs/promises'), path = require('node:path'), crypto = require('node:crypto');
++const { chromium } = require('playwright');
++const { createCanvas } = require('@napi-rs/canvas');
++const root = path.resolve(__dirname, '..'), output = path.join(__dirname, 'output/hair-auto-demo-20261103');
++const origin = 'http://127.0.0.1:8765', id = 'draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e';
++const sha = s => crypto.createHash('sha256').update(s).digest('hex');
++function image(w, h, draw, placement) {
++  const c = createCanvas(w, h); draw(c.getContext('2d'));
++  return { width: w, height: h, dataURL: c.toDataURL('image/png'), ...(placement ? { placement } : {}) };
++}
++function fixture(fpsOnly = false, missingHead = false) {
++  const offsets = [[0, 0], [1, 1], [1, 1], [0, 0]], times = [40, 160, 80, 120];
++  const p = { name: '只读测试', spriteSheets: [{ name: 'original32_walk', frameWidth: 16, frameHeight: 16, fps: 20,
++    useFrameDurations: !fpsOnly, actions: ['side', 'down', 'up'].map(direction => ({ name: direction, direction,
++      frames: times.map(duration => ({ width: 16, height: 16, duration })) })) }], layers: [] };
++  for (const name of ['body', '头发 / 测试 / 后发', '头发 / 测试二 / 后发', 'head', '前发', '隐藏组', '隐藏内容']) {
++    p.layers.push({ name, sheetIndex: 0, visible: name !== '隐藏组', isGroup: name === '隐藏组',
++      parent: name === '隐藏内容' ? 5 : null, opacity: name.includes('后发') ? 0.5 : 1, frameData: {} });
++  }
++  for (let a = 0; a < 3; a++) for (let f = 0; f < 4; f++) {
++    const key = `0_${a}_${f}`, [x, y] = offsets[f];
++    p.layers[0].frameData[key] = image(16, 16, c => { c.fillStyle = '#1020a0'; c.fillRect(0, 8, 16, 8); });
++    p.layers[1].frameData[key] = image(4, 10, c => {
++      c.fillStyle = '#d03040'; c.fillRect(0, 0, 4, 1); c.fillRect(0, 1, 1, 9); c.fillRect(0, 9, 3, 1);
++    }, { x: 5 + x, y: 2 + y, w: 4, h: 10 });
++    p.layers[2].frameData[key] = image(3, 8, c => { c.fillStyle = '#a020c0'; c.fillRect(0, 0, 2, 8); }, { x: 11 + x, y: 2 + y, w: 3, h: 8 });
++    if (!missingHead || !f) p.layers[3].frameData[key] = image(16, 16, c => {
++      c.fillStyle = '#feede1'; c.fillRect(6 + x, 2 + y, 3, 3); c.fillRect(0, 0, 1, 1);
++    });
++    p.layers[4].frameData[key] = image(16, 16, c => { c.fillStyle = '#ffff00'; c.fillRect(8 + x, 4 + y, 1, 1); });
++    p.layers[6].frameData[key] = image(16, 16, c => { c.fillStyle = '#00ff00'; c.fillRect(0, 0, 16, 16); });
++  }
++  return p;
++}
++(async () => {
++  await fs.mkdir(output, { recursive: true });
++  const response = await fetch(`${origin}/api/project?id=${id}`); assert.equal(response.status, 200);
++  const before = await response.text(), etag = response.headers.get('etag');
++  const browser = await chromium.launch({ channel: 'msedge', headless: true });
++  const errors = [], writes = [], checks = [];
++  try {
++    const page = await browser.newPage({ viewport: { width: 1500, height: 1000 } });
++    page.on('pageerror', e => errors.push(e.message));
++    page.on('request', r => { if (r.method() !== 'GET') writes.push(`${r.method()} ${r.url()}`); });
++    const fixtures = { fixture: fixture(), 'fixture-fps': fixture(true), 'fixture-head-missing': fixture(false, true), 'fixture-slow': fixture() };
++    const missing = fixture(); for (const l of missing.layers) if (l.name.includes('后发')) delete l.frameData['0_1_0'];
++    fixtures['fixture-no-source'] = missing;
++    const badSize = fixture(); badSize.spriteSheets[0].actions[1].frames[0].width = 0; fixtures['fixture-bad-size'] = badSize;
++    await page.route('**/api/**', async route => {
++      const u = new URL(route.request().url());
++      if (u.pathname === '/api/projects') return route.fulfill({ json: [{ id, name: '真实授权工程' }, ...Object.keys(fixtures).map(id => ({ id, name: id }))] });
++      const key = u.searchParams.get('id');
++      if (key === id) return route.fulfill({ body: before, contentType: 'application/json' });
++      if (key === 'fixture-slow') await new Promise(resolve => setTimeout(resolve, 200));
++      if (fixtures[key]) return route.fulfill({ json: fixtures[key] });
++      return route.abort();
++    });
++    await page.goto(`${origin}/hair-auto-demo.html?id=${id}`);
++    const ready = () => page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('就绪'));
++    await ready(); await page.click('#playBtn');
++    await page.addScriptTag({ url: origin + '/js/canvas.js' });
++    await page.addScriptTag({ url: origin + '/js/export.js' });
++    await page.evaluate(async raw => {
++      window.testModel = (await new PE.ExportManager().importProject(new Blob([raw]))).project;
++      window.testManager = new PE.CanvasManager(document.createElement('canvas'), testModel);
++      window.contact = document.createElement('canvas'); contact.width = 1920; contact.height = 840;
++    }, before);
++    async function seek(frame) {
++      for (let tries = 0; tries < 32 && await page.evaluate(() => __demo.getFrame()) !== frame; tries++) await page.click('#nextFrame');
++      assert.equal(await page.evaluate(() => __demo.getFrame()), frame);
++      await page.waitForFunction(n => document.querySelector('#frameInfo').textContent.startsWith(`第 ${n + 1} /`), frame);
++    }
++    for (let dir = 0; dir < 3; dir++) {
++      await page.click(`#dirBtns button[data-ai="${dir}"]`); await ready();
++      for (let frame = 0; frame < 8; frame++) {
++        await seek(frame);
++        const result = await page.evaluate(({ dir, frame }) => {
++          const expected = testManager.getCompositeImageData(7, dir, frame);
++          const left = document.querySelector('#leftNative').getContext('2d').getImageData(0, 0, expected.width, expected.height);
++          const right = document.querySelector('#rightNative').getContext('2d').getImageData(0, 0, expected.width, expected.height);
++          const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
++          const selected = PE.getRenderLayers(testModel, 7, dir).find(l => PE.isLayerVisible(testModel, l, 7) && /后发/.test(l.name) && l.getFrameData(`7_${dir}_0`));
++          const key = `7_${dir}_${frame}`, saved = selected.frameData.get(key);
++          selected.frameData.set(key, __demo.getGenerated()[frame]);
++          const expectedAuto = testManager.getCompositeImageData(7, dir, frame);
++          if (saved) selected.frameData.set(key, saved); else selected.frameData.delete(key);
++          const ctx = contact.getContext('2d'); ctx.imageSmoothingEnabled = false;
++          for (let bg = 0; bg < 2; bg++) {
++            const x = frame * 240, y = (bg * 3 + dir) * 140;
++            ctx.fillStyle = bg ? '#090b10' : '#ece8e0'; ctx.fillRect(x, y, 240, 140);
++            ctx.fillStyle = bg ? '#ffffff' : '#111111'; ctx.font = '12px sans-serif';
++            ctx.fillText(`${['side', 'front', 'back'][dir]} ${frame + 1}: orig / auto`, x + 4, y + 15);
++            ctx.drawImage(document.querySelector('#leftNative'), x + 4, y + 24, expected.width * 3, expected.height * 3);
++            ctx.drawImage(document.querySelector('#rightNative'), x + 122, y + 24, expected.width * 3, expected.height * 3);
++          }
++          const enlarged = document.querySelector('#left').getContext('2d').getImageData(0, 0, expected.width * 8, expected.height * 8).data;
++          let scaled = true;
++          for (let y = 0; y < expected.height * 8; y++) for (let x = 0; x < expected.width * 8; x++) {
++            const si = (Math.floor(y / 8) * expected.width + Math.floor(x / 8)) * 4, di = (y * expected.width * 8 + x) * 4;
++            for (let c = 0; c < 4; c++) if (enlarged[di + c] !== left.data[si + c]) scaled = false;
++          }
++          return { exact: same(expected.data, left.data), autoExact: same(expectedAuto.data, right.data), sourcePoseIntact: frame !== 0 || same(expected.data, right.data), scaled,
++            leftNonempty: left.data.some((v, i) => i % 4 === 3 && v), rightNonempty: right.data.some((v, i) => i % 4 === 3 && v) };
++        }, { dir, frame });
++        assert.deepEqual(result, { exact: true, autoExact: true, sourcePoseIntact: true, scaled: true, leftNonempty: true, rightNonempty: true });
++      }
++    }
++    await fs.writeFile(path.join(output, 'all-directions-frames.png'), Buffer.from((await page.evaluate(() => contact.toDataURL())).split(',')[1], 'base64'));
++    checks.push('24 real original and generated composites match editor CanvasManager exactly; first pose intact; nonempty originals/generated; native and 8x views agree');
++    await seek(0); await page.selectOption('#background', 'light'); await page.screenshot({ path: path.join(output, 'light.png'), fullPage: true });
++    await page.selectOption('#background', 'dark'); await page.screenshot({ path: path.join(output, 'dark.png'), fullPage: true });
++    await page.setViewportSize({ width: 390, height: 844 });
++    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'No mobile horizontal overflow');
++    await page.setViewportSize({ width: 1500, height: 1000 });
++    await page.selectOption('#projSel', 'fixture'); await ready();
++    assert.deepEqual(await page.evaluate(() => __demo.getTiming()), { durations: [40, 160, 80, 120], starts: [0, 40, 200, 280], total: 400 });
++    assert.deepEqual(await page.evaluate(() => [0, 39, 40, 199, 200, 279, 280, 399, 400, 440, -1].map(__demo.frameAt)), [0, 0, 1, 1, 2, 2, 3, 3, 0, 1, 3]);
++    assert.deepEqual(await page.evaluate(() => __demo.getHeadOffsets()), [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 1 }, { x: 0, y: 0 }]);
++    await page.evaluate(async raw => {
++      window.fixtureModel = (await new PE.ExportManager().importProject(new Blob([JSON.stringify(raw)]))).project;
++      window.fixtureManager = new PE.CanvasManager(document.createElement('canvas'), fixtureModel);
++    }, fixtures.fixture);
++    for (let dir = 0; dir < 3; dir++) {
++      await page.click(`#dirBtns button[data-ai="${dir}"]`); await ready();
++      await page.evaluate(() => { __demo.params.ampH = __demo.params.ampV = 0; __demo.generate(); });
++      for (let f = 0; f < 4; f++) {
++        await seek(f);
++        assert(await page.evaluate(({ dir, f }) => {
++          const expected = fixtureManager.getCompositeImageData(0, dir, f).data;
++          return ['leftNative', 'rightNative'].every(id => {
++            const actual = document.querySelector('#' + id).getContext('2d').getImageData(0, 0, 16, 16).data;
++            return expected.every((v, i) => v === actual[i]);
++          });
++        }, { dir, f }));
++      }
++    }
++    checks.push('12 synthetic source-over composites exact: 50% hair opacity, cropped placement, hidden parent, rear-view ordering, head-follow translation');
++    await page.click('#dirBtns button[data-ai="1"]'); await ready();
++    await seek(2);
++    async function range(id, value) { await page.locator('#' + id).evaluate((el, value) => { el.value = value; el.dispatchEvent(new Event('input')); }, String(value)); }
++    await range('ampH', 3); await page.waitForFunction(() => document.querySelector('#frameInfo').textContent.startsWith('第 3 /'));
++    assert.equal(await page.evaluate(() => __demo.getFrame()), 2);
++    await page.click('#reset'); assert.equal(await page.evaluate(() => __demo.getFrame()), 2);
++    await seek(0); await page.click('#prevFrame'); await page.waitForFunction(() => __demo.getFrame() === 3);
++    checks.push('Unequal frame durations, boundaries, wrap, pause/edit/reset frame retention, head anchor ignores isolated dot, mobile width');
++    await page.click('#playBtn'); const was = await page.evaluate(() => __demo.getFrame());
++    await page.waitForFunction(was => __demo.getFrame() !== was, was); await page.click('#playBtn');
++    assert.equal(await page.locator('#playBtn').textContent(), '播放');
++    const stroke = async (x, y) => {
++      await page.locator('#paint').scrollIntoViewIfNeeded(); const box = await page.locator('#paint').boundingBox();
++      await page.mouse.click(box.x + (x + 0.5) / 16 * box.width, box.y + (y + 0.5) / 16 * box.height);
++    };
++    await range('brush', 1); await stroke(5, 10); await range('ampH', 6); await range('ampV', 4);
++    const locked = await page.evaluate(() => {
++      const frames = __demo.getGenerated(), src = frames[0].data, mask = __demo.getMask(), W = 16, offsets = __demo.getHeadOffsets();
++      let count = 0, moving = 0;
++      for (let f = 1; f < frames.length; f++) for (let i = 0; i < W * W; i++) {
++        if (!src[i * 4 + 3]) continue;
++        const x = i % W + offsets[f].x, y = Math.floor(i / W) + offsets[f].y, di = (y * W + x) * 4;
++        const same = src.slice(i * 4, i * 4 + 4).every((v, c) => v === frames[f].data[di + c]);
++        if (!mask[i]) { if (!same) throw new Error('Unpainted source pixel moved or overwritten'); count++; }
++        else if (!same) moving++;
++      }
++      return { count, moving };
++    });
++    assert(locked.count > 0 && locked.moving > 0);
++    await page.click('#eraseMask'); await stroke(5, 10);
++    assert.equal(await page.evaluate(() => __demo.getMask().some(Boolean)), false);
++    assert.equal(await page.evaluate(() => {
++      const frames = __demo.getGenerated(), src = frames[0].data, offsets = __demo.getHeadOffsets();
++      return frames.every((f, t) => { const expected = new Uint8ClampedArray(16 * 16 * 4);
++        for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
++          if (x + offsets[t].x < 16 && y + offsets[t].y < 16) expected.set(src.subarray((y * 16 + x) * 4, (y * 16 + x) * 4 + 4), ((y + offsets[t].y) * 16 + x + offsets[t].x) * 4);
++        } return f.data.every((v, i) => v === expected[i]); });
++    }), true);
++    await page.click('#clearMask'); assert.equal(await page.evaluate(() => __demo.getMask()), null);
++    await page.click('#eraseMask'); await stroke(5, 10);
++    await page.selectOption('#hairSel', '2'); await ready(); assert.equal(await page.evaluate(() => __demo.getMask()), null);
++    await stroke(11, 8); await page.click('#dirBtns button[data-ai="0"]'); await ready(); assert.equal(await page.evaluate(() => __demo.getMask()), null);
++    await stroke(5, 10); await page.selectOption('#projSel', 'fixture-fps'); await ready(); assert.equal(await page.evaluate(() => __demo.getMask()), null);
++    assert.deepEqual(await page.evaluate(() => __demo.getTiming().durations), [50, 50, 50, 50]);
++    checks.push('Real pointer brush/eraser, masked pixels alone deform with compression+sway, fixed pixels win, empty mask locks all, clear restores all, switch resets masks, fps fallback');
++    for (const key of ['fixture-head-missing', 'fixture-no-source', 'fixture-bad-size']) {
++      await page.click('#dirBtns button[data-ai="1"]'); await ready();
++      await page.selectOption('#projSel', key); await page.waitForSelector('#status.err');
++      assert.equal(await page.evaluate(() => __demo.getGenerated().length), 0);
++      await page.selectOption('#projSel', 'fixture'); await ready();
++    }
++    await page.evaluate(() => {
++      const sel = document.querySelector('#projSel'); sel.value = 'fixture-slow'; sel.dispatchEvent(new Event('change'));
++      sel.value = 'fixture-fps'; sel.dispatchEvent(new Event('change'));
++    });
++    await ready(); await page.waitForTimeout(300);
++    assert.equal(await page.evaluate(() => __demo.getTiming().total), 200);
++    await page.selectOption('#projSel', id); await ready();
++    assert.equal(await page.locator('#cycles').getAttribute('step'), '1');
++    assert.deepEqual(errors, []); assert.deepEqual(writes, []);
++    const after = await fetch(`${origin}/api/project?id=${id}`);
++    assert.equal(sha(await after.text()), sha(before)); assert.equal(after.headers.get('etag'), etag);
++    checks.push('Missing source/head and invalid dimensions fail visibly and recover; late requests cannot overwrite new selection; integer cycles; no JS errors or writes; actual project SHA256 and ETag unchanged');
++    await fs.writeFile(path.join(output, 'verification.json'), JSON.stringify({ checks, errors, writes, projectSHA256: sha(before), etag }, null, 2));
++    console.log('PASS\n' + checks.join('\n'));
++  } finally { await browser.close(); }
++})().catch(e => { console.error(e); process.exitCode = 1; });

@@ -1,0 +1,1 @@
+只撤销本次动作适配：读取 changes.json 的 changedLayers，用 original.json 中相应衣服层恢复；restore-extra-copy.json 已在额外副本上验证与 original.json 完全一致。在线恢复仍须先 GET、比较后续用户修改并带当前 ETag 条件 PUT，不可盲目覆盖。

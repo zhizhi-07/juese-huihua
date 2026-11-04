@@ -1,0 +1,71 @@
+{
+  "runtime": "Actual PE.CanvasManager.getCompositeImageData + PE.AnimationPlayer._renderPreviewFrame, local canvas implementation; no front-page refresh",
+  "before": [
+    {
+      "name": "original16_walk",
+      "previewSizes": [
+        "38x38",
+        "38x36",
+        "36x38",
+        "36x36"
+      ]
+    },
+    {
+      "name": "original16_idle",
+      "previewSizes": [
+        "34x38",
+        "34x36",
+        "38x38",
+        "38x36"
+      ]
+    },
+    {
+      "name": "original16_pickup",
+      "previewSizes": [
+        "38x38",
+        "42x38",
+        "44x38",
+        "38x40",
+        "42x40",
+        "50x40",
+        "50x38",
+        "46x38",
+        "38x34"
+      ]
+    },
+    {
+      "name": "original16_sit",
+      "previewSizes": [
+        "38x36",
+        "38x34"
+      ]
+    }
+  ],
+  "after": [
+    {
+      "name": "original16_walk",
+      "previewSizes": [
+        "38x38"
+      ]
+    },
+    {
+      "name": "original16_idle",
+      "previewSizes": [
+        "38x38"
+      ]
+    },
+    {
+      "name": "original16_pickup",
+      "previewSizes": [
+        "50x44"
+      ]
+    },
+    {
+      "name": "original16_sit",
+      "previewSizes": [
+        "38x38"
+      ]
+    }
+  ],
+  "pass": true
+}

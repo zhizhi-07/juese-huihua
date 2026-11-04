@@ -1,0 +1,1568 @@
+[
+  {
+    "key": "7_0_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 1
+  },
+  {
+    "key": "7_0_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_0",
+    "part": "前发",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 3
+  },
+  {
+    "key": "7_0_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_1",
+    "part": "前发",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 1
+  },
+  {
+    "key": "7_0_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_2",
+    "part": "前发",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 2
+  },
+  {
+    "key": "7_0_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_3",
+    "part": "前发",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 1
+  },
+  {
+    "key": "7_0_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_4",
+    "part": "前发",
+    "sourceKey": "8_0_0",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 3
+  },
+  {
+    "key": "7_0_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_5",
+    "part": "前发",
+    "sourceKey": "8_0_2",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_6",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 1
+  },
+  {
+    "key": "7_0_6",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_6",
+    "part": "前发",
+    "sourceKey": "8_0_3",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_7",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 2
+  },
+  {
+    "key": "7_0_7",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_0_7",
+    "part": "前发",
+    "sourceKey": "8_0_1",
+    "dx": -1,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_0",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_1",
+    "part": "前发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_2",
+    "part": "前发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_3",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_4",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_5",
+    "part": "前发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_6",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_6",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_6",
+    "part": "前发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_7",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_7",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_1_7",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_0",
+    "part": "前发",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_1",
+    "part": "前发",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_2",
+    "part": "前发",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_3",
+    "part": "前发",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_0",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_4",
+    "part": "前发",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_2",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_5",
+    "part": "前发",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_6",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_3",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_6",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_6",
+    "part": "前发",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_7",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_1",
+    "dx": -2,
+    "dy": -2,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_7",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "7_2_7",
+    "part": "前发",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_0",
+    "part": "前发",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_1",
+    "dx": 4,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_1",
+    "dx": 4,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_1",
+    "part": "前发",
+    "sourceKey": "8_0_1",
+    "dx": 4,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_2",
+    "dx": 0,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_2",
+    "dx": 0,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_2",
+    "part": "前发",
+    "sourceKey": "8_0_2",
+    "dx": 0,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_3",
+    "dx": 2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_3",
+    "dx": 2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_3",
+    "part": "前发",
+    "sourceKey": "8_0_3",
+    "dx": 2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_4",
+    "part": "前发",
+    "sourceKey": "8_0_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_0_5",
+    "part": "前发",
+    "sourceKey": "8_0_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_0",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_1",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_2",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_2",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_2",
+    "part": "前发",
+    "sourceKey": "8_1_2",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_3",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_3",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_3",
+    "part": "前发",
+    "sourceKey": "8_1_3",
+    "dx": 2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_4",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_1_5",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_0",
+    "part": "前发",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_1",
+    "dx": 2,
+    "dy": 6,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_1",
+    "part": "前发",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_2",
+    "dx": 2,
+    "dy": -2,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_2",
+    "part": "前发",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_3",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_3",
+    "part": "前发",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_4",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_0",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_4",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_4",
+    "part": "前发",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_5",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_1",
+    "dx": 2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_5",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "9_2_5",
+    "part": "前发",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_0",
+    "part": "前发",
+    "sourceKey": "8_0_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_1",
+    "part": "前发",
+    "sourceKey": "8_0_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 1
+  },
+  {
+    "key": "10_0_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_2",
+    "part": "前发",
+    "sourceKey": "8_0_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_0_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_0_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_0_3",
+    "part": "前发",
+    "sourceKey": "8_0_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_0",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_1",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_2",
+    "part": "前发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_1_3",
+    "part": "前发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_0",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_0",
+    "part": "前发",
+    "sourceKey": "8_2_0",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_1",
+    "dx": -2,
+    "dy": 0,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_1",
+    "part": "前发",
+    "sourceKey": "8_2_1",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_2",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_2",
+    "part": "前发",
+    "sourceKey": "8_2_2",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_2_3",
+    "dx": -2,
+    "dy": -1,
+    "verticalFit": true,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "10_2_3",
+    "part": "前发",
+    "sourceKey": "8_2_3",
+    "dx": 0,
+    "dy": 0,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_0",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_0",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_0",
+    "part": "前发",
+    "sourceKey": "8_1_0",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_1",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_1",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_1",
+    "part": "前发",
+    "sourceKey": "8_1_1",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_2",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_2",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_2",
+    "part": "前发",
+    "sourceKey": "8_1_2",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_3",
+    "part": "头发 / 用户 / 后发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_3",
+    "part": "眼睛 / 眼睛",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  },
+  {
+    "key": "11_0_3",
+    "part": "前发",
+    "sourceKey": "8_1_3",
+    "dx": -2,
+    "dy": -4,
+    "verticalFit": false,
+    "edgeRows": 0
+  }
+]

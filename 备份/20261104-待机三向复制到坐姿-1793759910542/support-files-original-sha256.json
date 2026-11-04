@@ -1,0 +1,14 @@
+[
+  {
+    "file": "AGENTS.md",
+    "sha256": "ed476226f8f933900fc8806920c175151eaaaca03ff782fe49ec202b8876c2b5"
+  },
+  {
+    "file": "README.md",
+    "sha256": "1e4965ae325f8b60ad1129fe0963b31b5b1056334e4388d95f18d67195e2bf6b"
+  },
+  {
+    "file": "test/native16-clean.cjs",
+    "sha256": "0bea87ee0e2eee1965f9660c0655f097d3041210a81f2370acac4c15fde9c63c"
+  }
+]

@@ -1,0 +1,4 @@
+$ node test/timeline.cjs
+PASS: correct selected frame before UI render; non-drawing mouseup preserves timeline target; manual next/previous pause playback.
+
+exit=0

@@ -1,0 +1,29 @@
+{
+  "frames": 66,
+  "cels": 535,
+  "generatedHairFrames": 189,
+  "paintedPixelsUnchanged": true,
+  "allActionMargins": [
+    5,
+    2,
+    5,
+    2
+  ],
+  "timingAndLayersUnchanged": true,
+  "readbackETag": "\"a3e93475721e0be2ee7988530c02d92cadd371e3fc67615b32386ea79aeec369\"",
+  "readbackSHA256": "a3e93475721e0be2ee7988530c02d92cadd371e3fc67615b32386ea79aeec369",
+  "requests": [
+    {
+      "method": "PUT",
+      "route": "/api/project?id=main",
+      "status": 200,
+      "etag": "\"a3e93475721e0be2ee7988530c02d92cadd371e3fc67615b32386ea79aeec369\""
+    },
+    {
+      "method": "GET",
+      "route": "/api/project?id=main",
+      "status": 200,
+      "etag": "\"a3e93475721e0be2ee7988530c02d92cadd371e3fc67615b32386ea79aeec369\""
+    }
+  ]
+}

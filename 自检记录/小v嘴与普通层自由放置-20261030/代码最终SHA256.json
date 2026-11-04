@@ -1,0 +1,8 @@
+{
+  "js/core.js": "47f83e7876fd078a65053a8b6e0ccd3161e8b501e021a45c6e5b984562362ff6",
+  "js/tools.js": "c427545b882336e3f0466218483f0267d9f698c0966a32c75ee3738b0aa27e4c",
+  "js/pixel-import.js": "e37b0444f517aaee847b0bcd866fc7cbd1ef86a2f6e451a25d0f72875d466363",
+  "index.html": "a5407adec92da42939b723ba81951cabbe2598327f7234a79fa835d86229f3b9",
+  "test/free-image-placement.cjs": "73fdc3c49f89980af761b5d5da9d91e9ebb7b38f2eeec023e4f94e8966c65a2a",
+  "test/free-image-placement-browser.cjs": "aef19f55fb1d3b344223c9f4979e2d18b200923a9f9280794b3ab631fbb28165"
+}

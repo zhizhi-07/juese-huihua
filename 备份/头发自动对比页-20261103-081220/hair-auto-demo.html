@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>头发自动飘动 · 对比原型</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #14161a; color: #e7e9ee;
+    font: 14px/1.5 system-ui, "Segoe UI", "Microsoft YaHei", sans-serif;
+  }
+  header { padding: 16px 20px 10px; }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  .note { color: #9aa3b2; font-size: 12px; margin: 0; }
+  .note b { color: #ffd479; }
+  .wrap { display: flex; flex-wrap: wrap; gap: 20px; padding: 16px 20px 28px; align-items: flex-start; }
+  .panel { background: #1d2026; border: 1px solid #2c313b; border-radius: 12px; padding: 14px; }
+  .panel h2 { font-size: 13px; margin: 0 0 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .tag { font-size: 11px; padding: 1px 7px; border-radius: 20px; font-weight: 600; }
+  .tag.orig { background: #2f3a2f; color: #9ad19a; }
+  .tag.auto { background: #3a3320; color: #ffd479; }
+  canvas {
+    display: block; image-rendering: pixelated;
+    background: repeating-conic-gradient(#23262d 0 25%, #1a1c21 0 50%) 0 0 / 16px 16px;
+    border-radius: 8px; max-width: 100%;
+  }
+  .controls { min-width: 280px; }
+  .field { margin: 10px 0; }
+  .field label { display: block; color: #b8c0cc; font-size: 12px; margin-bottom: 4px; }
+  select {
+    width: 100%; background: #2a2f38; color: #e7e9ee; border: 1px solid #3a414d;
+    border-radius: 8px; padding: 7px 8px; font-size: 13px;
+  }
+  .row { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+  .row label { width: 96px; color: #b8c0cc; font-size: 13px; }
+  .row input[type=range] { flex: 1; }
+  .row .val { width: 40px; text-align: right; color: #ffd479; font-variant-numeric: tabular-nums; }
+  .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  button {
+    background: #2a2f38; color: #e7e9ee; border: 1px solid #3a414d;
+    border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 13px;
+  }
+  button:hover { background: #333a45; }
+  button.active { background: #ffd479; color: #1a1c21; border-color: #ffd479; font-weight: 600; }
+  .status { color: #9aa3b2; font-size: 12px; margin-top: 10px; }
+  .err { color: #ff8b8b; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header>
+  <h1>头发自动飘动 · 左右对比原型</h1>
+  <p class="note">
+    左 = <b>原版成品</b>　·　右 = <b>算法从「一帧」自动生成的草稿</b>（只替换这块后发，身体/头/衣服仍用原版）。
+    顶部可切换不同工程和发型（例如双马尾）。参数随便拖，看哪种最接近。
+  </p>
+</header>
+
+<div class="wrap">
+  <div class="panel">
+    <h2>原版成品 <span class="tag orig">原版</span></h2>
+    <canvas id="left" width="256" height="288"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>算法自动生成（草稿） <span class="tag auto">作者：算法</span></h2>
+    <canvas id="right" width="256" height="288"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>涂一下「只让它动的区域」 <span class="tag auto">例：只涂马尾</span></h2>
+    <canvas id="paint"></canvas>
+    <div class="row"><label>画笔大小</label><input id="brush" type="range" min="1" max="8" step="1" value="3"><span class="val" id="brushv">3</span></div>
+    <div class="btns"><button id="clearMask">清空涂抹</button></div>
+    <p class="status" style="margin-top:6px">在上面这块，用鼠标把「只让它动」的地方（如马尾）拖亮。不涂 = 整块后发都动。</p>
+  </div>
+
+  <div class="panel controls">
+    <div class="field"><label>工程</label><select id="projSel"></select></div>
+    <div class="field"><label>后发发型</label><select id="hairSel"></select></div>
+    <h2 style="margin-top:14px">参数</h2>
+    <div class="btns" id="dirBtns">
+      <button data-ai="0">侧面</button>
+      <button data-ai="1" class="active">正面</button>
+      <button data-ai="2">背面</button>
+    </div>
+    <div class="row"><label>上下压缩</label><input id="ampV" type="range" min="0" max="4" step="0.5" value="0"><span class="val" id="ampVv">0</span></div>
+    <div class="row"><label>左右轻摆</label><input id="ampH" type="range" min="0" max="6" step="0.5" value="2"><span class="val" id="ampHv">2</span></div>
+    <div class="row"><label>摆动周期</label><input id="cycles" type="range" min="0.5" max="4" step="0.5" value="1"><span class="val" id="cyclesv">1</span></div>
+    <div class="row"><label>发梢延迟</label><input id="lag" type="range" min="0" max="1.5" step="0.1" value="0.6"><span class="val" id="lagv">0.6</span></div>
+    <div class="btns">
+      <button id="playBtn" class="active">暂停</button>
+      <button id="reset">恢复默认</button>
+    </div>
+    <div class="status" id="status">加载中…</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const qs = new URLSearchParams(location.search);
+  const DEFAULT_ID = 'draft-user-canvas-merged-1793608789349-dbd059d3';
+  const SHEET_NAME = 'original32_walk';
+  const FPS = 10;
+  const SCALE = 8;
+
+  let projectId = qs.get('id') || DEFAULT_ID;
+  let project = null;
+  let sheetIndex = -1;
+  let ai = Number(qs.get('ai') || 1);   // 0=side 1=down 2=up
+  let N = 8;
+  let FW = 32, FH = 36;
+  let hairLayerIndex = 0;
+  let visibleLayers = [];
+  let imgCache = {};
+  let baseHairImg = null;
+  let generated = [];
+  let playing = true;
+  let startTime = 0;
+  let lastFrame = -1;
+
+  const params = { ampV: 0, ampH: 2, cycles: 1, lag: 0.6 };
+
+  const leftCanvas = document.getElementById('left');
+  const rightCanvas = document.getElementById('right');
+  const lctx = leftCanvas.getContext('2d');
+  const rctx = rightCanvas.getContext('2d');
+  const statusEl = document.getElementById('status');
+  const projSel = document.getElementById('projSel');
+  const hairSel = document.getElementById('hairSel');
+
+  // paint-to-select mask (which pixels are allowed to move)
+  const paintCanvas = document.getElementById('paint');
+  const pctx = paintCanvas.getContext('2d');
+  let mask = null;         // Uint8Array FW*FH or null(=整块都动)
+  let brushSize = 3;
+  let painting = false;
+
+  // offscreen buffers (resized per project)
+  const comp = document.createElement('canvas');
+  const cctx = comp.getContext('2d');
+  const gen = document.createElement('canvas');
+  const gctx = gen.getContext('2d');
+
+  function setCanvasSize() {
+    leftCanvas.width = rightCanvas.width = FW * SCALE;
+    leftCanvas.height = rightCanvas.height = FH * SCALE;
+    lctx.imageSmoothingEnabled = false;
+    rctx.imageSmoothingEnabled = false;
+    comp.width = gen.width = FW;
+    comp.height = gen.height = FH;
+    cctx.imageSmoothingEnabled = false;
+    gctx.imageSmoothingEnabled = false;
+    paintCanvas.width = FW * SCALE;
+    paintCanvas.height = FH * SCALE;
+    pctx.imageSmoothingEnabled = false;
+    mask = null;
+  }
+
+  function paintRender() {
+    pctx.clearRect(0, 0, paintCanvas.width, paintCanvas.height);
+    if (baseHairImg) {
+      pctx.imageSmoothingEnabled = false;
+      pctx.globalAlpha = 0.6;
+      pctx.drawImage(baseHairImg, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+      pctx.globalAlpha = 1;
+    }
+    // draw mask overlay
+    if (mask) {
+      const tmp = document.createElement('canvas');
+      tmp.width = FW; tmp.height = FH;
+      const tctx = tmp.getContext('2d');
+      const im = tctx.createImageData(FW, FH);
+      for (let i = 0; i < FW * FH; i++) {
+        if (mask[i]) { im.data[i * 4] = 120; im.data[i * 4 + 1] = 220; im.data[i * 4 + 2] = 255; im.data[i * 4 + 3] = 150; }
+      }
+      tctx.putImageData(im, 0, 0);
+      pctx.imageSmoothingEnabled = false;
+      pctx.drawImage(tmp, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+    }
+  }
+
+  function stampMask(clientX, clientY) {
+    const rect = paintCanvas.getBoundingClientRect();
+    const px = Math.floor((clientX - rect.left) / rect.width * FW);
+    const py = Math.floor((clientY - rect.top) / rect.height * FH);
+    if (!mask) mask = new Uint8Array(FW * FH);
+    const r = brushSize;
+    for (let yy = -r; yy <= r; yy++) for (let xx = -r; xx <= r; xx++) {
+      if (xx * xx + yy * yy > r * r) continue;
+      const X = px + xx, Y = py + yy;
+      if (X < 0 || X >= FW || Y < 0 || Y >= FH) continue;
+      mask[Y * FW + X] = 1;
+    }
+    paintRender();
+    generate();
+    lastFrame = -1;
+  }
+
+  function loadImg(dataURL) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('图片加载失败'));
+      img.src = dataURL;
+    });
+  }
+
+  // collect all visible 后发 layers that animate on this sheet
+  function hairCandidates() {
+    const out = [];
+    project.layers.forEach((l, i) => {
+      if (!/后发/.test(l.name || '')) return;
+      if (l.visible === false) return;
+      let cnt = 0;
+      for (let t = 0; t < N; t++) if (l.frameData[`${sheetIndex}_${ai}_${t}`]) cnt++;
+      if (cnt) out.push({ i, name: l.name, cnt });
+    });
+    out.sort((a, b) => b.cnt - a.cnt);
+    return out;
+  }
+
+  async function preloadDir() {
+    imgCache = {};
+    const tasks = [];
+    for (const { i, layer } of visibleLayers) {
+      for (let t = 0; t < N; t++) {
+        const fd = layer.frameData[`${sheetIndex}_${ai}_${t}`];
+        if (!fd) continue;
+        tasks.push(loadImg(fd.dataURL).then(img => { imgCache[`${i}_${t}`] = img; }));
+      }
+    }
+    await Promise.all(tasks);
+    const hairLayer = project.layers[hairLayerIndex];
+    const base0 = hairLayer.frameData[`${sheetIndex}_${ai}_0`];
+    baseHairImg = await loadImg(base0.dataURL);
+  }
+
+  // ---- generation: base frame -> N squashed/swayed frames ----
+  function generate() {
+    if (!baseHairImg) return;
+    gctx.clearRect(0, 0, FW, FH);
+    gctx.drawImage(baseHairImg, 0, 0);
+    const base = gctx.getImageData(0, 0, FW, FH);
+    const src = base.data, W = FW, H = FH;
+
+    let minY = H, maxY = -1;
+    for (let y = 0; y < H; y++)
+      for (let x = 0; x < W; x++)
+        if (src[(y * W + x) * 4 + 3]) { if (y < minY) minY = y; if (y > maxY) maxY = y; }
+    const span = Math.max(1, maxY - minY);
+
+    // mask bounds — only over pixels that are BOTH painted AND actual hair,
+    // so painting a bit over empty space doesn't dilute the sway gradient.
+    let hasMask = false, maskTop = minY, maskBot = maxY;
+    if (mask) {
+      maskTop = H; maskBot = -1;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (mask[y * W + x] && src[(y * W + x) * 4 + 3]) { hasMask = true; if (y < maskTop) maskTop = y; if (y > maskBot) maskBot = y; }
+      }
+      if (!hasMask) { maskTop = minY; maskBot = maxY; }
+    }
+    const maskSpan = Math.max(1, maskBot - maskTop);
+
+    generated = [];
+    for (let t = 0; t < N; t++) {
+      const bob = 0.5 - 0.5 * Math.cos(2 * Math.PI * 2 * t / N);        // 上下：每循环 2 次（跟步子）
+      const swayPhase = 2 * Math.PI * params.cycles * t / N;            // 左右：每循环 cycles 次
+      const out = new ImageData(W, H);
+      const od = out.data;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const si = (y * W + x) * 4;
+          if (!src[si + 3]) continue;
+          let w;
+          if (hasMask) {
+            if (!mask[y * W + x]) w = 0;                 // 没涂到 → 原地不动
+            else w = Math.max(0, Math.min(1, (y - maskTop) / maskSpan));
+          } else {
+            w = Math.max(0, Math.min(1, (y - minY) / span));  // 0=发根 1=发梢
+          }
+          const dy = Math.round(params.ampV * bob * (1 - w));
+          const dx = Math.round(params.ampH * w * Math.sin(swayPhase - params.lag * w));
+          const X = x + dx, Y = y + dy;
+          if (X < 0 || X >= W || Y < 0 || Y >= H) continue;
+          const di = (Y * W + X) * 4;
+          od[di] = src[si]; od[di + 1] = src[si + 1]; od[di + 2] = src[si + 2]; od[di + 3] = src[si + 3];
+        }
+      }
+      generated.push(out);
+    }
+  }
+
+  function drawCompositeTo(dispCtx, frame, useAuto) {
+    dispCtx.clearRect(0, 0, FW * SCALE, FH * SCALE);
+    cctx.clearRect(0, 0, FW, FH);
+    for (const { i, layer } of visibleLayers) {
+      if (i === hairLayerIndex && useAuto) {
+        if (generated[frame]) cctx.putImageData(generated[frame], 0, 0);
+        continue;
+      }
+      const img = imgCache[`${i}_${frame}`];
+      if (!img) continue;
+      const fd = layer.frameData[`${sheetIndex}_${ai}_${frame}`];
+      const p = fd && fd.placement;
+      if (p) cctx.drawImage(img, p.x, p.y, p.w, p.h);
+      else cctx.drawImage(img, 0, 0, FW, FH);
+    }
+    dispCtx.imageSmoothingEnabled = false;
+    dispCtx.drawImage(comp, 0, 0, FW, FH, 0, 0, FW * SCALE, FH * SCALE);
+  }
+
+  function render(now) {
+    if (!project) { requestAnimationFrame(render); return; }
+    let frame;
+    if (playing) {
+      if (!startTime) startTime = now;
+      frame = Math.floor((now - startTime) / (1000 / FPS)) % N;
+    } else {
+      frame = lastFrame < 0 ? 0 : lastFrame;
+    }
+    if (frame !== lastFrame) {
+      drawCompositeTo(lctx, frame, false);
+      drawCompositeTo(rctx, frame, true);
+      lastFrame = frame;
+    }
+    requestAnimationFrame(render);
+  }
+
+  async function loadDir() {
+    statusEl.textContent = '加载素材…';
+    try {
+      await preloadDir();
+      generate();
+      paintRender();
+      lastFrame = -1;
+      statusEl.textContent = `就绪 · ${FW}×${FH} · 左右同步播放（10fps）`;
+    } catch (e) {
+      statusEl.innerHTML = '<span class="err">' + e.message + '</span>';
+    }
+  }
+
+  async function pickHair(idx) {
+    hairLayerIndex = idx;
+    await loadDir();
+  }
+
+  async function openProject() {
+    statusEl.textContent = '读取工程…';
+    const res = await fetch('/api/project?id=' + encodeURIComponent(projectId));
+    if (!res.ok) throw new Error('读取工程失败 HTTP ' + res.status);
+    project = await res.json();
+    sheetIndex = project.spriteSheets.findIndex(s => s.name === SHEET_NAME);
+    if (sheetIndex < 0) throw new Error('该工程没有 ' + SHEET_NAME + ' 动作表');
+    const sheet = project.spriteSheets[sheetIndex];
+    const act = sheet.actions[ai] || sheet.actions[0];
+    N = (act.frames && act.frames.length) || 8;
+
+    visibleLayers = project.layers
+      .map((layer, i) => ({ i, layer }))
+      .filter(({ layer }) => layer.visible !== false && layer.frameData);
+
+    const cands = hairCandidates();
+    hairSel.innerHTML = '';
+    cands.forEach((c) => {
+      const opt = document.createElement('option');
+      opt.value = c.i; opt.textContent = c.name;
+      hairSel.appendChild(opt);
+    });
+    if (!cands.length) throw new Error('这个工程在这张表里没有可动的后发');
+    hairLayerIndex = cands[0].i;
+    hairSel.value = String(hairLayerIndex);
+
+    // size to the actual art of the hair frame (cells may be padded larger than the art)
+    const baseFd = project.layers[hairLayerIndex].frameData[`${sheetIndex}_${ai}_0`];
+    FW = (baseFd && baseFd.width) || sheet.frameWidth;
+    FH = (baseFd && baseFd.height) || sheet.frameHeight;
+    setCanvasSize();
+
+    await loadDir();
+  }
+
+  // ---- controls ----
+  function bindRange(id, key) {
+    const el = document.getElementById(id);
+    const out = document.getElementById(id + 'v');
+    el.addEventListener('input', () => {
+      params[key] = parseFloat(el.value);
+      out.textContent = el.value;
+      generate(); lastFrame = -1;
+    });
+  }
+  bindRange('ampV', 'ampV'); bindRange('ampH', 'ampH'); bindRange('cycles', 'cycles'); bindRange('lag', 'lag');
+
+  // brush size + clear
+  const brushEl = document.getElementById('brush');
+  brushEl.addEventListener('input', () => { brushSize = parseInt(brushEl.value, 10); document.getElementById('brushv').textContent = brushEl.value; });
+  document.getElementById('clearMask').addEventListener('click', () => { mask = null; paintRender(); generate(); lastFrame = -1; });
+
+  // paint strokes
+  paintCanvas.addEventListener('pointerdown', (e) => { painting = true; try { paintCanvas.setPointerCapture(e.pointerId); } catch (_) {} stampMask(e.clientX, e.clientY); });
+  paintCanvas.addEventListener('pointermove', (e) => { if (painting) stampMask(e.clientX, e.clientY); });
+  paintCanvas.addEventListener('pointerup', (e) => { painting = false; try { paintCanvas.releasePointerCapture(e.pointerId); } catch (_) {} });
+  paintCanvas.addEventListener('pointercancel', () => { painting = false; });
+  paintCanvas.addEventListener('pointerleave', () => { painting = false; });
+
+  document.querySelectorAll('#dirBtns button').forEach(b => {
+    b.classList.toggle('active', Number(b.dataset.ai) === ai);
+    b.addEventListener('click', async () => {
+      ai = Number(b.dataset.ai);
+      document.querySelectorAll('#dirBtns button').forEach(x => x.classList.toggle('active', x === b));
+      await openProject();
+    });
+  });
+
+  const playBtn = document.getElementById('playBtn');
+  playBtn.addEventListener('click', () => {
+    playing = !playing;
+    playBtn.textContent = playing ? '暂停' : '播放';
+    playBtn.classList.toggle('active', playing);
+    if (playing) startTime = 0;
+  });
+
+  document.getElementById('reset').addEventListener('click', () => {
+    params.ampV = 0; params.ampH = 2; params.cycles = 1; params.lag = 0.6;
+    for (const [k, v] of [['ampV', 0], ['ampH', 2], ['cycles', 1], ['lag', 0.6]]) {
+      document.getElementById(k).value = v; document.getElementById(k + 'v').textContent = v;
+    }
+    generate(); lastFrame = -1;
+  });
+
+  hairSel.addEventListener('change', () => pickHair(Number(hairSel.value)));
+  projSel.addEventListener('change', () => {
+    projectId = projSel.value;
+    const u = new URL(location.href); u.searchParams.set('id', projectId); history.replaceState(null, '', u);
+    openProject().catch(e => { statusEl.innerHTML = '<span class="err">' + e.message + '</span>'; });
+  });
+
+  // ---- boot ----
+  (async function boot() {
+    try {
+      // populate project list
+      try {
+        const list = await (await fetch('/api/projects')).json();
+        projSel.innerHTML = '';
+        list.forEach(pr => {
+          const opt = document.createElement('option');
+          opt.value = pr.id; opt.textContent = pr.name + '  [' + pr.id + ']';
+          projSel.appendChild(opt);
+        });
+        projSel.value = projectId;
+      } catch (_) { projSel.style.display = 'none'; }
+      await openProject();
+      requestAnimationFrame(render);
+    } catch (e) {
+      statusEl.innerHTML = '<span class="err">' + e.message + '</span>';
+    }
+  })();
+
+  window.__demo = { getGenerated: () => generated, getMask: () => mask, getFrame: () => lastFrame, getFW: () => FW, getFH: () => FH, params, generate };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+原工程 original.json；原 SHA256、ETag 见 source.json；逐像素改动见 changes.json。用户背面首帧 10_2_0 未改。恢复本次操作只需按变化帧恢复坐姿衣服层，不恢复整套工程；restore-extra-copy.json 已在额外副本验证与原工程一致。在线恢复前仍须比较后续用户修改、带 ETag 条件保存。

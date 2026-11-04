@@ -1,0 +1,72 @@
+{
+  "projectId": "character-gold-mix-1793320553623",
+  "asset": "五官素材/蓝瞳可编辑画布-20261030/蓝瞳-可编辑源画布.png",
+  "assetSHA256": "6879c33c7d3bec5370137ab36cee79d4b3f4cb3ab29c8409f2bccf2873b89e52",
+  "method": "Explicit opaque pixel rectangles on native editable canvas; no screenshot/source bitmap imported. Reference-inspired trace, not bit-identical screenshot.",
+  "sourceDimensions": [
+    234,
+    98
+  ],
+  "layerIndex": 192,
+  "positions": [
+    {
+      "key": "8_1_0",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 4
+      },
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_1",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 4
+      },
+      "placement": {
+        "x": 8,
+        "y": 13,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_2",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 6
+      },
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    },
+    {
+      "key": "8_1_3",
+      "head": {
+        "left": 5,
+        "right": 30,
+        "top": 6
+      },
+      "placement": {
+        "x": 8,
+        "y": 15,
+        "w": 18,
+        "h": 8
+      }
+    }
+  ],
+  "onlyFrontIdle4Frames": true,
+  "oldLayersUnchanged": true,
+  "sideBackUnchanged": true
+}

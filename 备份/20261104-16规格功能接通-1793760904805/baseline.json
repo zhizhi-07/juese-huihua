@@ -1,0 +1,98 @@
+{
+  "files": [
+    {
+      "file": "js/core.js",
+      "sha256": "14b5732d58c6a05647862036d3f4c372f1a6f2938de263ec3d19695098c72fb1"
+    },
+    {
+      "file": "js/visual-layers.js",
+      "sha256": "024af62ba10ee71fd365c0c96c6bfdf6a96f53c447aff0c526d83123a35cd6ed"
+    },
+    {
+      "file": "js/hair-animation.js",
+      "sha256": "19b680b1b0c9ed5423c529fe4a23f92e7e6a469212e79d8f265ef93c26cbc7d4"
+    },
+    {
+      "file": "js/workbench.js",
+      "sha256": "f191f536c820529b3e99936ca93e6448735137624296f697a76847fa80035b47"
+    },
+    {
+      "file": "js/api.js",
+      "sha256": "2f1f9c7f386a59ab5efb91b623e4ed638c5f4cef0e06a5c3b8b991f41dbf7075"
+    },
+    {
+      "file": "js/tools.js",
+      "sha256": "2130633275ad3afc2f9663639016f1536a9c959250d0d12b103296b5761bc0b5"
+    },
+    {
+      "file": "js/frame-tools.js",
+      "sha256": "d1acd5550d17831ec48110293ed9b10e2d53ee7a5a6a81d932666edcb24927d4"
+    },
+    {
+      "file": "js/layer-mirror.js",
+      "sha256": "ca4a8fd7c414bd6547396e45288a4f9083fa4ec5df4aac9094c8d0c3e317f600"
+    },
+    {
+      "file": "js/select-plus.js",
+      "sha256": "ac0664ea867b3a779885a75cb42157c73417c5ac09d25f972a8a4b8926f7588f"
+    },
+    {
+      "file": "js/outline.js",
+      "sha256": "ff48a963bb9d5c6bc2e23828ca0f257965cd999a761215424a59005492c340f0"
+    },
+    {
+      "file": "js/hd-canvas.js",
+      "sha256": "b9ddf16b2dd5f96c79060e6303cc95fa2d88c38de5145eddb98f5317c7eda7b9"
+    },
+    {
+      "file": "js/ai-edits.js",
+      "sha256": "31e27b23f1e637782847c3796006a228e86e41114a304ed2e80dc453952773c3"
+    },
+    {
+      "file": "js/projects.js",
+      "sha256": "3aac9e953c228ebb665dbd2a057146223d622b136e2c5d5a81502552a40d5491"
+    },
+    {
+      "file": "js/character-sync.js",
+      "sha256": "66b056bc12be068462fe83708391ef175024cb3b7f4664220256628e763fe28d"
+    },
+    {
+      "file": "js/app.js",
+      "sha256": "baacab16663d24b62359f5eb1b53123b7ec54dbf60d6805fbb4edfdadc1741e7"
+    },
+    {
+      "file": "js/building-groups.js",
+      "sha256": "4554a76dc71ce82627a1d46f75076f2bf8715247240d4adbcb7fcafbd916a8ca"
+    },
+    {
+      "file": "js/studio.js",
+      "sha256": "d296d65fcb47ebfb119d6a840a53aaff465fa20771ee752b615b7e197a7a000e"
+    },
+    {
+      "file": "index.html",
+      "sha256": "e382899cef405aa64d4dc5971b311329ee89ba47aec5ded46e6154a8f4ece501"
+    },
+    {
+      "file": "AGENTS.md",
+      "sha256": "6e3d5b81715669433ac677de356c9869b6f54ee30fae9640121b57f233b18ae4"
+    },
+    {
+      "file": "README.md",
+      "sha256": "9b70ac03ad6540d499ceeab04a191fa1079817a1184d2f51fdb0f6e9c674697b"
+    },
+    {
+      "file": "test/project-branches.cjs",
+      "sha256": "dd4a0d351736f7f196b8dec4eacbe210dc102d960ae0e8d1ef08404ee1331384"
+    },
+    {
+      "file": "test/visual-layers.cjs",
+      "sha256": "da8285caf3f0aff95c2c55a9c94f29eb482b5a43cd92992cffce5c7d589add14"
+    },
+    {
+      "file": "test/hair-animation.cjs",
+      "sha256": "f068277ba9cb55063fd46bb3a3526ce70b7653033fd3b39fc29abec80e2eb5b3"
+    }
+  ],
+  "mainSHA256": "8d3167429fbbb42b338fc9d72126ab8faa59bc7645f1d12f0d6368e529aec3d4",
+  "etag": "\"8d3167429fbbb42b338fc9d72126ab8faa59bc7645f1d12f0d6368e529aec3d4\""
+}

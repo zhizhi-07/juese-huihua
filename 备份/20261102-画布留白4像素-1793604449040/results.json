@@ -1,0 +1,113 @@
+{
+  "margin": 4,
+  "results": [
+    {
+      "id": "main",
+      "etag": "\"6d9d539fcfb55d56d5abb174896ced2bbc9a37590881f5a9b6f73dbbb372a353\"",
+      "cels": 871,
+      "retainedOutsideViewport": 24
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "etag": "\"ddd61b811d79ca0205fed201b4b58d7668770829ce570d7ce738a41441a5bc93\"",
+      "cels": 328,
+      "retainedOutsideViewport": 4
+    },
+    {
+      "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+      "etag": "\"a70b46ffa3230769b97342cec5bf5ccadbcf4a686c97371186aa2dcb7f012341\"",
+      "cels": 602,
+      "retainedOutsideViewport": 9
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "etag": "\"3e2aa6b731ea91efe6b6b32ab12c383ceaab1472e421ae78e956cbd3eb72e167\"",
+      "cels": 460,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "etag": "\"8b7ac57831118a84e8c6e3841c72234b0c89fcf65fe794270818e36b6681700f\"",
+      "cels": 844,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-cat-braids-imagegen-20261029",
+      "etag": "\"3ef7b8c971741fe6b4c3d38a3ec8b64bf1bb8cf6b2d001ef8db15f26cfa58d9d\"",
+      "cels": 329,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "etag": "\"972f2871bba18b6fbaee1329db394e30cdc44b4e11dd8544d57682586e21e5f7\"",
+      "cels": 324,
+      "retainedOutsideViewport": 4
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "etag": "\"1f725deea5dcc6edf49f7de756b7084ef4908504974a0d66763d5b4f17015707\"",
+      "cels": 328,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-gold-mix-1793320553623",
+      "etag": "\"dc5a229ba41f4a4e98ba73fd81b782f6540611b0fe29e697ff06bceefd3c00f0\"",
+      "cels": 679,
+      "retainedOutsideViewport": 78
+    },
+    {
+      "id": "character-gray-long-study-20261029",
+      "etag": "\"04b367dd6ab63a23b476f0803f28221a29721b87f780009fb387303c15af600a\"",
+      "cels": 360,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "etag": "\"c4f076dd45eaace385ec479df37630fe3f5206a1fd7f2807805c6097a8ee3dd6\"",
+      "cels": 844,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "etag": "\"03af6bd1ac75c5212fdc74162584469e25ad9c6399325ef77a753163ae549b91\"",
+      "cels": 460,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "character-pixel-mix-1793412618671",
+      "etag": "\"c677abfef3fcc82409f7b60bbc42b7b0d6b638f19bbd830fedb3d12ae371fb0e\"",
+      "cels": 368,
+      "retainedOutsideViewport": 8
+    },
+    {
+      "id": "character-strawberry-braids-idle-20261029",
+      "etag": "\"d8cecb91a426ce1bb7f3379c4d0d992d3307f6588791bc9edf6f71f936f4e4bc\"",
+      "cels": 360,
+      "retainedOutsideViewport": 0
+    },
+    {
+      "id": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6",
+      "etag": "\"5244c2c0b19c53e93e229660dde385ea33d58f075ee21bbf67e92b63429e6072\"",
+      "cels": 624,
+      "retainedOutsideViewport": 15
+    },
+    {
+      "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+      "etag": "\"6627aa7502b7e9ff6f65423ff1c09a18c172f0c7ad41d46c02b5c8f550ad9f96\"",
+      "cels": 624,
+      "retainedOutsideViewport": 11
+    },
+    {
+      "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+      "etag": "\"ebb2b3a2cb568be2f5bd1001243f6c0244aeaca4c5f76d02293e9245b7427daa\"",
+      "cels": 624,
+      "retainedOutsideViewport": 11
+    },
+    {
+      "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+      "etag": "\"9ccf191062bc13c04431e04793fca9ca1ff3fb1be4140cce4a81f41711ee6f1d\"",
+      "cels": 624,
+      "retainedOutsideViewport": 11
+    }
+  ]
+}

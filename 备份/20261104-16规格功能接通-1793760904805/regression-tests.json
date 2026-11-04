@@ -1,0 +1,146 @@
+[
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/native16-wiring.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "{\"status\":\"PASS\",\"checks\":[\"native16 visual family\",\"main sitting arm editable in layer and pixel API\",\"legacy/branch hand protection retained\",\"native16 one-pixel hair movement\",\"63 target hair frames calibrated from actual heads\",\"current body and sitting pixels unchanged\",\"new branch uses current body and sitting\"]}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/visual-layers.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.\nPASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.\nPASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.\nPASS: visible rename buttons, type-preserving names, grouped components renamed together, one-step undo/redo, no pixel/order/visibility/parent changes, protected/blank/invalid/no-op names safe.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/project-branches.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: all character branch entry points copy body/head/hands and their groups, preserve pixels/frames, remap parents/selection, retain current draft, and stop on invalid source.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/character-sync.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: reordered sheet/action matching; only head/body inherit; live main updates; conditional GET; stale draft conflict; server rejects base overrides while saving independent wardrobe.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/hair-animation.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/layer-controls.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: card naming an unclassified layer 后发 puts its pixels behind the face; undo/redo restores names and order\nPASS: one down arrow crosses the current face, not a layer belonging to another sheet\nPASS: explicitly renaming front hair 正面后发 changes its type and moves it behind the face\nPASS: arrows skip other-direction groups; crossing a group boundary changes the composite immediately\nPASS: naming front hair in sheet 1 does not place it below that sheet's head because of sheet 0 accessories\nPASS: explicit manual order, selected layer and original pixels survive JSON/PNG save and reopen\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/ctrl-rectangle.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: Ctrl rectangle pencil/eraser preview/commit; reverse/clipped drag; brush ignored; one-step undo/redo; selection intersection; frame/layer/protection/cancel safety; native HD rectangles without resampling; ordinary brush unchanged.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/frame-copy.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/cross-action-copy.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: walk/front to idle and sit; matching or new independent hair layer; protected-body safety; dry-run; atomic batch; layer order; undo/redo; ambiguous targets; project boundary; saved pixels.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/frame-delete.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/eye-sync.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/eye-layer-order.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: eye default below fringe and above head; wardrobe ordering; existing and generated synced eyes; all directions; unchanged hair/base pixels; source selection; undo/redo; grouped defaults.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/hd-canvas.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/persistence.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.\nPASS: pending draft keeps its base revision across retries; conflicts offer a safe exit; exact create-only backup + readback precede explicit shared restore; failures and racing edits never replace the original.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/part-export.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "C:\\Users\\Administrator\\.namiwork\\runtime\\win32-x64\\managed\\node\\node.exe",
+      "test/wardrobe.cjs"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.\n",
+    "stderr": ""
+  }
+]

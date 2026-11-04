@@ -1,0 +1,156 @@
+{
+  "changes": [
+    {
+      "layer": 225,
+      "key": "10_0_0",
+      "translationY": 1
+    },
+    {
+      "layer": 225,
+      "key": "10_0_1",
+      "translationY": 2
+    },
+    {
+      "layer": 225,
+      "key": "10_0_2",
+      "translationY": 2
+    },
+    {
+      "layer": 225,
+      "key": "10_0_3",
+      "translationY": 1
+    },
+    {
+      "layer": 226,
+      "key": "10_0_0",
+      "upperBodyCompressedBy": 3,
+      "rows26Through31Preserved": true
+    },
+    {
+      "layer": 226,
+      "key": "10_0_1",
+      "upperBodyCompressedBy": 3,
+      "rows26Through31Preserved": true
+    },
+    {
+      "layer": 226,
+      "key": "10_0_2",
+      "upperBodyCompressedBy": 3,
+      "rows26Through31Preserved": true
+    },
+    {
+      "layer": 226,
+      "key": "10_0_3",
+      "upperBodyCompressedBy": 3,
+      "rows26Through31Preserved": true
+    },
+    {
+      "layer": 227,
+      "key": "10_0_0",
+      "translationY": 3
+    },
+    {
+      "layer": 227,
+      "key": "10_0_1",
+      "translationY": 3
+    },
+    {
+      "layer": 227,
+      "key": "10_0_2",
+      "translationY": 3
+    },
+    {
+      "layer": 227,
+      "key": "10_0_3",
+      "translationY": 3
+    },
+    {
+      "layer": 228,
+      "key": "10_0_0",
+      "translationY": 1
+    },
+    {
+      "layer": 228,
+      "key": "10_0_1",
+      "translationY": 2
+    },
+    {
+      "layer": 228,
+      "key": "10_0_2",
+      "translationY": 2
+    },
+    {
+      "layer": 228,
+      "key": "10_0_3",
+      "translationY": 1
+    },
+    {
+      "layer": 287,
+      "key": "10_0_0",
+      "translationY": 3
+    },
+    {
+      "layer": 287,
+      "key": "10_0_1",
+      "translationY": 3
+    },
+    {
+      "layer": 287,
+      "key": "10_0_2",
+      "translationY": 3
+    },
+    {
+      "layer": 287,
+      "key": "10_0_3",
+      "translationY": 3
+    }
+  ],
+  "heights": [
+    {
+      "fi": 0,
+      "showHands": true,
+      "height": 25
+    },
+    {
+      "fi": 1,
+      "showHands": true,
+      "height": 25
+    },
+    {
+      "fi": 2,
+      "showHands": true,
+      "height": 24
+    },
+    {
+      "fi": 3,
+      "showHands": true,
+      "height": 24
+    },
+    {
+      "fi": 0,
+      "showHands": false,
+      "height": 25
+    },
+    {
+      "fi": 1,
+      "showHands": false,
+      "height": 25
+    },
+    {
+      "fi": 2,
+      "showHands": false,
+      "height": 24
+    },
+    {
+      "fi": 3,
+      "showHands": false,
+      "height": 24
+    }
+  ],
+  "headShapeAndEyeShapeTranslatedOnly": true,
+  "userLegFeetRows26To31Unchanged": true,
+  "handShapeUnchangedMotion": "down/up/up/down, one-pixel lift, no crop",
+  "otherDirectionsActionsHairMetadataUnchanged": true,
+  "renderCompositeExportEqual": true,
+  "browserChecked": false
+}

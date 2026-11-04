@@ -1,0 +1,1 @@
+API PUT/GET 200; 12 idle frames; back front-hair transparent; main unchanged; native nearest pixels; browser not tested.

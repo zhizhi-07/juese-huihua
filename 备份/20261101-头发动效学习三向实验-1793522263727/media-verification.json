@@ -1,0 +1,13 @@
+{
+  "directions": [
+    "正面",
+    "侧面",
+    "背面"
+  ],
+  "threeSeparateAnimatedPreviews": true,
+  "threeNativeTransparentGIFs": true,
+  "sharedExactPalette": true,
+  "reopenedPlaybackPixelsMatchEveryFrame": true,
+  "totalDurationMs": 400,
+  "nearestNeighborScale": 6
+}

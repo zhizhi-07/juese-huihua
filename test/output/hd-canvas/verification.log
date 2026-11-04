@@ -1,0 +1,29 @@
+FINAL VERIFICATION
+COMMAND node test/hd-canvas.cjs
+PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.
+EXIT 0
+COMMAND node test/hd-canvas-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: real UI create blank source, draw native pixel, local and main undo/redo, cancel confirmation, unchanged placement, manual ETag save, fresh-context exact reopen and re-edit; no user projects touched.
+Isolated fixture: C:\Users\ADMINI~1\AppData\Local\Temp\hd-canvas-test-pnqsOm
+EXIT 0
+COMMAND node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT 0
+COMMAND node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+EXIT 0
+COMMAND node test/image-transform.cjs
+PASS: live drag preview; image picking; proportional resizing and handle; atomic undo/redo; bounds and lock protection; frame-switch cancellation.
+EXIT 0
+COMMAND node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT 0
+COMMAND node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT 0

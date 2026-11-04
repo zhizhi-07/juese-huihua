@@ -1,0 +1,56 @@
+{
+  "id": "draft-user-canvas-merged-1793608789349-dbd059d3",
+  "url": "http://localhost:8765/index.html?project=draft-user-canvas-merged-1793608789349-dbd059d3",
+  "originalSHA256": "a179bfd6ce9e4629f02ae564e0032931b6447357faafc9f0718505fe8b9e94eb",
+  "savedSHA256": "fda4023eb6fdc4c0ae20d6e58358ee2d02a4910b6908d7b210587e8029726c1a",
+  "beforeETag": "\"a179bfd6ce9e4629f02ae564e0032931b6447357faafc9f0718505fe8b9e94eb\"",
+  "afterETag": "\"fda4023eb6fdc4c0ae20d6e58358ee2d02a4910b6908d7b210587e8029726c1a\"",
+  "changes": [
+    {
+      "index": 0,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_walk"
+    },
+    {
+      "index": 1,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_pickup"
+    },
+    {
+      "index": 2,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_sit"
+    },
+    {
+      "index": 3,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_sleep"
+    },
+    {
+      "index": 5,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_idle"
+    },
+    {
+      "index": 11,
+      "before": "头发 / 用户 / 后发",
+      "after": "头发 / 灰色短卷发 / 后发",
+      "sheet": "original32_idle"
+    },
+    {
+      "index": 191,
+      "before": "头发 / 用户 / 前发",
+      "after": "头发 / 灰色短卷发 / 前发",
+      "sheet": "original32_idle"
+    }
+  ],
+  "onlyLayerNamesChanged": true,
+  "allPixelsAndLayerOrderUnchanged": true,
+  "projectTitleUnchanged": true,
+  "readbackVerified": true
+}

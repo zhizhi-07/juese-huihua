@@ -1,0 +1,32 @@
+[
+  {
+    "si": 8,
+    "name": "original32_idle",
+    "cols": 4,
+    "rows": 3
+  },
+  {
+    "si": 7,
+    "name": "original32_walk",
+    "cols": 8,
+    "rows": 3
+  },
+  {
+    "si": 9,
+    "name": "original32_pickup",
+    "cols": 6,
+    "rows": 3
+  },
+  {
+    "si": 10,
+    "name": "original32_sit",
+    "cols": 4,
+    "rows": 3
+  },
+  {
+    "si": 11,
+    "name": "original32_sleep",
+    "cols": 4,
+    "rows": 1
+  }
+]

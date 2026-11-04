@@ -1,0 +1,1 @@
+PASS: 46 pasted frames exactly match translated source RGBA; 46 main-canvas/export frames agree; all original cels and timings untouched; saved=true

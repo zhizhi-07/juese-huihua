@@ -1,0 +1,8 @@
+Source: https://github.com/crsolver/claude-pxl
+Installed: C:\Users\Administrator\.codex\skills\pxl-pixel-art
+Node: v22.23.1
+Tests exit: 0
+Build exit: 0
+No editor code or saved projects modified.
+Not checked: typecheck, full security audit, editor import integration.
+Disable: move the pxl-pixel-art folder out of the Codex skills directory.

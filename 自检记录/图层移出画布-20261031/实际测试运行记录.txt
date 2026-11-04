@@ -1,0 +1,39 @@
+
+COMMAND node test/off-canvas-placement.cjs
+PASS: outside drag preview/commit; negative and beyond-frame boxes; native/HD and partial preservation; pick/nudge; outside resize; undo/redo; JSON reload; frame copy; clipped output and exact return; locks and invalid coordinates.
+EXIT 0
+COMMAND node test/hd-partial-selection.cjs
+PASS: HD marquee retained; partial preview/commit; exact RGBA and unselected area; source expansion without resampling; overlapping move; native-grid fractional move; undo/redo; lock/hand/bounds guards; partial edit/resize rejection; save/reload.
+EXIT 0
+COMMAND node test/free-image-placement.cjs
+PASS: HD/native free drag, preview-only state, 0.1 nudge, exact native crop, native undo/redo, native JSON/source edit, fractional export density, protected native layers/frame/regions/hand, bounds, partial-selection isolation and unchecked snapping.
+EXIT 0
+COMMAND node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+EXIT 0
+COMMAND node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+EXIT 0
+COMMAND node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+EXIT 0
+COMMAND node test/hd-canvas.cjs
+PASS: independent editable native canvas, cancel/no-op do not write, atomic apply+undo/redo, placement retained, changed-project/source conflicts and lock guards, source size guard.
+EXIT 0
+COMMAND node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+EXIT 0
+COMMAND node test/free-image-placement-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: unchecked default, free X/Y, half-pixel drag, 0.1 arrow nudge, undo, real revision-checked fractional save and fresh-context exact reopen, original native pixels unchanged.
+PASS: real negative X and beyond-bottom Y, unchanged full source, intact outside selection box, revision-checked save/fresh reopen, real drag across canvas boundary, undo/redo and exact return.
+PASS: real HD marquee, switch to move, partial mouse drag without whole-image reset, exact unselected eye, expansion, undo and redo.
+PASS: ordinary layer free mouse drag, untouched preview, exact source pixels, undo to native layer, redo, 0.1 arrows and X/Y, real save/fresh reopen and high-density PNG export.
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\free-placement-test-3neIgS
+EXIT 0

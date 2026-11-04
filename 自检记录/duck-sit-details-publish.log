@@ -1,0 +1,2 @@
+readback all 12 sit frames checked
+PASS PUT 200; API exactly matches candidate; user back first cel and all unrelated data untouched.

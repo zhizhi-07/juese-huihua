@@ -1,0 +1,55 @@
+{
+  "palette": {
+    "p": "#ffd3de",
+    "b": "#a57c7e",
+    "k": "#5e4d51",
+    "W": "#fefefe",
+    "D": "#4361b5",
+    "B": "#5d84e5",
+    "L": "#8aaff0",
+    "A": "#c3dafe",
+    "r": "#fcabc1"
+  },
+  "near": [
+    "...pppp..",
+    "..pbbbp..",
+    ".pbkkkkp.",
+    "pbkWWDkp.",
+    "bkWDDDBkp",
+    "pWBBBBBkp",
+    "pWLLLLLBp",
+    "pWAAAAALp",
+    ".rLLLLLrp",
+    "..rrrrrp."
+  ],
+  "far": [
+    ".ppp..",
+    "pbkbp.",
+    "bkkkbp",
+    "kWDkbp",
+    "pDBBkp",
+    "pBLLBp",
+    "pLALBp",
+    "pAAALp",
+    ".rLLrp",
+    "..rrp."
+  ],
+  "source": [
+    36,
+    16
+  ],
+  "nearOrigin": [
+    2,
+    2
+  ],
+  "farOrigin": [
+    16,
+    2
+  ],
+  "placementSize": [
+    18,
+    8
+  ],
+  "nearWidth": 4.5,
+  "farWidth": 3
+}

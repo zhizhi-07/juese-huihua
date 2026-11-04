@@ -1,0 +1,74 @@
+{
+  "originalSHA256": "75957a190a72da9e8f582c7b714ac4cad087a4c22305230c2a4b54412db7f256",
+  "changed": [
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 0,
+      "name": "头发后发",
+      "key": "8_1_3"
+    },
+    {
+      "layer": 181,
+      "name": "眼睛 / 原版豆豆眼·定位",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 181,
+      "name": "眼睛 / 原版豆豆眼·定位",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 181,
+      "name": "眼睛 / 原版豆豆眼·定位",
+      "key": "8_1_3"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 185,
+      "name": "眼睛 / 眼睛",
+      "key": "8_1_3"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_1"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_2"
+    },
+    {
+      "layer": 187,
+      "name": "前发",
+      "key": "8_1_3"
+    }
+  ],
+  "changedPixelPositions": 2180,
+  "firstFrameUnchanged": true,
+  "latestEyeShapePreserved": true,
+  "latestSideHairPreserved": true,
+  "allOtherDataUnchanged": true,
+  "noNewDisconnectedComponents": true,
+  "mainPreviewPNG12FramesMatch": true,
+  "restoreExtraCopyVerified": true,
+  "browserChecked": false
+}

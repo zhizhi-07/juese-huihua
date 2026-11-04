@@ -1,0 +1,2 @@
+PASS: setup no longer auto-preserves idle; actual main first-frame shadow color edit reaches all six frames via refresh; explicit keep and non-clothing preserved.
+[{"key":"1_1_1","shadowPixels":4},{"key":"1_1_2","shadowPixels":4},{"key":"1_1_3","shadowPixels":4},{"key":"1_2_1","shadowPixels":4},{"key":"1_2_2","shadowPixels":4},{"key":"1_2_3","shadowPixels":4}]

@@ -1,0 +1,107 @@
+[
+  {
+    "file": "js/core.js",
+    "beforeSHA256": "14b5732d58c6a05647862036d3f4c372f1a6f2938de263ec3d19695098c72fb1",
+    "afterSHA256": "6237b9d008cc02ad893b34970b9f08b2ba148e7a006a69fa8055a50688a6c2fb"
+  },
+  {
+    "file": "js/visual-layers.js",
+    "beforeSHA256": "024af62ba10ee71fd365c0c96c6bfdf6a96f53c447aff0c526d83123a35cd6ed",
+    "afterSHA256": "aa1a34d6e7e6b4cd537af38823cb2bc2cfd615fd62996be6261e0d90aca6c327"
+  },
+  {
+    "file": "js/hair-animation.js",
+    "beforeSHA256": "19b680b1b0c9ed5423c529fe4a23f92e7e6a469212e79d8f265ef93c26cbc7d4",
+    "afterSHA256": "5c178d40356e1ced97524e0b0988caecc0239b44686257031e9677a6890e1d0f"
+  },
+  {
+    "file": "js/workbench.js",
+    "beforeSHA256": "f191f536c820529b3e99936ca93e6448735137624296f697a76847fa80035b47",
+    "afterSHA256": "d7273730acb05c68c2e8f13772d7a8acde13f0826eb6c7a252085beccd6ff475"
+  },
+  {
+    "file": "js/api.js",
+    "beforeSHA256": "2f1f9c7f386a59ab5efb91b623e4ed638c5f4cef0e06a5c3b8b991f41dbf7075",
+    "afterSHA256": "f07425ae3782763a2f6e575d6ba583187d2feee1d0f332f5a0dc6266c7a40e9e"
+  },
+  {
+    "file": "js/tools.js",
+    "beforeSHA256": "2130633275ad3afc2f9663639016f1536a9c959250d0d12b103296b5761bc0b5",
+    "afterSHA256": "d69fd24291454f5ab4ef42ce1ce2b5b76968164f2074d54cfeb9ee54ca0f417a"
+  },
+  {
+    "file": "js/frame-tools.js",
+    "beforeSHA256": "d1acd5550d17831ec48110293ed9b10e2d53ee7a5a6a81d932666edcb24927d4",
+    "afterSHA256": "2da6853b3af0a90ed3a638c08e85e17892152cf38b90a963e52bb2dbbc1e52fd"
+  },
+  {
+    "file": "js/layer-mirror.js",
+    "beforeSHA256": "ca4a8fd7c414bd6547396e45288a4f9083fa4ec5df4aac9094c8d0c3e317f600",
+    "afterSHA256": "2332833558edd6e8f21fb61d1c8de20be2304b23bc776847b8ca448f137d691a"
+  },
+  {
+    "file": "js/select-plus.js",
+    "beforeSHA256": "ac0664ea867b3a779885a75cb42157c73417c5ac09d25f972a8a4b8926f7588f",
+    "afterSHA256": "faea5721623b42a2c8276cc91950f06bb528040682f93888ba02d0df0c063ae5"
+  },
+  {
+    "file": "js/outline.js",
+    "beforeSHA256": "ff48a963bb9d5c6bc2e23828ca0f257965cd999a761215424a59005492c340f0",
+    "afterSHA256": "0a3af59f50704859750261e31c108bf35a86213bb61b35a5ded2df3d71d3a6a8"
+  },
+  {
+    "file": "js/hd-canvas.js",
+    "beforeSHA256": "b9ddf16b2dd5f96c79060e6303cc95fa2d88c38de5145eddb98f5317c7eda7b9",
+    "afterSHA256": "ea8dea1b4bce7a07631246400151ba24daa55ef09bcdbf4d6cb96f19aeaf9161"
+  },
+  {
+    "file": "js/ai-edits.js",
+    "beforeSHA256": "31e27b23f1e637782847c3796006a228e86e41114a304ed2e80dc453952773c3",
+    "afterSHA256": "3cc33f21c23ada0bb1839a14b234c3959b07c7dd36c78fdf941f7dc1a51f6a2f"
+  },
+  {
+    "file": "js/projects.js",
+    "beforeSHA256": "3aac9e953c228ebb665dbd2a057146223d622b136e2c5d5a81502552a40d5491",
+    "afterSHA256": "b4883864affe98ab6b0695d27ce28aa195b2d7a4438456c6e700bb2d2e9e1a8a"
+  },
+  {
+    "file": "js/app.js",
+    "beforeSHA256": "baacab16663d24b62359f5eb1b53123b7ec54dbf60d6805fbb4edfdadc1741e7",
+    "afterSHA256": "c4366ac38e264cfd3f6b9b5a050c875944608a260137edfc849dd104ba10fef2"
+  },
+  {
+    "file": "js/building-groups.js",
+    "beforeSHA256": "4554a76dc71ce82627a1d46f75076f2bf8715247240d4adbcb7fcafbd916a8ca",
+    "afterSHA256": "3676254ec563119d0d77936cb5240fb7a7d2eefc2a1afd6810f1429f48ee1351"
+  },
+  {
+    "file": "js/studio.js",
+    "beforeSHA256": "d296d65fcb47ebfb119d6a840a53aaff465fa20771ee752b615b7e197a7a000e",
+    "afterSHA256": "9f3074ec70a968dfd49a14ff84e5e5c4a18dc0b2745eba34aa12cc74358e2dac"
+  },
+  {
+    "file": "index.html",
+    "beforeSHA256": "e382899cef405aa64d4dc5971b311329ee89ba47aec5ded46e6154a8f4ece501",
+    "afterSHA256": "ea14db3aa8dc52168495f9af463b28ed76679f5586b5a3ab63fee39d38f455c2"
+  },
+  {
+    "file": "AGENTS.md",
+    "beforeSHA256": "6e3d5b81715669433ac677de356c9869b6f54ee30fae9640121b57f233b18ae4",
+    "afterSHA256": "46f5888c7f172241d2eb4872bb4a3f633216f000a13838b8dcc1439f358ab9d6"
+  },
+  {
+    "file": "README.md",
+    "beforeSHA256": "9b70ac03ad6540d499ceeab04a191fa1079817a1184d2f51fdb0f6e9c674697b",
+    "afterSHA256": "9d8fdcdc34ac716d6abfbf4776706441c38ab1ace48dd9c11ee8a0b384cc7909"
+  },
+  {
+    "file": "test/project-branches.cjs",
+    "beforeSHA256": "dd4a0d351736f7f196b8dec4eacbe210dc102d960ae0e8d1ef08404ee1331384",
+    "afterSHA256": "b43607154daebdec61a86e81c046b953bfa9401e0a619c788ac8103d752fb7ff"
+  },
+  {
+    "file": "test/visual-layers.cjs",
+    "beforeSHA256": "da8285caf3f0aff95c2c55a9c94f29eb482b5a43cd92992cffce5c7d589add14",
+    "afterSHA256": "59d2b777c29349c67b03b09e9f197f056e45e7c36a426abdf601b9a38c1db965"
+  }
+]

@@ -21,21 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateLayers=app.updateLayerList.bind(app);
   app.updateLayerList=function(){
     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
-    const available=l=>!l.isGroup&&!PE.isHandLayer(l)&&(l.sheetIndex===undefined||l.sheetIndex===p.currentSheetIndex)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
-    if(!available(p.getCurrentLayer()||{frameData:new Map()})){const i=p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
+    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
+    if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
     updateLayers();
     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
     if(remove){const reason=!selected?'请先选择图层':selected.inheritedBase?'头部、身体和手部跟随主工程，请到主工程修改':PE.isHandLayer(selected)?'手部参考层受保护':selected.isGroup?'请先选择组内图层':selected.locked?'请先解锁图层':p.layers.length<2?'至少保留一个图层':'';remove.disabled=!!reason;remove.title=reason||'删除当前选中图层，可撤销';}
     const rows=[...$('layer-list').children];
     rows.forEach((row,i)=>{
       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
-      if(PE.isHandLayer(l)){row.remove();return;}
-      if(l.sheetIndex!==undefined && l.sheetIndex!==p.currentSheetIndex){row.remove();return;}
+      if(PE.isProtectedHandLayer(l)&&!l.inheritedBase){row.remove();return;}
+      if(!PE.isLayerInAction(p,l)){row.remove();return;}
       const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
       const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
       if (l.isGroup ? !p.layers.some(child=>child.parent===index && (used(child)||child===p.getCurrentLayer())) : l.parent!=null && !used(l) && index!==p.currentLayerIndex) {row.remove();return;}
       const label=row.querySelector('.layer-name');label.textContent=(l.isGroup?'▾ ':'')+l.name;label.style.paddingLeft=(l.depth||0)*8+'px';
-      label.title='双击重命名';label.ondblclick=()=>{if(l.inheritedBase)return;const name=prompt('图层名称',l.name);if(name?.trim()){const old=l.name;l.name=name.trim();app.history.undoStack.push({description:'图层重命名',changes:[],undo:()=>l.name=old,redo:()=>l.name=name.trim()});app.history.redoStack=[];app.history._notifyChange();}};
+      label.title='双击重命名（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动归位）';label.ondblclick=()=>{if(l.inheritedBase)return;const name=prompt('图层名称（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动分类归位）',l.name);if(name?.trim())app.renameLayer(index,name.trim());};
       if(l.inheritedBase){l.locked=true;const lock=row.querySelectorAll('.layer-icon-btn')[1];lock.disabled=true;lock.title='头部、身体和手部跟随主工程，请到主工程修改';}
       row.querySelector('input').disabled=!!l.isGroup;
       if(!l.isGroup){
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const remove=document.createElement('button');remove.className='layer-delete';remove.textContent='删除';remove.setAttribute('aria-label','删除图层 '+l.name);remove.disabled=!!l.inheritedBase;remove.title=l.inheritedBase?'同步底稿请到主工程修改':'删除此图层，可以撤销';remove.onclick=()=>app.deleteLayer(index);row.append(remove);
       }
     });
-    if(p.getCurrentSheet()?.name.startsWith('original32_')){
+    if(PE.isCharacterSheet(p.getCurrentSheet())){
       this.layerSectionOpen??=new Map();
       const sections=new Map();
       function category(l){
@@ -74,14 +74,39 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   };
+  const toast=document.createElement('div');toast.className='layer-toast';toast.setAttribute('role','status');document.body.append(toast);
+  let toastTimer=0;
+  function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2400);}
+  const snapshot=()=>({names:app.project.layers.map(l=>l.name),layers:app.project.layers.slice(),parents:app.project.layers.map(l=>l.parent),selected:app.project.currentLayerIndex});
+  const restoreSnapshot=s=>{const p=app.project;p.layers.length=0;for(const l of s.layers)p.layers.push(l);p.layers.forEach((l,i)=>{l.name=s.names[i];l.parent=s.parents[i];});p.currentLayerIndex=s.selected;};
   function reorder(delta){
-    const p=app.project,i=p.currentLayerIndex,l=p.layers[i];
-    if(PE.isHandLayer(l)||l.isGroup || l.parent!=null){alert('源文件分组顺序保持原样；可以复制为独立图层后调整。');return;}
-    const j=i+delta,other=p.layers[j];if(!other||other.isGroup||other.parent!=null)return;
-    structure('调整图层顺序',p=>{const parents=new Map(p.layers.map(l=>[l,l.parent==null?null:p.layers[l.parent]]));[p.layers[i],p.layers[j]]=[p.layers[j],p.layers[i]];for(const layer of p.layers){const parent=parents.get(layer);layer.parent=parent?p.layers.indexOf(parent):null;}p.currentLayerIndex=j;});
+    const p=app.project,before=snapshot();
+    const result=PE.moveLayerOrder(p,p.currentLayerIndex,delta);
+    if(!result.ok){notify(result.reason);return;}
+    const after=snapshot();
+    app.history.undoStack.push({description:'调整图层顺序',changes:[],undo:()=>restoreSnapshot(before),redo:()=>restoreSnapshot(after)});
+    app.history.redoStack=[];app.history._notifyChange();
   }
   const layerControls=document.createElement('div');layerControls.className='button-row';$('layer-list').before(layerControls);
   button('↑',()=>reorder(1),layerControls);button('↓',()=>reorder(-1),layerControls);
+  const layerHeader=document.querySelector('.layer-header-actions');
+  if(layerHeader){
+    const moveButton=(text,title,delta)=>{const b=document.createElement('button');b.type='button';b.className='icon-action-btn layer-move';b.textContent=text;b.title=title;b.setAttribute('aria-label',title);b.onclick=()=>reorder(delta);return b;};
+    layerHeader.prepend(moveButton('↑','上移一层（更靠前）',1),moveButton('↓','下移一层（更靠后）',-1));
+  }
+  app.renameLayer=(index,rawName)=>{
+    const p=app.project,layer=p.layers[index];
+    if(!layer||layer.isGroup||layer.inheritedBase||PE.isHandLayer(layer))return null;
+    const before=snapshot(),oldName=layer.name;
+    layer.name=rawName;
+    const info=PE.autoPlaceLayer(p,index);
+    if(!info&&oldName===rawName)return null;
+    const after=snapshot();
+    app.history.undoStack.push({description:'图层重命名',changes:[],undo:()=>restoreSnapshot(before),redo:()=>restoreSnapshot(after)});
+    app.history.redoStack=[];app.history._notifyChange();
+    notify(info?`已识别为「${info.slot}」· 放进${info.category}分类并排好层序`:`「${layer.name}」没能识别类别，层序保持原样`);
+    return info;
+  };
   app.deleteLayer=index=>{
     const p=app.project,l=p.layers[index];if(!l)return;
     if(l.inheritedBase){alert('头部、身体和手部跟随主工程，请到主工程修改。');return;}
@@ -113,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function extractPalette(){const frame=app.project.getCurrentFrame();if(!frame?.originalPixels)return;const counts=new Map(),d=frame.originalPixels.data;for(let i=0;i<d.length;i+=4){if(!d[i+3])continue;const key=[...d.slice(i,i+4)].join(',');counts.set(key,(counts.get(key)||0)+1);}const colors=[...counts].sort((a,b)=>b[1]-a[1]).slice(0,64).map(([key])=>{const[r,g,b,a]=key.split(',').map(Number);return{r,g,b,a};});if(colors.length){app.project.palette=colors;app.updatePalette();}}
   button('提取原图色板',extractPalette);
   const tools=$('tool-select').parentElement;
-  for(const [label,scale] of [['缩小图片',.8],['放大图片',1.25]])button(label,()=>{if(!app.toolManager.resizeSelection(scale))alert('请先用“移动 / 缩放”点选可编辑图片；缩放不能超出画布或覆盖保护区域');else refresh();},tools);
+  for(const [label,scale] of [['缩小图片',.8],['放大图片',1.25]])button(label,()=>{if(!app.toolManager.resizeSelection(scale))alert('请先用“移动 / 缩放”点选可编辑图片；图层不能锁定或覆盖保护区域');else refresh();},tools);
   button('复制选区',()=>document.getElementById('copy-cel-btn').click(),tools);
   button('粘贴选区',()=>document.getElementById('paste-cel-btn').click(),tools);
   button('取消选区',()=>{app.toolManager.clearSelection();app.canvasManager.render();},tools);
@@ -132,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $('layer-list').addEventListener('input',markDirty);
   // Clicking a timeline frame must also move the preview to that exact frame.
   const selectFrame=app.selectFrame.bind(app);app.selectFrame=(si,ai,fi)=>{app.animationPlayer.pause();app.toolManager.clearSelection();selectFrame(si,ai,fi);app.animationPlayer.sheetIndex=si;app.animationPlayer.actionIndex=ai;app.animationPlayer.currentFrame=fi;app.animationPlayer.totalFrames=app.project.getCurrentAction().frames.length;app.animationPlayer._renderPreviewFrame();};
-  app.animationPlayer.onFrameChange=fi=>{app.project.currentFrameIndex=fi;[...$('frame-list').children].forEach((thumb,i)=>thumb.classList.toggle('active',i===fi));app.updateFrameProperties();app.updatePalette();app.updateStatusBar();app.canvasManager.render();};
+  const pausePlayback=app.animationPlayer.pause.bind(app.animationPlayer);
+  app.animationPlayer.pause=()=>{const wasPlaying=app.animationPlayer.playing;pausePlayback();if(wasPlaying){app.updatePalette();app.updateFrameProperties();app.updateStatusBar();}};
+  app.animationPlayer.onFrameChange=fi=>{app.project.currentFrameIndex=fi;[...$('frame-list').children].forEach((thumb,i)=>thumb.classList.toggle('active',i===fi));app.updateFrameProperties();if(!app.animationPlayer.playing)app.updatePalette();app.updateStatusBar();app.canvasManager.render();};
   const selectAction=app.selectAction.bind(app);app.selectAction=ai=>{app.animationPlayer.pause();app.toolManager.clearSelection();selectAction(ai);app.updateLayerList();};
   const selectSheet=app.selectSheet.bind(app);app.selectSheet=si=>{app.animationPlayer.pause();selectSheet(si);app.toolManager.clearSelection();const l=app.project.layers.findLastIndex(l=>!l.isGroup&&!l.locked&&!PE.isHandLayer(l)&&(l.sheetIndex===undefined||l.sheetIndex===si));if(l>=0)app.project.currentLayerIndex=l;refresh();fit();};
   app.updateAll();fit();

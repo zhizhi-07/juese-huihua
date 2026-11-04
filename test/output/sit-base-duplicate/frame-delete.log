@@ -1,0 +1,4 @@
+$ node test/frame-delete.cjs
+PASS: first/middle/last deletion, sparse/hidden/hand/global layers, metadata and HD placement, unrelated scope, undo/redo, save/reload, lock/last-frame/drawing/shared-base guards.
+
+exit=0

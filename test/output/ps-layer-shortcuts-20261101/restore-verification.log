@@ -1,0 +1,5 @@
+COMMAND: & restore.ps1 -TargetRoot restore-check (extra copies only)
+PASS: 本次四个文件改动已撤回；工程数据及测试产物未改动。
+文件已有后续修改，拒绝覆盖：README.md
+PASS: later modification rejected before any writes; final workspace artifacts retained. exit=0
+PASS: all four final workspace hashes unchanged.

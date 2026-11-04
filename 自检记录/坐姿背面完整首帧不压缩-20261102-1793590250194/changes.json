@@ -1,0 +1,35 @@
+[
+  {
+    "key": "10_2_1",
+    "changedPixels": 0,
+    "clothesBounds": {
+      "x": 9,
+      "y": 24,
+      "width": 14,
+      "height": 8
+    },
+    "source": "10_2_0"
+  },
+  {
+    "key": "10_2_2",
+    "changedPixels": 34,
+    "clothesBounds": {
+      "x": 9,
+      "y": 24,
+      "width": 14,
+      "height": 8
+    },
+    "source": "10_2_0"
+  },
+  {
+    "key": "10_2_3",
+    "changedPixels": 34,
+    "clothesBounds": {
+      "x": 9,
+      "y": 24,
+      "width": 14,
+      "height": 8
+    },
+    "source": "10_2_0"
+  }
+]

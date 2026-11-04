@@ -1,0 +1,15 @@
+{
+  "id": "outfit-duck-three-source-test-1793668316419",
+  "origin": "draft-user-canvas-merged-1793608789349-dbd059d3",
+  "sourceSHA256": "8fe182e5f0556f1dfcbd43651cdfd0f958c2de8d736bf3c8a1e7da8decf8c845",
+  "sourceETag": "\"8fe182e5f0556f1dfcbd43651cdfd0f958c2de8d736bf3c8a1e7da8decf8c845\"",
+  "sourceIndices": [
+    8,
+    7,
+    9,
+    10,
+    11
+  ],
+  "url": "http://localhost:8765/index.html?project=outfit-duck-three-source-test-1793668316419",
+  "testETag": "\"1301e2bdf9764ae2185e6b5e15afb8d0cce5a3441bf71cec5eca32004c57c99d\""
+}

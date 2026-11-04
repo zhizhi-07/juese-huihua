@@ -1,0 +1,127 @@
+[
+  {
+    "si": 7,
+    "name": "original32_walk",
+    "current": [
+      32,
+      32
+    ],
+    "required": [
+      33,
+      34
+    ],
+    "add": {
+      "left": 0,
+      "top": 0,
+      "right": 1,
+      "bottom": 2
+    },
+    "outsideFrames": [
+      "7_0_0",
+      "7_0_1",
+      "7_0_2",
+      "7_0_3",
+      "7_0_4",
+      "7_0_5",
+      "7_0_6",
+      "7_0_7",
+      "7_1_1",
+      "7_1_2",
+      "7_1_5",
+      "7_1_6",
+      "7_2_1",
+      "7_2_2",
+      "7_2_5",
+      "7_2_6"
+    ]
+  },
+  {
+    "si": 8,
+    "name": "original32_idle",
+    "current": [
+      36,
+      36
+    ],
+    "required": [
+      36,
+      36
+    ],
+    "add": {
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "outsideFrames": []
+  },
+  {
+    "si": 9,
+    "name": "original32_pickup",
+    "current": [
+      40,
+      40
+    ],
+    "required": [
+      40,
+      40
+    ],
+    "add": {
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "outsideFrames": []
+  },
+  {
+    "si": 10,
+    "name": "original32_sit",
+    "current": [
+      32,
+      32
+    ],
+    "required": [
+      32,
+      35
+    ],
+    "add": {
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 3
+    },
+    "outsideFrames": [
+      "10_0_0",
+      "10_0_1",
+      "10_0_2",
+      "10_0_3",
+      "10_1_0",
+      "10_1_1",
+      "10_1_2",
+      "10_1_3",
+      "10_2_0",
+      "10_2_1",
+      "10_2_2",
+      "10_2_3"
+    ]
+  },
+  {
+    "si": 11,
+    "name": "original32_sleep",
+    "current": [
+      32,
+      32
+    ],
+    "required": [
+      32,
+      32
+    ],
+    "add": {
+      "left": 0,
+      "top": 0,
+      "right": 0,
+      "bottom": 0
+    },
+    "outsideFrames": []
+  }
+]

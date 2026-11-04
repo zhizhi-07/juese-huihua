@@ -1,0 +1,75 @@
+{
+  "changed": [
+    [
+      198,
+      "8_0_1"
+    ],
+    [
+      195,
+      "8_0_1"
+    ],
+    [
+      197,
+      "8_0_1"
+    ],
+    [
+      198,
+      "8_0_2"
+    ],
+    [
+      195,
+      "8_0_2"
+    ],
+    [
+      197,
+      "8_0_2"
+    ],
+    [
+      198,
+      "8_0_3"
+    ],
+    [
+      195,
+      "8_0_3"
+    ],
+    [
+      197,
+      "8_0_3"
+    ],
+    [
+      201,
+      "10_0_0"
+    ]
+  ],
+  "newLayerIndex": 200,
+  "idleApprovedFirstExact": true,
+  "idleFirstCompositeExact": true,
+  "idleHeadOffsets": [
+    0,
+    0,
+    2,
+    2
+  ],
+  "lowerHairOffsets": [
+    0,
+    0,
+    1,
+    1
+  ],
+  "sitOnlyFirst": true,
+  "sitSingleLeftEyeNotMirrored": true,
+  "sitEyePixels": 232,
+  "sitEyeEveryNativePixelInsideSkin": true,
+  "sitEyeBelowFrontHair": true,
+  "sitMouthAbsent": true,
+  "bodyHandsClothingOtherActionsUnchanged": true,
+  "allMetadataVisibilityPreserved": true,
+  "parentIndicesRemappedForInsertedEye": true,
+  "mainRenderAndPngPathsChecked": true,
+  "thumbnailPathChecked": true,
+  "browserNotRefreshed": true,
+  "apiReadbackImported": true,
+  "actualStudioPreviewFunctionRendered": true,
+  "cycle12341FirstEqualsLast": true,
+  "nakedAndIndependentHairChecksRendered": true
+}

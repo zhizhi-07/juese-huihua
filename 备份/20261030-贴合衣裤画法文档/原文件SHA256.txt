@@ -1,0 +1,5 @@
+
+Algorithm : SHA256
+Hash      : F50B5E1A66677BF6C4CEA2760E3E8AE8B40DB1ADF38B28C91BF70F45D9534320
+Path      : C:\Users\Administrator\Desktop\角色绘画\衣服绘制AI要求与自检.md
+

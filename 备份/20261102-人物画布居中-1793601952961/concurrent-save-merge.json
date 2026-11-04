@@ -1,0 +1,35 @@
+[
+  {
+    "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+    "previousETag": "\"f0bd8f0e0f992d0a48f7052f3db3ad6405be376473f49b8b24c82121aa099563\"",
+    "newETag": "\"1e2ddb5eec14c208f7f2d41cc90c91855314f22dc191ecdae16a6813ff07a5e0\"",
+    "diff": [
+      {
+        "index": 2,
+        "layer": "头发 / 用户 / 后发",
+        "changedKeys": []
+      },
+      {
+        "index": 175,
+        "layer": "服装 / 衣服-小黄鸭",
+        "changedKeys": [
+          "10_0_0",
+          "10_0_1",
+          "10_0_2",
+          "10_0_3",
+          "10_1_0",
+          "10_1_1",
+          "10_1_2",
+          "10_1_3"
+        ]
+      },
+      {
+        "index": 204,
+        "layer": "前发",
+        "changedKeys": [
+          "10_0_0"
+        ]
+      }
+    ]
+  }
+]

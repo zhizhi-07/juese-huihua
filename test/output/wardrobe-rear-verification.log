@@ -1,0 +1,218 @@
+BEFORE FIX: node test/wardrobe.cjs
+AssertionError [ERR_ASSERTION]: side rear hair must cover the head
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe.cjs:47:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+EXIT: 1
+
+BEFORE FIX: node test/wardrobe-rear-order.cjs 备份/20261030-衣柜后发双层 before
+{
+  "checked": 184,
+  "failed": 104,
+  "firstFailures": [
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "front-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "front-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "front-first",
+      "different": 78
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 0,
+      "equipOrder": "rear-first",
+      "different": 62
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 1,
+      "equipOrder": "rear-first",
+      "different": 83
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 93
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 3,
+      "equipOrder": "rear-first",
+      "different": 78
+    }
+  ],
+  "image": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\output\\wardrobe-rear-before.png"
+}
+AssertionError [ERR_ASSERTION]: Wardrobe pixels must match the source layer order for both equip orders
+
+104 !== 0
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-rear-order.cjs:41:10) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 104,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+EXIT: 1
+
+AFTER FIX: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+
+AFTER FIX: node test/wardrobe-rear-order.cjs 备份/20261030-衣柜后发双层 after
+{
+  "checked": 184,
+  "failed": 52,
+  "firstFailures": [
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "idle",
+      "direction": "right",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "idle",
+      "direction": "left",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 6,
+      "equipOrder": "front-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 2,
+      "equipOrder": "rear-first",
+      "different": 2
+    },
+    {
+      "action": "walk",
+      "direction": "down",
+      "fi": 6,
+      "equipOrder": "rear-first",
+      "different": 2
+    }
+  ],
+  "image": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\output\\wardrobe-rear-after.png"
+}
+AssertionError [ERR_ASSERTION]: Wardrobe pixels must match the source layer order for both equip orders
+
+52 !== 0
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-rear-order.cjs:41:10) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 52,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+EXIT: 1
+
+FINAL FIX: node test/wardrobe-rear-order.cjs 备份/20261030-衣柜后发双层 after
+{
+  "checked": 184,
+  "failed": 0,
+  "firstFailures": [],
+  "image": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\output\\wardrobe-rear-after.png"
+}
+EXIT: 0
+
+COMMAND: node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+EXIT: 0
+
+COMMAND: node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-1V0u7K
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: same-category multi-piece layering with actual front/rear pixels, individual/all removal, refresh/filter/archive retention, manual curation, walk/idle, facing, sit, proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, fresh-page persistence, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-1V0u7K
+EXIT: 0
+
+COMMAND: node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+EXIT: 0
+
+COMMAND: node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+EXIT: 0
+
+COMMAND: node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+EXIT: 0
+
+RESTORE CHECK on extra copies
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜后发双层\wardrobe.js -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-rear-restore-059845c1be914b93935696ad750d3975\js\wardrobe.js SHA256=C442C5ED6F8E4C5FEDEA7C3F627C1239F3EB62DFC0A36F36479C340E32193777
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜后发双层\index.html -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-rear-restore-059845c1be914b93935696ad750d3975\index.html SHA256=FF8CB3E4305213E6FB3A3D7FBB867E827335BB372A7A7B9C480C2EE40E254010
+PASS Copy-Item C:\Users\Administrator\Desktop\角色绘画\备份\20261030-衣柜后发双层\wardrobe.cjs -> C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-rear-restore-059845c1be914b93935696ad750d3975\test\wardrobe.cjs SHA256=D17AE10A170F9C5DE2CD8A5E4AA27CC31B80297B2390832CDBD3EB9B4C2DE655
+
+DELIVERED SHA256
+65CA6813CA7867A4DB53027B1A8F2009FE58971CE42E4707CB3CE7D99583ED59 C:\Users\Administrator\Desktop\角色绘画\js\wardrobe.js
+596CCB5B59AE9E6BA7482F5BAC8236706F6B11A72EFCEB788BAAF73EE74FE907 C:\Users\Administrator\Desktop\角色绘画\index.html
+4EEFECA487CB767A42C4DCA7159C907FCDF88E700276DDFFFCC1775E11AD8087 C:\Users\Administrator\Desktop\角色绘画\test\wardrobe.cjs
+D4DBCDA6107157AB30CECF82D67689CCD2725CAB8FBF82D75A9540491E167B96 C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-rear-order.cjs

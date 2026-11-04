@@ -1,0 +1,496 @@
+{
+  "records": [
+    {
+      "sourceLayer": 5,
+      "targetLayer": 3,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 5,
+      "targetLayer": 3,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 5,
+      "targetLayer": 3,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 5,
+      "targetLayer": 3,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 6,
+      "targetLayer": 288,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 6,
+      "targetLayer": 288,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 6,
+      "targetLayer": 288,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 6,
+      "targetLayer": 288,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 184,
+      "targetLayer": 225,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 184,
+      "targetLayer": 225,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 184,
+      "targetLayer": 225,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 184,
+      "targetLayer": 225,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 185,
+      "targetLayer": 226,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 185,
+      "targetLayer": 226,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 185,
+      "targetLayer": 226,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 185,
+      "targetLayer": 226,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 186,
+      "targetLayer": 227,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 186,
+      "targetLayer": 227,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 186,
+      "targetLayer": 227,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 186,
+      "targetLayer": 227,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 187,
+      "targetLayer": 228,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 187,
+      "targetLayer": 228,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 187,
+      "targetLayer": 228,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 187,
+      "targetLayer": 228,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 188,
+      "targetLayer": 229,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 188,
+      "targetLayer": 229,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 188,
+      "targetLayer": 229,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 188,
+      "targetLayer": 229,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 190,
+      "targetLayer": 231,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 190,
+      "targetLayer": 231,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 190,
+      "targetLayer": 231,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 190,
+      "targetLayer": 231,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 255,
+      "targetLayer": 259,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 255,
+      "targetLayer": 259,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 255,
+      "targetLayer": 259,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 255,
+      "targetLayer": 259,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 256,
+      "targetLayer": 289,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 256,
+      "targetLayer": 289,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 256,
+      "targetLayer": 289,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 256,
+      "targetLayer": 289,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 261,
+      "targetLayer": 290,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 261,
+      "targetLayer": 290,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 261,
+      "targetLayer": 290,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 261,
+      "targetLayer": 290,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 262,
+      "targetLayer": 291,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 262,
+      "targetLayer": 291,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 262,
+      "targetLayer": 291,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 262,
+      "targetLayer": 291,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 263,
+      "targetLayer": 292,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 263,
+      "targetLayer": 292,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 263,
+      "targetLayer": 292,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 263,
+      "targetLayer": 292,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 264,
+      "targetLayer": 293,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 264,
+      "targetLayer": 293,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 264,
+      "targetLayer": 293,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 264,
+      "targetLayer": 293,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 265,
+      "targetLayer": 294,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 265,
+      "targetLayer": 294,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 265,
+      "targetLayer": 294,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 265,
+      "targetLayer": 294,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 267,
+      "targetLayer": 295,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 267,
+      "targetLayer": 295,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 267,
+      "targetLayer": 295,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 267,
+      "targetLayer": 295,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 268,
+      "targetLayer": 274,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 268,
+      "targetLayer": 274,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 268,
+      "targetLayer": 274,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 268,
+      "targetLayer": 274,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 269,
+      "targetLayer": 296,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 269,
+      "targetLayer": 296,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 269,
+      "targetLayer": 296,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 269,
+      "targetLayer": 296,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 281,
+      "targetLayer": 297,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 281,
+      "targetLayer": 297,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 281,
+      "targetLayer": 297,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 281,
+      "targetLayer": 297,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    },
+    {
+      "sourceLayer": 284,
+      "targetLayer": 287,
+      "sourceKey": "8_0_0",
+      "targetKey": "10_0_0"
+    },
+    {
+      "sourceLayer": 284,
+      "targetLayer": 287,
+      "sourceKey": "8_0_1",
+      "targetKey": "10_0_1"
+    },
+    {
+      "sourceLayer": 284,
+      "targetLayer": 287,
+      "sourceKey": "8_0_2",
+      "targetKey": "10_0_2"
+    },
+    {
+      "sourceLayer": 284,
+      "targetLayer": 287,
+      "sourceKey": "8_0_3",
+      "targetKey": "10_0_3"
+    }
+  ],
+  "metadataChanged": [
+    {
+      "index": 225,
+      "field": "visible"
+    }
+  ],
+  "addedLayers": 10,
+  "allNonSidePixelsUnchanged": true,
+  "allOtherSheetsUnchanged": true,
+  "noPaintedPixelsCropped": true,
+  "compositeEqualsIdle": true,
+  "scope": "full idle side copied as redraw base; no redesign"
+}

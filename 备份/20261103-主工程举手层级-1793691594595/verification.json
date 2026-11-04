@@ -1,0 +1,80 @@
+{
+  "unchangedFrames": 184,
+  "changedFrames": [
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 0,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 1,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 2,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 3,
+      "differentPixels": 8
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 4,
+      "differentPixels": 12
+    },
+    {
+      "si": 9,
+      "ai": 0,
+      "fi": 5,
+      "differentPixels": 8
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 0,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 1,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 2,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 3,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 4,
+      "differentPixels": 0
+    },
+    {
+      "si": 9,
+      "ai": 1,
+      "fi": 5,
+      "differentPixels": 0
+    }
+  ],
+  "renderPathChecks": 108,
+  "handTopChecks": 24,
+  "pixelsUnchanged": true
+}

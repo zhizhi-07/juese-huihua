@@ -1,0 +1,230 @@
+[
+  {
+    "id": "main",
+    "name": "人物主工程"
+  },
+  {
+    "id": "ai3-computer",
+    "name": "笔记本电脑"
+  },
+  {
+    "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+    "name": "ai"
+  },
+  {
+    "id": "character-2db91540-be07-40c3-a279-b1cd62aa657a",
+    "name": "中性"
+  },
+  {
+    "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+    "name": "用户"
+  },
+  {
+    "id": "character-black-buns-idle-20261027",
+    "name": "炭黑双丸子·白发罩·待机分支"
+  },
+  {
+    "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+    "name": "可爱-萌衣服"
+  },
+  {
+    "id": "character-cat-braids-imagegen-20261029",
+    "name": "猫耳栗棕双辫·生图正面试稿"
+  },
+  {
+    "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+    "name": "萌"
+  },
+  {
+    "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+    "name": "萌"
+  },
+  {
+    "id": "character-gold-mix-1793320553623",
+    "name": "人物 · 灰色混搭前80011＋后80009"
+  },
+  {
+    "id": "character-gray-long-study-20261029",
+    "name": "灰色长发·尖发束待机"
+  },
+  {
+    "id": "character-green-flower-idle-20261027",
+    "name": "灰色长披发·待机分支"
+  },
+  {
+    "id": "character-pink-bob-trial-20261027",
+    "name": "粉色外翻短发·正面首帧试稿"
+  },
+  {
+    "id": "character-pixel-mix-1793412618671",
+    "name": "像素转像素 · 前发80008＋后发80010"
+  },
+  {
+    "id": "character-strawberry-braids-idle-20261029",
+    "name": "蓬松双麻花辫·待机"
+  },
+  {
+    "id": "draft-conflict-1793608335313-038e0c03",
+    "name": "用户"
+  },
+  {
+    "id": "draft-hair-link-qa-1793667805120",
+    "name": "头发联动 · 验证副本"
+  },
+  {
+    "id": "draft-hair-link-test-1793667505308",
+    "name": "头发1＋2 · 实时同步与持续飘动测试"
+  },
+  {
+    "id": "draft-hair-mix-20261030-083412",
+    "name": "金发混搭 · 前80011＋后80009"
+  },
+  {
+    "id": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6",
+    "name": "用户头发·三向待机动效学习实验"
+  },
+  {
+    "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+    "name": "头发动效学习A·自然垂坠"
+  },
+  {
+    "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+    "name": "头发动效学习B·分束柔摆"
+  },
+  {
+    "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+    "name": "头发动效学习C·轻弹回落"
+  },
+  {
+    "id": "draft-rescue-user-1793606510885-0f5f5a07",
+    "name": "用户"
+  },
+  {
+    "id": "draft-rescue-user-1793606531005-ebee0f7e",
+    "name": "用户"
+  },
+  {
+    "id": "draft-rescue-user-1793606533990-88874a6a",
+    "name": "用户"
+  },
+  {
+    "id": "draft-user-canvas-merged-1793608789349-dbd059d3",
+    "name": "用户（草稿＋画布尺寸合并）"
+  },
+  {
+    "id": "draft-zong-d8227d6f-eabc-4313-9503-48dbcac55ea7",
+    "name": "总"
+  },
+  {
+    "id": "finished-189f23ba-d7ce-46c9-b872-c829f8240474",
+    "name": "蓝色"
+  },
+  {
+    "id": "finished-3ef317cc-7e2c-4c08-b0a2-74eb7f454b8c",
+    "name": "3"
+  },
+  {
+    "id": "finished-49b4ab59-a67a-453b-807e-5f42c2d21634",
+    "name": "蓝色"
+  },
+  {
+    "id": "finished-4b40123c-0792-4880-bff8-ea6d94113772",
+    "name": "齐刘海"
+  },
+  {
+    "id": "finished-615b67cd-37af-4398-860e-4ce231afca8d",
+    "name": "波波"
+  },
+  {
+    "id": "finished-6164e956-fe63-4509-9934-47d46577a7a9",
+    "name": "双马尾"
+  },
+  {
+    "id": "finished-6328f31c-b967-4edf-8735-26101dd47e70",
+    "name": "3"
+  },
+  {
+    "id": "finished-787ef95d-2dfd-42a9-9bea-553c4c22b36b",
+    "name": "睡衣"
+  },
+  {
+    "id": "finished-df81f7b2-482a-4314-9637-8dfdcf02a5f6",
+    "name": "双马尾"
+  },
+  {
+    "id": "finished-f00f7189-0621-4217-8d72-29d30561d723",
+    "name": "蓝色"
+  },
+  {
+    "id": "outfit-duck-body-shadow-test-1793672593738",
+    "name": "小黄鸭｜素体阴影驱动对照实验（无手）"
+  },
+  {
+    "id": "outfit-duck-three-source-test-1793668316419",
+    "name": "小黄鸭｜三张待机自动同步测试（无手）"
+  },
+  {
+    "id": "outfit-jk-body-shadow-test-1793686194412",
+    "name": "JK｜素体阴影驱动对照实验（无手）"
+  },
+  {
+    "id": "outfit-jk-three-source-test-1793669864187",
+    "name": "JK水手服｜三张待机自动同步测试（无手）"
+  },
+  {
+    "id": "scene-3b05939d-a36b-4a09-a26d-717df25492ef",
+    "name": "厨房场景"
+  },
+  {
+    "id": "scene-84f43535-31be-4d20-a4f0-d8eaba6feb17",
+    "name": "厨房场景"
+  },
+  {
+    "id": "scene-8c46e3b1-514a-4aea-87ca-3a600a58f88e",
+    "name": "测试"
+  },
+  {
+    "id": "scene-chaji-bb9608a0-3e12-430c-8920-a7a6fa896d03",
+    "name": "茶记奶茶店"
+  },
+  {
+    "id": "scene-chaji-f1982d51-60aa-4332-947c-1e27b8e7169c",
+    "name": "茶记奶茶店"
+  },
+  {
+    "id": "scene-faeeabd0-6480-4579-8f2a-f25ed49eb96d",
+    "name": "用户"
+  },
+  {
+    "id": "scene-mixue-730a529b-e528-445b-84b3-2d7038072ca6",
+    "name": "蜜雪冰城"
+  },
+  {
+    "id": "scene-mixue-gen-9a947236-7763-4114-884c-785860eff134",
+    "name": "蜜雪冰城·部件分组"
+  },
+  {
+    "id": "scene-sink-3fe215b7-f3b2-445d-b247-38a0a480ec65",
+    "name": "洗手台 · 循环流水"
+  },
+  {
+    "id": "scene-store-study-d98166cb-6adb-45e2-a209-0919ae91b4f0",
+    "name": "商店原图临摹"
+  },
+  {
+    "id": "scene-tea-5282bf59-31a3-47f5-aee0-dbe6b1d57976",
+    "name": "茶小满奶茶店"
+  },
+  {
+    "id": "scene-tea-new-e76dbbc6-b792-44b3-8168-dbba6325072a",
+    "name": "茶记奶茶店·新设计"
+  },
+  {
+    "id": "test-town-body02-idle-walk-20261031",
+    "name": "宁静城镇 · 原版素体02 · 待机走路测试"
+  },
+  {
+    "id": "trial16-gray-curls-20261031",
+    "name": "16×16 · 灰发卷尾 · 正面试稿"
+  }
+]

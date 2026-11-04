@@ -1,0 +1,79 @@
+{
+  "margin": 4,
+  "frames": 1308,
+  "report": [
+    {
+      "id": "main",
+      "frames": 70
+    },
+    {
+      "id": "character-1514538e-509b-4072-bcc8-6f7dfc0d24a4",
+      "frames": 70
+    },
+    {
+      "id": "character-56620e79-ce79-4fd9-b49c-081f7bc57d67",
+      "frames": 70
+    },
+    {
+      "id": "character-black-buns-idle-20261027",
+      "frames": 70
+    },
+    {
+      "id": "character-c956e706-eb99-4599-bafc-eec5de7d8b5a",
+      "frames": 70
+    },
+    {
+      "id": "character-cat-braids-imagegen-20261029",
+      "frames": 70
+    },
+    {
+      "id": "character-ce0cb9c3-32e4-4b10-8077-b11cabb5484e",
+      "frames": 70
+    },
+    {
+      "id": "character-e328b659-bfda-4f40-ad74-88dc253b0f3f",
+      "frames": 70
+    },
+    {
+      "id": "character-gold-mix-1793320553623",
+      "frames": 70
+    },
+    {
+      "id": "character-gray-long-study-20261029",
+      "frames": 70
+    },
+    {
+      "id": "character-green-flower-idle-20261027",
+      "frames": 70
+    },
+    {
+      "id": "character-pink-bob-trial-20261027",
+      "frames": 70
+    },
+    {
+      "id": "character-pixel-mix-1793412618671",
+      "frames": 70
+    },
+    {
+      "id": "character-strawberry-braids-idle-20261029",
+      "frames": 70
+    },
+    {
+      "id": "draft-hair-study-165d4c5a-be30-429e-8a50-dcfd219947b6",
+      "frames": 82
+    },
+    {
+      "id": "draft-hair-study-a-90dcd5b6-07e9-4cb1-bd1e-9c6f3f6d4b5e",
+      "frames": 82
+    },
+    {
+      "id": "draft-hair-study-b-078e220d-18ea-4206-ad58-3d53a18df163",
+      "frames": 82
+    },
+    {
+      "id": "draft-hair-study-c-287c0af5-bbfb-4b77-b7a4-b2732a6358b0",
+      "frames": 82
+    }
+  ],
+  "browserTested": false
+}

@@ -1,0 +1,140 @@
+NODE_PATH=C:\Users\Administrator\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules
+> node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+exit=0
+> node test/hd-image-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\hd-image-test-vldInh
+exit=0
+> node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+exit=0
+> node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+exit=0
+> node test/image-transform.cjs
+PASS: live drag preview; image picking; proportional resizing and handle; atomic undo/redo; bounds and lock protection; frame-switch cancellation.
+exit=0
+> node test/image-import-browser.cjs
+PASS: browser upload; crop/move/resize; canvas toolbar flips and keying; selection and whole-layer editing; undo; reselect; keyboard nudge; no page errors.
+exit=0
+> node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+exit=0
+> node test/frame-copy-browser.cjs
+PASS: actual grouped-hair copy across directions; buttons and Ctrl+C/X/V; repeated next-frame copy and creation; batch range and all directions; undo; locked-target review; no page errors.
+exit=0
+> node test/editor-cleanup.cjs
+PASS: canvas palette refresh/pick/transparency; precise layer deletion/selection; inherited base protection; bounded pixel colors and transparency.
+exit=0
+> node test/visual-layers.cjs
+PASS: component-card DOM renders; 5 category tabs; 3 hair slots; thumbnails draw; face tab; same-slot replacement and undo/redo; other sheets/back hair preserved; wrong-direction thumbnail excluded; no automatic save.
+PASS: all-action controls render, toggle matching parts with undo/redo, preserve other slots and pixels.
+PASS: multi-layer rear hair chooses together with its parent, undo restores visibility, empty directional cards are hidden, numeric IDs are not merged.
+exit=0
+> node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+exit=0
+> node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-b0MoFO
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: manual curation, two-category equip, walk/idle, facing, sit, actual proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, close/reopen + fresh-page persistence, archive, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-b0MoFO
+exit=0
+> node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+exit=0
+> node test/persistence.cjs
+PASS: successful autosave, unsynced local fallback, legacy draft recovery, shared restore, conflicts retain user draft, clean-only agent synchronization.
+exit=0
+> node test/shared-server.cjs
+PASS: shared file atomic save, version conflict protection, last-file backup, schema rejection, private data/token routes and authenticated file-page bridge.
+exit=0
+> node test/character-sync.cjs
+PASS: reordered sheet/action matching; only head/body inherit; live main updates; conditional GET; stale draft conflict; server rejects base overrides while saving independent wardrobe.
+exit=0
+> node test/branch-hands.cjs
+PASS: old branches restore both hands; source action/sheet remapping; depth order; parent/selection identity; live pixel/visibility sync; repeat stability; wardrobe unchanged; header checkbox outside settings.
+exit=0
+> node test/idle-canvas.cjs
+PASS: transparent centered expansion preserves all pixels, locks and backups; no partial mutation; old branch API upgrades and saves; stale 32px draft rejected.
+exit=0
+> node --check js/core.js
+exit=0
+> node --check js/canvas.js
+exit=0
+> node --check js/tools.js
+exit=0
+> node --check js/export.js
+exit=0
+> node --check js/pixel-import.js
+exit=0
+> node --check js/studio.js
+exit=0
+> node --check js/frame-tools.js
+exit=0
+> node --check js/wardrobe.js
+exit=0
+> node --check js/visual-layers.js
+exit=0
+Final focused rerun after no-op selection guard / partial-selection message / HD idle padding support:
+> node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+exit=0
+> node test/hd-image-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\hd-image-test-gp2qLY
+exit=0
+> node test/image-edit.cjs
+PASS: canvas flips preserve RGBA; selection isolation; keying; atomic undo/redo; protected layer/frame/region rejection; invalid input leaves pixels unchanged.
+exit=0
+> node test/image-import.cjs
+PASS: exact crop and transparency; distinct resizing modes; bounds; non-destructive placement; drag/nudge; undo/redo; locked-region rejection; saved PNG pixels.
+exit=0
+> node test/image-transform.cjs
+PASS: live drag preview; image picking; proportional resizing and handle; atomic undo/redo; bounds and lock protection; frame-switch cancellation.
+exit=0
+> node test/frame-copy.cjs
+PASS: clipboard survives navigation; selected-layer and region copying/cutting; next-frame creation; direction batch; atomic locks/bounds; independent pixels; undo/redo; API discovery; saved project.
+exit=0
+> node test/idle-canvas.cjs
+PASS: transparent centered expansion preserves all pixels, locks and backups; no partial mutation; old branch API upgrades and saves; stale 32px draft rejected.
+exit=0
+> node test/character-sync.cjs
+PASS: reordered sheet/action matching; only head/body inherit; live main updates; conditional GET; stale draft conflict; server rejects base overrides while saving independent wardrobe.
+exit=0
+Concurrent-update verification > node test/hd-image-browser.cjs
+TEST starting isolated HD browser fixture
+TEST editor copied
+TEST fixture written
+TEST server launched
+TEST browser launched
+TEST fixture opened
+PASS: browser native-HD upload, disabled destructive controls, exact resize roundtrip, drag and undo, revision-checked real server save/reopen, original layer preserved, downloadable 4x PNG, narrow UI, stale-write rejection; user projects untouched.
+Isolated test directory: C:\Users\ADMINI~1\AppData\Local\Temp\hd-image-test-c0vKuh
+exit=0
+Concurrent-update verification > node test/wardrobe.cjs
+PASS: independent selected-only snapshots, custom cross-sheet layers, no embedded branch/source/body, source unchanged, frame timing/mirroring, rear-hair ordering, transparent combined action arrays and complete JSON ZIP.
+exit=0
+Concurrent-update verification > node test/wardrobe-browser.cjs
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-v7LDjz
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+PASS: real isolated save API + browser: same-category multi-piece layering with actual front/rear pixels, individual/all removal, refresh/filter/archive retention, manual curation, walk/idle, facing, sit, proximity pickup, stale-update rejection, update backup, missing-action warning, ZIP download, fresh-page persistence, dirty-draft and shortcut protection; 1440x980 and 620x860 layouts.
+Isolated test files retained at C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-v7LDjz
+exit=0

@@ -1,0 +1,1 @@
+PASS: preserve painted shadows; follow skin shadow; no red-channel-only classification (both fitting paths).

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const toolButtons=['pencil','eraser','eyedropper','fill','select'].map(t=>$('tool-'+t));
   const extraTools=['复制选区','粘贴选区','取消选区'].map(byText);
   const header=node('header','studio-header');header.id='studio-header';
-  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><strong>像素衣橱</strong>';
+  const brand=node('div','studio-brand');brand.innerHTML='<span class="brand-pixels" aria-hidden="true">▦</span><strong>16×16 像素工作台</strong>';
   const primary=node('div','primary-actions');
   $('import-btn').textContent='导入素材';$('import-project-btn').textContent='打开工程';$('export-project-btn').textContent='保存工程';$('export-project-btn').classList.add('save-primary');
   const oldSave=$('export-project-btn'),save=oldSave.cloneNode(true);oldSave.replaceWith(save);save.onclick=()=>app.persistence.saveNow();
@@ -35,18 +35,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   const rail=node('aside','tool-rail');rail.setAttribute('aria-label','绘画工具');
   const labels=['铅笔','橡皮','吸色','填充','框选'],shortcuts=['B','E','I','G','M'];
   const icons=['M5 19l3.5-1 10-10-2.5-2.5-10 10L5 19 M14 7l3 3','M5 14l8-9 7 6-8 9H9z M12 20h8','M5 19l2-5L17 4l3 3-10 10z M13 6l5 5','M4 12l8-8 8 8-8 8z M4 12h16','M4 8V4h4 M16 4h4v4 M20 16v4h-4 M8 20H4v-4'];
-  toolButtons.forEach((b,i)=>{b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[i]}"/></svg><span>${labels[i]}</span><kbd>${shortcuts[i]}</kbd>`;b.title=labels[i]+' ('+shortcuts[i]+')';b.setAttribute('aria-label',labels[i]);rail.append(b);});
+  toolButtons.forEach((b,i)=>{b.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${icons[i]}"/></svg><span>${labels[i]}</span><kbd>${shortcuts[i]}</kbd>`;b.title=labels[i]+' ('+shortcuts[i]+')'+(i===0?' · 按住 Ctrl 拖动矩形填色':i===1?' · 按住 Ctrl 拖动矩形擦除':'');b.setAttribute('aria-label',labels[i]);rail.append(b);});
   const undoGroup=node('div','rail-history');$('undo-btn').textContent='↶';$('undo-btn').setAttribute('aria-label','撤销');$('redo-btn').textContent='↷';$('redo-btn').setAttribute('aria-label','重做');undoGroup.append($('undo-btn'),$('redo-btn'));const moveButton=$('tool-move');moveButton.innerHTML='<span aria-hidden="true">↔</span><span>移动缩放</span>';moveButton.setAttribute('aria-label','移动 / 缩放');rail.append(moveButton,undoGroup);
 
   const sources=$('sheet-list').closest('section');sources.querySelector('h3').textContent='动作素材';
   const libraryNote=node('p','section-caption','六套原始动作 · 图层完整保留');sources.querySelector('.section-header').after(libraryNote);
+  const addMaterial=button('＋ 新建素材',()=>{
+    try{
+      if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
+      const name=prompt('素材名称（例如：床、台灯、衣柜）');if(name===null)return;
+      const size=prompt('画布宽×高（像素，最大1024×1024）','16x16');if(size===null)return;
+      const match=/^(\d+)\s*[x×*]\s*(\d+)$/.exec(size.trim());if(!match)throw new Error('请输入例如 16x32');
+      app.animationPlayer.pause();app.toolManager.clearSelection();
+      const si=PE.addSceneMaterial(app.project,name,Number(match[1]),Number(match[2]));
+      app.selectSheet(si);app.persistence.markDirty();
+    }catch(error){alert(error.message);}
+  });addMaterial.hidden=true;sources.querySelector('.section-header').after(addMaterial);
   const directionList=$('action-list');
   const left=$('left-sidebar');left.replaceChildren(sources);
   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
-  const builtinReset=button('重新载入内置角色',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
+  const builtinReset=button('重新载入16×16素体',()=>loadBuiltins(true),'subtle-button');secondary.append(builtinReset);
   const center=$('center-viewport'),canvasHeader=node('div','canvas-header');
   const heading=node('div','canvas-title');const drawingTitle=node('strong','','正在载入角色…'),drawingMeta=node('span','','');heading.append(drawingTitle,drawingMeta);
-  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.setAttribute('aria-label','显示手部');handSwitch.append(handCheckbox,node('span','','显示手部'));
+  const handSwitch=node('label','hand-switch');const handCheckbox=node('input');handCheckbox.type='checkbox';handCheckbox.id='show-hands';handCheckbox.checked=true;handCheckbox.setAttribute('aria-label','显示手臂');handSwitch.append(handCheckbox,node('span','','显示手臂'));
   const background=node('label','background-control','背景 '),backgroundColor=node('input'),backgroundHex=node('input');
   backgroundColor.type='color';backgroundColor.setAttribute('aria-label','画布背景颜色');
   backgroundHex.type='text';backgroundHex.setAttribute('aria-label','背景颜色十六进制');backgroundHex.maxLength=7;
@@ -83,8 +94,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   palette.querySelector('h3').textContent='颜色';layers.querySelector('h3').textContent='绘画图层';$('add-layer-btn').textContent='+ 新图层';
   const paintControls=node('div','paint-controls');const color=$('color-primary'),hex=document.querySelector('input[aria-label="颜色十六进制"]');paintControls.append(color,hex);palette.querySelector('.section-header').after(paintControls);
   $('palette-container').before(node('p','palette-caption','当前画面颜色 · 点击取色'));
-  const sizeControl=node('label','brush-control','画笔大小 ');sizeControl.append($('brush-size'),$('brush-size-val'));palette.append(sizeControl);
-  const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','只读保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','不参与绘画，导出时原样保留。'));
+  const sizeControl=node('div','brush-control');sizeControl.setAttribute('role','group');sizeControl.setAttribute('aria-label','画笔 / 橡皮大小设置');
+  sizeControl.title='普通画布按画布像素；高清图层按源像素。也可用 [ / ] 调整大小。';
+  sizeControl.append(node('span','','画笔 / 橡皮'),$('brush-size'),$('brush-size-number'),node('span','','px'));viewbar.insertBefore(sizeControl,viewActions);
+  const handCard=node('section','hand-card');const handHeading=node('div','hand-card-heading');handHeading.append(node('strong','','独立手部'),node('span','protection-pill','分支保护'));const handList=node('div','hand-layer-names');handCard.append(handHeading,handList,node('small','','主工程已开放的手臂可在身体分类修改；人物分支跟随主工程。'));
   const preview=node('section','preview-card');preview.append(node('div','preview-label','动画预览'),$('preview-canvas'));
   right.replaceChildren(palette,layers,preview);secondary.append(handCard);
   const layerControls=layers.querySelector('.button-row');if(layerControls){layerControls.prepend(node('span','','图层顺序与删除 '));secondary.append(layerControls);}
@@ -92,8 +105,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const workspace=$('workspace');workspace.prepend(rail);
   $('animation-bar').remove();$('bottom-panel').className='studio-footer';
   const names=new Map((window.PE_BUILTIN_PACKS||[]).map(x=>[x.name.replace('.aseprite',''),x.title]));
-  names.set('sit','坐姿');names.set('sleep','睡觉');
-  const commonActions=[['original32_walk','行走'],['original32_idle','待机'],['original32_pickup','拾取'],['original32_sit','坐姿'],['original32_sleep','睡觉']];
+  names.set('sit','坐姿');
+  const commonActions=[['original16_walk','行走'],['original16_idle','待机'],['original16_pickup','拾取'],['original16_sit','坐姿']];
   for(const [name,title]of commonActions)names.set(name,title);
   const directionNames={down:'正面',side:'侧面',up:'背面',left:'向左',right:'向右',none:'当前方向'};
 
@@ -105,53 +118,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     const items=this.project.spriteSheets.map((s,i)=>({s,i}));
     items.sort((a,b)=>{const rank=s=>{const n=commonActions.findIndex(([name])=>name===s.name);return n<0?99:n;};return rank(a.s)-rank(b.s);});
     items.forEach(({s,i})=>{
+    if(!PE.isEditorSheet(s))return;
     const b=button('',()=>this.selectSheet(i),'sheet-item'+(i===this.project.currentSheetIndex?' active':''));
     const icon=node('span','sheet-icon','▤'),text=node('span','sheet-copy');text.append(node('strong','',names.get(s.name)||s.name),node('small','',s.actions.length+' 个方向 · '+s.getTotalFrames()+' 帧'));b.append(icon,text);
     if(hasCommon&&originals.has(s.name)){archive.append(b);archived++;if(i===this.project.currentSheetIndex)archive.open=true;}else{list.append(b);visible++;}
-  });if(archived){archive.firstElementChild.textContent='原始动作备份 · '+archived+' 套';list.append(archive);}libraryNote.textContent=visible+' 套常用动作 · 手部独立保留';};
+  });if(archived){archive.firstElementChild.textContent='原始动作备份 · '+archived+' 套';list.append(archive);}
+    const scene=PE.isSceneProject(this.project);addMaterial.hidden=!scene;
+    sources.querySelector('h3').textContent=scene?'场景素材':'动作素材';
+    libraryNote.textContent=scene?'每件素材独立画布、图层与动画帧':visible+' 套常用动作 · 手部独立保留';
+    if(scene)guide.innerHTML='<strong>从这里开始</strong><p>新建床、台灯等素材，点击名称切换绘画；右侧可加图层，下方可复制整帧制作动画。</p><span>素材不会自动摆入场景，可复制后粘贴到场景画布。</span>';
+  };
   app.updateActionList=function(){const list=$('action-list');list.replaceChildren();this.project.getCurrentSheet()?.actions.forEach((a,i)=>{const b=button(directionNames[a.direction]||a.name,()=>this.selectAction(i),'direction-tab'+(i===this.project.currentActionIndex?' active':''));b.setAttribute('aria-pressed',i===this.project.currentActionIndex?'true':'false');list.append(b);});};
   function bounds(image) {let x0=image.width,y0=image.height,x1=-1,y1=-1;for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++)if(image.data[(y*image.width+x)*4+3]){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}return x1<0?null:{x:x0,y:y0,w:x1-x0+1,h:y1-y0+1};}
-  function paintThumbnail(canvas,image,size=64){const box=bounds(image);canvas.width=size;canvas.height=size;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;if(!box)return;const temp=document.createElement('canvas');temp.width=image.width;temp.height=image.height;temp.getContext('2d').putImageData(image,0,0);const scale=Math.max(1,Math.floor((size-12)/Math.max(box.w,box.h)));ctx.drawImage(temp,box.x,box.y,box.w,box.h,Math.floor((size-box.w*scale)/2),Math.floor((size-box.h*scale)/2),box.w*scale,box.h*scale);}
-  const frameList=app.updateFrameList.bind(app);app.updateFrameList=function(){frameList();const p=this.project;[...$('frame-list').querySelectorAll('canvas')].forEach((c,i)=>{const image=this.canvasManager.getCompositeImageData(p.currentSheetIndex,p.currentActionIndex,i,!this.canvasManager.hideHands);if(image)paintThumbnail(c,image);});};
+  function paintThumbnail(canvas,image,size=64){const box=bounds(image);canvas.width=size;canvas.height=size;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;if(!box)return;const temp=document.createElement('canvas');temp.width=image.width;temp.height=image.height;temp.getContext('2d').putImageData(image,0,0);const scale=Math.min((size-12)/Math.max(box.w,box.h),Math.max(1,Math.floor((size-12)/Math.max(box.w,box.h))));ctx.drawImage(temp,box.x,box.y,box.w,box.h,Math.floor((size-box.w*scale)/2),Math.floor((size-box.h*scale)/2),box.w*scale,box.h*scale);}
+  const frameList=app.updateFrameList.bind(app);app.updateFrameList=function(){frameList();const p=this.project;[...$('frame-list').querySelectorAll('canvas')].forEach((c,i)=>{const scale=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,i),image=this.canvasManager.getCompositeImageData(p.currentSheetIndex,p.currentActionIndex,i,!this.canvasManager.hideHands,scale);if(image)paintThumbnail(c,image);});};
   const layerList=app.updateLayerList.bind(app);app.updateLayerList=function(){layerList();for(const label of $('layer-list').querySelectorAll('.layer-name')){const original=label.textContent;label.textContent=original.includes('衣服与发型')?'衣服与发型':({'head':'头部','body':'身体','vfx':'特效','▾ down':'▾ 正面分组','▾ side':'▾ 侧面分组','▾ up':'▾ 背面分组'}[original]||original);}
     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';handList.replaceChildren();for(const l of p.layers){if(!PE.isHandLayer(l)||l.sheetIndex!==p.currentSheetIndex||![...l.frameData.keys()].some(k=>k.startsWith(prefix)))continue;handList.append(node('span','hand-name',l.name));}if(!handList.children.length)handList.append(node('span','hand-name','此动作无独立手层'));};
   app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
-  function focusCharacter(){const cm=app.canvasManager,image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands);if(!image)return;const box=bounds(image);if(!box){cm.centerView();return;}cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
-  app.canvasManager.hideHands=true;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
+  function focusCharacter(){const p=app.project,cm=app.canvasManager,density=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex,6),image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands,density);if(!image)return;const raw=bounds(image);if(!raw){cm.centerView();return;}const box={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
+  app.canvasManager.hideHands=!handCheckbox.checked;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
   handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updatePalette();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};
-  pixelAPI.setHandsPreviewVisible=show=>{handCheckbox.checked=!!show;handCheckbox.onchange();return {success:true,visible:handCheckbox.checked,referenceOnly:true};};
-  pixelAPI.getHandsInfo=()=>({success:true,visible:handCheckbox.checked,layers:app.project.layers.map((l,index)=>({layer:l,index})).filter(({layer:l})=>PE.isHandLayer(l)&&l.sheetIndex===app.project.currentSheetIndex).map(({layer:l,index})=>({index,name:l.name,referenceOnly:true}))});
+  pixelAPI.setHandsPreviewVisible=show=>{handCheckbox.checked=!!show;handCheckbox.onchange();return {success:true,visible:handCheckbox.checked,referenceOnly:app.project.layers.filter(l=>PE.isHandLayer(l)).every(PE.isProtectedHandLayer)};};
+  pixelAPI.getHandsInfo=()=>({success:true,visible:handCheckbox.checked,layers:app.project.layers.map((l,index)=>({layer:l,index})).filter(({layer:l})=>PE.isHandLayer(l)&&l.sheetIndex===app.project.currentSheetIndex).map(({layer:l,index})=>({index,name:l.name,referenceOnly:PE.isProtectedHandLayer(l),editable:!l.locked&&!PE.isProtectedHandLayer(l)}))});
   const selectedSheet=app.selectSheet.bind(app),selectedAction=app.selectAction.bind(app);
   app.selectSheet=i=>{selectedSheet(i);focusCharacter();};app.selectAction=i=>{selectedAction(i);focusCharacter();};
   // Tight, stable animation framing uses the union of every frame, never per-frame centering.
-  app.animationPlayer._renderPreviewFrame=function(){
-    const p=app.project,action=p.spriteSheets[this.sheetIndex]?.actions[this.actionIndex];if(!action)return;let union=null;const images=action.frames.map((_,i)=>app.canvasManager.getCompositeImageData(this.sheetIndex,this.actionIndex,i,!app.canvasManager.hideHands));
-    for(const image of images){const b=bounds(image);if(!b)continue;if(!union)union={...b};else {const x=Math.min(union.x,b.x),y=Math.min(union.y,b.y),right=Math.max(union.x+union.w,b.x+b.w),bottom=Math.max(union.y+union.h,b.y+b.h);union={x,y,w:right-x,h:bottom-y};}}
-    const canvas=this.canvas;canvas.width=144;canvas.height=144;const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;const image=images[this.currentFrame];if(!union||!image)return;const tmp=document.createElement('canvas');tmp.width=image.width;tmp.height=image.height;tmp.getContext('2d').putImageData(image,0,0);const scale=Math.max(1,Math.min(6,Math.floor(124/Math.max(union.w,union.h))));ctx.drawImage(tmp,union.x,union.y,union.w,union.h,Math.floor((144-union.w*scale)/2),Math.floor((144-union.h*scale)/2),union.w*scale,union.h*scale);
+  app.animationPlayer._renderPreviewFrame=function(useCache=false){
+    const p=app.project,action=p.spriteSheets[this.sheetIndex]?.actions[this.actionIndex],hands=!app.canvasManager.hideHands;
+    if(!action||!action.frames.length)return;
+    let cache=this._previewCache;
+    if(!useCache||cache?.project!==p||cache.action!==action||cache.hands!==hands||cache.frames.length!==action.frames.length){
+      let union=null;
+      const density=Math.max(1,Math.min(6,PE.utils.imageScale(p,this.sheetIndex,this.actionIndex),Math.floor(Math.sqrt(16*1024*1024/Math.max(...action.frames.map(f=>f.width*f.height))))));
+      const images=action.frames.map((_,i)=>app.canvasManager.getCompositeImageData(this.sheetIndex,this.actionIndex,i,hands,density));
+      for(const image of images){const raw=bounds(image);if(!raw)continue;const b={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};if(!union)union={...b};else {const x=Math.min(union.x,b.x),y=Math.min(union.y,b.y),right=Math.max(union.x+union.w,b.x+b.w),bottom=Math.max(union.y+union.h,b.y+b.h);union={x,y,w:right-x,h:bottom-y};}}
+      const frames=images.map(image=>{
+        const canvas=document.createElement('canvas');canvas.width=144;canvas.height=144;
+        if(!union||!image)return canvas;
+        const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+        const tmp=document.createElement('canvas');tmp.width=image.width;tmp.height=image.height;tmp.getContext('2d').putImageData(image,0,0);
+        const scale=Math.max(1,Math.min(6,Math.floor(124/Math.max(union.w,union.h))));
+        ctx.drawImage(tmp,union.x*density,union.y*density,union.w*density,union.h*density,Math.floor((144-union.w*scale)/2),Math.floor((144-union.h*scale)/2),union.w*scale,union.h*scale);
+        return canvas;
+      });
+      cache=this._previewCache={project:p,action,hands,frames};
+    }
+    const canvas=this.canvas;if(canvas.width!==144)canvas.width=144;if(canvas.height!==144)canvas.height=144;
+    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,144,144);ctx.drawImage(cache.frames[this.currentFrame],0,0);
   };
   const originalSetTool=app.toolManager.setTool.bind(app.toolManager);app.toolManager.setTool=t=>{originalSetTool(t);toolButtons.forEach((b,i)=>b.setAttribute('aria-pressed',['pencil','eraser','eyedropper','fill','select'][i]===t?'true':'false'));moveButton.setAttribute('aria-pressed',t==='move'?'true':'false');};
   toolButtons[0].setAttribute('aria-pressed','true');
-  const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing)focusCharacter();});resizeObserver.observe($('canvas-container'));
+  const resizeObserver=new ResizeObserver(()=>{if(!app.toolManager.isDrawing&&!app.animationPlayer.playing)focusCharacter();});resizeObserver.observe($('canvas-container'));
   const loading=node('div','studio-loading');loading.innerHTML='<span class="loading-pixel">▦</span><strong>正在打开你的角色素材</strong><span>保留原始图层与全部动作帧</span>';document.body.append(loading);
   async function loadBuiltins(reset=false){
-    if(reset&&!confirm('重新载入内置原始角色会替换当前工程，请先保存工程。继续吗？'))return;
+    if(reset&&!confirm('重新载入干净16×16素体会替换当前工程，请先保存工程。继续吗？'))return;
     if(reset&&app.persistence.dirty&&!await app.persistence.saveNow()){alert('请先导出当前工程，避免覆盖尚未同步的绘画。');return;}
     builtinReset.disabled=true;loading.hidden=false;app.suspendBackup=true;
     try{
-      // Build in a separate project; a failed import must never replace current edits.
-      const project=new PE.Project();project.layers=[];project.spriteSheets=[];
-      for(const item of window.PE_BUILTIN_PACKS){const bytes=Uint8Array.from(atob(item.base64),c=>c.charCodeAt(0));await PE.importAseprite(new File([bytes],item.name),project);}
-      for(const [pack,name,pose,direction]of [
-        ['walk.aseprite','original32_walk'],['idle.aseprite','original32_idle'],['pick up.aseprite','original32_pickup'],
-        ['hurt.aseprite','original32_sit','sit'],['death.aseprite','original32_sleep','sleep','down']
-      ]){const index=await PE.addOriginal32Action(project,pack,name,pose,direction);PE.addReferenceEyes32(project,index);}
-      const base32Index=project.spriteSheets.findIndex(s=>s.name==='original32_idle');
-      project.bgColor='#b8c8c3';project.gridColor='rgba(48,68,62,.2)';
-      project.name='Hana Caraka · 角色衣橱';project.currentSheetIndex=base32Index;
-      project.currentActionIndex=Math.max(0,project.spriteSheets[base32Index].actions.findIndex(a=>a.direction==='down'));project.currentFrameIndex=0;
-      project.currentLayerIndex=project.layers.findIndex(l=>l.sheetIndex===base32Index&&!l.isGroup&&!PE.isHandLayer(l)&&l.name.includes('眼型'));
-      app.animationPlayer.pause();app.project=project;PE.project=project;app.canvasManager.setProject(project);app.toolManager.init(project,app.canvasManager,app.history);app.animationPlayer.project=project;app.exportManager.init(project,app.canvasManager);app.inspectionManager.init(project,app.canvasManager);app.history.clear();app.updateAll();app.syncBackgroundControls();focusCharacter();
-      const sample=project.getCurrentFrame()?.originalPixels;if(sample){const colors=new Map();for(let i=0;i<sample.data.length;i+=4){if(!sample.data[i+3])continue;const [r,g,b,a]=sample.data.slice(i,i+4);colors.set([r,g,b,a].join(','),{r,g,b,a});}project.palette=[...colors.values(),...[['#E8A6B6','柔粉'],['#A7CBB1','浅绿'],['#ECCF8D','奶黄'],['#9CB6D6','浅蓝'],['#B7A5CF','浅紫']].map(([hex,name])=>({...PE.utils.hexToRGBA(hex),name}))];app.updatePalette();}
+      let response=await fetch(app.persistence.base+'/api/project?id=main',{headers:app.persistence.headers,cache:'no-store'});
+      if(response.status===404)response=await fetch('assets/builtin/native16-clean.json',{cache:'no-store'});
+      if(!response.ok)throw new Error('当前素体读取失败：'+response.status);
+      const data=await response.json();PE.characterBase(data);
+      await app.exportManager.importProject(new Blob([JSON.stringify(data)],{type:'application/json'}));
+      app.animationPlayer.setAction(app.project.currentSheetIndex,app.project.currentActionIndex);
+      app.updateAll();app.syncBackgroundControls();focusCharacter();
     }catch(error){alert('内置素材载入失败：'+error.message+'。当前工程未被替换。');console.error(error);}
     finally{loading.hidden=true;builtinReset.disabled=false;app.suspendBackup=false;}
     if(reset)app.persistence.markDirty();

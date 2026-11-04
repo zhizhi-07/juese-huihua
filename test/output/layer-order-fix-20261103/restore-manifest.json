@@ -1,0 +1,22 @@
+[
+  {
+    "file": "js/core.js",
+    "before": "29c942c5b269ead3621f4452996d2d53f1dc6a4f172b2969d459369a0a3a54e9",
+    "after": "14b5732d58c6a05647862036d3f4c372f1a6f2938de263ec3d19695098c72fb1"
+  },
+  {
+    "file": "js/visual-layers.js",
+    "before": "b67e977cf9f5bdff5c95ad783675dff29dd3e7c7d70ba06d10a927cce2591556",
+    "after": "024af62ba10ee71fd365c0c96c6bfdf6a96f53c447aff0c526d83123a35cd6ed"
+  },
+  {
+    "file": "test/hair-slots.cjs",
+    "before": "5689ef81bec3f037c9661c47109c398154c775f12593e47c74c99b579ffe657a",
+    "after": "8d02b37da7828b150f9085bd43ea67e82723941f674a5a6763dce6c7badb2d4a"
+  },
+  {
+    "file": "index.html",
+    "before": "0563515ee6c17980a3a3ea46bf306946a8a088bb6323febeed948eb439748208",
+    "after": "49fd66a45acd40c6d8405500cd308ad32a7a629b2e9ca9d154223e9dff5a7786"
+  }
+]

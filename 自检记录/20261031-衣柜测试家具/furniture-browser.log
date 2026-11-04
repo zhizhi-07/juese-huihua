@@ -1,0 +1,16 @@
+TEST directory C:\Users\ADMINI~1\AppData\Local\Temp\wardrobe-browser-3ySdn3
+TEST editor files copied
+TEST fixture generated
+TEST server launched
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'walk' !== 'idle'
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe-browser.cjs:139:216) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'walk',
+  expected: 'idle',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

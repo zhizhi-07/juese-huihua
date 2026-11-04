@@ -1,0 +1,7 @@
+执行记录（2026-11-02）
+1. GET http://127.0.0.1:8765/api/project?id=character-56620e79-ce79-4fd9-b49c-081f7bc57d67：HTTP 200；原始响应 original.json；ETag/SHA256 见 source.json。
+2. node scripts/sync-duck-sit-front-side-first-20261102.cjs：首次 exit 1，无 stdout/stderr，原因未确认；未发布。
+3. node --trace-uncaught scripts/sync-duck-sit-front-side-first-20261102.cjs：重试 exit 0；原稿12帧和候选12帧主画布/PNG/动画预览路径通过；6帧变化像素数 78,85,85,41,61,61。实际打开 before-side/after-side/before-front/after-front.png 检查浅深底、裸身、无头发、服装单层及原尺寸。
+4. node --trace-uncaught scripts/sync-duck-sit-front-side-first-20261102.cjs publish：exit 0；原始输出 PASS PUT 200 / API exact / all 12 sitting frames rendered。先GET比较当前工程，再带初始ETag执行PUT；回读与candidate完全一致。
+仅变更服装层175的10_0_1、10_0_2、10_0_3、10_1_1、10_1_2、10_1_3；6帧均逐像素等于各自方向最新用户首帧，未缩放、压行、平移或重配色；其余工程数据完全一致。
+恢复额外副本已验证。未操作浏览器，不刷新未保存草稿。帧时长保持当前工程100ms，不套用旧规范450ms。
