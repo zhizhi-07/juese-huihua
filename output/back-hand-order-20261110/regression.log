@@ -1,0 +1,17 @@
+node test/front-hand-top.cjs
+PASS: front-view front hand stays on top; both back-view hands and outlines are below the body in canvas, PNG and wardrobe; exposed hand pixels remain visible; layer data untouched.
+exit=0
+node test/hair-slots.cjs
+PASS: rear hair covers head from front, covers head from back, hidden rear reveals scalp, accessories on top, canvas and PNG fallback agree, project indexes unchanged.
+PASS: main editable canvas, preview composite and PNG fallback have identical layer ordering in front/back views with rear hair and accessories toggled.
+exit=0
+node test/directional-base.cjs
+{"original":false,"selected":3,"expected":3,"renderedBodies":1,"expectedBodies":1}
+PASS: direction switching; foreign-cel render guard; implicit and batch direction matching; explicit wrong-direction rejection; undo/redo; locks; shared layers; nested/cyclic groups.
+exit=0
+node test/eye-layer-order.cjs
+PASS: eye default below fringe and above head; wardrobe ordering; existing and generated synced eyes; all directions; unchanged hair/base pixels; source selection; undo/redo; grouped defaults.
+exit=0
+node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+exit=0

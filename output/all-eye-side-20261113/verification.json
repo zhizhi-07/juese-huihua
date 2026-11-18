@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "sideFirstFrame": "1_0_0",
+  "styles": [
+    "眼睛 / 原版像素",
+    "眼睛 / 高清",
+    "眼睛 / 眼睛1",
+    "眼睛 / 可爱"
+  ],
+  "exactSourcePixelsAndPlacement": true,
+  "frontAndOtherFramesUnchanged": true,
+  "noSyncEnabled": true
+}

@@ -1,0 +1,10 @@
+{
+  "pixelsChanged": {
+    "1_0_0": 12,
+    "1_1_0": 8,
+    "1_2_0": 8
+  },
+  "onlyIdleFirst": true,
+  "sitInkUnchanged": true,
+  "repeatStable": true
+}

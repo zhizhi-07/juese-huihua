@@ -1,0 +1,24 @@
+{
+  "project": "scene-e4150351-9254-4d4a-9fad-513ececc9cc0",
+  "dimensions": [
+    64,
+    64
+  ],
+  "groups": 17,
+  "newPaintLayers": 31,
+  "preservedOriginalLayers": 3,
+  "beforeSha256": "4cbfcae9270e6db28619552f6874ddf4a3f6865c1d226d202592a6c45b524ec2",
+  "afterSha256": "e23afeab90b3fac7fbb4caf843c46a3199ae7fe78555b9ad61ce96d84506f8de",
+  "putStatus": 200,
+  "getStatus": 200,
+  "checks": [
+    "original layers unchanged",
+    "sheet/action/frame metadata unchanged",
+    "no placement or resampling",
+    "all parent references valid",
+    "31 nonempty native pixel layers",
+    "readback structurally equals candidate",
+    "readback composition pixel-exact equals drawing"
+  ],
+  "scope": "Only append grouped scene art and select main sign layer; no people, no editor source or other projects modified."
+}

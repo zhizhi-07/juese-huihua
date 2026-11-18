@@ -1,6 +1,26 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),net=require('node:net'),{spawn}=require('node:child_process');
-const {chromium}=require('playwright'),{fixture}=require('./wardrobe.cjs'),JSZip=require('../js/vendor/jszip.min.js');
+const {chromium}=require('playwright'),{fixture}=require('./wardrobe.cjs'),JSZip=require('../js/vendor/jszip.min.js'),png=require('../scripts/png.cjs');
 const root=path.resolve(__dirname,'..');
+const WALL=[221,208,170,255],FLOOR=[199,178,127,255],WOOD=[139,107,74,255];
+function pngURL(width,height,blocks){
+  const rgba=new Uint8ClampedArray(width*height*4);
+  for(const [x,y,w,h,color]of blocks)for(let py=y;py<y+h;py++)for(let px=x;px<x+w;px++){
+    if(px<0||py<0||px>=width||py>=height)continue;
+    const i=(py*width+px)*4;rgba[i]=color[0];rgba[i+1]=color[1];rgba[i+2]=color[2];rgba[i+3]=color[3]??255;
+  }
+  return 'data:image/png;base64,'+png.encode(width,height,rgba).toString('base64');
+}
+// 场景绘制工程：地面/装饰变成房间，“家具与设施”层里不相连的每一块像素就是一件家具。
+function sceneProject(){
+  const width=160,height=96;
+  const data={version:'1.0',name:'衣柜试验房间',bgColor:'#b8c8c3',palette:[],currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,currentLayerIndex:1,
+    spriteSheets:[{name:'场景画布',frameWidth:width,frameHeight:height,columns:1,rows:1,imageDataURL:pngURL(width,height,[]),actions:[{name:'场景',direction:'none',frames:[{sheetIndex:0,sourceX:0,sourceY:0,width,height}]}]}],layers:[]};
+  const layer=(name,blocks)=>data.layers.push({name,sheetIndex:0,visible:true,locked:false,opacity:1,frameData:{'0_0_0':{width,height,dataURL:pngURL(width,height,blocks)}}});
+  layer('地面',[[0,0,width,72,WALL],[0,72,width,height-72,FLOOR]]);
+  layer('家具与设施',[[30,60,12,14,WOOD],[80,70,20,10,WOOD]]);
+  layer('装饰',[[140,20,6,6,[110,140,113,255]]]);
+  return data;
+}
 async function main(){
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'wardrobe-browser-'));
   console.log('TEST directory '+dir);
@@ -23,6 +43,7 @@ async function main(){
     await page.goto(base+'/index.html?project=draft-wardrobe-test');await page.waitForFunction(()=>PE.app.persistence.ready&&document.querySelector('.studio-loading')?.hidden);
     const original=await page.evaluate(async()=>{const a=PE.app;a.project.name='含未保存修改的草稿';a.persistence.markDirty();return {data:await a.exportManager.exportProject(false).text(),version:a.persistence.version,tool:a.toolManager.currentTool};});
     await page.getByRole('button',{name:'成品衣柜 / 换装测试',exact:true}).click();await page.getByText('这里还没有成品。',{exact:false}).waitFor();
+    assert.equal(await page.evaluate(()=>PE.WardrobeFurniture.layout.length),0,'the fitting room ships no furniture of its own');
     const dialog=page.locator('.wardrobe-dialog'),scene=page.getByLabel('换装测试场景：方向键或WASD移动，C坐下或站起，E拾取');
     await dialog.getByText('＋ 标记当前工程的成品',{exact:true}).click();await dialog.getByLabel('成品名称').fill('已完成头发');
     await dialog.getByRole('checkbox',{name:'后发-完整头发 · 头发',exact:true}).uncheck();
@@ -106,7 +127,7 @@ async function main(){
     assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/draft-wardrobe-test.json'),'utf8')),savedSource,'wardrobe never writes to the source project');assert.deepEqual(errors,[]);
     // Furniture tests run in the disposable editor, including a real built-in body rather than only colored fixture boxes.
     await fresh.getByRole('button',{name:'关闭衣柜',exact:true}).click();
-    const qa=path.join(root,'自检记录/20261031-衣柜测试家具');fs.mkdirSync(qa,{recursive:true});
+    const qa=path.join(root,'自检记录/20261107-衣柜场景家具');fs.mkdirSync(qa,{recursive:true});
     const nativeInfo=await fresh.evaluate(async()=>{
       const app=PE.app,p=new PE.Project(),pack=PE_BUILTIN_PACKS.find(p=>p.name==='idle.aseprite');
       await PE.importAseprite(new File([Uint8Array.from(atob(pack.base64),c=>c.charCodeAt(0))],pack.name),p);
@@ -116,35 +137,51 @@ async function main(){
     });
     fs.writeFileSync(path.join(qa,'内置人物测试动作.json'),JSON.stringify(nativeInfo,null,2));
     const beforeFurniture=await fresh.evaluate(()=>PE.app.exportManager.exportProject(false).text());
+    // 场景绘制工程就是换装试验场的家具与房间来源；衣柜自己不内置任何家具。
+    const sceneId='scene-wardrobe-test',sceneRaw=sceneProject();
+    r=await fetch(base+'/api/project?id='+sceneId,{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(sceneRaw)});assert.equal(r.status,200);
     await fresh.getByRole('button',{name:'成品衣柜 / 换装测试',exact:true}).click();
     const fd=fresh.locator('.wardrobe-dialog'),fc=fresh.locator('.wardrobe-scene');
     const saveScene=async name=>{const data=await fc.evaluate(c=>c.toDataURL().split(',')[1]);fs.writeFileSync(path.join(qa,name+'.png'),Buffer.from(data,'base64'));};
-    await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.action==='idle');await saveScene('房间-原生');
-    const furniture=await fresh.evaluate(()=>PE.WardrobeFurniture.layout);
+    await fresh.waitForFunction(()=>PE.WardrobeFurniture.layout.length===2);await saveScene('房间-场景工程原生');
+    assert.equal(await fd.getByLabel('场景来源').evaluate(s=>s.value),sceneId,'the scene drawing project is picked automatically');
+    assert.equal(await fc.evaluate(c=>c.width),160,'the drawn scene canvas becomes the room 1:1');assert.equal(await fc.evaluate(c=>c.height),96);
+    const furniture=await fresh.evaluate(()=>PE.WardrobeFurniture.layout.map(f=>({id:f.id,x:f.x,y:f.y,w:f.art.width,h:f.art.height})));
+    assert.deepEqual(furniture.map(f=>[f.x,f.y,f.w,f.h]),[[36,74,12,14],[90,80,20,10]],'drawn furniture keeps its drawn position and native pixel size');
     for(const f of furniture){
       await fd.getByLabel('测试家具',{exact:true}).selectOption(f.id);await fd.getByRole('button',{name:'就位测试',exact:true}).click();
       await fresh.waitForFunction(id=>document.querySelector('.wardrobe-scene').dataset.furniture===id,f.id);
-      assert.equal(await fc.getAttribute('data-direction'),f.direction);assert.equal(await fc.getAttribute('data-action'),f.kind==='bed'?'sleep':'sit');
-      assert(!(await fd.locator('.wardrobe-warnings').textContent()).includes('底稿缺少'),'built-in action is actually available');
+      assert.equal(await fc.getAttribute('data-action'),'sit');assert(!(await fd.locator('.wardrobe-warnings').textContent()).includes('底稿缺少'),'drawn furniture can actually be sat on');
       await saveScene('就位-'+f.id);await fresh.keyboard.press('f');await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='');assert.equal(await fc.getAttribute('data-action'),'idle');
     }
-    // Approach the first chair on foot: stop at its footprint, then use the nearby F/C interaction.
-    await fd.getByRole('button',{name:'重置场景',exact:true}).click();await fresh.keyboard.down('ArrowLeft');
-    await fresh.waitForFunction(()=>Number(document.querySelector('.wardrobe-scene').dataset.x)<50);await fresh.keyboard.up('ArrowLeft');
-    await fresh.keyboard.down('ArrowUp');await fresh.waitForTimeout(650);await fresh.keyboard.up('ArrowUp');
-    assert(Number(await fc.getAttribute('data-y'))>=120,'chair collision stops walking through its legs');
-    await fresh.keyboard.press('f');await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='chair-down');
+    // 站在家具旁就能用 F/C，走过去会被画好的家具挡住。
+    await fd.getByRole('button',{name:'重置场景',exact:true}).click();await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.action==='idle');
+    assert.equal(await fc.getAttribute('data-x'),'80');assert.equal(await fc.getAttribute('data-y'),'61');
+    await fresh.keyboard.press('f');await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='furniture-2');
     await fresh.keyboard.press('f');await fresh.waitForFunction(()=>!document.querySelector('.wardrobe-scene').dataset.furniture);
-    await fresh.keyboard.press('c');await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='chair-down');
-    await fresh.keyboard.down('ArrowRight');await fresh.waitForTimeout(100);await fresh.keyboard.up('ArrowRight');await fresh.waitForFunction(()=>!document.querySelector('.wardrobe-scene').dataset.furniture);assert.equal(await fc.getAttribute('data-action'),'idle');
-    // Missing sleep directions never substitute idle or an unrelated orientation.
-    await fd.getByLabel('测试朝向').selectOption('left');await fd.getByLabel('测试动作').selectOption('sleep');
-    await fresh.waitForFunction(()=>document.querySelector('.wardrobe-warnings').textContent.includes('底稿缺少睡觉 / left'));
-    await fd.getByLabel('测试家具',{exact:true}).selectOption('bed');await fd.getByRole('button',{name:'就位测试',exact:true}).click();await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='bed');
+    await fresh.keyboard.press('c');await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.furniture==='furniture-2');
+    await fresh.keyboard.down('ArrowDown');await fresh.waitForTimeout(700);await fresh.keyboard.up('ArrowDown');
+    await fresh.waitForFunction(()=>!document.querySelector('.wardrobe-scene').dataset.furniture);
+    assert(Number(await fc.getAttribute('data-y'))<=68,'walking never passes through the drawn furniture footprint');
+    await fresh.keyboard.down('ArrowRight');await fresh.waitForTimeout(120);await fresh.keyboard.up('ArrowRight');
+    await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.action==='idle');
+    // 在场景绘制里多画一件家具，换装试验场刷新后自己就多摆一件。
+    await fresh.getByRole('button',{name:'关闭衣柜',exact:true}).click();
+    const grown=sceneProject();grown.layers[1].frameData['0_0_0']={width:160,height:96,dataURL:pngURL(160,96,[[30,60,12,14,WOOD],[80,70,20,10,WOOD],[120,50,10,16,WOOD]])};
+    r=await fetch(base+'/api/project?id='+sceneId,{method:'PUT',headers:{'X-Pixel-Editor':'1','Content-Type':'application/json','If-Match':(await fetch(base+'/api/project?id='+sceneId)).headers.get('ETag')},body:JSON.stringify(grown)});assert.equal(r.status,200);
+    await fresh.getByRole('button',{name:'成品衣柜 / 换装测试',exact:true}).click();
+    await fresh.waitForFunction(()=>PE.WardrobeFurniture.layout.length===3);await saveScene('房间-新增一件家具');
+    assert.deepEqual(await fresh.evaluate(()=>PE.WardrobeFurniture.layout.map(f=>[f.x,f.y,f.art.width,f.art.height])),[[36,74,12,14],[90,80,20,10],[125,66,10,16]],'a newly drawn piece appears where it was drawn');
+    await fd.getByLabel('场景来源').selectOption('');
+    await fresh.waitForFunction(()=>PE.WardrobeFurniture.layout.length===0&&!PE.WardrobeFurniture.room);
+    assert.equal(await fc.evaluate(c=>c.width),320,'without a scene the room falls back to the empty built-in room');await saveScene('房间-不使用场景');
+    await fd.getByLabel('场景来源').selectOption(sceneId);
+    await fresh.waitForFunction(()=>PE.WardrobeFurniture.layout.length===3);await saveScene('房间-重新读取场景');
     await fd.getByRole('button',{name:'重置场景',exact:true}).click();await fresh.waitForFunction(()=>document.querySelector('.wardrobe-scene').dataset.action==='idle');assert.equal(await fc.getAttribute('data-furniture'),'');assert.equal(await fc.getAttribute('data-direction'),'down');
     assert.equal(await fresh.evaluate(()=>PE.app.exportManager.exportProject(false).text()),beforeFurniture,'furniture never edits native character pixels or dirty project');assert(await fresh.evaluate(()=>PE.app.persistence.dirty));
-    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/draft-wardrobe-test.json'),'utf8')),savedSource);assert.deepEqual(errors,[]);
-    console.log('PASS: furniture: four seated facings, native sleep on bed, nearby F/C interaction, collision, movement exit, reset, missing sleep direction warning, original dirty pixels/file unchanged; 6 native scene captures.');
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects/draft-wardrobe-test.json'),'utf8')),savedSource);
+    assert.deepEqual(JSON.parse(fs.readFileSync(path.join(dir,'data/projects',sceneId+'.json'),'utf8')),grown,'the fitting room never writes the scene project');assert.deepEqual(errors,[]);
+    console.log('PASS: furniture: room and furniture come only from the scene drawing project (native 1:1 pixels, drawn positions), nothing built in, 32×32-era placeholders gone, sit by F/C next to drawn furniture, footprint collision, movement exit, reset, newly drawn pieces appear on refresh, scene source can be switched off, original dirty pixels/file untouched; scene captures in 自检记录/20261107-衣柜场景家具.');
     console.log('PASS: real isolated save API + browser: automatic saved-source pixel sync without selection/confirmation, equipped rendering refresh, no repeated writes, dirty-draft protection; same-category multi-piece layering, individual/all removal, filter/archive retention, manual curation, walk/idle, facing, sit, pickup, stale-update rejection, backup, missing-action warning, ZIP download, fresh-page persistence; 1440x980 and 620x860 layouts.');
     console.log('Isolated test files retained at '+dir);
   }finally{await browser?.close();server.kill();}

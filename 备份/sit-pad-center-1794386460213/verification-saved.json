@@ -1,0 +1,12 @@
+{
+  "put": 200,
+  "get": 200,
+  "byteExact": true,
+  "canvas": [
+    20,
+    19
+  ],
+  "bottomPadding": 0,
+  "etag": "\"c355cca4bda2167df049a965c0aa1db1cbe25aabfe7c6f6adea4c29b59517f9f\"",
+  "sha256": "c355cca4bda2167df049a965c0aa1db1cbe25aabfe7c6f6adea4c29b59517f9f"
+}

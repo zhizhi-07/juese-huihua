@@ -1,0 +1,62 @@
+{
+  "canvas": [
+    20,
+    19
+  ],
+  "phases": [
+    0,
+    1,
+    1,
+    0
+  ],
+  "durations": [
+    400,
+    400,
+    400,
+    400
+  ],
+  "firstPoseExact": true,
+  "handsStatic": true,
+  "solesFixed": true,
+  "maxHeadMovement": 1,
+  "clipped": 0,
+  "otherDataUnchanged": true,
+  "stats": [
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    },
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    },
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    },
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    },
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    },
+    {
+      "part": "body",
+      "top": 13,
+      "bottom": 17,
+      "compressed": 1
+    }
+  ]
+}

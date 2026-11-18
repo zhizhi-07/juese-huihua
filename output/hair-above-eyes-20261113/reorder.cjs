@@ -1,0 +1,15 @@
+const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto');
+const {createCanvas,loadImage}=require('C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');
+const dir=__dirname,url='http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561';
+(async()=>{await fetch('http://127.0.0.1:8765/api/projects');let r=await fetch(url);assert(r.ok);let text=await r.text(),etag=r.headers.get('etag'),original=JSON.parse(text),j=structuredClone(original);fs.writeFileSync(dir+'/original.json',text);fs.writeFileSync(dir+'/source.json',JSON.stringify({etag,sha256:crypto.createHash('sha256').update(text).digest('hex')}));
+const hair=j.layers.find(l=>l.sheetIndex===1&&l.name==='头发 / 中性灰蓬松短发 / 前发'),eyes=j.layers.filter(l=>l.sheetIndex===1&&['眼睛 / 原版像素','眼睛 / 高清','眼睛 / 眼睛1','眼睛 / 可爱'].includes(l.name));assert(hair&&eyes.length===4);assert(hair.parent===null&&eyes.every(l=>l.parent===null));
+const before=j.layers.slice(),selected=before[j.currentLayerIndex],parents=new Map(before.map(l=>[l,l.parent==null?null:before[l.parent]]));
+const reordered=before.filter(l=>!eyes.includes(l));reordered.splice(reordered.indexOf(hair),0,...eyes);j.layers=reordered;for(const l of reordered)l.parent=parents.get(l)==null?null:reordered.indexOf(parents.get(l));j.currentLayerIndex=reordered.indexOf(selected);
+for(const [i,l]of before.entries()){const copy=structuredClone(l);copy.parent=original.layers[i].parent;assert.deepEqual(copy,original.layers[i]);assert.equal(parents.get(l),l.parent==null?null:reordered[l.parent]);}
+const check=structuredClone(j);check.layers=original.layers;check.currentLayerIndex=original.currentLayerIndex;assert.deepEqual(check,original);for(const e of eyes)assert(reordered.indexOf(hair)>reordered.indexOf(e));
+fs.writeFileSync(dir+'/candidate.json',JSON.stringify(j));
+const c=createCanvas(408,204),cx=c.getContext('2d');cx.fillStyle=j.bgColor;cx.fillRect(0,0,c.width,c.height);cx.imageSmoothingEnabled=false;
+for(let a=0;a<2;a++){const sub=createCanvas(34,34),sc=sub.getContext('2d');sc.imageSmoothingEnabled=false;for(const l of j.layers){let cel=l.frameData?.['1_'+a+'_0'];if(!cel||l.sheetIndex!==1||!l.visible||l.isGroup)continue;const im=await loadImage(cel.dataURL),p=cel.placement||{x:0,y:0,w:cel.width,h:cel.height};sc.globalAlpha=l.opacity??1;sc.drawImage(im,p.x*2,p.y*2,p.w*2,p.h*2);}cx.drawImage(sub,a*204,0,204,204);}fs.writeFileSync(dir+'/preview.png',c.toBuffer('image/png'));
+const put=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(j)});assert(put.ok,'Save '+put.status);assert.deepEqual(await(await fetch(url)).json(),j);
+fs.writeFileSync(dir+'/verification.json',JSON.stringify({passed:true,allFourEyesBelowHair:true,allPixelsUnchanged:true,allParentRelationshipsPreserved:true,selectedLayerPreserved:true,onlyLayerOrderAndIndexRemapChanged:true},null,2));console.log(fs.readFileSync(dir+'/verification.json','utf8'));
+})().catch(e=>{console.error(e);process.exitCode=1});

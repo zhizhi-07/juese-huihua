@@ -1,0 +1,17 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "19C522587CD11A27904EB1F105869F014130CD7E7B0D2385C741FC69ECE097A6",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\js\\hair-animation.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0B5E8D0200B061BAE9CE2430D8EB9B2492C841B2B5DB6DEA382FF51850F0D1FF",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F7A7E4CEB93DF6970896CBD83407CBE7CC2B321BA771234CDAC10511BBEED66B",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\test\\eyes-current-head.cjs"
+  }
+]

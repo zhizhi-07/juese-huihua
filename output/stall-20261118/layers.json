@@ -1,0 +1,250 @@
+[
+  {
+    "group": "街景背景",
+    "layer": "街景底色",
+    "parent": 3,
+    "index": 4,
+    "opaque": 4096,
+    "sha256": "7bd1774701e3a84af77275e565e05fded06512b94a6ffbe4c90f5bc500fc8f92"
+  },
+  {
+    "group": "街景背景",
+    "layer": "两侧墙面",
+    "parent": 3,
+    "index": 5,
+    "opaque": 832,
+    "sha256": "8f063506af0d669220d42aa24d06b5246569e921f8d7141ccaebca5b5909f483"
+  },
+  {
+    "group": "摊位主体 · 窗洞柜台立柱",
+    "layer": "后墙与窗洞",
+    "parent": 6,
+    "index": 7,
+    "opaque": 1620,
+    "sha256": "d9927460432bdacd191308e6b49d27618dd1f27536083cf2ebc08cd979d436a7"
+  },
+  {
+    "group": "摊位主体 · 窗洞柜台立柱",
+    "layer": "底部木柜",
+    "parent": 6,
+    "index": 8,
+    "opaque": 818,
+    "sha256": "18c761f1a09a631c3658b1b3668f6868562fbfcb3aa1e01a1a8183aefe7025da"
+  },
+  {
+    "group": "摊位主体 · 窗洞柜台立柱",
+    "layer": "柜台前沿嵌板",
+    "parent": 6,
+    "index": 9,
+    "opaque": 259,
+    "sha256": "14f9bd7b7296fdb5e8d97dd63504279a389c7b9b5fa69e891aa1d650d36c3c06"
+  },
+  {
+    "group": "摊位主体 · 窗洞柜台立柱",
+    "layer": "柜台木框",
+    "parent": 6,
+    "index": 10,
+    "opaque": 170,
+    "sha256": "0f6f50251e00c7ff27a06f0c44090fee832adc6d4c2b47a5f7b717dc9b745991"
+  },
+  {
+    "group": "摊位主体 · 窗洞柜台立柱",
+    "layer": "立柱",
+    "parent": 6,
+    "index": 11,
+    "opaque": 92,
+    "sha256": "3395fe6820b30a815968a4d40c6c3da6f72b16494aebfb518dc6ae0a4db17863"
+  },
+  {
+    "group": "顶部米色木框牌",
+    "layer": "顶牌木框",
+    "parent": 12,
+    "index": 13,
+    "opaque": 660,
+    "sha256": "0403b31223e82654b5a09035ea65120fe391404bab44c30c395abcc16c4cd48b"
+  },
+  {
+    "group": "汉堡霓虹招牌",
+    "layer": "主招牌边框",
+    "parent": 14,
+    "index": 15,
+    "opaque": 295,
+    "sha256": "4a413c5c0b95c2691331a843f03d9f775f502d88f7e5b083a897ef9d8fea8b35"
+  },
+  {
+    "group": "汉堡霓虹招牌",
+    "layer": "主招牌汉堡图标",
+    "parent": 14,
+    "index": 16,
+    "opaque": 33,
+    "sha256": "3d045dbd233d91bd8fc61b21fb7869d8e03ee043ebdf3d43671f6df8ba0e360b"
+  },
+  {
+    "group": "汉堡霓虹招牌",
+    "layer": "主招牌蓝字",
+    "parent": 14,
+    "index": 17,
+    "opaque": 29,
+    "sha256": "512bd72d5ebe5676be33e81b074f33ceafd504af5efeb1c9fc893ea00ad725b6"
+  },
+  {
+    "group": "红白蓝遮阳棚",
+    "layer": "棚子暗框",
+    "parent": 18,
+    "index": 19,
+    "opaque": 121,
+    "sha256": "ca59662277ff0965f532fd7e4eb77a72eb4587acf2f00306cc257eaba60cd89f"
+  },
+  {
+    "group": "红白蓝遮阳棚",
+    "layer": "红白蓝棚布",
+    "parent": 18,
+    "index": 20,
+    "opaque": 308,
+    "sha256": "c2f4e46464a421f4dca52e9ff437c441d8e5e7cc133b035ec40c6fda13e96335"
+  },
+  {
+    "group": "红白蓝遮阳棚",
+    "layer": "棚布垂边",
+    "parent": 18,
+    "index": 21,
+    "opaque": 135,
+    "sha256": "d925bd860d53f74b32a2a28a3b4d94424d359fb98815d9094cb8b1e96a4fad89"
+  },
+  {
+    "group": "店内汉堡海报",
+    "layer": "店内海报外框",
+    "parent": 22,
+    "index": 23,
+    "opaque": 91,
+    "sha256": "3325fe1c1626fd17287d3d6eef4bc807ae5265be9a832c5c8befe33d473f35bb"
+  },
+  {
+    "group": "店内汉堡海报",
+    "layer": "店内汉堡海报画",
+    "parent": 22,
+    "index": 24,
+    "opaque": 25,
+    "sha256": "3d878dd50e947aaded5829964441afe190dc74f85003bdc3fbc398acf35ca876"
+  },
+  {
+    "group": "咖啡机",
+    "layer": "咖啡机机身",
+    "parent": 25,
+    "index": 26,
+    "opaque": 71,
+    "sha256": "0febe6b01a3d7c90aaab97466315e809c3246ef932c0d2e0bcc0e96781fa6eee"
+  },
+  {
+    "group": "咖啡机",
+    "layer": "咖啡机杯与把手",
+    "parent": 25,
+    "index": 27,
+    "opaque": 12,
+    "sha256": "0af1420faf61cd1f1c3a93e2e06746b22191ab5801fdba7cdc637e75109ec2dd"
+  },
+  {
+    "group": "台上汉堡",
+    "layer": "台上汉堡",
+    "parent": 28,
+    "index": 29,
+    "opaque": 25,
+    "sha256": "c5c3e06a1b075c4693bf98387997fca7cf77fe75516d3ae2f788b90159322496"
+  },
+  {
+    "group": "柜台纸袋",
+    "layer": "纸袋",
+    "parent": 30,
+    "index": 31,
+    "opaque": 24,
+    "sha256": "5f9d1080171d5b82a177ff186a51753f4c932334da38eb1ff3df3fa8d20b8e5b"
+  },
+  {
+    "group": "饮料杯",
+    "layer": "饮料杯",
+    "parent": 32,
+    "index": 33,
+    "opaque": 16,
+    "sha256": "33d352b297fd869e0bba6a4d8ea4afd6d3b08b594c6dee90c55d315bf48ca582"
+  },
+  {
+    "group": "左侧菜单牌",
+    "layer": "左侧内牌木框",
+    "parent": 34,
+    "index": 35,
+    "opaque": 121,
+    "sha256": "d961ce1a275e52129f79128690156165515f02c4ffdff97c9184c3a7b31c3056"
+  },
+  {
+    "group": "左侧菜单牌",
+    "layer": "左侧内牌字迹",
+    "parent": 34,
+    "index": 36,
+    "opaque": 17,
+    "sha256": "7d7916ac261f1173eaaa85d5a4d10591f8319496b774a076037dae1c331a0cf1"
+  },
+  {
+    "group": "右侧菜单牌",
+    "layer": "右侧内牌木框",
+    "parent": 37,
+    "index": 38,
+    "opaque": 150,
+    "sha256": "7b78c2514bb6429f5467fa2e5d4c1fedbcdcdf37faa232f26539cbb60d4a6e5a"
+  },
+  {
+    "group": "右侧菜单牌",
+    "layer": "右侧内牌字迹",
+    "parent": 37,
+    "index": 39,
+    "opaque": 21,
+    "sha256": "8dc6a8b27f7b80b895cb5031e3601194f144faaa68451f9d40eed5a5442f5841"
+  },
+  {
+    "group": "左侧绿色挂招牌",
+    "layer": "左挂招牌外架",
+    "parent": 40,
+    "index": 41,
+    "opaque": 82,
+    "sha256": "81262f78360dcbdd8d77611bf39275a9ac514535e230218f671deff0e844ac01"
+  },
+  {
+    "group": "左侧绿色挂招牌",
+    "layer": "左挂绿色图案",
+    "parent": 40,
+    "index": 42,
+    "opaque": 74,
+    "sha256": "bf726225d9800001343784b29034b60d1207daee24c9be78e96c6049973f252f"
+  },
+  {
+    "group": "垃圾桶",
+    "layer": "左侧垃圾桶",
+    "parent": 43,
+    "index": 44,
+    "opaque": 102,
+    "sha256": "b4c1dbc2911b7c0daa00e2726bcb927da35f66129f7228838264609425ca3aa3"
+  },
+  {
+    "group": "左墙管道",
+    "layer": "左墙管道",
+    "parent": 45,
+    "index": 46,
+    "opaque": 22,
+    "sha256": "9920290c275afda2ea427553a307986cd7be1957b90e42a115d740d7f686b7de"
+  },
+  {
+    "group": "右侧邻铺裁边",
+    "layer": "右侧邻铺裁边",
+    "parent": 47,
+    "index": 48,
+    "opaque": 68,
+    "sha256": "cef7bf8da92eee9157e1a6db58d0f5b5d0ef0563823446ba13e8e3aba503fe8a"
+  },
+  {
+    "group": "地面",
+    "layer": "地面",
+    "parent": 49,
+    "index": 50,
+    "opaque": 107,
+    "sha256": "a74cbd9c12d28a19705a502307b157da3da73bc678f143ac5b151071ad70526a"
+  }
+]

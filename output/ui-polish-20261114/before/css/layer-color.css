@@ -1,0 +1,35 @@
+/* 图层调色：在颜色面板里给当前图层整体调色相 / 饱和度 / 明度 */
+.hue-adjust{margin-top:10px;padding-top:6px;border-top:1px solid var(--border-light);display:block;flex:0 0 auto}
+.hue-adjust-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:2px 0;cursor:pointer;user-select:none;list-style:none;border-radius:4px}
+.hue-adjust-head::-webkit-details-marker{display:none}
+.hue-adjust-head::marker{content:''}
+.hue-adjust-head::before{content:'▸';flex:0 0 auto;width:10px;font-size:10px;line-height:1;color:var(--text-dim);transition:transform .15s ease}
+.hue-adjust[open] .hue-adjust-head::before{transform:rotate(90deg)}
+.hue-adjust-head:hover{background-color:rgba(255,255,255,.06)}
+.hue-adjust-head strong{font-size:12px;font-weight:600;color:var(--text-main);flex:1 1 auto;text-align:left}
+.hue-adjust-body{display:flex;flex-direction:column;gap:6px;padding-top:8px}
+#hue-adjust-target{max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--text-dim)}
+.hue-row{display:grid;grid-template-columns:44px minmax(0,1fr) 50px;align-items:center;gap:6px}
+.hue-row>span{font-size:11px;color:var(--text-muted)}
+.hue-row input[type=range]{width:100%;min-width:0;height:16px;margin:0;accent-color:var(--accent-color);cursor:pointer}
+.hue-row input[type=number]{width:50px;padding:2px 4px;font-size:11px;background:var(--bg-input);color:var(--text-main);border:1px solid var(--border-light);border-radius:4px}
+.hue-scope{grid-template-columns:44px minmax(0,1fr) auto auto}
+.hue-scope select{min-width:0;padding:2px 4px;font-size:11px;background:var(--bg-input);color:var(--text-main);border:1px solid var(--border-light);border-radius:4px}
+.hue-scope button{padding:3px 8px;font-size:11px}
+.hue-status{margin:0;font-size:11px;line-height:1.45;color:var(--text-dim)}
+.hue-status.is-error{color:var(--error-color)}
+
+/* 亮色工作台主题 */
+.studio .hue-adjust{border-top-color:#eee}
+.studio .hue-adjust-head::before{color:#8c8c8c}
+.studio .hue-adjust-head:hover{background:#f2f2f2}
+.studio .hue-adjust-head strong{color:#262626}
+.studio #hue-adjust-target{color:#707070}
+.studio .hue-row>span{color:#595959}
+.studio .hue-row input[type=number]{background:#fff;color:#292929;border-color:#ddd}
+.studio .hue-row input[type=range]{accent-color:#333}
+.studio .hue-scope select{background:#fff;color:#292929;border-color:#ddd}
+.studio .hue-scope button{background:#f5f5f5;border:1px solid transparent;color:#303030;border-radius:5px}
+.studio .hue-scope button:hover:not(:disabled){background:#eaeaea;color:#111}
+.studio .hue-status{color:#707070}
+.studio .hue-status.is-error{color:#a33}

@@ -1,0 +1,37 @@
+{
+  "task": "素体主 body 与主工程体型一致（描边单独成层），并写回主工程",
+  "before": {
+    "mainETag": "\"eb2dde18bc404f0ffaeadfb7ab3811b2476b4200cf4dba610e59de003fe5b05f\"",
+    "draftETag": "\"3a7053d11f2158fa5db05b2698fed0de98ce307365a8cc864f747381e2c3a2e6\""
+  },
+  "after": {
+    "draftETag": "\"9ed8737c92f22862e3c1aca430bfdac462dbf992d500f61ba39534c5f7d6aa63\"",
+    "mainETag": "\"eb2dde18bc404f0ffaeadfb7ab3811b2476b4200cf4dba610e59de003fe5b05f\"",
+    "mainUntouched": true
+  },
+  "framesSynced": 66,
+  "outlinePixels": 714,
+  "perSheet": {
+    "original16_walk": {
+      "frames": 24,
+      "outline": 239
+    },
+    "original16_idle": {
+      "frames": 12,
+      "outline": 109
+    },
+    "original16_pickup": {
+      "frames": 18,
+      "outline": 200
+    },
+    "original16_sit": {
+      "frames": 12,
+      "outline": 166
+    }
+  },
+  "fillOutlineLeft": 0,
+  "bodyMatchesMain": "PASS",
+  "nonBodyUnchanged": "PASS",
+  "branchFollowsMain": "66/66",
+  "restore": "备份目录 C:\\Users\\Administrator\\Desktop\\角色绘画\\备份\\20261108-素体主体型同步-1794126912079；主工程用 main-read-prepull.json 以 If-Match 回写；素体主旧稿 draft-file-before.json。"
+}

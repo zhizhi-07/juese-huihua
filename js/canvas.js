@@ -70,17 +70,14 @@ window.PE = window.PE || {};
     }
 
     /**
-     * Set zoom level (clamped between 1 and 64) centered on current canvas view.
+     * Set zoom level (1–64), anchored in canvas coordinates; defaults to view center.
      * @param {number} level 
      */
-    setZoom(level) {
+    setZoom(level, centerX = this.canvas.width / 2, centerY = this.canvas.height / 2) {
       const newZoom = Math.max(1, Math.min(64, Math.round(level)));
       if (newZoom === this.zoom) return;
 
-      const centerX = this.canvas.width / 2;
-      const centerY = this.canvas.height / 2;
-
-      // Coordinate in frame pixel space at screen center
+      // Keep the frame point under the anchor in place.
       const worldX = (centerX - this.offsetX) / this.zoom;
       const worldY = (centerY - this.offsetY) / this.zoom;
 
@@ -94,15 +91,15 @@ window.PE = window.PE || {};
     /**
      * Double zoom level.
      */
-    zoomIn() {
-      this.setZoom(this.zoom * 2);
+    zoomIn(x, y) {
+      this.setZoom(this.zoom * 2, x, y);
     }
 
     /**
      * Halve zoom level.
      */
-    zoomOut() {
-      this.setZoom(Math.max(1, Math.floor(this.zoom / 2)));
+    zoomOut(x, y) {
+      this.setZoom(Math.max(1, Math.floor(this.zoom / 2)), x, y);
     }
 
     /**

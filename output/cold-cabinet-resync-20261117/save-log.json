@@ -1,0 +1,46 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=scene-store-item01-shelf-20261116",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"9fa52d5d410afa21940e6292a12a9d86d3e26f125b1c8c8dea3b10ff5d5dcec4\""
+    },
+    "input": "save-candidate.json",
+    "sha256": "512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16"
+  },
+  "save": {
+    "status": 200,
+    "etag": "\"512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16\\\"\"}"
+  },
+  "readback": {
+    "status": 200,
+    "etag": "\"512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16\"",
+    "sha256": "512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16",
+    "equalCandidate": true,
+    "allStaticFramesMatchFirst": true
+  },
+  "game": {
+    "path": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店/柜子.png",
+    "sha256": "be08cfb031f120ba0f0e5d0b5c58a20d55fe4deaa3b48aaba33bbac1358845cc",
+    "atlasSize": [
+      288,
+      29
+    ],
+    "frameSize": [
+      24,
+      29
+    ],
+    "frameCount": 12,
+    "metadataAndImportUnchanged": true,
+    "backup": "game-before-柜子.png",
+    "readbackVerified": true
+  },
+  "restoreTest": {
+    "extraCopyOnly": true,
+    "originalSHA256Restored": true,
+    "actualFinalAssetPreserved": true
+  }
+}

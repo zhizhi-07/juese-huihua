@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "originalSHA256": "cacecdfa579ae5d677507f887d3d107f048020906ce2a2e11ad00774035614db",
+  "newSHA256": "dce8e40ee67df6fa7df75ce5e4e5f726ce4522d31096772e634d1975c14a4a36",
+  "etag": "\"dce8e40ee67df6fa7df75ce5e4e5f726ce4522d31096772e634d1975c14a4a36\"",
+  "newSheet": "现代冷柜 32×48",
+  "index": 5,
+  "frames": 12,
+  "originalContentUntouched": true,
+  "verified": "逐帧只换柜体和门框颜色，透明轮廓不变；商品PNG原样复制；新颜色来自Otterisk96；造型、12帧动作及时长继承；商品不改；原工程其余内容不变；回读一致"
+}

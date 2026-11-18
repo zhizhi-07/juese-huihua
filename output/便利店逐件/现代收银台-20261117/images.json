@@ -1,0 +1,26 @@
+[
+  {
+    "index": 3,
+    "key": "1_0_0",
+    "name": "收银椅",
+    "file": "layer-3-1_0_0.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 4,
+    "key": "1_0_0",
+    "name": "收银柜台",
+    "file": "layer-4-1_0_0.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 5,
+    "key": "1_0_0",
+    "name": "收银机与付款终端",
+    "file": "layer-5-1_0_0.png",
+    "visible": true,
+    "recolor": false
+  }
+]

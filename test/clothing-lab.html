@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>衣服贴合实验室 · 部位标记对比</title>
+<style>
+  :root{
+    --bg:#12141b; --panel:#1a1d27; --panel2:#20242f; --line:#2c3141;
+    --txt:#e2e6f0; --dim:#8a92a6; --dim2:#5f677a; --accent:#8fb4ff;
+    --bad:#ff6fb5; --good:#54d6a0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font:13px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:30px 24px 72px}
+  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  h1{font-size:18px;margin:0;font-weight:600;letter-spacing:.3px}
+  .badge{font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:999px;
+    padding:2px 10px;background:var(--panel)}
+  .sub{color:var(--dim);margin:8px 0 24px;font-size:12.5px;max-width:760px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;margin-bottom:16px}
+  .hd{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .idx{width:22px;height:22px;border-radius:7px;background:var(--panel2);border:1px solid var(--line);
+    display:grid;place-items:center;font-size:11px;color:var(--accent);flex:none}
+  .hd h2{font-size:14px;margin:0;font-weight:600}
+  .hd .note{color:var(--dim);font-size:12px;margin-left:auto}
+  .row{display:flex;gap:16px;flex-wrap:wrap}
+  .cell{flex:none}
+  .cap{font-size:11.5px;color:var(--dim);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+  .cap b{color:var(--txt);font-weight:500}
+  canvas{display:block;border-radius:9px;border:1px solid var(--line);image-rendering:pixelated;
+    background:#171a22}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);margin-top:14px;
+    padding-top:12px;border-top:1px solid var(--line)}
+  .dot{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:-1px}
+  .stats{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:5px 11px;
+    font-size:11.5px;color:var(--dim)}
+  .stat b{color:var(--txt);font-weight:600;margin-left:4px}
+  .stat.warn b{color:var(--warn2,#ffcc66)}
+  .k{color:var(--good)}
+  pre{background:#0f1117;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    font:11.5px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace;color:#b9c2d6;overflow:auto;margin:0}
+  #msg{color:var(--dim);font-size:12px}
+  .err{color:var(--bad)}
+  footer{color:var(--dim2);font-size:11.5px;margin-top:8px;max-width:820px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>衣服贴合实验室</h1>
+    <span class="badge">只读取主工程 · 不会写回</span>
+    <span class="badge">新页面 · 与原编辑器隔离</span>
+  </header>
+  <p class="sub">用你自己的素体，程序化画一件"背心 + 短裤"，然后在几副不同的身体上分别用<b>旧算法</b>（逐行横带）和<b>新算法</b>（按部位标记贴合）跑一遍，把差异标出来。</p>
+
+  <div id="msg">读取素体中…</div>
+  <div id="out"></div>
+
+  <footer>说明：这里只做 GET /api/project?id=main，不写任何数据。素体、衣服全部在浏览器内存里生成，刷新页面即消失。</footer>
+</div>
+
+<script>
+'use strict';
+const S = 12;                       // 每个像素画多大
+const OUTLINE = [70,70,94];
+const CLOTH = {
+  vest:   {main:[156,182,214], shade:[111,143,176], collar:[86,112,144]},
+  band:   {main:[236,207,141], shade:[205,175,110]},
+  shorts: {main:[232,166,182], shade:[192,127,144]},
+};
+const LABEL_COLOR = {
+  torso: [76,154,106],
+  a:     [217,138,76],
+  b:     [108,134,217],
+  none:  [40,45,58],
+};
+
+/* ---------- 基础工具 ---------- */
+const blank = (w,h) => ({width:w, height:h, data:new Uint8ClampedArray(w*h*4)});
+const isOutline = (d,i) => d[i]===70 && d[i+1]===70 && d[i+2]===94;
+function put(im,x,y,c,base){
+  if(x<0||y<0||x>=im.width||y>=im.height) return;
+  const i=(y*im.width+x)*4, b=base||im.data;
+  b[i]=c[0]; b[i+1]=c[1]; b[i+2]=c[2]; b[i+3]=255;
+}
+function copyImage(im){ const o=blank(im.width,im.height); o.data.set(im.data); return o; }
+
+/* 逐行切段：ink=true 的连通横条 */
+function segsOf(im,y,skipOutline){
+  const s=[]; let a=-1;
+  for(let x=0;x<im.width;x++){
+    const i=(y*im.width+x)*4;
+    const ink = im.data[i+3]>0 && !(skipOutline && isOutline(im.data,i));
+    if(ink){ if(a<0) a=x; }
+    else if(a>=0){ s.push([a,x-1]); a=-1; }
+    if(ink && x===im.width-1){ s.push([a,x]); a=-1; }
+  }
+  return s;
+}
+
+/* ---------- 新算法：先给素体打部位标记 ---------- */
+function buildParts(im){
+  const H=im.height, rows=[], inkRows=[];
+  for(let y=0;y<H;y++){ rows.push(segsOf(im,y,true)); inkRows.push(segsOf(im,y,false)); }
+  let topY=-1, bottomY=-1;
+  for(let y=0;y<H;y++) if(inkRows[y].length){ if(topY<0) topY=y; bottomY=y; }
+  if(topY<0) return null;
+
+  // 像素画里的腿缝常常就只有中间那一格描边，所以必须按"去掉描边"的段来数。
+  // 取下半身里最上面的一条"两段行"：它以下都算腿，脚合并成一段也不影响裆线位置。
+  let crotch=-1;
+  const halfway = topY + Math.floor((bottomY-topY)*0.45);
+  for(let q=Math.max(topY, halfway); q<=bottomY; q++){
+    if(rows[q].length>=2){ crotch=q; break; }
+  }
+
+  const torso={y0:topY, y1:crotch>=0?crotch-1:bottomY, segs:{}};
+  if(torso.y1 >= torso.y0) for(let q=topY;q<=torso.y1;q++){
+    let widest=null;
+    for(const sg of rows[q]) if(!widest || (sg[1]-sg[0])>(widest[1]-widest[0])) widest=sg;
+    if(widest) torso.segs[q]=widest;
+  }
+  let a=null,b=null;
+  if(crotch>=0){
+    a={y0:crotch,y1:crotch, segs:{}};
+    b={y0:crotch,y1:crotch, segs:{}};
+    for(let q=crotch;q<=bottomY;q++){
+      const sg=rows[q];
+      if(sg.length>=1){ a.segs[q]=sg[0]; a.y1=q; }
+      if(sg.length>=2){ b.segs[q]=sg[1]; b.y1=q; }
+    }
+    if(!Object.keys(b.segs).length) b=null;
+  }
+  return {topY,bottomY,crotch,torso,a,b,rows};
+}
+
+function partSpan(P,key){
+  const p = P[key];
+  if(!p) return null;
+  return {y0:p.y0, y1:p.y1, seg:(y)=>p.segs[y]||null};
+}
+
+/* ---------- 新算法：从标记上"画"一件衣服 ---------- */
+function makeGarment(body){
+  const P = buildParts(body);
+  if(!P) return null;
+  const garment = blank(body.width, body.height);
+  const model = [];                 // {c, kind, part, t, u}
+  const emit = (x,y,c,kind,part,p)=>{
+    const seg = p.segs[y]; if(!seg) return;
+    const t = (y-p.y0)/Math.max(1, p.y1-p.y0);
+    const u = (x-seg[0])/Math.max(1, seg[1]-seg[0]);
+    put(garment,x,y,c);
+    model.push({c:[c[0],c[1],c[2],255], kind, part, t, u});
+  };
+  const T=P.torso, h=T.y1-T.y0;
+  const vestTop = T.y0;
+  const waist   = P.crotch>=0 ? P.crotch-1 : T.y1;
+
+  /* 背心：从肩下一点点到腰上一行，贴着身体 */
+  for(let y=vestTop; y<=waist-1; y++){
+    const sg=T.segs[y]; if(!sg) continue;
+    const x0=sg[0], x1=sg[1];
+    if(x1-x0<1) continue;
+    for(let x=x0;x<=x1;x++) emit(x,y, y===vestTop?CLOTH.vest.collar:CLOTH.vest.main,'vest','torso',T);
+    emit(x1,y,CLOTH.vest.shade,'vest','torso',T);
+  }
+
+  /* 腰带一格：故意比身体宽出一格，用来测"能不能超出身体" */
+  {
+    const sg=T.segs[waist]; if(sg){
+      for(let x=sg[0]-1;x<=sg[1]+1;x++) emit(x,waist, x===sg[1]+1?CLOTH.band.shade:CLOTH.band.main,'band','torso',T);
+    }
+  }
+
+  /* 短裤：裆以上整块，裆以下左右各一条 */
+  const legs=[P.a,P.b].filter(Boolean);
+  const bottomRow = P.crotch>=0 ? Math.min(P.bottomY, P.crotch+4) : -1;
+  for(const leg of legs){
+    for(let y=P.crotch; y<=bottomRow; y++){
+      const sg=leg.segs[y]; if(!sg) continue;
+      const x0=sg[0], x1=sg[1];
+      if(x1-x0<0) continue;
+      for(let x=x0;x<=x1;x++) emit(x,y,CLOTH.shorts.main,'shorts',leg===P.a?'a':'b',leg);
+      emit(x1,y,CLOTH.shorts.shade,'shorts',leg===P.a?'a':'b',leg);
+    }
+  }
+  return {garment, model, parts:P};
+}
+
+/* 把衣服贴到目标身体上（按部位 + 部位内 (t,u)） */
+function fitNew(model, body){
+  const P = buildParts(body);
+  const out = blank(body.width, body.height);
+  const stat = {lost:0, void:0, ok:0};
+  if(!P) return {out, stat};
+  const target={torso:partSpan(P,'torso'), a:partSpan(P,'a'), b:partSpan(P,'b')};
+  for(const m of model){
+    const p = target[m.part];
+    if(!p){ stat.lost++; continue; }
+    // 躯干上的衣服按行比例落点；腿上的衣服要铺满整条腿，不能只落一行
+    const rows = (m.part==='torso')
+      ? [Math.round(p.y0 + m.t*(p.y1-p.y0))]
+      : (()=>{ const r=[]; for(let y=p.y0;y<=p.y1;y++) r.push(y); return r; })();
+    for(const yy of rows){
+      const seg = p.seg(yy);
+      if(!seg){ stat.lost++; continue; }
+      let xx = Math.round(seg[0] + m.u*(seg[1]-seg[0]));
+      xx = Math.min(Math.max(xx, seg[0]-2), seg[1]+2);
+      const ti=(yy*body.width+xx)*4;
+      if(body.data[ti+3]===0 && m.kind!=='band') stat.void++;
+      put(out,xx,yy,m.c);
+      stat.ok++;
+    }
+  }
+  return {out, stat};
+}
+
+/* ---------- 旧算法：原封不动复刻 clothing-fit.js 的 warp/copyRow ---------- */
+function rowsOld(im){
+  const a=[];
+  for(let y=0;y<im.height;y++){
+    const xs=[];
+    for(let x=0;x<im.width;x++){
+      const i=(y*im.width+x)*4;
+      if(im.data[i+3] && !isOutline(im.data,i)) xs.push(x);
+    }
+    if(xs.length) a.push({y,xs});
+  }
+  return a;
+}
+function fitOld(srcBody, cloth, tgtBody){
+  const a=rowsOld(srcBody), b=rowsOld(tgtBody);
+  const out=blank(tgtBody.width,tgtBody.height);
+  for(let row=0; row<b.length; row++){
+    const sr = row<2 ? row : Math.round(2 + (row-2)*(a.length-3)/Math.max(1,b.length-3));
+    const from = a[Math.min(a.length-1, Math.max(0,sr))];
+    const to = b[row];
+    if(!from||!to) continue;
+    const mn=from.xs[0], mx=from.xs[from.xs.length-1];
+    const lf=to.xs[0],  rt=to.xs[to.xs.length-1];
+    for(const x of to.xs){
+      let sx = Math.round(mn + (x-lf)*(mx-mn)/Math.max(1, rt-lf));
+      let i = (from.y*cloth.width+sx)*4;
+      if(cloth.data[i+3]===0){
+        const painted = from.xs.filter(px => cloth.data[(from.y*cloth.width+px)*4+3]);
+        if(!painted.length) continue;
+        sx = painted.reduce((best,px)=>Math.abs(px-sx)<Math.abs(best-sx)?px:best);
+        i = (from.y*cloth.width+sx)*4;
+      }
+      out.data.set(cloth.data.subarray(i,i+4), (to.y*out.width+x)*4);
+    }
+  }
+  return out;
+}
+
+/* ---------- 渲染 ---------- */
+function compose(body, cloth){
+  const o = copyImage(body);
+  for(let i=0;i<cloth.data.length;i+=4){
+    if(cloth.data[i+3]){ o.data[i]=cloth.data[i]; o.data[i+1]=cloth.data[i+1]; o.data[i+2]=cloth.data[i+2]; o.data[i+3]=255; }
+  }
+  return o;
+}
+function draw(canvas, im, dim){
+  canvas.width=im.width*S; canvas.height=im.height*S;
+  const g=canvas.getContext('2d');
+  g.imageSmoothingEnabled=false;
+  const off=document.createElement('canvas'); off.width=im.width; off.height=im.height;
+  const og=off.getContext('2d');
+  const tmp=new ImageData(new Uint8ClampedArray(im.data), im.width, im.height);
+  if(dim){
+    for(let i=0;i<tmp.data.length;i+=4){
+      tmp.data[i]   = Math.round(tmp.data[i]*0.35 + 0x17*0.65);
+      tmp.data[i+1] = Math.round(tmp.data[i+1]*0.35 + 0x1a*0.65);
+      tmp.data[i+2] = Math.round(tmp.data[i+2]*0.35 + 0x22*0.65);
+    }
+  }
+  og.putImageData(tmp,0,0);
+  g.drawImage(off,0,0,im.width*S,im.height*S);
+}
+function labelImage(body, P){
+  const im=blank(body.width,body.height);
+  const bg=[0x17,0x1a,0x22];
+  for(let i=0;i<im.data.length;i+=4){
+    im.data[i]=bg[0]; im.data[i+1]=bg[1]; im.data[i+2]=bg[2]; im.data[i+3]=255;
+  }
+  const paintRow=(y,seg,col)=>{
+    if(!seg) return;
+    for(let x=seg[0];x<=seg[1];x++) put(im,x,y,col,null);
+  };
+  for(let y=0;y<body.height;y++){
+    if(P.torso.segs[y]) paintRow(y,P.torso.segs[y],LABEL_COLOR.torso);
+  }
+  if(P.a) for(let y=P.a.y0;y<=P.a.y1;y++) paintRow(y,P.a.segs[y],LABEL_COLOR.a);
+  if(P.b) for(let y=P.b.y0;y<=P.b.y1;y++) paintRow(y,P.b.segs[y],LABEL_COLOR.b);
+  return im;
+}
+function diffImage(body, oldC, newC){
+  const im=copyImage(body), bg=[0x17,0x1a,0x22];
+  for(let i=0;i<im.data.length;i+=4){
+    if(im.data[i+3]===0){ im.data[i]=bg[0]; im.data[i+1]=bg[1]; im.data[i+2]=bg[2]; im.data[i+3]=255; }
+  }
+  for(let i=0;i<im.data.length;i+=4){
+    const o=oldC.data[i+3]>0, n=newC.data[i+3]>0;
+    if(o&&!n){ im.data[i]=255; im.data[i+1]=111; im.data[i+2]=181; im.data[i+3]=255; }
+    else if(n&&!o){ im.data[i]=84; im.data[i+1]=214; im.data[i+2]=160; im.data[i+3]=255; }
+    else if(o&&n){
+      im.data[i]=Math.round(im.data[i]*0.5+60); im.data[i+1]=Math.round(im.data[i+1]*0.5+70);
+      im.data[i+2]=Math.round(im.data[i+2]*0.5+90);
+    }
+  }
+  return im;
+}
+
+/* ---------- 目标身体 ---------- */
+
+/* ---------- 读取主工程 ---------- */
+async function loadBodies(){
+  const res = await fetch('/api/project?id=main',{cache:'no-store'});
+  if(!res.ok) throw new Error('接口返回 '+res.status);
+  const project = await res.json();
+  const sheets = project.spriteSheets;
+    const frameOf=(sheet,action,frame)=>{
+    const data = {};
+    for(const layer of project.layers){
+      if(layer.name!=='body' || !layer.frameData) continue;
+      for(const [k,v] of Object.entries(layer.frameData)){
+        if(!k.startsWith(sheet+'_')) continue;
+        data[k]=v;
+      }
+    }
+    return data;
+  };
+  async function get(sheetIdx, actionIdx, frameIdx){
+    const key = `${sheetIdx}_${actionIdx}_${frameIdx}`;
+    const entry = frameOf(sheetIdx)[key];
+    if(!entry) throw new Error('找不到 body 帧 '+key);
+    const sheet = sheets[sheetIdx];
+    const im = blank(sheet.frameWidth, sheet.frameHeight);
+    const img = new Image();
+    img.src = entry.dataURL;
+    await img.decode();
+    const c=document.createElement('canvas'); c.width=im.width; c.height=im.height;
+    const g=c.getContext('2d',{willReadFrequently:true});
+    const pl = entry.placement||{x:0,y:0,w:img.width,h:img.height};
+    g.drawImage(img, (pl.x||0), (pl.y||0), pl.w||img.width, pl.h||img.height);
+    const d=g.getImageData(0,0,im.width,im.height);
+    im.data.set(d.data);
+    return im;
+  }
+  return {
+    idleDown: await get(1,1,0),
+    walkDown: await get(0,1,2),
+    idleSide: await get(1,0,0),
+    pickupDown: await get(2,1,0),
+  };
+}
+
+/* ---------- 组装页面 ---------- */
+function cell(title, im, opts){
+  const d=document.createElement('div'); d.className='cell';
+  const cap=document.createElement('div'); cap.className='cap';
+  cap.innerHTML='<b>'+title+'</b>'+(opts&&opts.hint?'<span>'+(opts&&opts.hint)+'</span>':'');
+  const cv=document.createElement('canvas');
+  draw(cv, im, opts&&opts.dim);
+  d.appendChild(cap); d.appendChild(cv);
+  return {node:d, canvas:cv};
+}
+
+function statChip(label, n, cls){
+  const s=document.createElement('div'); s.className='stat'+(cls?' '+cls:'');
+  s.innerHTML=label+'<b>'+n+'</b>';
+  return s;
+}
+
+function render(srcBody, targets){
+  const out=document.getElementById('out'); out.innerHTML='';
+  const made = makeGarment(srcBody);
+  if(!made){ out.innerHTML='<div class="card err">素体为空，无法标记。</div>'; return; }
+
+  /* 1 · 标记与衣服 */
+  const c1=document.createElement('div'); c1.className='card';
+  const P=made.parts;
+  c1.innerHTML =
+    '<div class="hd"><span class="idx">1</span><h2>先标部位，再从标记上画衣服</h2>'+
+    '<span class="note">素体：待机・正面</span></div>';
+  const row1=document.createElement('div'); row1.className='row';
+  row1.appendChild(cell('素体底稿', srcBody).node);
+  row1.appendChild(cell('部位标记', labelImage(srcBody,P), {hint:'躯干 / 左腿 / 右腿'}).node);
+  row1.appendChild(cell('程序画的衣服', made.garment).node);
+  row1.appendChild(cell('穿上', compose(srcBody, made.garment)).node);
+  c1.appendChild(row1);
+
+  const leg=document.createElement('div'); leg.className='legend';
+  leg.innerHTML =
+    '<span><i class="dot" style="background:#4c9a6a"></i>躯干</span>'+
+    '<span><i class="dot" style="background:#d98a4c"></i>左腿</span>'+
+    '<span><i class="dot" style="background:#6c86d9"></i>右腿</span>'+
+    '<span>裆线在第 '+ (P.crotch>=0?(P.crotch+1):'—') +' 行切开；躯干 '+ (P.torso.y1-P.torso.y0+1) +' 行，每条腿 '+
+      (P.a?(P.a.y1-P.a.y0+1):0) +' 行</span>';
+  c1.appendChild(leg);
+
+  const pr=document.createElement('pre');
+  pr.textContent =
+    '源素体每一行的切段（含描边）：\n' +
+    P.rows.map((sg,y)=> (sg.length?'y='+y+': '+sg.map(s=>'['+s[0]+'..'+s[1]+']').join('  '):null))
+      .filter(Boolean).join('\n');
+  c1.appendChild(document.createElement('div')).style.height='12px';
+  c1.appendChild(pr);
+  out.appendChild(c1);
+
+  /* 2 · 逐个目标对比 */
+  targets.forEach((t,idx)=>{
+    const card=document.createElement('div'); card.className='card';
+    card.innerHTML='<div class="hd"><span class="idx">'+(idx+2)+'</span><h2>'+t.name+'</h2><span class="note">'+t.note+'</span></div>';
+    const oldC=fitOld(srcBody, made.garment, t.body);
+    const neu =fitNew(made.model, t.body);
+
+    const compOld=compose(t.body, oldC), compNew=compose(t.body, neu.out);
+    const diff=diffImage(t.body, oldC, neu.out);
+
+    const row=document.createElement('div'); row.className='row';
+    row.appendChild(cell('目标素体', t.body).node);
+    row.appendChild(cell('旧算法 · 逐行横带', compOld).node);
+    row.appendChild(cell('新算法 · 部位标记', compNew).node);
+    row.appendChild(cell('差异', diff, {dim:false, hint:'粉=旧算法多画 / 绿=旧算法漏掉'}).node);
+    card.appendChild(row);
+
+    // 差异统计：只看衣服像素
+    let extra=0, miss=0, both=0;
+    for(let i=0;i<oldC.data.length;i+=4){
+      const o=oldC.data[i+3]>0, n=neu.out.data[i+3]>0;
+      if(o&&!n) extra++; else if(n&&!o) miss++; else if(o&&n) both++;
+    }
+    const st=document.createElement('div'); st.className='stats';
+    st.appendChild(statChip('旧算法多画（错位／糊到别处）', extra, extra?'warn':''));
+    st.appendChild(statChip('旧算法漏画', miss, miss?'warn':''));
+    st.appendChild(statChip('两套都画到', both));
+    st.appendChild(statChip('新算法贴到空处', neu.stat.void, neu.stat.void?'warn':''));
+    st.appendChild(statChip('新算法丢弃', neu.stat.lost));
+    card.appendChild(st);
+    out.appendChild(card);
+  });
+}
+
+(async function(){
+  try{
+    const bodies = await loadBodies();
+    const targets = [
+      {name:'同一副身体（自检）', note:'原样贴回去，应当 0 差异', body: bodies.idleDown},
+      {name:'走路帧', note:'腿在动，裤管要跟着各自走', body: bodies.walkDown},
+      {name:'侧面', note:'只有一条腿可见，另一条不该硬画', body: bodies.idleSide},
+      {name:'拾取帧（25×22）', note:'画布尺寸都不一样，看还能不能贴', body: bodies.pickupDown},
+    ];
+    render(bodies.idleDown, targets);
+    document.getElementById('msg').textContent='';
+  }catch(e){
+    document.getElementById('msg').innerHTML='<span class="err">读取失败：'+e.message+'</span>';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>

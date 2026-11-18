@@ -1,0 +1,22 @@
+node output/eye-sync-hd-20261110/browser-check.cjs --before
+sync 1 { source: [ 22, 8 ], offsets: [ 0, 0, 1, 1 ], lossless: true }
+sync 2 { source: [ 22, 8 ], offsets: [ 0, 0, 1, 1 ], lossless: true }
+hair preview [ 16, 16 ]
+{
+  id: 'draft-conflict-1794271316087-dc54567c',
+  etag: '"d42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd"',
+  sha256: 'd42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd',
+  serverProjectUnchanged: true
+}
+exit=0
+node output/eye-sync-hd-20261110/browser-check.cjs --after
+sync 1 { source: [ 22, 8 ], offsets: [ 1, 1, 2, 2 ], lossless: true }
+sync 2 { source: [ 22, 8 ], offsets: [ 1, 1, 2, 2 ], lossless: true }
+hair preview [ 32, 32 ]
+{
+  id: 'draft-conflict-1794271316087-dc54567c',
+  etag: '"d42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd"',
+  sha256: 'd42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd',
+  serverProjectUnchanged: true
+}
+exit=0

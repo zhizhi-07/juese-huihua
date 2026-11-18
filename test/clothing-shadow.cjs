@@ -11,4 +11,12 @@ for(const run of [target=>F.fromIdle(src,target),target=>F.fit(src,target,{shade
   const other=image(Array(6).fill([254,100,100,255]));
   assert.deepEqual(run(other).data,clothes.data,'red channel alone is not a skin classification');
 }
-console.log('PASS: preserve painted shadows; follow skin shadow; no red-channel-only classification (both fitting paths).');
+const wide=rows=>({width:4,height:5,data:new Uint8ClampedArray(rows.flat(2))});
+const full=(c)=>Array(4).fill(c),white=[255,255,255,255],offWhite=[222,222,222,255],pants=[125,125,125,255],pantsDark=[105,105,105,255],flat=[200,80,40,200],flatDark=[170,68,34,200],clear=[0,0,0,0];
+const noOutline=wide(Array(5).fill(full(skin))),lit=wide(Array(5).fill([shadow,skin,shadow,skin]));
+const garment=wide([full(offWhite),full(white),[white,white,clear,white],full(pants),full(pantsDark)]);
+assert.deepEqual(F.fromIdle({body:noOutline,clothes:garment},lit).data,
+  wide([full(offWhite),full(white),[white,white,clear,white],[pantsDark,pants,pantsDark,pants],full(pantsDark)]).data);
+const flatCloth=wide(Array(5).fill(full(flat)));
+assert.deepEqual(F.fromIdle({body:noOutline,clothes:flatCloth},lit).data,wide([full(flat),full(flat),full(flat),[flatDark,flat,flatDark,flat],[flatDark,flat,flatDark,flat]]).data);
+console.log('PASS: only the bottom two rows follow skin shadow; reuse painted tones across rows; single-color fabric keeps hue and alpha; no darkening twice.');

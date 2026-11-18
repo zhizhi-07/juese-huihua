@@ -1,0 +1,19 @@
+{
+  "layer": "高清 · 衣服",
+  "counters": {
+    "original16_walk": 24,
+    "original16_idle": 9,
+    "original16_pickup": 18,
+    "original16_sit": 11
+  },
+  "skipped": [
+    "3_1_0"
+  ],
+  "generated": 62,
+  "newLayers": 3,
+  "sourceKeys": [
+    "1_0_0",
+    "1_1_0",
+    "1_2_0"
+  ]
+}

@@ -1,0 +1,271 @@
+diff --git a/output/primary-body-branch-20261110/before/server.js b/output/primary-body-branch-20261110/after/server.js
+index f4b26ad..7710944 100644
+--- a/output/primary-body-branch-20261110/before/server.js
++++ b/output/primary-body-branch-20261110/after/server.js
+@@ -19,12 +19,20 @@ if(!fs.existsSync(tokenFile))fs.writeFileSync(tokenFile,token);
+ fs.writeFileSync(path.join(BASE_DIR,'js','local-bridge.js'),'window.PE_LOCAL_BRIDGE='+JSON.stringify({url:'http://127.0.0.1:'+PORT,token})+';');
+ const revision=bytes=>'"'+crypto.createHash('sha256').update(bytes).digest('hex')+'"';
+ const bodySync=require('./js/body-sync.cjs');
++const characterBase=require('./js/character-base.js');
++const CHARACTER_BASE_ID='draft-conflict-1794271316087-dc54567c';
++const CHARACTER_BASE_FILE=path.join(DATA_DIR,'projects',CHARACTER_BASE_ID+'.json');
++const hasCharacterBase=()=>fs.existsSync(CHARACTER_BASE_FILE);
++function syncCharacter(project){
++  const splitBase=hasCharacterBase(),file=splitBase?CHARACTER_BASE_FILE:PROJECT_FILE;
++  if(fs.existsSync(file))require('./js/character-sync.js')(project,JSON.parse(fs.readFileSync(file,'utf8')),splitBase);
++}
+ function projectBytes(file,id){
+   const bytes=fs.readFileSync(file);
+   const base=id===bodySync.BASE_PROJECT_ID;
+-  if((!base&&!id.startsWith('character-'))||!fs.existsSync(PROJECT_FILE))return bytes;
+-  const main=JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')),project=JSON.parse(bytes.toString('utf8'));
+-  if(base)bodySync.pull(project,main);else require('./js/character-sync.js')(project,main);
++  if((!base&&!id.startsWith('character-'))||(base&&!fs.existsSync(PROJECT_FILE)))return bytes;
++  const project=JSON.parse(bytes.toString('utf8'));
++  if(base)bodySync.pull(project,JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')));else syncCharacter(project);
+   return Buffer.from(JSON.stringify(project));
+ }
+ function pushBaseBody(project,previous){
+@@ -75,14 +83,15 @@ const server = http.createServer((req, res) => {
+     if(reqPath.startsWith('/api/ai/')){
+       require('./ai-service.cjs').handle(req,res,BASE_DIR);return;
+     }
+-    if(reqPath==='/api/status'&&req.method==='GET'){res.end(JSON.stringify({version:2,ai:true,sharedProject:'data/shared-project.json'}));return;}
++    if(reqPath==='/api/status'&&req.method==='GET'){res.end(JSON.stringify({version:2,ai:true,sharedProject:'data/shared-project.json',characterBaseProjectId:hasCharacterBase()?CHARACTER_BASE_ID:'main'}));return;}
+     if(reqPath==='/api/projects'&&req.method==='GET'){
+       const folder=path.join(DATA_DIR,'projects');
+       const projects=fs.existsSync(folder)?fs.readdirSync(folder).filter(n=>/^[a-z0-9-]{1,80}\.json$/.test(n)).map(n=>({id:n.slice(0,-5),name:JSON.parse(fs.readFileSync(path.join(folder,n),'utf8')).name})):[];
+       res.end(JSON.stringify([{id:'main',name:'人物主工程'},...projects]));return;
+     }
+     if(reqPath!=='/api/project'){res.writeHead(404);res.end('{}');return;}
+-    const projectId=new URL(req.url,'http://localhost').searchParams.get('id')||'main';
++    const params=new URL(req.url,'http://localhost').searchParams;
++    const projectId=params.get('id')||'main';
+     if(!/^[a-z0-9-]{1,80}$/.test(projectId)){res.writeHead(400);res.end('{"error":"Invalid project id"}');return;}
+     const projectFile=projectId==='main'?PROJECT_FILE:path.join(DATA_DIR,'projects',projectId+'.json');
+     if(req.method==='GET'){
+@@ -117,11 +126,31 @@ const server = http.createServer((req, res) => {
+           bytes=Buffer.from(JSON.stringify(project));
+         }
+         if(!previous&&projectId.startsWith('character-')){
+-          try{require('./js/character-base.js')(project);bytes=Buffer.from(JSON.stringify(project));}
++          try{
++            const splitBase=hasCharacterBase();
++            if(splitBase){
++              const source=fs.readFileSync(CHARACTER_BASE_FILE),expected=params.get('baseRevision');
++              if(expected&&expected!==revision(source)){res.writeHead(409);res.end(JSON.stringify({error:'人物素体已变化，未创建分支'}));return;}
++              const name=project.name;
++              project=JSON.parse(source);
++              const sheets=project.spriteSheets.filter(s=>/^original16_(walk|idle|pickup|sit)$/.test(s.name));
++              if(sheets.length!==4||sheets.some((s,i)=>s!==project.spriteSheets[i]))throw Error('人物素体动作编号无效，未创建分支');
++              project.spriteSheets=sheets;
++              project.name=name;
++              if(project.currentSheetIndex>=sheets.length){project.currentSheetIndex=0;project.currentActionIndex=0;project.currentFrameIndex=0;}
++            }
++            characterBase(project,splitBase);
++            if(splitBase){
++              const keep=project.layers.map((l,i)=>[l,i]).filter(([l])=>l.sheetIndex<project.spriteSheets.length),map=new Map(keep.map(([,i],j)=>[i,j]));
++              project.layers=keep.map(([l])=>{if(l.parent!=null)l.parent=map.get(l.parent);return l;});
++              project.currentLayerIndex=map.get(project.currentLayerIndex)??Math.max(0,project.layers.findIndex(l=>!l.isGroup&&l.sheetIndex===project.currentSheetIndex));
++            }
++            bytes=Buffer.from(JSON.stringify(project));
++          }
+           catch(error){res.writeHead(400);res.end(JSON.stringify({error:error.message}));return;}
+         }
+-        if(projectId.startsWith('character-')&&fs.existsSync(PROJECT_FILE)){
+-          require('./js/character-sync.js')(project,JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')));
++        if(projectId.startsWith('character-')){
++          syncCharacter(project);
+           bytes=Buffer.from(JSON.stringify(project));
+         }
+         if(projectId===bodySync.BASE_PROJECT_ID){pushBaseBody(project,previous);bytes=Buffer.from(JSON.stringify(project));}
+diff --git a/output/primary-body-branch-20261110/before/js/character-sync.js b/output/primary-body-branch-20261110/after/js/character-sync.js
+index d8f2375..716fe49 100644
+--- a/output/primary-body-branch-20261110/before/js/character-sync.js
++++ b/output/primary-body-branch-20261110/after/js/character-sync.js
+@@ -1,25 +1,36 @@
+ /* Shared body/head/hands follow main; wardrobe pixels stay in the branch. */
+-const isHand=require('./character-base.js').isHand;
+-function restoreHands(branch,main){
++const {isHand,isBody}=require('./character-base.js');
++const canvas=require('./character-canvas.cjs');
++function inherit(pixels,source,ai,target,ti,frame,splitBase){
++  if(!splitBase)return source.canvasLayout||target.canvasLayout?canvas.inherit(pixels,source,ai,target,ti,frame):pixels;
++  const a=source.canvasLayout?.actions[ai],b=target.canvasLayout?.actions[ti],x=(b?.x??0)-(a?.x??0),y=(b?.y??0)-(a?.y??0);
++  if(!x&&!y&&(pixels.placement||pixels.width===frame.width&&pixels.height===frame.height))return pixels;
++  return canvas.move(pixels,frame.width,frame.height,x,y,{preserveOffCanvas:true});
++}
++function restoreBaseLayers(branch,main,splitBase){
++  const accepts=l=>isHand(l)||(splitBase&&isBody(l));
+   const parents=new Map(branch.layers.map(l=>[l,l.parent==null?l.parent:branch.layers[l.parent]])),selected=branch.layers[branch.currentLayerIndex],restored=[];
+   for(const [sourceIndex,source]of main.layers.entries()){
+-    if(!isHand(source))continue;
++    if(!accepts(source))continue;
+     const sourceSheet=main.spriteSheets[source.sheetIndex],si=branch.spriteSheets.findIndex(s=>s.name===sourceSheet?.name);if(si<0)continue;
+     const sheet=branch.spriteSheets[si],data={},sourceActions=new Set(),targetActions=new Set();
+     for(const [key,pixels]of Object.entries(source.frameData||{})){
+       const [sourceSI,ai,fi]=key.split('_').map(Number);if(sourceSI!==source.sheetIndex)continue;
+       const action=sourceSheet.actions[ai],targetAI=sheet.actions.findIndex(a=>a.name===action?.name&&a.direction===action?.direction);if(targetAI<0||!sheet.actions[targetAI].frames[fi])continue;
+-      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(pixels,sourceSheet,ai,sheet,targetAI,sheet.actions[targetAI].frames[fi]):pixels;
++      sourceActions.add(ai);targetActions.add(targetAI);data[si+'_'+targetAI+'_'+fi]=inherit(pixels,sourceSheet,ai,sheet,targetAI,sheet.actions[targetAI].frames[fi],splitBase);
+     }
+     if(!Object.keys(data).length)continue;
+     const matches=l=>l.sheetIndex===si&&Object.keys(l.frameData||{}).some(k=>targetActions.has(Number(k.split('_')[1])));
+-    let target=branch.layers.find(l=>isHand(l)&&l.name===source.name&&matches(l));
++    let target=branch.layers.find(l=>accepts(l)&&l.name===source.name&&matches(l));
+     if(!target){
+       const anchors=main.layers.map((l,i)=>({l,i})).filter(({l})=>!l.isGroup&&/^(body|head|身体|头部)$/.test(l.name)&&l.sheetIndex===source.sheetIndex&&Object.keys(l.frameData||{}).some(k=>sourceActions.has(Number(k.split('_')[1])))).map(({l,i})=>({i,target:branch.layers.find(b=>b.name===l.name&&matches(b))})).filter(a=>a.target);
+       anchors.push(...restored.filter(a=>a.si===si&&[...a.actions].some(ai=>targetActions.has(ai))));anchors.sort((a,b)=>a.i-b.i);
+       const next=anchors.find(a=>a.i>sourceIndex),previous=anchors.filter(a=>a.i<sourceIndex).at(-1),anchor=previous||next;
+-      target={...source,sheetIndex:si,parent:null,depth:anchor?.target.depth||0,frameData:data,referenceOnly:true,locked:true};
+-      parents.set(target,anchor?parents.get(anchor.target):null);
++      const direction=sheet.actions[[...targetActions][0]]?.direction;
++      const group=branch.layers.find(l=>l.isGroup&&l.sheetIndex===si&&l.name===direction);
++      const parent=anchor?parents.get(anchor.target):group;
++      target={...source,sheetIndex:si,parent:null,depth:parent?1:0,frameData:data,...(isHand(source)?{referenceOnly:true}:{}),locked:true};
++      parents.set(target,parent);
+       const index=next?branch.layers.indexOf(next.target):previous?branch.layers.indexOf(previous.target)+1:branch.layers.length;
+       branch.layers.splice(index,0,target);
+     }
+@@ -28,7 +39,7 @@ function restoreHands(branch,main){
+   for(const layer of branch.layers){const parent=parents.get(layer);if(parent&&typeof parent==='object')layer.parent=branch.layers.indexOf(parent);}
+   if(selected)branch.currentLayerIndex=branch.layers.indexOf(selected);
+ }
+-module.exports=function syncCharacterBase(branch,main){
++module.exports=function syncCharacterBase(branch,main,splitBase=false){
+   // Canvas origins can differ; keep wardrobe coordinates and inherit the base in that same origin.
+   const aligned=main.spriteSheets.filter(s=>s.canvasLayout);
+   if(aligned.length)require('./character-canvas.cjs').align(branch,Math.max(...aligned.map(s=>s.canvasLayout.margin)),new Set(aligned.map(s=>s.name)));
+@@ -37,8 +48,8 @@ module.exports=function syncCharacterBase(branch,main){
+   if(idle&&sourceIdle&&!sourceIdle.canvasLayout&&(idle.frameWidth<sourceIdle.frameWidth||idle.frameHeight<sourceIdle.frameHeight))require('./idle-canvas.cjs')(branch,sourceIdle.frameWidth,sourceIdle.frameHeight);
+   // A rollback may remove only the known empty 2px margin; painted borders fail closed.
+   if(idle?.frameWidth===36&&idle.frameHeight===36&&sourceIdle?.frameWidth===32&&sourceIdle.frameHeight===32)require('./idle-canvas.cjs')(branch,32,32,{allowCrop:true});
+-  restoreHands(branch,main);
+-  const isBase=l=>!l.isGroup&&(/^(body|head|身体|头部)$/.test(l.name)||isHand(l));
++  restoreBaseLayers(branch,main,splitBase);
++  const isBase=l=>isHand(l)||(splitBase?isBody(l):!l.isGroup&&/^(body|head|身体|头部)$/.test(l.name));
+   for(const layer of branch.layers.filter(isBase)){
+     const sheet=branch.spriteSheets[layer.sheetIndex];if(!sheet)continue;
+     const si=main.spriteSheets.findIndex(s=>s.name===sheet.name);if(si<0)continue;
+@@ -52,12 +63,13 @@ module.exports=function syncCharacterBase(branch,main){
+       const source=main.layers.find(l=>isBase(l)&&l.name===layer.name&&l.sheetIndex===si&&Object.keys(l.frameData||{}).some(k=>k.startsWith(prefix)));
+       if(!source)continue;
+       matched=true;
+-      if(isHand(source)){layer.referenceOnly=true;layer.visible=source.visible!==false;layer.opacity=source.opacity??1;}
++      if(isHand(source))layer.referenceOnly=true;
++      if(isHand(source)||splitBase){layer.visible=source.visible!==false;layer.opacity=source.opacity??1;}
+       action.frames.forEach((frame,fi)=>{
+         const original=sourceSheet.actions[sourceAI].frames[fi];if(!original)return;
+-        if(!sheet.canvasLayout&&!sourceSheet.canvasLayout&&(frame.width!==original.width||frame.height!==original.height))throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
++        if(!splitBase&&!sheet.canvasLayout&&!sourceSheet.canvasLayout&&(frame.width!==original.width||frame.height!==original.height))throw new Error('人物底稿尺寸与主工程不一致，请先统一画布尺寸');
+         const key=layer.sheetIndex+'_'+ai+'_'+fi,sourceKey=prefix+fi;
+-        if(source.frameData[sourceKey])data[key]=sourceSheet.canvasLayout||sheet.canvasLayout?require('./character-canvas.cjs').inherit(source.frameData[sourceKey],sourceSheet,sourceAI,sheet,ai,frame):source.frameData[sourceKey];else delete data[key];
++        if(source.frameData[sourceKey])data[key]=inherit(source.frameData[sourceKey],sourceSheet,sourceAI,sheet,ai,frame,splitBase);else delete data[key];
+       });
+     }
+     if(matched){layer.frameData=data;layer.inheritedBase=true;layer.locked=true;}
+diff --git a/output/primary-body-branch-20261110/before/js/character-base.js b/output/primary-body-branch-20261110/after/js/character-base.js
+index d866a07..b1af650 100644
+--- a/output/primary-body-branch-20261110/before/js/character-base.js
++++ b/output/primary-body-branch-20261110/after/js/character-base.js
+@@ -1,9 +1,10 @@
+ /* Shared by the browser and save API so cached pages cannot copy the old wardrobe. */
+ const characterHand=layer=>!!layer&&!layer.isGroup&&(layer.referenceOnly===true||/^(?:hand(?:\s|$)|手(?:部|臂)?(?:\s|$))/i.test(layer.name));
+-function characterBase(data){
++const characterBody=layer=>!!layer&&!layer.isGroup&&/^(body|head|身体|头部)(?: 描边)?$/.test(layer.name);
++function characterBase(data,splitBase=false){
+   const keep=new Set();
+   if(!data.layers.some(l=>!l.isGroup&&/^(body|head|身体|头部)$/.test(l.name)))throw new Error('没有找到身体或头部图层，未创建分支');
+-  data.layers.forEach((l,i)=>{if((/^(body|head|身体|头部)$/.test(l.name)||characterHand(l))&&!l.isGroup)keep.add(i);});
++  data.layers.forEach((l,i)=>{if((splitBase?characterBody(l):/^(body|head|身体|头部)$/.test(l.name))||characterHand(l)){if(!l.isGroup)keep.add(i);}});
+   for(const i of keep){let parent=data.layers[i].parent;const seen=new Set([i]);while(parent!=null){if(seen.has(parent)||!data.layers[parent]?.isGroup){if(characterHand(data.layers[i])){data.layers[i].parent=null;data.layers[i].depth=0;break;}throw new Error('人物分组关系无效，未创建分支');}seen.add(parent);keep.add(parent);parent=data.layers[parent].parent;}}
+   const indices=[...keep].sort((a,b)=>a-b),mapping=new Map(indices.map((old,i)=>[old,i]));
+   data.layers=indices.map(i=>{const l=data.layers[i];if(l.parent!=null)l.parent=mapping.get(l.parent);if(l.isGroup)l.frameData={};return l;});
+@@ -11,5 +12,6 @@ function characterBase(data){
+   return data;
+ }
+ characterBase.isHand=characterHand;
++characterBase.isBody=characterBody;
+ if(typeof module!=='undefined'&&module.exports)module.exports=characterBase;
+ else PE.characterBase=characterBase;
+diff --git a/output/primary-body-branch-20261110/before/js/projects.js b/output/primary-body-branch-20261110/after/js/projects.js
+index 6c9c606..e2d6cae 100644
+--- a/output/primary-body-branch-20261110/before/js/projects.js
++++ b/output/primary-body-branch-20261110/after/js/projects.js
+@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     if(!p.ready)throw new Error('请等待当前工程读取完成');
+     const name=prompt(scene?'场景名称':character?'人物分支名称（例如 白裙、短袖）':'独立稿名称',scene?'厨房场景':character?'人物-衣服独立稿':'独立稿');
+     if(!name?.trim())return;
+-    let data;
++    let data,baseRevision;
+     if(scene){
+       const size=prompt('画布宽×高（像素，16格比例；最大1024×1024）','160x128');
+       if(size===null)return;
+@@ -32,9 +32,13 @@ document.addEventListener('DOMContentLoaded',()=>{
+         layers:['地面','家具与设施','装饰'].map(name=>({name,sheetIndex:0,visible:true,locked:false,opacity:1,frameData:{'0_0_0':{width:w,height:h,dataURL:blank}}}))};
+     }else{
+       if(character){
+-        if(p.projectId==='main'&&p.dirty&&!await p.saveNow())throw new Error('主工程保存未完成，未新建分支；请先处理保存冲突');
+-        const source=await fetch(p.base+'/api/project?id=main',{headers:p.headers,cache:'no-store'});
++        const status=await fetch(p.base+'/api/status',{headers:p.headers,cache:'no-store'});
++        if(!status.ok)throw new Error('无法读取当前人物素体，未新建分支');
++        const baseId=(await status.json()).characterBaseProjectId||'main';
++        if(p.projectId===baseId&&p.dirty&&!await p.saveNow())throw new Error('素体保存未完成，未新建分支；请先处理保存冲突');
++        const source=await fetch(p.base+'/api/project?id='+baseId,{headers:p.headers,cache:'no-store'});
+         if(!source.ok)throw new Error('人物主工程读取失败：'+source.status);
++        if(baseId!=='main')baseRevision=source.headers.get('ETag');
+         data=await source.json();
+       }else{data=JSON.parse(await app.exportManager.exportProject(false).text());}
+       data.name=name.trim();
+@@ -43,7 +47,8 @@ document.addEventListener('DOMContentLoaded',()=>{
+       }
+     }
+     const id=(scene?'scene-':character?'character-':'draft-')+crypto.randomUUID();
+-    const response=await fetch(p.base+'/api/project?id='+id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(data)});
++    const response=await fetch(p.base+'/api/project?id='+id+(baseRevision?'&baseRevision='+encodeURIComponent(baseRevision):''),{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(data)});
++    if(response.status===409)throw new Error('人物素体或工程版本已变化，未新建分支；请重试');
+     if(!response.ok)throw new Error('新建失败：'+response.status+'；需要更新并重新启动编辑器服务');
+     try{const chat=localStorage.getItem('pixel-ai-chat-'+p.projectId);if(chat)localStorage.setItem('pixel-ai-chat-'+id,chat);}catch(error){console.warn('分支对话复制失败',error);}
+     const url=new URL(location.href);url.searchParams.set('project',id);
+diff --git a/output/primary-body-branch-20261110/before/index.html b/output/primary-body-branch-20261110/after/index.html
+index c86153a..f0ac11a 100644
+--- a/output/primary-body-branch-20261110/before/index.html
++++ b/output/primary-body-branch-20261110/after/index.html
+@@ -306,7 +306,7 @@
+   <script src="js/studio.js?v=scene-material-rename-20261109"></script>
+   <script src="js/visual-layers.js?v=idle-copy-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+-  <script src="js/projects.js?v=native16-wiring-20261104"></script>
++  <script src="js/projects.js?v=primary-body-20261110"></script>
+   <script src="js/wardrobe-furniture.js?v=scene-furniture-20261107"></script>
+   <script src="js/wardrobe.js?v=hd-room-2"></script>
+   <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
+diff --git a/output/primary-body-branch-20261110/before/AGENTS.md b/output/primary-body-branch-20261110/after/AGENTS.md
+index 8db8994..62befab 100644
+--- a/output/primary-body-branch-20261110/before/AGENTS.md
++++ b/output/primary-body-branch-20261110/after/AGENTS.md
+@@ -6,10 +6,9 @@
+ - 操作工程前读 `后台工程读写约定.md`，通过本地 API 和 ETag 保存；保留原始备份，回读验证。
+ - 用户已重新画好坐姿，以当前工程为准；禁止再用待机覆盖坐姿，也不恢复之前缩小的32规格坐姿。
+ - 坐姿只保留侧面；不再创建或恢复正面、背面。
+-- 主工程坐姿手臂可编辑；人物分支的头部、身体和手臂跟随当前主工程并保持底稿保护。
+-- 素体主 `draft-7278d7c9` 的 `body` 是主工程体型的拆分版（`body` 填充 + `body 描边`），读取时从主工程同步，保存时合回主工程；分支按主工程继承，所以在素体主页改体型即可全部分支同步。
++- 人物分支的当前素体源是 `draft-conflict-1794271316087-dc54567c`，由 `GET /api/status` 的 `characterBaseProjectId` 标识。在该素体工程编辑并保存身体、头部、手臂及其描边后，分支读取时同步；分支底稿默认锁定，只供展示。旧 `draft-7278d7c9` 与旧主工程原有读写不变，但不作为当前分支的素体来源。
+ - 可视化图层、头发/眼睛联动支持当前16规格。头发按实际源像素和当前头部位置对齐，不套旧32规格的双倍格。
+-- 新建人物分支必须读当前主工程；主工程有草稿时先通过原保存流程保存，保存冲突时停止新建，不用旧模板替代。
++- 新建人物分支必须读当前素体源；当前素体页面有草稿时先通过原保存流程保存，保存冲突时停止新建，不用旧模板替代。
+ - 原生16规格是素材尺度，不要求所有动作同一画布。拾取保留20×20；坐姿当前与待机相同，为16×16。
+ - 当前主肤色 `#FEEDE1`，阴影 `#E0C5B4`，描边 `#46465E`；不擅自重新配色。
+ - 默认在后台处理，通过本地成图和API回读检查。不得强制刷新前台，不覆盖未保存草稿。
+diff --git a/output/primary-body-branch-20261110/before/API_DOCS.md b/output/primary-body-branch-20261110/after/API_DOCS.md
+index 3c1ad83..f71d57f 100644
+--- a/output/primary-body-branch-20261110/before/API_DOCS.md
++++ b/output/primary-body-branch-20261110/after/API_DOCS.md
+@@ -1,6 +1,6 @@
+ # 本地保存接口
+ 
+-- `GET /api/status`：服务状态。
++- `GET /api/status`：服务状态；`characterBaseProjectId` 是人物分支当前继承的素体工程编号。创建人物分支时可传 `baseRevision` 查询参数（素体 GET 的 ETag），若素体版本已变则返回 409。
+ - `GET /api/projects`：当前工程列表，不含已归档工程。
+ - `GET /api/project?id=main`：主工程JSON；响应头ETag是保存版本。
+ - `GET /api/project?id=<编号>`：指定独立工程。

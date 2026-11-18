@@ -1,0 +1,17 @@
+{
+  "put": {
+    "url": "http://127.0.0.1:8765/api/project?id=draft-conflict-1794271316087-dc54567c",
+    "method": "PUT",
+    "ifMatch": "\"ceb0c2ffd0aca42629591dcf4dccd2feb4148070d2a6781845c1566cedc8acb7\"",
+    "requestSha256": "fea42c1d6cc4ca33c68b9a7b50b26a8214b33b60fe306b31cc66e779c66987cd",
+    "status": 200,
+    "etag": "\"fea42c1d6cc4ca33c68b9a7b50b26a8214b33b60fe306b31cc66e779c66987cd\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"fea42c1d6cc4ca33c68b9a7b50b26a8214b33b60fe306b31cc66e779c66987cd\\\"\"}"
+  },
+  "get": {
+    "status": 200,
+    "etag": "\"fea42c1d6cc4ca33c68b9a7b50b26a8214b33b60fe306b31cc66e779c66987cd\"",
+    "sha256": "fea42c1d6cc4ca33c68b9a7b50b26a8214b33b60fe306b31cc66e779c66987cd"
+  },
+  "verified": "4 body cels retain every drawn HD pixel and its placement, plus the first-frame neck connection; original HD source hidden; all other data unchanged"
+}

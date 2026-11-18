@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "size": "16x16",
+  "layout": "2x2",
+  "changedPixels": 152,
+  "baseColorUnchanged": true,
+  "geometryUnchanged": true,
+  "otherContentUnchanged": true,
+  "apiReadbackExact": true,
+  "restorationOnExtraCopy": true,
+  "paletteDiff": {
+    "a9b7baff": "c5cfceff",
+    "e5e9e5ff": "dde3e0ff",
+    "c6d0d0ff": "d2dad9ff",
+    "d8dfdeff": "d8dfdeff"
+  },
+  "originalSHA256": "1570ed71c926bebdbe243bbeae492b2c138ded82e7d4fa48ec187301ccd0bb7f",
+  "savedSHA256": "73ab1f5b2c80ac9ad1dcbfdf3db52d6b547a2a170a61a5697bc30d177bc99bd1",
+  "pngSHA256": "0de138755c6e16488644da43ccda4ab83311f7e984aec2a55781569512599d7f",
+  "frontendRefreshed": false
+}

@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "originalSHA256": "4ec37aeb812df22308ed8858ae2be2848bf170615ab17b4a0a7b773b63099787",
+  "newSHA256": "537eb34d71fce380c76d155bdf1f098217143ebb3d0ad8a48fe2324bca7d14e8",
+  "etag": "\"537eb34d71fce380c76d155bdf1f098217143ebb3d0ad8a48fe2324bca7d14e8\"",
+  "frames": 12,
+  "firstFrameUntouched": true,
+  "frameMetadataAndTimingUntouched": true,
+  "otherSheetsUntouched": true,
+  "verified": "最新门框重生成第2—12帧，柜体首帧的1像素修订同步全部帧；开关路径对称；完整回读一致"
+}

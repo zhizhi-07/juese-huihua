@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冰柜.png",
+      "sha256": "e0c13c8851fc9ff0f4a9c3612c6127e7a0ef656b02671926c22b5063681d2cd2",
+      "size": [
+        160,
+        14
+      ]
+    },
+    {
+      "path": "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\壁挂烟架.png",
+      "sha256": "2e64820ff612ee8999ee0ccbe13cbc5cb7faa65224f2b3135866cb8a668813d1",
+      "size": [
+        24,
+        16
+      ]
+    }
+  ],
+  "freezerFrames": 8,
+  "frameSize": [
+    20,
+    14
+  ],
+  "changedPixelsByFrame": [
+    126,
+    126,
+    126,
+    126,
+    126,
+    126,
+    126,
+    126
+  ],
+  "frameGeometryAndAlphaUnchanged": true,
+  "bunNotModified": true,
+  "bunSha256": "5ae5593afbba3c15b0479094f7a385b4cc26889a5dd1e529ab274987139d5ac1",
+  "importSettingsNotModified": true
+}

@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "etag": "\"25428ec690574d77468b384d8b30260a856a0cde57b8272dbc675340c15ebf7f\"",
+  "sha256": "25428ec690574d77468b384d8b30260a856a0cde57b8272dbc675340c15ebf7f",
+  "onlyChangedLayers": [
+    80,
+    83
+  ],
+  "concurrentCounterEditsPreserved": true,
+  "rackLowerTiersPreserved": true,
+  "posterSourceUnchanged": true
+}

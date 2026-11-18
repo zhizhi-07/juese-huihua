@@ -1,0 +1,171 @@
+[
+  {
+    "name": "行走",
+    "frameWidth": 30,
+    "frameHeight": 34,
+    "columns": 8,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "待机",
+    "frameWidth": 30,
+    "frameHeight": 34,
+    "columns": 4,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "拾取",
+    "frameWidth": 42,
+    "frameHeight": 40,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      500
+    ]
+  },
+  {
+    "name": "浇水",
+    "frameWidth": 54,
+    "frameHeight": 60,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "镐",
+    "frameWidth": 60,
+    "frameHeight": 58,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "斧头",
+    "frameWidth": 62,
+    "frameHeight": 60,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "锄头",
+    "frameWidth": 58,
+    "frameHeight": 56,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "镰刀",
+    "frameWidth": 64,
+    "frameHeight": 54,
+    "columns": 6,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100
+    ]
+  },
+  {
+    "name": "种植",
+    "frameWidth": 48,
+    "frameHeight": 46,
+    "columns": 4,
+    "rows": [
+      "side",
+      "down",
+      "up"
+    ],
+    "durations": [
+      100,
+      100,
+      100,
+      100
+    ]
+  }
+]

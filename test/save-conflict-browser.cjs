@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{spawn}=require('node:child_process');
 const {chromium}=require('C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
-const root=path.resolve(__dirname,'..'),out=path.join(__dirname,'output/save-conflict-20261102'),snap=path.join(root,'备份/保存冲突修复-20261102');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'output/save-conflict-refresh-20261110'),snap=path.join(root,'备份/保存冲突修复-20261102');
 const id='character-56620e79-ce79-4fd9-b49c-081f7bc57d67';
 function copyFolder(from,to){fs.mkdirSync(to);for(const entry of fs.readdirSync(from,{withFileTypes:true})){const source=path.join(from,entry.name),target=path.join(to,entry.name);if(entry.isDirectory())copyFolder(source,target);else fs.copyFileSync(source,target)}}
 (async()=>{
@@ -8,16 +8,18 @@ function copyFolder(from,to){fs.mkdirSync(to);for(const entry of fs.readdirSync(
   fs.mkdirSync(out,{recursive:true});
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'pixel-save-conflict-'));
   console.log('Temporary test directory:',dir);
-  for(const folder of ['js','css']){copyFolder(path.join(root,folder),path.join(dir,folder));console.log('Copied',folder)}
+  for(const folder of ['js','css','scripts']){copyFolder(path.join(root,folder),path.join(dir,folder));console.log('Copied',folder)}
   for(const file of ['server.js','index.html','draft-rescue-user.html'])fs.copyFileSync(path.join(root,file),path.join(dir,file));
   fs.mkdirSync(path.join(dir,'data/projects'),{recursive:true});
   const file=path.join(dir,'data/projects',id+'.json'),original=fs.readFileSync(path.join(snap,'original-api.json'),'utf8');
   fs.writeFileSync(file,original);
   const port=18791,base='http://127.0.0.1:'+port,child=spawn(process.execPath,[path.join(dir,'server.js'),String(port)],{windowsHide:true,stdio:['ignore','pipe','pipe']});let browser;
   try{
+    child.stderr.pipe(process.stderr);
     await new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('server start timeout')),8000);child.stdout.once('data',()=>{clearTimeout(t);resolve()});child.once('error',reject)});
     console.log('Isolated server ready');browser=await chromium.launch({channel:'msedge',headless:true});console.log('Headless browser ready');
-    const context=await browser.newContext({viewport:{width:1440,height:1050}}),page=await context.newPage(),errors=[];
+    const context=await browser.newContext({viewport:{width:1440,height:1050}}),errors=[];
+    let page=await context.newPage();
     page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'/index.html?project='+id);await page.waitForFunction(()=>PE.app?.persistence?.ready&&document.querySelector('.studio-loading')?.hidden);
     const old=await page.evaluate(()=>PE.app.persistence.revision);
@@ -28,8 +30,9 @@ function copyFolder(from,to){fs.mkdirSync(to);for(const entry of fs.readdirSync(
     assert.equal(await page.evaluate(()=>PE.app.persistence.saveNow()),false);
     assert.equal(fs.readFileSync(file,'utf8'),latest);
     assert(await page.getByRole('button',{name:'处理保存冲突',exact:true}).isVisible());
-    // Reload only this disposable test browser; pending drafts must not adopt the remote ETag.
-    await page.reload();await page.waitForFunction(()=>PE.app?.persistence?.ready&&document.querySelector('.studio-loading')?.hidden);
+    // A normal open still restores the pending draft without adopting the remote ETag.
+    await page.close();page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+    await page.goto(base+'/index.html?project='+id);await page.waitForFunction(()=>PE.app?.persistence?.ready&&document.querySelector('.studio-loading')?.hidden);
     assert.deepEqual(await page.evaluate(()=>({conflict:PE.app.persistence.conflict,revision:PE.app.persistence.revision})),{conflict:true,revision:old});
     const restored=await page.evaluate(async()=>PE.app.exportManager.exportProject(false).text());assert.equal(restored,serialized);
     await page.getByRole('button',{name:'保存工程',exact:true}).click();
@@ -58,6 +61,37 @@ function copyFolder(from,to){fs.mkdirSync(to);for(const entry of fs.readdirSync(
     await page.reload();await page.waitForFunction(()=>PE.app?.persistence?.ready&&document.querySelector('.studio-loading')?.hidden);
     assert.equal(await page.evaluate(()=>PE.app.project.name),'隔离测试恢复后正常保存');
     assert.equal(await page.evaluate(()=>PE.app.persistence.conflict),false);
+    const reload=async()=>{await page.reload();await page.waitForFunction(()=>PE.app?.persistence?.ready&&document.querySelector('.studio-loading')?.hidden);};
+    const edit=async name=>page.evaluate(async name=>{const app=PE.app;app.project.name=name;app.persistence.markDirty();await app.persistence.localWrite(app.exportManager.exportProject(false),true);},name);
+    await edit('同版本的本地草稿');
+    await reload();
+    assert.deepEqual(await page.evaluate(()=>[PE.app.project.name,PE.app.persistence.dirty,PE.app.persistence.conflict]),['同版本的本地草稿',true,false]);
+    await edit('冲突刷新前的草稿');
+    const pending=await page.evaluate(async()=>await (await PE.app.persistence.localRead()).blob.text());
+    const updated=JSON.stringify({...JSON.parse(fs.readFileSync(file,'utf8')),name:'冲突刷新后的共享版本'});
+    fs.writeFileSync(file,updated);
+    assert.equal(await page.evaluate(()=>PE.app.persistence.saveNow()),false);
+    const routeOffline=route=>route.abort();
+    await page.route('**/api/project?id='+id,routeOffline);
+    await reload();
+    assert.deepEqual(await page.evaluate(()=>[PE.app.project.name,PE.app.persistence.dirty]),['冲突刷新前的草稿',true]);
+    await page.unroute('**/api/project?id='+id,routeOffline);
+    const expectedETag=await fetch(base+'/api/project?id='+id).then(r=>r.headers.get('etag'));
+    await reload();
+    assert.deepEqual(await page.evaluate(()=>[PE.app.project.name,PE.app.persistence.dirty,PE.app.persistence.conflict,PE.app.persistence.revision]),['冲突刷新后的共享版本',false,false,expectedETag]);
+    assert.equal(await page.evaluate(async()=>{
+      const p=PE.app.persistence,db=await p.db(),store=db.transaction('projects').objectStore('projects');
+      const archive=await new Promise((resolve,reject)=>{const req=store.get(IDBKeyRange.bound(p.localKey+'-conflict-',p.localKey+'-conflict-\uffff'));req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+      return archive.blob.text();
+    }),pending);
+    assert.equal(await page.evaluate(async()=>{const p=PE.app.persistence;return (await p.localRead()).meta.pending}),false);
+    await reload();
+    assert.equal(await page.evaluate(()=>PE.app.project.name),'冲突刷新后的共享版本');
+    assert.equal(fs.readFileSync(file,'utf8'),updated);
+    await edit('冲突刷新后再次保存');
+    assert(await page.evaluate(()=>PE.app.persistence.saveNow()));
+    await reload();
+    assert.equal(await page.evaluate(()=>PE.app.project.name),'冲突刷新后再次保存');
     // The existing no-reload rescue page must expose a usable saved copy, not only a download.
     await page.evaluate(async raw=>{await PE.app.persistence.apply(new Blob([raw]));PE.app.persistence.markDirty();await PE.app.persistence.saveNow()},draft);
     const helper=await context.newPage();await helper.goto(base+'/draft-rescue-user.html');
@@ -68,7 +102,7 @@ function copyFolder(from,to){fs.mkdirSync(to);for(const entry of fs.readdirSync(
     assert(await helper.evaluate(()=>PE.app.persistence.saveNow()));assert.equal(await helper.evaluate(()=>PE.app.persistence.conflict),false);
     await helper.screenshot({path:path.join(out,'rescued-draft-saves.png')});
     assert.deepEqual(errors,[]);
-    fs.writeFileSync(path.join(out,'browser-result.json'),JSON.stringify({passed:true,isolatedDirectory:dir,copyId,originalProjectNeverOverwrittenDuringResolution:true,rawDraftReadbackExact:true,originalETagRetainedAfterReload:true,sharedChoiceThenSaveAndReopen:true,oldPageRescueThenSave:true,pageErrors:errors},null,2));
-    console.log('PASS: real user snapshots on isolated server; 409 + repeated save expose resolution; reload retains original draft base; exact independent backup saves/reopens; shared choice backs up before loading; original project not overwritten; subsequent ETag save/reopen succeeds; old-page rescue opens a fully saveable draft.');
+    fs.writeFileSync(path.join(out,'browser-result.json'),JSON.stringify({passed:true,isolatedDirectory:dir,copyId,originalProjectNeverOverwrittenDuringResolution:true,rawDraftReadbackExact:true,originalETagRetainedOnNormalOpen:true,conflictReloadReadsLatestAndArchivesDraft:true,sameRevisionAndOfflineReloadKeepDraft:true,sharedChoiceThenSaveAndReopen:true,oldPageRescueThenSave:true,pageErrors:errors},null,2));
+    console.log('PASS: 409 blocks overwrites; normal open retains original draft base; reload adopts latest and archives exact draft; repeat reload stays clean; same-revision and offline drafts survive; subsequent ETag save/reopen succeeds; existing conflict dialog and rescue still work.');
   }finally{await browser?.close();child.kill()}
 })().catch(e=>{console.error(e);process.exitCode=1});

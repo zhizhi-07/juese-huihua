@@ -1,0 +1,19 @@
+COMMAND: node test/eyes-no-auto-blink.cjs
+PASS no-auto-blink: no shape recognition; legacy auto markers ignored; independent eye variants; explicit manual opt-out; save/reopen.
+EXIT: 0
+COMMAND: node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, no automatic blink recognition, manual frame opt-out, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+EXIT: 0
+COMMAND: node test/eyes-current-head.cjs
+PASS eyes current head: live head-only move, exact pixels, preserved blink, manual correction, pause, legacy recalculation, save/reopen.
+EXIT: 0
+COMMAND: node test/hair-current-head.cjs
+PASS current-head sync: head-only live invalidation; native16/20px pickup; source-head movement; manual correction; legacy recalculation; new frames; pause; save/reopen; atomic locks; validation.
+EXIT: 0
+COMMAND: node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+EXIT: 0
+COMMAND: node output/hair-current-head-20261113/ui-check.cjs
+PASS UI: eyes preserve/cancel/apply; hair effective offset panel, manual apply, stored calibration.
+EXIT: 0
+SYNTAX EXIT: 0

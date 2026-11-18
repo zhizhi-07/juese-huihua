@@ -1,0 +1,47 @@
+{
+  "revertedFrames": 784,
+  "readbackEqual": true,
+  "otherDataUnchanged": true,
+  "sheets": [
+    {
+      "name": "浇水",
+      "size": [
+        27,
+        30
+      ],
+      "framesUniform": true
+    },
+    {
+      "name": "镐",
+      "size": [
+        30,
+        29
+      ],
+      "framesUniform": true
+    },
+    {
+      "name": "斧头",
+      "size": [
+        31,
+        30
+      ],
+      "framesUniform": true
+    },
+    {
+      "name": "锄头",
+      "size": [
+        29,
+        28
+      ],
+      "framesUniform": true
+    },
+    {
+      "name": "种植",
+      "size": [
+        24,
+        23
+      ],
+      "framesUniform": true
+    }
+  ]
+}

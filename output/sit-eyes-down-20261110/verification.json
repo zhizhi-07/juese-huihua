@@ -1,0 +1,13 @@
+{
+  "put": {
+    "status": 200,
+    "etag": "\"f6eb5cae308f13eef2ef4a11474a4beb0fb2d92ba927349d0cda82e899415b43\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"f6eb5cae308f13eef2ef4a11474a4beb0fb2d92ba927349d0cda82e899415b43\\\"\"}"
+  },
+  "get": {
+    "status": 200,
+    "etag": "\"f6eb5cae308f13eef2ef4a11474a4beb0fb2d92ba927349d0cda82e899415b43\"",
+    "sha256": "f6eb5cae308f13eef2ef4a11474a4beb0fb2d92ba927349d0cda82e899415b43"
+  },
+  "check": "Exact candidate match"
+}

@@ -1,0 +1,85 @@
+diff --git a/output/sit-hair-global-up-one-20261110/before/index.html b/index.html
+index 68945e1..81e00ef 100644
+--- a/output/sit-hair-global-up-one-20261110/before/index.html
++++ b/index.html
+@@ -208,39 +208,41 @@
+             <button id="add-palette-color-btn" class="compact-btn">添加到色板</button>
+           </div>
+ 
+-          <!-- 图层调色：给当前图层整体调整色相 / 饱和度 / 明度 -->
+-          <div id="layer-hue-adjust" class="hue-adjust">
+-            <div class="hue-adjust-head">
++          <!-- 图层调色：给当前图层整体调整色相 / 饱和度 / 明度；默认折叠，免得把图层列表挤没了 -->
++          <details id="layer-hue-adjust" class="hue-adjust">
++            <summary class="hue-adjust-head">
+               <strong>图层调色</strong>
+               <span id="hue-adjust-target">当前图层</span>
++            </summary>
++            <div class="hue-adjust-body">
++              <div class="hue-row">
++                <span>色相</span>
++                <input type="range" id="hue-shift" min="-180" max="180" step="1" value="0" aria-label="色相">
++                <input type="number" id="hue-shift-number" min="-180" max="180" step="1" value="0" aria-label="色相数值">
++              </div>
++              <div class="hue-row">
++                <span>饱和度</span>
++                <input type="range" id="hue-saturation" min="-100" max="100" step="1" value="0" aria-label="饱和度">
++                <input type="number" id="hue-saturation-number" min="-100" max="100" step="1" value="0" aria-label="饱和度数值">
++              </div>
++              <div class="hue-row">
++                <span>明度</span>
++                <input type="range" id="hue-lightness" min="-100" max="100" step="1" value="0" aria-label="明度">
++                <input type="number" id="hue-lightness-number" min="-100" max="100" step="1" value="0" aria-label="明度数值">
++              </div>
++              <div class="hue-row hue-scope">
++                <span>范围</span>
++                <select id="hue-scope" aria-label="调色范围">
++                  <option value="frame">当前帧</option>
++                  <option value="action">当前动作</option>
++                  <option value="layer">整个图层</option>
++                </select>
++                <button id="hue-apply-btn" class="compact-btn" type="button">应用</button>
++                <button id="hue-reset-btn" class="compact-btn" type="button">复位</button>
++              </div>
++              <p id="hue-adjust-status" class="hue-status">拖动滑条即时预览；点“应用”写入图层，可撤销。</p>
+             </div>
+-            <div class="hue-row">
+-              <span>色相</span>
+-              <input type="range" id="hue-shift" min="-180" max="180" step="1" value="0" aria-label="色相">
+-              <input type="number" id="hue-shift-number" min="-180" max="180" step="1" value="0" aria-label="色相数值">
+-            </div>
+-            <div class="hue-row">
+-              <span>饱和度</span>
+-              <input type="range" id="hue-saturation" min="-100" max="100" step="1" value="0" aria-label="饱和度">
+-              <input type="number" id="hue-saturation-number" min="-100" max="100" step="1" value="0" aria-label="饱和度数值">
+-            </div>
+-            <div class="hue-row">
+-              <span>明度</span>
+-              <input type="range" id="hue-lightness" min="-100" max="100" step="1" value="0" aria-label="明度">
+-              <input type="number" id="hue-lightness-number" min="-100" max="100" step="1" value="0" aria-label="明度数值">
+-            </div>
+-            <div class="hue-row hue-scope">
+-              <span>范围</span>
+-              <select id="hue-scope" aria-label="调色范围">
+-                <option value="frame">当前帧</option>
+-                <option value="action">当前动作</option>
+-                <option value="layer">整个图层</option>
+-              </select>
+-              <button id="hue-apply-btn" class="compact-btn" type="button">应用</button>
+-              <button id="hue-reset-btn" class="compact-btn" type="button">复位</button>
+-            </div>
+-            <p id="hue-adjust-status" class="hue-status">拖动滑条即时预览；点“应用”写入图层，可撤销。</p>
+-          </div>
++          </details>
+         </section>
+ 
+         <!-- 帧属性与审核状态面板 -->
+@@ -358,7 +360,7 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=sit-eye-sync-down-one-20261110"></script>
++  <script src="js/hair-animation.js?v=sit-hair-sync-up-one-20261110"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>

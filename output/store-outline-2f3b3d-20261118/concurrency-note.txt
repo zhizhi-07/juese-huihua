@@ -1,0 +1,1 @@
+Compared initial read against newer API snapshot: only exterior sheet 10 layers 61,64,67,68,75,77,93 changed. All small-object layers and all other fields unchanged. Rebased outline edits onto newer snapshot, preserving all concurrent exterior updates. Initial snapshots retained. No stale project PUT was attempted.

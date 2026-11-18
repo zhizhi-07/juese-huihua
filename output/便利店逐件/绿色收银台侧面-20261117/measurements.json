@@ -1,0 +1,24 @@
+{
+  "sideComputerLength": 14.0,
+  "frontCounterLength": 28.0,
+  "sideCounterTopLength": 28,
+  "verified": "沿用已校正现代侧面的台面几何，台面28，电脑14；只恢复绿色暖木配色，形状和电脑图形不变",
+  "frontComputerWidth": 14.0,
+  "layers": [
+    {
+      "visible": true,
+      "file": "green-22.png",
+      "name": "收银椅"
+    },
+    {
+      "visible": true,
+      "file": "green-23.png",
+      "name": "收银柜台"
+    },
+    {
+      "visible": true,
+      "file": "green-24.png",
+      "name": "收银机与付款终端"
+    }
+  ]
+}

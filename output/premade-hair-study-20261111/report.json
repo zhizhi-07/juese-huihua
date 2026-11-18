@@ -1,0 +1,2682 @@
+[
+  {
+    "character": "Angler",
+    "sha256": "40d7d74f37053bfb27432ab191524a1e1ad5948c8b4aef22edd3e0cc09b6fee4",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "fish - casting"
+      },
+      {
+        "from": 32,
+        "to": 35,
+        "direction": 0,
+        "name": "fish - idle"
+      },
+      {
+        "from": 36,
+        "to": 41,
+        "direction": 0,
+        "name": "fish - reeling"
+      },
+      {
+        "from": 42,
+        "to": 47,
+        "direction": 0,
+        "name": "fish - catch"
+      }
+    ],
+    "hair": []
+  },
+  {
+    "character": "Blacksmith",
+    "sha256": "6a3ecde482a62162d43359176f75f59e3f3e89c44674487f1fb7eb6c3da26954",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "hair": []
+  },
+  {
+    "character": "Chef",
+    "sha256": "618a3a98d80c23c069b5fe4d9be0128b8bdd18d1438985534420f80714fa9033",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "hair": []
+  },
+  {
+    "character": "Farmer",
+    "sha256": "f83bae8ce824b2998678305b19f9297eb3e9591a4e97f87b96c1cb679f43e1a4",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "axe"
+      },
+      {
+        "from": 32,
+        "to": 37,
+        "direction": 0,
+        "name": "hoe"
+      },
+      {
+        "from": 38,
+        "to": 45,
+        "direction": 0,
+        "name": "shovel"
+      },
+      {
+        "from": 46,
+        "to": 51,
+        "direction": 0,
+        "name": "sickle"
+      },
+      {
+        "from": 52,
+        "to": 55,
+        "direction": 0,
+        "name": "planting"
+      },
+      {
+        "from": 56,
+        "to": 61,
+        "direction": 0,
+        "name": "watering"
+      },
+      {
+        "from": 62,
+        "to": 65,
+        "direction": 0,
+        "name": "brush"
+      },
+      {
+        "from": 66,
+        "to": 71,
+        "direction": 0,
+        "name": "shear"
+      },
+      {
+        "from": 72,
+        "to": 77,
+        "direction": 0,
+        "name": "milking"
+      }
+    ],
+    "hair": [
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "axe",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            28
+          ],
+          [
+            34,
+            27
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "hoe",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            28
+          ],
+          [
+            34,
+            27
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "shovel",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            28
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "sickle",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            28
+          ],
+          [
+            34,
+            27
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "planting",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            27
+          ],
+          [
+            34,
+            27
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "watering",
+        "uniqueTranslationNormalizedShapes": 1,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "brush",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "shear",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "milking",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "axe",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "hoe",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "shovel",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "sickle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "planting",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "watering",
+        "uniqueTranslationNormalizedShapes": 1,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "brush",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "shear",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "milking",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            22
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "axe",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            26
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "hoe",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            26
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "shovel",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            26
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "sickle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            35,
+            26
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "planting",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            35,
+            25
+          ],
+          [
+            34,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "watering",
+        "uniqueTranslationNormalizedShapes": 1,
+        "positions": [
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "brush",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "shear",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "milking",
+        "uniqueTranslationNormalizedShapes": 0,
+        "positions": []
+      }
+    ]
+  },
+  {
+    "character": "Florist",
+    "sha256": "1f4d10abe14cf1d155604f2ee284eb83f87c39ac1c3a72ff4d18a8ae55f899d9",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "hair": [
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            27
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 6,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Inn Keeper",
+    "sha256": "76fb257f3f45e19918a3fcbf7e6e49416e2cacf4e2605eb8b27468c4972ef6d9",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "hair": [
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            22
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            22
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            27
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 6,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 6,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            22
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            22
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 4,
+        "positions": [
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            32,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 8,
+        "positions": [
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            32,
+            24
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 8,
+        "positions": [
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            22
+          ],
+          [
+            32,
+            23
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            22
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            32,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            32,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            31,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ],
+          [
+            32,
+            24
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Merchant",
+    "sha256": "f23810a5882798eb0a841470ba9cde365ff0f0b976bda93be209b43e6c3d0b32",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "hair": [
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "up",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 3,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            28
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "down",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "idle",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "walk",
+        "uniqueTranslationNormalizedShapes": 6,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            33,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "run",
+        "uniqueTranslationNormalizedShapes": 6,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            23
+          ],
+          [
+            33,
+            24
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            34,
+            25
+          ],
+          [
+            34,
+            23
+          ],
+          [
+            34,
+            24
+          ],
+          [
+            33,
+            26
+          ]
+        ]
+      },
+      {
+        "direction": "side",
+        "layer": "hair",
+        "action": "pick up",
+        "uniqueTranslationNormalizedShapes": 2,
+        "positions": [
+          [
+            33,
+            25
+          ],
+          [
+            34,
+            26
+          ],
+          [
+            32,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ],
+          [
+            33,
+            25
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Miner",
+    "sha256": "2c9b7caec7277abb9add3a3f4106912c7e00e77149f0b031d0b3dedae4417a76",
+    "tags": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "pickaxe"
+      },
+      {
+        "from": 32,
+        "to": 37,
+        "direction": 0,
+        "name": "hammer"
+      }
+    ],
+    "hair": []
+  }
+]

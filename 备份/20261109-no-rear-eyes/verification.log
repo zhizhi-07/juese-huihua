@@ -1,0 +1,114 @@
+BEFORE: node --require <backup loader> test/eye-sync.cjs
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+43 !== 28
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync.cjs:31:41)
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync.cjs:55:26)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 43,
+  expected: 28,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+exit=1
+BEFORE: node --require <backup loader> test/eye-layer-order.cjs
+node:internal/assert/utils:77
+    throw err;
+    ^
+
+AssertionError [ERR_ASSERTION]: rear view excludes eyes even if their layer is visible
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-layer-order.cjs:18:2)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.23.1
+exit=1
+BEFORE: node --require <backup loader> test/part-export.cjs
+AssertionError [ERR_ASSERTION]: stored rear eye pixels never enter the exported atlas
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\part-export.cjs:38:2) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+exit=1
+BEFORE: node --require <backup loader> test/eye-sync-ui.cjs
+<anonymous_script>:16
+    const scene=PE.isSceneProject(this.project);addMaterial.hidden=!scene;
+                   ^
+
+TypeError: PE.isSceneProject is not a function
+    at app.updateSheetList (eval at <anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync-ui.cjs:34:1), <anonymous>:16:20)
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync-ui.cjs:35:85)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49
+
+Node.js v22.23.1
+exit=1
+BEFORE: node --require <backup loader> test/wardrobe.cjs
+AssertionError [ERR_ASSERTION]: layers without sheetIndex can be collected
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\wardrobe.cjs:28:3) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+exit=1
+AFTER: node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+exit=0
+AFTER: node test/eye-layer-order.cjs
+PASS: eye default below fringe and above head; wardrobe ordering; existing and generated synced eyes; all directions; unchanged hair/base pixels; source selection; undo/redo; grouped defaults.
+exit=0
+AFTER: node test/part-export.cjs
+PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.
+exit=0
+AFTER: node test/directional-base.cjs
+{"original":false,"selected":3,"expected":3,"renderedBodies":1,"expectedBodies":1}
+PASS: direction switching; foreign-cel render guard; implicit and batch direction matching; explicit wrong-direction rejection; undo/redo; locks; shared layers; nested/cyclic groups.
+exit=0
+AFTER: node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+exit=0
+AFTER: node test/front-hand-top.cjs
+PASS: front hand renders above clothes/eyes/fringe/accessories in front and back views; rear hand stays behind the body; canvas, hand switch and PNG export agree; new layers cannot bury it; layer data untouched.
+exit=0
+AFTER: GET / and updated script assets
+js/core.js?v=no-rear-eyes-20261109 HTTP 200
+js/hair-animation.js?v=no-rear-eyes-20261109 HTTP 200
+AFTER: git diff --check (touched paths only)
+warning: in the working copy of 'js/hair-animation.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/eye-layer-order.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/eye-sync.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'test/part-export.cjs', LF will be replaced by CRLF the next time Git touches it
+exit=0

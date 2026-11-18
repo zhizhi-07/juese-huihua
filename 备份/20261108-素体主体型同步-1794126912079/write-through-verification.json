@@ -1,0 +1,16 @@
+{
+  "task": "素体主改体型 → 主工程写回 → 全部分支跟随（含还原）",
+  "writeThrough": "PASS",
+  "branchFollows": "PASS",
+  "branchFileUntouched": true,
+  "revertMainByteExact": "PASS",
+  "draftReadStable": "PASS",
+  "draftETag": "\"9ed8737c92f22862e3c1aca430bfdac462dbf992d500f61ba39534c5f7d6aa63\"",
+  "mainETag": "\"eb2dde18bc404f0ffaeadfb7ab3811b2476b4200cf4dba610e59de003fe5b05f\"",
+  "log": [
+    "画一格保存: 200 {\"saved\":true,\"revision\":\"\\\"83fe649836397702277561d304ffd65c9232a9b183ffc6ab3463c958f749edd2\\\"\"}",
+    "写回主工程: PASS 分支继承: PASS 分支文件未被改写: true",
+    "还原素体主: 200 {\"saved\":true,\"revision\":\"\\\"9ed8737c92f22862e3c1aca430bfdac462dbf992d500f61ba39534c5f7d6aa63\\\"\"}",
+    "还原主工程: 200 {\"saved\":true,\"revision\":\"\\\"eb2dde18bc404f0ffaeadfb7ab3811b2476b4200cf4dba610e59de003fe5b05f\\\"\"}"
+  ]
+}

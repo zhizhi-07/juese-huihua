@@ -1,0 +1,133 @@
+{
+  "id": "draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba",
+  "before": {
+    "etag": "\"80e7033ee0d712de9e7353ab69c7638faf933b59fcb402d4b06fb1cd570beeaa\"",
+    "sha256": "80e7033ee0d712de9e7353ab69c7638faf933b59fcb402d4b06fb1cd570beeaa"
+  },
+  "after": {
+    "etag": "\"d74963fbb93bbb7043ff162d9a9f32c234ae8b5872fa40ea7c8bddd4d13af6bb\"",
+    "sha256": "d74963fbb93bbb7043ff162d9a9f32c234ae8b5872fa40ea7c8bddd4d13af6bb"
+  },
+  "main": {
+    "etag": "\"91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b\"",
+    "sha256": "91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b"
+  },
+  "put": {
+    "status": 200,
+    "body": "{\"saved\":true,\"revision\":\"\\\"d74963fbb93bbb7043ff162d9a9f32c234ae8b5872fa40ea7c8bddd4d13af6bb\\\"\"}"
+  },
+  "changes": [
+    {
+      "key": "3_0_0",
+      "address": "original16_sit/side/0",
+      "original": {
+        "x": 0,
+        "y": 1
+      },
+      "current": {
+        "x": 0,
+        "y": 2
+      },
+      "offset": {
+        "x": 0,
+        "y": 3
+      },
+      "placementBefore": {
+        "x": 3,
+        "y": 8,
+        "w": 11,
+        "h": 6
+      },
+      "placementAfter": {
+        "x": 3,
+        "y": 10,
+        "w": 11,
+        "h": 4
+      }
+    },
+    {
+      "key": "3_0_1",
+      "address": "original16_sit/side/1",
+      "original": {
+        "x": 0,
+        "y": 1
+      },
+      "current": {
+        "x": 0,
+        "y": 2
+      },
+      "offset": {
+        "x": 0,
+        "y": 3
+      },
+      "placementBefore": {
+        "x": 3,
+        "y": 9,
+        "w": 11,
+        "h": 4
+      },
+      "placementAfter": {
+        "x": 3,
+        "y": 10,
+        "w": 11,
+        "h": 4
+      }
+    },
+    {
+      "key": "3_0_2",
+      "address": "original16_sit/side/2",
+      "original": {
+        "x": 0,
+        "y": 2
+      },
+      "current": {
+        "x": 0,
+        "y": 4
+      },
+      "offset": {
+        "x": 0,
+        "y": 4
+      },
+      "placementBefore": {
+        "x": 3,
+        "y": 11,
+        "w": 11,
+        "h": 4
+      },
+      "placementAfter": {
+        "x": 3,
+        "y": 11,
+        "w": 11,
+        "h": 4
+      }
+    },
+    {
+      "key": "3_0_3",
+      "address": "original16_sit/side/3",
+      "original": {
+        "x": 0,
+        "y": 2
+      },
+      "current": {
+        "x": 0,
+        "y": 4
+      },
+      "offset": {
+        "x": 0,
+        "y": 4
+      },
+      "placementBefore": {
+        "x": 3,
+        "y": 11,
+        "w": 11,
+        "h": 4
+      },
+      "placementAfter": {
+        "x": 3,
+        "y": 11,
+        "w": 11,
+        "h": 4
+      }
+    }
+  ]
+}

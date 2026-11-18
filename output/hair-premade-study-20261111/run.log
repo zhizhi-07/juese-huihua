@@ -1,0 +1,1538 @@
+[
+  {
+    "character": "Angler",
+    "total": 144,
+    "exactHeadFollow": 51,
+    "exactAnyTranslation": 51,
+    "basic": 54,
+    "basicExactHeadFollow": 19,
+    "basicExactAnyTranslation": 19,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          8,
+          8,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          8,
+          8,
+          0,
+          0,
+          8,
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          0,
+          8,
+          8,
+          0,
+          0,
+          8,
+          8,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          0,
+          8,
+          8,
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "fish - casting",
+        "diffs": [
+          0,
+          8,
+          8,
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "fish - idle",
+        "diffs": [
+          0,
+          8,
+          8,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "fish - reeling",
+        "diffs": [
+          0,
+          8,
+          8,
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "fish - catch",
+        "diffs": [
+          0,
+          8,
+          8,
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          6,
+          6,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          6,
+          6,
+          0,
+          22,
+          24,
+          24,
+          22,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          6,
+          6,
+          22,
+          22,
+          24,
+          24,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          6,
+          6,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "fish - casting",
+        "diffs": [
+          0,
+          6,
+          6,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "fish - idle",
+        "diffs": [
+          0,
+          6,
+          6,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "fish - reeling",
+        "diffs": [
+          0,
+          6,
+          6,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "fish - catch",
+        "diffs": [
+          0,
+          6,
+          6,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          15,
+          15,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          15,
+          15,
+          1,
+          0,
+          15,
+          15,
+          1,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          15,
+          15,
+          1,
+          0,
+          15,
+          15,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          1,
+          15,
+          15,
+          15,
+          1,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "fish - casting",
+        "diffs": [
+          1,
+          15,
+          15,
+          20,
+          1,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "fish - idle",
+        "diffs": [
+          0,
+          15,
+          15,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "fish - reeling",
+        "diffs": [
+          0,
+          1,
+          15,
+          15,
+          1,
+          1
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "fish - catch",
+        "diffs": [
+          1,
+          15,
+          15,
+          15,
+          1,
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Blacksmith",
+    "total": 78,
+    "exactHeadFollow": 65,
+    "exactAnyTranslation": 65,
+    "basic": 54,
+    "basicExactHeadFollow": 45,
+    "basicExactAnyTranslation": 45,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          0,
+          0,
+          4,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          0,
+          0,
+          0,
+          13,
+          13,
+          13,
+          13,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          0,
+          0,
+          13,
+          13,
+          13,
+          13,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          0,
+          4,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          15,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Chef",
+    "total": 78,
+    "exactHeadFollow": 23,
+    "exactAnyTranslation": 23,
+    "basic": 54,
+    "basicExactHeadFollow": 17,
+    "basicExactAnyTranslation": 17,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          52,
+          52,
+          37
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          52,
+          52,
+          37,
+          37,
+          52,
+          52,
+          37,
+          37
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          37,
+          52,
+          52,
+          37,
+          37,
+          52,
+          52,
+          37
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          37,
+          52,
+          52,
+          52,
+          37,
+          37
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          26,
+          26,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          26,
+          26,
+          0,
+          15,
+          37,
+          37,
+          15,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          26,
+          26,
+          15,
+          15,
+          37,
+          37,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          26,
+          26,
+          26,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          26,
+          26,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          26,
+          26,
+          0,
+          0,
+          26,
+          26,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          26,
+          26,
+          0,
+          0,
+          26,
+          26,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          21,
+          26,
+          26,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Farmer",
+    "total": 234,
+    "exactHeadFollow": 100,
+    "exactAnyTranslation": 100,
+    "basic": 54,
+    "basicExactHeadFollow": 25,
+    "basicExactAnyTranslation": 25,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "axe",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "hoe",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "shovel",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          12,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "sickle",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "planting",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "brush",
+        "diffs": [
+          57,
+          57,
+          57,
+          57
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "shear",
+        "diffs": [
+          57,
+          57,
+          57,
+          57,
+          57,
+          57
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "milking",
+        "diffs": [
+          57,
+          57,
+          57,
+          57,
+          57,
+          57
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          12,
+          12,
+          0,
+          7,
+          19,
+          19,
+          7,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          12,
+          12,
+          7,
+          7,
+          19,
+          19,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "axe",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "hoe",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "shovel",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          12,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "sickle",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "planting",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "brush",
+        "diffs": [
+          67,
+          67,
+          67,
+          67
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "shear",
+        "diffs": [
+          67,
+          67,
+          67,
+          67,
+          67,
+          67
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "milking",
+        "diffs": [
+          67,
+          67,
+          67,
+          67,
+          67,
+          67
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          11,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "axe",
+        "diffs": [
+          0,
+          12,
+          11,
+          11,
+          5,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "hoe",
+        "diffs": [
+          0,
+          12,
+          11,
+          11,
+          5,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "shovel",
+        "diffs": [
+          0,
+          12,
+          12,
+          5,
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "sickle",
+        "diffs": [
+          0,
+          12,
+          11,
+          11,
+          5,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "planting",
+        "diffs": [
+          0,
+          12,
+          11,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "brush",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "shear",
+        "diffs": [
+          0,
+          0,
+          12,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "milking",
+        "diffs": [
+          0,
+          0,
+          12,
+          12,
+          12,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Florist",
+    "total": 78,
+    "exactHeadFollow": 34,
+    "exactAnyTranslation": 34,
+    "basic": 54,
+    "basicExactHeadFollow": 25,
+    "basicExactAnyTranslation": 25,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          0,
+          12,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          9,
+          9,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          9,
+          9,
+          0,
+          7,
+          16,
+          16,
+          7,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          9,
+          9,
+          8,
+          7,
+          16,
+          16,
+          3
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          9,
+          10,
+          9,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          12,
+          12,
+          0,
+          0,
+          12,
+          12,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          32,
+          12,
+          12,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Inn Keeper",
+    "total": 78,
+    "exactHeadFollow": 22,
+    "exactAnyTranslation": 22,
+    "basic": 54,
+    "basicExactHeadFollow": 16,
+    "basicExactAnyTranslation": 16,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          9,
+          10,
+          3
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          9,
+          10,
+          1,
+          0,
+          9,
+          10,
+          2,
+          3
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          0,
+          9,
+          10,
+          4,
+          2,
+          9,
+          10,
+          3
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          2,
+          9,
+          9,
+          9,
+          2,
+          2
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          10,
+          11,
+          1
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          10,
+          11,
+          1,
+          17,
+          25,
+          26,
+          18,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          10,
+          11,
+          18,
+          17,
+          25,
+          26,
+          1
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          10,
+          11,
+          11,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          6,
+          6,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          6,
+          6,
+          0,
+          0,
+          6,
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          6,
+          6,
+          0,
+          0,
+          6,
+          6,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          14,
+          6,
+          6,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Merchant",
+    "total": 78,
+    "exactHeadFollow": 35,
+    "exactAnyTranslation": 35,
+    "basic": 54,
+    "basicExactHeadFollow": 25,
+    "basicExactAnyTranslation": 25,
+    "nonRigidRows": [
+      {
+        "direction": "down",
+        "action": "idle",
+        "diffs": [
+          0,
+          18,
+          18,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "diffs": [
+          18,
+          18,
+          0,
+          0,
+          18,
+          18,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "diffs": [
+          0,
+          18,
+          18,
+          0,
+          0,
+          18,
+          18,
+          0
+        ]
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "diffs": [
+          0,
+          18,
+          18,
+          18,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "idle",
+        "diffs": [
+          0,
+          10,
+          10,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          10,
+          10,
+          0,
+          27,
+          33,
+          34,
+          28,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          10,
+          10,
+          28,
+          27,
+          32,
+          33,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "diffs": [
+          0,
+          10,
+          10,
+          10,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "diffs": [
+          0,
+          15,
+          15,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "diffs": [
+          15,
+          15,
+          0,
+          0,
+          15,
+          15,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "diffs": [
+          0,
+          15,
+          15,
+          0,
+          0,
+          15,
+          15,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          27,
+          15,
+          15,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Miner",
+    "total": 114,
+    "exactHeadFollow": 99,
+    "exactAnyTranslation": 99,
+    "basic": 54,
+    "basicExactHeadFollow": 49,
+    "basicExactAnyTranslation": 49,
+    "nonRigidRows": [
+      {
+        "direction": "side",
+        "action": "walk",
+        "diffs": [
+          0,
+          0,
+          0,
+          31,
+          31,
+          31,
+          31,
+          0
+        ]
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "diffs": [
+          0,
+          0,
+          0,
+          31,
+          31,
+          31,
+          31,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "diffs": [
+          0,
+          34,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "pickaxe",
+        "diffs": [
+          0,
+          0,
+          34,
+          34,
+          34,
+          0
+        ]
+      },
+      {
+        "direction": "up",
+        "action": "hammer",
+        "diffs": [
+          0,
+          0,
+          34,
+          34,
+          34,
+          0
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "counts": {
+    "hand": 216,
+    "hand 2": 108
+  },
+  "frames": 104,
+  "changedPixels": 324,
+  "front": "#F3DDCE",
+  "rear": "#EBD2C2",
+  "onlyOriginalSkinChanged": true,
+  "readback": "PASS"
+}

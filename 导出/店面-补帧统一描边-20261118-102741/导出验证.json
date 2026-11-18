@@ -1,0 +1,47 @@
+{
+  "files": [
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-无雪-开门.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-无雪-开门.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-无雪.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-雪顶-开门.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-雪顶-开门.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\店面\\便利店-雪顶.png"
+  ],
+  "versions": [
+    {
+      "name": "便利店-无雪",
+      "staticSize": [
+        59,
+        45
+      ],
+      "atlasSize": [
+        354,
+        45
+      ],
+      "frameCount": 6,
+      "outline": "#2f3b3d"
+    },
+    {
+      "name": "便利店-雪顶",
+      "staticSize": [
+        61,
+        46
+      ],
+      "atlasSize": [
+        366,
+        46
+      ],
+      "frameCount": 6,
+      "outline": "#2f3b3d"
+    }
+  ],
+  "frameTimingAndSlicingUnchanged": true,
+  "gameHashes": {
+    "便利店-无雪-开门.json": "928c898d66bde8074d11328ff5acbcde6f94afceb413bcc31fec49a3844fafb8",
+    "便利店-无雪-开门.png": "40ea9b4125d665362a555c2e5bbe022c6e13a7bb42d9eca469d2f5899b607550",
+    "便利店-无雪.png": "7a97976ef99935aade7660a5f6a01daef736e8f9f46c96e41d676adf8a2c82be",
+    "便利店-雪顶-开门.json": "4b3dfd37d9c48eff78460bbc1af3323c61fde4ab4a7b1963a6716e58ff8f5cee",
+    "便利店-雪顶-开门.png": "884ebad965f2359c2205175824d1ff3f02075e5f31f07985d183fbe60fc7976e",
+    "便利店-雪顶.png": "e93f9e73cb105ab5ef7f859d7333e21f44e465132aece0c25dd21f15f0576d39"
+  }
+}

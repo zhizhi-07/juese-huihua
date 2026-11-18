@@ -1,0 +1,69 @@
+[
+  {
+    "name": "钓鱼-甩竿",
+    "sheetIndex": 9,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 23,
+      "y": 14,
+      "w": 45,
+      "h": 48
+    },
+    "requestedHeadFrames": 18
+  },
+  {
+    "name": "钓鱼-持竿",
+    "sheetIndex": 10,
+    "frames": 4,
+    "directions": 3,
+    "box": {
+      "x": 32,
+      "y": 14,
+      "w": 33,
+      "h": 48
+    },
+    "requestedHeadFrames": 12
+  },
+  {
+    "name": "钓鱼-收线",
+    "sheetIndex": 11,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 30,
+      "y": 15,
+      "w": 35,
+      "h": 47
+    },
+    "requestedHeadFrames": 18
+  },
+  {
+    "name": "钓鱼-上鱼",
+    "sheetIndex": 12,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 28,
+      "y": 11,
+      "w": 37,
+      "h": 51
+    },
+    "requestedHeadFrames": 18
+  }
+]
+AssertionError [ERR_ASSERTION]: target changed; do not overwrite
++ actual - expected
+
++ '75de0bc32299a812bb65677eae65128f06240b4e1e868432705c543570073ac8'
+- 'f0a11e5b3998029c736ea9ef449bdc2d93337c4423e9833cf162816dce741af1'
+
+    at C:\Users\Administrator\Desktop\角色绘画\output\water-fishing-20261111\build.cjs:28:169
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '75de0bc32299a812bb65677eae65128f06240b4e1e868432705c543570073ac8',
+  expected: 'f0a11e5b3998029c736ea9ef449bdc2d93337c4423e9833cf162816dce741af1',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

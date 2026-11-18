@@ -1,0 +1,1 @@
+PASS native16: 153 exact rigid frames; legacy nativeTips; no stored-pixel mutations; stable resync/reopen; out-of-frame pixels retained.

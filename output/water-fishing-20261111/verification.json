@@ -1,0 +1,75 @@
+{
+  "target": "base-outlined-1794365455561",
+  "imported": [
+    {
+      "name": "钓鱼-甩竿",
+      "sheetIndex": 9,
+      "frames": 6,
+      "directions": 3,
+      "box": {
+        "x": 23,
+        "y": 14,
+        "w": 45,
+        "h": 48
+      },
+      "requestedHeadFrames": 18
+    },
+    {
+      "name": "钓鱼-持竿",
+      "sheetIndex": 10,
+      "frames": 4,
+      "directions": 3,
+      "box": {
+        "x": 32,
+        "y": 14,
+        "w": 33,
+        "h": 48
+      },
+      "requestedHeadFrames": 12
+    },
+    {
+      "name": "钓鱼-收线",
+      "sheetIndex": 11,
+      "frames": 6,
+      "directions": 3,
+      "box": {
+        "x": 30,
+        "y": 15,
+        "w": 35,
+        "h": 47
+      },
+      "requestedHeadFrames": 18
+    },
+    {
+      "name": "钓鱼-上鱼",
+      "sheetIndex": 12,
+      "frames": 6,
+      "directions": 3,
+      "box": {
+        "x": 28,
+        "y": 11,
+        "w": 37,
+        "h": 51
+      },
+      "requestedHeadFrames": 18
+    }
+  ],
+  "oldSheetsExact": true,
+  "originalLayersProtected": true,
+  "wateringHairLayersCorrected": [
+    204,
+    212,
+    220
+  ],
+  "wateringHairStatic": true,
+  "linkedHairSources": 3,
+  "newDirectionalFrames": 66,
+  "gifOutputs": [
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111/浇水.gif",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111/钓鱼-甩竿.gif",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111/钓鱼-持竿.gif",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111/钓鱼-收线.gif",
+    "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111/钓鱼-上鱼.gif"
+  ],
+  "candidateSha256": "f679b7d1684d168c3e870cf0172145b0ba04c82058d66ff3de7e282e241c564c"
+}

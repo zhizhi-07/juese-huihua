@@ -1,0 +1,73 @@
+{
+  "sourceSHA256": "8125b04e40f10bdf8526170bf505042899945b4fd35cd342f54a73d4c0c11fde",
+  "candidateSHA256": "178e3d3a6b82dfd5a71761895fddf6e0fba3ae8fe07a06521f223f02e3814590",
+  "targetSheet": "陈列冷柜 32×48",
+  "targetLayer": "玻璃门框与把手",
+  "baselineOriginalMotionReproduced": true,
+  "angles": [
+    0,
+    20,
+    40,
+    60,
+    80,
+    100,
+    110,
+    100,
+    80,
+    60,
+    40,
+    20
+  ],
+  "firstFrameUntouched": true,
+  "allOriginalStaticLayersUnchanged": true,
+  "allOtherSheetsUnchanged": true,
+  "frameDimensionsDurationsAndCountUnchanged": true,
+  "nativePixelsOnly": true,
+  "changeList": [
+    {
+      "layer": 2,
+      "key": "0_0_1"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_2"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_3"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_4"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_5"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_6"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_7"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_8"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_9"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_10"
+    },
+    {
+      "layer": 2,
+      "key": "0_0_11"
+    }
+  ],
+  "footEditsPreserved": "新首帧超出旧门玻璃区域的底脚像素保留为静态底脚，不丢弃；原开关角度和路径不变"
+}

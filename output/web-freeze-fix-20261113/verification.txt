@@ -1,0 +1,81 @@
+Changes: js/hair-animation.js skips hidden masters during automatic repaint sync; explicit forced sync unchanged.
+js/persistence.js prevents concurrent polling/import and releases guard in finally.
+Current project-copy benchmark: 20 refresh calls: 736.3385ms before; 0.3387ms after. Hidden masters: 2; project layers: 345. Not a live browser measurement.
+Tests passed: node test/hair-animation.cjs; node test/persistence.cjs; node test/persistence-single-flight.cjs; node --check js/persistence.js; node --check js/hair-animation.js.
+NODE_PATH=C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules
+No project JSON modified, no browser refresh/close performed. Existing loaded page needs a safe reload after saving/recovering drafts. Live browser freeze resolution not verified.
+Recovery: copy hair-animation.original.js to js/hair-animation.js and persistence.original.js to js/persistence.js from this folder. Back up any later code changes before restoring.
+
+hair-animation:
+line 373 before:       const g=source.hairAnimation;if(!force&&!g.live)continue;
+after:       const g=source.hairAnimation;if(!force&&(!g.live||source.visible===false))continue;
+
+persistence:
+line 134 before:     if(!this.ready||this.dirty||this.saving||this.resolving||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
+after:     if(!this.ready||this.dirty||this.saving||this.resolving||this.pulling||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
+line 135 before:     try{
+after:     this.pulling=true;
+line 136 before:       const response=await this.request({headers:{'If-None-Match':this.revision}});
+after:     try{
+line 137 before:       if(response.status===304||response.status===404)return;
+after:       const response=await this.request({headers:{'If-None-Match':this.revision}});
+line 138 before:       if(!response.ok)return;
+after:       if(response.status===304||response.status===404)return;
+line 139 before:       const blob=await response.blob();
+after:       if(!response.ok)return;
+line 140 before:       if(this.dirty||this.saving||this.resolving||this.app.toolManager.isDrawing)return;
+after:       const blob=await response.blob();
+line 141 before:       await this.apply(blob,true);this.revision=response.headers.get('ETag');await this.localWrite(blob,false).catch(console.error);this.show('已同步共享修改');
+after:       if(this.dirty||this.saving||this.resolving||this.app.toolManager.isDrawing)return;
+line 142 before:     }catch(error){console.debug('等待共享工程连接',error.message);}
+after:       await this.apply(blob,true);this.revision=response.headers.get('ETag');await this.localWrite(blob,false).catch(console.error);this.show('已同步共享修改');
+line 143 before:   }
+after:     }catch(error){console.debug('等待共享工程连接',error.message);}
+line 144 before: };
+after:     finally{this.pulling=false;}
+line 145 before: document.addEventListener('DOMContentLoaded',()=>{
+after:   }
+line 146 before:   const app=PE.app,toolbar=document.getElementById('top-toolbar'),status=document.createElement('span');status.id='save-status';status.textContent='正在读取已保存工程…';status.setAttribute('aria-live','polite');toolbar.append(status);
+after: };
+line 147 before:   const persistence=app.persistence=new PE.ProjectPersistence(app,status);
+after: document.addEventListener('DOMContentLoaded',()=>{
+line 148 before:   function button(text,fn){const b=document.createElement('button');b.className='tool-btn';b.textContent=text;b.onclick=fn;toolbar.append(b);}
+after:   const app=PE.app,toolbar=document.getElementById('top-toolbar'),status=document.createElement('span');status.id='save-status';status.textContent='正在读取已保存工程…';status.setAttribute('aria-live','polite');toolbar.append(status);
+line 149 before:   button('保存本地修改 (Ctrl+S)',()=>persistence.saveNow());
+after:   const persistence=app.persistence=new PE.ProjectPersistence(app,status);
+line 150 before:   // Capture before editor shortcuts, including when a text input has focus.
+after:   function button(text,fn){const b=document.createElement('button');b.className='tool-btn';b.textContent=text;b.onclick=fn;toolbar.append(b);}
+line 151 before:   window.addEventListener('keydown',event=>{
+after:   button('保存本地修改 (Ctrl+S)',()=>persistence.saveNow());
+line 152 before:     if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'){
+after:   // Capture before editor shortcuts, including when a text input has focus.
+line 153 before:       event.preventDefault();event.stopImmediatePropagation();
+after:   window.addEventListener('keydown',event=>{
+line 154 before:       persistence.saveNow();
+after:     if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'){
+line 155 before:     }
+after:       event.preventDefault();event.stopImmediatePropagation();
+line 156 before:   },true);
+after:       persistence.saveNow();
+line 157 before:   button('恢复备份',async()=>{const local=await persistence.localRead().catch(()=>({}));if(!local.blob){alert('还没有本地备份');return;}if(!confirm('恢复本地备份？当前内容请先导出工程。'))return;await persistence.apply(local.blob);persistence.conflict=false;persistence.markDirty();});
+after:     }
+line 158 before:   window.addEventListener('beforeunload',event=>{if(persistence.dirty){event.preventDefault();event.returnValue='';}});
+after:   },true);
+line 159 before:   window.addEventListener('focus',()=>persistence.pull());
+after:   button('恢复备份',async()=>{const local=await persistence.localRead().catch(()=>({}));if(!local.blob){alert('还没有本地备份');return;}if(!confirm('恢复本地备份？当前内容请先导出工程。'))return;await persistence.apply(local.blob);persistence.conflict=false;persistence.markDirty();});
+line 160 before:   setInterval(()=>persistence.pull(),2000);
+after:   window.addEventListener('beforeunload',event=>{if(persistence.dirty){event.preventDefault();event.returnValue='';}});
+line 161 before:   document.getElementById('main-canvas').addEventListener('pointerdown',()=>app.animationPlayer.pause(),true);
+after:   window.addEventListener('focus',()=>persistence.pull());
+line 162 before:   pixelAPI.saveSharedProject=()=>persistence.saveNow();
+after:   setInterval(()=>persistence.pull(),2000);
+line 163 before:   pixelAPI.getSharedProjectInfo=()=>({ready:persistence.ready,dirty:persistence.dirty,conflict:persistence.conflict,revision:persistence.revision,projectId:persistence.projectId,file:persistence.projectId==='main'?'data/shared-project.json':'data/projects/'+persistence.projectId+'.json'});
+after:   document.getElementById('main-canvas').addEventListener('pointerdown',()=>app.animationPlayer.pause(),true);
+line 164 before: });
+after:   pixelAPI.saveSharedProject=()=>persistence.saveNow();
+line 165 before: 
+after:   pixelAPI.getSharedProjectInfo=()=>({ready:persistence.ready,dirty:persistence.dirty,conflict:persistence.conflict,revision:persistence.revision,projectId:persistence.projectId,file:persistence.projectId==='main'?'data/shared-project.json':'data/projects/'+persistence.projectId+'.json'});
+line 166 before: 
+after: });
+line 167 before: 
+after: 

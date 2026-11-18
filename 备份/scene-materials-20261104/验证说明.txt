@@ -1,0 +1,8 @@
+本次：场景左栏新增“＋ 新建素材”，使用既有 SpriteSheet / Layer / Frame 数据与保存流程；人物工程不开放此入口。
+修改：index.html、js/studio.js；新增 js/scene-materials.js、test/scene-materials.cjs、test/scene-materials-browser.cjs。
+验证：node --check 两个 JS 通过；模型测试通过；Edge 无头浏览器测试通过（新建床/台灯、切换对应图层、复制整帧、导出后重载，零页面异常）。
+模型测试使用 NODE_PATH=C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules；首次缺少 canvas 模块，指定已有依赖后通过，未安装新依赖。
+浏览器测试拦截工程 API、只使用测试数据；未写用户工程，未刷新用户前台。未测试真实磁盘 PUT 保存。
+已目视检查 output/scene-materials-ui.png。
+恢复：将本目录的 index.html 和 studio.js 分别复制回工作区根目录和 js/；删除新增的 js/scene-materials.js 即可。仅恢复这两份文件，不使用 git reset，以免覆盖其他未提交改动。
+限制：独立素材不会自动摆入场景，沿用已有跨素材复制粘贴。

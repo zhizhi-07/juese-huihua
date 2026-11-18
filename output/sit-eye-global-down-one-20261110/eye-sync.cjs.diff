@@ -1,0 +1,15 @@
+diff --git a/output/sit-eye-global-down-one-20261110/before/eye-sync.cjs b/test/eye-sync.cjs
+index d57720b..6b88a08 100644
+--- a/output/sit-eye-global-down-one-20261110/before/eye-sync.cjs
++++ b/test/eye-sync.cjs
+@@ -59,8 +59,8 @@ async function main(){
+  const kept=sit.getFrameData('3_1_1');
+  for(let attempt=0;attempt<2;attempt++){
+    H.sync(shared.app);
+-   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,3)),'side sitting eyes: head displacement minus two, regardless of saved Y');
+-   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,5)),'side sitting eyes follow the later head displacement');
++   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,4)),'side sitting eyes: head displacement minus one, regardless of saved Y');
++   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,6)),'side sitting eyes follow the later head displacement');
+    assert.deepEqual(raster(sit.getFrameData('3_0_0')),raster(pixels(3,5)),'non-side sitting eyes unchanged');
+    assert.equal(sit.getFrameData('3_1_1'),kept);
+  }

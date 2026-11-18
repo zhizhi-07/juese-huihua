@@ -1,0 +1,316 @@
+/* Final polish layer, loaded after every other stylesheet.
+   Keeps the monochrome workspace from studio-theme.css and does three things:
+   1. gives the canvas more height by tightening the bars around it,
+   2. lifts small text to 11px or more,
+   3. replaces the sage-green leftovers of the earlier theme with the same grey ramp.
+   Styles only: no markup, script or project data depends on this file.
+   Method: unslop by Damir Sokolovsky (@heydamir), CC BY 4.0. */
+
+.studio {
+  --p-bg:#f5f5f5; --p-surface:#fff; --p-sunken:#fafafa; --p-track:#f1f1f1;
+  --p-hover:#f0f0f0; --p-press:#e6e6e6;
+  --p-line:#e8e8e8; --p-line-strong:#d9d9d9;
+  --p-ink:#202020; --p-ink-2:#565656; --p-ink-3:#6b6b6b;
+  --p-accent:#262626; --p-accent-hover:#404040;
+  --p-danger:#a33333; --p-warn:#8a5a1c; --p-ok:#4f8f68;
+  --p-shadow:0 8px 28px #00000014;
+}
+
+/* ---------- 1. Layout: more room for the canvas ---------- */
+@media (min-width:901px) {
+  .studio .studio-header { height:48px; min-height:48px; padding:0 16px; }
+  .studio .primary-actions button { height:28px; }
+  .studio .project-bar { min-height:40px; padding:4px 16px; }
+  .studio .project-bar > select { height:28px; padding:0 8px; }
+  .studio .project-bar :is(.studio-button, .project-menu > summary) { height:28px; padding:0 12px; line-height:26px; }
+
+  .studio .canvas-header { min-height:44px; padding:6px 16px; }
+  .studio .canvas-title { flex-direction:row; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .studio .canvas-viewbar { min-height:40px; padding:4px 12px; }
+
+  .studio :is(.image-edit-toolbar, .frame-edit-toolbar) { padding:6px 12px; gap:4px 6px; }
+  .studio .timeline-header { min-height:36px; padding:4px 12px; }
+}
+@media (min-width:1400px) {
+  .studio #left-sidebar { width:168px; min-width:168px; }
+  .studio #right-sidebar { width:312px; min-width:312px; }
+}
+
+/* One app bar. The project bar is laid over the empty middle of the header, so the two bars
+   read as a single row: name of the tool, which project, project actions, file actions. */
+@media (min-width:1280px) {
+  .studio #app-container { display:grid; grid-template-columns:228px minmax(0,1fr) 488px; grid-template-rows:auto minmax(0,1fr) auto; }
+  .studio #app-container > * { grid-column:1 / -1; }
+  .studio .studio-header { grid-row:1; height:52px; min-height:52px; margin:12px 16px; padding:0 16px; border-radius:12px; }
+  .studio #app-container > .project-bar { grid-column:2; grid-row:1; z-index:1; height:52px; min-height:52px; margin:12px 0; padding:0 16px 0 0; gap:8px;
+    background:transparent; border:0; border-radius:0; box-shadow:none; }
+  .studio .project-bar > strong { padding-left:16px; border-left:1px solid var(--p-line); color:var(--p-ink); font-size:13px; font-weight:500; line-height:24px; }
+  .studio .primary-actions { padding-left:16px; border-left:1px solid var(--p-line); }
+  .studio #workspace { grid-row:2; }
+  .studio #bottom-panel { grid-row:3; }
+}
+
+/* Canvas and timeline are two separate cards. The timeline card leads with its title and
+   playback row, then the frame tools, then the frames. Wide screens also put the canvas title
+   and the canvas controls on one row. */
+@media (min-width:901px) {
+  .studio #center-viewport { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto auto minmax(0,1fr) auto auto;
+    background:transparent; border-radius:12px; }
+  .studio #center-viewport > * { grid-column:1 / -1; grid-row:6; }
+  .studio #center-viewport > .canvas-header { grid-row:1; border-radius:12px 12px 0 0; background:#fff; }
+  .studio #center-viewport > .canvas-viewbar { grid-row:2; }
+  .studio #center-viewport > .image-edit-toolbar { grid-row:3; }
+  .studio #center-viewport > #canvas-container { grid-row:4; min-height:120px; border-radius:0 0 12px 12px; }
+  .studio #center-viewport > #frame-strip-wrapper { grid-row:5; margin-top:12px; border:0; border-radius:12px; overflow:hidden; }
+  .studio #frame-strip-wrapper > .timeline-header { order:-1; }
+  .studio #frame-strip-wrapper > .frame-edit-toolbar { border-bottom:0; padding-top:0; }
+}
+@media (min-width:1800px) {
+  .studio #center-viewport { grid-template-columns:auto minmax(0,1fr); grid-template-rows:auto auto minmax(0,1fr) auto auto; }
+  .studio #center-viewport > * { grid-row:5; }
+  .studio #center-viewport > .canvas-header { grid-column:1; grid-row:1; border-radius:12px 0 0 0; padding-right:8px; gap:16px; flex-wrap:nowrap; }
+  .studio .canvas-header .canvas-title { flex-wrap:nowrap; white-space:nowrap; }
+  .studio #center-viewport > .canvas-viewbar { grid-column:2; grid-row:1; border-radius:0 12px 0 0; min-height:44px; }
+  .studio #center-viewport > .image-edit-toolbar { grid-row:2; }
+  .studio #center-viewport > #canvas-container { grid-row:3; }
+  .studio #center-viewport > #frame-strip-wrapper { grid-row:4; }
+}
+
+/* Floating panels are positioned against the whole centre column, not a grid row. */
+.studio #center-viewport > :is(.plus-panel, .reference-panel) { grid-area:auto; }
+
+/* Frame bar: the sync feedback sits beside the sync buttons and still wraps freely, and the
+   layer hint shares a row with the menu instead of each taking a full line. Either one drops to
+   its own row when it does not fit, so nothing is cut that was readable before.
+   Image bar: its controls already fill the row, so the hint keeps its own full-width line. */
+.studio .frame-edit-toolbar .hair-animation-status { order:1; flex:1 1 240px; min-width:0; }
+.studio .frame-edit-toolbar .frame-edit-status {
+  order:2; flex:0 1 auto; width:auto; min-width:0; max-width:calc(100% - 112px); margin-left:auto;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:right;
+}
+.studio .frame-edit-toolbar > .workspace-menu { order:3; margin-left:0; }
+.studio .hair-animation-status:empty { display:none; }
+.studio .image-edit-toolbar [data-edit-status] { line-height:16px; }
+
+/* ---------- 2. Type: controls 12px, notes 11px, nothing smaller ---------- */
+.studio :is(.image-edit-toolbar, .frame-edit-toolbar),
+.studio :is(.image-edit-toolbar, .frame-edit-toolbar) .studio-button,
+.studio .image-edit-toolbar .image-resize-mode-option,
+.studio .view-actions button,
+.studio .workspace-menu,
+.studio .workspace-menu > summary,
+.studio .layer-header-actions > button,
+.studio .timeline-playback button,
+.studio .timeline-timing,
+.studio .timeline-timing .timing-button,
+.studio .canvas-viewbar > .brush-control,
+.studio .part-choose,
+.studio .layer-multi-bar .lm-btn,
+.studio .hair-animation-tools label,
+.studio #status-bar,
+.studio .save-status { font-size:12px; }
+
+.studio .image-edit-toolbar [data-edit-status],
+.studio .frame-edit-status,
+.studio .hair-animation-status,
+.studio .section-caption,
+.studio .image-edit-toolbar .image-resize-mode-title,
+.studio .background-control,
+.studio .canvas-help,
+.studio .sheet-copy small,
+.studio .layer-mini,
+.studio .layer-multi-bar :is(.lm-count, .lm-hint),
+.studio .plus-panel :is(.plus-badge, .plus-check, .plus-hint, .plus-row > label, output),
+.studio :is(.reference-label, .reference-frame, .reference-check, .reference-chip, .reference-mini,
+            .reference-number, .reference-size, .reference-status, .reference-note, .reference-titles small),
+.studio :is(.hand-card small, .hand-name, .protection-pill, .backup-caption) { font-size:11px; }
+
+.studio :is(.frame-duration, .frame-duration.inherited, .frame-number) { font:11px/12px Consolas,monospace; letter-spacing:0; }
+.studio .plus-panel kbd { font-size:11px; }
+.studio .tool-rail .tool-btn { font-size:11px; }
+.studio .tool-rail .tool-btn kbd { font:10px/12px Consolas,monospace; top:2px; right:3px; }
+.studio .tool-rail .symmetry-tool[data-mode] span { font-size:11px; letter-spacing:0; }
+.studio .canvas-title strong { font-size:14px; }
+.studio .canvas-title span { font-size:12px; }
+.studio .timeline-header strong { font-size:12px; font-weight:600; color:var(--p-ink); }
+@media (min-width:901px) {
+  .studio .tool-rail { width:56px; min-width:56px; }
+}
+@media (max-height:760px) and (min-width:901px) {
+  .studio .tool-rail .tool-btn { height:38px; min-height:38px; }
+  .studio .rail-history .tool-btn { height:24px; min-height:24px; }
+}
+
+/* ---------- 3. One grey ramp everywhere ---------- */
+.studio .section-caption,
+.studio .backup-caption,
+.studio .timeline-hint { color:var(--p-ink-3); }
+.studio .hair-animation-status { color:var(--p-ink-2); line-height:16px; }
+.studio .hair-effect-active { box-shadow:inset 0 -3px #303030; }
+
+/* Either-or choices read as one segmented control, like the direction tabs. */
+.studio .image-edit-toolbar .image-resize-mode { padding:2px; gap:2px; border:0; border-radius:6px; background:var(--p-track); }
+.studio .image-edit-toolbar .image-resize-mode-title { padding:0 6px; color:var(--p-ink-3); }
+.studio .image-edit-toolbar .image-resize-mode-option { padding:3px 8px; border:0; border-radius:4px; color:var(--p-ink-2); line-height:18px; }
+.studio .image-edit-toolbar .image-resize-mode-option:hover { background:var(--p-press); color:#111; }
+.studio .image-edit-toolbar .image-resize-mode-option.active { background:#303030; color:#fff; font-weight:400; }
+.studio .image-edit-toolbar .image-resize-mode-option:focus-visible { outline:2px solid #444; outline-offset:1px; }
+
+/* Layers */
+.studio .layer-multi-bar { margin:0 0 8px; padding:4px; gap:4px; border:1px solid var(--p-line); border-radius:6px; background:var(--p-sunken); }
+.studio .layer-multi-bar .lm-btn { min-height:24px; padding:2px 8px; border:1px solid var(--p-line-strong); border-radius:4px; background:#fff; color:var(--p-ink-2); }
+.studio .layer-multi-bar .lm-btn:hover:not(:disabled) { border-color:#bdbdbd; background:var(--p-hover); color:#111; }
+.studio .layer-multi-bar .lm-btn:active:not(:disabled) { background:var(--p-press); }
+.studio .layer-multi-bar :is(.lm-count, .lm-hint) { color:var(--p-ink-3); line-height:16px; }
+.studio .layer-item.multi-selected,
+.studio .layer-item.multi-selected:hover { background:#f0f0f0; border-color:#a6a6a6; box-shadow:inset 3px 0 0 #303030; }
+.studio .layer-item.visual-layer-card.multi-selected { padding:8px; border:1px solid #a6a6a6; background:#f0f0f0; box-shadow:inset 3px 0 0 #303030; }
+.studio .layer-item.visual-layer-card.active { border-color:#4d4d4d; }
+.studio .layer-opacity-slider { accent-color:#333; }
+.studio .layer-mini { background:#efefef; color:var(--p-ink-2); }
+.studio .layer-icon-btn.solo-btn { color:#808080; }
+.studio .layer-header-actions .layer-delete { color:var(--p-ink-3); }
+.studio .layer-header-actions .layer-delete:hover:not(:disabled) { color:var(--p-danger); background:#f9eeee; }
+.studio .layer-mirror { border-color:var(--p-line-strong); color:var(--p-ink-3); }
+.studio .layer-mirror:hover { background:var(--p-hover); color:#111; }
+.studio .layer-mirror.active { border-color:#292929; background:#292929; color:#fff; }
+.studio .part-thumb { border-color:var(--p-line-strong); }
+.studio .color-add { border-color:var(--p-line-strong); color:var(--p-ink-2); }
+.studio :is(.hand-card, .hand-card-heading, .hand-layer-names, .hand-card small) { color:var(--p-ink-3); border-color:var(--p-line); }
+.studio .hand-card strong { color:var(--p-ink-2); }
+.studio :is(.hand-name, .protection-pill) { background:#efefef; color:var(--p-ink-2); }
+
+/* Timeline */
+.studio .status-badge { background:#c4c4c4; }
+.studio .status-badge.status-confirmed { background:var(--p-ok); }
+.studio .timeline-timing .timing-button:hover:not(:disabled) { background:var(--p-press); border-color:transparent; color:#111; }
+.studio .frame-thumb.active { border-color:#303030; box-shadow:0 0 0 1px #303030; }
+
+/* Selection and outline panels */
+.studio .plus-panel { color:var(--p-ink-2); }
+.studio .plus-panel-head strong { color:var(--p-ink); }
+.studio .plus-badge,
+.studio .plus-badge[data-mode] { background:#ececec; color:#303030; border-radius:4px; letter-spacing:0; }
+.studio .plus-badge[data-mode="off"] { background:var(--p-track); color:var(--p-ink-3); }
+.studio .plus-panel :is(.plus-check, .plus-row > label, output) { color:var(--p-ink-2); letter-spacing:0; }
+.studio .plus-panel .plus-hint { color:var(--p-ink-3); line-height:16px; }
+.studio .plus-panel :is(.plus-check input, input[type=range]) { accent-color:#333; }
+.studio .plus-panel input[type=color] { border-color:var(--p-line-strong); }
+.studio .plus-number { border-color:var(--p-line-strong); background:#fff; color:var(--p-ink); }
+.studio .plus-arrow { color:#9a9a9a; }
+.studio .plus-divider { background:var(--p-line); }
+.studio .plus-panel kbd { border-color:var(--p-line-strong); background:var(--p-sunken); color:var(--p-ink-2); }
+.studio .plus-close { color:var(--p-ink-3); }
+.studio .plus-close:hover { background:var(--p-hover); color:#111; }
+
+/* Scene reference panel */
+.studio .reference-panel { background:#fff; border-color:#e3e3e3; border-radius:8px; color:var(--p-ink-2); box-shadow:var(--p-shadow); }
+.studio .reference-titles strong { color:var(--p-ink); }
+.studio :is(.reference-titles small, .reference-label, .reference-frame, .reference-check, .reference-size, .reference-note) { color:var(--p-ink-3); }
+.studio .reference-status { color:var(--p-ink-2); }
+.studio .reference-status.reference-error { color:var(--p-danger); }
+.studio .reference-close { color:var(--p-ink-3); }
+.studio .reference-close:hover { background:var(--p-hover); color:#111; }
+.studio :is(.reference-chip, .reference-mini) { border-color:var(--p-line-strong); background:#fff; color:var(--p-ink-2); }
+.studio :is(.reference-chip, .reference-mini):hover { background:var(--p-hover); color:#111; }
+.studio .reference-chip[aria-pressed="true"] { background:#303030; border-color:#303030; color:#fff; }
+.studio :is(.reference-select, .reference-number) { border-color:var(--p-line-strong); color:var(--p-ink); }
+.studio .reference-alpha { accent-color:#333; }
+.studio .reference-toggle { border-color:transparent!important; color:var(--p-ink-2)!important; background:transparent; }
+.studio .reference-toggle[aria-pressed="true"] { background:#eee!important; border-color:transparent!important; color:#222!important; }
+
+/* Primary buttons inherited the dark panel text colour and became dark on dark. */
+.studio .action-btn-primary { background:var(--p-accent); border-color:var(--p-accent); color:#fff; font-weight:500; border-radius:6px; }
+.studio .action-btn-primary:hover:not(:disabled) { background:var(--p-accent-hover); color:#fff; }
+
+/* Dialogs, toasts, overlays */
+.studio .studio-button.save-primary,
+.studio .image-import-actions .save-primary { background:var(--p-accent); border-color:var(--p-accent); color:#fff; }
+.studio .studio-button.save-primary:hover:not(:disabled),
+.studio .image-import-actions .save-primary:hover:not(:disabled) { background:var(--p-accent-hover); color:#fff; }
+.studio .mirror-dialog .mirror-live { border-color:var(--p-line); background:var(--p-sunken); }
+.studio .mirror-dialog .mirror-live label { color:var(--p-ink); }
+.studio .mirror-dialog .mirror-live [data-live-hint] { color:var(--p-ink-3); }
+.studio .hd-canvas-dialog [aria-pressed=true] { outline-color:#333; }
+.studio .hd-region-preview { border-color:var(--p-line-strong); background:repeating-conic-gradient(#ececec 0% 25%,#fff 0% 50%) 0 / 16px 16px; }
+.studio .pixel-import-dialog canvas { border-color:var(--p-line-strong); background:repeating-conic-gradient(#e4e4e4 0% 25%,#fff 0% 50%) 0 / 16px 16px; }
+.studio .wardrobe-thumb { background:repeating-conic-gradient(#ececec 0% 25%,#fff 0% 50%) 0 / 12px 12px; }
+.studio .wardrobe-scene { border-color:var(--p-line-strong); }
+.studio .wardrobe-warnings { color:var(--p-warn); }
+.studio .background-control input[type=color] { border-color:var(--p-line-strong); }
+.studio .background-swatch { border-color:#bdbdbd; }
+.studio :is(.layer-toast, .plus-toast, .wardrobe-toast) { background:#262626f2; color:#fff; border-radius:8px; letter-spacing:0; box-shadow:0 8px 24px #0000002e; }
+.studio .wardrobe-toast.error { background:#8f2d2df2; }
+.studio .image-drop-overlay { background:#00000040; }
+.studio .image-drop-card { border-color:#555; background:#fff; color:var(--p-ink); box-shadow:0 20px 60px #00000033; }
+.studio .image-drop-card span { color:var(--p-ink-2); }
+.studio .dock-panel.is-floating.is-dragging { box-shadow:0 20px 56px #00000033; }
+
+/* ---------- 4. Details ---------- */
+.studio :is(.image-edit-toolbar, .frame-edit-toolbar) .studio-button,
+.studio .workspace-menu > summary { padding:4px 8px; line-height:18px; border-radius:6px; }
+.studio .view-actions button { padding:4px 8px; line-height:18px; border-radius:6px; }
+.studio .layer-header-actions > button { padding:4px 6px; border-radius:6px; }
+.studio .layer-header-actions > .layer-move { padding:0; }
+.studio .workspace-menu > summary::after { margin-left:4px; }
+.studio :is(.studio-button, .view-actions button, .workspace-menu > summary, .timing-button, .lm-btn, .part-choose, .direction-tab, .part-tab):active:not(:disabled) { background-color:var(--p-press); }
+.studio :is(.direction-tab.active, .part-tab[aria-selected=true]):active { background-color:#111; }
+.studio button:disabled { cursor:default; }
+.studio .direction-tab { padding:4px 12px; line-height:18px; border-radius:4px; }
+.studio .direction-tab:not(.active):hover { background:var(--p-press); color:#111; }
+.studio .part-tab { border-radius:6px; }
+.studio .part-tab:not([aria-selected=true]):hover { background:var(--p-press); color:#111; }
+.studio .timeline-timing input[type=number],
+.studio .timeline-timing .timing-button { height:24px; border-radius:6px; }
+.studio #brush-size-number { border-radius:6px; }
+.studio .sheet-item { border-radius:8px; }
+.studio ::-webkit-scrollbar { width:8px; height:8px; }
+.studio ::-webkit-scrollbar-thumb { background:#d4d4d4; border:2px solid transparent; background-clip:content-box; border-radius:8px; }
+.studio ::-webkit-scrollbar-thumb:hover { background:#a8a8a8; background-clip:content-box; }
+
+/* ---------- 5. Buttons look like buttons, groups look like groups ---------- */
+/* Bar buttons used to be bare text, so a row of them read as one sentence. Every command now
+   has a resting shape; a switched-on toggle is white with a dark ring; a current mode is dark. */
+.studio :is(.image-edit-toolbar, .frame-edit-toolbar) .studio-button,
+.studio .view-actions button,
+.studio .timeline-playback button,
+.studio .timeline-timing .timing-button,
+.studio .workspace-menu > summary,
+.studio .canvas-options > summary,
+.studio .layer-header-actions > button,
+.studio .project-bar :is(.studio-button, .project-menu > summary),
+.studio .primary-actions button:not(.save-primary) {
+  min-height:28px; padding:4px 10px; border:0; border-radius:6px; background:#f3f3f3; color:#303030; line-height:20px;
+}
+.studio :is(.image-edit-toolbar, .frame-edit-toolbar) .studio-button:hover:not(:disabled),
+.studio .view-actions button:hover,
+.studio .timeline-playback button:hover,
+.studio .workspace-menu > summary:hover,
+.studio .canvas-options > summary:hover,
+.studio .layer-header-actions > button:hover:not(:disabled),
+.studio .project-bar :is(.studio-button, .project-menu > summary):hover,
+.studio .primary-actions button:not(.save-primary):hover { background:var(--p-press); color:#111; }
+.studio .view-actions button.active,
+.studio .view-actions .aux-toggle.active,
+.studio .reference-toggle[aria-pressed="true"] { background:#fff!important; color:#111!important; box-shadow:inset 0 0 0 1.5px #303030; }
+.studio .layer-header-actions > button { padding:4px 6px; }
+.studio .layer-header-actions > .workspace-menu > summary { padding:4px 6px; }
+.studio .layer-header-actions > .layer-move { min-height:28px; padding:0; }
+.studio .layer-header-actions .mirror-live.active { background:#292929; color:#fff; }
+.studio .primary-actions .save-primary { min-height:28px; padding:4px 14px; border-radius:6px; }
+.studio .zoom-control { gap:2px; padding-left:12px; margin-left:6px; border-left:1px solid var(--p-line); }
+.studio .view-actions .zoom-control button { min-width:28px; padding:4px 0; }
+.studio .zoom-badge { min-width:48px; font:12px Consolas,monospace; color:var(--p-ink); text-align:center; }
+
+/* Hairlines between groups inside a bar. */
+.studio .canvas-viewbar > .brush-control,
+.studio .image-edit-toolbar .image-position-fields,
+.studio .frame-edit-toolbar .hair-animation-tools,
+.studio .timeline-header .timeline-timing { padding-left:12px; margin-left:6px; border-left:1px solid var(--p-line); }
+.studio .image-edit-toolbar > strong,
+.studio .timeline-header > strong { margin-right:6px; color:var(--p-ink); font-size:13px; font-weight:600; }
+.studio .canvas-title strong { font-weight:600; }
+.studio .hand-switch { padding-left:12px; border-left:1px solid var(--p-line); }
+
+/* Standing instructions repeat what the controls already say. */
+.studio .layer-multi-bar .lm-hint { display:none; }

@@ -1,0 +1,13 @@
+{
+  "stats": {
+    "side:4": 36,
+    "side:2": 16,
+    "down:4": 41,
+    "up:0": 52,
+    "down:2": 11
+  },
+  "total": 362,
+  "compositeUnchanged": true,
+  "headAlphaUnchanged": true,
+  "readbackEqual": true
+}

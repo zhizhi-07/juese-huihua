@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const app=PE.app, $=id=>document.getElementById(id);
   const hint=document.createElement('div');hint.className='workbench-hint';
-  hint.textContent='导入 .aseprite 保留图层与动画；PNG 可调整切帧。B 铅笔 / E 橡皮 / I 吸色 / G 填充 / 空格拖动画布 / Ctrl+S 保存工程。';
+  hint.textContent='导入 .aseprite 保留图层与动画；PNG 可调整切帧。B 铅笔 / E 橡皮 / I 吸色 / Alt+点击临时吸色 / G 填充 / 空格拖动画布 / Ctrl+S 保存工程。';
   $('top-toolbar').after(hint);
   function button(text, action, parent=$('top-toolbar')) {
     const b=document.createElement('button');b.className='tool-btn';b.textContent=text;b.onclick=action;parent.append(b);return b;
@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateLayers=app.updateLayerList.bind(app);
   app.updateLayerList=function(){
     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
-    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
+    const used=l=>l.clothingSyncId||[...l.frameData.keys()].some(k=>k.startsWith(prefix));
+    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||used(l));
     if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
     updateLayers();
     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
@@ -31,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
       if(PE.isProtectedHandLayer(l)&&!l.inheritedBase){row.remove();return;}
       if(!PE.isLayerInAction(p,l)){row.remove();return;}
-      const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
-      const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
       if (l.isGroup ? !p.layers.some(child=>child.parent===index && (used(child)||child===p.getCurrentLayer())) : l.parent!=null && !used(l) && index!==p.currentLayerIndex) {row.remove();return;}
       const label=row.querySelector('.layer-name');label.textContent=(l.isGroup?'▾ ':'')+l.name;label.style.paddingLeft=(l.depth||0)*8+'px';
       label.title='双击重命名（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动归位）';label.ondblclick=()=>{if(l.inheritedBase)return;const name=prompt('图层名称（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动分类归位）',l.name);if(name?.trim())app.renameLayer(index,name.trim());};

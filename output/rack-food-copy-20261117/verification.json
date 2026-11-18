@@ -1,0 +1,14 @@
+{
+  "targetLayer": 88,
+  "onlyFoodLayerChanged": true,
+  "canvasStill16x32": true,
+  "foodPNG32x64": true,
+  "originalPixelValuesVerified": 502,
+  "originalPackageShapesCopied": true,
+  "referenceSHA256": {
+    "113": "bbb50bac8f92e545f1cbd2910e4e143ba551ed08403ae57d83c0d3c2bae395da",
+    "114": "87916ebc86cdc60331ff90a82568395b31c88900eaa3de139e1981e228ae6e1c"
+  },
+  "sourceSHA256": "c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2",
+  "candidateSHA256": "200ab96308d96bda11b140b5f10c1780530bef22b16f32e8470a2ef01a604563"
+}

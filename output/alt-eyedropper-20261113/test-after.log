@@ -1,0 +1,2 @@
+PASS: Alt click picks without drawing or switching tools; locked layer, placed image, bounds, callbacks, normal/right click and space pan checked.
+Exit status: 0

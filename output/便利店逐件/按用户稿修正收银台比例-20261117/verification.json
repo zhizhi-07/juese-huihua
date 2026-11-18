@@ -1,0 +1,18 @@
+{
+  "status": 200,
+  "originalSHA256": "bf7e2813647a98a8ca17a1da7e32dfe0ff032d83a1d8858f2d141405c11d32fc",
+  "newSHA256": "27a86cd711348de02ebe4a199180be92441493dca19a7fbb6d604b0c2d85c211",
+  "etag": "\"27a86cd711348de02ebe4a199180be92441493dca19a7fbb6d604b0c2d85c211\"",
+  "tabletop": {
+    "front": 28,
+    "side": 28,
+    "excludesCabinetFascia": true
+  },
+  "computer": {
+    "front": 14,
+    "side": 14
+  },
+  "frontUntouched": true,
+  "otherMaterialsUntouched": true,
+  "verified": "仅插入原稿平直段像素行；用户原有每个像素均保留；正面未改；回读一致"
+}

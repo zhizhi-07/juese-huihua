@@ -64,6 +64,14 @@
 .studio .workspace-menu-content>button{display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:4px;background:transparent;font-size:12px;white-space:nowrap;color:#435c4d}
 .studio .workspace-menu-content>button:hover{background:#edf4ee}
 .studio .workspace-menu-content>button.active{background:#e4eee3;color:#26705b}
+/* 普通像素缩放 / 高清像素缩放：常驻工具栏表面，不用打开「抠图与缩放」菜单。 */
+.studio .image-edit-toolbar .image-resize-mode{display:flex;align-items:center;gap:2px;padding:2px 3px;border:1px solid #d7dfd3;border-radius:6px;background:#fff;flex-shrink:0}
+.studio .image-edit-toolbar .image-resize-mode-title{padding:0 5px 0 3px;color:#7b897f;font-size:10px;white-space:nowrap;line-height:1}
+.studio .image-edit-toolbar .image-resize-mode-option{font:inherit;font-size:11px;line-height:1.4;padding:4px 9px;border:1px solid transparent;border-radius:5px;background:transparent;color:#52695a;white-space:nowrap;cursor:pointer}
+.studio .image-edit-toolbar .image-resize-mode-option:hover{background:#edf4ee;color:#435c4d}
+.studio .image-edit-toolbar .image-resize-mode-option.active{background:#e4eee3;border-color:#a6c8b6;color:#26705b;font-weight:600}
+.studio .image-edit-toolbar .image-resize-mode-option:disabled{opacity:.5;cursor:default}
+.studio .image-edit-toolbar .image-resize-mode-option:focus-visible{outline:2px solid #389c80;outline-offset:1px}
 .studio .save-status{overflow:hidden;text-overflow:ellipsis;min-width:0}
 @media(max-width:1100px){
   .studio #left-sidebar{width:145px;min-width:145px;padding:12px 9px}

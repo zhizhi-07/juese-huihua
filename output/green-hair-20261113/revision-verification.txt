@@ -1,0 +1,1 @@
+PASS exact API readback; only existing hair layer three first-frame cels changed. Reference grid sampled at 7.1 px, palette quantized, hair mask excludes skin/clothing. All other project fields unchanged.

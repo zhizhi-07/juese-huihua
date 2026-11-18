@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "color": "#826650",
+  "projectPixels": 11128,
+  "exportFiles": 42,
+  "exportPixels": 10704,
+  "otherProjectDataUnchanged": true,
+  "etag": "\"99bdced82a05791cf2deb07bee961dbfffc6b51d0a9dc6f0b1ef92c1cc08504d\"",
+  "restore": "工程恢复前先核对当前ETag等于此处etag，再条件PUT before.json；不一致先合并。E盘原始素材保留同相对路径。"
+}

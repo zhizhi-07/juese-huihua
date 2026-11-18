@@ -1,0 +1,147 @@
+{
+  "id": "draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba",
+  "url": "http://127.0.0.1:8765/api/project?id=draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba",
+  "projectListStatus": 200,
+  "beforeStatus": 200,
+  "beforeETag": "\"5eda21a75c934c98d803ca704730b39920de3ae8814306fe421d2f359e27ed57\"",
+  "beforeSHA256": "5eda21a75c934c98d803ca704730b39920de3ae8814306fe421d2f359e27ed57",
+  "removed": [
+    {
+      "sheet": "original16_idle",
+      "layer": 111,
+      "key": "1_2_1",
+      "frame": 2
+    },
+    {
+      "sheet": "original16_idle",
+      "layer": 111,
+      "key": "1_2_2",
+      "frame": 3
+    },
+    {
+      "sheet": "original16_idle",
+      "layer": 111,
+      "key": "1_2_3",
+      "frame": 4
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_0",
+      "frame": 1
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_1",
+      "frame": 2
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_2",
+      "frame": 3
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_3",
+      "frame": 4
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_4",
+      "frame": 5
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_5",
+      "frame": 6
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_6",
+      "frame": 7
+    },
+    {
+      "sheet": "original16_walk",
+      "layer": 114,
+      "key": "0_2_7",
+      "frame": 8
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_0",
+      "frame": 1
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_1",
+      "frame": 2
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_2",
+      "frame": 3
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_3",
+      "frame": 4
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_4",
+      "frame": 5
+    },
+    {
+      "sheet": "original16_pickup",
+      "layer": 117,
+      "key": "2_2_5",
+      "frame": 6
+    },
+    {
+      "sheet": "original16_sit",
+      "layer": 120,
+      "key": "3_2_0",
+      "frame": 1
+    },
+    {
+      "sheet": "original16_sit",
+      "layer": 120,
+      "key": "3_2_1",
+      "frame": 2
+    },
+    {
+      "sheet": "original16_sit",
+      "layer": 120,
+      "key": "3_2_2",
+      "frame": 3
+    },
+    {
+      "sheet": "original16_sit",
+      "layer": 120,
+      "key": "3_2_3",
+      "frame": 4
+    }
+  ],
+  "mainBeforeSHA256": "61d0b8f56df186b72a6d3e682802cd21194b8d71e84568dd2715a20a17cb769b",
+  "saveStatus": 200,
+  "saveResponse": {
+    "saved": true,
+    "revision": "\"975f4acd91d398baf3d516d0baf3216cf31b59be628c34899a54d907e53ddae0\""
+  },
+  "readBackStatus": 200,
+  "afterETag": "\"975f4acd91d398baf3d516d0baf3216cf31b59be628c34899a54d907e53ddae0\"",
+  "afterSHA256": "975f4acd91d398baf3d516d0baf3216cf31b59be628c34899a54d907e53ddae0",
+  "mainAfterSHA256": "61d0b8f56df186b72a6d3e682802cd21194b8d71e84568dd2715a20a17cb769b",
+  "verified": "Only the 21 listed rear eye cels were deleted; all linked rear eye cels are empty; main is unchanged."
+}

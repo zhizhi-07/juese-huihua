@@ -1,0 +1,5 @@
+Preflight passed: body and outline match front frame 2, garment pixels 50 other poses untouched
+stage-put.json 200 {"saved":true,"revision":"\"437b8bfdb1570145a0a046d8a3e26af1788ae7f606c1b70fce017069124251b6\""}
+main-put.json 200 {"saved":true,"revision":"\"0b22a34e49f49f03a7537d797de0c5dfcd491f71bd1496672395d73dac6a2bea\""}
+final-put.json 200 {"saved":true,"revision":"\"953e13342780c01b61fe36ab8fa9c2d930a702569e61a72847f24dc073392a27\""}
+Verified final project "953e13342780c01b61fe36ab8fa9c2d930a702569e61a72847f24dc073392a27" and main body "0b22a34e49f49f03a7537d797de0c5dfcd491f71bd1496672395d73dac6a2bea"

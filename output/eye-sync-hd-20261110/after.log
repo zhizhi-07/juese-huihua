@@ -1,0 +1,36 @@
+node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+exit=0
+node test/eye-sync-ui.cjs
+<anonymous_script>:4
+    const scene=PE.isSceneProject(this.project);
+                   ^
+
+TypeError: PE.isSceneProject is not a function
+    at app.updateSheetList (eval at <anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync-ui.cjs:34:1), <anonymous>:4:20)
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync-ui.cjs:35:85)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49
+
+Node.js v22.23.1
+exit=1
+node test/eye-layer-order.cjs
+PASS: eye default below fringe and above head; wardrobe ordering; existing and generated synced eyes; all directions; unchanged hair/base pixels; source selection; undo/redo; grouped defaults.
+exit=0
+node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+exit=0
+node test/hd-image-layers.cjs
+PASS: native RGBA preserved through shrink/grow, drag, undo/redo and JSON reload; fine detail visible; HD PNG and sheet export; independent frame copy/cut/duplicate; locks and paint guards; native import beyond 512px.
+exit=0
+node test/hd-inline.cjs
+PASS: inline native eraser/pencil/fill/picker; exact fractional-density marquee; native-pixel move/nudge; selection paint isolation; copy/cut/paste/expansion; one-stroke main undo/redo; locks and frame-switch safety; render cache refresh; unchanged face and placement; JSON reload.
+exit=0
+node test/native16-wiring.cjs
+{"status":"PASS","checks":["native16 visual family","main sitting arm editable in layer and pixel API","legacy/branch hand protection retained","native16 one-pixel hair movement","63 target hair frames calibrated from actual heads","current body and sitting pixels unchanged","new branch uses current body and sitting"]}
+exit=0

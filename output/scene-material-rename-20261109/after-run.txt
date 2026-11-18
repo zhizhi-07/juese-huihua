@@ -1,0 +1,6 @@
+Command: node test/scene-materials-browser.cjs
+PASS: creates and switches materials, duplicates a frame, validates and renames only the selected sheet, saves with If-Match and reloads. API intercepted; no user project written.
+Exit: 0
+Command: node test/scene-materials.cjs (NODE_PATH=C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules)
+PASS: independent scene materials, dimensions, blank pixels, frame duplication, export, invalid input and character protection
+Exit: 0

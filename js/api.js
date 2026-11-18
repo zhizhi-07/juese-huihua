@@ -647,9 +647,11 @@ window.PE = window.PE || {};
         if (!p) return _fail('项目未初始化');
         const lRes = _resolveLayer(p, index);
         if (PE.isProtectedHandLayer(lRes.layer)) return _fail('请使用手部预览开关，原始手部可见性受保护');
-        lRes.layer.visible = !!visible;
+        // 头发、衣服：一处开关就是整件部件，全部方向与全部动作一起开关。
+        const synced = PE.app && PE.VisualLayers?.syncable?.(lRes.layer) && PE.VisualLayers.setPartVisibility(PE.app, lRes.layer, !!visible);
+        if (!synced) lRes.layer.visible = !!visible;
         _notifyCanvasAndUI();
-        return _success({ layerIndex: lRes.layerIndex, visible: lRes.layer.visible });
+        return _success({ layerIndex: lRes.layerIndex, visible: lRes.layer.visible, partSynced: !!synced });
       } catch (err) {
         return _fail(err);
       }

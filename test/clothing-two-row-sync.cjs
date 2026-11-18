@@ -1,0 +1,22 @@
+const assert=require('node:assert/strict'),F=require(process.argv[2]||'../js/clothing-fit.js');
+const skin=[254,237,225,255],outline=[70,70,94,255],left=[116,160,201,255],right=[130,72,167,255],shoe=[35,42,58,255],top=[255,250,220,255],clear=[0,0,0,0];
+const image=(rows,palette)=>{assert(rows.every(r=>r.length===rows[0].length));return {width:rows[0].length,height:rows.length,data:new Uint8ClampedArray(rows.flatMap(row=>[...row].flatMap(c=>palette[c]||clear)))};};
+const body=rows=>image(rows,{b:skin,o:outline});
+const clothes=rows=>image(rows,{L:left,R:right,S:shoe,T:top});
+const pixels=(im,y)=>Array.from({length:im.width},(_,x)=>Array.from(im.data.slice((y*im.width+x)*4,(y*im.width+x+1)*4)));
+const src={body:body(['.......','obbbb..','obbbb..','obbbb..','obboobb']),clothes:clothes(['.......','.T.T...','.TTTT..','.LLRR..','.SS..RR'])};
+// Keep the collar hole while the torso bobs right/down; its motif isn't stretched with the legs.
+const shifted=F.fromIdle(src,body(['.......','.......','.obbbb.','.obbbb.','..bbob.','....bb.']));
+assert.deepEqual(pixels(shifted,2),[clear,clear,top,clear,top,clear,clear]);
+assert.deepEqual(pixels(shifted,4),[clear,clear,left,left,clear,right,clear]);
+assert.deepEqual(pixels(shifted,5),[clear,clear,clear,clear,right,right,clear],'the lone right foot cannot take the left shoe');
+const exposed=F.fromIdle(src,body(['obbbb.','obbbb.','obbobb','obbobb']),{sit:true,targetHead:image(['.bbbb.','...b..','......','......'],{b:skin})});
+assert.deepEqual(pixels(exposed,0),Array(6).fill(clear),'collar must not cover the face');
+assert.deepEqual(pixels(exposed,1),[clear,top,top,clear,top,clear]);
+assert.deepEqual(pixels(exposed,3),[clear,shoe,shoe,clear,right,right]);
+const short={...src,clothes:clothes(['.......','.T.T...','.TTTT..','.......','.......'])};
+assert.deepEqual(pixels(F.fromIdle(short,src.body),3),Array(7).fill(clear),'an unpainted leg stays unpainted');
+const crouch=F.fromIdle(src,body(['.......','obbbb..','.obbbb.','.obbbb.','..bbob.','....bb.']));
+for(const y of [2,3])assert.deepEqual(pixels(crouch,y),[clear,clear,top,top,top,top,clear],'pickup follows the torso row shift and extends the shirt to the waist');
+assert.deepEqual(pixels(crouch,5),pixels(shifted,5),'extending the shirt must not change the legs');
+console.log('PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot and transparent hems');

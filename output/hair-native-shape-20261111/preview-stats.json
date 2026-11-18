@@ -1,0 +1,32 @@
+[
+  {
+    "name": "user side",
+    "changedPixels": 13,
+    "changedCommonOpaquePixels": 4
+  },
+  {
+    "name": "user down",
+    "changedPixels": 10,
+    "changedCommonOpaquePixels": 4
+  },
+  {
+    "name": "user up",
+    "changedPixels": 42,
+    "changedCommonOpaquePixels": 29
+  },
+  {
+    "name": "Merchant side",
+    "changedPixels": 16,
+    "changedCommonOpaquePixels": 5
+  },
+  {
+    "name": "Merchant down",
+    "changedPixels": 14,
+    "changedCommonOpaquePixels": 6
+  },
+  {
+    "name": "Merchant up",
+    "changedPixels": 32,
+    "changedCommonOpaquePixels": 17
+  }
+]

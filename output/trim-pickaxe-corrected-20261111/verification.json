@@ -1,0 +1,61 @@
+{
+  "pixelsPreserved": true,
+  "otherDataUnchanged": true,
+  "readbackEqual": true,
+  "report": [
+    {
+      "action": "镐",
+      "direction": "side",
+      "before": [
+        30,
+        29
+      ],
+      "after": [
+        30,
+        21
+      ],
+      "removed": {
+        "left": 0,
+        "top": 1,
+        "right": 0,
+        "bottom": 7
+      }
+    },
+    {
+      "action": "镐",
+      "direction": "down",
+      "before": [
+        30,
+        29
+      ],
+      "after": [
+        18,
+        26
+      ],
+      "removed": {
+        "left": 4,
+        "top": 3,
+        "right": 8,
+        "bottom": 0
+      }
+    },
+    {
+      "action": "镐",
+      "direction": "up",
+      "before": [
+        30,
+        29
+      ],
+      "after": [
+        18,
+        23
+      ],
+      "removed": {
+        "left": 7,
+        "top": 0,
+        "right": 5,
+        "bottom": 6
+      }
+    }
+  ]
+}

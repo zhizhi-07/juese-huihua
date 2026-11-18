@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/layers/80/frameData/10_1_1/dataURL",
+    "before": "string(410)",
+    "after": "string(486)"
+  },
+  {
+    "path": "/layers/80/frameData/10_1_2/dataURL",
+    "before": "string(382)",
+    "after": "string(470)"
+  },
+  {
+    "path": "/layers/80/frameData/10_1_3/dataURL",
+    "before": "string(350)",
+    "after": "string(398)"
+  },
+  {
+    "path": "/layers/80/frameData/10_1_4/dataURL",
+    "before": "string(266)",
+    "after": "string(338)"
+  },
+  {
+    "path": "/layers/80/frameData/10_1_5/dataURL",
+    "before": "string(258)",
+    "after": "string(330)"
+  },
+  {
+    "path": "/layers/80/frameData/10_2_1/dataURL",
+    "before": "string(410)",
+    "after": "string(486)"
+  },
+  {
+    "path": "/layers/80/frameData/10_2_2/dataURL",
+    "before": "string(382)",
+    "after": "string(470)"
+  },
+  {
+    "path": "/layers/80/frameData/10_2_3/dataURL",
+    "before": "string(350)",
+    "after": "string(398)"
+  },
+  {
+    "path": "/layers/80/frameData/10_2_4/dataURL",
+    "before": "string(266)",
+    "after": "string(338)"
+  },
+  {
+    "path": "/layers/80/frameData/10_2_5/dataURL",
+    "before": "string(258)",
+    "after": "string(330)"
+  }
+]

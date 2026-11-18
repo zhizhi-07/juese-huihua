@@ -1,0 +1,29 @@
+{
+  "prepared": true,
+  "sourceId": "scene-store-item01-shelf-20261116",
+  "sourceETag": "\"cbb3632b7c3c612584f131be92295a7a54b0a471c3fd4f8f7a35e16c2bcfb787\"",
+  "sourceSHA256": "cbb3632b7c3c612584f131be92295a7a54b0a471c3fd4f8f7a35e16c2bcfb787",
+  "appendedSheet": 13,
+  "sheetCountBefore": 13,
+  "sheetCountAfter": 14,
+  "layerCountBefore": 86,
+  "layerCountAfter": 87,
+  "width": 32,
+  "height": 24,
+  "opaquePixels": 460,
+  "colors": [
+    "#464b4f",
+    "#d6d0b0",
+    "#e8cd97",
+    "#bdb395",
+    "#80575b",
+    "#cc6764",
+    "#e38674",
+    "#4d8a7e",
+    "#68a88e",
+    "#bed4c8",
+    "#b04a58"
+  ],
+  "allOldContentUnchanged": true,
+  "candidateSHA256": "1ef78f28c46ac311083568421a7febad26290ac606a0fa6a258271bc245a44dc"
+}

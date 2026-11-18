@@ -1,0 +1,14 @@
+Command: node test/scene-materials-browser.cjs
+AssertionError [ERR_ASSERTION]: selected scene material needs a rename button
+
+false !== true
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\scene-materials-browser.cjs:35:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+Exit: 1

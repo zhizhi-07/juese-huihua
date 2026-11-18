@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "originalSHA256": "355883b43d5932425fa70b218dfd2c93ded74cdd72297d0a3af38c6a1d3098e3",
+  "newSHA256": "92155fc8ad94250a0bc1605a5a8397d55e0de8eb4c1bfe9f49519e5dfa5de0f7",
+  "etag": "\"92155fc8ad94250a0bc1605a5a8397d55e0de8eb4c1bfe9f49519e5dfa5de0f7\"",
+  "oldHeight": 37,
+  "newHeight": 28,
+  "verified": "无重采样、不混色；商品像素无删除；宽度和脚底位置不变；只修改柜子的3层像素和合成预览，其他内容不变；回读一致"
+}

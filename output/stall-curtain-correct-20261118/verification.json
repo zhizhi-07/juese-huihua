@@ -1,0 +1,23 @@
+{
+  "put": 200,
+  "get": 200,
+  "bodyLayers": [
+    "黑色幕布 · 后层",
+    "横梁与立柱 · 中层",
+    "柜台前沿 · 前层"
+  ],
+  "curtainRegion": {
+    "x": 18,
+    "y": 30,
+    "width": 38,
+    "height": 9
+  },
+  "curtainPixels": 342,
+  "visibleAdded": 222,
+  "existingOpaqueArtworkUnchanged": true,
+  "counterAndAllOtherLayersUnchanged": true,
+  "readbackEqualsCandidate": true,
+  "noPeople": true,
+  "beforeSha256": "1b7dcf2f6f6c9094f764020dd3637349e5820c15bcc16a44fd49d1db6a533491",
+  "afterSha256": "025c4676dba95868e84c79ab4cd92fbe13295ba4553bf40076a9d977e57cfcc7"
+}

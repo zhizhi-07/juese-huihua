@@ -1,0 +1,10 @@
+{
+  "id": "scene-store-item01-shelf-20261116",
+  "url": "http://127.0.0.1:8765/?project=scene-store-item01-shelf-20261116",
+  "originalSHA256": "7d31ab50cf57856d76c55e45493f2e3816b28d25b5f5f2f19f0f5c3c354bb113",
+  "newSHA256": "50f3b863b4fc9c0d1fc35f1611dbdd1d206bf0310ee3c7bbfd69e3f962fbd568",
+  "originalETag": "\"7d31ab50cf57856d76c55e45493f2e3816b28d25b5f5f2f19f0f5c3c354bb113\"",
+  "newETag": "\"50f3b863b4fc9c0d1fc35f1611dbdd1d206bf0310ee3c7bbfd69e3f962fbd568\"",
+  "saveStatus": 200,
+  "verified": "完整回读一致；32×48，1帧，3层；无其他工程写入"
+}

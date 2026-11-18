@@ -1,0 +1,34 @@
+{
+  "id": "character-ff47ea32-14f3-4489-aec3-3c1797b97955",
+  "created": {
+    "status": 200,
+    "etag": "\"b2476dd52774b9c899dd9dfaeb1fae8a8d340a03c78833cf5022852d11e13023\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"b2476dd52774b9c899dd9dfaeb1fae8a8d340a03c78833cf5022852d11e13023\\\"\"}"
+  },
+  "saved": {
+    "status": 200,
+    "etag": "\"3ba749f597ab82315f4a46f2ae476a633e30c4fa894a5835e13a0f1210c9980d\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"3ba749f597ab82315f4a46f2ae476a633e30c4fa894a5835e13a0f1210c9980d\\\"\"}"
+  },
+  "verified": {
+    "etag": "\"3ba749f597ab82315f4a46f2ae476a633e30c4fa894a5835e13a0f1210c9980d\"",
+    "sha256": "3ba749f597ab82315f4a46f2ae476a633e30c4fa894a5835e13a0f1210c9980d"
+  },
+  "counts": {
+    "衣服": {
+      "layers": 10,
+      "frames": 62
+    },
+    "眼睛": {
+      "layers": 19,
+      "frames": 160
+    },
+    "头发": {
+      "layers": 33,
+      "frames": 357
+    }
+  },
+  "existingBranchesRead": 4,
+  "baseAndDonorUnchanged": true,
+  "propagationAndProtectedSave": true
+}

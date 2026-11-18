@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "etag": "\"6f1f7e1a798813ed6c3f3e7cd8bead64b90296b01ac86970375d513ffcc585f4\"",
+  "sha256": "6f1f7e1a798813ed6c3f3e7cd8bead64b90296b01ac86970375d513ffcc585f4",
+  "fixedCurtainPixels": 36,
+  "movingYellowGapPixels": 6,
+  "rackUntouched": true,
+  "onlyChangedLayer": 80
+}

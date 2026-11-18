@@ -1,0 +1,18 @@
+diff --git a/output/hair-breath-only-20261111/before/index.html b/index.html
+index df5e0c2..2361945 100644
+--- a/output/hair-breath-only-20261111/before/index.html
++++ b/index.html
+@@ -362,7 +362,7 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=static-water-fishing-20261111"></script>
++  <script src="js/hair-animation.js?v=breathing-offset-only-20261111"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>
+@@ -370,3 +370,4 @@
+ </body>
+ </html>
+ 
++

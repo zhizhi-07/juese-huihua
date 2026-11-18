@@ -1,0 +1,13 @@
+AssertionError [ERR_ASSERTION]: Conflict: stop; do not blindly retry
+
+409 !== 200
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\output\stall-body-split-20261118\split.cjs:30:280)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 409,
+  expected: 200,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

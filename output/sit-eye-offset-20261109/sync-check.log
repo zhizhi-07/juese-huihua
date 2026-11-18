@@ -1,0 +1,1 @@
+PASS: real eye sync reproduces all four saved cels at 2x. Reverting only four placements and four offsets on a copy reproduces the whole original snapshot.

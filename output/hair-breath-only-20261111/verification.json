@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "name": "头发",
+      "frames": 219
+    },
+    {
+      "name": "头发 / 通用发型 2 / 前发",
+      "frames": 219
+    },
+    {
+      "name": "头发 / 头发2 / 前发",
+      "frames": 219
+    }
+  ],
+  "generatedFrames": 657,
+  "clipped": 0,
+  "rigidPixelEquality": true,
+  "mastersExact": true,
+  "nonHairExact": true,
+  "sheetsExact": true,
+  "fishingRetained": true,
+  "reopen": true
+}

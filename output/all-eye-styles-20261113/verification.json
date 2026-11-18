@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "styles": [
+    "眼睛 / 原版像素",
+    "眼睛 / 高清",
+    "眼睛 / 眼睛1",
+    "眼睛 / 可爱"
+  ],
+  "onlyFrame": "1_1_0",
+  "sourcePixelsAndPlacementsExact": true,
+  "defaultVisible": "眼睛 / 眼睛1",
+  "oldFrontFirstCelReplacedWithoutDoubleDisplay": true,
+  "otherFramesUnchanged": true,
+  "noSyncMetadata": true
+}

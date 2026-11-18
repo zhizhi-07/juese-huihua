@@ -1,0 +1,68 @@
+[
+  {
+    "path": [
+      "spriteSheets",
+      "0",
+      "imageDataURL"
+    ],
+    "file": "image-0.png"
+  },
+  {
+    "path": [
+      "spriteSheets",
+      "1",
+      "imageDataURL"
+    ],
+    "file": "image-1.png"
+  },
+  {
+    "path": [
+      "layers",
+      "0",
+      "frameData",
+      "0_0_0",
+      "dataURL"
+    ],
+    "file": "image-2.png"
+  },
+  {
+    "path": [
+      "layers",
+      "1",
+      "frameData",
+      "0_0_0",
+      "dataURL"
+    ],
+    "file": "image-3.png"
+  },
+  {
+    "path": [
+      "layers",
+      "2",
+      "frameData",
+      "0_0_0",
+      "dataURL"
+    ],
+    "file": "image-4.png"
+  },
+  {
+    "path": [
+      "layers",
+      "3",
+      "frameData",
+      "1_0_0",
+      "dataURL"
+    ],
+    "file": "image-5.png"
+  },
+  {
+    "path": [
+      "layers",
+      "4",
+      "frameData",
+      "1_0_0",
+      "dataURL"
+    ],
+    "file": "image-6.png"
+  }
+]

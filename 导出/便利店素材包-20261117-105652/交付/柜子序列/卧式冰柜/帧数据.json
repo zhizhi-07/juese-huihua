@@ -1,0 +1,178 @@
+{
+  "sourceSheet": 6,
+  "sourceAction": 0,
+  "atlas": "序列帧.png",
+  "atlasSize": [
+    160,
+    14
+  ],
+  "frames": [
+    {
+      "file": "逐帧/00.png",
+      "durationMs": 600,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        0,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/01.png",
+      "durationMs": 100,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        20,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/02.png",
+      "durationMs": 90,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        40,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/03.png",
+      "durationMs": 90,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        60,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/04.png",
+      "durationMs": 90,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        80,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/05.png",
+      "durationMs": 90,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        100,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/06.png",
+      "durationMs": 100,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        120,
+        0,
+        20,
+        14
+      ]
+    },
+    {
+      "file": "逐帧/07.png",
+      "durationMs": 850,
+      "sourceCanvas": [
+        24,
+        16
+      ],
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "atlasRect": [
+        140,
+        0,
+        20,
+        14
+      ]
+    }
+  ],
+  "alignedCrop": [
+    2,
+    0,
+    22,
+    14
+  ],
+  "previewReverse": false
+}

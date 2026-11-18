@@ -1,0 +1,26 @@
+[
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "file": "layer-0.png",
+    "key": "0_0_0",
+    "visible": true,
+    "oldFile": "previous-0.png"
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "file": "layer-1.png",
+    "key": "0_0_0",
+    "visible": true,
+    "oldFile": "previous-1.png"
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "file": "layer-2.png",
+    "key": "0_0_0",
+    "visible": true,
+    "oldFile": "previous-2.png"
+  }
+]

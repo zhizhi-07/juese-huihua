@@ -1,0 +1,3 @@
+PUT 200 {"saved":true,"revision":"\"a8630445a6a67d18706e4c435ffe1b759da8c860e6771c81756ddf7534775e32\""}
+GET 200 readback matches the candidate; shared main unchanged.
+Original SHA256: fc1e0a8a9c0c91f6c54a091229779eb441e4218f551bf87e4e1b376561c45060 Readback SHA256: a8630445a6a67d18706e4c435ffe1b759da8c860e6771c81756ddf7534775e32

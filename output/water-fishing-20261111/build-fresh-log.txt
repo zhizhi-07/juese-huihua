@@ -1,0 +1,54 @@
+[
+  {
+    "name": "钓鱼-甩竿",
+    "sheetIndex": 9,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 23,
+      "y": 14,
+      "w": 45,
+      "h": 48
+    },
+    "requestedHeadFrames": 18
+  },
+  {
+    "name": "钓鱼-持竿",
+    "sheetIndex": 10,
+    "frames": 4,
+    "directions": 3,
+    "box": {
+      "x": 32,
+      "y": 14,
+      "w": 33,
+      "h": 48
+    },
+    "requestedHeadFrames": 12
+  },
+  {
+    "name": "钓鱼-收线",
+    "sheetIndex": 11,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 30,
+      "y": 15,
+      "w": 35,
+      "h": 47
+    },
+    "requestedHeadFrames": 18
+  },
+  {
+    "name": "钓鱼-上鱼",
+    "sheetIndex": 12,
+    "frames": 6,
+    "directions": 3,
+    "box": {
+      "x": 28,
+      "y": 11,
+      "w": 37,
+      "h": 51
+    },
+    "requestedHeadFrames": 18
+  }
+]

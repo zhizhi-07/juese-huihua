@@ -1,0 +1,2 @@
+PASS: ETag save and exact API readback; all original layers and all frame metadata unchanged; only one added hair layer, keys 1_0_0,1_1_0,1_2_0.
+Original SHA256: ab5095a9b862e20f093b9162e53d30694c29903db21978b0f15293d37f2665c5

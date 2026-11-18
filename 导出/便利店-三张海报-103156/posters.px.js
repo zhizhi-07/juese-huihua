@@ -1,0 +1,24 @@
+pal({k:"#464b4f",b:"#8a7b63",p:"#e8cd97",w:"#d6d0b0",s:"#bdb395",r:"#9e7565",d:"#785a55",h:"#d1ae8a",a:"#839ea6",B:"#6c8091",v:"#99bab5",g:"#8aa355",G:"#6d8740",c:"#cc6764"});
+sprite("_drink",{w:14,h:20},
+ rect(0,0,14,20,"b"),rect(1,1,12,18,"p"),
+ hline(2,2,10,"h"),hline(3,4,8,"r"),
+ vline(3,2,2,"r"),vline(5,2,2,"r"),vline(8,2,2,"r"),vline(10,2,2,"r"),
+ rect(4,8,6,6,"r"),rect(3,10,2,3,"r"),rect(5,9,4,1,"d"),rect(9,10,2,2,"p"),
+ hline(3,14,8,"h"),hline(2,17,3,"r"),hline(7,17,4,"r"),
+ hline(5,6,4,"r"));
+sprite("_landscape",{w:12,h:18},
+ rect(0,0,12,18,"k"),rect(1,1,10,16,"w"),
+ rect(2,2,8,7,"a"),rect(2,2,8,2,"v"),rect(7,3,2,2,"p"),
+ poly([2,9,2,7,5,5,7,7,8,6,10,8,10,10],"B"),
+ rect(2,10,8,1,"s"),
+ hline(2,12,3,"b"),hline(6,12,4,"b"),hline(2,14,8,"b"),
+ hline(2,16,2,"b"),hline(6,16,4,"b"));
+sprite("_calendar",{w:16,h:14},
+ rect(0,0,16,14,"k"),rect(1,1,14,12,"w"),rect(1,1,14,3,"G"),
+ hline(6,2,5,"w"),px(13,2,"w"),
+ (c)=>{for(let y=5;y<=11;y+=2)for(let x=3;x<=13;x+=2)c.px(x,y,x===3?"c":"b");},
+ hline(12,5,2,"s"));
+scene("三张海报",{w:56,h:32,layers:true},
+ layer("饮品海报",stamp("_drink",2,3)),
+ layer("风景海报",stamp("_landscape",21,8)),
+ layer("日历海报",stamp("_calendar",38,8)));

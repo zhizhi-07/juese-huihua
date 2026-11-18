@@ -1,0 +1,1 @@
+PASS readback=candidate; only hair PNG changed; frames=78

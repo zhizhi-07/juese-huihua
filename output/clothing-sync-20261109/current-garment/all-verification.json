@@ -1,0 +1,20 @@
+{
+  "layer": "高清 · 衣服",
+  "builtin": "ok",
+  "counters": {
+    "original16_walk": 24,
+    "original16_idle": 9,
+    "original16_pickup": 18,
+    "original16_sit": 11
+  },
+  "skipped": [
+    "3_1_0"
+  ],
+  "details": [
+    {
+      "key": "0_0_0",
+      "hd": [
+        32,
+        32
+      ],
+      "painted": 79

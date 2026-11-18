@@ -1,0 +1,10 @@
+{
+  "put": 200,
+  "get": 200,
+  "etag": "\"9131bc88e6f5308b4d1ca9571f40d06aa00f2a89078a6157eb996ecb41ffb83b\"",
+  "sha256": "9131bc88e6f5308b4d1ca9571f40d06aa00f2a89078a6157eb996ecb41ffb83b",
+  "byteExact": true,
+  "framesPerDirection": 4,
+  "allFirstFramesPreserved": true,
+  "sideHeightPreserved": true
+}

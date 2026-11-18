@@ -1,0 +1,252 @@
+[
+  {
+    "direction": "side",
+    "frames": [
+      {
+        "frame": 1,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      },
+      {
+        "frame": 2,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 4,
+        "interiorColorChanges": 1,
+        "silhouetteChanges": 6,
+        "interiorCoordinates": [
+          "4,7"
+        ],
+        "colorCoordinates": [
+          "4,7",
+          "4,9",
+          "4,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 3,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 4,
+        "interiorColorChanges": 1,
+        "silhouetteChanges": 6,
+        "interiorCoordinates": [
+          "4,7"
+        ],
+        "colorCoordinates": [
+          "4,7",
+          "4,9",
+          "4,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 4,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      }
+    ]
+  },
+  {
+    "direction": "down",
+    "frames": [
+      {
+        "frame": 1,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      },
+      {
+        "frame": 2,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 12,
+        "interiorColorChanges": 4,
+        "silhouetteChanges": 6,
+        "interiorCoordinates": [
+          "5,4",
+          "9,4",
+          "6,5",
+          "8,5"
+        ],
+        "colorCoordinates": [
+          "5,4",
+          "9,4",
+          "6,5",
+          "8,5",
+          "4,6",
+          "10,6",
+          "3,7",
+          "11,7",
+          "3,9",
+          "11,9",
+          "3,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 3,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 12,
+        "interiorColorChanges": 4,
+        "silhouetteChanges": 6,
+        "interiorCoordinates": [
+          "5,4",
+          "9,4",
+          "6,5",
+          "8,5"
+        ],
+        "colorCoordinates": [
+          "5,4",
+          "9,4",
+          "6,5",
+          "8,5",
+          "4,6",
+          "10,6",
+          "3,7",
+          "11,7",
+          "3,9",
+          "11,9",
+          "3,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 4,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      }
+    ]
+  },
+  {
+    "direction": "up",
+    "frames": [
+      {
+        "frame": 1,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      },
+      {
+        "frame": 2,
+        "headOffset": [
+          0,
+          0
+        ],
+        "changedOpaqueColors": 11,
+        "interiorColorChanges": 7,
+        "silhouetteChanges": 4,
+        "interiorCoordinates": [
+          "7,7",
+          "5,8",
+          "6,8",
+          "8,8",
+          "9,8",
+          "3,10",
+          "11,10"
+        ],
+        "colorCoordinates": [
+          "7,7",
+          "5,8",
+          "6,8",
+          "8,8",
+          "9,8",
+          "3,10",
+          "11,10",
+          "4,11",
+          "10,11",
+          "3,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 3,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 11,
+        "interiorColorChanges": 7,
+        "silhouetteChanges": 4,
+        "interiorCoordinates": [
+          "7,7",
+          "5,8",
+          "6,8",
+          "8,8",
+          "9,8",
+          "3,10",
+          "11,10"
+        ],
+        "colorCoordinates": [
+          "7,7",
+          "5,8",
+          "6,8",
+          "8,8",
+          "9,8",
+          "3,10",
+          "11,10",
+          "4,11",
+          "10,11",
+          "3,13",
+          "11,13"
+        ]
+      },
+      {
+        "frame": 4,
+        "headOffset": [
+          0,
+          1
+        ],
+        "changedOpaqueColors": 0,
+        "interiorColorChanges": 0,
+        "silhouetteChanges": 0,
+        "interiorCoordinates": [],
+        "colorCoordinates": []
+      }
+    ]
+  }
+]
+PASS reference project SHA256 and ETag unchanged

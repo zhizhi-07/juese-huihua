@@ -46,17 +46,114 @@
     }
     ensure(blocks.length===2,'当前坐姿无法唯一识别两只脚，请先校准，不猜测脚区');return blocks.flat();
   }
-  function fromIdle(src,target,{sit=false,direction,sourceHead,targetHead}={}){
-    // shortcut: tight, sleeveless native16 garments; reject painted sleeves or loose skirts.
-    for(let i=0;i<src.clothes.data.length;i+=4)if(src.clothes.data[i+3])ensure(src.body.data[i+3]&&!outline(src.body,i),'衣服超出身体区域；当前算法仅支持贴身款');
-    const sr=rows(src.body),tr=rows(target),soles=sit&&direction!=='up'?feet(target):[],legTop=bounds(target).bottom-1;
-    const out=fit(src,target,sit?{soleReference:target,soles,collar:{sourceHead,targetHead,legTop}}:{});
-    if(!sit)for(let row=0;row<2;row++){const to=tr[tr.length-2+row];for(const x of to.xs)out.data.fill(0,(to.y*out.width+x)*4,(to.y*out.width+x)*4+4);copyRow(out,src.clothes,sr[sr.length-2+row],to);}
-    const colors=new Map();for(const r of sr.slice(-2))for(const x of r.xs){const i=(r.y*src.clothes.width+x)*4;if(src.clothes.data[i+3]){const c=Array.from(src.clothes.data.slice(i,i+4)),key=c.join(',');colors.set(key,{c,n:(colors.get(key)?.n||0)+1});}}
-    const pair=[...colors.values()].sort((a,b)=>b.n-a.n).slice(0,2).map(v=>v.c).sort((a,b)=>a[0]+a[1]+a[2]-b[0]-b[1]-b[2]);
-    // Body shading may darken cloth, but must never erase the artist's painted shadow.
-    if(pair.length===2)for(let y=legTop;y<out.height;y++)for(let x=0;x<out.width;x++){const i=(y*out.width+x)*4;if(out.data[i+3]&&skinShadow(target,i)&&pair[1].every((v,k)=>v===out.data[i+k]))out.data.set(pair[0],i);}
+  const center=xs=>(xs[0]+xs.at(-1))/2;
+  function runs(xs){const parts=[];for(const x of xs){if(parts.at(-1)?.at(-1)===x-1)parts.at(-1).push(x);else parts.push([x]);}return parts;}
+  const sample=(xs,i,n)=>xs[Math.round(n===1?(xs.length-1)/2:i*(xs.length-1)/(n-1))];
+  function fabricShades(cloth,region){
+    const colors=new Map();
+    for(const {y,xs} of region)for(const x of xs){
+      const i=(y*cloth.width+x)*4;
+      if(!cloth.data[i+3])continue;
+      const c=Array.from(cloth.data.subarray(i,i+3));colors.set(c.join(),c);
+    }
+    const shade=new Map(),painted=new Set();
+    for(const [key,c] of colors){
+      let closest=Infinity;
+      for(const d of colors.values()){
+        const delta=c.map((v,i)=>v-d[i]),distance=delta[0]+delta[1]+delta[2];
+        if(Math.min(...delta)>=6&&Math.max(...delta)-Math.min(...delta)<=16&&distance<closest){
+          shade.set(key,d);closest=distance;
+        }
+      }
+      if(shade.has(key))painted.add(shade.get(key).join());
+    }
+    // shortcut: infer nearby tones; use explicit fabric ramps if multitone patterns need precise control.
+    for(const [key,c] of colors)if(painted.has(key)||!shade.has(key))shade.set(key,painted.has(key)?c:c.map(v=>Math.round(v*0.85)));
+    return shade;
+  }
+  function shadeIdle(body,image,scale,previous){
+    const {width,height,placement}=image,raw=new Uint8ClampedArray(image.data);
+    const rgb=(data,i)=>(data[i]<<16)|(data[i+1]<<8)|data[i+2];
+    const paint=(data,i,c)=>{data[i]=c>>16;data[i+1]=c>>8&255;data[i+2]=c&255;};
+    // Undo only our own unchanged shadow pixels before fitting other frames or shading again.
+    if(previous?.width===width&&previous.height===height)for(const [index,light,dark] of previous.pixels){
+      const i=index*4;if(raw[i+3]&&rgb(raw,i)===dark)paint(raw,i,light);
+    }
+    const data=new Uint8ClampedArray(raw),pixels=[],bottom=bounds(body).bottom,phases=Array.from({length:scale*scale},()=>[]);
+    for(let y=0;y<height;y++){
+      const by=Math.floor((placement?.y||0)+(y+0.5)/scale);
+      if(by<bottom-1||by>bottom)continue;
+      for(let x=0;x<width;x++){
+        const bx=Math.floor((placement?.x||0)+(x+0.5)/scale),at=(by*body.width+bx)*4;
+        if(bx>=0&&bx<body.width&&body.data[at+3]&&!outline(body,at))phases[y%scale*scale+x%scale].push({y,xs:[x],shadow:skinShadow(body,at)});
+      }
+    }
+    for(const region of phases){
+      const shades=fabricShades({width,data:raw},region);
+      for(const {y,xs:[x],shadow} of region){
+        const index=y*width+x,i=index*4;if(!shadow||!raw[i+3])continue;
+        const color=shades.get(raw.subarray(i,i+3).join());
+        const light=rgb(raw,i),dark=(color[0]<<16)|(color[1]<<8)|color[2];
+        if(light!==dark){paint(data,i,dark);pixels.push([index,light,dark]);}
+      }
+    }
+    return {raw,data,record:pixels.length?{width,height,pixels}:null};
+  }
+  function fromIdle(src,target,{sit=false,targetHead,shadeLegs=true,mask=null}={}){
+    // shortcut: native16 fitted garments; sleeves and loose hems need their own attachment guides.
+    const cloth=src.clothes,out=blank(target.width,target.height);
+    ensure(cloth.width===src.body.width&&cloth.height===src.body.height);
+    for(let i=0;i<cloth.data.length;i+=4)if(cloth.data[i+3]){
+      ensure(src.body.data[i+3]&&!outline(src.body,i),'衣服超出身体区域；当前算法仅支持贴身款');
+      ensure(cloth.data[i]!==255||cloth.data[i+1]!==0||cloth.data[i+2]!==0,'红色位置标记不能参与衣服同步');
+    }
+    const sr=rows(src.body),tr=rows(target),sb=bounds(src.body).bottom,tb=bounds(target).bottom;
+    const su=sr.filter(r=>r.y<sb-1),tu=tr.filter(r=>r.y<tb-1);
+    ensure(su.length&&tu.length,'身体缺少躯干，无法同步衣服');
+    const sx=center(su[0].xs),tx=center(tu[0].xs),dx=Math.round(tx-sx);
+    const legShades=shadeLegs?fabricShades(cloth,sr.filter(r=>r.y>=sb-1)):null;
+    const copy=(x,y,px,py)=>{
+      const i=(y*out.width+x)*4;
+      // mask：目标帧的头部；低头时衣领不盖住脸。
+      if(px<0||px>=cloth.width||sit&&targetHead?.data[i+3]||mask?.data[i+3])return;
+      const j=(py*cloth.width+px)*4,c=cloth.data.subarray(j,j+4);
+      out.data.set(c,i);
+      if(legShades&&y>=tb-1&&c[3]&&skinShadow(target,i)){
+        const shaded=legShades.get(c.subarray(0,3).join());
+        if(shaded)out.data.set(shaded,i);
+      }
+    };
+    const visible=tu.filter(r=>!sit||r.xs.some(x=>!targetHead?.data[(r.y*out.width+x)*4+3]));
+    for(const [i,r] of visible.entries()){
+      const sy=Math.min(su.at(-1).y,su[0].y+r.y-tu[0].y);
+      const from=sit?su[visible.length===1?su.length-1:Math.round(i*(su.length-1)/(visible.length-1))]:su.find(s=>s.y===sy);
+      if(from){
+        const shift=Math.round(center(r.xs)-center(from.xs));
+        for(const x of r.xs)copy(x,r.y,x-shift,from.y);
+      }
+    }
+    for(let offset=1;offset>=0;offset--){
+      const from=sr.find(r=>r.y===sb-offset),to=tr.find(r=>r.y===tb-offset);if(!from||!to)continue;
+      const source=runs(from.xs),dest=runs(to.xs);
+      const footRuns=sit?dest.slice(-2):dest,cut=footRuns.length===2?(footRuns[0].at(-1)+footRuns[1][0])/2:tx;
+      const split=source.length===2?(source[0].at(-1)+source[1][0])/2:sx;
+      const sides=source.length===2?source:[from.xs.filter(x=>x<split),from.xs.filter(x=>x>split)];
+      for(const [k,run] of dest.entries()){
+        if(dest.length>2&&k<dest.length-2){for(const x of run)copy(x,to.y,x-dx,from.y);continue;}
+        // A joined silhouette can still have a seam; a lone visible foot keeps its own side.
+        for(const sign of [-1,1]){
+          const xs=run.filter(x=>sign*(x-cut)>0),side=sides[sign===1?1:0];
+          if(side.length)xs.forEach((x,i)=>copy(x,to.y,sample(side,i,xs.length),from.y));
+        }
+        if(run.includes(cut)){
+          const at=(to.y*out.width+cut)*4,shaded=skinShadow(target,at);
+          const right=run.includes(cut+1)&&skinShadow(target,at+4)===shaded&&(!run.includes(cut-1)||skinShadow(target,at-4)!==shaded);
+          const px=from.xs.includes(split)?split:right?sides[1][0]:sides[0].at(-1)??sides[1][0];
+          if(px!==undefined)copy(cut,to.y,px,from.y);
+        }
+      }
+    }
     return out;
   }
-  return {warp,fit,fromIdle,feet,bounds};
+  return {warp,fit,fromIdle,shadeIdle,feet,bounds};
 });

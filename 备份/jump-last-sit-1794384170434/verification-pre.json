@@ -1,0 +1,21 @@
+{
+  "source": "C:/Users/Administrator/Desktop/Hana Caraka - Base Character/Hana Caraka - Base Character/Basic/jump.aseprite",
+  "sourceSHA256": "c777b3a31ddb63f5c634305d208cd3c056ba5fefd9bfd2ce21a2867948a5aa4e",
+  "sourceFrame": 5,
+  "sourceDuration": 100,
+  "sourcePixels": 165,
+  "eyePixels": 4,
+  "crop": {
+    "x": 32,
+    "y": 24,
+    "w": 16,
+    "h": 16
+  },
+  "newSheetIndex": 13,
+  "sideOnly": true,
+  "oneFrame": true,
+  "existingSheets": 13,
+  "existingLayers": 326,
+  "otherProjectDataUnchanged": true,
+  "pixelsEqualRecoloredSource": true
+}

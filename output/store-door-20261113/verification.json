@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "putStatus": 200,
+  "getStatus": 200,
+  "beforeSHA256": "c6bd27bb9aa57c4c79856e9cdb951edbc1ee3e07f179762c90032e32163312b7",
+  "afterSHA256": "0e9991551c0d08998ea9fa627d12a4e673a83fcc9c4a25c8036e1e8519d87ed5",
+  "etag": "\"0e9991551c0d08998ea9fa627d12a4e673a83fcc9c4a25c8036e1e8519d87ed5\"",
+  "originalFramesUnchanged": true,
+  "changesOutsideDoor": false,
+  "frames": 6,
+  "durationsMs": [
+    240,
+    100,
+    100,
+    100,
+    100,
+    650
+  ]
+}

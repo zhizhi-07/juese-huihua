@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>像素衣橱 · 角色绘画工作台</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/studio.css?v=layer-order-1">
-  <link rel="stylesheet" href="css/visual-layers.css?v=all-action-parts-1">
-  <link rel="stylesheet" href="css/wardrobe.css?v=1">
+  <link rel="stylesheet" href="css/studio.css?v=image-drop-1">
+  <link rel="stylesheet" href="css/visual-layers.css?v=favorite-star-1">
+  <link rel="stylesheet" href="css/wardrobe.css?v=favorite-star-1">
   <link rel="stylesheet" href="css/hd-canvas.css?v=drag-create-1">
   <link rel="stylesheet" href="css/frame-timing.css?v=frame-timing-1">
   <link rel="stylesheet" href="css/draw-kit.css?v=draw-kit-1">
   <link rel="stylesheet" href="css/select-plus.css?v=auto-outline-2">
   <link rel="stylesheet" href="css/panel-dock.css?v=panel-dock-1">
-  <link rel="stylesheet" href="css/workspace-layout.css?v=brush-size-1">
+  <link rel="stylesheet" href="css/workspace-layout.css?v=resize-mode-surface-1">
   <link rel="stylesheet" href="css/studio-theme.css?v=layer-solo-1">
+  <link rel="stylesheet" href="css/scene-reference.css?v=scene-reference-2">
+  <link rel="stylesheet" href="css/layer-color.css?v=layer-color-1">
+  <link rel="stylesheet" href="css/layer-multiselect.css?v=layer-multiselect-1">
 </head>
 <body class="dark-theme">
   <!-- 页面主容器 -->
@@ -205,6 +208,42 @@
             <input type="color" id="custom-color-input" value="#d04648">
             <button id="add-palette-color-btn" class="compact-btn">添加到色板</button>
           </div>
+
+          <!-- 图层调色：给当前图层整体调整色相 / 饱和度 / 明度；默认折叠，免得把图层列表挤没了 -->
+          <details id="layer-hue-adjust" class="hue-adjust">
+            <summary class="hue-adjust-head">
+              <strong>图层调色</strong>
+              <span id="hue-adjust-target">当前图层</span>
+            </summary>
+            <div class="hue-adjust-body">
+              <div class="hue-row">
+                <span>色相</span>
+                <input type="range" id="hue-shift" min="-180" max="180" step="1" value="0" aria-label="色相">
+                <input type="number" id="hue-shift-number" min="-180" max="180" step="1" value="0" aria-label="色相数值">
+              </div>
+              <div class="hue-row">
+                <span>饱和度</span>
+                <input type="range" id="hue-saturation" min="-100" max="100" step="1" value="0" aria-label="饱和度">
+                <input type="number" id="hue-saturation-number" min="-100" max="100" step="1" value="0" aria-label="饱和度数值">
+              </div>
+              <div class="hue-row">
+                <span>明度</span>
+                <input type="range" id="hue-lightness" min="-100" max="100" step="1" value="0" aria-label="明度">
+                <input type="number" id="hue-lightness-number" min="-100" max="100" step="1" value="0" aria-label="明度数值">
+              </div>
+              <div class="hue-row hue-scope">
+                <span>范围</span>
+                <select id="hue-scope" aria-label="调色范围">
+                  <option value="frame">当前帧</option>
+                  <option value="action">当前动作</option>
+                  <option value="layer">整个图层</option>
+                </select>
+                <button id="hue-apply-btn" class="compact-btn" type="button">应用</button>
+                <button id="hue-reset-btn" class="compact-btn" type="button">复位</button>
+              </div>
+              <p id="hue-adjust-status" class="hue-status">拖动滑条即时预览；点“应用”写入图层，可撤销。</p>
+            </div>
+          </details>
         </section>
 
         <!-- 帧属性与审核状态面板 -->
@@ -282,48 +321,56 @@
 
   <!-- 外部与核心脚本加载 (严格保持顺序) -->
   <script src="js/vendor/jszip.min.js"></script>
-  <script src="js/core.js?v=native16-wiring-20261104"></script>
+  <script src="js/core.js?v=fishing-actions-20261111"></script>
   <script src="js/history.js"></script>
   <script src="js/canvas.js?v=select-wand-2"></script>
   <script src="js/tools.js?v=native16-wiring-20261104"></script>
   <script src="js/spritesheet.js"></script>
   <script src="js/animation.js?v=playback-overlays-1"></script>
   <script src="js/inspection.js"></script>
-  <script src="js/export.js?v=clothing-sync-20261104"></script>
+  <script src="js/export.js?v=new-character-action-20261116"></script>
   <script src="js/api.js?v=native16-wiring-20261104"></script>
   <script src="js/aseprite.js"></script>
-  <script src="js/app.js?v=native16-wiring-20261104"></script>
-  <script src="js/workbench.js?v=native16-wiring-20261104"></script>
+  <script src="js/app.js?v=part-visibility-sync-2"></script>
+  <script src="js/workbench.js?v=blank-sit-clothing-20261109"></script>
   <script src="js/local-bridge.js"></script>
-  <script src="js/persistence.js?v=manual-shared-save-2"></script>
+  <script src="js/persistence.js?v=manual-shared-save-3"></script>
   <script src="js/builtin-packs.js"></script>
   <script src="js/walk-pack.js"></script>
   <script src="js/poses.js"></script>
   <script src="js/original32.js"></script>
   <script src="js/eyes32.js"></script>
-  <script src="js/scene-materials.js?v=1"></script>
-  <script src="js/studio.js?v=scene-materials-20261104"></script>
-  <script src="js/visual-layers.js?v=native16-wiring-20261104"></script>
+  <script src="js/scene-materials.js?v=2"></script>
+  <script src="js/character-actions.js?v=20261116"></script>
+  <script src="js/studio.js?v=new-character-action-20261116"></script>
+  <script src="js/visual-layers.js?v=new-character-action-20261116"></script>
   <script src="js/character-base.js?v=branch-hands-1"></script>
-  <script src="js/projects.js?v=native16-wiring-20261104"></script>
-  <script src="js/wardrobe-furniture.js?v=chairs-bed-1"></script>
-  <script src="js/wardrobe.js?v=native16-clean-20261104"></script>
+  <script src="js/projects.js?v=primary-body-20261110"></script>
+  <script src="js/wardrobe-furniture.js?v=scene-furniture-20261107"></script>
+  <script src="js/wardrobe.js?v=hd-room-2"></script>
   <script src="js/shared-clipboard.js?v=shared-clip-1"></script>
   <script src="js/frame-tools.js?v=native16-wiring-20261104"></script>
   <script src="js/layer-mirror.js?v=native16-wiring-20261104"></script>
   <script src="js/layer-shortcuts.js?v=ps-layer-shortcuts-2"></script>
   <script src="js/building-groups.js?v=native16-wiring-20261104"></script>
-  <script src="js/pixel-import.js?v=stable-toolbar-1"></script>
-  <script src="js/hd-canvas.js?v=native16-wiring-20261104"></script>
+  <script src="js/layer-multiselect.js?v=layer-multiselect-1"></script>
+  <script src="js/pixel-import.js?v=resize-mode-surface-1"></script>
+  <script src="js/hd-canvas.js?v=hd-create-sizes-1"></script>
   <script src="js/frame-timing.js?v=frame-timing-1"></script>
   <script src="js/draw-kit.js?v=visible-aux-3"></script>
   <script src="js/select-plus.js?v=native16-wiring-20261104"></script>
   <script src="js/outline.js?v=native16-wiring-20261104"></script>
   <script src="js/panel-dock.js?v=panel-dock-2"></script>
-  <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+  <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
-  <script src="js/hair-animation.js?v=native16-wiring-20261104"></script>
-  <script src="js/clothing-fit.js?v=clothing-sync-20261104"></script>
-  <script src="js/clothing-sync.js?v=clothing-sync-20261104-2"></script>
+  <script src="js/hair-animation.js?v=eyes-all-actions-20261113"></script>
+  <script src="js/clothing-fit.js?v=all-actions-20261114"></script>
+  <script src="js/clothing-sync.js?v=all-actions-20261114"></script>
+  <script src="js/scene-reference.js?v=scene-reference-2"></script>
+  <script src="js/layer-color-adjust.js?v=layer-color-1"></script>
+  <!-- 最后一层样式：收紧工具条、统一灰阶与字号。必须排在所有样式之后。 -->
+  <link rel="stylesheet" href="css/studio-polish.css?v=polish-20261114-1">
 </body>
 </html>
+
+

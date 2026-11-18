@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=scene-store-item01-shelf-20261116",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"69f647e0d60e150e830f79883f7ae380ec5c3defde3077cd4dac3ffb45ee5368\""
+    },
+    "input": "candidate.json",
+    "sha256": "c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2"
+  },
+  "save": {
+    "status": 200,
+    "etag": "\"c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2\\\"\"}"
+  },
+  "readback": {
+    "status": 200,
+    "etag": "\"c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2\"",
+    "sha256": "c946bf878c3d3a01155483629ee40fe80a2918c340892eba91df5f4fe38759b2",
+    "equalCandidate": true
+  }
+}

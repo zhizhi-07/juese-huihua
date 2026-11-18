@@ -1,0 +1,1 @@
+{"calibrate20":{"ms":68.66750000000002,"canvases":0},"sync3":{"ms":229.15150000000006,"canvases":0,"frames":231}}

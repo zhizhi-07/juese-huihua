@@ -1,0 +1,105 @@
+[
+  {
+    "name": "柜台与立柱",
+    "sourceIndices": [
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "parent": 3,
+    "index": 4
+  },
+  {
+    "name": "侧边垃圾桶",
+    "sourceIndices": [
+      44
+    ],
+    "parent": 3,
+    "index": 5
+  },
+  {
+    "name": "顶部木框牌",
+    "sourceIndices": [
+      13
+    ],
+    "parent": 6,
+    "index": 7
+  },
+  {
+    "name": "汉堡主招牌",
+    "sourceIndices": [
+      15,
+      16,
+      17
+    ],
+    "parent": 6,
+    "index": 8
+  },
+  {
+    "name": "左侧绿色挂招牌",
+    "sourceIndices": [
+      41,
+      42
+    ],
+    "parent": 6,
+    "index": 9
+  },
+  {
+    "name": "红白蓝棚子",
+    "sourceIndices": [
+      19,
+      20,
+      21
+    ],
+    "parent": 10,
+    "index": 11
+  },
+  {
+    "name": "完整海报",
+    "sourceIndices": [
+      23,
+      24
+    ],
+    "parent": 12,
+    "index": 13
+  },
+  {
+    "name": "完整咖啡机",
+    "sourceIndices": [
+      26,
+      27
+    ],
+    "parent": 14,
+    "index": 15
+  },
+  {
+    "name": "汉堡纸袋饮料",
+    "sourceIndices": [
+      29,
+      31,
+      33
+    ],
+    "parent": 16,
+    "index": 17
+  },
+  {
+    "name": "左侧菜单牌",
+    "sourceIndices": [
+      35,
+      36
+    ],
+    "parent": 18,
+    "index": 19
+  },
+  {
+    "name": "右侧菜单牌",
+    "sourceIndices": [
+      38,
+      39
+    ],
+    "parent": 18,
+    "index": 20
+  }
+]

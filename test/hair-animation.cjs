@@ -20,7 +20,26 @@ function fixture(){
 function raster(im,w=12,h=12){const c=createCanvas(w,h),ctx=c.getContext('2d');if(im)PE.utils.drawImageData(ctx,im);return ctx.getImageData(0,0,w,h).data;}
 function pixel(im,x,y){return Array.from(raster(im).slice((y*12+x)*4,(y*12+x+1)*4));}
 (async()=>{
+ const anchors=fixture(),baseOffsets=H.calibrate(anchors.p,anchors.hair);
+ const createElement=document.createElement;let canvasCount=0;
+ document.createElement=(...args)=>{canvasCount++;return createElement(...args);};
+ assert.deepEqual(H.calibrate(anchors.p,anchors.hair),baseOffsets);assert.equal(canvasCount,0,'unchanged heads reuse anchors without new canvases');
+ const movingHead=anchors.p.layers.find(l=>l.name==='head'&&l.sheetIndex===1).getFrameData('1_0_1');
+ const oldHead=new Uint8ClampedArray(movingHead.data);movingHead.data.fill(0);
+ for(let y=0;y<12;y++)for(let x=0;x<11;x++)movingHead.data.set(oldHead.subarray((y*12+x)*4,(y*12+x+1)*4),(y*12+x+1)*4);
+ assert.equal(H.calibrate(anchors.p,anchors.hair)['original32_walk/down/1'].x,baseOffsets['original32_walk/down/1'].x+1,'in-place head painting invalidates cached anchor');
+ assert.equal(canvasCount,1,'only changed head is rasterized');document.createElement=createElement;
+ const hidden=fixture();H.sync(hidden.app,{live:true});H.refresh(hidden.p);
+ hidden.hair.visible=false;hidden.hair.getFrameData('0_0_0').data[0]++;
+ assert.equal(H.refresh(hidden.p).length,0,'hidden masters must not run during repaint');
+ hidden.hair.visible=true;assert.equal(H.refresh(hidden.p).length,1,'showing a master catches up pending edits');
+ hidden.hair.visible=false;hidden.hair.getFrameData('0_0_0').data[0]++;
+ assert.equal(H.refresh(hidden.p,true).length,1,'explicit forced sync still includes hidden masters');
  const independent=fixture();H.sync(independent.app);const dg=independent.hair.hairAnimation;
+ const sitting=independent.p.layers.find(l=>l.sheetIndex===2&&l.hairAnimationId===dg.id);
+ assert.deepEqual(raster(sitting.getFrameData('2_1_0')),raster(independent.hair.getFrameData('0_1_0')),'unchanged head position must not lift seated hair');
+ assert.equal(pixel(sitting.getFrameData('2_1_2'),3,1)[3],0,'seated hair follows the later head offset without extra lift');
+ assert.equal(pixel(sitting.getFrameData('2_1_2'),3,2)[3],255);
  H.editSettings(dg,'original32_idle','down','current',independent.p.spriteSheets).ampV=.1;
  H.editSettings(dg,'original32_idle','side','current',independent.p.spriteSheets).ampV=.2;
  H.editSettings(dg,'original32_idle','up','current',independent.p.spriteSheets).ampV=.3;

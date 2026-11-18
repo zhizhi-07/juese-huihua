@@ -1,0 +1,51 @@
+{
+  "edited": [
+    {
+      "key": "3_0_1",
+      "label": "copied",
+      "pixels": 107
+    },
+    {
+      "key": "3_0_2",
+      "label": "legs only",
+      "pixels": 48
+    },
+    {
+      "key": "3_0_3",
+      "label": "legs copied",
+      "pixels": 48
+    },
+    {
+      "key": "3_1_1",
+      "label": "copied",
+      "pixels": 95
+    },
+    {
+      "key": "3_1_2",
+      "label": "compressed 1 row",
+      "pixels": 56
+    },
+    {
+      "key": "3_1_3",
+      "label": "compressed 1 row",
+      "pixels": 56
+    },
+    {
+      "key": "3_2_1",
+      "label": "copied",
+      "pixels": 84
+    },
+    {
+      "key": "3_2_2",
+      "label": "compressed 1 row",
+      "pixels": 56
+    },
+    {
+      "key": "3_2_3",
+      "label": "compressed 1 row",
+      "pixels": 56
+    }
+  ],
+  "originalsPreserved": 3,
+  "onlyYellowSitting": true
+}

@@ -1,0 +1,88 @@
+{
+  "frameSize": [
+    20,
+    14
+  ],
+  "frames": [
+    {
+      "rect": [
+        0,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 600
+    },
+    {
+      "rect": [
+        20,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 100
+    },
+    {
+      "rect": [
+        40,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        60,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        80,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        100,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        120,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 100
+    },
+    {
+      "rect": [
+        140,
+        0,
+        20,
+        14
+      ],
+      "durationMs": 850
+    }
+  ],
+  "sourceTrim": [
+    2,
+    0,
+    22,
+    14
+  ],
+  "sourceSheet": 6,
+  "sourceAction": 0
+}

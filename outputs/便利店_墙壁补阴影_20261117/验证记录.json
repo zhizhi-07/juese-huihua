@@ -1,0 +1,23 @@
+{
+  "result": "PASS",
+  "size": "16x16",
+  "wallRows": 14,
+  "darkEdgeRows": 1,
+  "translucentShadowRows": 1,
+  "shadowRGBA": [
+    70,
+    75,
+    79,
+    48
+  ],
+  "baseColorUnchanged": true,
+  "otherContentUnchanged": true,
+  "apiReadbackExact": true,
+  "restorationOnExtraCopy": true,
+  "target": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店/墙壁_浅暖灰_16x16.png",
+  "targetSHA256": "aea73d9cee048cb4bf8c40367559ed735d805fc13ea0be16de7d63775f9df850",
+  "importUnchanged": true,
+  "originalProjectSHA256": "1167f886149a5aa21a2a932d9ef55d3aacd9b57f9d948e7bdc75e50e174d6789",
+  "savedProjectSHA256": "8f13acfa914c38db4bea1210ad09b10dc201859f7242b0327375500177ca694e",
+  "frontendRefreshed": false
+}

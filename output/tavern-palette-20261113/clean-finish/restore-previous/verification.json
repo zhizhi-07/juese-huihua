@@ -1,0 +1,9 @@
+{
+  "putStatus": 200,
+  "getStatus": 200,
+  "restored": "Version immediately before clean-finish; noise-fix version, not original",
+  "beforeSHA256": "e303ab3e6c3de3ceb6198d991880faf5695481bed1b8c9fbcaea81cda9c62dc1",
+  "restoredSHA256": "30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba",
+  "etag": "\"30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba\"",
+  "verified": "Readback exactly equals clean-finish/before.json"
+}

@@ -1,0 +1,20 @@
+{
+  "sourceSHA256": "f3c632dca779780812e22b8a0579df7ca7b50d248e2f7900ff57c226e36858d3",
+  "candidateSHA256": "d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345",
+  "onlyFoodLayerChanged": true,
+  "noPlacementOnRack": true,
+  "sourceImage16x32": true,
+  "gamePath": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店/零食架.png",
+  "gameBeforeSHA256": "000cf698a3812c88a923d9b276400e11abca611bdc1781a539b613f41d3ab257",
+  "gameAfterSHA256": "0c111f9e76fa6e18eabb3f5d2e3f976737ad5482631d62a0933e332f44553015",
+  "gameDimensionsBefore": [
+    32,
+    64
+  ],
+  "gameDimensionsAfter": [
+    16,
+    32
+  ],
+  "gameMatchedLatestEditorComposite": true,
+  "importHashBefore": "3c7acfee434e70851bcff18df181702c8687d7687f36f0d965d182c8bf27801e"
+}

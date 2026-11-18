@@ -1,0 +1,2 @@
+PASS isolated browser: old button 3 actions; new button 9 actions, 156 exact phase-shape matches, live updates, stable resync and save/reopen.
+exit=0

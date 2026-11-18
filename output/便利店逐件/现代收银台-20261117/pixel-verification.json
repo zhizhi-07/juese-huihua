@@ -1,0 +1,45 @@
+{
+  "chairMap": {
+    "#BA9273": "#B5B2AC",
+    "#68A88E": "#839EA6",
+    "#8AC290": "#99BAB5",
+    "#9E7565": "#6C8091",
+    "#D1AE8A": "#D4D0CD"
+  },
+  "verified": "尺寸与透明轮廓不变；收银机及付款终端PNG未改；新增配色来自Otterisk96",
+  "counterMap": {
+    "#BED4C8": "#EBF0EE",
+    "#8AC290": "#D4D0CD",
+    "#68A88E": "#B5B2AC",
+    "#D1AE8A": "#EBF0EE",
+    "#BA9273": "#B5B2AC",
+    "#4D8A7E": "#566178",
+    "#9E7565": "#839EA6"
+  },
+  "images": [
+    {
+      "name": "收银椅",
+      "changedPixels": 57,
+      "key": "1_0_0",
+      "index": 3,
+      "file": "modern-layer-3-1_0_0.png",
+      "recolor": true
+    },
+    {
+      "name": "收银柜台",
+      "changedPixels": 364,
+      "key": "1_0_0",
+      "index": 4,
+      "file": "modern-layer-4-1_0_0.png",
+      "recolor": true
+    },
+    {
+      "name": "收银机与付款终端",
+      "changedPixels": 0,
+      "key": "1_0_0",
+      "index": 5,
+      "file": "modern-layer-5-1_0_0.png",
+      "recolor": false
+    }
+  ]
+}

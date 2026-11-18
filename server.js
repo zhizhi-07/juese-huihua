@@ -18,10 +18,32 @@ if(!fs.existsSync(tokenFile))fs.writeFileSync(tokenFile,token);
 // Only a local file page can read this script; HTTP requests never receive its secret.
 fs.writeFileSync(path.join(BASE_DIR,'js','local-bridge.js'),'window.PE_LOCAL_BRIDGE='+JSON.stringify({url:'http://127.0.0.1:'+PORT,token})+';');
 const revision=bytes=>'"'+crypto.createHash('sha256').update(bytes).digest('hex')+'"';
+const bodySync=require('./js/body-sync.cjs');
+const characterBase=require('./js/character-base.js');
+const CHARACTER_BASE_ID='base-outlined-1794365455561';
+const CHARACTER_BASE_FILE=path.join(DATA_DIR,'projects',CHARACTER_BASE_ID+'.json');
+const hasCharacterBase=()=>fs.existsSync(CHARACTER_BASE_FILE);
+function syncCharacter(project){
+  const splitBase=hasCharacterBase(),file=splitBase?CHARACTER_BASE_FILE:PROJECT_FILE;
+  if(fs.existsSync(file))require('./js/character-sync.js')(project,JSON.parse(fs.readFileSync(file,'utf8')),splitBase);
+}
 function projectBytes(file,id){
   const bytes=fs.readFileSync(file);
-  if(!id.startsWith('character-')||!fs.existsSync(PROJECT_FILE))return bytes;
-  return Buffer.from(JSON.stringify(require('./js/character-sync.js')(JSON.parse(bytes),JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')))));
+  const base=id===bodySync.BASE_PROJECT_ID;
+  if((!base&&!id.startsWith('character-'))||(base&&!fs.existsSync(PROJECT_FILE)))return bytes;
+  const project=JSON.parse(bytes.toString('utf8'));
+  if(base)bodySync.pull(project,JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')));else syncCharacter(project);
+  return Buffer.from(JSON.stringify(project));
+}
+function pushBaseBody(project,previous){
+  // 素体主保存后写回主工程 body，人物分支读取时再按主工程继承；没改过的帧跟随主工程，旧页面不会把过期的体型写回去。
+  if(!fs.existsSync(PROJECT_FILE))return false;
+  const main=JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8'));
+  const result=bodySync.push(project,main,previous?JSON.parse(previous.toString('utf8')):null);
+  if(!result.mainChanged)return false;
+  fs.copyFileSync(PROJECT_FILE,PROJECT_FILE+'.bak');
+  const temp=PROJECT_FILE+'.tmp';fs.writeFileSync(temp,Buffer.from(JSON.stringify(main)));fs.renameSync(temp,PROJECT_FILE);
+  return true;
 }
 function validProject(project){
   if(!project||!Array.isArray(project.layers)||!project.layers.length||project.layers.length>1024||!Array.isArray(project.spriteSheets)||project.spriteSheets.length>128)return false;
@@ -61,14 +83,15 @@ const server = http.createServer((req, res) => {
     if(reqPath.startsWith('/api/ai/')){
       require('./ai-service.cjs').handle(req,res,BASE_DIR);return;
     }
-    if(reqPath==='/api/status'&&req.method==='GET'){res.end(JSON.stringify({version:2,ai:true,sharedProject:'data/shared-project.json'}));return;}
+    if(reqPath==='/api/status'&&req.method==='GET'){res.end(JSON.stringify({version:2,ai:true,sharedProject:'data/shared-project.json',characterBaseProjectId:hasCharacterBase()?CHARACTER_BASE_ID:'main'}));return;}
     if(reqPath==='/api/projects'&&req.method==='GET'){
       const folder=path.join(DATA_DIR,'projects');
       const projects=fs.existsSync(folder)?fs.readdirSync(folder).filter(n=>/^[a-z0-9-]{1,80}\.json$/.test(n)).map(n=>({id:n.slice(0,-5),name:JSON.parse(fs.readFileSync(path.join(folder,n),'utf8')).name})):[];
       res.end(JSON.stringify([{id:'main',name:'人物主工程'},...projects]));return;
     }
     if(reqPath!=='/api/project'){res.writeHead(404);res.end('{}');return;}
-    const projectId=new URL(req.url,'http://localhost').searchParams.get('id')||'main';
+    const params=new URL(req.url,'http://localhost').searchParams;
+    const projectId=params.get('id')||'main';
     if(!/^[a-z0-9-]{1,80}$/.test(projectId)){res.writeHead(400);res.end('{"error":"Invalid project id"}');return;}
     const projectFile=projectId==='main'?PROJECT_FILE:path.join(DATA_DIR,'projects',projectId+'.json');
     if(req.method==='GET'){
@@ -103,13 +126,30 @@ const server = http.createServer((req, res) => {
           bytes=Buffer.from(JSON.stringify(project));
         }
         if(!previous&&projectId.startsWith('character-')){
-          try{require('./js/character-base.js')(project);bytes=Buffer.from(JSON.stringify(project));}
+          try{
+            const splitBase=hasCharacterBase();
+            if(splitBase){
+              const source=fs.readFileSync(CHARACTER_BASE_FILE),expected=params.get('baseRevision');
+              if(expected&&expected!==revision(source)){res.writeHead(409);res.end(JSON.stringify({error:'人物素体已变化，未创建分支'}));return;}
+              const name=project.name;
+              project=JSON.parse(source);
+              project.name=name;
+            }
+            characterBase(project,splitBase);
+            if(splitBase){
+              const keep=project.layers.map((l,i)=>[l,i]).filter(([l])=>l.sheetIndex>=0&&l.sheetIndex<project.spriteSheets.length),map=new Map(keep.map(([,i],j)=>[i,j]));
+              project.layers=keep.map(([l])=>{if(l.parent!=null)l.parent=map.get(l.parent);return l;});
+              project.currentLayerIndex=map.get(project.currentLayerIndex)??Math.max(0,project.layers.findIndex(l=>!l.isGroup&&l.sheetIndex===project.currentSheetIndex));
+            }
+            bytes=Buffer.from(JSON.stringify(project));
+          }
           catch(error){res.writeHead(400);res.end(JSON.stringify({error:error.message}));return;}
         }
-        if(projectId.startsWith('character-')&&fs.existsSync(PROJECT_FILE)){
-          require('./js/character-sync.js')(project,JSON.parse(fs.readFileSync(PROJECT_FILE,'utf8')));
+        if(projectId.startsWith('character-')){
+          syncCharacter(project);
           bytes=Buffer.from(JSON.stringify(project));
         }
+        if(projectId===bodySync.BASE_PROJECT_ID){pushBaseBody(project,previous);bytes=Buffer.from(JSON.stringify(project));}
         fs.mkdirSync(path.dirname(projectFile),{recursive:true});
         if(previous)fs.copyFileSync(projectFile,projectFile+'.bak');
         const temp=projectFile+'.tmp';fs.writeFileSync(temp,bytes);fs.renameSync(temp,projectFile);

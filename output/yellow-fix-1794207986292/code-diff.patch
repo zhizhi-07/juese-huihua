@@ -1,0 +1,153 @@
+diff --git a/output/yellow-fix-1794207986292/clothing-fit.js b/js/clothing-fit.js
+index b14eadb..33be13d 100644
+--- a/output/yellow-fix-1794207986292/clothing-fit.js
++++ b/js/clothing-fit.js
+@@ -71,6 +71,34 @@
+     for(const [key,c] of colors)if(painted.has(key)||!shade.has(key))shade.set(key,painted.has(key)?c:c.map(v=>Math.round(v*0.85)));
+     return shade;
+   }
++  function shadeIdle(body,image,scale,previous){
++    const {width,height,placement}=image,raw=new Uint8ClampedArray(image.data);
++    const rgb=(data,i)=>(data[i]<<16)|(data[i+1]<<8)|data[i+2];
++    const paint=(data,i,c)=>{data[i]=c>>16;data[i+1]=c>>8&255;data[i+2]=c&255;};
++    // Undo only our own unchanged shadow pixels before fitting other frames or shading again.
++    if(previous?.width===width&&previous.height===height)for(const [index,light,dark] of previous.pixels){
++      const i=index*4;if(raw[i+3]&&rgb(raw,i)===dark)paint(raw,i,light);
++    }
++    const data=new Uint8ClampedArray(raw),pixels=[],bottom=bounds(body).bottom,phases=Array.from({length:scale*scale},()=>[]);
++    for(let y=0;y<height;y++){
++      const by=Math.floor((placement?.y||0)+(y+0.5)/scale);
++      if(by<bottom-1||by>bottom)continue;
++      for(let x=0;x<width;x++){
++        const bx=Math.floor((placement?.x||0)+(x+0.5)/scale),at=(by*body.width+bx)*4;
++        if(bx>=0&&bx<body.width&&body.data[at+3]&&!outline(body,at))phases[y%scale*scale+x%scale].push({y,xs:[x],shadow:skinShadow(body,at)});
++      }
++    }
++    for(const region of phases){
++      const shades=fabricShades({width,data:raw},region);
++      for(const {y,xs:[x],shadow} of region){
++        const index=y*width+x,i=index*4;if(!shadow||!raw[i+3])continue;
++        const color=shades.get(raw.subarray(i,i+3).join());
++        const light=rgb(raw,i),dark=(color[0]<<16)|(color[1]<<8)|color[2];
++        if(light!==dark){paint(data,i,dark);pixels.push([index,light,dark]);}
++      }
++    }
++    return {raw,data,record:pixels.length?{width,height,pixels}:null};
++  }
+   function fromIdle(src,target,{sit=false,targetHead,shadeLegs=true}={}){
+     // shortcut: native16 fitted garments; sleeves and loose hems need their own attachment guides.
+     const cloth=src.clothes,out=blank(target.width,target.height);
+@@ -126,5 +154,5 @@
+     }
+     return out;
+   }
+-  return {warp,fit,fromIdle,feet,bounds};
++  return {warp,fit,fromIdle,shadeIdle,feet,bounds};
+ });
+diff --git a/output/yellow-fix-1794207986292/clothing-sync.js b/js/clothing-sync.js
+index 3e2edd4..df5a7a7 100644
+--- a/output/yellow-fix-1794207986292/clothing-sync.js
++++ b/js/clothing-sync.js
+@@ -17,6 +17,10 @@ window.PE=window.PE||{};
+       if(!isClothes(l)||!idle(p.spriteSheets[l.sheetIndex])||g.version!==1||typeof g.id!=='string'||!g.id||g.id.length>80||owners.has(g.id)||l.clothingSyncId!==g.id||typeof g.live!=='boolean'||!Array.isArray(g.preserved))throw Error('衣服同步设置无效');
+       const seen=new Set();for(const key of g.preserved){if(typeof key!=='string'||!/^\d+_\d+_\d+$/.test(key)||seen.has(key))throw Error('衣服保留帧无效');seen.add(key);const [si,ai,fi]=key.split('_').map(Number);if(!supported(p.spriteSheets[si])||!p.spriteSheets[si].actions[ai]?.frames[fi]||si===l.sheetIndex&&fi===0)throw Error('衣服保留帧不存在或是源稿');}owners.set(g.id,l);
+       if(g.sitMasters!==undefined&&(!Array.isArray(g.sitMasters)||g.sitMasters.length>3||new Set(g.sitMasters).size!==g.sitMasters.length||g.sitMasters.some(key=>{if(typeof key!=='string'||!/^\d+_\d+_0$/.test(key))return true;const [si,ai]=key.split('_').map(Number);return !sit(p.spriteSheets[si])||!p.spriteSheets[si].actions[ai]?.frames[0];})))throw Error('坐姿衣服首帧设置无效');
++      if(g.idleShadows!==undefined){
++        const keys=p.spriteSheets[l.sheetIndex].actions.map((_,ai)=>`${l.sheetIndex}_${ai}_0`),integer=(n,max)=>Number.isInteger(n)&&n>=0&&n<=max;
++        if(!g.idleShadows||Array.isArray(g.idleShadows)||typeof g.idleShadows!=='object'||Object.entries(g.idleShadows).some(([key,r])=>!keys.includes(key)||!r||!integer(r.width,1<<24)||!integer(r.height,1<<24)||!Array.isArray(r.pixels)||r.pixels.length>r.width*r.height||r.pixels.some(v=>!Array.isArray(v)||v.length!==3||!integer(v[0],r.width*r.height-1)||!integer(v[1],0xffffff)||!integer(v[2],0xffffff))))throw Error('待机衣服阴影设置无效');
++      }
+     }
+     for(const l of p.layers)if(l.clothingSyncId&&(!owners.has(l.clothingSyncId)||!isClothes(l)||!supported(p.spriteSheets[l.sheetIndex])))throw Error('衣服同步源稿丢失或关联层无效');
+   }
+@@ -56,8 +60,21 @@ window.PE=window.PE||{};
+     return image;
+   }
+   function plan(p,source,{includePreserved=false}={}){
+-    const g=source.clothingSync;if(!g)throw Error('请先选择待机衣服源稿');const sheet=p.spriteSheets[source.sheetIndex],sources=new Map(),edits=[];
+-    for(let ai=0;ai<sheet.actions.length;ai++){const key=p.getFrameKey(source.sheetIndex,ai,0),im=source.getFrameData(key);if(!hasInk(im))throw Error('请先画好待机正、背、侧各一帧');sources.set(sheet.actions[ai].direction,pattern(p,source.sheetIndex,ai,im));}
++    const g=source.clothingSync;if(!g)throw Error('请先选择待机衣服源稿');const sheet=p.spriteSheets[source.sheetIndex],sources=new Map(),edits=[],shadows={};
++    for(const [ai,action] of sheet.actions.entries()){
++      const key=p.getFrameKey(source.sheetIndex,ai,0),im=source.getFrameData(key);if(!hasInk(im))throw Error('请先画好待机正、背、侧各一帧');
++      let src=pattern(p,source.sheetIndex,ai,im);
++      const frame=action.frames[0],previous=g.idleShadows?.[key],make=data=>Object.assign(new ImageData(data,im.width,im.height),im.placement?{placement:{...im.placement}}:{});
++      const shaded=F.shadeIdle(src.body,im,src.scale,previous);
++      if(previous)src=pattern(p,source.sheetIndex,ai,make(shaded.raw));
++      if(frame.locked||frame.lockedRegions?.length){if(previous)shadows[key]=previous;}
++      else{
++        if(shaded.record)shadows[key]=shaded.record;
++        const image=make(shaded.data);
++        if(!same(im,image))edits.push({layer:source,key,image});
++      }
++      sources.set(action.direction,src);
++    }
+     const sitSheet=p.spriteSheets.findIndex(sit),seated=new Map();
+     if(sitSheet>=0)for(const [ai,a] of p.spriteSheets[sitSheet].actions.entries()){
+       const key=p.getFrameKey(sitSheet,ai,0);if(!g.sitMasters?.includes(key))continue;
+@@ -73,9 +90,9 @@ window.PE=window.PE||{};
+         const image=fitPattern(src,base(p,si,ai,fi,'body'),{sit:sitting,shadeLegs:!sitting,targetHead:sitting?base(p,si,ai,fi,'head'):null});
+         edits.push({layer:l,key,image});
+       }
+-    }return {edits,preserved:g.preserved.length,sitPending};
++    }return {edits,preserved:g.preserved.length,sitPending,source,shadows,shadowsChanged:JSON.stringify(g.idleShadows||{})!==JSON.stringify(shadows)};
+   }
+-  function apply(result){for(const e of result.edits)e.layer.frameData.set(e.key,e.image);return result;}
++  function apply(result){for(const e of result.edits)e.layer.frameData.set(e.key,e.image);if(result.shadowsChanged)result.source.clothingSync.idleShadows=result.shadows;return result;}
+   function setup(p,selected=p.getCurrentLayer()){
+     editable(selected);let source=master(p,selected);if(source){validate(p);return source;}
+     if(!idle(p.spriteSheets[selected.sheetIndex]))throw Error('首次同步请在待机选择衣服源稿');source=selected;
+@@ -102,7 +119,7 @@ window.PE=window.PE||{};
+     if(!linked&&!(/^(head|body)$/.test(l.name)&&supported(p.spriteSheets[l.sheetIndex])))continue;
+     for(const [k,im]of l.frameData){if(linked&&!k.endsWith('_0'))continue;for(const c of k)add(c.charCodeAt(0));for(const v of im.data)add(v);for(const c of JSON.stringify([im.width,im.height,im.placement||null]))add(c.charCodeAt(0));}
+   }return h+':'+JSON.stringify(s.clothingSync)+':'+JSON.stringify(p.spriteSheets.filter(supported).map(s=>s.actions.map(a=>a.frames.map(f=>[f.width,f.height,f.locked,f.lockedRegions]))))+':'+targets(p,s).map(l=>[p.layers.indexOf(l),l.locked]).join(';');}
+-  function refresh(p){const pending=[];for(const s of p.layers.filter(l=>l.clothingSync?.live&&l.visible)){const hash=stamp(p,s);if(cache.get(s)===hash)continue;const result=plan(p,s);result.edits=result.edits.filter(e=>{const [si,ai,fi]=e.key.split('_').map(Number);return !matches(e.layer.getFrameData(e.key),e.image,p.spriteSheets[si].actions[ai].frames[fi]);});pending.push({source:s,hash,result});}for(const item of pending){apply(item.result);cache.set(item.source,item.hash);}return pending.filter(item=>item.result.edits.length);}
++  function refresh(p){const pending=[];for(const s of p.layers.filter(l=>l.clothingSync?.live&&l.visible)){if(cache.get(s)===stamp(p,s))continue;const result=plan(p,s);result.edits=result.edits.filter(e=>{const [si,ai,fi]=e.key.split('_').map(Number);return !matches(e.layer.getFrameData(e.key),e.image,p.spriteSheets[si].actions[ai].frames[fi]);});pending.push({source:s,result});}for(const item of pending){apply(item.result);cache.set(item.source,stamp(p,item.source));}return pending.filter(item=>item.result.edits.length||item.result.shadowsChanged);}
+   function preserve(app){return transaction(app,'确认坐姿源稿 / 保留衣服当前帧',()=>{
+     const p=app.project,s=master(p);if(!s)throw Error('请先从待机源稿同步衣服');const key=p.getFrameKey(),g=s.clothingSync;
+     if(sitFirst(p)){
+diff --git a/output/yellow-fix-1794207986292/workbench.js b/js/workbench.js
+index 24aedee..0fcf6dc 100644
+--- a/output/yellow-fix-1794207986292/workbench.js
++++ b/js/workbench.js
+@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
+   const updateLayers=app.updateLayerList.bind(app);
+   app.updateLayerList=function(){
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
++    const used=l=>l.clothingSyncId||[...l.frameData.keys()].some(k=>k.startsWith(prefix));
++    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||used(l));
+     if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
+     updateLayers();
+     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
+@@ -31,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
+       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
+       if(PE.isProtectedHandLayer(l)&&!l.inheritedBase){row.remove();return;}
+       if(!PE.isLayerInAction(p,l)){row.remove();return;}
+-      const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-      const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
+       if (l.isGroup ? !p.layers.some(child=>child.parent===index && (used(child)||child===p.getCurrentLayer())) : l.parent!=null && !used(l) && index!==p.currentLayerIndex) {row.remove();return;}
+       const label=row.querySelector('.layer-name');label.textContent=(l.isGroup?'▾ ':'')+l.name;label.style.paddingLeft=(l.depth||0)*8+'px';
+       label.title='双击重命名（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动归位）';label.ondblclick=()=>{if(l.inheritedBase)return;const name=prompt('图层名称（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动分类归位）',l.name);if(name?.trim())app.renameLayer(index,name.trim());};
+diff --git a/output/yellow-fix-1794207986292/index.html b/index.html
+index 0cbe669..0995a65 100644
+--- a/output/yellow-fix-1794207986292/index.html
++++ b/index.html
+@@ -294,7 +294,7 @@
+   <script src="js/api.js?v=native16-wiring-20261104"></script>
+   <script src="js/aseprite.js"></script>
+   <script src="js/app.js?v=part-visibility-sync-2"></script>
+-  <script src="js/workbench.js?v=native16-wiring-20261104"></script>
++  <script src="js/workbench.js?v=blank-sit-clothing-20261109"></script>
+   <script src="js/local-bridge.js"></script>
+   <script src="js/persistence.js?v=manual-shared-save-2"></script>
+   <script src="js/builtin-packs.js"></script>
+@@ -324,8 +324,8 @@
+   <script src="js/workspace-layout.js?v=mono-reference-20261102"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+   <script src="js/hair-animation.js?v=no-rear-eyes-20261109"></script>
+-  <script src="js/clothing-fit.js?v=clothing-sit-masters-20261109"></script>
+-  <script src="js/clothing-sync.js?v=clothing-sit-masters-20261109"></script>
++  <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
++  <script src="js/clothing-sync.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-1"></script>
+ </body>
+ </html>

@@ -1,0 +1,76 @@
+node test/clothing-two-row-sync.cjs ../output/clothing-sync-20261109/clothing-fit.before.js
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: the lone right foot cannot take the left shoe
++ actual - expected
+... Skipped lines
+
+  [
+    [
+      0,
+      0,
+exit= (expected)
+node test/clothing-two-row-sync.cjs
+PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot and transparent hems
+exit=0
+node test/clothing-shadow.cjs
+PASS: preserve painted shadows; follow skin shadow; no red-channel-only classification (both fitting paths).
+exit=0
+node test/clothing-sync.cjs output/clothing-sync-20261109/legacy-fixture
+PASS clothing: 3 masters; 63 generated/preserved targets; base/geometry unchanged; atomic locks; undo/redo; live brush; manual keep/unkeep; PNG/config roundtrip; invalid config rejected.
+exit=0
+node output/clothing-sync-20261109/verify.cjs output/clothing-sync-20261109
+{
+  "counts": {
+    "original16_walk": 24,
+    "original16_idle": 12,
+    "original16_pickup": 18,
+    "original16_sit": 12
+  },
+  "newGenerated": 63,
+  "sourceFramesUnchanged": 3,
+  "beforeOK": 62,
+  "beforeErrors": [
+    [
+      "3_1_0",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_1",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_2",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_3",
+      "底稿为空或没有描边"
+    ]
+  ],
+  "legGaps": [],
+  "changed": 35,
+  "manualFramesModified": 0,
+  "baseLayersModified": 0,
+  "geometryPaletteAndFaceChecks": 66
+}
+exit=0
+SHA256 before/readback main API and original source backups
+
+Hash : EB2DDE18BC404F0FFAEADFB7AB3811B2476B4200CF4DBA610E59DE003FE5B05F
+Path : C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\before.json
+
+Hash : EB2DDE18BC404F0FFAEADFB7AB3811B2476B4200CF4DBA610E59DE003FE5B05F
+Path : C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\readback.json
+
+Hash : 8C7779FF1B423F62888B6BDF0AF39204273500DF269D746CD3C6F2B562D91C8A
+Path : C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\clothing-fit.before.js
+
+Hash : C63D04430CC573EBBAEB0CCE17EF8DCB2263918BBF8607AD83748528220A24B0
+Path : C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\clothing-sync.before.js
+
+Hash : 5E9E3412B7F92E25D9E4574CF8FA86D9405BE0CAB6332F5E871A0A654656E754
+Path : C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\index.before.html
+

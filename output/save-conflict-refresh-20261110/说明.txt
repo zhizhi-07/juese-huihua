@@ -1,0 +1,6 @@
+本次只修改保存冲突后的刷新恢复，不写真实工程。
+验证命令：node --check js/persistence.js；node --check test/save-conflict-browser.cjs；node test/save-conflict-browser.cjs。
+原版复现：修正测试夹具所需 scripts 路径后，旧代码刷新仍恢复旧 ETag。详见 before.log。
+改版验证：after.log、browser-result.json。隔离服务和 Edge 验证了普通打开、断线刷新、同版本刷新、冲突刷新、再次刷新和恢复后保存。
+本地归档：对应浏览器来源的 IndexedDB，pixel-workbench / projects，键为 <工程本地键>-conflict-<UUID>，值为 {blob, meta}。不会创建共享分支。
+恢复代码：按本目录三个 .diff 逆向核对，将 before 中对应源码和测试恢复至原位；若已有后续修改先合并。恢复代码不会删除浏览器归档或改工程。未操作用户前台。

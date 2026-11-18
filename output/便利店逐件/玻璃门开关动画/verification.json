@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "originalSHA256": "ed6aa30217c86125cb8ae52e1674acf40d5eb93497d76d52e98ddd4e30598330",
+  "newSHA256": "7f9569088b03c2665db8f4f2a0590e2f47bd2e6d18825126ee481275d04d8d9c",
+  "etag": "\"7f9569088b03c2665db8f4f2a0590e2f47bd2e6d18825126ee481275d04d8d9c\"",
+  "frames": 12,
+  "totalDurationMs": 2200,
+  "closedArtworkUnchanged": true,
+  "staticLayersUnchanged": true,
+  "otherSheetsUnchanged": true,
+  "verified": "玻璃门绕两侧铰链开至110°再合上；顶部木条静止；原闭合帧保留；逐帧时长和完整工程回读一致"
+}

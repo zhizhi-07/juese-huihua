@@ -1,0 +1,5 @@
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          2F5C48AD5B114AE8819A842C061E1ADF6150A67D76E1121048D5B218BFB5DA92       C:\Users\Administrator\Desktop\…
+

@@ -1,0 +1,1 @@
+PASS: reverse patch on copies restores all three original files byte for byte.

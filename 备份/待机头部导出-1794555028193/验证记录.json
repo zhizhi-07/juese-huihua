@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "file": "E:\\工作\\烟火\\素材-美术资产\\角色素材\\基础身体\\头部\\待机.png",
+  "frames": 12,
+  "size": [
+    68,
+    51
+  ],
+  "cell": [
+    17,
+    17
+  ],
+  "rows": [
+    "side",
+    "down",
+    "up"
+  ],
+  "sha256": "640d93c7cf54c5e7fe42902498d015b21623ce018c9d6c05089b7d1c01bc13f8",
+  "sourceUnchanged": true
+}

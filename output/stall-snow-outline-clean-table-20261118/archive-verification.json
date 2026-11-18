@@ -1,0 +1,41 @@
+{
+  "zip": "C:\\Users\\Administrator\\Desktop\\角色绘画\\导出\\小摊_六种静态形态_雪描边修正版_20261118.zip",
+  "count": 7,
+  "files": [
+    {
+      "name": "01_无雪_关门空台.png",
+      "bytes": 547,
+      "sha256": "034309E55B4B86FC3E114985854DAEABCC9E27F1CFCF510F9B4585A2BBD032B6"
+    },
+    {
+      "name": "02_无雪_开门空台.png",
+      "bytes": 538,
+      "sha256": "B7C8951655D0C0A19B9E924B621BBE6E3AC61C345DC5F87454C517A6AD473D8A"
+    },
+    {
+      "name": "03_无雪_开门摆货.png",
+      "bytes": 685,
+      "sha256": "E199690763BA4D70343E8656431BEEB42535708649172D6AC5EB7D086642CBD7"
+    },
+    {
+      "name": "04_有雪_关门空台.png",
+      "bytes": 798,
+      "sha256": "CD66A059D91B3FF86052CF24D5978462C1938691BEA726D9DAE0F31E828A9AC6"
+    },
+    {
+      "name": "05_有雪_开门空台.png",
+      "bytes": 768,
+      "sha256": "5028C47839BEF3791979DAF784588EC59FBADE4942449DA32C8BDE4A7805748F"
+    },
+    {
+      "name": "06_有雪_开门摆货.png",
+      "bytes": 925,
+      "sha256": "3E1B8FBECB4C34EB946EC87CB0971484B1DF168D57FFF8BC9E9065D3698046D2"
+    },
+    {
+      "name": "使用说明.txt",
+      "bytes": 612,
+      "sha256": "12621734632FFF2CD0F18A4A611659758906A3FD9421ECAECB644891F292E67C"
+    }
+  ]
+}

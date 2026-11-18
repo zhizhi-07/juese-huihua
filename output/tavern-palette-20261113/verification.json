@@ -1,0 +1,16 @@
+{
+  "putStatus": 200,
+  "putResponse": "{\"saved\":true,\"revision\":\"\\\"645af4dc91e77a66222cce2697812514e1ebc223116f10e534493f1f4ddf3e1d\\\"\"}",
+  "getStatus": 200,
+  "originalSHA256": "33efa43770fd441b8831d7f2a5cff6f5230a816cdd1a6712c1eb886d808a9b95",
+  "savedSHA256": "645af4dc91e77a66222cce2697812514e1ebc223116f10e534493f1f4ddf3e1d",
+  "savedETag": "\"645af4dc91e77a66222cce2697812514e1ebc223116f10e534493f1f4ddf3e1d\"",
+  "changedPixels": 8364,
+  "checks": [
+    "only hotel layer color data and project palette changed",
+    "all opaque output colors belong to supplied palette",
+    "dimensions and every pixel alpha unchanged",
+    "GET equals candidate; other layers and project structure unchanged"
+  ],
+  "restore": "GET current ETag; only if unchanged from savedETag PUT before.json with If-Match, else merge later edits first."
+}

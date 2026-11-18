@@ -1,0 +1,13 @@
+diff --git a/output/sit-eye-global-head-y-20261110/before/index.html b/index.html
+index 81e00ef..146b5e8 100644
+--- a/output/sit-eye-global-head-y-20261110/before/index.html
++++ b/index.html
+@@ -360,7 +360,7 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=sit-hair-sync-up-one-20261110"></script>
++  <script src="js/hair-animation.js?v=sit-eye-head-y-20261110"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>

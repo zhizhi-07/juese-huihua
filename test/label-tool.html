@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>素体部位标记工具</title>
+<style>
+  :root{
+    --bg:#12141b; --panel:#1a1d27; --panel2:#212531; --line:#2c3141;
+    --txt:#e2e6f0; --dim:#8a92a6; --dim2:#5f677a; --accent:#8fb4ff;
+    --cT:#4c9a6a; --cA:#d98a4c; --cB:#6c86d9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font:13px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  h1{font-size:17px;margin:0 0 6px;font-weight:600}
+  .sub{color:var(--dim);font-size:12.5px;margin:0 0 18px}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+    border-radius:9px;padding:5px 12px;font-size:12.5px;cursor:pointer}
+  .btn:hover{border-color:#3d4560}
+  .btn.on{background:#2b3b58;border-color:#4a6a9e;color:#cfe0ff}
+  .btn.small{padding:3px 9px;font-size:11.5px}
+  .lbl{color:var(--dim);font-size:12px;margin-right:2px}
+  #frames{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .thumb{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:5px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .thumb.on{border-color:var(--accent)}
+  .thumb canvas{display:block;image-rendering:pixelated}
+  .thumb span{font-size:10px;color:var(--dim)}
+  .main{display:flex;gap:20px;align-items:flex-start}
+  #stage{border:1px solid var(--line);border-radius:12px;background:#171a22;
+    cursor:crosshair;touch-action:none;display:block}
+  .side{flex:none;width:210px}
+  .pens{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+  .pen{display:flex;align-items:center;gap:9px;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+  .pen.on{border-color:var(--accent);background:#20293a}
+  .pen .sw{width:15px;height:15px;border-radius:4px;flex:none}
+  .pen .nm{font-size:12.5px}
+  .pen .hk{margin-left:auto;font-size:10px;color:var(--dim2)}
+  .info{color:var(--dim);font-size:11.5px;line-height:1.7}
+  .counts{margin-top:12px;font-size:11.5px;color:var(--dim)}
+  .counts b{color:var(--txt)}
+  #out{width:100%;height:130px;background:#0f1117;border:1px solid var(--line);
+    border-radius:10px;color:#b9c2d6;font:11.5px/1.5 ui-monospace,Menlo,monospace;padding:10px}
+  .msg{font-size:12px;color:var(--dim)}
+  .msg.err{color:#ff6fb5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>素体部位标记工具</h1>
+  <p class="sub">在素体上直接把每一格点成"身体 / 左腿 / 右腿"。算法不再自己找裆线，只按你标的查表。</p>
+
+  <div id="msg" class="msg">读取素体中…</div>
+  <div id="ui" style="display:none">
+    <div class="bar">
+      <span class="lbl">动作</span><span id="sheets"></span>
+      <span class="lbl" style="margin-left:14px">方向</span><span id="dirs"></span>
+    </div>
+    <div id="frames"></div>
+
+    <div class="main">
+      <canvas id="stage"></canvas>
+      <div class="side">
+        <div class="pens" id="pens"></div>
+        <div class="info">
+          左键涂当前部位，右键擦掉。<br>
+          数字键 1/2/3 切部位，0 或右键擦除。<br>
+          标完一帧可以"套用到本组其余帧"，再逐帧微调。
+        </div>
+        <div class="counts" id="counts"></div>
+        <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap">
+          <button class="btn small" id="applyAll">套用到本组其余帧</button>
+          <button class="btn small" id="clearFrame">清空本帧</button>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:7px;flex-wrap:wrap">
+          <button class="btn small" id="copyJson">复制标记 JSON</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="lbl" style="margin-bottom:6px">标记数据（可复制保存）</div>
+      <textarea id="out" readonly></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const S = 22;
+const LABELS = [
+  {id:1, name:'身体', color:'#4c9a6a'},
+  {id:2, name:'左腿', color:'#d98a4c'},
+  {id:3, name:'右腿', color:'#6c86d9'},
+];
+const OUTLINE=[70,70,94];
+
+/* ---------- 读主工程 ---------- */
+async function loadAll(){
+  const res=await fetch('/api/project?id=main',{cache:'no-store'});
+  if(!res.ok) throw new Error('接口 '+res.status);
+  const project=await res.json();
+  const frames={};
+  for(const layer of project.layers){
+    if(layer.name!=='body'||!layer.frameData) continue;
+    for(const [k,v] of Object.entries(layer.frameData)) frames[k]=v;
+  }
+  return {project, frames};
+}
+function decodeEntry(entry, sheet){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onerror=()=>reject(new Error('图片解码失败'));
+    img.onload=()=>{
+      const w=sheet.frameWidth, h=sheet.frameHeight;
+      const c=document.createElement('canvas'); c.width=w; c.height=h;
+      const g=c.getContext('2d',{willReadFrequently:true});
+      const pl=entry.placement||{x:0,y:0,w:img.width,h:img.height};
+      g.drawImage(img, pl.x||0, pl.y||0, pl.w||img.width, pl.h||img.height);
+      resolve(g.getImageData(0,0,w,h));
+    };
+    img.src=entry.dataURL;
+  });
+}
+
+/* ---------- 状态 ---------- */
+const store={};          // key -> Uint8Array
+let project=null, frames={}, sheetIdx=1, dirIdx=1, frameIdx=0, pen=1;
+let pixels=null;         // 当前帧 ImageData
+
+const canvas=document.getElementById('stage');
+const ctx=canvas.getContext('2d');
+
+function keyOf(){ return `${sheetIdx}_${dirIdx}_${frameIdx}`; }
+function labelsOf(key,w,h){
+  if(!store[key]) store[key]=new Uint8Array(w*h);
+  return store[key];
+}
+function saveLocal(){
+  try{
+    const obj={};
+    for(const [k,v] of Object.entries(store)){
+      const pts=[];
+      for(let i=0;i<v.length;i++) if(v[i]) pts.push([i%1000, Math.floor(i/1000), v[i]]);
+      if(pts.length) obj[k]=pts;
+    }
+    localStorage.setItem('bodyLabels:v1', JSON.stringify(obj));
+  }catch(e){}
+}
+function loadLocal(){
+  try{
+    const raw=localStorage.getItem('bodyLabels:v1'); if(!raw) return;
+    const obj=JSON.parse(raw);
+    for(const [k,pts] of Object.entries(obj)){
+      const si=Number(k.split('_')[0]);
+      const sh=project.spriteSheets[si]||project.spriteSheets[0];
+      const w=sh.frameWidth, h=sh.frameHeight;
+      const arr=new Uint8Array(w*h);
+      for(const [x,y,l] of pts){ const i=y*w+x; if(i>=0&&i<arr.length) arr[i]=l; }
+      store[k]=arr;
+    }
+  }catch(e){}
+}
+function lenOf(key,w,h){ return w*h; }
+
+/* ---------- 帧尺寸 ---------- */
+function sheetOf(i){ return project.spriteSheets[i]; }
+function dimsOf(){
+  const sh=sheetOf(sheetIdx);
+  return {w:sh.frameWidth, h:sh.frameHeight};
+}
+
+/* ---------- 渲染 ---------- */
+function drawPixels(){
+  const {w,h}=dimsOf();
+  canvas.width=w*S; canvas.height=h*S;
+  canvas.style.width=(w*S)+'px'; canvas.style.height=(h*S)+'px';
+  const g=ctx;
+  g.imageSmoothingEnabled=false;
+  g.fillStyle='#171a22'; g.fillRect(0,0,canvas.width,canvas.height);
+
+  const lab=labelsOf(keyOf(),w,h);
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const i=(y*w+x)*4, px=x*S, py=y*S;
+    const has=pixels && pixels.data[i+3]>0;
+    if(has){
+      const r=pixels.data[i], gg=pixels.data[i+1], b=pixels.data[i+2];
+      g.fillStyle=`rgb(${r},${gg},${b})`;
+      g.fillRect(px,py,S,S);
+    } else {
+      g.fillStyle='#1d212c'; g.fillRect(px,py,S,S);
+    }
+    const l = lab[y*w+x];
+    if(l && has){
+      const c = LABELS.find(k=>k.id===l);
+      g.globalAlpha=0.82; g.fillStyle=c.color; g.fillRect(px,py,S,S); g.globalAlpha=1;
+    }
+  }
+  g.strokeStyle='rgba(120,140,180,.16)';
+  for(let x=0;x<=w;x++){ g.beginPath(); g.moveTo(x*S+.5,0); g.lineTo(x*S+.5,h*S); g.stroke(); }
+  for(let y=0;y<=h;y++){ g.beginPath(); g.moveTo(0,y*S+.5); g.lineTo(w*S,y*S+.5); g.stroke(); }
+}
+function drawStage(){ drawPixels(); refreshChrome(); }
+function refreshChrome(){
+  const c=countsNow();
+  document.getElementById('counts').innerHTML =
+    `本帧已标 <b>${c.total}</b> 格 / 可标 <b>${c.ink}</b> 格<br>`+
+    `身体 <b>${c.a1}</b> · 左腿 <b>${c.a2}</b> · 右腿 <b>${c.a3}</b>`;
+  renderThumbs();
+  dumpJson();
+}
+function countsNow(){
+  const {w,h}=dimsOf(); const lab=labelsOf(keyOf(),w,h);
+  let ink=0,total=0,a1=0,a2=0,a3=0;
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+    const i=(y*w+x)*4;
+    if(pixels && pixels.data[i+3]>0){
+      ink++;
+      const l=lab[y*w+x];
+      if(l){ total++; if(l===1)a1++; else if(l===2)a2++; else if(l===3)a3++; }
+    }
+  }
+  return {ink,total,a1,a2,a3};
+}
+function renderThumbs(){
+  const box=document.getElementById('frames');
+  box.innerHTML='';
+  const sh=sheetOf(sheetIdx), act=sh.actions[dirIdx];
+  act.frames.forEach((f,fi)=>{
+    const d=document.createElement('div');
+    d.className='thumb'+(fi===frameIdx?' on':'');
+    const cv=document.createElement('canvas');
+    const {w,h}=dimsOf(); const T=3;
+    cv.width=w*T; cv.height=h*T; cv.style.width=(w*T)+'px'; cv.style.height=(h*T)+'px';
+    const lg=cv.getContext('2d');
+    lg.fillStyle='#12141b'; lg.fillRect(0,0,cv.width,cv.height);
+    const entry=frames[`${sheetIdx}_${dirIdx}_${fi}`];
+    if(entry){
+      const lab=store[`${sheetIdx}_${dirIdx}_${fi}`];
+      // 缩略图用缓存像素太重，这里只画标记分布
+      if(lab){
+        for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+          const l=lab[y*w+x]; if(!l) continue;
+          const c=LABELS.find(k=>k.id===l);
+          lg.fillStyle=c.color; lg.fillRect(x*T,y*T,T,T);
+        }
+      }
+    }
+    d.appendChild(cv);
+    const cap=document.createElement('span');
+    const lab=store[`${sheetIdx}_${dirIdx}_${fi}`];
+    let n=0; if(lab) for(let i=0;i<w*h;i++) if(lab[i]) n++;
+    cap.textContent='#'+fi+(n?' ●':' ○');
+    d.appendChild(cap);
+    d.onclick=()=>{ frameIdx=fi; loadFrame(); };
+    box.appendChild(d);
+  });
+}
+function dumpJson(){
+  const out={version:1, frames:{}};
+  for(const [k,v] of Object.entries(store)){
+    const pts=[];
+    for(let i=0;i<v.length;i++) if(v[i]) pts.push([i%1000, Math.floor(i/1000), v[i]]);
+    if(pts.length) out.frames[k]=pts;
+  }
+  document.getElementById('out').value=JSON.stringify(out);
+}
+
+/* ---------- 载入当前帧 ---------- */
+async function loadFrame(){
+  const {w,h}=dimsOf();
+  const key=keyOf();
+  if(!store[key]) store[key]=new Uint8Array(w*h);
+  const entry=frames[key];
+  if(!entry){ pixels=null; drawStage(); return; }
+  pixels=await decodeEntry(entry, sheetOf(sheetIdx));
+  drawStage();
+}
+
+/* ---------- 交互 ---------- */
+function cellAt(ev){
+  const rect=canvas.getBoundingClientRect();
+  const x=Math.floor((ev.clientX-rect.left)/S);
+  const y=Math.floor((ev.clientY-rect.top)/S);
+  return {x,y};
+}
+function paintAt(ev){
+  const {w,h}=dimsOf(); const {x,y}=cellAt(ev);
+  if(x<0||y<0||x>=w||y>=h) return;
+  const i=(y*w+x)*4;
+  if(!pixels || pixels.data[i+3]===0) return;
+  const lab=labelsOf(keyOf(),w,h);
+  lab[y*w+x]=pen;
+  drawPixels();
+}
+function eraseAt(ev){
+  const {w,h}=dimsOf(); const {x,y}=cellAt(ev);
+  if(x<0||y<0||x>=w||y>=h) return;
+  const lab=labelsOf(keyOf(),w,h);
+  lab[y*w+x]=0;
+  drawPixels();
+}
+let dragging=false, dragMode=0;
+canvas.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  dragging=true; dragMode = e.button===2 ? 0 : pen;
+  if(dragMode===0) eraseAt(e); else paintAt(e);
+  canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener('pointermove',e=>{
+  if(!dragging) return;
+  if(dragMode===0) eraseAt(e); else paintAt(e);
+});
+canvas.addEventListener('pointerup',()=>{ dragging=false; saveLocal(); drawStage(); });
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='1'){ pen=1; syncPens(); }
+  if(e.key==='2'){ pen=2; syncPens(); }
+  if(e.key==='3'){ pen=3; syncPens(); }
+  if(e.key==='0'){ pen=0; syncPens(); }
+});
+
+function syncPens(){
+  [...document.querySelectorAll('.pen')].forEach(p=>{
+    p.classList.toggle('on', Number(p.dataset.id)===pen);
+  });
+}
+
+/* ---------- 工具栏 ---------- */
+function buildPens(){
+  const box=document.getElementById('pens');
+  box.innerHTML='';
+  const all=[{id:1,name:'身体',color:'#4c9a6a',hk:'1'},{id:2,name:'左腿',color:'#d98a4c',hk:'2'},
+             {id:3,name:'右腿',color:'#6c86d9',hk:'3'},{id:0,name:'擦除',color:'#3a4054',hk:'0 / 右键'}];
+  for(const p of all){
+    const d=document.createElement('div');
+    d.className='pen'; d.dataset.id=p.id;
+    d.innerHTML=`<span class="sw" style="background:${p.color}"></span><span class="nm">${p.name}</span><span class="hk">${p.hk}</span>`;
+    d.onclick=()=>{ pen=p.id; syncPens(); };
+    box.appendChild(d);
+  }
+  syncPens();
+}
+function buildTop(){
+  const sb=document.getElementById('sheets');
+  sb.innerHTML='';
+  project.spriteSheets.forEach((sh,i)=>{
+    const b=document.createElement('button');
+    b.className='btn small'+(i===sheetIdx?' on':'');
+    b.textContent=sh.name.replace('original16_','');
+    b.onclick=()=>{ sheetIdx=i; dirIdx=Math.min(dirIdx, sh.actions.length-1); frameIdx=0; buildTop(); loadFrame(); };
+    sb.appendChild(b);
+  });
+  const db=document.getElementById('dirs');
+  db.innerHTML='';
+  sheetOf(sheetIdx).actions.forEach((a,i)=>{
+    const b=document.createElement('button');
+    b.className='btn small'+(i===dirIdx?' on':'');
+    const nm={side:'侧面',down:'正面',up:'背面'}[a.direction]||a.direction;
+    b.textContent=nm+' ('+a.frames.length+')';
+    b.onclick=()=>{ dirIdx=i; frameIdx=0; buildTop(); loadFrame(); };
+    db.appendChild(b);
+  });
+}
+
+document.getElementById('applyAll').onclick=()=>{
+  const {w,h}=dimsOf();
+  const src=store[keyOf()];
+  if(!src){ alert('这一帧还没标'); return; }
+  const act=sheetOf(sheetIdx).actions[dirIdx];
+  let n=0;
+  act.frames.forEach((f,fi)=>{
+    if(fi===frameIdx) return;
+    const k=`${sheetIdx}_${dirIdx}_${fi}`;
+    if(!store[k]) store[k]=new Uint8Array(w*h);
+    store[k].set(src.subarray(0,w*h));
+    n++;
+  });
+  saveLocal(); renderThumbs(); dumpJson();
+  alert('已套用到本组另外 '+n+' 帧（形状有差就逐帧微调）');
+};
+document.getElementById('clearFrame').onclick=()=>{
+  const {w,h}=dimsOf();
+  store[keyOf()]=new Uint8Array(w*h);
+  saveLocal(); drawStage();
+};
+document.getElementById('copyJson').onclick=async()=>{
+  const t=document.getElementById('out');
+  try{ await navigator.clipboard.writeText(t.value); alert('已复制'); }
+  catch(e){ t.select(); document.execCommand&&document.execCommand('copy'); alert('已复制'); }
+};
+
+/* ---------- 启动 ---------- */
+(async function(){
+  try{
+    const r=await loadAll();
+    project=r.project; frames=r.frames;
+    if(!project.spriteSheets.length) throw new Error('工程里没有 spriteSheet');
+    loadLocal();
+    // 默认打开正面待机
+    let s=project.spriteSheets.findIndex(x=>x.name.includes('idle'));
+    sheetIdx = s>=0? s : 0;
+    dirIdx = sheetOf(sheetIdx).actions.findIndex(a=>a.direction==='down');
+    if(dirIdx<0) dirIdx=0;
+    frameIdx=0;
+    document.getElementById('ui').style.display='';
+    document.getElementById('msg').textContent='素体帧共 '+Object.keys(frames).length+' 张，标记会自动存在本机浏览器里。';
+    buildPens(); buildTop();
+    await loadFrame();
+  }catch(e){
+    document.getElementById('msg').innerHTML='<span class="err">读取失败：'+e.message+'</span>';
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>

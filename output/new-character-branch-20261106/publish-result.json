@@ -1,0 +1,26 @@
+{
+ "branch": "character-682ea651-ce3e-45b6-bdf2-23c5a6766e6e",
+ "name": "人物 · 雾紫短发与薄荷背带裙",
+ "etag": "\"76bcf25b3461858b1e693dc981e31d0a71fe3b29d729b92b7b5088be90fb4088\"",
+ "stageEtags": [
+  "\"8dd15f2dcc3c08ff78a47121a2bd39075c59916451c43f94430ec43d2d1dc3c1\"",
+  "\"76bcf25b3461858b1e693dc981e31d0a71fe3b29d729b92b7b5088be90fb4088\""
+ ],
+ "mainEtag": "\"7cf7a936ac816fd59df8d6832988df6350485132af5b415f377b5b99cb3aeec4\"",
+ "layers": 91,
+ "frames": [
+  "original16_walk 19x19 side×8 down×8 up×8",
+  "original16_idle 19x19 side×4 down×4 up×4",
+  "original16_pickup 25x22 side×6 down×6 up×6",
+  "original16_sit 19x19 side×4 down×4 up×4"
+ ],
+ "newLayerFrames": {
+  "头发 / 云雾 / 后发": 66,
+  "头发 / 云雾 / 前发": 66,
+  "发饰 / 粉色发带": 66,
+  "服装 / 薄荷背带裙": 66
+ },
+ "canvasShift": [
+  "0,0"
+ ]
+}

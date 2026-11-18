@@ -1,0 +1,8 @@
+本轮只修改 js/canvas.js、js/app.js 的缩放逻辑，未写入工程。
+滚轮按鼠标位置换算画布坐标，缩放前后保持指向位置；工具栏按钮仍按视图中心缩放。
+node test/mouse-zoom.cjs --before：退出 1，原版未保持鼠标锚点。
+node test/mouse-zoom.cjs：退出 0；覆盖 CSS 尺寸缩放、画布平移、放大缩小、边角、小数坐标、1–64 上下限、零滚动量和按钮默认中心。
+node test/space-pan.cjs、node test/alt-eyedropper.cjs：均退出 0。
+node --check js/app.js、node --check js/canvas.js：均退出 0。
+未实测真实浏览器滚轮，未刷新前台。
+恢复：app.before.js 和 canvas.before.js 为本轮原始代码；恢复前确认无后续改动，否则先合并。

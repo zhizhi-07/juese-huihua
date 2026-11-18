@@ -409,6 +409,7 @@ window.PE = window.PE || {};
         const sheetData = {
           sourceFormat: sheet.sourceFormat, sourceBytes: sheet.sourceBytes,
           canvasLayout: sheet.canvasLayout,
+          copiedFromIdle: sheet.copiedFromIdle,
           name: sheet.name || '',
           frameWidth: sheet.frameWidth || 32,
           frameHeight: sheet.frameHeight || 32,
@@ -593,6 +594,7 @@ window.PE = window.PE || {};
 
         sheet.sourceFormat=sData.sourceFormat; sheet.sourceBytes=sData.sourceBytes;
         sheet.canvasLayout=sData.canvasLayout;
+        if(sData.copiedFromIdle===true)sheet.copiedFromIdle=true;
         sheet.name = sData.name || `图集_${si}`;
         sheet.image = img;
         sheet.imageData = sheetImageData;

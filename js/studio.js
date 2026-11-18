@@ -40,6 +40,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const sources=$('sheet-list').closest('section');sources.querySelector('h3').textContent='动作素材';
   const libraryNote=node('p','section-caption','六套原始动作 · 图层完整保留');sources.querySelector('.section-header').after(libraryNote);
+  const addAction=button('＋ 新建动作',()=>{
+    try{
+      if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
+      const name=prompt('新动作名称（复制当前工程待机的全部方向、帧和图层，手部可独立调整）');if(name===null)return;
+      const si=PE.addCharacterAction(app.project,name);
+      app.animationPlayer.pause();app.toolManager.clearSelection();app.selectSheet(si);app.persistence.markDirty();
+    }catch(error){alert(error.message);}
+  });addAction.title='复制当前待机，保留独立手部图层；不修改原动作';libraryNote.after(addAction);
   const addMaterial=button('＋ 新建素材',()=>{
     try{
       if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
@@ -51,6 +59,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       app.selectSheet(si);app.persistence.markDirty();
     }catch(error){alert(error.message);}
   });addMaterial.hidden=true;sources.querySelector('.section-header').after(addMaterial);
+  const renameMaterial=button('重命名素材',()=>{
+    try{
+      if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
+      const p=app.project,si=p.currentSheetIndex;
+      const name=prompt('重命名当前素材',p.getCurrentSheet().name);
+      if(name===null||!PE.renameSceneMaterial(p,si,name))return;
+      app.updateSheetList();app.updateStatusBar();app.persistence.markDirty();
+    }catch(error){alert(error.message);}
+  });renameMaterial.hidden=true;addMaterial.after(renameMaterial);
   const directionList=$('action-list');
   const left=$('left-sidebar');left.replaceChildren(sources);
   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
@@ -111,6 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const directionNames={down:'正面',side:'侧面',up:'背面',left:'向左',right:'向右',none:'当前方向'};
 
   app.updateSheetList=function(){const list=$('sheet-list');list.replaceChildren();
+    const scene=PE.isSceneProject(this.project);
     const hasCommon=this.project.spriteSheets.some(s=>commonActions.some(([name])=>name===s.name));
     const originals=new Set(window.PE_BUILTIN_PACKS.map(p=>p.name.replace('.aseprite','')));
     const archive=node('details','source-archive');archive.append(node('summary','','原始动作备份'));
@@ -120,13 +138,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     items.forEach(({s,i})=>{
     if(!PE.isEditorSheet(s))return;
     const b=button('',()=>this.selectSheet(i),'sheet-item'+(i===this.project.currentSheetIndex?' active':''));
-    const icon=node('span','sheet-icon','▤'),text=node('span','sheet-copy');text.append(node('strong','',names.get(s.name)||s.name),node('small','',s.actions.length+' 个方向 · '+s.getTotalFrames()+' 帧'));b.append(icon,text);
+    const icon=node('span','sheet-icon','▤'),text=node('span','sheet-copy');text.append(node('strong','',(!scene&&names.get(s.name))||s.name),node('small','',s.actions.length+' 个方向 · '+s.getTotalFrames()+' 帧'));b.append(icon,text);
     if(hasCommon&&originals.has(s.name)){archive.append(b);archived++;if(i===this.project.currentSheetIndex)archive.open=true;}else{list.append(b);visible++;}
   });if(archived){archive.firstElementChild.textContent='原始动作备份 · '+archived+' 套';list.append(archive);}
-    const scene=PE.isSceneProject(this.project);addMaterial.hidden=!scene;
+    addMaterial.hidden=!scene;
+    addAction.hidden=scene;
+    renameMaterial.hidden=!scene||!this.project.getCurrentSheet()||this.project.getCurrentSheet().name==='场景画布';
     sources.querySelector('h3').textContent=scene?'场景素材':'动作素材';
     libraryNote.textContent=scene?'每件素材独立画布、图层与动画帧':visible+' 套常用动作 · 手部独立保留';
-    if(scene)guide.innerHTML='<strong>从这里开始</strong><p>新建床、台灯等素材，点击名称切换绘画；右侧可加图层，下方可复制整帧制作动画。</p><span>素材不会自动摆入场景，可复制后粘贴到场景画布。</span>';
+    if(scene)guide.innerHTML='<strong>从这里开始</strong><p>新建床、台灯等素材，点击名称切换绘画；右侧可加图层，下方“帧操作”可复制整帧制作动画。</p><span>素材不会自动摆入场景，可复制后粘贴到场景画布。</span>';
   };
   app.updateActionList=function(){const list=$('action-list');list.replaceChildren();this.project.getCurrentSheet()?.actions.forEach((a,i)=>{const b=button(directionNames[a.direction]||a.name,()=>this.selectAction(i),'direction-tab'+(i===this.project.currentActionIndex?' active':''));b.setAttribute('aria-pressed',i===this.project.currentActionIndex?'true':'false');list.append(b);});};
   function bounds(image) {let x0=image.width,y0=image.height,x1=-1,y1=-1;for(let y=0;y<image.height;y++)for(let x=0;x<image.width;x++)if(image.data[(y*image.width+x)*4+3]){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}return x1<0?null:{x:x0,y:y0,w:x1-x0+1,h:y1-y0+1};}
@@ -134,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const frameList=app.updateFrameList.bind(app);app.updateFrameList=function(){frameList();const p=this.project;[...$('frame-list').querySelectorAll('canvas')].forEach((c,i)=>{const scale=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,i),image=this.canvasManager.getCompositeImageData(p.currentSheetIndex,p.currentActionIndex,i,!this.canvasManager.hideHands,scale);if(image)paintThumbnail(c,image);});};
   const layerList=app.updateLayerList.bind(app);app.updateLayerList=function(){layerList();for(const label of $('layer-list').querySelectorAll('.layer-name')){const original=label.textContent;label.textContent=original.includes('衣服与发型')?'衣服与发型':({'head':'头部','body':'身体','vfx':'特效','▾ down':'▾ 正面分组','▾ side':'▾ 侧面分组','▾ up':'▾ 背面分组'}[original]||original);}
     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';handList.replaceChildren();for(const l of p.layers){if(!PE.isHandLayer(l)||l.sheetIndex!==p.currentSheetIndex||![...l.frameData.keys()].some(k=>k.startsWith(prefix)))continue;handList.append(node('span','hand-name',l.name));}if(!handList.children.length)handList.append(node('span','hand-name','此动作无独立手层'));};
-  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
+  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=((!PE.isSceneProject(p)&&names.get(s?.name))||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
   function focusCharacter(){const p=app.project,cm=app.canvasManager,density=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex,6),image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands,density);if(!image)return;const raw=bounds(image);if(!raw){cm.centerView();return;}const box={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
   app.canvasManager.hideHands=!handCheckbox.checked;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
   handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updatePalette();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};

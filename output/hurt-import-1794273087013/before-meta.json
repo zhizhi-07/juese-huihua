@@ -1,0 +1,8 @@
+{
+  "url": "http://127.0.0.1:8765/api/project?id=draft-conflict-1794271316087-dc54567c",
+  "etag": "\"15ae6f4a6802e5a305f2f000ee78a87db9c769d6e624c7278e64eea7f937def4\"",
+  "beforeSHA256": "15ae6f4a6802e5a305f2f000ee78a87db9c769d6e624c7278e64eea7f937def4",
+  "candidateSHA256": "dd6c5feb4019294863195ea94764a77a2f669decd3a339451ef592417a0ee7d3",
+  "sourceSHA256": "e6a61df3e46b9843d34c67f6873290caf50ec020142d1b610ec0fc5cfb1f7854",
+  "source": "output/hair-reference-20261104/project.json"
+}

@@ -1,0 +1,88 @@
+{
+  "canvas": [
+    16,
+    17
+  ],
+  "overallDown": 1,
+  "originalFirstPosePreserved": true,
+  "currentNonArmCelsOnlyTranslated": true,
+  "otherDataUnchanged": true,
+  "clipped": 0,
+  "stats": [
+    {
+      "direction": "side",
+      "motion": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        }
+      ]
+    },
+    {
+      "direction": "down",
+      "motion": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        }
+      ]
+    },
+    {
+      "direction": "up",
+      "motion": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": -1,
+          "duration": 100
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "duration": 100
+        }
+      ]
+    }
+  ]
+}

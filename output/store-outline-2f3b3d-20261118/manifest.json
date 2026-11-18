@@ -1,0 +1,260 @@
+{
+  "root": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店",
+  "records": [
+    {
+      "file": "柜子.png",
+      "sheet": 0,
+      "action": 0,
+      "trim": [
+        4,
+        13,
+        28,
+        42
+      ],
+      "width": 288,
+      "height": 29,
+      "frames": 12,
+      "changed": true,
+      "beforeSHA256": "be08cfb031f120ba0f0e5d0b5c58a20d55fe4deaa3b48aaba33bbac1358845cc",
+      "afterSHA256": "886a0ba4a389f35c53e873a1384ff2e252f157248cb878f7c52341379062df69"
+    },
+    {
+      "file": "现代柜子.png",
+      "sheet": 5,
+      "action": 0,
+      "trim": [
+        4,
+        13,
+        28,
+        42
+      ],
+      "width": 288,
+      "height": 29,
+      "frames": 12,
+      "changed": true,
+      "beforeSHA256": "530d4155cdc0806f943ea51ee3dc4a621fc1328b03c34fb3e9fb32f454a8d61d",
+      "afterSHA256": "48e3961d228922bf8c979e80cc5e98982d2b34c43331b402e759632d90b034a4"
+    },
+    {
+      "file": "冰柜.png",
+      "sheet": 6,
+      "action": 0,
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "width": 160,
+      "height": 14,
+      "frames": 8,
+      "changed": true,
+      "beforeSHA256": "04c8fdafd9b26c92a6162cbedc433330421f543fa61adfcfa71d0e40d2815710",
+      "afterSHA256": "73be3871e343e4884176f58b95fe2592f679d9c8dc63ce538d7e0d8d64ffbfb5"
+    },
+    {
+      "file": "木绿收银台-正面-桌子电脑.png",
+      "sheet": 1,
+      "action": 0,
+      "trim": [
+        2,
+        11,
+        30,
+        28
+      ],
+      "width": 28,
+      "height": 17,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "6d724a46ce69f0c059f9a980dfceb3934259caeb71aa661d29e7ac44b4150aac",
+      "afterSHA256": "b34a58615bc50dd564cc8fc4a6480307d91bc76d02fb32b1e42f92410d1d58bf"
+    },
+    {
+      "file": "木绿收银台-正面-椅子.png",
+      "sheet": 1,
+      "action": 0,
+      "trim": [
+        7,
+        3,
+        16,
+        17
+      ],
+      "width": 9,
+      "height": 14,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "9b1107b7e0f0520b2aa36af66b0fd3e5c0a333f807cfbafd87d0ac2f24df1e37",
+      "afterSHA256": "8a3eca8a0c0ae3f2d8423afc703275941768182930bbf1c8e33d7b0aad7eed68"
+    },
+    {
+      "file": "木绿收银台-右侧面-桌子电脑.png",
+      "sheet": 1,
+      "action": 1,
+      "trim": [
+        17,
+        2,
+        32,
+        35
+      ],
+      "width": 15,
+      "height": 33,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "c00629d42f1e1d87359cbebd161c0ecee622033113ceb8b2facc61f4e5cf2226",
+      "afterSHA256": "ef49d1b694f297231a190aa7f59748338d56416c9b22f120bbc41a9da401b050"
+    },
+    {
+      "file": "木绿收银台-右侧面-椅子.png",
+      "sheet": 1,
+      "action": 1,
+      "trim": [
+        5,
+        15,
+        16,
+        31
+      ],
+      "width": 11,
+      "height": 16,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "4c8accb413bdf2fa3933575283bcebbdea9e2aaf9e262df5cbcea9fad9f9ae60",
+      "afterSHA256": "46274a8ce42a76da3828cad4aec05656174ef7de8aa559b8fc6d84e808c29675"
+    },
+    {
+      "file": "包子蒸柜.png",
+      "sheet": 3,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "width": 24,
+      "height": 24,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "34bc89799d33b586ad9ea167513e85f155a17ed492944fcf8a78acc39c5eaeb2",
+      "afterSHA256": "a7338024670b59a2de7db6f108a0eaa20c8c57874a42cf41da3a56bee7b84981"
+    },
+    {
+      "file": "零食架.png",
+      "sheet": 13,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        16,
+        32
+      ],
+      "width": 16,
+      "height": 32,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "436150e666e894e628bc494de43c59b1bfc420dfdf8e71158a40c5bb17e684d1",
+      "afterSHA256": "c416c6ec40725c4a0272519573819a9cb97ecaeb50d7f28ae9c77d0c01857d86"
+    },
+    {
+      "file": "三张海报.png",
+      "sheet": 11,
+      "action": 0,
+      "trim": [
+        2,
+        1,
+        19,
+        15
+      ],
+      "width": 17,
+      "height": 14,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "213020f62a887952945318dd95c5fccf523a60ddbca21df7c8f6edb9c650733a",
+      "afterSHA256": "345b53b0f2ae8014e95251928d061b77f6aad1d4ceb82e693a5d578f96844672"
+    },
+    {
+      "file": "壁挂烟架.png",
+      "sheet": 12,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        22,
+        24
+      ],
+      "width": 22,
+      "height": 24,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "67b223cb9fd8b67289a6c453b1e5ecbbca4107cea6028649c3b4d00969a850dd",
+      "afterSHA256": "6f2a18759ace2857a0f967778533e0a07ac10cfcce97573f50d8d43924c6fc17"
+    },
+    {
+      "file": "烟架.png",
+      "sheet": 12,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        22,
+        24
+      ],
+      "width": 22,
+      "height": 24,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "67b223cb9fd8b67289a6c453b1e5ecbbca4107cea6028649c3b4d00969a850dd",
+      "afterSHA256": "6f2a18759ace2857a0f967778533e0a07ac10cfcce97573f50d8d43924c6fc17"
+    },
+    {
+      "file": "冷柜-裁选.png",
+      "sheet": 14,
+      "action": 0,
+      "trim": [
+        1,
+        1,
+        14,
+        12
+      ],
+      "width": 13,
+      "height": 11,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "6b481fb5afe4786bd65e6762c67f13947e6759e1d637caa80e2af5eba7a71325",
+      "afterSHA256": "23e47f4c2fe52e6854b952babdb9e43e54492b4a4182e0d4e84e3fcb93d1f4f1"
+    },
+    {
+      "file": "地毯.png",
+      "sheet": 16,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        24,
+        16
+      ],
+      "width": 24,
+      "height": 16,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "6f0364291fe24583439a1845d50429edafaee7bb4c2585df608f055fd4f23a05",
+      "afterSHA256": "600b251535125bdbfae9ceb71652fb85e86e00672f4e2c6e15254a62403d3671"
+    },
+    {
+      "file": "墙壁_浅暖灰_16x16.png",
+      "sheet": 17,
+      "action": 0,
+      "trim": [
+        0,
+        0,
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16,
+      "frames": 1,
+      "changed": true,
+      "beforeSHA256": "aea73d9cee048cb4bf8c40367559ed735d805fc13ea0be16de7d63775f9df850",
+      "afterSHA256": "92f17ba8756ee769969867480c9abd7304cbfc1ebe104c6d929a92c190923d5d"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+仅当当前API ETag仍等于verification.json中的etag时，用该ETag按读写约定PUT before.json并回读核对；如有后续修改则先合并，不盲目覆盖。

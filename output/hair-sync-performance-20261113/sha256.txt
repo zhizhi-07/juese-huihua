@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : 663D165A6712D6552FCDAF34CCBD520A72F89917D383129BAEC7E546F7975231
+Path      : C:\Users\Administrator\Desktop\角色绘画\output\hair-sync-performance-20261113\hair-animation.original.js
+
+Algorithm : SHA256
+Hash      : 19F3AFD425495559607A2C335C11C346BE752F1D3E59A1F76FEC198B6C3B1C2F
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\hair-animation.js
+

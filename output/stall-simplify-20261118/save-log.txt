@@ -1,0 +1,13 @@
+{
+  put: 200,
+  get: 200,
+  groups: 7,
+  objectLayers: 11,
+  canvas: [ 64, 64 ],
+  originalLayersUnchanged: true,
+  metadataUnchanged: true,
+  noGroundOrStreetBackground: true,
+  readbackEqualsCandidate: true,
+  beforeSha256: '48fbf0c9e70e2a00ce0d5acc784c6dadcdd3e9d8b3be92c1337f902ac1240df5',
+  afterSha256: '36eb2da52d0a2aa7e10f2dc0e98849d92b40d0411d6b5a228e55849c9e249f97'
+}

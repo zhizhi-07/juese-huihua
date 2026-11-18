@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "putStatus": 200,
+  "getStatus": 200,
+  "checkedNontransparentPixels": 68022,
+  "colorCount": 174,
+  "beforeSHA256": "b3d701329613234efe7a970735060e47b93b077212c1f9023791bbad8851f1cf",
+  "afterSHA256": "2ab7e08df8599d8e8aff7f1a329806812446cb90cc949595d213baa6e9e5f8d7",
+  "etag": "\"2ab7e08df8599d8e8aff7f1a329806812446cb90cc949595d213baa6e9e5f8d7\"",
+  "geometryAlphaTimingUnchanged": true
+}

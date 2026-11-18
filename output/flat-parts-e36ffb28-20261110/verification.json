@@ -1,0 +1,22 @@
+{
+  "project": "人物分支 · 衣服发型眼睛",
+  "url": "http://localhost:8765/api/project?id=draft-conflict-1794277219868-e36ffb28",
+  "etag": "\"f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c\"",
+  "sha256": "f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c",
+  "dest": "C:\\Users\\Administrator\\Desktop\\角色绘画\\导出\\人物分支-e36ffb28-眼睛前发后发衣服.zip",
+  "files": 82,
+  "categories": {
+    "衣服": 6,
+    "眼睛": 16,
+    "后发": 36,
+    "前发": 24
+  },
+  "variants": {
+    "衣服": 3,
+    "眼睛": 7,
+    "后发": 11,
+    "前发": 7
+  },
+  "sha256Zip": "9e2ce29b3315d1247e8ca8d0db255c8e9bf2c62e1477f75b04f2b27e09472104",
+  "projectUnchanged": true
+}

@@ -1,0 +1,166 @@
+diff --git a/output/scene-material-rename-20261109/before/js/scene-materials.js b/js/scene-materials.js
+index d088a3b..a6fc3fa 100644
+--- a/output/scene-material-rename-20261109/before/js/scene-materials.js
++++ b/js/scene-materials.js
+@@ -1,11 +1,24 @@
+ window.PE=window.PE||{};
+ PE.isSceneProject=p=>p.spriteSheets.some(s=>s.name==='场景画布')&&!p.spriteSheets.some(PE.isCharacterSheet);
++function sceneMaterialName(p,name,index=-1){
++  if(typeof name!=='string'||!name.trim()||name.trim().length>40)throw new Error('素材名称需要1到40个字');
++  name=name.trim();
++  if(p.spriteSheets.some((s,i)=>i!==index&&s.name===name))throw new Error('已有同名素材，请换一个名称');
++  if(name==='场景画布'||PE.isCharacterSheet({name})||!PE.isEditorSheet({name}))throw new Error('这是工程保留名称，请换一个名称');
++  return name;
++}
++PE.renameSceneMaterial=function(p,index,name){
++  const sheet=p.spriteSheets[index];
++  if(!PE.isSceneProject(p)||!sheet||sheet.name==='场景画布')throw new Error('请选择要重命名的场景素材');
++  name=sceneMaterialName(p,name,index);
++  if(sheet.name===name)return false;
++  sheet.name=name;
++  return true;
++};
+ PE.addSceneMaterial=function(p,name,width,height){
+   if(!PE.isSceneProject(p))throw new Error('请在场景工程中新建素材');
+-  if(typeof name!=='string'||!name.trim()||name.trim().length>40)throw new Error('素材名称需要1到40个字');
++  name=sceneMaterialName(p,name);
+   if(![width,height].every(n=>Number.isSafeInteger(n)&&n>=1&&n<=1024))throw new Error('宽高需要是1到1024的整数');
+-  name=name.trim();
+-  if(p.spriteSheets.some(s=>s.name===name))throw new Error('已有同名素材，请换一个名称');
+   const si=p.spriteSheets.length,sheet=new PE.SpriteSheet(name),action=new PE.Action('画面','none');
+   sheet.frameWidth=width;sheet.frameHeight=height;
+   action.frames.push(new PE.Frame(si,0,0,width,height));sheet.actions.push(action);
+diff --git a/output/scene-material-rename-20261109/before/js/studio.js b/js/studio.js
+index 4c11421..1bf1d8e 100644
+--- a/output/scene-material-rename-20261109/before/js/studio.js
++++ b/js/studio.js
+@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', async () => {
+       app.selectSheet(si);app.persistence.markDirty();
+     }catch(error){alert(error.message);}
+   });addMaterial.hidden=true;sources.querySelector('.section-header').after(addMaterial);
++  const renameMaterial=button('重命名素材',()=>{
++    try{
++      if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
++      const p=app.project,si=p.currentSheetIndex;
++      const name=prompt('重命名当前素材',p.getCurrentSheet().name);
++      if(name===null||!PE.renameSceneMaterial(p,si,name))return;
++      app.updateSheetList();app.updateStatusBar();app.persistence.markDirty();
++    }catch(error){alert(error.message);}
++  });renameMaterial.hidden=true;addMaterial.after(renameMaterial);
+   const directionList=$('action-list');
+   const left=$('left-sidebar');left.replaceChildren(sources);
+   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
+@@ -111,6 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const directionNames={down:'正面',side:'侧面',up:'背面',left:'向左',right:'向右',none:'当前方向'};
+ 
+   app.updateSheetList=function(){const list=$('sheet-list');list.replaceChildren();
++    const scene=PE.isSceneProject(this.project);
+     const hasCommon=this.project.spriteSheets.some(s=>commonActions.some(([name])=>name===s.name));
+     const originals=new Set(window.PE_BUILTIN_PACKS.map(p=>p.name.replace('.aseprite','')));
+     const archive=node('details','source-archive');archive.append(node('summary','','原始动作备份'));
+@@ -120,10 +130,11 @@ document.addEventListener('DOMContentLoaded', async () => {
+     items.forEach(({s,i})=>{
+     if(!PE.isEditorSheet(s))return;
+     const b=button('',()=>this.selectSheet(i),'sheet-item'+(i===this.project.currentSheetIndex?' active':''));
+-    const icon=node('span','sheet-icon','▤'),text=node('span','sheet-copy');text.append(node('strong','',names.get(s.name)||s.name),node('small','',s.actions.length+' 个方向 · '+s.getTotalFrames()+' 帧'));b.append(icon,text);
++    const icon=node('span','sheet-icon','▤'),text=node('span','sheet-copy');text.append(node('strong','',(!scene&&names.get(s.name))||s.name),node('small','',s.actions.length+' 个方向 · '+s.getTotalFrames()+' 帧'));b.append(icon,text);
+     if(hasCommon&&originals.has(s.name)){archive.append(b);archived++;if(i===this.project.currentSheetIndex)archive.open=true;}else{list.append(b);visible++;}
+   });if(archived){archive.firstElementChild.textContent='原始动作备份 · '+archived+' 套';list.append(archive);}
+-    const scene=PE.isSceneProject(this.project);addMaterial.hidden=!scene;
++    addMaterial.hidden=!scene;
++    renameMaterial.hidden=!scene||!this.project.getCurrentSheet()||this.project.getCurrentSheet().name==='场景画布';
+     sources.querySelector('h3').textContent=scene?'场景素材':'动作素材';
+     libraryNote.textContent=scene?'每件素材独立画布、图层与动画帧':visible+' 套常用动作 · 手部独立保留';
+     if(scene)guide.innerHTML='<strong>从这里开始</strong><p>新建床、台灯等素材，点击名称切换绘画；右侧可加图层，下方“帧操作”可复制整帧制作动画。</p><span>素材不会自动摆入场景，可复制后粘贴到场景画布。</span>';
+@@ -134,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
+   const frameList=app.updateFrameList.bind(app);app.updateFrameList=function(){frameList();const p=this.project;[...$('frame-list').querySelectorAll('canvas')].forEach((c,i)=>{const scale=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,i),image=this.canvasManager.getCompositeImageData(p.currentSheetIndex,p.currentActionIndex,i,!this.canvasManager.hideHands,scale);if(image)paintThumbnail(c,image);});};
+   const layerList=app.updateLayerList.bind(app);app.updateLayerList=function(){layerList();for(const label of $('layer-list').querySelectorAll('.layer-name')){const original=label.textContent;label.textContent=original.includes('衣服与发型')?'衣服与发型':({'head':'头部','body':'身体','vfx':'特效','▾ down':'▾ 正面分组','▾ side':'▾ 侧面分组','▾ up':'▾ 背面分组'}[original]||original);}
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';handList.replaceChildren();for(const l of p.layers){if(!PE.isHandLayer(l)||l.sheetIndex!==p.currentSheetIndex||![...l.frameData.keys()].some(k=>k.startsWith(prefix)))continue;handList.append(node('span','hand-name',l.name));}if(!handList.children.length)handList.append(node('span','hand-name','此动作无独立手层'));};
+-  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=(names.get(s?.name)||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
++  app.updateStatusBar=function(){const p=this.project,s=p.getCurrentSheet(),a=p.getCurrentAction(),f=p.getCurrentFrame();drawingTitle.textContent=((!PE.isSceneProject(p)&&names.get(s?.name))||s?.name||'新画布')+' / '+(directionNames[a?.direction]||a?.name||'');drawingMeta.textContent=f?f.width+' × '+f.height+' · 第 '+(p.currentFrameIndex+1)+' / '+(a?.frames.length||1)+' 帧':'';$('status-bar').replaceChildren(node('span','','当前图层：'+(p.getCurrentLayer()?.name||'未选择')),...(backupText?[backupText]:[]));};
+   function focusCharacter(){const p=app.project,cm=app.canvasManager,density=PE.utils.displayScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex,6),image=cm.getCompositeImageData(undefined,undefined,undefined,!cm.hideHands,density);if(!image)return;const raw=bounds(image);if(!raw){cm.centerView();return;}const box={x:raw.x/density,y:raw.y/density,w:raw.w/density,h:raw.h/density};cm.zoom=Math.max(1,Math.min(24,Math.floor(Math.min((cm.canvas.width-100)/box.w,(cm.canvas.height-100)/box.h))));cm.offsetX=Math.round(cm.canvas.width/2-(box.x+box.w/2)*cm.zoom);cm.offsetY=Math.round(cm.canvas.height/2-(box.y+box.h/2)*cm.zoom);cm.render();app.updateZoomDisplay();app.updateStatusBar();}
+   app.canvasManager.hideHands=!handCheckbox.checked;app.project.bgColor='#b8c8c3';app.project.gridColor='rgba(48,68,62,.2)';app.syncBackgroundControls();
+   handCheckbox.onchange=()=>{app.canvasManager.hideHands=!handCheckbox.checked;app.canvasManager.render();app.updateFrameList();app.updatePalette();app.updateStatusBar();app.animationPlayer._renderPreviewFrame();};
+diff --git a/output/scene-material-rename-20261109/before/index.html b/index.html
+index a15f80e..38a3c61 100644
+--- a/output/scene-material-rename-20261109/before/index.html
++++ b/index.html
+@@ -302,8 +302,8 @@
+   <script src="js/poses.js"></script>
+   <script src="js/original32.js"></script>
+   <script src="js/eyes32.js"></script>
+-  <script src="js/scene-materials.js?v=1"></script>
+-  <script src="js/studio.js?v=scene-materials-20261104"></script>
++  <script src="js/scene-materials.js?v=2"></script>
++  <script src="js/studio.js?v=scene-material-rename-20261109"></script>
+   <script src="js/visual-layers.js?v=part-name-series-1"></script>
+   <script src="js/character-base.js?v=branch-hands-1"></script>
+   <script src="js/projects.js?v=native16-wiring-20261104"></script>
+diff --git a/output/scene-material-rename-20261109/before/test/scene-materials-browser.cjs b/test/scene-materials-browser.cjs
+index aff056b..e4cb94a 100644
+--- a/output/scene-material-rename-20261109/before/test/scene-materials-browser.cjs
++++ b/test/scene-materials-browser.cjs
+@@ -5,23 +5,58 @@ const browser=await chromium.launch({channel:'msedge',headless:true});
+ try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let saved={version:'1.0',name:'家具测试',palette:['#FEEDE1'],currentSheetIndex:0,currentActionIndex:0,currentFrameIndex:0,currentLayerIndex:0,spriteSheets:[{name:'场景画布',frameWidth:160,frameHeight:128,columns:1,rows:1,actions:[{name:'场景',direction:'none',frames:[{sheetIndex:0,width:160,height:128}]}]}],layers:[{name:'场景',sheetIndex:0,visible:true,opacity:1,frameData:{}}]};
+-await page.route('**/api/project?*',r=>r.fulfill({status:200,contentType:'application/json',headers:{ETag:'"test"'},body:JSON.stringify(saved)}));
++let revision='"test"',puts=0;
++await page.route('**/api/project?*',r=>{
++  const request=r.request();
++  assert.equal(new URL(request.url()).searchParams.get('id'),'scene-ui-test');
++  if(request.method()==='PUT'){
++    assert.equal(request.headers()['if-match'],revision);
++    assert.equal(request.headers()['x-pixel-editor'],'1');
++    saved=request.postDataJSON();revision='"saved"';puts++;
++  }
++  return r.fulfill({status:200,contentType:'application/json',headers:{ETag:revision},body:JSON.stringify(saved)});
++});
+ await page.goto('http://127.0.0.1:8765/index.html?project=scene-ui-test');
+ await page.waitForFunction(()=>window.PE?.app?.persistence?.ready);
+-const answers=['床','32x48','台灯','16x16'];page.on('dialog',d=>d.accept(answers.shift()));
++const answers=['床','32x48','台灯','16x16'];page.on('dialog',async d=>{
++  if(d.type()==='alert'){alerts.push(d.message());await d.accept();return;}
++  const answer=answers.shift();if(answer===null)await d.dismiss();else await d.accept(answer);
++});
++const alerts=[];
+ await page.getByRole('button',{name:'＋ 新建素材',exact:true}).click();
+ await page.getByRole('button',{name:'＋ 新建素材',exact:true}).click();
+ assert.equal(await page.locator('.sheet-item').count(),3);
+ await page.locator('.sheet-item').filter({hasText:'床'}).click();
+ assert.deepEqual(await page.evaluate(()=>{const p=PE.app.project;return [p.getCurrentSheet().name,p.getCurrentLayer().name,p.getCurrentFrame().width,p.getCurrentFrame().height]}),['床','床',32,48]);
++await page.evaluate(()=>PE.app.project.getCurrentLayer().getFrameData('1_0_0').data.set([254,237,225,255]));
+ await page.getByText('帧操作',{exact:true}).click();await page.locator('#duplicate-frame-btn').click();
+ assert.equal(await page.evaluate(()=>PE.app.project.getCurrentAction().frames.length),2);
+-saved=await page.evaluate(async()=>JSON.parse(await PE.app.exportManager.exportProject(false).text()));
+-await page.screenshot({path:'output/scene-materials-ui.png'});
++const snapshot=()=>page.evaluate(async()=>JSON.parse(await PE.app.exportManager.exportProject(false).text()));
++const before=await snapshot(),rename=page.getByRole('button',{name:'重命名素材',exact:true});
++assert.equal(await rename.isVisible(),true,'selected scene material needs a rename button');
++answers.push(null,'   ','台灯','original16_idle','  双人床  ');
++for(let i=0;i<4;i++){await rename.click();assert.deepEqual(await snapshot(),before);}
++assert.equal(alerts.length,3);
++await rename.click();
++before.spriteSheets[1].name='双人床';
++assert.deepEqual(await snapshot(),before);
++assert.equal(await page.locator('.sheet-item.active strong').textContent(),'双人床');
++assert.match(await page.locator('.canvas-title strong').textContent(),/^双人床/);
++assert.equal(await page.evaluate(()=>PE.app.persistence.dirty),true);
++assert.equal(puts,0);
++const response=page.waitForResponse(r=>r.request().method()==='PUT'&&r.url().includes('/api/project?'));
++await page.getByRole('button',{name:'保存工程',exact:true}).click();
++assert.equal((await response).status(),200);
++await page.waitForFunction(()=>!PE.app.persistence.dirty);
++assert.equal(puts,1);assert.deepEqual(saved,before);
+ await page.reload();await page.waitForFunction(()=>window.PE?.app?.persistence?.ready);
++assert.deepEqual(await snapshot(),before);
+ assert.equal(await page.evaluate(()=>PE.app.project.spriteSheets[1].actions[0].frames.length),2);
++assert.equal(await page.locator('.sheet-item.active strong').textContent(),'双人床');
++await page.locator('.sheet-item').filter({hasText:'场景画布'}).click();
++assert.equal(await rename.isVisible(),false);
+ assert.equal(await page.locator('.sheet-item').count(),3);assert.deepEqual(errors,[]);
+-console.log('PASS: actual UI creates bed/lamp, switches matching layer, duplicates frame, exports and reloads; no page errors. API intercepted; no user project written.');
++console.log('PASS: creates and switches materials, duplicates a frame, validates and renames only the selected sheet, saves with If-Match and reloads. API intercepted; no user project written.');
+ }finally{await browser.close();}
+ })().catch(e=>{console.error(e);process.exitCode=1});
+ 

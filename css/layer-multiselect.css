@@ -1,0 +1,32 @@
+/* 多选图层：选中高亮 + 图层列表顶部的批量操作条 */
+.layer-multi-bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:4px;
+  margin:0 0 6px;padding:4px 5px;
+  border:1px solid #dbe3d3;border-radius:6px;background:#f7faf4;
+}
+.layer-multi-bar .lm-btn{
+  min-height:22px;padding:2px 7px;border:1px solid #cad8c2;border-radius:4px;
+  background:#fff;color:#5e7353;font-size:11px;line-height:1.2;cursor:pointer;
+  white-space:nowrap;
+}
+.layer-multi-bar .lm-btn:hover:not(:disabled){border-color:#8fb07d;color:#3f5a33;background:#f2f8ec}
+.layer-multi-bar .lm-btn:active:not(:disabled){background:#e8f1e0}
+.layer-multi-bar .lm-btn:disabled{opacity:.45;cursor:not-allowed}
+.layer-multi-bar .lm-count{margin-left:auto;font-size:10px;color:#879a79;font-variant-numeric:tabular-nums}
+.layer-multi-bar .lm-hint{flex:1 1 100%;font-size:9.5px;line-height:1.4;color:#98a791}
+
+/* 选中的行：左侧绿条 + 浅底，和“当前图层”的边框同时存在时也能分辨 */
+.layer-item.multi-selected{
+  background:#eef7e8;
+  border-color:#b4d0a2;
+  box-shadow:inset 3px 0 0 #6f9a5c;
+}
+.layer-item.multi-selected:hover{background:#e7f3df}
+.studio .layer-item.multi-selected{border-color:#b4d0a2;background:#eef7e8}
+.studio .layer-item.visual-layer-card.multi-selected{
+  border:2px solid #27816a;padding:6px;background:#eef7e8;
+  box-shadow:inset 3px 0 0 #27816a;
+}
+
+/* 组内被多选的行沿用同一套高亮，但左侧绿条挪一点，别和缩进打架 */
+.layer-item.multi-selected[style*="margin-left"]{box-shadow:inset 3px 0 0 #6f9a5c}

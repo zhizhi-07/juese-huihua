@@ -1,0 +1,25 @@
+{
+  put: 200,
+  get: 200,
+  modifiedLayer: 25,
+  name: '雪顶',
+  syncedCels: 7,
+  canvas: [ 64, 64 ],
+  sourceShapeChecks: {
+    originalOpaque: 901,
+    mainBlob: 889,
+    removedDetachedPixels: 12,
+    filledSmallHoles: 15,
+    preservedSignOpeningPixels: 164,
+    finalOpaque: 904,
+    preservedLongLeftDrip: true
+  },
+  outline: '#2F3B3D',
+  snowPalette: [ '#EBF0EE', '#ADD6E0', '#8CBADE' ],
+  allOtherLayersUnchanged: true,
+  allSheetActionFrameMetadataUnchanged: true,
+  openingAnimationAndDoorPixelsUnchanged: true,
+  readbackEqualsCandidate: true,
+  beforeSha256: '0803ac8b1809e9d70dbc441b6795cec248e036a99bfba4ddabe13f2eba04fbd1',
+  afterSha256: '0de97534bd78baf492bb9f163c14b75ea3fdd26032f9c9589447571f53534c01'
+}

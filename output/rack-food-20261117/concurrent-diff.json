@@ -1,0 +1,22 @@
+[
+  {
+    "path": "/currentSheetIndex",
+    "before": 13,
+    "after": 14
+  },
+  {
+    "path": "/currentLayerIndex",
+    "before": 86,
+    "after": 87
+  },
+  {
+    "path": "/layers/86/frameData/13_0_0/dataURL",
+    "before": "string(558)",
+    "after": "string(570)"
+  },
+  {
+    "path": "/layers/87/frameData/14_0_0/dataURL",
+    "before": "string(342)",
+    "after": "string(354)"
+  }
+]

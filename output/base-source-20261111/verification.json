@@ -1,0 +1,11 @@
+{
+  "status": {
+    "version": 2,
+    "ai": true,
+    "sharedProject": "data/shared-project.json",
+    "characterBaseProjectId": "base-outlined-1794365455561"
+  },
+  "sourceUnchanged": true,
+  "etag": "\"4493814377daf1962e41cbb4d1f6b094b5fd95f78bdc52ae80d833c2b30432a8\"",
+  "sha256": "4493814377daf1962e41cbb4d1f6b094b5fd95f78bdc52ae80d833c2b30432a8"
+}

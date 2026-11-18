@@ -1,0 +1,80 @@
+{
+  "pixelsPreserved": true,
+  "bodyHeadAllFramesIdentical": true,
+  "otherDataUnchanged": true,
+  "readbackEqual": true,
+  "report": [
+    {
+      "sheet": "镐",
+      "direction": "side",
+      "width": 31,
+      "height": 24,
+      "dx": 0,
+      "dy": 0
+    },
+    {
+      "sheet": "镐",
+      "direction": "down",
+      "width": 18,
+      "height": 27,
+      "dx": -4,
+      "dy": -3
+    },
+    {
+      "sheet": "镐",
+      "direction": "up",
+      "width": 18,
+      "height": 23,
+      "dx": -7,
+      "dy": 0
+    },
+    {
+      "sheet": "斧头",
+      "direction": "side",
+      "width": 31,
+      "height": 24,
+      "dx": 0,
+      "dy": 0
+    },
+    {
+      "sheet": "斧头",
+      "direction": "down",
+      "width": 18,
+      "height": 27,
+      "dx": -4,
+      "dy": -3
+    },
+    {
+      "sheet": "斧头",
+      "direction": "up",
+      "width": 18,
+      "height": 23,
+      "dx": -7,
+      "dy": 0
+    },
+    {
+      "sheet": "锄头",
+      "direction": "side",
+      "width": 31,
+      "height": 24,
+      "dx": 0,
+      "dy": 0
+    },
+    {
+      "sheet": "锄头",
+      "direction": "down",
+      "width": 18,
+      "height": 27,
+      "dx": -4,
+      "dy": -3
+    },
+    {
+      "sheet": "锄头",
+      "direction": "up",
+      "width": 18,
+      "height": 23,
+      "dx": -7,
+      "dy": 0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "hashes": {
+    "js/hair-animation.js": "b2c13224127f274a45a750ca07b3066f2b4611f91536cd609b77682b23f8dfa2",
+    "index.html": "a3324a3391e427607370f4a9fbbceceab05f6032876a62fced74000719c38060",
+    "test/hair-current-head.cjs": "0037a734636e804e8313a28444bc191ab083fd33ca446ddcdd021f52b8a97823"
+  },
+  "projectUnchanged": true,
+  "etag": "\"41f6b03f79df4829564de551cba43d871c25cda150f6d265d6782d9d3b001b27\"",
+  "apiWrites": 0
+}

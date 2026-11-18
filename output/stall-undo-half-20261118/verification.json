@@ -1,0 +1,15 @@
+{
+  "put": 200,
+  "get": 200,
+  "canvas": [
+    64,
+    64
+  ],
+  "layers": 26,
+  "snowLayer": "雪顶",
+  "restoredCels": 133,
+  "allRestoredJsonMatchesPreHalfVersion": true,
+  "allPixelsAndAnimationDataRestored": true,
+  "targetSha256": "0de97534bd78baf492bb9f163c14b75ea3fdd26032f9c9589447571f53534c01",
+  "actualSha256": "0de97534bd78baf492bb9f163c14b75ea3fdd26032f9c9589447571f53534c01"
+}

@@ -1,0 +1,18 @@
+{
+  "status": 200,
+  "etag": "\"0bcadc3484623a2aeaa4d38ff1c7cbf5e76d0c11a0adee881289ec8a7b8fa515\"",
+  "sha256": "0bcadc3484623a2aeaa4d38ff1c7cbf5e76d0c11a0adee881289ec8a7b8fa515",
+  "pixelMatch": true,
+  "frameCount": 10,
+  "freezerFrames": 8,
+  "rackSheet": 13,
+  "sourceFilesUntouched": true,
+  "oldLayersRetainedHidden": [
+    18,
+    19,
+    21,
+    9,
+    10,
+    11
+  ]
+}

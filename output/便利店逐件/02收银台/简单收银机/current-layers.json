@@ -1,0 +1,16 @@
+[
+  {
+    "file": "current-layer-3.png",
+    "index": 3,
+    "name": "收银柜台",
+    "visible": true,
+    "register": false
+  },
+  {
+    "file": "current-layer-4.png",
+    "index": 4,
+    "name": "收银机与付款终端",
+    "visible": true,
+    "register": true
+  }
+]

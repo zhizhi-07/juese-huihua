@@ -1,0 +1,22 @@
+{
+  "changedCels": 156,
+  "noClip": true,
+  "readbackEqualsCandidate": true,
+  "otherDataUnchanged": true,
+  "perSheet": {
+    "original16_walk": 16,
+    "original16_idle": 8,
+    "original16_pickup": 12,
+    "浇水": 12,
+    "镐": 12,
+    "斧头": 12,
+    "锄头": 12,
+    "镰刀": 12,
+    "种植": 8,
+    "钓鱼-甩竿": 12,
+    "钓鱼-持竿": 8,
+    "钓鱼-收线": 12,
+    "钓鱼-上鱼": 12,
+    "original16_sit": 8
+  }
+}

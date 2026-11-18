@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "originalSHA256": "e77495f8406085202e1c12ca6416fb0d79567e6661d59a554a6512b75a84e229",
+  "newSHA256": "24f3922c6cdd62103abf7c68417032aa0d67a7b6d0bb9f3cb144dcd0e7bb62e1",
+  "etag": "\"24f3922c6cdd62103abf7c68417032aa0d67a7b6d0bb9f3cb144dcd0e7bb62e1\"",
+  "paletteColors": 96,
+  "replacements": {
+    "#CFB07C": "#D1AE8A",
+    "#AC846C": "#9E7565"
+  },
+  "changedLayerPixels": 101,
+  "verified": "原有色卡内像素、尺寸、透明度不变；转换后全部可见像素属于96色；JSON回读一致，其他工程字段不变"
+}

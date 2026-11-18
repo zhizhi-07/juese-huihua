@@ -1,0 +1,32 @@
+{
+  "sheets": [
+    "original16_walk",
+    "original16_idle",
+    "original16_pickup",
+    "original16_sit"
+  ],
+  "buttons": 1,
+  "frames": [
+    [
+      16,
+      16,
+      100
+    ],
+    [
+      16,
+      16,
+      100
+    ],
+    [
+      16,
+      16,
+      100
+    ],
+    [
+      16,
+      16,
+      100
+    ]
+  ],
+  "action": "side"
+}

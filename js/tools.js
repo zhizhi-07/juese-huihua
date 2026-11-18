@@ -141,6 +141,21 @@ window.PE = window.PE || {};
      * @param {number} py 
      * @param {number} [button=0] 0: left, 2: right
      */
+    pickColor(px, py) {
+      const image = this.project?.getCurrentLayer()?.getFrameData(this.project.getFrameKey());
+      const r = image?.placement;
+      let picked = r ? PE.utils.getPixelFromImageData(image,
+        Math.floor((px-r.x)*image.width/r.w), Math.floor((py-r.y)*image.height/r.h)) : null;
+      if (!picked?.a) {
+        const comp = this.canvasManager?.getCompositeWithOriginal();
+        picked = comp ? PE.utils.getPixelFromImageData(comp, Math.floor(px), Math.floor(py)) : null;
+      }
+      if (picked) {
+        this.setColor(picked.r, picked.g, picked.b, picked.a);
+        this.onColorPick?.(picked);
+      }
+    }
+
     onMouseDown(px, py, button = 0, resizeHandle = null, rectangle = false) {
       this._mouseButton = button;
       if (!this.project) return;
@@ -169,10 +184,6 @@ window.PE = window.PE || {};
         const point=this._imagePoint(px,py,image);this._selectStartX=point.x;this._selectStartY=point.y;
         this.isDrawing=true;this._isSelecting=true;
         this.setSelection(point.x,point.y,r.w/image.width,r.h/image.height);return;
-      }
-      if(r&&this.currentTool==='eyedropper'){
-        const x=Math.floor((px-r.x)*image.width/r.w),y=Math.floor((py-r.y)*image.height/r.h),picked=PE.utils.getPixelFromImageData(image,x,y);
-        if(picked?.a){this.setColor(picked);this.onColorPick?.(picked);return;}
       }
 
       switch (this.currentTool) {
@@ -218,16 +229,7 @@ window.PE = window.PE || {};
         }
 
         case 'eyedropper': {
-          const comp = this.canvasManager ? this.canvasManager.getCompositeWithOriginal() : null;
-          if (comp) {
-            const picked = PE.utils.getPixelFromImageData(comp, Math.floor(px), Math.floor(py));
-            if (picked) {
-              this.setColor(picked.r, picked.g, picked.b, picked.a);
-              if (typeof this.onColorPick === 'function') {
-                this.onColorPick(picked);
-              }
-            }
-          }
+          this.pickColor(px, py);
           break;
         }
 

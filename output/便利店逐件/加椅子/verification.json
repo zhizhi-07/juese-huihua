@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "originalSHA256": "ecfe8f2c5d94882fbe51299ba380bf0edc21a648549268a7f11360708f79eb52",
+  "newSHA256": "1decd3fe44ebfa4dffaa223b069d1d3ce81f9d2c693edd0eb48300647c75dd25",
+  "etag": "\"1decd3fe44ebfa4dffaa223b069d1d3ce81f9d2c693edd0eb48300647c75dd25\"",
+  "verified": "仅新增椅子图层和收银台合成预览；保留用户并发保存的柜子更新及当前选择；回读一致"
+}

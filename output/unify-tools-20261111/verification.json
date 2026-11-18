@@ -1,0 +1,128 @@
+{
+  "pixelsPreserved": true,
+  "bodyHeadAllFramesIdentical": true,
+  "otherDataUnchanged": true,
+  "readbackEqual": true,
+  "report": [
+    {
+      "sheet": "镐",
+      "direction": "side",
+      "width": 31,
+      "height": 30,
+      "dx": 0,
+      "dy": 2
+    },
+    {
+      "sheet": "镐",
+      "direction": "down",
+      "width": 31,
+      "height": 30,
+      "dx": 4,
+      "dy": 4
+    },
+    {
+      "sheet": "镐",
+      "direction": "up",
+      "width": 31,
+      "height": 30,
+      "dx": 7,
+      "dy": 0
+    },
+    {
+      "sheet": "斧头",
+      "direction": "side",
+      "width": 31,
+      "height": 30,
+      "dx": 0,
+      "dy": 0
+    },
+    {
+      "sheet": "斧头",
+      "direction": "down",
+      "width": 31,
+      "height": 30,
+      "dx": 5,
+      "dy": 3
+    },
+    {
+      "sheet": "斧头",
+      "direction": "up",
+      "width": 31,
+      "height": 30,
+      "dx": 7,
+      "dy": 0
+    },
+    {
+      "sheet": "锄头",
+      "direction": "side",
+      "width": 31,
+      "height": 30,
+      "dx": 1,
+      "dy": 2
+    },
+    {
+      "sheet": "锄头",
+      "direction": "down",
+      "width": 31,
+      "height": 30,
+      "dx": 4,
+      "dy": 3
+    },
+    {
+      "sheet": "锄头",
+      "direction": "up",
+      "width": 31,
+      "height": 30,
+      "dx": 7,
+      "dy": 2
+    },
+    {
+      "sheet": "浇水",
+      "direction": "side",
+      "width": 27,
+      "height": 17,
+      "dx": 0,
+      "dy": -2
+    },
+    {
+      "sheet": "浇水",
+      "direction": "down",
+      "width": 15,
+      "height": 28,
+      "dx": 0,
+      "dy": -2
+    },
+    {
+      "sheet": "浇水",
+      "direction": "up",
+      "width": 15,
+      "height": 19,
+      "dx": 0,
+      "dy": 0
+    },
+    {
+      "sheet": "种植",
+      "direction": "side",
+      "width": 24,
+      "height": 18,
+      "dx": 0,
+      "dy": -1
+    },
+    {
+      "sheet": "种植",
+      "direction": "down",
+      "width": 16,
+      "height": 23,
+      "dx": -1,
+      "dy": 0
+    },
+    {
+      "sheet": "种植",
+      "direction": "up",
+      "width": 16,
+      "height": 17,
+      "dx": 0,
+      "dy": -2
+    }
+  ]
+}

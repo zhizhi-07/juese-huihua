@@ -1,0 +1,120 @@
+diff --git a/output/hair-live-nine-20261111/before/hair-animation.js b/js/hair-animation.js
+index 62b59fd..468bd0f 100644
+--- a/output/hair-live-nine-20261111/before/hair-animation.js
++++ b/js/hair-animation.js
+@@ -3,12 +3,13 @@ window.PE = window.PE || {};
+ (() => {
+   'use strict';
+   const actions = {idle:'待机', walk:'行走', pickup:'拾取', sit:'坐姿', sleep:'睡觉'};
++  const farming = ['浇水','镐','斧头','锄头','镰刀','种植'];
+   const directions = {down:'正面', side:'侧面', up:'背面'};
+   const clone = value => JSON.parse(JSON.stringify(value));
+   const cache = new WeakMap();
+-  const supported = sheet => Object.hasOwn(actions, sheet?.name?.replace(/^original(?:16|32)_/, '')) && PE.isCharacterSheet(sheet);
++  const supported = (sheet, part) => (Object.hasOwn(actions, sheet?.name?.replace(/^original(?:16|32)_/, '')) || part!=='eyes'&&farming.includes(sheet?.name)) && PE.isCharacterSheet(sheet);
+   const isIdle = sheet => /^original(?:16|32)_idle$/.test(sheet?.name || '');
+-  const active = sheet => supported(sheet) && PE.isEditorSheet(sheet);
++  const active = (sheet, part) => supported(sheet,part) && PE.isEditorSheet(sheet);
+   const isEyes = layer => PE.classifyPart(layer?.name)?.slot === '眼睛';
+   const isSideSit = (sheet, direction) => /^original(?:16|32)_sit$/.test(sheet) && direction==='side';
+   const usesSitEyeY = (part, sheet, direction) => part==='eyes' && isSideSit(sheet,direction);
+@@ -90,7 +91,7 @@ window.PE = window.PE || {};
+     const si=source.sheetIndex, idle=p.spriteSheets[si], result={};
+     for(const [ai,a] of idle.actions.entries()) {
+       const origin=headAnchor(p,si,ai,0);
+-      for(const [ti,s] of p.spriteSheets.entries())if(active(s)) {
++      for(const [ti,s] of p.spriteSheets.entries())if(active(s,isEyes(source)?'eyes':undefined)) {
+         const ta=s.actions.findIndex(b=>b.direction===a.direction);if(ta<0)continue;
+         s.actions[ta].frames.forEach((_,fi)=>{
+           const at=headAnchor(p,ti,ta,fi);
+@@ -105,15 +106,21 @@ window.PE = window.PE || {};
+     editable(layer);
+     if(!isIdle(p.spriteSheets[layer.sheetIndex]))throw Error('首次关联请在待机中选择头发或眼睛；各方向第一帧作为基准');
+     if(layer.parent!=null)throw Error('请先把此部件作为独立部件层；不自动合并方向分组');
+-    const matches=p.layers.filter(l=>l!==layer&&!l.isGroup&&l.name===layer.name&&active(p.spriteSheets[l.sheetIndex]));
++    const part=isEyes(layer)?'eyes':undefined;
++    const matches=p.layers.filter(l=>l!==layer&&!l.isGroup&&l.name===layer.name&&active(p.spriteSheets[l.sheetIndex],part));
+     if(matches.some(l=>l.parent!=null||l.hairAnimationId)||new Set(matches.map(l=>l.sheetIndex)).size!==matches.length)throw Error('其他动作存在重复或已关联同名层，请先明确部件名称');
+     matches.forEach(editable);
+     const offsets=calibrate(p,layer),id=crypto.randomUUID();
+     layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(p.spriteSheets[layer.sheetIndex]),overrides:{},offsets};
++    const originals=p.spriteSheets[layer.sheetIndex].actions.map((_,ai)=>layer.getFrameData(p.getFrameKey(layer.sheetIndex,ai,0))).filter(Boolean);
++    if(!part&&p.spriteSheets[layer.sheetIndex].name==='original16_idle'&&originals.length&&originals.every(im=>!im.placement||im.placement.w===im.width&&im.placement.h===im.height)) {
++      layer.hairAnimation.enabled=true;
++      Object.assign(layer.hairAnimation.params,{followHead:true,nativeTips:true});
++    }
+     // Keep the existing serialized recipe key so both parts use the same save/undo path.
+     if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=preservedEyes(p,layer,matches,offsets);}
+     layer.hairAnimationId=id;
+-    for(const [si,s]of p.spriteSheets.entries())if(active(s)&&si!==layer.sheetIndex) {
++    for(const [si,s]of p.spriteSheets.entries())if(active(s,part)&&si!==layer.sheetIndex) {
+       let target=matches.find(l=>l.sheetIndex===si);
+       if(!target){target=new PE.Layer(layer.name);target.sheetIndex=si;target.visible=layer.visible;target.opacity=layer.opacity;p.layers.push(target);PE.autoPlaceLayer(p,p.layers.indexOf(target),{rename:false});}
+       target.hairAnimationId=id;
+@@ -161,15 +168,16 @@ window.PE = window.PE || {};
+       if(l.isGroup||l.inheritedBase||PE.isHandLayer(l)||(g.part==='eyes'?!isEyes(l):PE.classifyPart(l.name)?.category!=='头发'))throw Error('同步基准层身份无效');
+       if(g.part!==undefined&&g.part!=='eyes')throw Error('同步部件类型无效');
+       if(g.part==='eyes'&&(g.enabled||!Array.isArray(g.preserved)||g.preserved.length>4096||g.preserved.some(k=>typeof k!=='string'||!Object.hasOwn(g.offsets||{},k)||/original(?:16|32)_idle\/[^/]+\/0$/.test(k))))throw Error('眼睛保留帧设置无效');
+-      if(!g.offsets||Array.isArray(g.offsets)||Object.keys(g.offsets).length>4096||!g.overrides||Array.isArray(g.overrides)||Object.keys(g.overrides).length>5)throw Error('头发偏移/动作设置无效');
++      if(!g.offsets||Array.isArray(g.offsets)||Object.keys(g.offsets).length>4096||!g.overrides||Array.isArray(g.overrides)||Object.keys(g.overrides).length>11)throw Error('头发偏移/动作设置无效');
+       for(const offset of Object.values(g.offsets))if(!offset||![offset.x,offset.y].every(n=>Number.isSafeInteger(n)&&Math.abs(n)<=4096))throw Error('头发偏移必须是有效整数');
+       for(const a of p.spriteSheets[l.sheetIndex].actions){const o=g.offsets[address(p.spriteSheets[l.sheetIndex],a.direction,0)];if(!o||o.x!==0||o.y!==0)throw Error('各方向待机第一帧是基准，偏移必须为 0');}
+       const perDirection=g.directionOverrides??{};
+-      if(!perDirection||typeof perDirection!=='object'||Array.isArray(perDirection)||Object.keys(perDirection).length>20||Object.keys(perDirection).some(k=>!directionKeys.has(k)))throw Error('头发分方向设置无效');
++      if(!perDirection||typeof perDirection!=='object'||Array.isArray(perDirection)||Object.keys(perDirection).length>33||Object.keys(perDirection).some(k=>!directionKeys.has(k)))throw Error('头发分方向设置无效');
+       for(const v of [g.params,...Object.values(g.overrides),...Object.values(perDirection)]) {
+         if(!v||![v.ampV,v.ampH,v.cycles,v.lag].every(Number.isFinite)||v.ampV<0||v.ampV>4||v.ampH<0||v.ampH>6||!Number.isInteger(v.cycles)||v.cycles<1||v.cycles>4||v.lag<0||v.lag>1.5||!v.masks||Object.keys(v.masks).length>4)throw Error('头发飘动参数无效');
+         if(v.verticalMode!==undefined&&v.verticalMode!=='wave')throw Error('头发上下算法无效');
+         if(v.followHead!==undefined&&typeof v.followHead!=='boolean')throw Error('头发跟随设置无效');
++        if(v.nativeTips!==undefined&&typeof v.nativeTips!=='boolean')throw Error('头发发梢设置无效');
+         for(const maps of [v.masks,v.protectedMasks??{}]) {
+           if(!maps||typeof maps!=='object'||Array.isArray(maps)||Object.keys(maps).length>4)throw Error('头发涂抹区域无效');
+           for(const m of Object.values(maps))if(m&&(!Number.isSafeInteger(m.width)||!Number.isSafeInteger(m.height)||m.width<1||m.height<1||m.width*m.height>262144||!Array.isArray(m.data)||m.data.length!==m.width*m.height||m.data.some(v=>v!==0&&v!==1)))throw Error('头发涂抹区域无效');
+@@ -297,16 +305,22 @@ window.PE = window.PE || {};
+   function plan(p,source,g=source.hairAnimation,only=null) {
+     const idle=p.spriteSheets[source.sheetIndex],edits=[],missing=new Set();let clipped=0;
+     for(const layer of p.layers.filter(l=>l.hairAnimationId===g.id)) {
+-      const si=layer.sheetIndex,s=p.spriteSheets[si];if(!supported(s))throw Error('关联层动作不存在');
+-      if(!active(s))continue;
++      const si=layer.sheetIndex,s=p.spriteSheets[si];if(!supported(s,g.part))throw Error('关联层动作不存在');
++      if(!active(s,g.part))continue;
+       editable(layer);
+       for(const [ai,a]of s.actions.entries()) {
+         if(g.part==='eyes'&&!PE.isLayerInAction(p,layer,si,ai))continue;
+         const baseAI=idle.actions.findIndex(b=>b.direction===a.direction);if(baseAI<0)continue;
+         const src=source.getFrameData(p.getFrameKey(source.sheetIndex,baseAI,0));
+         // 每个方向都以本方向待机首帧为基准；没有基准就不动这个方向（不会擦掉已有眼睛）。
+-        if(g.part==='eyes'&&!src){missing.add(`${actions[s.name.slice(11)]||s.name}·${directions[a.direction]||a.direction}`);continue;}
+-        const settings=settingsFor(g,s.name,a.direction),mask=settings.masks[a.direction];
++        if(!src){missing.add(`${actions[s.name.slice(11)]||s.name}·${directions[a.direction]||a.direction}`);continue;}
++        const settings=settingsFor(g,s.name,a.direction);
++        let mask=settings.masks[a.direction];
++        if(settings.nativeTips&&settings.followHead&&!mask) {
++          const root=headAnchor(p,source.sheetIndex,baseAI,0),r=src.placement||{x:0,y:0};
++          mask={width:src.width,height:src.height,data:Array(src.width*src.height).fill(0)};
++          for(let y=0;y<src.height;y++)for(let x=0;x<src.width;x++)if(y+r.y>=root.y+6&&(a.direction==='up'||Math.abs(x+r.x-root.x)>=3))mask.data[y*src.width+x]=1;
++        }
+         const durations=a.frames.map(f=>s.useFrameDurations!==false&&Number.isFinite(f.duration)&&f.duration>0?f.duration:1000/(s.fps||8));
+         const total=durations.reduce((n,v)=>n+v,0);let elapsed=0, idleHeadY;
+         for(const [fi,frame]of a.frames.entries()) {
+@@ -327,6 +341,11 @@ window.PE = window.PE || {};
+             const earlier=fi>1?g.offsets[address(s,a.direction,fi-2)]:prev;
+             if(!prev||!earlier)throw Error('帧结构已变化，请先重新标定偏移');
+             followOffset=Math.max(-2,Math.min(2,offset.y-prev.y+(prev.y-earlier.y)*.5));
++            if(settings.nativeTips) {
++              const previous=g.offsets[address(s,a.direction,fi?fi-1:a.frames.length-1)];
++              if(!previous)throw Error('帧结构已变化，请先重新标定偏移');
++              followOffset=Math.max(-1,Math.min(1,offset.y-previous.y));
++            }
+           }
+           const result=g.part==='eyes'&&src?.placement
+             ?translatePlaced(src,frame,offset)
+@@ -442,7 +461,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+     const $=sel=>dialog.querySelector(sel),hair=$('[data-hair]'),scope=$('[data-scope]'),action=$('[data-action]'),direction=$('[data-direction]'),enabled=$('[data-enabled]'),paint=$('[data-paint]'),preview=$('[data-preview]'),note=$('[data-note]');
+     for(const l of candidates)hair.append(new Option(l.name,String(p.layers.indexOf(l))));
+     const sheets=p.spriteSheets.map((s,i)=>({s,i})).filter(v=>PE.isEditorSheet(v.s)&&PE.isCharacterSheet(v.s)&&Object.hasOwn(H.actions,v.s.name.slice(11)));
+-    for(const {s,i}of sheets)action.append(new Option(H.actions[s.name.slice(11)],String(i)));
++    for(const {s,i}of sheets)action.append(new Option(H.actions[s.name.slice(11)]||s.name,String(i)));
+     action.value=String(p.currentSheetIndex);if(!action.value)action.value=String(idleSI);
+     const fields={};for(const [key,label,min,max,step]of [['ampV','上下起伏（强度）',0,4,.1],['ampH','左右轻摆',0,6,.1],['cycles','每循环摆动次数',1,4,1],['lag','发梢延迟',0,1.5,.1],['trajAmp','轨迹幅度',0,2,.05]]){
+       const labelNode=document.createElement('label');labelNode.textContent=label+' ';const input=document.createElement('input');input.type='number';input.min=min;input.max=max;input.step=String(step);input.setAttribute('aria-label',label);fields[key]=input;labelNode.append(input);$('[data-params]').append(labelNode);

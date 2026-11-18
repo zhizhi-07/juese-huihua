@@ -1,0 +1,8 @@
+START isolated save-conflict browser test
+Temporary test directory: C:\Users\ADMINI~1\AppData\Local\Temp\pixel-save-conflict-HBTeCW
+Copied js
+Copied css
+Copied scripts
+Isolated server ready
+Headless browser ready
+PASS: real user snapshots on isolated server; 409 + repeated save expose resolution; reload retains original draft base; exact independent backup saves/reopens; shared choice backs up before loading; original project not overwritten; subsequent ETag save/reopen succeeds; old-page rescue opens a fully saveable draft.

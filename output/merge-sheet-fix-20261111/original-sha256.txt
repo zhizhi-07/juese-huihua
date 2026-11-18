@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : 1E454C4440FA0955C66DD0A3F20431DA12BBD4610AEE92FAAF9FECA49AC62797
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\layer-multiselect.js
+
+Algorithm : SHA256
+Hash      : 9708BFB67BFAE8B61278BDDD8FA28FF05466CC2B94E8B1AA94DEE6CEEBA84CFC
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\layer-shortcuts.js
+

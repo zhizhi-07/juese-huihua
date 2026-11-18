@@ -1,0 +1,11 @@
+PASS editor: sync button shades idle first frame once; each sitting direction shows exactly one empty Yellow layer and accepts paint; no page errors. API writes intercepted.
+PASS editor: sync button shades idle first frame once; each sitting direction shows exactly one empty Yellow layer and accepts paint; no page errors. API writes intercepted.
+PASS: only the bottom two rows follow skin shadow; reuse painted tones across rows; single-color fabric keeps hue and alpha; no darkening twice.
+PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot and transparent hems
+PASS clothing: 3 idle masters; unconfirmed sitting untouched; base/geometry unchanged; atomic locks; undo/redo; live brush; manual keep/unkeep; PNG/config roundtrip; invalid config rejected.
+TypeError: p.getFrameKey is not a function
+    at clothing-sync:21:71
+    at Array.map (<anonymous>)
+    at Object.validate (clothing-sync:21:57)
+    at ExportManager.exportProject (export:506:24)
+    at C:\Users\Administrator\Desktop\角色绘画\output\clothing-sync-20261109\sit-masters\verify.cjs:30:87

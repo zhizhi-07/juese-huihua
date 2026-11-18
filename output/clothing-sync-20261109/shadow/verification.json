@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "original16_walk": 24,
+    "original16_idle": 12,
+    "original16_pickup": 18,
+    "original16_sit": 12
+  },
+  "newGenerated": 63,
+  "preserved": [],
+  "sourceFramesUnchanged": 3,
+  "beforeOK": 66,
+  "beforeErrors": [],
+  "legGaps": [],
+  "changed": 63,
+  "shadowPixels": 510,
+  "shirtPixels": 237,
+  "legPixels": 273,
+  "manualFramesModified": 0,
+  "baseLayersModified": 0,
+  "geometryPaletteAndFaceChecks": 66
+}

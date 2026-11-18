@@ -14,8 +14,10 @@ PE.HairAnimation.sync(app,{live:true});assert.equal(p.getCurrentLayer(),eyes,'sy
 for(const si of [0,1,2,3]){
  const eye=p.layers.find(l=>l.sheetIndex===si&&l.hairAnimationId===eyes.hairAnimation.id),front=p.layers.find(l=>l.sheetIndex===si&&l.name===hair.name);
  assert(p.layers.indexOf(eye)<p.layers.indexOf(front),'source and generated eyes sit below front hair: '+si);
- for(const ai of [0,1,2]){const order=PE.getRenderLayers(p,si,ai);assert(order.indexOf(eye)<order.indexOf(front));}
+ for(const ai of [0,1]){const order=PE.getRenderLayers(p,si,ai);assert(order.includes(eye)&&order.indexOf(eye)<order.indexOf(front));}
+ assert(!PE.getRenderLayers(p,si,2).includes(eye),'rear view excludes eyes even if their layer is visible');
 }
+assert(eyes.getFrameData('0_2_0'),'legacy rear pixels are not destructively deleted');
 for(const [l,data]of bytes)if(l!==eyes&&!l.hairAnimationId)assert.deepEqual([...l.frameData],data,'non-eye pixels and image references are unchanged');
 // Direct composite check, without changing saved pixels.
 const frameKey='0_0_0',order=PE.getRenderLayers(p,0,0),canvas=createCanvas(16,16),ctx=canvas.getContext('2d');

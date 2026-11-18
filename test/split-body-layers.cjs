@@ -1,0 +1,3 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');global.window=global;global.document={addEventListener(){}};vm.runInThisContext(fs.readFileSync('js/core.js','utf8'));vm.runInThisContext(fs.readFileSync('js/visual-layers.js','utf8'));
+for(const name of ['head','body','hand','hand 2'])for(const suffix of ['',' 描边']){const layer={name:name+suffix,referenceOnly:false,locked:false};assert.equal(PE.VisualLayers.category(layer),'身体');assert(!PE.isProtectedHandLayer(layer));}
+assert(PE.isProtectedHandLayer({name:'hand',referenceOnly:true,inheritedBase:true}));assert.equal(PE.VisualLayers.category({name:'其他素材'}),'其他');console.log('PASS eight body cards classified; editable hands; inherited hand protection unchanged');

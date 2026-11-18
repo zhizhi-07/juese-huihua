@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "direction": "side",
+      "key": "1_0_0",
+      "dx": 1,
+      "dy": -1,
+      "pixels": 98,
+      "outline": 37
+    },
+    {
+      "direction": "down",
+      "key": "1_1_0",
+      "dx": 1,
+      "dy": -1,
+      "pixels": 94,
+      "outline": 33
+    },
+    {
+      "direction": "up",
+      "key": "1_2_0",
+      "dx": 1,
+      "dy": -1,
+      "pixels": 129,
+      "outline": 40
+    }
+  ],
+  "hiddenOldIdleLayers": [
+    349
+  ],
+  "onlyThreeImportedCels": true,
+  "allExistingPixelsUnchanged": true,
+  "noEyesOrClothesCopied": true,
+  "noSyncMetadata": true
+}

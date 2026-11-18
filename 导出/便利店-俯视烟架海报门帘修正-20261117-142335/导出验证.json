@@ -1,0 +1,18 @@
+{
+  "filesWritten": [
+    "三张海报.png",
+    "壁挂烟架.png",
+    "便利店-无雪-开门.png",
+    "便利店-无雪-开门.json",
+    "便利店-雪顶-开门.png",
+    "便利店-雪顶-开门.json"
+  ],
+  "frameCounts": [
+    6,
+    6
+  ],
+  "curtainFixedAllFrames": true,
+  "posterPlacementTest": true,
+  "posterSourceUnchanged": true,
+  "gamePngReadback": true
+}

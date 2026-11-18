@@ -1,0 +1,9 @@
+{
+  "id": "scene-convenience-20261116",
+  "status": 200,
+  "response": "{\"saved\":true,\"revision\":\"\\\"7452117d35a67962b6fd2254c210f7fc91fae6ed3aed7c73205a24665ded3369\\\"\"}",
+  "etag": "\"7452117d35a67962b6fd2254c210f7fc91fae6ed3aed7c73205a24665ded3369\"",
+  "sha256": "7452117d35a67962b6fd2254c210f7fc91fae6ed3aed7c73205a24665ded3369",
+  "verified": "完整工程回读一致；160×144；2 可编辑图层；单帧",
+  "existingProjectsChanged": false
+}

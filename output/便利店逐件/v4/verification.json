@@ -1,0 +1,7 @@
+{
+  "status": 200,
+  "etag": "\"4a6594d2e1bf8bb1cbfe53ec9449be459b63a417bc4b6bfbc08e7ef67b0745f7\"",
+  "originalSHA256": "50f3b863b4fc9c0d1fc35f1611dbdd1d206bf0310ee3c7bbfd69e3f962fbd568",
+  "newSHA256": "4a6594d2e1bf8bb1cbfe53ec9449be459b63a417bc4b6bfbc08e7ef67b0745f7",
+  "verified": "32×48,三层、原结构不变；整份JSON回读一致"
+}

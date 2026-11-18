@@ -1,0 +1,70 @@
+{
+  "root": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店",
+  "sourceETag": "\"6877589d377c8b82bdfeb51bc17f0059fe31fa9ed7cc330cec0fbc8c37a76f67\"",
+  "verifiedSourceETag": "\"1167f886149a5aa21a2a932d9ef55d3aacd9b57f9d948e7bdc75e50e174d6789\"",
+  "replacements": [
+    {
+      "file": "柜子.png",
+      "width": 288,
+      "height": 29,
+      "beforeSHA256": "69828f2d0626b7522132cd6dd0b392fb39c95f015bda6772aa906b0202c58d28",
+      "afterSHA256": "d7aa0860b673a1c36df92f950ea271c3f5d2919d69ced791208652f935d2d902",
+      "readbackVerified": true
+    },
+    {
+      "file": "冰柜.png",
+      "width": 160,
+      "height": 14,
+      "beforeSHA256": "e0c13c8851fc9ff0f4a9c3612c6127e7a0ef656b02671926c22b5063681d2cd2",
+      "afterSHA256": "04c8fdafd9b26c92a6162cbedc433330421f543fa61adfcfa71d0e40d2815710",
+      "readbackVerified": true
+    },
+    {
+      "file": "木绿收银台-正面-桌子电脑.png",
+      "width": 28,
+      "height": 17,
+      "beforeSHA256": "5ec510d742b6e2fc4c793bda99fbf28afea81849206a5055657e1bb56d449398",
+      "afterSHA256": "6d724a46ce69f0c059f9a980dfceb3934259caeb71aa661d29e7ac44b4150aac",
+      "readbackVerified": true
+    },
+    {
+      "file": "包子蒸柜.png",
+      "width": 18,
+      "height": 19,
+      "beforeSHA256": "5ae5593afbba3c15b0479094f7a385b4cc26889a5dd1e529ab274987139d5ac1",
+      "afterSHA256": "a1232e0379380e28f05ee80d52be58c640f7cf4a92ed219ab8f3b1ac06d58fe2",
+      "readbackVerified": true
+    },
+    {
+      "file": "零食架.png",
+      "width": 16,
+      "height": 32,
+      "beforeSHA256": "0c111f9e76fa6e18eabb3f5d2e3f976737ad5482631d62a0933e332f44553015",
+      "afterSHA256": "526f1ce1133bdf6c29286c81f9634898e4ae5a843a3862b56db006c766318eff",
+      "readbackVerified": true
+    }
+  ],
+  "unchangedVerified": [
+    "柜子.json",
+    "现代柜子.png",
+    "现代柜子.json",
+    "冰柜.json",
+    "木绿收银台-正面-椅子.png",
+    "木绿收银台-右侧面-桌子电脑.png",
+    "木绿收银台-右侧面-椅子.png",
+    "现代收银台-正面-桌子电脑.png",
+    "现代收银台-正面-椅子.png",
+    "现代收银台-右侧面-桌子电脑.png",
+    "现代收银台-右侧面-椅子.png"
+  ],
+  "originalNativeDimensionsPreserved": true,
+  "animationLayoutAndTimingPreserved": true,
+  "nonTargetFileChangesDuringTask": [],
+  "importFilesUnchanged": true,
+  "restoreTest": {
+    "extraCopiesOnly": true,
+    "allOriginalHashesRestored": true,
+    "actualFinalAssetsPreserved": true
+  },
+  "requestedArtStableAfterReplace": true
+}

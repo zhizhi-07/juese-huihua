@@ -1,0 +1,5 @@
+{
+  "status": 409,
+  "etag": null,
+  "body": "{\"error\":\"Shared project changed; local draft retained\"}"
+}

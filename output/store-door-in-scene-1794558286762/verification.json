@@ -1,0 +1,10 @@
+{
+  "put": 200,
+  "get": 200,
+  "beforeSHA256": "0e9991551c0d08998ea9fa627d12a4e673a83fcc9c4a25c8036e1e8519d87ed5",
+  "afterSHA256": "e94d379cd1a962dc8c7ac6db11ea35896fdd3622864f0415a6a4fd5a8606428c",
+  "etag": "\"e94d379cd1a962dc8c7ac6db11ea35896fdd3622864f0415a6a4fd5a8606428c\"",
+  "action": "场景",
+  "frames": 6,
+  "firstFrameUnchanged": true
+}

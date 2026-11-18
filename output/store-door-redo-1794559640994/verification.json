@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "put": 200,
+  "get": 200,
+  "beforeSHA256": "3843346e5ff1e12cda36148efdf2d91dbe0d5f61e64bd7e9afa30d41a0e8bfd6",
+  "afterSHA256": "67c7c2edda946306cb4bd6755ea1db1569a1da8aca92a80773b0c4606d9c743a",
+  "etag": "\"67c7c2edda946306cb4bd6755ea1db1569a1da8aca92a80773b0c4606d9c743a\"",
+  "frames": 6,
+  "firstFrameUnchanged": true,
+  "hiddenReferenceUnchanged": true,
+  "timingUnchanged": true,
+  "staticBuildingSyncedFromLatestFirstFrame": true
+}

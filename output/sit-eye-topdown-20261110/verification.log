@@ -1,0 +1,13 @@
+node test/eye-sync.cjs
+PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.
+exit=0
+node test/hair-animation.cjs
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+exit=0
+node output/sit-eye-topdown-20261110/verify.cjs
+button [ '', '', '', '' ] [ 55, 37, 55, 37 ]
+before {"source":[18,10],"stats":[[{"hairTop":1,"eyeTop":7.5,"eyeOffset":-1,"lossless":true},{"hairTop":1,"eyeTop":7.5,"eyeOffset":-1,"lossless":true},{"hairTop":2,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":2,"eyeTop":8.5,"eyeOffset":0,"lossless":true}],[{"hairTop":1,"eyeTop":7.5,"eyeOffset":-1,"lossless":true},{"hairTop":1,"eyeTop":7.5,"eyeOffset":-1,"lossless":true},{"hairTop":2,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":2,"eyeTop":8.5,"eyeOffset":0,"lossless":true}]],"status":["","","",""],"clicked":[55,37,55,37]}
+button [ '', '', '', '' ] [ 55, 37, 55, 37 ]
+after {"source":[18,10],"stats":[[{"hairTop":1,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":1,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":2,"eyeTop":9.5,"eyeOffset":1,"lossless":true},{"hairTop":2,"eyeTop":9.5,"eyeOffset":1,"lossless":true}],[{"hairTop":1,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":1,"eyeTop":8.5,"eyeOffset":0,"lossless":true},{"hairTop":2,"eyeTop":9.5,"eyeOffset":1,"lossless":true},{"hairTop":2,"eyeTop":9.5,"eyeOffset":1,"lossless":true}]],"status":["","","",""],"clicked":[55,37,55,37]}
+API unchanged draft-conflict-1794277219868-e36ffb28 "f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c" f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c
+exit=0

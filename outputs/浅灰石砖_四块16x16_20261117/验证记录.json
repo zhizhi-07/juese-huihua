@@ -1,0 +1,15 @@
+{
+  "result": "PASS",
+  "totalSize": "16x16",
+  "tileSize": "8x8",
+  "layout": "2x2",
+  "colors": 4,
+  "identicalQuadrants": true,
+  "otherContentUnchanged": true,
+  "apiReadbackExact": true,
+  "restorationOnExtraCopy": true,
+  "originalSHA256": "d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345",
+  "savedSHA256": "fedec1699c7c1b16a4e7695da1e5c4691f9eefa24199028fc2f0fe96d8f35c77",
+  "pngSHA256": "7286ff0da8da27341df32011f083b51b6bb6f688068410fb774999e23845d0cd",
+  "frontendRefreshed": false
+}

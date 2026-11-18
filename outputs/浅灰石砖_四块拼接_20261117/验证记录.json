@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "sheetIndex": 15,
+  "layerIndex": 89,
+  "size": "32x32",
+  "tileSize": "16x16",
+  "layout": "2x2",
+  "tiles": 4,
+  "pixelExactCopies": true,
+  "otherContentUnchanged": true,
+  "restorationOnExtraCopy": true,
+  "apiReadbackExact": true,
+  "originalSHA256": "f2c993bb6544cbe747506d1f4d870b3b4d505a45592e32d356824472cb1ec8d8",
+  "savedSHA256": "f3c632dca779780812e22b8a0579df7ca7b50d248e2f7900ff57c226e36858d3",
+  "pngSHA256": "21e1b6e4d419802bb8bd4a5a8bc6ef8ab12ef13717e4d3ab699986ae27ed525e",
+  "frontendRefreshed": false
+}

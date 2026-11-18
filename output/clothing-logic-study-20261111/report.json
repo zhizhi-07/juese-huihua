@@ -1,0 +1,1370 @@
+[
+  {
+    "character": "Angler",
+    "sha256": "40d7d74f37053bfb27432ab191524a1e1ad5948c8b4aef22edd3e0cc09b6fee4",
+    "layers": [
+      "up",
+      "hand 2",
+      "vfx",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "down",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "vfx",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "vfx"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "fish - casting"
+      },
+      {
+        "from": 32,
+        "to": 35,
+        "direction": 0,
+        "name": "fish - idle"
+      },
+      {
+        "from": 36,
+        "to": 41,
+        "direction": 0,
+        "name": "fish - reeling"
+      },
+      {
+        "from": 42,
+        "to": 47,
+        "direction": 0,
+        "name": "fish - catch"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "fish - casting",
+        "frames": 6,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "side",
+        "action": "fish - idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "fish - reeling",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "fish - catch",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "fish - casting",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "fish - idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "fish - reeling",
+        "frames": 6,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "fish - catch",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "fish - casting",
+        "frames": 6,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "fish - idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "fish - reeling",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "fish - catch",
+        "frames": 6,
+        "translationNormalizedShapes": 2
+      }
+    ]
+  },
+  {
+    "character": "Blacksmith",
+    "sha256": "6a3ecde482a62162d43359176f75f59e3f3e89c44674487f1fb7eb6c3da26954",
+    "layers": [
+      "up",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "down",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      }
+    ]
+  },
+  {
+    "character": "Chef",
+    "sha256": "618a3a98d80c23c069b5fe4d9be0128b8bdd18d1438985534420f80714fa9033",
+    "layers": [
+      "up",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "down",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      }
+    ]
+  },
+  {
+    "character": "Farmer",
+    "sha256": "f83bae8ce824b2998678305b19f9297eb3e9591a4e97f87b96c1cb679f43e1a4",
+    "layers": [
+      "up",
+      "hand 2",
+      "vfx",
+      "body",
+      "head",
+      "hair",
+      "hand",
+      "vfx",
+      "down",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "hand",
+      "vfx",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "hand",
+      "vfx"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "axe"
+      },
+      {
+        "from": 32,
+        "to": 37,
+        "direction": 0,
+        "name": "hoe"
+      },
+      {
+        "from": 38,
+        "to": 45,
+        "direction": 0,
+        "name": "shovel"
+      },
+      {
+        "from": 46,
+        "to": 51,
+        "direction": 0,
+        "name": "sickle"
+      },
+      {
+        "from": 52,
+        "to": 55,
+        "direction": 0,
+        "name": "planting"
+      },
+      {
+        "from": 56,
+        "to": 61,
+        "direction": 0,
+        "name": "watering"
+      },
+      {
+        "from": 62,
+        "to": 65,
+        "direction": 0,
+        "name": "brush"
+      },
+      {
+        "from": 66,
+        "to": 71,
+        "direction": 0,
+        "name": "shear"
+      },
+      {
+        "from": 72,
+        "to": 77,
+        "direction": 0,
+        "name": "milking"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "axe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "hoe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "shovel",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "side",
+        "action": "sickle",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "planting",
+        "frames": 4,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "watering",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "side",
+        "action": "brush",
+        "frames": 4,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "side",
+        "action": "shear",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "side",
+        "action": "milking",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "axe",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "hoe",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "shovel",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "sickle",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "planting",
+        "frames": 4,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "watering",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "down",
+        "action": "brush",
+        "frames": 4,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "down",
+        "action": "shear",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "down",
+        "action": "milking",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "axe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "hoe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "shovel",
+        "frames": 8,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "sickle",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "planting",
+        "frames": 4,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "watering",
+        "frames": 6,
+        "translationNormalizedShapes": 1
+      },
+      {
+        "direction": "up",
+        "action": "brush",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "shear",
+        "frames": 6,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "milking",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      }
+    ]
+  },
+  {
+    "character": "Florist",
+    "sha256": "1f4d10abe14cf1d155604f2ee284eb83f87c39ac1c3a72ff4d18a8ae55f899d9",
+    "layers": [
+      "up",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand",
+      "down",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand 2",
+      "hand",
+      "side",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand 2",
+      "hand"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      }
+    ]
+  },
+  {
+    "character": "Inn Keeper",
+    "sha256": "76fb257f3f45e19918a3fcbf7e6e49416e2cacf4e2605eb8b27468c4972ef6d9",
+    "layers": [
+      "up",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "hand",
+      "down",
+      "hand 2",
+      "body",
+      "Layer 2",
+      "hair",
+      "hand",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "hand"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      }
+    ]
+  },
+  {
+    "character": "Merchant",
+    "sha256": "f23810a5882798eb0a841470ba9cde365ff0f0b976bda93be209b43e6c3d0b32",
+    "layers": [
+      "up",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand",
+      "down",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand 2",
+      "hand",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "hair",
+      "acc",
+      "hand"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 5
+      }
+    ]
+  },
+  {
+    "character": "Miner",
+    "sha256": "2c9b7caec7277abb9add3a3f4106912c7e00e77149f0b031d0b3dedae4417a76",
+    "layers": [
+      "up",
+      "hand 2",
+      "vfx",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "down",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "vfx",
+      "side",
+      "hand 2",
+      "body",
+      "head",
+      "acc",
+      "hand",
+      "vfx"
+    ],
+    "actions": [
+      {
+        "from": 0,
+        "to": 3,
+        "direction": 0,
+        "name": "idle"
+      },
+      {
+        "from": 4,
+        "to": 11,
+        "direction": 0,
+        "name": "walk"
+      },
+      {
+        "from": 12,
+        "to": 19,
+        "direction": 0,
+        "name": "run"
+      },
+      {
+        "from": 20,
+        "to": 25,
+        "direction": 0,
+        "name": "pick up"
+      },
+      {
+        "from": 26,
+        "to": 31,
+        "direction": 0,
+        "name": "pickaxe"
+      },
+      {
+        "from": 32,
+        "to": 37,
+        "direction": 0,
+        "name": "hammer"
+      }
+    ],
+    "body": [
+      {
+        "direction": "side",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "side",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 8
+      },
+      {
+        "direction": "side",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "pickaxe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "side",
+        "action": "hammer",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "down",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "down",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 6
+      },
+      {
+        "direction": "down",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "pickaxe",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "down",
+        "action": "hammer",
+        "frames": 6,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "idle",
+        "frames": 4,
+        "translationNormalizedShapes": 2
+      },
+      {
+        "direction": "up",
+        "action": "walk",
+        "frames": 8,
+        "translationNormalizedShapes": 3
+      },
+      {
+        "direction": "up",
+        "action": "run",
+        "frames": 8,
+        "translationNormalizedShapes": 7
+      },
+      {
+        "direction": "up",
+        "action": "pick up",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "pickaxe",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      },
+      {
+        "direction": "up",
+        "action": "hammer",
+        "frames": 6,
+        "translationNormalizedShapes": 4
+      }
+    ]
+  }
+]

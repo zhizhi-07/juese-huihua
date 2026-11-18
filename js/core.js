@@ -6,7 +6,7 @@
 window.PE = window.PE || {};
 // Hide the retired action without deleting or reindexing saved sheets and cels.
 PE.isEditorSheet = sheet => !['sleep', 'original16_sleep', 'original32_sleep'].includes(sheet?.name);
-PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
+PE.isCharacterSheet = sheet => ['浇水','镐','斧头','锄头','镰刀','种植','钓鱼-甩竿','钓鱼-持竿','钓鱼-收线','钓鱼-上鱼'].includes(sheet?.name) || /^original(?:16|32)_/.test(sheet?.name || '');
 
 (() => {
   'use strict';
@@ -667,9 +667,12 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
   // Export to window.PE
   PE.isHandLayer = layer => !!layer && (layer.referenceOnly === true || /^(?:hand(?:\s|$)|手(?:部|臂)?(?:\s|$))/i.test(layer.name));
   PE.isProtectedHandLayer = layer => PE.isHandLayer(layer) && (layer.referenceOnly !== false || !!layer.inheritedBase);
+  // 前手（近身那只手）与后手（hand 2，远身那只手）的区分：后手永远留在身体后面。
+  PE.isFrontHandLayer = layer => PE.isHandLayer(layer) && !/^(?:hand\s*2|后手)/i.test(String(layer.name || '').trim());
   PE.isLayerInAction = (project, layer, sheetIndex = project.currentSheetIndex, actionIndex = project.currentActionIndex) => {
     if (layer.sheetIndex !== undefined && layer.sheetIndex !== sheetIndex) return false;
     const actions = project.spriteSheets?.[sheetIndex]?.actions || [], action = actions[actionIndex];
+    if (action?.direction === 'up' && !layer.isGroup && PE.classifyPart(layer.name)?.slot === '眼睛') return false;
     let parent = layer.parent;
     const seen = new Set();
     while (parent != null) {
@@ -748,6 +751,7 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
     { test: /侧发|鬓发|鬓角/, category: '头发', slot: '侧发', rank: 1 },
     { test: /前发|刘海|额发/, category: '头发', slot: '前发', rank: 4 },
     { test: /发饰|发夹|发卡|发带|蝴蝶结|头饰|帽子/, category: '头发', slot: '饰品', rank: 5 },
+    { test: /^头发$/, category: '头发', slot: '前发', rank: 4 },
     { test: /眼|瞳/, category: '五官', slot: '眼睛', rank: 3.5 },
     { test: /嘴|口型|唇/, category: '五官', slot: '嘴巴', rank: 7 },
     { test: /服|衣|裤|裙|鞋|袜|jk/i, category: '衣服', slot: '服装', rank: 3 }
@@ -769,6 +773,11 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
       : `${rule.slot} / ${clean}`;
     return { category: rule.category, slot: rule.slot, rank: rule.rank, name: canonical, clean, series };
   };
+  /**
+   * 读取已有部件的系列名。
+   * 只用于查看/同步，不能用来给新建部件取名：新建部件沿用上一款改名后的系列名，
+   * 会被当成同一件（改名与显隐一起联动）。新建请用 PE.hairSeriesFor。
+   */
   PE.partSeries = (project, sheetIndex) => {
     for (const layer of project.layers) {
       if (layer.isGroup) continue;
@@ -777,6 +786,51 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
       if (pieces[0] === '头发' && pieces.length >= 3) return pieces[1].replace(/^\d+\s*/, '').trim();
     }
     return '';
+  };
+  const HAIR_SLOT_WORDS = {
+    后发: /(?:后面的头发|背发|后发)/g,
+    前发: /(?:前发|刘海|额发)/g,
+    侧发: /(?:侧发|鬓发|鬓角)/g
+  };
+  /**
+   * 从名字里取这一款自己的名字：「后发双马尾」→「双马尾」，「双马尾后发」→「双马尾」。
+   * 只写了槽位词（「后发」）时返回空，表示还没起名，交给 PE.hairSeriesFor 取默认名。
+   */
+  PE.hairSeriesFrom = (text, slot) => {
+    const words = HAIR_SLOT_WORDS[slot], clean = String(text || '').trim();
+    if (!words || !clean) return '';
+    const derived = clean.replace(words, ' ').replace(/\s+/g, ' ').trim();
+    if (!derived) return '';
+    return derived.length >= 2 ? derived : clean;
+  };
+  /**
+   * 给头发部件挑一个系列名（名字里的「系列」就是这一款的名字，如双马尾）。
+   * 同一方向同一槽位（前发/后发/侧发）只能有一款：
+   * 自己起了名字就用它；这一方向已经有这一款时，新部件拿没人占用的名字，
+   * 绝不沿用上一款改名后的名字；这一方向还没有这一款、其他方向有，
+   * 则沿用那边的系列名，一件头发继续跨方向同步。
+   */
+  PE.hairSeriesFor = (project, layer, slot, preferred = '') => {
+    const sheetIndex = layer.sheetIndex ?? project.currentSheetIndex;
+    const same = project.layers.filter(item => {
+      if (item === layer || item.isGroup) return false;
+      const info = PE.classifyPart(item.name);
+      return info?.category === '头发' && info.slot === slot;
+    });
+    const inSheet = same.filter(item => (item.sheetIndex ?? project.currentSheetIndex) === sheetIndex);
+    const seriesOf = item => PE.classifyPart(item.name).series || '通用发型';
+    const taken = new Set(inSheet.map(seriesOf));
+    const free = base => {
+      let name = base, round = 1;
+      while (taken.has(name)) { round += 1; name = `${base} ${round}`; }
+      return name;
+    };
+    // 名字里写了这一款的名字（如「后发双马尾」）：照用，同一方向重名时补序号。
+    if (preferred) return free(preferred);
+    // 这一方向已经有这一款：用没被占用的默认名，不蹭上一款改名后的名字。
+    if (inSheet.length) return free('通用发型');
+    // 这一方向还没有这一款、其他方向有：沿用那边的系列名，继续跨方向同步。
+    return same.map(seriesOf).find(Boolean) || '通用发型';
   };
   PE.layerPartRank = layer => {
     const info = PE.classifyPart(layer?.name);
@@ -860,10 +914,10 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
     if (!layer || layer.isGroup || layer.inheritedBase || PE.isHandLayer(layer)) return null;
     const info = PE.classifyPart(layer.name);
     if (!info) return null;
-    const series = info.series || PE.partSeries(project, layer.sheetIndex ?? project.currentSheetIndex);
-    const name = info.category === '头发' && info.slot !== '饰品'
-      ? `头发 / ${series || '通用发型'} / ${info.slot}`
-      : info.name;
+    const hair = info.category === '头发' && info.slot !== '饰品';
+    const preferred = info.series || (hair ? PE.hairSeriesFrom(info.clean, info.slot) : '');
+    const series = hair ? PE.hairSeriesFor(project, layer, info.slot, preferred) : '';
+    const name = hair ? `头发 / ${series} / ${info.slot}` : info.name;
     if (rename && name !== layer.name) layer.name = name;
     const rank = PE.layerPartRank(layer);
     if (layer.parent != null) {
@@ -894,18 +948,24 @@ PE.isCharacterSheet = sheet => /^original(?:16|32)_/.test(sheet?.name || '');
     return { ...info, name: layer.name, rank, index: project.currentLayerIndex };
   };
   // 后发在各方向均盖过头身，旧工程无需重写图层或像素。
+  // 正面和侧面前手置顶；背面双手（含描边）都在身体后面。只改绘制顺序。
   PE.getRenderLayers = (project, sheetIndex, actionIndex) => {
     const filtered=project.layers.filter(l=>PE.isLayerInAction(project,l,sheetIndex,actionIndex));
     const layers=filtered.length===project.layers.length?project.layers:filtered;
-    const isRear=l=>!l.isGroup&&(l.sheetIndex===undefined||l.sheetIndex===sheetIndex)&&PE.classifyPart(l.name)?.slot==='后发';
-    if(project.spriteSheets[sheetIndex]?.actions[actionIndex]?.direction!=='up'){
-      const rear=layers.filter(isRear),rest=layers.filter(l=>!isRear(l));
-      const base=rest.findLastIndex(l=>!l.isGroup&&/^(head|body|头部|身体)$/.test(l.name)&&(l.sheetIndex===undefined||l.sheetIndex===sheetIndex));
-      if(!rear.length||base<0)return layers;
-      rest.splice(base+1,0,...rear);return rest;
+    const inSheet=l=>l.sheetIndex===undefined||l.sheetIndex===sheetIndex;
+    const isRear=l=>!l.isGroup&&inSheet(l)&&PE.classifyPart(l.name)?.slot==='后发';
+    const isAccessory=l=>inSheet(l)&&l.name.startsWith('发饰 /');
+    const isFrontHand=l=>!l.isGroup&&inSheet(l)&&PE.isFrontHandLayer(l);
+    if(project.spriteSheets[sheetIndex]?.actions[actionIndex]?.direction==='up'){
+      const isHand=l=>!l.isGroup&&inSheet(l)&&PE.isHandLayer(l);
+      return [...layers.filter(isHand),...layers.filter(l=>!isHand(l)&&!isRear(l)&&!isAccessory(l)),...layers.filter(isRear),...layers.filter(isAccessory)];
     }
-    const isAccessory=l=>l.sheetIndex===sheetIndex&&l.name.startsWith('发饰 /');
-    return [...layers.filter(l=>!isRear(l)&&!isAccessory(l)),...layers.filter(isRear),...layers.filter(isAccessory)];
+    let ordered=layers;
+    const rear=layers.filter(isRear),rest=layers.filter(l=>!isRear(l));
+    const base=rest.findLastIndex(l=>!l.isGroup&&/^(head|body|头部|身体)$/.test(l.name)&&inSheet(l));
+    if(rear.length&&base>=0){rest.splice(base+1,0,...rear);ordered=rest;}
+    const hands=ordered.filter(isFrontHand);
+    return hands.length?[...ordered.filter(l=>!isFrontHand(l)),...hands]:ordered;
   };
   PE.utils = utils;
   PE.Frame = Frame;

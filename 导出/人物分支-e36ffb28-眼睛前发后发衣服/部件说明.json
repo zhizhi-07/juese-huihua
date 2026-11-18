@@ -1,0 +1,4921 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "file": "衣服-简单裙子-行走.png",
+      "sheetIndex": 0,
+      "part": "衣服-简单裙子",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-未分组眼睛-行走.png",
+      "sheetIndex": 0,
+      "part": "眼睛-未分组眼睛",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-1-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-1",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-齐肩短发-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-齐肩短发",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-短发-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-短发",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-马尾双-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-马尾双",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-层次感批发-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-层次感批发",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边批发-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-侧边批发",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边丸子头-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-侧边丸子头",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边马尾辫-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-侧边马尾辫",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-后发卷-行走.png",
+      "sheetIndex": 0,
+      "part": "后发-后发卷",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-可爱-行走.png",
+      "sheetIndex": 0,
+      "part": "眼睛-可爱",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-高清 · 眼睛-行走.png",
+      "sheetIndex": 0,
+      "part": "眼睛-高清 · 眼睛",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-眼睛666-行走.png",
+      "sheetIndex": 0,
+      "part": "眼睛-眼睛666",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-通用发型-行走.png",
+      "sheetIndex": 0,
+      "part": "前发-通用发型",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-齐刘海2-行走.png",
+      "sheetIndex": 0,
+      "part": "前发-齐刘海2",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-刘海3-行走.png",
+      "sheetIndex": 0,
+      "part": "前发-刘海3",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜刘海-行走.png",
+      "sheetIndex": 0,
+      "part": "前发-斜刘海",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜齐刘海-行走.png",
+      "sheetIndex": 0,
+      "part": "前发-斜齐刘海",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发--卷-行走.png",
+      "sheetIndex": 0,
+      "part": "前发--卷",
+      "action": "行走",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 8,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-未分组眼睛-待机.png",
+      "sheetIndex": 1,
+      "part": "眼睛-未分组眼睛",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-眼睛初始-待机.png",
+      "sheetIndex": 1,
+      "part": "眼睛-眼睛初始",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "衣服-衣服-待机.png",
+      "sheetIndex": 1,
+      "part": "衣服-衣服",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "衣服-简单裙子-待机.png",
+      "sheetIndex": 1,
+      "part": "衣服-简单裙子",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边马尾辫-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-侧边马尾辫",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边丸子头-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-侧边丸子头",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-双马尾-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-双马尾",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-齐肩短发-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-齐肩短发",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边批发-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-侧边批发",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-小啾啾-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-小啾啾",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-层次感批发-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-层次感批发",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-短发-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-短发",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-马尾双-待机.png",
+      "sheetIndex": 1,
+      "part": "后发-马尾双",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-可爱-待机.png",
+      "sheetIndex": 1,
+      "part": "眼睛-可爱",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-高清 · 眼睛-待机.png",
+      "sheetIndex": 1,
+      "part": "眼睛-高清 · 眼睛",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-眼睛1-待机.png",
+      "sheetIndex": 1,
+      "part": "眼睛-眼睛1",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-齐刘海-待机.png",
+      "sheetIndex": 1,
+      "part": "前发-齐刘海",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-齐刘海2-待机.png",
+      "sheetIndex": 1,
+      "part": "前发-齐刘海2",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜齐刘海-待机.png",
+      "sheetIndex": 1,
+      "part": "前发-斜齐刘海",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜刘海-待机.png",
+      "sheetIndex": 1,
+      "part": "前发-斜刘海",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-刘海3-待机.png",
+      "sheetIndex": 1,
+      "part": "前发-刘海3",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "衣服-高清 · 衣服-待机.png",
+      "sheetIndex": 1,
+      "part": "衣服-高清 · 衣服",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发--卷-待机.png",
+      "sheetIndex": 1,
+      "part": "前发--卷",
+      "action": "待机",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "衣服-简单裙子-拾取.png",
+      "sheetIndex": 2,
+      "part": "衣服-简单裙子",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-未分组眼睛-拾取.png",
+      "sheetIndex": 2,
+      "part": "眼睛-未分组眼睛",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-1-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-1",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-齐肩短发-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-齐肩短发",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-短发-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-短发",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-马尾双-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-马尾双",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-层次感批发-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-层次感批发",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边批发-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-侧边批发",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边丸子头-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-侧边丸子头",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边马尾辫-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-侧边马尾辫",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-后发卷-拾取.png",
+      "sheetIndex": 2,
+      "part": "后发-后发卷",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-可爱-拾取.png",
+      "sheetIndex": 2,
+      "part": "眼睛-可爱",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-高清 · 眼睛-拾取.png",
+      "sheetIndex": 2,
+      "part": "眼睛-高清 · 眼睛",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-眼睛-拾取.png",
+      "sheetIndex": 2,
+      "part": "眼睛-眼睛",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-通用发型-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发-通用发型",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-齐刘海2-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发-齐刘海2",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-刘海3-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发-刘海3",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜刘海-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发-斜刘海",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜齐刘海-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发-斜齐刘海",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发--卷-拾取.png",
+      "sheetIndex": 2,
+      "part": "前发--卷",
+      "action": "拾取",
+      "frameWidth": 40,
+      "frameHeight": 40,
+      "pixelScale": 2,
+      "logicalFrameWidth": 20,
+      "logicalFrameHeight": 20,
+      "columns": 6,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 1,
+          "direction": "down",
+          "label": "正面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "row": 2,
+          "direction": "up",
+          "label": "背面",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ]
+    },
+    {
+      "file": "衣服-简单裙子-坐.png",
+      "sheetIndex": 3,
+      "part": "衣服-简单裙子",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-1-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-1",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-齐肩短发-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-齐肩短发",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-短发-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-短发",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-马尾双-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-马尾双",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-层次感批发-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-层次感批发",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边批发-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-侧边批发",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边丸子头-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-侧边丸子头",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-侧边马尾辫-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-侧边马尾辫",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "后发-后发卷-坐.png",
+      "sheetIndex": 3,
+      "part": "后发-后发卷",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-可爱-坐.png",
+      "sheetIndex": 3,
+      "part": "眼睛-可爱",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-高清 · 眼睛-坐.png",
+      "sheetIndex": 3,
+      "part": "眼睛-高清 · 眼睛",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "眼睛-眼睛-坐.png",
+      "sheetIndex": 3,
+      "part": "眼睛-眼睛",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-通用发型-坐.png",
+      "sheetIndex": 3,
+      "part": "前发-通用发型",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-齐刘海2-坐.png",
+      "sheetIndex": 3,
+      "part": "前发-齐刘海2",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-刘海3-坐.png",
+      "sheetIndex": 3,
+      "part": "前发-刘海3",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜刘海-坐.png",
+      "sheetIndex": 3,
+      "part": "前发-斜刘海",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发-斜齐刘海-坐.png",
+      "sheetIndex": 3,
+      "part": "前发-斜齐刘海",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "file": "前发--卷-坐.png",
+      "sheetIndex": 3,
+      "part": "前发--卷",
+      "action": "坐",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "pixelScale": 2,
+      "logicalFrameWidth": 16,
+      "logicalFrameHeight": 16,
+      "columns": 4,
+      "rows": [
+        {
+          "row": 0,
+          "direction": "side",
+          "label": "侧面",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    }
+  ],
+  "order": [
+    {
+      "sheetIndex": 0,
+      "direction": "side",
+      "backToFront": [
+        {
+          "file": "后发-1-行走.png",
+          "sourceLayer": 95,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-行走.png",
+          "sourceLayer": 96,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-短发-行走.png",
+          "sourceLayer": 97,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-行走.png",
+          "sourceLayer": 98,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-行走.png",
+          "sourceLayer": 99,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-行走.png",
+          "sourceLayer": 100,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-行走.png",
+          "sourceLayer": 101,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-行走.png",
+          "sourceLayer": 102,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-行走.png",
+          "sourceLayer": 103,
+          "name": "头发 / 后发卷 / 后发"
+        },
+        {
+          "file": "衣服-简单裙子-行走.png",
+          "sourceLayer": 93,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-未分组眼睛-行走.png",
+          "sourceLayer": 94,
+          "name": "眼睛"
+        },
+        {
+          "file": "眼睛-可爱-行走.png",
+          "sourceLayer": 104,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-行走.png",
+          "sourceLayer": 105,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛666-行走.png",
+          "sourceLayer": 106,
+          "name": "眼睛 / 眼睛666"
+        },
+        {
+          "file": "前发-通用发型-行走.png",
+          "sourceLayer": 107,
+          "name": "头发 / 通用发型 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-行走.png",
+          "sourceLayer": 108,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-刘海3-行走.png",
+          "sourceLayer": 109,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-行走.png",
+          "sourceLayer": 169,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-行走.png",
+          "sourceLayer": 172,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发--卷-行走.png",
+          "sourceLayer": 176,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 0,
+      "direction": "down",
+      "backToFront": [
+        {
+          "file": "后发-1-行走.png",
+          "sourceLayer": 95,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-行走.png",
+          "sourceLayer": 96,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-短发-行走.png",
+          "sourceLayer": 97,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-行走.png",
+          "sourceLayer": 98,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-行走.png",
+          "sourceLayer": 99,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-行走.png",
+          "sourceLayer": 100,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-行走.png",
+          "sourceLayer": 101,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-行走.png",
+          "sourceLayer": 102,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-行走.png",
+          "sourceLayer": 103,
+          "name": "头发 / 后发卷 / 后发"
+        },
+        {
+          "file": "衣服-简单裙子-行走.png",
+          "sourceLayer": 91,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-未分组眼睛-行走.png",
+          "sourceLayer": 92,
+          "name": "眼睛"
+        },
+        {
+          "file": "眼睛-可爱-行走.png",
+          "sourceLayer": 104,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-行走.png",
+          "sourceLayer": 105,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛666-行走.png",
+          "sourceLayer": 106,
+          "name": "眼睛 / 眼睛666"
+        },
+        {
+          "file": "前发-通用发型-行走.png",
+          "sourceLayer": 107,
+          "name": "头发 / 通用发型 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-行走.png",
+          "sourceLayer": 108,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-刘海3-行走.png",
+          "sourceLayer": 109,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-行走.png",
+          "sourceLayer": 169,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-行走.png",
+          "sourceLayer": 172,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发--卷-行走.png",
+          "sourceLayer": 176,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 0,
+      "direction": "up",
+      "backToFront": [
+        {
+          "file": "衣服-简单裙子-行走.png",
+          "sourceLayer": 90,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "后发-1-行走.png",
+          "sourceLayer": 95,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-短发-行走.png",
+          "sourceLayer": 97,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-行走.png",
+          "sourceLayer": 98,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-行走.png",
+          "sourceLayer": 99,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-行走.png",
+          "sourceLayer": 100,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-行走.png",
+          "sourceLayer": 101,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-行走.png",
+          "sourceLayer": 102,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-行走.png",
+          "sourceLayer": 103,
+          "name": "头发 / 后发卷 / 后发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 1,
+      "direction": "side",
+      "backToFront": [
+        {
+          "file": "后发-侧边马尾辫-待机.png",
+          "sourceLayer": 114,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-待机.png",
+          "sourceLayer": 115,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-双马尾-待机.png",
+          "sourceLayer": 116,
+          "name": "头发 / 双马尾 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-待机.png",
+          "sourceLayer": 117,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-待机.png",
+          "sourceLayer": 118,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-小啾啾-待机.png",
+          "sourceLayer": 119,
+          "name": "头发 / 小啾啾 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-待机.png",
+          "sourceLayer": 120,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-短发-待机.png",
+          "sourceLayer": 121,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-待机.png",
+          "sourceLayer": 122,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "眼睛-眼睛初始-待机.png",
+          "sourceLayer": 111,
+          "name": "眼睛初始"
+        },
+        {
+          "file": "衣服-衣服-待机.png",
+          "sourceLayer": 112,
+          "name": "服装 / 衣服"
+        },
+        {
+          "file": "衣服-简单裙子-待机.png",
+          "sourceLayer": 113,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-可爱-待机.png",
+          "sourceLayer": 123,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-待机.png",
+          "sourceLayer": 124,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛1-待机.png",
+          "sourceLayer": 125,
+          "name": "眼睛 / 眼睛1"
+        },
+        {
+          "file": "前发-齐刘海-待机.png",
+          "sourceLayer": 126,
+          "name": "头发 / 齐刘海 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-待机.png",
+          "sourceLayer": 127,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-待机.png",
+          "sourceLayer": 128,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-待机.png",
+          "sourceLayer": 129,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-刘海3-待机.png",
+          "sourceLayer": 130,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "衣服-高清 · 衣服-待机.png",
+          "sourceLayer": 168,
+          "name": "高清 · 衣服"
+        },
+        {
+          "file": "前发--卷-待机.png",
+          "sourceLayer": 175,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 1,
+      "direction": "down",
+      "backToFront": [
+        {
+          "file": "后发-侧边马尾辫-待机.png",
+          "sourceLayer": 114,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-待机.png",
+          "sourceLayer": 115,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-双马尾-待机.png",
+          "sourceLayer": 116,
+          "name": "头发 / 双马尾 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-待机.png",
+          "sourceLayer": 117,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-待机.png",
+          "sourceLayer": 118,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-小啾啾-待机.png",
+          "sourceLayer": 119,
+          "name": "头发 / 小啾啾 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-待机.png",
+          "sourceLayer": 120,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-短发-待机.png",
+          "sourceLayer": 121,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-待机.png",
+          "sourceLayer": 122,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "眼睛-未分组眼睛-待机.png",
+          "sourceLayer": 110,
+          "name": "眼睛"
+        },
+        {
+          "file": "衣服-衣服-待机.png",
+          "sourceLayer": 112,
+          "name": "服装 / 衣服"
+        },
+        {
+          "file": "衣服-简单裙子-待机.png",
+          "sourceLayer": 113,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-可爱-待机.png",
+          "sourceLayer": 123,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-待机.png",
+          "sourceLayer": 124,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛1-待机.png",
+          "sourceLayer": 125,
+          "name": "眼睛 / 眼睛1"
+        },
+        {
+          "file": "前发-齐刘海-待机.png",
+          "sourceLayer": 126,
+          "name": "头发 / 齐刘海 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-待机.png",
+          "sourceLayer": 127,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-待机.png",
+          "sourceLayer": 128,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-待机.png",
+          "sourceLayer": 129,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-刘海3-待机.png",
+          "sourceLayer": 130,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "衣服-高清 · 衣服-待机.png",
+          "sourceLayer": 168,
+          "name": "高清 · 衣服"
+        },
+        {
+          "file": "前发--卷-待机.png",
+          "sourceLayer": 175,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 1,
+      "direction": "up",
+      "backToFront": [
+        {
+          "file": "衣服-简单裙子-待机.png",
+          "sourceLayer": 113,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "后发-侧边马尾辫-待机.png",
+          "sourceLayer": 114,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-待机.png",
+          "sourceLayer": 115,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-双马尾-待机.png",
+          "sourceLayer": 116,
+          "name": "头发 / 双马尾 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-待机.png",
+          "sourceLayer": 118,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-小啾啾-待机.png",
+          "sourceLayer": 119,
+          "name": "头发 / 小啾啾 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-待机.png",
+          "sourceLayer": 120,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-短发-待机.png",
+          "sourceLayer": 121,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-待机.png",
+          "sourceLayer": 122,
+          "name": "头发 / 马尾双 / 后发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 2,
+      "direction": "side",
+      "backToFront": [
+        {
+          "file": "后发-1-拾取.png",
+          "sourceLayer": 136,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-拾取.png",
+          "sourceLayer": 137,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-短发-拾取.png",
+          "sourceLayer": 138,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-拾取.png",
+          "sourceLayer": 139,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-拾取.png",
+          "sourceLayer": 140,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-拾取.png",
+          "sourceLayer": 141,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-拾取.png",
+          "sourceLayer": 142,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-拾取.png",
+          "sourceLayer": 143,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-拾取.png",
+          "sourceLayer": 144,
+          "name": "头发 / 后发卷 / 后发"
+        },
+        {
+          "file": "衣服-简单裙子-拾取.png",
+          "sourceLayer": 134,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-未分组眼睛-拾取.png",
+          "sourceLayer": 135,
+          "name": "眼睛"
+        },
+        {
+          "file": "眼睛-可爱-拾取.png",
+          "sourceLayer": 145,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-拾取.png",
+          "sourceLayer": 146,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛-拾取.png",
+          "sourceLayer": 147,
+          "name": "眼睛 / 眼睛"
+        },
+        {
+          "file": "前发-通用发型-拾取.png",
+          "sourceLayer": 148,
+          "name": "头发 / 通用发型 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-拾取.png",
+          "sourceLayer": 149,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-刘海3-拾取.png",
+          "sourceLayer": 150,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-拾取.png",
+          "sourceLayer": 170,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-拾取.png",
+          "sourceLayer": 173,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发--卷-拾取.png",
+          "sourceLayer": 177,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 2,
+      "direction": "down",
+      "backToFront": [
+        {
+          "file": "后发-1-拾取.png",
+          "sourceLayer": 136,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-拾取.png",
+          "sourceLayer": 137,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-短发-拾取.png",
+          "sourceLayer": 138,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-拾取.png",
+          "sourceLayer": 139,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-拾取.png",
+          "sourceLayer": 140,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-拾取.png",
+          "sourceLayer": 141,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-拾取.png",
+          "sourceLayer": 142,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-拾取.png",
+          "sourceLayer": 143,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-拾取.png",
+          "sourceLayer": 144,
+          "name": "头发 / 后发卷 / 后发"
+        },
+        {
+          "file": "衣服-简单裙子-拾取.png",
+          "sourceLayer": 132,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-未分组眼睛-拾取.png",
+          "sourceLayer": 133,
+          "name": "眼睛"
+        },
+        {
+          "file": "眼睛-可爱-拾取.png",
+          "sourceLayer": 145,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-拾取.png",
+          "sourceLayer": 146,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛-拾取.png",
+          "sourceLayer": 147,
+          "name": "眼睛 / 眼睛"
+        },
+        {
+          "file": "前发-通用发型-拾取.png",
+          "sourceLayer": 148,
+          "name": "头发 / 通用发型 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-拾取.png",
+          "sourceLayer": 149,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-刘海3-拾取.png",
+          "sourceLayer": 150,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-拾取.png",
+          "sourceLayer": 170,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-拾取.png",
+          "sourceLayer": 173,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发--卷-拾取.png",
+          "sourceLayer": 177,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 2,
+      "direction": "up",
+      "backToFront": [
+        {
+          "file": "衣服-简单裙子-拾取.png",
+          "sourceLayer": 131,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "后发-1-拾取.png",
+          "sourceLayer": 136,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-短发-拾取.png",
+          "sourceLayer": 138,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-拾取.png",
+          "sourceLayer": 139,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-拾取.png",
+          "sourceLayer": 140,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-拾取.png",
+          "sourceLayer": 141,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-拾取.png",
+          "sourceLayer": 142,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-拾取.png",
+          "sourceLayer": 143,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-拾取.png",
+          "sourceLayer": 144,
+          "name": "头发 / 后发卷 / 后发"
+        }
+      ]
+    },
+    {
+      "sheetIndex": 3,
+      "direction": "side",
+      "backToFront": [
+        {
+          "file": "后发-1-坐.png",
+          "sourceLayer": 153,
+          "name": "头发 / 1 / 后发"
+        },
+        {
+          "file": "后发-齐肩短发-坐.png",
+          "sourceLayer": 154,
+          "name": "头发 / 齐肩短发 / 后发"
+        },
+        {
+          "file": "后发-短发-坐.png",
+          "sourceLayer": 155,
+          "name": "头发 / 短发 / 后发"
+        },
+        {
+          "file": "后发-马尾双-坐.png",
+          "sourceLayer": 156,
+          "name": "头发 / 马尾双 / 后发"
+        },
+        {
+          "file": "后发-层次感批发-坐.png",
+          "sourceLayer": 157,
+          "name": "头发 / 层次感批发 / 后发"
+        },
+        {
+          "file": "后发-侧边批发-坐.png",
+          "sourceLayer": 158,
+          "name": "头发 / 侧边批发 / 后发"
+        },
+        {
+          "file": "后发-侧边丸子头-坐.png",
+          "sourceLayer": 159,
+          "name": "头发 / 侧边丸子头 / 后发"
+        },
+        {
+          "file": "后发-侧边马尾辫-坐.png",
+          "sourceLayer": 160,
+          "name": "头发 / 侧边马尾辫 / 后发"
+        },
+        {
+          "file": "后发-后发卷-坐.png",
+          "sourceLayer": 161,
+          "name": "头发 / 后发卷 / 后发"
+        },
+        {
+          "file": "衣服-简单裙子-坐.png",
+          "sourceLayer": 151,
+          "name": "服装 / 简单裙子"
+        },
+        {
+          "file": "眼睛-可爱-坐.png",
+          "sourceLayer": 162,
+          "name": "眼睛 / 可爱"
+        },
+        {
+          "file": "眼睛-高清 · 眼睛-坐.png",
+          "sourceLayer": 163,
+          "name": "高清 · 眼睛"
+        },
+        {
+          "file": "眼睛-眼睛-坐.png",
+          "sourceLayer": 164,
+          "name": "眼睛 / 眼睛"
+        },
+        {
+          "file": "前发-通用发型-坐.png",
+          "sourceLayer": 165,
+          "name": "头发 / 通用发型 / 前发"
+        },
+        {
+          "file": "前发-齐刘海2-坐.png",
+          "sourceLayer": 166,
+          "name": "头发 / 齐刘海2 / 前发"
+        },
+        {
+          "file": "前发-刘海3-坐.png",
+          "sourceLayer": 167,
+          "name": "头发 / 刘海3 / 前发"
+        },
+        {
+          "file": "前发-斜刘海-坐.png",
+          "sourceLayer": 171,
+          "name": "头发 / 斜刘海 / 前发"
+        },
+        {
+          "file": "前发-斜齐刘海-坐.png",
+          "sourceLayer": 174,
+          "name": "头发 / 斜齐刘海 / 前发"
+        },
+        {
+          "file": "前发--卷-坐.png",
+          "sourceLayer": 178,
+          "name": "头发 / -卷 / 前发"
+        }
+      ]
+    }
+  ]
+}

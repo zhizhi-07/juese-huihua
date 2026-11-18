@@ -1,0 +1,13 @@
+{
+  "put": {
+    "status": 200,
+    "etag": "\"621798b835e407e8c3d848a492d312ace676de6f2b6227d079ae745127d0f272\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"621798b835e407e8c3d848a492d312ace676de6f2b6227d079ae745127d0f272\\\"\"}"
+  },
+  "get": {
+    "status": 200,
+    "etag": "\"621798b835e407e8c3d848a492d312ace676de6f2b6227d079ae745127d0f272\"",
+    "sha256": "621798b835e407e8c3d848a492d312ace676de6f2b6227d079ae745127d0f272"
+  },
+  "check": "Exact candidate match"
+}

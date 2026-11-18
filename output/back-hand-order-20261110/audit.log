@@ -1,0 +1,61 @@
+{
+  "id": "draft-conflict-1794271316087-dc54567c",
+  "etag": "\"d42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd\"",
+  "sha256": "d42cf19517d82a1c2f1eef77f1b0b1a22d2e15c584ae7c516d2b1c5a3d6199fd",
+  "frames": 70,
+  "back": 22,
+  "changedBack": 0,
+  "idle": {
+    "side": [
+      "hand 2",
+      "body",
+      "head",
+      "高清 · 眼睛",
+      "头发 / 通用发型 / 前发",
+      "hand"
+    ],
+    "down": [
+      "body",
+      "head",
+      "高清 · 眼睛",
+      "头发 / 通用发型 / 前发",
+      "hand"
+    ],
+    "up": [
+      "hand",
+      "body",
+      "head"
+    ]
+  }
+}
+{
+  "id": "draft-conflict-1794277219868-e36ffb28",
+  "etag": "\"f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c\"",
+  "sha256": "f1346d94253e98f6616c5712d82a74b5638e96370a009e9709d8da409c9eb47c",
+  "frames": 58,
+  "back": 18,
+  "changedBack": 0,
+  "idle": {
+    "side": [
+      "hand 2",
+      "body",
+      "head",
+      "眼睛 / 眼睛1",
+      "头发 / -卷 / 前发",
+      "hand"
+    ],
+    "down": [
+      "body",
+      "head",
+      "眼睛 / 眼睛1",
+      "头发 / -卷 / 前发",
+      "hand"
+    ],
+    "up": [
+      "hand",
+      "body",
+      "head"
+    ]
+  }
+}
+PASS: API bytes and ETags unchanged; live scripts match disk.

@@ -1,0 +1,32 @@
+{
+  "status": 200,
+  "newETag": "\"29fb8c5c4b207e0dc22bce17554f062085ddf7505bb15c5521ea610958abedeb\"",
+  "newSHA256": "29fb8c5c4b207e0dc22bce17554f062085ddf7505bb15c5521ea610958abedeb",
+  "colorsBeforeAfter": {
+    "橱窗 · 木框与玻璃": [
+      4,
+      5
+    ],
+    "橱窗 · 窗棂": [
+      1,
+      2
+    ],
+    "橱窗 · 陈列商品": [
+      45,
+      10
+    ],
+    "入口 · 玻璃门扇": [
+      20,
+      7
+    ],
+    "雨棚 · 红白条纹布": [
+      23,
+      5
+    ],
+    "招牌 · 苹果24灯箱": [
+      23,
+      4
+    ]
+  },
+  "otherFieldsUnchanged": true
+}

@@ -1,0 +1,36 @@
+{
+  "onlyBackSitHands": true,
+  "clipped": 0,
+  "pixelsPreserved": true,
+  "otherDataUnchanged": true,
+  "stats": [
+    {
+      "fi": 0,
+      "layer": "hand 2",
+      "leftDx": 1,
+      "rightDx": -1,
+      "pixelCount": 24
+    },
+    {
+      "fi": 1,
+      "layer": "hand 2",
+      "leftDx": 1,
+      "rightDx": -1,
+      "pixelCount": 24
+    },
+    {
+      "fi": 2,
+      "layer": "hand 2",
+      "leftDx": 1,
+      "rightDx": -1,
+      "pixelCount": 24
+    },
+    {
+      "fi": 3,
+      "layer": "hand 2",
+      "leftDx": 1,
+      "rightDx": -1,
+      "pixelCount": 24
+    }
+  ]
+}

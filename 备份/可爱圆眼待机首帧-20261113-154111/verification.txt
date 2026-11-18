@@ -1,0 +1,1 @@
+Readback exact; restored 0 previously changed walk frames; recolored only idle layer 205 frames 1_0_0 and 1_1_0; visibility unchanged.

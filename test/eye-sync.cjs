@@ -28,12 +28,15 @@ function fixture(){
 async function main(){
  const {p,eyes,walk,sleep,hair,app}=fixture(),layers=p.layers.slice(),headBytes=p.layers.filter(l=>l.name==='head').map(l=>[...l.frameData.values()].map(im=>[...im.data])),sleepBefore=JSON.stringify([...sleep.frameData]),hairBefore=JSON.stringify([...hair.frameData]);
  const blinkIdle=eyes.getFrameData('0_0_1'),blinkWalk=walk.getFrameData('1_0_1');
- const r=H.sync(app,{live:true});assert.equal(r.edits.length,43);assert.equal(eyes.hairAnimation.part,'eyes');assert(!eyes.hairAnimation.enabled);
- assert.deepEqual(eyes.hairAnimation.preserved,['original32_idle/down/1','original32_walk/down/1']);
- assert.equal(eyes.getFrameData('0_0_1'),blinkIdle);assert.equal(walk.getFrameData('1_0_1'),blinkWalk);
+ const r=H.sync(app,{live:true});assert.equal(r.edits.length,30);assert.equal(eyes.hairAnimation.part,'eyes');assert(!eyes.hairAnimation.enabled);
+ assert(r.edits.every(e=>!e.key.startsWith(e.layer.sheetIndex+'_2_')),'eyes never generate rear cels even when a legacy rear master contains pixels');
+ assert(!p.layers.find(l=>l.sheetIndex===2&&l.hairAnimationId).getFrameData('2_2_0'));
+ assert.deepEqual(eyes.hairAnimation.preserved,[],'different pixels are not automatically classified as blinking');
+ assert.deepEqual(raster(eyes.getFrameData('0_0_1')),raster(pixels(3,5)));assert.deepEqual(raster(walk.getFrameData('1_0_1')),raster(pixels(4,5)));
  assert.deepEqual(raster(walk.getFrameData('1_1_2')),raster(pixels(4,7)),'open eyes follow direction and head offsets');
  assert(!sleep.hairAnimationId,'retired sleeping layer is not linked');assert(!Object.keys(eyes.hairAnimation.offsets).some(k=>k.includes('sleep')));
  app.history.undo(p);assert.deepEqual(p.layers,layers);assert(!eyes.hairAnimation);app.history.redo(p);assert(eyes.hairAnimation.live);
+ H.transaction(app,'manual frame opt-out',()=>{eyes.hairAnimation.preserved=['original32_idle/down/1','original32_walk/down/1'];eyes.frameData.set('0_0_1',blinkIdle);walk.frameData.set('1_0_1',blinkWalk);});
  H.install(app);app.toolManager.drawPixel(p.layers.indexOf(eyes),'0_1_0',5,5,90,80,70,255);
  assert.equal(raster(walk.getFrameData('1_1_2'))[(7*16+6)*4],90,'live brush reaches walking eyes');
  assert.equal(eyes.getFrameData('0_0_1'),blinkIdle);assert.equal(walk.getFrameData('1_0_1'),blinkWalk);
@@ -47,8 +50,43 @@ async function main(){
  for(const mutate of [g=>g.preserved=['original32_idle/down/0'],g=>g.preserved=['bad'],g=>g.enabled=true,g=>g.part='mouth']){const bad=structuredClone(raw);mutate(bad.layers.find(l=>l.hairAnimation).hairAnimation);await assert.rejects(()=>ex.importProject(new Blob([JSON.stringify(bad)])));}
  assert.equal(JSON.stringify([...sleep.frameData]),sleepBefore);assert.equal(JSON.stringify([...hair.frameData]),hairBefore);assert.deepEqual(p.layers.filter(l=>l.name==='head').map(l=>[...l.frameData.values()].map(im=>[...im.data])),headBytes);
  assert(!PE.isEditorSheet({name:'original32_sleep'}));assert(!PE.isEditorSheet({name:'sleep'}));assert(PE.isEditorSheet({name:'original32_sit'}));assert(!('sleep' in PE.Wardrobe.actions));
- const noSource=fixture();noSource.eyes.frameData.delete('0_2_0');H.sync(noSource.app);assert.deepEqual(raster(noSource.walk.getFrameData('1_2_2')),raster(pixels(4,7)),'missing directional master never erases existing eyes');
- console.log('PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
+ const noSource=fixture();noSource.eyes.frameData.delete('0_1_0');H.sync(noSource.app);assert.deepEqual(raster(noSource.walk.getFrameData('1_1_2')),raster(pixels(4,7)),'missing side master never erases existing eyes');
+ const shared=fixture();H.sync(shared.app);
+ const sit=shared.p.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===shared.eyes.hairAnimationId);
+ const recipe=shared.eyes.hairAnimation;
+ recipe.offsets['original32_sit/side/0'].y=8;
+ recipe.offsets['original32_sit/side/2'].y=-4;
+ recipe.preserved.push('original32_sit/side/1');
+ const kept=sit.getFrameData('3_1_1');
+ for(let attempt=0;attempt<2;attempt++){
+   H.sync(shared.app);
+   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,5)),'side sitting eyes: head displacement, regardless of saved Y');
+   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,7)),'side sitting eyes follow the later head displacement');
+   assert.deepEqual(raster(sit.getFrameData('3_0_0')),raster(pixels(3,5)),'non-side sitting eyes unchanged');
+   assert.equal(sit.getFrameData('3_1_1'),kept);
+ }
+ for(const scale of [1,2]){
+   const {p,eyes,app}=fixture();
+   const source=new ImageData(8,4);
+   source.data.set([30,40,50,255,80,90,100,255]);
+   source.placement={x:3.5,y:5.5,w:8/scale,h:4/scale};
+   eyes.frameData.set('0_1_0',source);
+   H.sync(app,{live:true});
+   const target=p.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===eyes.hairAnimationId);
+   const generated=target.getFrameData('3_1_0');
+   assert.deepEqual([generated.width,generated.height],[8,4]);
+   assert.deepEqual(generated.placement,{...source.placement,y:5.5});
+   assert.deepEqual(generated.data,source.data);
+   assert.notEqual(generated.data,source.data);
+   assert.equal(eyes.getFrameData('0_1_0'),source);
+   const ex=new PE.ExportManager();ex.project=p;
+   const reopened=(await ex.importProject(ex.exportProject(false))).project;
+   const saved=reopened.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===eyes.hairAnimationId).getFrameData('3_1_0');
+   assert.deepEqual(saved.placement,generated.placement);
+   assert.deepEqual(saved.data,source.data);
+ }
+ console.log('PASS eyes: shared directional sync, calibrated offsets, no automatic blink recognition, manual frame opt-out, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
 }
 if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});
 module.exports={fixture,pixels,raster};
+

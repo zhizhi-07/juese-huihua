@@ -1,0 +1,33 @@
+diff --git a/output/sit-hair-global-up-one-20261110/before/hair-animation.js b/js/hair-animation.js
+index de5d3a3..7a8bd1d 100644
+--- a/output/sit-hair-global-up-one-20261110/before/hair-animation.js
++++ b/js/hair-animation.js
+@@ -10,7 +10,8 @@ window.PE = window.PE || {};
+   const isIdle = sheet => /^original(?:16|32)_idle$/.test(sheet?.name || '');
+   const active = sheet => supported(sheet) && PE.isEditorSheet(sheet);
+   const isEyes = layer => PE.classifyPart(layer?.name)?.slot === '眼睛';
+-  const usesSitEyeY = (part, sheet, direction) => part==='eyes' && /^original(?:16|32)_sit$/.test(sheet) && direction==='side';
++  const isSideSit = (sheet, direction) => /^original(?:16|32)_sit$/.test(sheet) && direction==='side';
++  const usesSitEyeY = (part, sheet, direction) => part==='eyes' && isSideSit(sheet,direction);
+   const partName = layer => isEyes(layer) ? '眼睛' : '头发';
+   const address = (sheet, direction, fi) => `${sheet.name}/${direction}/${fi}`;
+   const params = sheet => ({ampV:0, ampH:sheet?.name?.startsWith('original16_')?1:2, cycles:1, lag:0.6, verticalMode:'wave', masks:{}, protectedMasks:{}, trajAmp:0.1, trajectories:{}, stitch:{}});
+@@ -325,7 +326,8 @@ window.PE = window.PE || {};
+             if(!prev||!earlier)throw Error('帧结构已变化，请先重新标定偏移');
+             followOffset=Math.max(-2,Math.min(2,offset.y-prev.y+(prev.y-earlier.y)*.5));
+           }
+-          const result=deform(src,frame,offset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction],followOffset);clipped+=result.clipped;
++          const placementOffset=g.part!=='eyes'&&isSideSit(s.name,a.direction)?{x:offset.x,y:offset.y-1}:offset;
++          const result=deform(src,frame,placementOffset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction],followOffset);clipped+=result.clipped;
+           edits.push({layer,key:p.getFrameKey(si,ai,fi),image:result.image});
+         }
+       }
+@@ -413,7 +415,7 @@ document.addEventListener('DOMContentLoaded',()=>{
+   bar.querySelector('#hair-offsets').onclick=()=>run(()=>{
+     const p=app.project,s=current();if(!s)throw Error('请先开启实时同步或点击同步全部');
+     const dialog=document.createElement('dialog');dialog.className='advanced-dialog hair-offset-dialog';dialog.setAttribute('aria-label','部件偏移与保留帧');
+-    dialog.innerHTML='<h2>相对各方向待机首帧的偏移</h2><p>向右、向下为正数。重新标定只读取现有头部，不修改人物。眼睛勾选「保留原画」的帧不参与同步，可独立绘制；取消勾选会用本方向基准替换。侧面坐姿眼睛的 Y 统一按头部位移减 1，不使用工程旧值。</p><div class="hair-offset-table"></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-calibrate class="studio-button">按头部重新标定</button><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>';
++    dialog.innerHTML='<h2>相对各方向待机首帧的偏移</h2><p>向右、向下为正数。重新标定只读取现有头部，不修改人物。眼睛勾选「保留原画」的帧不参与同步，可独立绘制；取消勾选会用本方向基准替换。侧面坐姿眼睛的 Y 统一按头部位移减 1，不使用工程旧值；侧面坐姿头发生成时在设置值上再上移 1 格。</p><div class="hair-offset-table"></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-calibrate class="studio-button">按头部重新标定</button><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>';
+     let offsets=cloneOffsets();const preserved=new Set(s.hairAnimation.preserved||[]),stamp=JSON.stringify(s.hairAnimation);function cloneOffsets(){return JSON.parse(JSON.stringify(s.hairAnimation.offsets));}
+     const list=dialog.querySelector('.hair-offset-table');
+     function draw(){list.replaceChildren();for(const [key,v]of Object.entries(offsets)){const [sheet,dir,fi]=key.split('/');if(!PE.isEditorSheet({name:sheet}))continue;const row=document.createElement('div'),base=sheet===p.spriteSheets[s.sheetIndex].name&&fi==='0';row.textContent=`${H.actions[sheet.slice(11)]||sheet} · ${H.directions[dir]||dir} · 第${Number(fi)+1}帧 `;for(const axis of ['x','y']){if(axis==='y'&&H.usesSitEyeY(s.hairAnimation.part,sheet,dir)){row.append('Y：头部位移 − 1');continue;}const input=document.createElement('input');input.type='number';input.step='1';input.min='-4096';input.max='4096';input.value=v[axis];input.disabled=base;input.setAttribute('aria-label',`${H.actions[sheet.slice(11)]||sheet} ${H.directions[dir]||dir} 第${Number(fi)+1}帧 ${axis.toUpperCase()}`);input.oninput=()=>v[axis]=Number(input.value);row.append(axis.toUpperCase(),input);}if(s.hairAnimation.part==='eyes'&&!base){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=preserved.has(key);input.onchange=()=>input.checked?preserved.add(key):preserved.delete(key);label.append(input,'保留原画');row.append(label);}list.append(row);}}

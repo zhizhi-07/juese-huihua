@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "etag": "\"608e34beea5950be0df97ba50ba6e89d81a3f452ddece39aa91ddb50e666584d\"",
+  "sha256": "608e34beea5950be0df97ba50ba6e89d81a3f452ddece39aa91ddb50e666584d",
+  "sheet": 10,
+  "layers": 16,
+  "size": [
+    104,
+    84
+  ],
+  "oldArtworkUnchanged": true,
+  "pixelsMatch": true
+}

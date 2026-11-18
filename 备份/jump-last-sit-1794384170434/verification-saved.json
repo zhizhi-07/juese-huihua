@@ -1,0 +1,10 @@
+{
+  "put": 200,
+  "get": 200,
+  "etag": "\"88bdce035523e9ea8725a29694b0df394202bee7ca218e58900742f73e717996\"",
+  "sha256": "88bdce035523e9ea8725a29694b0df394202bee7ca218e58900742f73e717996",
+  "byteExact": true,
+  "oldSheetsAndLayersUnchanged": true,
+  "sitSideOnly": true,
+  "sitFrames": 1
+}

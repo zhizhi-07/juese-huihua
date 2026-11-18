@@ -1,0 +1,1 @@
+PASS original ETag PUT 200; complete API readback equals verified candidate

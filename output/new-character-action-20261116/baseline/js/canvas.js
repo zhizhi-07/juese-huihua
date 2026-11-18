@@ -1,0 +1,618 @@
+/**
+ * Pixel Art Character Editor - Canvas Manager (canvas.js)
+ * Viewport transformations, zooming, panning, pixel grid, onion skin, and multi-layer rendering.
+ */
+
+window.PE = window.PE || {};
+
+(() => {
+  'use strict';
+
+  class CanvasManager {
+    /**
+     * @param {HTMLCanvasElement} canvas 
+     */
+    constructor(canvas, project = null) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.project = project; // Set via constructor or setProject()
+      this.zoom = 8;
+      this.offsetX = 0; // Pan offset in screen pixels
+      this.offsetY = 0;
+      this.showGrid = true;
+      this.showOnionSkin = false;
+      this.onionSkinOpacity = 0.3;
+      this.showChanges = false; // Highlight modified pixels vs original
+      this.checkerboardSize = 8; // Transparency background checker square size in px
+      this.gridMinZoom = 4; // Only display pixel grid when zoom >= gridMinZoom
+      this.selection = null; // Selection box {x, y, w, h} or synced from ToolManager
+      this.playbackActive = false;
+      this.shapePreview = null; // 直线 / 矩形 / 椭圆的拖拽预览 {pixels, color}
+      this.toolManager = null; // Optional reference to ToolManager
+
+      // Reusable offscreen buffers
+      this.offscreenCanvas = document.createElement('canvas');
+      this.offscreenCtx = this.offscreenCanvas.getContext('2d');
+      this.layerCanvas = document.createElement('canvas');
+      this.layerCtx = this.layerCanvas.getContext('2d');
+
+      // Configure rendering modes
+      this._initCanvasSettings();
+    }
+
+    /**
+     * Configure crisp pixelated rendering parameters on canvas contexts.
+     * @private
+     */
+    _initCanvasSettings() {
+      if (this.canvas) {
+        this.canvas.style.imageRendering = 'pixelated';
+      }
+      if (this.ctx) {
+        this.ctx.imageSmoothingEnabled = false;
+      }
+      if (this.offscreenCtx) {
+        this.offscreenCtx.imageSmoothingEnabled = false;
+      }
+      if (this.layerCtx) {
+        this.layerCtx.imageSmoothingEnabled = false;
+      }
+    }
+
+    /**
+     * Bind a project and refresh viewport.
+     * @param {PE.Project} project 
+     */
+    setProject(project) {
+      this.project = project;
+      this.centerView();
+      this.render();
+    }
+
+    /**
+     * Set zoom level (1–64), anchored in canvas coordinates; defaults to view center.
+     * @param {number} level 
+     */
+    setZoom(level, centerX = this.canvas.width / 2, centerY = this.canvas.height / 2) {
+      const newZoom = Math.max(1, Math.min(64, Math.round(level)));
+      if (newZoom === this.zoom) return;
+
+      // Keep the frame point under the anchor in place.
+      const worldX = (centerX - this.offsetX) / this.zoom;
+      const worldY = (centerY - this.offsetY) / this.zoom;
+
+      this.zoom = newZoom;
+      this.offsetX = Math.round(centerX - worldX * newZoom);
+      this.offsetY = Math.round(centerY - worldY * newZoom);
+
+      this.render();
+    }
+
+    /**
+     * Double zoom level.
+     */
+    zoomIn(x, y) {
+      this.setZoom(this.zoom * 2, x, y);
+    }
+
+    /**
+     * Halve zoom level.
+     */
+    zoomOut(x, y) {
+      this.setZoom(Math.max(1, Math.floor(this.zoom / 2)), x, y);
+    }
+
+    /**
+     * Pan canvas viewport by screen delta.
+     * @param {number} dx 
+     * @param {number} dy 
+     */
+    pan(dx, dy) {
+      this.offsetX += dx;
+      this.offsetY += dy;
+      this.render();
+    }
+
+    /**
+     * Center the current frame within canvas dimensions.
+     */
+    centerView() {
+      if (!this.canvas) return;
+      const frame = this.project ? this.project.getCurrentFrame() : null;
+      const sheet = this.project ? this.project.getCurrentSheet() : null;
+      const fw = frame ? frame.width : (sheet ? sheet.frameWidth : 64);
+      const fh = frame ? frame.height : (sheet ? sheet.frameHeight : 64);
+
+      this.offsetX = Math.round((this.canvas.width - fw * this.zoom) / 2);
+      this.offsetY = Math.round((this.canvas.height - fh * this.zoom) / 2);
+      this.render();
+    }
+
+    /**
+     * Convert screen (client or mouse event) coordinates to integer pixel coordinates.
+     * @param {number} screenX 
+     * @param {number} screenY 
+     * @returns {{x: number, y: number}}
+     */
+    screenToPixel(screenX, screenY, snap = true) {
+      const rect = this.canvas.getBoundingClientRect();
+      const clientX = (screenX - rect.left) * this.canvas.width / rect.width;
+      const clientY = (screenY - rect.top) * this.canvas.height / rect.height;
+      const x = (clientX - this.offsetX) / this.zoom;
+      const y = (clientY - this.offsetY) / this.zoom;
+      return snap ? {x:Math.floor(x),y:Math.floor(y)} : {x,y};
+    }
+
+    /**
+     * Convert integer pixel coordinates to screen coordinates.
+     * @param {number} pixelX 
+     * @param {number} pixelY 
+     * @returns {{x: number, y: number}}
+     */
+    pixelToScreen(pixelX, pixelY) {
+      const rect = this.canvas.getBoundingClientRect();
+      return {
+        x: rect.left + this.offsetX + pixelX * this.zoom,
+        y: rect.top + this.offsetY + pixelY * this.zoom
+      };
+    }
+
+    /**
+     * Generate merged composite ImageData of all visible layers for a frame.
+     * Starts with transparent canvas of frame size.
+     * @param {number} [sheetIdx] 
+     * @param {number} [actionIdx] 
+     * @param {number} [frameIdx] 
+     * @returns {ImageData|null}
+     */
+    getCompositeImageData(sheetIdx, actionIdx, frameIdx, includeHands = true, scale = 1) {
+      if (!this.project) return null;
+      const si = sheetIdx !== undefined ? sheetIdx : this.project.currentSheetIndex;
+      const ai = actionIdx !== undefined ? actionIdx : this.project.currentActionIndex;
+      const fi = frameIdx !== undefined ? frameIdx : this.project.currentFrameIndex;
+      const frameKey = this.project.getFrameKey(si, ai, fi);
+
+      const sheet = this.project.spriteSheets[si];
+      const action = sheet && sheet.actions ? sheet.actions[ai] : null;
+      const frame = action && action.frames ? action.frames[fi] : null;
+      const fw = frame ? frame.width : (sheet ? sheet.frameWidth : 64);
+      const fh = frame ? frame.height : (sheet ? sheet.frameHeight : 64);
+      if(!Number.isSafeInteger(scale)||scale<1||fw*scale>32767||fh*scale>32767||fw*fh*scale*scale>16*1024*1024)throw new Error('高清合成超过1600万像素，请减小图片原始分辨率或放大放置尺寸');
+
+      const compCanvas = document.createElement('canvas');
+      compCanvas.width = fw*scale;
+      compCanvas.height = fh*scale;
+      const compCtx = compCanvas.getContext('2d');
+      compCtx.imageSmoothingEnabled = false;
+
+      const renderLayers=PE.getRenderLayers(this.project,si,ai);
+      for (let i = 0; i < renderLayers.length; i++) {
+        const layer = renderLayers[i];
+        if (!includeHands && PE.isHandLayer(layer)) continue;
+        if (!PE.isLayerVisible(this.project, layer, typeof si === "undefined" ? this.project.currentSheetIndex : si)) continue;
+        const frameData = layer.getFrameData(frameKey);
+        if (!frameData) continue;
+
+        compCtx.globalAlpha = Math.max(0, Math.min(1, layer.opacity));
+        PE.utils.drawImageData(compCtx,frameData,0,0,scale);
+      }
+
+      return compCtx.getImageData(0, 0, fw*scale, fh*scale);
+    }
+
+    /**
+     * Generate merged composite ImageData including original sheet frame pixels as base.
+     * @param {number} [sheetIdx] 
+     * @param {number} [actionIdx] 
+     * @param {number} [frameIdx] 
+     * @returns {ImageData|null}
+     */
+    getCompositeWithOriginal(sheetIdx, actionIdx, frameIdx) {
+      if (!this.project) return null;
+      const si = sheetIdx !== undefined ? sheetIdx : this.project.currentSheetIndex;
+      const ai = actionIdx !== undefined ? actionIdx : this.project.currentActionIndex;
+      const fi = frameIdx !== undefined ? frameIdx : this.project.currentFrameIndex;
+
+      const sheet = this.project.spriteSheets[si];
+      const action = sheet && sheet.actions ? sheet.actions[ai] : null;
+      const frame = action && action.frames ? action.frames[fi] : null;
+      const fw = frame ? frame.width : (sheet ? sheet.frameWidth : 64);
+      const fh = frame ? frame.height : (sheet ? sheet.frameHeight : 64);
+
+      const compCanvas = document.createElement('canvas');
+      compCanvas.width = fw;
+      compCanvas.height = fh;
+      const compCtx = compCanvas.getContext('2d');
+      compCtx.imageSmoothingEnabled = false;
+
+      // Merge visible layers
+      const layersComp = this.getCompositeImageData(si, ai, fi, !this.hideHands);
+      if (layersComp) {
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = fw;
+        tempCanvas.height = fh;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.imageSmoothingEnabled = false;
+        tempCtx.putImageData(layersComp, 0, 0);
+        compCtx.globalAlpha = 1.0;
+        compCtx.drawImage(tempCanvas, 0, 0);
+      }
+
+      return compCtx.getImageData(0, 0, fw, fh);
+    }
+
+    /**
+     * Full re-render of current frame.
+     * Execution pipeline:
+     * 1. Clear canvas with background color
+     * 2. Draw checkerboard transparency background for frame boundary
+     * 3. Composite visible layers (with original pixels as base if available)
+     * 4. Draw onion skin overlay of prev/next frames
+     * 5. Highlight modified pixels vs original if showChanges is enabled
+     * 6. Draw pixel grid lines
+     * 7. Draw locked regions and frame border
+     * 8. Draw selection outline
+     */
+    render() {
+      if (!this.canvas || !this.ctx) return;
+
+      this.ctx.imageSmoothingEnabled = false;
+
+      // 1. Clear background
+      // The workspace mat is UI chrome; the frame keeps its saved preview background.
+      this.ctx.fillStyle = '#f2f2f2';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      const frame = this.project ? this.project.getCurrentFrame() : null;
+      if (!frame) return;
+
+      const fw = frame.width;
+      const fh = frame.height;
+      const screenX = this.offsetX;
+      const screenY = this.offsetY;
+      const screenW = fw * this.zoom;
+      const screenH = fh * this.zoom;
+
+      // 2. Checkerboard transparency background
+      this._drawCheckerboard(screenX, screenY, fw, fh);
+
+      // Ensure offscreen dimensions match frame size
+      const p=this.project,subpixel=p.layers.some(l=>{const t=this.toolManager?._transform,r=(t?.layer===l&&t.frameKey===p.getFrameKey()&&t.preview?t.preview:l.getFrameData(p.getFrameKey()))?.placement;return r&&(!Number.isInteger(r.x)||!Number.isInteger(r.y))&&PE.isLayerVisible(p,l);});
+      const scale=Math.max(1,Math.min(subpixel?Math.ceil(this.zoom):PE.utils.imageScale(p,p.currentSheetIndex,p.currentActionIndex,p.currentFrameIndex),Math.ceil(this.zoom),Math.floor(Math.sqrt(16*1024*1024/(fw*fh)))));
+      if (this.offscreenCanvas.width !== fw*scale || this.offscreenCanvas.height !== fh*scale) {
+        this.offscreenCanvas.width = fw*scale;
+        this.offscreenCanvas.height = fh*scale;
+        this.offscreenCtx.imageSmoothingEnabled = false;
+      }
+      if (this.layerCanvas.width !== fw || this.layerCanvas.height !== fh) {
+        this.layerCanvas.width = fw;
+        this.layerCanvas.height = fh;
+        this.layerCtx.imageSmoothingEnabled = false;
+      }
+
+      this.offscreenCtx.clearRect(0, 0, fw*scale, fh*scale);
+
+      // Composite the editable layers exactly once.
+      const frameKey = this.project.getFrameKey();
+      const renderLayers = PE.getRenderLayers(this.project, this.project.currentSheetIndex, this.project.currentActionIndex);
+      for (let i = 0; i < renderLayers.length; i++) {
+        const layer = renderLayers[i];
+        if (this.hideHands && PE.isHandLayer(layer)) continue;
+        if (!PE.isLayerVisible(this.project, layer, typeof si === "undefined" ? this.project.currentSheetIndex : si)) continue;
+        const transform=this.toolManager?._transform;
+        const native=this.toolManager?._nativeEdit;
+        let data = transform?.layer===layer && transform.frameKey===frameKey && transform.preview ? transform.preview : layer.getFrameData(frameKey);
+        if(native?.session.layer===layer&&native.session.key===frameKey){const source=native.session.project.layers[0].getFrameData('0_0_0');data=new ImageData(source.data,source.width,source.height);data.placement={...native.session.original.placement};}
+        if (!data) continue;
+
+        this.offscreenCtx.globalAlpha = Math.max(0, Math.min(1, layer.opacity));
+        PE.utils.drawImageData(this.offscreenCtx,data,0,0,scale);
+      }
+
+      // Draw composited result scaled to screen
+      this.ctx.drawImage(this.offscreenCanvas, screenX, screenY, screenW, screenH);
+
+      // 4. Onion skin: previous and next frames
+      if (this.showOnionSkin) {
+        const action = this.project.getCurrentAction();
+        if (action && action.frames) {
+          const curFi = this.project.currentFrameIndex;
+          const si = this.project.currentSheetIndex;
+          const ai = this.project.currentActionIndex;
+
+          // Previous frame
+          if (curFi > 0) {
+            const prevComp = this.getCompositeWithOriginal(si, ai, curFi - 1);
+            if (prevComp) {
+              this.layerCtx.clearRect(0, 0, fw, fh);
+              this.layerCtx.putImageData(prevComp, 0, 0);
+              this.ctx.save();
+              this.ctx.globalAlpha = this.onionSkinOpacity;
+              this.ctx.drawImage(this.layerCanvas, screenX, screenY, screenW, screenH);
+              this.ctx.restore();
+            }
+          }
+
+          // Next frame
+          if (curFi < action.frames.length - 1) {
+            const nextComp = this.getCompositeWithOriginal(si, ai, curFi + 1);
+            if (nextComp) {
+              this.layerCtx.clearRect(0, 0, fw, fh);
+              this.layerCtx.putImageData(nextComp, 0, 0);
+              this.ctx.save();
+              this.ctx.globalAlpha = this.onionSkinOpacity;
+              this.ctx.drawImage(this.layerCanvas, screenX, screenY, screenW, screenH);
+              this.ctx.restore();
+            }
+          }
+        }
+      }
+
+      // 5. Show modified pixels overlay
+      if (this.showChanges && frame.originalPixels) {
+        const comp = this.getCompositeImageData();
+        if (comp) {
+          this.ctx.save();
+          this.ctx.fillStyle = 'rgba(255, 165, 0, 0.45)';
+          for (let y = 0; y < fh; y++) {
+            for (let x = 0; x < fw; x++) {
+              const orig = frame.getOriginalPixel(x, y);
+              const cur = PE.utils.getPixelFromImageData(comp, x, y);
+              if (cur && cur.a > 0 && !PE.utils.comparePixels(orig, cur)) {
+                this.ctx.fillRect(screenX + x * this.zoom, screenY + y * this.zoom, this.zoom, this.zoom);
+              }
+            }
+          }
+          this.ctx.restore();
+        }
+      }
+
+      // 5.5 Shape tool live preview (line / rect / ellipse)
+      const preview = this.shapePreview;
+      if (preview && preview.pixels && preview.pixels.length) {
+        const c = preview.color || { r: 0, g: 0, b: 0, a: 255 };
+        this.ctx.save();
+        this.ctx.globalAlpha = c.a === 0 ? 0.3 : 0.8;
+        this.ctx.fillStyle = c.a === 0 ? '#000' : `rgb(${c.r},${c.g},${c.b})`;
+        for (const p of preview.pixels) {
+          this.ctx.fillRect(screenX + p.x * this.zoom, screenY + p.y * this.zoom, this.zoom, this.zoom);
+        }
+        this.ctx.restore();
+      }
+
+      // 5.6 Symmetry axis
+      const symmetry = this.toolManager ? this.toolManager.symmetry : 'none';
+      if (symmetry && symmetry !== 'none') {
+        this.ctx.save();
+        this.ctx.strokeStyle = 'rgba(0,180,200,0.85)';
+        this.ctx.lineWidth = 1;
+        this.ctx.setLineDash([5, 4]);
+        if (symmetry === 'x' || symmetry === 'both') {
+          const axisX = screenX + (fw / 2) * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(Math.round(axisX) + 0.5, screenY);
+          this.ctx.lineTo(Math.round(axisX) + 0.5, screenY + screenH);
+          this.ctx.stroke();
+        }
+        if (symmetry === 'y' || symmetry === 'both') {
+          const axisY = screenY + (fh / 2) * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(screenX, Math.round(axisY) + 0.5);
+          this.ctx.lineTo(screenX + screenW, Math.round(axisY) + 0.5);
+          this.ctx.stroke();
+        }
+        this.ctx.restore();
+      }
+
+      // 5.7 镜像参考线（默认画布正中，可拖动到自定义位置）
+      const mirrorGuide = PE.LayerMirror ? PE.LayerMirror.guide(this.project) : null;
+      if (mirrorGuide) {
+        this.ctx.save();
+        this.ctx.strokeStyle = 'rgba(255,79,216,0.9)';
+        this.ctx.lineWidth = mirrorGuide.live ? 1.5 : 1;
+        this.ctx.setLineDash(mirrorGuide.centered === false ? [] : [6, 4]);
+        if (mirrorGuide.direction === 'vertical') {
+          const gy = screenY + mirrorGuide.axis * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(screenX, Math.round(gy) + 0.5);
+          this.ctx.lineTo(screenX + screenW, Math.round(gy) + 0.5);
+          this.ctx.stroke();
+          this.ctx.setLineDash([]);
+          this.ctx.fillStyle = 'rgba(255,79,216,0.95)';
+          this.ctx.fillRect(screenX - 5, Math.round(gy) - 5, 10, 10);
+          this.ctx.fillRect(screenX + screenW - 5, Math.round(gy) - 5, 10, 10);
+        } else {
+          const gx = screenX + mirrorGuide.axis * this.zoom;
+          this.ctx.beginPath();
+          this.ctx.moveTo(Math.round(gx) + 0.5, screenY);
+          this.ctx.lineTo(Math.round(gx) + 0.5, screenY + screenH);
+          this.ctx.stroke();
+          this.ctx.setLineDash([]);
+          this.ctx.fillStyle = 'rgba(255,79,216,0.95)';
+          this.ctx.fillRect(Math.round(gx) - 5, screenY - 5, 10, 10);
+          this.ctx.fillRect(Math.round(gx) - 5, screenY + screenH - 5, 10, 10);
+        }
+        this.ctx.restore();
+      }
+
+      // 6. Pixel grid
+      if (this.showGrid && this.zoom >= this.gridMinZoom) {
+        this._drawGrid(screenX, screenY, fw, fh);
+        const data=this.project.getCurrentLayer()?.getFrameData(frameKey);
+        if(!this.playbackActive&&data?.placement)this._drawSourceGrid(data,frame);
+      }
+
+      // Frame border
+      this.ctx.save();
+      this.ctx.strokeStyle = '#555577';
+      this.ctx.lineWidth = 1;
+      this.ctx.strokeRect(screenX - 0.5, screenY - 0.5, screenW + 1, screenH + 1);
+      this.ctx.restore();
+
+      // 7. Locked regions & whole frame locked status
+      if (frame.locked) {
+        this.ctx.save();
+        this.ctx.strokeStyle = '#ff3333';
+        this.ctx.lineWidth = 2;
+        this.ctx.setLineDash([4, 4]);
+        this.ctx.strokeRect(screenX, screenY, screenW, screenH);
+        this.ctx.fillStyle = 'rgba(255, 50, 50, 0.12)';
+        this.ctx.fillRect(screenX, screenY, screenW, screenH);
+        this.ctx.restore();
+      }
+
+      if (frame.lockedRegions && frame.lockedRegions.length > 0) {
+        this.ctx.save();
+        this.ctx.strokeStyle = '#ff3333';
+        this.ctx.lineWidth = 1.5;
+        this.ctx.setLineDash([4, 4]);
+        this.ctx.fillStyle = 'rgba(255, 50, 50, 0.15)';
+        for (let i = 0; i < frame.lockedRegions.length; i++) {
+          const reg = frame.lockedRegions[i];
+          const rx = screenX + reg.x * this.zoom;
+          const ry = screenY + reg.y * this.zoom;
+          const rw = reg.w * this.zoom;
+          const rh = reg.h * this.zoom;
+          this.ctx.fillRect(rx, ry, rw, rh);
+          this.ctx.strokeRect(rx + 0.5, ry + 0.5, rw - 1, rh - 1);
+        }
+        this.ctx.restore();
+      }
+
+      // 8. Selection outline（矩形框选；有魔棒掩膜时交给 select-plus 画不规则蚂蚁线）
+      const sel = this.selection || (this.toolManager && this.toolManager.selection) || (PE.toolManager && PE.toolManager.selection);
+      const hasMask = !!(PE.selectionPlus && PE.selectionPlus.mask);
+      if (sel && !this.playbackActive && !hasMask) {
+        const sx = screenX + sel.x * this.zoom;
+        const sy = screenY + sel.y * this.zoom;
+        const sw = sel.w * this.zoom;
+        const sh = sel.h * this.zoom;
+        const phase = PE.selectionAntsPhase || 0;
+        const dash = 4;
+        this.ctx.save();
+        this.ctx.fillStyle = 'rgba(30, 150, 255, 0.10)';
+        this.ctx.fillRect(sx, sy, sw, sh);
+        // 黑白蚂蚁线：两段虚线错开相位，随时间流动
+        this.ctx.lineWidth = 1.5;
+        this.ctx.setLineDash([dash, dash]);
+        this.ctx.lineDashOffset = -phase;
+        this.ctx.strokeStyle = 'rgba(0,0,0,0.9)';
+        this.ctx.strokeRect(sx + 0.5, sy + 0.5, sw - 1, sh - 1);
+        this.ctx.lineDashOffset = -phase + dash;
+        this.ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+        this.ctx.strokeRect(sx + 0.5, sy + 0.5, sw - 1, sh - 1);
+        this.ctx.setLineDash([]);
+        this.ctx.lineDashOffset = 0;
+        if(this.toolManager?.currentTool==='move'){
+          this.ctx.fillStyle='#fff';
+          this.ctx.fillRect(sx+sw-4,sy+sh-4,8,8);this.ctx.strokeRect(sx+sw-4,sy+sh-4,8,8);
+        }
+        this.ctx.restore();
+      }
+    }
+
+    _drawSourceGrid(image,frame) {
+      const r=image.placement,dx=r.w/image.width*this.zoom,dy=r.h/image.height*this.zoom;
+      if(Math.min(dx,dy)<4)return;
+      const ctx=this.ctx,x=this.offsetX+r.x*this.zoom,y=this.offsetY+r.y*this.zoom;
+      ctx.save();ctx.beginPath();ctx.rect(this.offsetX,this.offsetY,frame.width*this.zoom,frame.height*this.zoom);ctx.clip();
+      ctx.strokeStyle='rgba(45,135,160,0.45)';ctx.lineWidth=1;ctx.beginPath();
+      for(let i=Math.max(0,Math.ceil(-x/dx));i<=image.width&&x+i*dx<=this.canvas.width;i++){const px=Math.floor(x+i*dx)+.5;ctx.moveTo(px,y);ctx.lineTo(px,y+r.h*this.zoom);}
+      for(let i=Math.max(0,Math.ceil(-y/dy));i<=image.height&&y+i*dy<=this.canvas.height;i++){const py=Math.floor(y+i*dy)+.5;ctx.moveTo(x,py);ctx.lineTo(x+r.w*this.zoom,py);}
+      ctx.stroke();ctx.restore();
+    }
+
+    /**
+     * Draw transparency checkerboard pattern inside the frame boundary.
+     * @private
+     * @param {number} x 
+     * @param {number} y 
+     * @param {number} w 
+     * @param {number} h 
+     */
+    _drawCheckerboard(x, y, w, h) {
+      const zoom = this.zoom;
+      const totalW = w * zoom;
+      const totalH = h * zoom;
+      const size = this.checkerboardSize;
+      const color1 = this.project?.bgColor || '#2c3335';
+      const rgb=PE.utils.hexToRGBA(color1);
+      const delta=(rgb.r+rgb.g+rgb.b)>480?-10:10;
+      const color2='rgb('+[rgb.r,rgb.g,rgb.b].map(v=>Math.max(0,Math.min(255,v+delta))).join(',')+')';
+
+      this.ctx.save();
+      this.ctx.beginPath();
+      this.ctx.rect(x, y, totalW, totalH);
+      this.ctx.clip();
+
+      for (let cy = 0; cy < totalH; cy += size) {
+        for (let cx = 0; cx < totalW; cx += size) {
+          if (x+cx+size<0 || x+cx>this.canvas.width || y+cy+size<0 || y+cy>this.canvas.height) continue;
+          const col = Math.floor(cx / size);
+          const row = Math.floor(cy / size);
+          this.ctx.fillStyle = (col + row) % 2 === 0 ? color1 : color2;
+          this.ctx.fillRect(x + cx, y + cy, size, size);
+        }
+      }
+
+      this.ctx.restore();
+    }
+
+    /**
+     * Draw thin pixel grid lines.
+     * @private
+     * @param {number} x 
+     * @param {number} y 
+     * @param {number} w 
+     * @param {number} h 
+     */
+    _drawGrid(x, y, w, h) {
+      const zoom = this.zoom;
+      this.ctx.save();
+      this.ctx.strokeStyle = this.project && this.project.gridColor ? this.project.gridColor : '#333333';
+      this.ctx.lineWidth = 1;
+      this.ctx.beginPath();
+
+      // Vertical lines
+      for (let col = 0; col <= w; col++) {
+        const lx = Math.floor(x + col * zoom) + 0.5;
+        this.ctx.moveTo(lx, y);
+        this.ctx.lineTo(lx, y + h * zoom);
+      }
+
+      // Horizontal lines
+      for (let row = 0; row <= h; row++) {
+        const ly = Math.floor(y + row * zoom) + 0.5;
+        this.ctx.moveTo(x, ly);
+        this.ctx.lineTo(x + w * zoom, ly);
+      }
+
+      this.ctx.stroke();
+      this.ctx.restore();
+    }
+
+    /**
+     * Alpha blend src RGBA onto dst RGBA with opacity.
+     * @private
+     * @param {{r:number, g:number, b:number, a:number}} dst 
+     * @param {{r:number, g:number, b:number, a:number}} src 
+     * @param {number} [opacity=1.0] 
+     * @returns {{r:number, g:number, b:number, a:number}}
+     */
+    _blendPixel(dst, src, opacity = 1.0) {
+      const sa = (src.a / 255) * opacity;
+      const da = dst.a / 255;
+      const outA = sa + da * (1 - sa);
+      if (outA <= 0) return { r: 0, g: 0, b: 0, a: 0 };
+      const r = Math.round((src.r * sa + dst.r * da * (1 - sa)) / outA);
+      const g = Math.round((src.g * sa + dst.g * da * (1 - sa)) / outA);
+      const b = Math.round((src.b * sa + dst.b * da * (1 - sa)) / outA);
+      const a = Math.round(outA * 255);
+      return { r, g, b, a };
+    }
+  }
+
+  // Export to window.PE
+  PE.CanvasManager = CanvasManager;
+
+})();

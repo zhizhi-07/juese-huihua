@@ -1,0 +1,2 @@
+PASS: range/color/control focus, repeat, space drag without drawing, keyup, blur, move cursor, text editing and dialogs.
+Exit status: 0

@@ -1,0 +1,178 @@
+{
+  "file": "data/projects/draft-conflict-1793762650078-819fdffe.json",
+  "sheets": [
+    {
+      "index": 0,
+      "name": "original16_walk",
+      "actions": [
+        "side",
+        "down",
+        "up"
+      ]
+    },
+    {
+      "index": 1,
+      "name": "original16_idle",
+      "actions": [
+        "side",
+        "down",
+        "up"
+      ]
+    },
+    {
+      "index": 2,
+      "name": "original16_pickup",
+      "actions": [
+        "side",
+        "down",
+        "up"
+      ]
+    },
+    {
+      "index": 3,
+      "name": "original16_sit",
+      "actions": [
+        "side",
+        "down",
+        "up"
+      ]
+    }
+  ],
+  "frames": 66,
+  "unchanged": 50,
+  "changed": [
+    {
+      "si": 0,
+      "ai": 0,
+      "fi": 5,
+      "direction": "side",
+      "differentPixels": 10,
+      "handPixelsGainedToTop": 2
+    },
+    {
+      "si": 0,
+      "ai": 0,
+      "fi": 6,
+      "direction": "side",
+      "differentPixels": 3,
+      "handPixelsGainedToTop": 1
+    },
+    {
+      "si": 0,
+      "ai": 1,
+      "fi": 2,
+      "direction": "down",
+      "differentPixels": 2,
+      "handPixelsGainedToTop": 0
+    },
+    {
+      "si": 0,
+      "ai": 1,
+      "fi": 6,
+      "direction": "down",
+      "differentPixels": 1,
+      "handPixelsGainedToTop": 1
+    },
+    {
+      "si": 0,
+      "ai": 2,
+      "fi": 2,
+      "direction": "up",
+      "differentPixels": 18,
+      "handPixelsGainedToTop": 2
+    },
+    {
+      "si": 0,
+      "ai": 2,
+      "fi": 6,
+      "direction": "up",
+      "differentPixels": 18,
+      "handPixelsGainedToTop": 2
+    },
+    {
+      "si": 2,
+      "ai": 0,
+      "fi": 3,
+      "direction": "side",
+      "differentPixels": 18,
+      "handPixelsGainedToTop": 2
+    },
+    {
+      "si": 2,
+      "ai": 0,
+      "fi": 4,
+      "direction": "side",
+      "differentPixels": 18,
+      "handPixelsGainedToTop": 2
+    },
+    {
+      "si": 2,
+      "ai": 0,
+      "fi": 5,
+      "direction": "side",
+      "differentPixels": 45,
+      "handPixelsGainedToTop": 5
+    },
+    {
+      "si": 2,
+      "ai": 2,
+      "fi": 5,
+      "direction": "up",
+      "differentPixels": 36,
+      "handPixelsGainedToTop": 4
+    },
+    {
+      "si": 3,
+      "ai": 0,
+      "fi": 2,
+      "direction": "side",
+      "differentPixels": 3,
+      "handPixelsGainedToTop": 1
+    },
+    {
+      "si": 3,
+      "ai": 0,
+      "fi": 3,
+      "direction": "side",
+      "differentPixels": 3,
+      "handPixelsGainedToTop": 1
+    },
+    {
+      "si": 3,
+      "ai": 1,
+      "fi": 2,
+      "direction": "down",
+      "differentPixels": 3,
+      "handPixelsGainedToTop": 0
+    },
+    {
+      "si": 3,
+      "ai": 1,
+      "fi": 3,
+      "direction": "down",
+      "differentPixels": 3,
+      "handPixelsGainedToTop": 0
+    },
+    {
+      "si": 3,
+      "ai": 2,
+      "fi": 2,
+      "direction": "up",
+      "differentPixels": 72,
+      "handPixelsGainedToTop": 8
+    },
+    {
+      "si": 3,
+      "ai": 2,
+      "fi": 3,
+      "direction": "up",
+      "differentPixels": 72,
+      "handPixelsGainedToTop": 8
+    }
+  ],
+  "previouslyCoveredPixels": 39,
+  "handPixelsNowTop": 950,
+  "handCoveredAfterFix": 0,
+  "totalHandPixels": 950,
+  "skippedPlacement": 5
+}

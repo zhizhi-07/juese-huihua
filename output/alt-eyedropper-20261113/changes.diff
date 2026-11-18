@@ -1,0 +1,165 @@
+diff --git a/js/app.js b/js/app.js
+index 75f960d..8e6decf 100644
+--- a/js/app.js
++++ b/js/app.js
+@@ -159,6 +159,14 @@ window.PE = window.PE || {};
+           return;
+         }
+ 
++        if (e.altKey && e.button === 0 && !this.toolManager.isDrawing) {
++          e.preventDefault();
++          const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY, false);
++          this.toolManager.pickColor(pixel.x, pixel.y);
++          this.canvasManager.render();
++          return;
++        }
++
+         const pixel = mousePixel(e);
+         if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
+         this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e), e.ctrlKey&&!e.altKey&&!e.metaKey);
+@@ -658,12 +666,20 @@ window.PE = window.PE || {};
+             this.persistence?.saveNow();
+             return;
+           }
+-          // 不把 Ctrl+Shift+E（合并可见图层）误当成向下合并。
++          // Ctrl+G 建组：选中的图层收进一个新组，不弹框、名字自动顺延。
++          if (e.key === 'g' || e.key === 'G') {
++            if (e.shiftKey || e.altKey) return;
++            e.preventDefault();
++            if (!e.repeat) this.groupSelectedLayers();
++            return;
++          }
++          // Ctrl+E 就是合并：多选时合并所选图层，单选时向下合并；Ctrl+Shift+E / Alt 留给“合并可见图层”。
+           if (['j', 'e'].includes(e.key.toLowerCase())) {
+             if (e.shiftKey || e.altKey) return;
+             e.preventDefault();
+             if (!e.repeat) {
+               if (e.key.toLowerCase() === 'j') this.duplicateCurrentLayer?.();
++              else if (this.layerSelection?.size > 1 && this.mergeSelectedLayers) this.mergeSelectedLayers();
+               else this.mergeLayerDown?.();
+             }
+             return;
+@@ -950,13 +966,19 @@ window.PE = window.PE || {};
+ 
+         // 眼睛按钮 (可见性)
+         const visBtn = document.createElement('button');
+-        visBtn.className = `layer-icon-btn ${layer.visible !== false ? 'visible' : 'hidden'}`;
+-        visBtn.innerHTML = layer.visible !== false ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
+-        visBtn.title = '切换图层显示/隐藏';
++        const paintVisibility = () => {
++          const shown = layer.visible !== false;
++          visBtn.className = `layer-icon-btn ${shown ? 'visible' : 'hidden'}`;
++          visBtn.innerHTML = shown ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
++        };
++        paintVisibility();
++        visBtn.title = '切换图层显示/隐藏（同一部件会同步全部方向与全部动作）';
+         visBtn.addEventListener('click', () => {
++          // 头发、衣服是同一个部件：任一方向/动作关掉就全部关掉，任一开启就全部开启。
++          if (PE.VisualLayers?.togglePart?.(this, layer)) return;
+           layer.visible = !layer.visible;
+           this.persistence?.markDirty();
+-          visBtn.innerHTML = layer.visible ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
++          paintVisibility();
+           this.canvasManager.render();
+           this.updatePalette();
+         });
+diff --git a/js/layer-mirror.js b/js/layer-mirror.js
+index a95abc9..48ed6d0 100644
+--- a/js/layer-mirror.js
++++ b/js/layer-mirror.js
+@@ -385,7 +385,7 @@ window.PE = window.PE || {};
+     let dragging = false;
+ 
+     window.addEventListener('mousedown', event => {
+-      if (event.button !== 0 || event.target !== canvas) return;
++      if (event.button !== 0 || event.altKey || event.target !== canvas) return;
+       const g = guideAt(event);
+       if (!g) return;
+       dragging = true;
+diff --git a/js/tools.js b/js/tools.js
+index febd048..00bf833 100644
+--- a/js/tools.js
++++ b/js/tools.js
+@@ -141,6 +141,21 @@ window.PE = window.PE || {};
+      * @param {number} py 
+      * @param {number} [button=0] 0: left, 2: right
+      */
++    pickColor(px, py) {
++      const image = this.project?.getCurrentLayer()?.getFrameData(this.project.getFrameKey());
++      const r = image?.placement;
++      let picked = r ? PE.utils.getPixelFromImageData(image,
++        Math.floor((px-r.x)*image.width/r.w), Math.floor((py-r.y)*image.height/r.h)) : null;
++      if (!picked?.a) {
++        const comp = this.canvasManager?.getCompositeWithOriginal();
++        picked = comp ? PE.utils.getPixelFromImageData(comp, Math.floor(px), Math.floor(py)) : null;
++      }
++      if (picked) {
++        this.setColor(picked.r, picked.g, picked.b, picked.a);
++        this.onColorPick?.(picked);
++      }
++    }
++
+     onMouseDown(px, py, button = 0, resizeHandle = null, rectangle = false) {
+       this._mouseButton = button;
+       if (!this.project) return;
+@@ -170,10 +185,6 @@ window.PE = window.PE || {};
+         this.isDrawing=true;this._isSelecting=true;
+         this.setSelection(point.x,point.y,r.w/image.width,r.h/image.height);return;
+       }
+-      if(r&&this.currentTool==='eyedropper'){
+-        const x=Math.floor((px-r.x)*image.width/r.w),y=Math.floor((py-r.y)*image.height/r.h),picked=PE.utils.getPixelFromImageData(image,x,y);
+-        if(picked?.a){this.setColor(picked);this.onColorPick?.(picked);return;}
+-      }
+ 
+       switch (this.currentTool) {
+         case 'pencil': {
+@@ -218,16 +229,7 @@ window.PE = window.PE || {};
+         }
+ 
+         case 'eyedropper': {
+-          const comp = this.canvasManager ? this.canvasManager.getCompositeWithOriginal() : null;
+-          if (comp) {
+-            const picked = PE.utils.getPixelFromImageData(comp, Math.floor(px), Math.floor(py));
+-            if (picked) {
+-              this.setColor(picked.r, picked.g, picked.b, picked.a);
+-              if (typeof this.onColorPick === 'function') {
+-                this.onColorPick(picked);
+-              }
+-            }
+-          }
++          this.pickColor(px, py);
+           break;
+         }
+ 
+diff --git a/js/workbench.js b/js/workbench.js
+index 24aedee..7a63c9f 100644
+--- a/js/workbench.js
++++ b/js/workbench.js
+@@ -2,7 +2,7 @@
+ document.addEventListener('DOMContentLoaded', () => {
+   const app=PE.app, $=id=>document.getElementById(id);
+   const hint=document.createElement('div');hint.className='workbench-hint';
+-  hint.textContent='导入 .aseprite 保留图层与动画；PNG 可调整切帧。B 铅笔 / E 橡皮 / I 吸色 / G 填充 / 空格拖动画布 / Ctrl+S 保存工程。';
++  hint.textContent='导入 .aseprite 保留图层与动画；PNG 可调整切帧。B 铅笔 / E 橡皮 / I 吸色 / Alt+点击临时吸色 / G 填充 / 空格拖动画布 / Ctrl+S 保存工程。';
+   $('top-toolbar').after(hint);
+   function button(text, action, parent=$('top-toolbar')) {
+     const b=document.createElement('button');b.className='tool-btn';b.textContent=text;b.onclick=action;parent.append(b);return b;
+@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
+   const updateLayers=app.updateLayerList.bind(app);
+   app.updateLayerList=function(){
+     const p=this.project,prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
++    const used=l=>l.clothingSyncId||[...l.frameData.keys()].some(k=>k.startsWith(prefix));
++    const available=l=>!l.isGroup&&!PE.isProtectedHandLayer(l)&&PE.isLayerInAction(p,l)&&(l.parent==null||l===p.getCurrentLayer()&&!l.isOriginal&&!l.locked||used(l));
+     if(!available(p.getCurrentLayer()||{frameData:new Map()})){const name=p.getCurrentLayer()?.name,same=p.layers.findIndex(l=>l.name===name&&available(l)),i=same>=0?same:p.layers.findIndex(available);if(i>=0)p.currentLayerIndex=i;}
+     updateLayers();
+     const selected=p.getCurrentLayer(),remove=$('delete-layer-btn');
+@@ -31,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
+       const index=p.layers.length-1-i,l=p.layers[index];row.dataset.layerIndex=index;
+       if(PE.isProtectedHandLayer(l)&&!l.inheritedBase){row.remove();return;}
+       if(!PE.isLayerInAction(p,l)){row.remove();return;}
+-      const key=p.getFrameKey(),prefix=p.currentSheetIndex+'_'+p.currentActionIndex+'_';
+-      const used=layer=>[...layer.frameData.keys()].some(k=>k.startsWith(prefix));
+       if (l.isGroup ? !p.layers.some(child=>child.parent===index && (used(child)||child===p.getCurrentLayer())) : l.parent!=null && !used(l) && index!==p.currentLayerIndex) {row.remove();return;}
+       const label=row.querySelector('.layer-name');label.textContent=(l.isGroup?'▾ ':'')+l.name;label.style.paddingLeft=(l.depth||0)*8+'px';
+       label.title='双击重命名（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动归位）';label.ondblclick=()=>{if(l.inheritedBase)return;const name=prompt('图层名称（写 后发 / 前发 / 侧发 / 发饰 / 眼睛 / 嘴巴 / 衣服 会自动分类归位）',l.name);if(name?.trim())app.renameLayer(index,name.trim());};

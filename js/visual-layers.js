@@ -1,7 +1,8 @@
 /* Visual part picker layered over the existing editor. No project format changes. */
 window.PE=window.PE||{};
 PE.VisualLayers={
-  info(layer){return PE.classifyPart(layer?.name);},
+  isIdleCopy(sheet){return sheet?.name==='待机副本'||sheet?.copiedFromIdle===true;},
+  info(layer){return PE.classifyPart(String(layer?.name||'').replace(/ 描边$/, ''));},
   slot(layer){
     const info=this.info(layer);
     if(!info)return null;
@@ -56,9 +57,14 @@ PE.VisualLayers={
     if(n.startsWith('发饰 /'))return '饰品-'+clean(pieces[1]);
     if(n.startsWith('服装 /'))return pieces.at(-1)+'-'+clean(pieces[1]);
     if(n.startsWith('眼睛 /')||n.startsWith('嘴巴 /'))return pieces[0]+'-'+clean(pieces.slice(1).join('-'));
-    return {head:'身体-头部',body:'身体-身体',hand:'手部-前手','hand 2':'手部-后手'}[n]||null;
+    const plain={head:'身体-头部',body:'身体-身体',hand:'手部-前手','hand 2':'手部-后手'}[n];
+    if(plain)return plain;
+    // 只写了名称的部件（如「眼睛」「嘴巴」）也按同一件部件认，才能在全部方向与动作间同步。
+    if(pieces.length===1&&this.slot(layer))return this.slot(layer)+'-'+clean(n);
+    return null;
   },
   family(project,layer){
+    if(this.isIdleCopy(project.spriteSheets?.[layer.sheetIndex]))return [];
     const name=this.partName(layer);
     return name?project.layers.filter(l=>this.partName(l)===name&&PE.isCharacterSheet(project.spriteSheets?.[l.sheetIndex])):[];
   },
@@ -75,9 +81,11 @@ PE.VisualLayers={
     // 首次分类或明确改部件类型时归位；同类型的款式改名不重排用户层序。
     const info=this.info(layer),next=PE.classifyPart(name);
     if(next&&(!info||next.category!==info.category||next.slot!==info.slot))return !!app.renameLayer(index,name);
+    // 头发部件里，「后发双马尾」这类名字取「双马尾」当这一款的名字，和新建部件时的取名方式保持一致。
+    const hairSeries=info?.category==='头发'?PE.hairSeriesFrom(name,info.slot)||name:name;
     const members=this.components(p,layer),before=members.map(l=>l.name),after=members.map(l=>{
       const parts=l.name.split(' / '),info=this.info(l);
-      if(info?.category==='头发'){if(parts.length>=3)return [parts[0],name,...parts.slice(2)].join(' / ');if(parts[0]==='头发')return '头发 / '+name+' / '+info.slot;if(parts[0]==='发饰')return '发饰 / '+name;return name.endsWith(info.slot)?name:name+' '+info.slot;}
+      if(info?.category==='头发'){if(parts.length>=3)return [parts[0],hairSeries,...parts.slice(2)].join(' / ');if(parts[0]==='头发')return '头发 / '+hairSeries+' / '+info.slot;if(parts[0]==='发饰')return '发饰 / '+hairSeries;return hairSeries.endsWith(info.slot)?hairSeries:hairSeries+' '+info.slot;}
       return parts.length>1?[...parts.slice(0,-1),name].join(' / '):name;
     });
     if(before.every((n,i)=>n===after[i]))return false;
@@ -85,16 +93,49 @@ PE.VisualLayers={
     app.history.undoStack.push({description:'部件重命名',changes:[],undo:()=>restore(before),redo:()=>restore(after)});
     app.history.redoStack=[];app.history._notifyChange();app.updateLayerList();app.updateStatusBar();app.persistence?.markDirty();return true;
   },
-  toggleFamily(app,index){
-    const p=app.project,members=this.family(p,p.layers[index]);if(!members.length)return;
-    const visible=!members.every(l=>l.visible),before=p.layers.map(l=>l.visible),slot=this.slot(p.layers[index]);
-    if(visible&&slot)for(const l of p.layers)if(members.some(m=>m.sheetIndex===l.sheetIndex)&&this.slot(l)===slot)l.visible=false;
-    members.forEach(l=>l.visible=visible);
-    const after=p.layers.map(l=>l.visible),restore=values=>p.layers.forEach((l,i)=>l.visible=values[i]);
-    app.animationPlayer.pause();
-    app.history.undoStack.push({description:(visible?'显示':'隐藏')+'全部动作部件',changes:[],undo:()=>restore(before),redo:()=>restore(after)});
+  // 同一个部件（头发、发饰、衣服、眼睛、嘴巴、头部底稿、身体底稿）：
+  // 任一方向、任一动作里的开与关都算整件的开关，必须全部跟随。手部参考层另走手部预览开关。
+  syncable(layer){
+    if(!layer||layer.isGroup||layer.inheritedBase||PE.isHandLayer(layer))return false;
+    if(!this.info(layer))return false;
+    return !!this.partName(layer);
+  },
+  revealAncestors(project,layers){
+    for(const layer of layers){
+      let parent=layer.parent;const seen=new Set();
+      while(parent!=null&&!seen.has(parent)){seen.add(parent);const group=project.layers[parent];if(!group)break;group.visible=true;parent=group.parent;}
+    }
+  },
+  setPartVisibility(app,layer,visible){
+    const p=app.project,members=this.family(p,layer);if(!members.length)return false;
+    const before=p.layers.map(l=>l.visible),slot=this.slot(layer);
+    if(visible){
+      // 同一槽位（前发/后发/侧发/饰品/同一件衣服）只留这一款，避免两款部件叠在一起。
+      if(slot)for(const l of p.layers)if(!l.isGroup&&!members.includes(l)&&this.slot(l)===slot&&members.some(m=>m.sheetIndex===l.sheetIndex))l.visible=false;
+      members.forEach(l=>l.visible=true);this.revealAncestors(p,members);
+    }else members.forEach(l=>l.visible=false);
+    const after=p.layers.map(l=>l.visible);
+    if(after.every((value,i)=>value===before[i]))return false;
+    const restore=values=>p.layers.forEach((l,i)=>l.visible=values[i]);
+    app.history.undoStack.push({description:(visible?'显示':'隐藏')+'同一部件的全部方向与动作',changes:[],undo:()=>restore(before),redo:()=>restore(after)});
+    if(app.history.maxSteps&&app.history.undoStack.length>app.history.maxSteps)app.history.undoStack.shift();
     app.history.redoStack=[];app.history._notifyChange();
     app.updateLayerList();app.updatePalette();app.canvasManager.render();app.animationPlayer._renderPreviewFrame();app.persistence?.markDirty();
+    return true;
+  },
+  // 眼睛按钮：头发、衣服点一下就同步全部方向与全部动作；其余图层保持原来的单层开关。
+  togglePart(app,layer){
+    const p=app?.project;
+    if(!p||!layer||layer.isGroup||!this.syncable(layer)||PE.isProtectedHandLayer(layer))return false;
+    if(this.family(p,layer).length<2)return false;
+    app.animationPlayer?.pause?.();
+    this.setPartVisibility(app,layer,!(layer.visible!==false));
+    return true;
+  },
+  toggleFamily(app,index){
+    const p=app.project,layer=p.layers[index],members=this.family(p,layer);if(!members.length)return;
+    app.animationPlayer.pause();
+    this.setPartVisibility(app,layer,members.every(l=>l.visible)?false:true);
   },
   thumbnail(layer,project){
     const key=project.getFrameKey(),prefix=project.currentSheetIndex+'_'+project.currentActionIndex+'_';
@@ -136,8 +177,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     ctx.drawImage(tmp,x0,y0,w,h,Math.floor((48-w*s)/2),Math.floor((48-h*s)/2),w*s,h*s);
   }
   app.updateLayerList=function(){
-    original();if(!PE.isCharacterSheet(this.project.getCurrentSheet()))return;
-    const p=this.project,rows=[...list.querySelectorAll('.layer-item[data-layer-index]')].filter(row=>!p.layers[Number(row.dataset.layerIndex)]?.isGroup);
+    original();
+    const p=this.project,sheet=p.getCurrentSheet(),idleCopy=V.isIdleCopy(sheet);
+    if(!PE.isCharacterSheet(sheet)&&!idleCopy)return;
+    const rows=[...list.querySelectorAll('.layer-item[data-layer-index]')].filter(row=>!p.layers[Number(row.dataset.layerIndex)]?.isGroup);
     this.visualLayerCategory??=V.category(p.layers[p.currentLayerIndex]||{});
     if(this.visualLayerSelection!==p.currentLayerIndex){this.visualLayerCategory=V.category(p.layers[p.currentLayerIndex]||{});this.visualLayerSelection=p.currentLayerIndex;}
     const nav=element('div','part-tabs');nav.setAttribute('role','tablist');nav.setAttribute('aria-label','部件分类');
@@ -157,15 +200,40 @@ document.addEventListener('DOMContentLoaded',()=>{
       const main=element('div','part-card-main');
       const partLabel=l.name.split(' / ')[1]||'';
       label.textContent=l.name==='head'?'头部底稿':l.name==='body'?'身体底稿':l.name==='hand'?'前手 / 手臂':l.name==='hand 2'?'后手 / 手臂':l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?(partLabel.replace(/^\d+\s*/,'')||partLabel):l.name.split(' / ').at(-1);
+      const baseName=l.name.replace(/ 描边$/, ''),bodyLabel={head:'头部',body:'身体',hand:'前手','hand 2':'后手'}[baseName];
+      if(bodyLabel)label.textContent=bodyLabel+(l.name.endsWith(' 描边')?'描边':'底色');
       if(partLabel==='用户')label.textContent='用户 · '+slot;
       const rename=event=>{event.stopPropagation();if(l.inheritedBase||PE.isHandLayer(l))return;const name=prompt('部件名称（写“后发”等新类型会自动分类并调整层级）',l.name.startsWith('头发 /')||l.name.startsWith('发饰 /')?partLabel:label.textContent);if(name===null)return;try{V.rename(this,p.layers.indexOf(l),name);}catch(error){alert(error.message);}};
       label.title=l.name+'（点击“改名”或双击名称）';label.onclick=event=>event.stopPropagation();label.ondblclick=rename;
       const backBang=slot==='前发'&&p.getCurrentSheet()?.actions?.[p.currentActionIndex]?.direction==='up'&&!l.frameData.get(p.getFrameKey())?.data.some((v,i)=>i%4===3&&v);
       const state=element('small','part-state',(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':''));
       const choose=element('button','part-choose',index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用');choose.type='button';choose.onclick=event=>{event.stopPropagation();V.choose(this,index);};
+      // 五角星收藏：点一下就把整件（同一发型系列 / 同一套衣服）收进成品衣柜，不用再去衣柜勾选。
+      const favorite=idleCopy?null:PE.Wardrobe?.favoriteOf?.(l);
+      let star=null;
+      if(favorite){
+        const savedState=PE.Wardrobe.favoriteState(favorite.group);
+        if(savedState==='unknown')PE.Wardrobe.prefetchFavorites();
+        star=element('button','part-choose part-star');
+        star.type='button';star.setAttribute('aria-pressed',String(savedState==='yes'));
+        star.setAttribute('aria-label',(savedState==='yes'?'取消收藏：':'收藏到成品衣柜：')+favorite.name);
+        const hint=savedState==='yes'?'已收藏「'+favorite.name+'」：再点一下可移出衣柜':savedState==='unknown'?'收藏整件「'+favorite.name+'」到成品衣柜（正在读取衣柜状态…）':'收藏整件「'+favorite.name+'」到成品衣柜：自动收录全部动作与方向';
+        star.title=hint;
+        star.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6 14.6 9l6 .9-4.4 4.3 1 5.9L12 17.3 6.8 20.1l1-5.9L3.4 9.9l6-.9Z"/></svg>';
+        star.onclick=async event=>{
+          event.stopPropagation();
+          star.disabled=true;star.setAttribute('aria-busy','true');
+          try{
+            const result=await PE.Wardrobe.toggleFavorite(this,l);
+            if(result==='added')PE.Wardrobe.toast('已收藏「'+favorite.name+'」 · 已出现在成品衣柜'+(this.persistence?.dirty?'（收录的是当前画面；未保存的修改保存后会继续自动同步）':''));
+            else if(result==='removed')PE.Wardrobe.toast('已把「'+favorite.name+'」移出成品衣柜');
+          }catch(error){PE.Wardrobe.toast(error.message,true);}
+          finally{star.disabled=false;star.removeAttribute('aria-busy');this.updateLayerList();}
+        };
+      }
       for(const icon of icons)icon.onclick=()=>{state.textContent=(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);row.classList.toggle('part-soloed',p._soloLayer===l);app.animationPlayer._renderPreviewFrame();};
       const renameButton=element('button','part-choose part-rename','改名');renameButton.type='button';renameButton.setAttribute('aria-label','重命名 '+l.name);renameButton.disabled=!!l.inheritedBase||PE.isHandLayer(l);renameButton.title=renameButton.disabled?'同步底稿请到主工程修改':'款式改名不改变像素或层序；写其他部件类型（如后发）会重新分类归位';renameButton.onclick=rename;
-      const actions=element('div','part-card-actions');actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
+      const actions=element('div','part-card-actions');if(star)actions.append(star);actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
       if(slot==='后发'){
         const erase=element('button','part-choose part-erase-overlap','避开头身');erase.type='button';erase.title='仅当前帧：擦除与头部、身体重叠的头发；不处理手臂，可撤销。遵守选区和像素锁。';erase.setAttribute('aria-label',l.name+'一键避开头部身体（当前帧）');erase.disabled=!!(l.locked||l.inheritedBase||!PE.isLayerVisible(p,l,p.currentSheetIndex));
         erase.onclick=event=>{event.stopPropagation();try{const count=V.eraseOverlap(this,index);if(!count)alert('没有可擦除的重叠像素（请检查当前帧、选区和锁定状态）');}catch(error){alert(error.message);}};actions.append(erase);

@@ -1,0 +1,514 @@
+{
+  "assets": [
+    {
+      "file": "柜子.png",
+      "size": [
+        288,
+        29
+      ],
+      "frameSize": [
+        24,
+        29
+      ],
+      "frameCount": 12,
+      "trim": [
+        4,
+        13,
+        28,
+        42
+      ],
+      "source": [
+        0,
+        0
+      ]
+    },
+    {
+      "file": "现代柜子.png",
+      "size": [
+        288,
+        29
+      ],
+      "frameSize": [
+        24,
+        29
+      ],
+      "frameCount": 12,
+      "trim": [
+        4,
+        13,
+        28,
+        42
+      ],
+      "source": [
+        5,
+        0
+      ]
+    },
+    {
+      "file": "冰柜.png",
+      "size": [
+        160,
+        14
+      ],
+      "frameSize": [
+        20,
+        14
+      ],
+      "frameCount": 8,
+      "trim": [
+        2,
+        0,
+        22,
+        14
+      ],
+      "source": [
+        6,
+        0
+      ]
+    },
+    {
+      "file": "木绿收银台-正面-椅子.png",
+      "size": [
+        9,
+        14
+      ],
+      "trim": [
+        7,
+        3,
+        16,
+        17
+      ],
+      "source": [
+        1,
+        0,
+        "chair"
+      ]
+    },
+    {
+      "file": "木绿收银台-正面-桌子电脑.png",
+      "size": [
+        28,
+        17
+      ],
+      "trim": [
+        2,
+        11,
+        30,
+        28
+      ],
+      "source": [
+        1,
+        0,
+        "desk+computer"
+      ]
+    },
+    {
+      "file": "木绿收银台-右侧面-椅子.png",
+      "size": [
+        11,
+        16
+      ],
+      "trim": [
+        5,
+        15,
+        16,
+        31
+      ],
+      "source": [
+        1,
+        1,
+        "chair"
+      ]
+    },
+    {
+      "file": "木绿收银台-右侧面-桌子电脑.png",
+      "size": [
+        15,
+        33
+      ],
+      "trim": [
+        17,
+        2,
+        32,
+        35
+      ],
+      "source": [
+        1,
+        1,
+        "desk+computer"
+      ]
+    },
+    {
+      "file": "现代收银台-正面-椅子.png",
+      "size": [
+        20,
+        24
+      ],
+      "trim": [
+        7,
+        3,
+        27,
+        27
+      ],
+      "source": [
+        7,
+        0,
+        "chair"
+      ]
+    },
+    {
+      "file": "现代收银台-正面-桌子电脑.png",
+      "size": [
+        28,
+        17
+      ],
+      "trim": [
+        2,
+        11,
+        30,
+        28
+      ],
+      "source": [
+        7,
+        0,
+        "desk+computer"
+      ]
+    },
+    {
+      "file": "现代收银台-右侧面-椅子.png",
+      "size": [
+        11,
+        16
+      ],
+      "trim": [
+        5,
+        15,
+        16,
+        31
+      ],
+      "source": [
+        7,
+        1,
+        "chair"
+      ]
+    },
+    {
+      "file": "现代收银台-右侧面-桌子电脑.png",
+      "size": [
+        23,
+        33
+      ],
+      "trim": [
+        9,
+        2,
+        32,
+        35
+      ],
+      "source": [
+        7,
+        1,
+        "desk+computer"
+      ]
+    },
+    {
+      "file": "包子蒸柜.png",
+      "size": [
+        18,
+        19
+      ],
+      "trim": [
+        3,
+        2,
+        21,
+        21
+      ],
+      "source": [
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "自助咖啡机.png",
+      "size": [
+        8,
+        8
+      ],
+      "trim": [
+        0,
+        0,
+        8,
+        8
+      ],
+      "source": [
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "三张海报.png",
+      "size": [
+        17,
+        14
+      ],
+      "trim": [
+        2,
+        1,
+        19,
+        15
+      ],
+      "source": [
+        11,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "壁挂烟架.png",
+      "size": [
+        22,
+        24
+      ],
+      "trim": [
+        0,
+        0,
+        22,
+        24
+      ],
+      "source": [
+        12,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "烟架.png",
+      "sameAs": "壁挂烟架.png",
+      "source": [
+        12,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "便利店-无雪.png",
+      "size": [
+        59,
+        45
+      ],
+      "trim": [
+        2,
+        7,
+        61,
+        52
+      ],
+      "source": [
+        10,
+        0,
+        0,
+        "noSnow"
+      ]
+    },
+    {
+      "file": "便利店-雪顶.png",
+      "size": [
+        61,
+        46
+      ],
+      "trim": [
+        1,
+        6,
+        62,
+        52
+      ],
+      "source": [
+        10,
+        0,
+        0,
+        "snow"
+      ]
+    },
+    {
+      "file": "便利店-无雪-开门.png",
+      "size": [
+        354,
+        45
+      ],
+      "frameSize": [
+        59,
+        45
+      ],
+      "frameCount": 6,
+      "trim": [
+        2,
+        7,
+        61,
+        52
+      ],
+      "source": [
+        10,
+        1
+      ]
+    },
+    {
+      "file": "便利店-雪顶-开门.png",
+      "size": [
+        366,
+        46
+      ],
+      "frameSize": [
+        61,
+        46
+      ],
+      "frameCount": 6,
+      "trim": [
+        1,
+        6,
+        62,
+        52
+      ],
+      "source": [
+        10,
+        2
+      ]
+    },
+    {
+      "file": "旧版店面/苹果24-旧设计.png",
+      "size": [
+        134,
+        97
+      ],
+      "trim": [
+        5,
+        5,
+        139,
+        102
+      ],
+      "source": [
+        8,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "旧版店面/24h-MART-旧参考.png",
+      "size": [
+        94,
+        76
+      ],
+      "trim": [
+        5,
+        5,
+        99,
+        81
+      ],
+      "source": [
+        9,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "双列陈列架.png",
+      "size": [
+        15,
+        31
+      ],
+      "trim": [
+        0,
+        0,
+        15,
+        31
+      ],
+      "source": [
+        13,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "冷柜-裁选.png",
+      "size": [
+        13,
+        11
+      ],
+      "trim": [
+        1,
+        1,
+        14,
+        12
+      ],
+      "source": [
+        14,
+        0,
+        0
+      ]
+    }
+  ],
+  "filesWritten": [
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\三张海报.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪-开门.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪-开门.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶-开门.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶-开门.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冰柜.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冰柜.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\包子蒸柜.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\壁挂烟架.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-右侧面-桌子电脑.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-右侧面-椅子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-正面-桌子电脑.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-正面-椅子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\柜子.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\柜子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\烟架.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-右侧面-桌子电脑.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-右侧面-椅子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-正面-桌子电脑.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-正面-椅子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代柜子.json",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代柜子.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\自助咖啡机.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\旧版店面\\24h-MART-旧参考.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\旧版店面\\苹果24-旧设计.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\双列陈列架.png",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冷柜-裁选.png"
+  ],
+  "posterPlacementRespected": true,
+  "rackSourceUnchanged": true,
+  "unrelatedWindowPreserved": true,
+  "sourceFileHashes": {
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\三张海报.png": "213020f62a887952945318dd95c5fccf523a60ddbca21df7c8f6edb9c650733a",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪-开门.json": "928c898d66bde8074d11328ff5acbcde6f94afceb413bcc31fec49a3844fafb8",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪-开门.png": "6315d27b3426a0acf24e5714f453bdf18c7ca9b22faa71a240308d017cd531e2",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-无雪.png": "d5ff0ee2e30bc8a7f0d013baf43703ee3e7b88c62fa8bdb7eac9bc7061d3a900",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶-开门.json": "4b3dfd37d9c48eff78460bbc1af3323c61fde4ab4a7b1963a6716e58ff8f5cee",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶-开门.png": "01e61ed95eb8d95e900b887130647d9f08bab7f39c08c1185dce8781f85e8988",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\便利店-雪顶.png": "c184808efefffddc62039ad9cff3333ddd0928652199fbcd90d9317bfb06aa25",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冰柜.json": "a340a733171fc526e8c74f0433d3b77922b0801237c586c70f7e7c235b872372",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冰柜.png": "e0c13c8851fc9ff0f4a9c3612c6127e7a0ef656b02671926c22b5063681d2cd2",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\包子蒸柜.png": "5ae5593afbba3c15b0479094f7a385b4cc26889a5dd1e529ab274987139d5ac1",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\壁挂烟架.png": "67b223cb9fd8b67289a6c453b1e5ecbbca4107cea6028649c3b4d00969a850dd",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-右侧面-桌子电脑.png": "c00629d42f1e1d87359cbebd161c0ecee622033113ceb8b2facc61f4e5cf2226",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-右侧面-椅子.png": "4c8accb413bdf2fa3933575283bcebbdea9e2aaf9e262df5cbcea9fad9f9ae60",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-正面-桌子电脑.png": "5ec510d742b6e2fc4c793bda99fbf28afea81849206a5055657e1bb56d449398",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\木绿收银台-正面-椅子.png": "9b1107b7e0f0520b2aa36af66b0fd3e5c0a333f807cfbafd87d0ac2f24df1e37",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\柜子.json": "2a7675e379798ea3e92b5aea5216b4134f9304337df336050e3b109100f6c72f",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\柜子.png": "69828f2d0626b7522132cd6dd0b392fb39c95f015bda6772aa906b0202c58d28",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\烟架.png": "67b223cb9fd8b67289a6c453b1e5ecbbca4107cea6028649c3b4d00969a850dd",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-右侧面-桌子电脑.png": "300aa0790b357ae1696900e942ab81d547019add732e340e9dbb8fbeb0b4b60e",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-右侧面-椅子.png": "ef8e4ec89aa207e5810db543b3c6d2bb7db92eca0a334b617e0e379678fb981b",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-正面-桌子电脑.png": "abd4cf412f42de438efff485faaac8231e1ecc129b47294487d833005bdbd233",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代收银台-正面-椅子.png": "7dcb826dd0ff30d89a6ce8873de0499cb0ab0af0b7cd2071e178cdb8d36bba44",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代柜子.json": "ea3252ebde997c70988f6dadc58afe162a0c5e48a2607cf021c2d7ef0b4902e5",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\现代柜子.png": "530d4155cdc0806f943ea51ee3dc4a621fc1328b03c34fb3e9fb32f454a8d61d",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\自助咖啡机.png": "9fc4a63dff72b74bf7f731f77d1b246008199425ce1184cd6b1b282a9d0d8a95",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\旧版店面\\24h-MART-旧参考.png": "a8d488ee982b28b6d2d7839fd4f07b866e627eb9c428e4fc6c8229f5be097d99",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\旧版店面\\苹果24-旧设计.png": "0dd103bf82eb406650df64803db3324286abb4b23df80d82aee6a87f88779510",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\双列陈列架.png": "039aad4ead469c0170d9dd5f16fed4d13169fe803e7b39a784eb7b13796378e0",
+    "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\冷柜-裁选.png": "6b481fb5afe4786bd65e6762c67f13947e6759e1d637caa80e2af5eba7a71325"
+  }
+}

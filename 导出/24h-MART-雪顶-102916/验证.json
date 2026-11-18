@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "etag": "\"ca7a0b3650a94431debe8c0abc49934b3cb36cd665c4b788d2d9a146ce2d32e2\"",
+  "sha256": "ca7a0b3650a94431debe8c0abc49934b3cb36cd665c4b788d2d9a146ce2d32e2",
+  "onlyNewLayer": "屋顶积雪",
+  "snowColors": [
+    "#ebf0ee",
+    "#add6e0",
+    "#8cbade"
+  ],
+  "size": [
+    80,
+    64
+  ],
+  "snowBBox": [
+    1,
+    6,
+    62,
+    30
+  ],
+  "existingArtworkUnchanged": true
+}

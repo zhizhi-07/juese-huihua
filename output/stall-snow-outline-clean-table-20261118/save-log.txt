@@ -1,0 +1,24 @@
+{
+  put: 200,
+  get: 200,
+  modifiedLayer: 25,
+  outline: '#2F3B3D',
+  tableSnowRemoved: true,
+  noSnowAtOrBelowRow39: true,
+  upperSnowPaintUnchanged: true,
+  allColoredSnowBoundariesEnclosed: true,
+  onlySnowLayerChanged: true,
+  allOtherLayersAndMetadataUnchanged: true,
+  stats: [
+    { key: '0_0_0', removedTableSnow: 39, addedOutlinePixels: 166 },
+    { key: '0_1_0', removedTableSnow: 0, addedOutlinePixels: 4 },
+    { key: '0_1_1', removedTableSnow: 0, addedOutlinePixels: 4 },
+    { key: '0_1_2', removedTableSnow: 0, addedOutlinePixels: 4 },
+    { key: '0_1_3', removedTableSnow: 0, addedOutlinePixels: 4 },
+    { key: '0_1_4', removedTableSnow: 0, addedOutlinePixels: 4 },
+    { key: '0_1_5', removedTableSnow: 0, addedOutlinePixels: 4 }
+  ],
+  readbackEqualsCandidate: true,
+  beforeSha256: '23a48d287d745a2f477c3d6fa620e3ef0b4fc5a4fb1b2d90771578fb59584110',
+  afterSha256: '3bc7dea2cc27ba5264b0093656b8738f2c0e0263f341fe0b6903170173897cef'
+}

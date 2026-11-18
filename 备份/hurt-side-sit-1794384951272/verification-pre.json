@@ -1,0 +1,22 @@
+{
+  "source": "C:/Users/Administrator/Desktop/Hana Caraka - Base Character/Hana Caraka - Base Character/Basic/hurt.aseprite",
+  "sourceSHA256": "8359e6e8c0a4dadb721878a26993e078bf68301003f23cb056e44c6c2cb2f80f",
+  "sourceFrame": 0,
+  "crop": {
+    "x": 31,
+    "y": 24,
+    "w": 16,
+    "h": 16
+  },
+  "changedIndices": [
+    327,
+    328,
+    330,
+    329,
+    331
+  ],
+  "eyeCount": 4,
+  "sourceCompositeExact": true,
+  "clipped": 0,
+  "otherDataUnchanged": true
+}

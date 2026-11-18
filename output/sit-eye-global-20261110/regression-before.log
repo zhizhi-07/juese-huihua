@@ -1,0 +1,85 @@
+AssertionError [ERR_ASSERTION]: side sitting eyes: head displacement minus two, regardless of saved Y
++ actual - expected
+... Skipped lines
+
+  Uint8ClampedArray(1024) [
+    0,
+    0,
+    0,
+    0,
+...
+    0,
+-   30,
+-   40,
+-   50,
+-   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+...
+    0,
+-   30,
+-   40,
+-   50,
+-   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+...
+    0,
+-   30,
+-   40,
+-   50,
+-   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+...
+    0,
++   30,
++   40,
++   50,
++   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+...
+    0,
++   30,
++   40,
++   50,
++   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+...
+    0,
++   30,
++   40,
++   50,
++   255,
+    0,
+    0,
+    0,
+    0,
+    0,
+
+    at main (C:\Users\Administrator\Desktop\角色绘画\test\eye-sync.cjs:62:11) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Uint8ClampedArray],
+  expected: [Uint8ClampedArray],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+exit=1

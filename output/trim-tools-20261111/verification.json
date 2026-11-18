@@ -1,0 +1,169 @@
+{
+  "pixelsPreserved": true,
+  "otherDataUnchanged": true,
+  "readbackEqual": true,
+  "report": [
+    {
+      "action": "斧头",
+      "direction": "side",
+      "before": [
+        31,
+        30
+      ],
+      "after": [
+        31,
+        24
+      ],
+      "removed": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 6
+      }
+    },
+    {
+      "action": "斧头",
+      "direction": "down",
+      "before": [
+        31,
+        30
+      ],
+      "after": [
+        17,
+        27
+      ],
+      "removed": {
+        "left": 5,
+        "top": 3,
+        "right": 9,
+        "bottom": 0
+      }
+    },
+    {
+      "action": "斧头",
+      "direction": "up",
+      "before": [
+        31,
+        30
+      ],
+      "after": [
+        18,
+        23
+      ],
+      "removed": {
+        "left": 7,
+        "top": 1,
+        "right": 6,
+        "bottom": 6
+      }
+    },
+    {
+      "action": "锄头",
+      "direction": "side",
+      "before": [
+        29,
+        28
+      ],
+      "after": [
+        29,
+        21
+      ],
+      "removed": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 7
+      }
+    },
+    {
+      "action": "锄头",
+      "direction": "down",
+      "before": [
+        29,
+        28
+      ],
+      "after": [
+        18,
+        27
+      ],
+      "removed": {
+        "left": 3,
+        "top": 1,
+        "right": 8,
+        "bottom": 0
+      }
+    },
+    {
+      "action": "锄头",
+      "direction": "up",
+      "before": [
+        29,
+        28
+      ],
+      "after": [
+        18,
+        21
+      ],
+      "removed": {
+        "left": 6,
+        "top": 1,
+        "right": 5,
+        "bottom": 6
+      }
+    },
+    {
+      "action": "镰刀",
+      "direction": "side",
+      "before": [
+        32,
+        27
+      ],
+      "after": [
+        27,
+        17
+      ],
+      "removed": {
+        "left": 3,
+        "top": 1,
+        "right": 2,
+        "bottom": 9
+      }
+    },
+    {
+      "action": "镰刀",
+      "direction": "down",
+      "before": [
+        32,
+        27
+      ],
+      "after": [
+        23,
+        27
+      ],
+      "removed": {
+        "left": 0,
+        "top": 0,
+        "right": 9,
+        "bottom": 0
+      }
+    },
+    {
+      "action": "镰刀",
+      "direction": "up",
+      "before": [
+        32,
+        27
+      ],
+      "after": [
+        24,
+        24
+      ],
+      "removed": {
+        "left": 8,
+        "top": 1,
+        "right": 0,
+        "bottom": 2
+      }
+    }
+  ]
+}

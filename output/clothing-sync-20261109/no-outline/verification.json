@@ -1,0 +1,67 @@
+{
+  "counts": {
+    "original16_walk": 24,
+    "original16_idle": 12,
+    "original16_pickup": 18,
+    "original16_sit": 12
+  },
+  "newGenerated": 63,
+  "preserved": [],
+  "sourceFramesUnchanged": 3,
+  "beforeOK": 54,
+  "beforeErrors": [
+    [
+      "3_0_0",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_0_1",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_0_2",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_0_3",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_0",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_1",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_2",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_1_3",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_2_0",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_2_1",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_2_2",
+      "底稿为空或没有描边"
+    ],
+    [
+      "3_2_3",
+      "底稿为空或没有描边"
+    ]
+  ],
+  "legGaps": [],
+  "changed": 4,
+  "manualFramesModified": 0,
+  "baseLayersModified": 0,
+  "geometryPaletteAndFaceChecks": 66
+}

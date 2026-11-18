@@ -1,0 +1,29 @@
+{
+  "sideComputerLength": 14,
+  "sideTableTopRows": "2..29（含台面边框，不含下方柜身）",
+  "sideComputerRows": "11..24",
+  "frontCounterLength": 28,
+  "frontComputerWidth": 14,
+  "verified": "仅插入原稿平直段像素行；用户原有每个像素均保留；正面未改",
+  "sideCounterTopLength": 28,
+  "layers": [
+    {
+      "shiftY": 0,
+      "index": 22,
+      "insertedRows": 0,
+      "file": "fixed-layer-22.png"
+    },
+    {
+      "shiftY": 0,
+      "index": 23,
+      "insertedRows": 6,
+      "file": "fixed-layer-23.png"
+    },
+    {
+      "shiftY": 1,
+      "index": 24,
+      "insertedRows": 3,
+      "file": "fixed-layer-24.png"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+AssertionError [ERR_ASSERTION]: head alpha differs from requested Angler
+    at C:\Users\Administrator\Desktop\角色绘画\output\water-fishing-20261111\build.cjs:17:580
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

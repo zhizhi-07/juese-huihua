@@ -1,0 +1,61 @@
+{
+  "sourceProject": "scene-e4150351-9254-4d4a-9fad-513ececc9cc0",
+  "sourceSha256": "3bc7dea2cc27ba5264b0093656b8738f2c0e0263f341fe0b6903170173897cef",
+  "dimensions": [
+    64,
+    64
+  ],
+  "staticPngCount": 6,
+  "transparent": true,
+  "uniqueStates": 6,
+  "doorDifferenceWithinDoorOnly": true,
+  "emptyToStockedDifferenceWithinCoffeeAndGoodsOnly": true,
+  "snowDifferenceWithinLatestSnowOnly": true,
+  "originalPixelsUnscaled": true,
+  "animationsExcluded": true,
+  "apiWrites": false,
+  "files": [
+    {
+      "file": "01_无雪_关门空台.png",
+      "snow": false,
+      "closed": true,
+      "stocked": false,
+      "sha256": "034309e55b4b86fc3e114985854daeabcc9e27f1cfcf510f9b4585a2bbd032b6"
+    },
+    {
+      "file": "02_无雪_开门空台.png",
+      "snow": false,
+      "closed": false,
+      "stocked": false,
+      "sha256": "b7c8951655d0c0a19b9e924b621bbe6e3ac61c345dc5f87454c517a6ad473d8a"
+    },
+    {
+      "file": "03_无雪_开门摆货.png",
+      "snow": false,
+      "closed": false,
+      "stocked": true,
+      "sha256": "e199690763ba4d70343e8656431beeb42535708649172d6ac5eb7d086642cbd7"
+    },
+    {
+      "file": "04_有雪_关门空台.png",
+      "snow": true,
+      "closed": true,
+      "stocked": false,
+      "sha256": "cd66a059d91b3ff86052cf24d5978462c1938691bea726d9dae0f31e828a9ac6"
+    },
+    {
+      "file": "05_有雪_开门空台.png",
+      "snow": true,
+      "closed": false,
+      "stocked": false,
+      "sha256": "5028c47839bef3791979daf784588ec59fbade4942449da32c8bde4a7805748f"
+    },
+    {
+      "file": "06_有雪_开门摆货.png",
+      "snow": true,
+      "closed": false,
+      "stocked": true,
+      "sha256": "3e1b8fbecb4c34eb946ec87cb0971484b1df168d57fff8bc9e9065d3698046d2"
+    }
+  ]
+}

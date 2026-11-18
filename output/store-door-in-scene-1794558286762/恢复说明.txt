@@ -1,0 +1,1 @@
+仅当当前ETag仍等于verification.json中的etag时，以该ETag PUT before.json并回读比对；否则先合并后续修改。

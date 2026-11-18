@@ -1,0 +1,160 @@
+{
+  "generatedAt": "2026-11-08T06:27:57.818Z",
+  "source": "data/shared-project.json",
+  "sourceFrame": "1_1_0 (original16_idle / down / frame1)",
+  "garmentPixels": 24,
+  "modelRecords": 24,
+  "identity": {
+    "paintingVsOld": 0,
+    "paintingVsNewBefore": 0,
+    "paintingVsNewAfter": 0,
+    "paintingPixels": 24
+  },
+  "metrics": [
+    {
+      "target": "同一副身体",
+      "algo": "旧·逐行横带",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "同一副身体",
+      "algo": "新·部位(修正前)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "同一副身体",
+      "algo": "新·部位(修正后)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "走路帧",
+      "algo": "旧·逐行横带",
+      "clothPixels": 16,
+      "onBody": 16,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "走路帧",
+      "algo": "新·部位(修正前)",
+      "clothPixels": 16,
+      "onBody": 16,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "走路帧",
+      "algo": "新·部位(修正后)",
+      "clothPixels": 14,
+      "onBody": 14,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "侧面",
+      "algo": "旧·逐行横带",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "侧面",
+      "algo": "新·部位(修正前)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "侧面",
+      "algo": "新·部位(修正后)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "拾取帧",
+      "algo": "旧·逐行横带",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "拾取帧",
+      "algo": "新·部位(修正前)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    },
+    {
+      "target": "拾取帧",
+      "algo": "新·部位(修正后)",
+      "clothPixels": 24,
+      "onBody": 24,
+      "offBody": 0,
+      "onOutline": 0
+    }
+  ],
+  "legFixDemo": {
+    "paintedShortsPixels": 8,
+    "modelRecords": 8,
+    "beforePixels": 32,
+    "beforeLegRows": 8,
+    "afterPixels": 8,
+    "afterLegRows": 2,
+    "ascii": {
+      "painted": [
+        " 8   .....  ",
+        " 9   .....  ",
+        "10   ## ##  ",
+        "11   ## ##  ",
+        "12   .. ..  ",
+        "13   .. ..  ",
+        "14   .. ..  ",
+        "15   .. ..  ",
+        "16   .. ..  ",
+        "17   .. ..  ",
+        "18          "
+      ],
+      "before": [
+        " 8   .....  ",
+        " 9   .....  ",
+        "10   ## ##  ",
+        "11   ## ##  ",
+        "12   ## ##  ",
+        "13   ## ##  ",
+        "14   ## ##  ",
+        "15   ## ##  ",
+        "16   ## ##  ",
+        "17   ## ##  ",
+        "18          "
+      ],
+      "after": [
+        " 8   .....  ",
+        " 9   .....  ",
+        "10   ## ##  ",
+        "11   ## ##  ",
+        "12   .. ..  ",
+        "13   .. ..  ",
+        "14   .. ..  ",
+        "15   .. ..  ",
+        "16   .. ..  ",
+        "17   .. ..  ",
+        "18          "
+      ]
+    }
+  }
+}

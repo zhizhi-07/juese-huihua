@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>衣服贴合算法对照 · 20261108</title>
+<style>
+  :root{
+    --bg:#0f1117; --card:#171a23; --card2:#1c2030; --line:#2a3044;
+    --text:#e6e8ef; --muted:#8b93a7; --accent:#6c86d9; --good:#5ac08a; --bad:#e0607a; --warn:#e0b04a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#1b2136 0%,#0f1117 60%) no-repeat;background-color:var(--bg);color:var(--text);
+       font:15px/1.65 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:48px 24px 96px}
+  header{margin-bottom:36px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{margin:10px 0 12px;font-size:32px;line-height:1.25;letter-spacing:-.01em}
+  .lede{color:var(--muted);max-width:70ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:#131722}
+  .chip b{color:var(--text);font-weight:600}
+  section{margin-top:44px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+  .sec-head h2{margin:0;font-size:20px;letter-spacing:-.01em}
+  .sec-head p{margin:0;color:var(--muted);font-size:13px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 12px 32px #0006}
+  .figure{display:flex;justify-content:center;background:var(--card2);border-radius:12px;padding:18px;overflow:auto}
+  .figure img{image-rendering:pixelated;display:block}
+  .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-size:13px;color:var(--muted)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:middle}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{text-align:left;font-weight:600;font-size:12.5px;color:var(--muted);padding:0 12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+  tbody th{text-align:left;font-weight:600;padding:12px;border-bottom:1px solid #212637;white-space:nowrap}
+  td.num{padding:12px;border-bottom:1px solid #212637;font-variant-numeric:tabular-nums}
+  .px{font-size:17px;font-weight:700;color:var(--text)}
+  .sub{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+  .ascii-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.ascii-grid{grid-template-columns:1fr}}
+  .ascii{margin:0;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .ascii figcaption{font-size:12.5px;margin-bottom:10px;font-weight:600}
+  .ascii pre{margin:0;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:#cfd5e6;overflow:auto}
+  .verdict{display:grid;gap:12px}
+  .vrow{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;background:var(--card2);border:1px solid var(--line);
+        border-left:3px solid var(--accent);border-radius:10px;padding:14px 16px}
+  .vrow .mark{font-size:15px;line-height:1.5}
+  .vrow b{display:block;margin-bottom:3px}
+  .vrow span{color:var(--muted);font-size:13.5px}
+  .ok{border-left-color:var(--good)} .bad{border-left-color:var(--bad)} .warn{border-left-color:var(--warn)}
+  .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .links a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);background:var(--card2);
+           border:1px solid var(--line);border-radius:10px;padding:10px 15px;font-size:13.5px;transition:.15s}
+  .links a:hover{border-color:var(--accent);background:#212840;transform:translateY(-1px)}
+  .links a small{color:var(--muted);font-size:12px}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+  code{background:#0d1017;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Pixel Garment Fit · 只读校验</div>
+    <h1>衣服贴合算法对照</h1>
+    <p class="lede">同一件示例衣服，交给三套算法分别贴到主工程现有的四副身体上。旧算法是逐行横带缩放，新算法按躯干 / 左腿 / 右腿分段点位贴合；新算法在修正前后各跑一遍，看腿部纵向比例那一处 bug 的实际影响。</p>
+    <div class="meta">
+      <span class="chip">数据源 <b>data/shared-project.json</b></span>
+      <span class="chip">源帧 <b>1_1_0 (original16_idle / down / frame1)</b></span>
+      <span class="chip">示例衣服 <b>24 格</b></span>
+      <span class="chip">模型记录 <b>24 条</b></span>
+      <span class="chip">生成于 <b>2026/11/8 14:27:57</b></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head"><h2>1 · 四副身体 × 三套算法</h2><p>每格上方灰色为素体，彩色为贴合结果</p></div>
+    <div class="card">
+      <div class="figure">
+        <img src="data:image/png;base64,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IUDrWkfrRg8eh9bRutYxejwOHALfDK2D0QMOAWgdjB5wCEDrYPSAQwBaB6MHHALQOhg94BCA1sHoAYcAtI7WjR5wCNC61tG60YPHoXW07pth9HgcOASgdTB6wCEArYPR8wzqehZark9JzRfb0LW/U9AOgdbRutYxejwOHAKto3Wta93o8ThwCLSuda1rXetGj8fhcWhd61rXutaNHo/D4/A4tK51rWtd60aPx+FxOARa17rWta51o8fj8DgcAq1rXeta17rR43F4HA6B1rWuda1r3ejxODwOh0Dr+tS61jF6PA4cAq2jda1j9HgcOARaR+ta17rR43HgEGhd61rXutaNHo/D49C61rWuda0bPR6Hx+FxaF3rWte61o0ej8PjcAi0rnWta13rRo/H4XE4BFrXuta1rnWjx+PwOBwCrWtd61rXp9HjcXgcDoHW0brWMXo8DhwCraN1rWP0eBw4BFpH61rXutHjceAQaF3rWte61gsfPedDk9RxMw15HA6B1rWuda1j9HgcgnYItI7WtY7R43HgEGgdrWtd60aPx4FDoHWta13rWjd6PA6PQ+ta17rWtW70eBweh8ehda1rXetaN3o8Do/DIdC61rWuda0bPVk9jr7bhfarNpT6NwXtEGgdrWsdo8fjwCHQOlrXutaNHo8Dh0DrWte61rVu9HgcHofWta51rWvd6PE4PA6PQ+ta17rWtW70eBweh0Ogda1rXetaN3o8Do/DIdC61rWuda0bPeAQgNbB6AGHALQORg84BKB1MHrAIQCto3WjBxwCtK51tG704HFoHa1rHaPH48Dj0DpaB6PH48AhAK2D0QMOAWgdjB5wCEDrYPSAQwBaB6MHHALQOhg94BCA1tG60QMOAVrXOlo3evA4tI7WtY7R43HgcWgdrYPR4yPjEIDWwegBhwC0DkYPOASgdTB6wCEArYPRAw4BaB2MHnAIQOto3egBhwCtax2tGz14HFpH61rH6PE48Dh8M7QORo+PjEMAWgejBxwC0DoYPeAQgNbB6AGHALQORg84BKB1MHrAIQCto3WjBxwCtK51tG704HFoHa37Zhg9HgcOgW+G1sHoAYcAtA5DHz0AADkyegAAowcAwOgBADB6AACMHgAAowcAwOgBADB6AACMHgDA6PERAACjBwDA6AEAMHoAAIweAACjBwDA6AEAMHoAAIweAMDoAQAwegAAjB4AAKMHAMDoAQAwegAAjB4AAKMHAMDoAQCMnluNxhVkSetoXeuU3brRg8ehdbQORo/HgUMAWgejBxwC0DoYPeAQgNbB6AGHALQORg84BKB1MHrAIQCtg9EDDgFoHa0bPeAQoHWtY/R4HHgcWkfrYPR4HDgEoHUwesAhAK2D0QMOAWgdjB5wCEDrYPSAQwBaB6MHHALQOhg94BCA1tG60YPHoXW0rnWMHo8Dj0PraB2MHo8DhwC0DkYPOASgdTB6wCEArYPRAw4BaB2MHnAIQOtg9IBDAFoHowccArSudbRu9OBxaB2tax2jx+PA49A6Wgejx+PAIQCtg9EDDgFoHYwecAhA62D0gEMAWgejBxwC0DoYPeAQgNbRutEDDgFa1zpaN3rwOLSO1rWO0eNx4HFoHa2D0eNx4BCA1sHoAYcAtA5GDzgEoHUwesAhAK2D0QMOAWgdjB5wCEDraN3oAYcArWsdrRs9eBxaR+tax+jxOPA4tI7WwejxOHAIQOtg9IBDAFoHowccAtA6GD3gEIDWwegBhwC0DkYPOASgdbRu9IBDgNa1jtaNHjwOraN1rWP0eBx4HFpH62D0eBw4BKB1MHrAIQCtg9EDDgFoHYwecAhA62D0gEMAWgejBxwC0DpaN3rAIUDrWkfrRg8eh9bRutYxejwOPA6to3UwenxkHALQOhg94BCA1sHoAYcAtA5GDzgEoHUwesAhAK2D0QMOAWgdrRs94BCgda2jdaMHj0PraF3rGD0eBw6Bb4bWwegBhwC0DkYPOASgdTB6wCEArYPRAw4BaB2MHnAIQOtg9IBDAFpH60YPOARoXeto3ejB49A6WvfNMHo8DhwC0DoYPeAQgNbB6AGHALQORg84BKB1MHrAIQCtg9EDDgFoHYwecAhA62jd6AGHAK1rHaPH48Dj0DpaB6PH4/ilrmeh5fqU1HyxDV37Oz0OrWtd61rXutHjcXgcHofWta51rWvd6PE4PA6HQOta17rWtW70eBweh0Ogda1rXetaN3o8Do/DIdC61rWuda0bPR6Hx+EQaF3rWte61o0ej8PjcAi0rnWta13rRo/H4XE4BFrXuta1rnWjx+PwOBwCrWtd61rXutHjcXgcWte61rWudaPH4/A4PA6ta13rWte60eNxeBwOgda1rnWta93o8Tg8DodA61rXuta1bvR4HB6HQ6B1rWtd61o3ejwOj8Mh0LrWta51rRs9HofH4RBoXeta17rWjR6Pw+NwCLSuda1rXetGj8fhcTgEWte61rWudaPH4/A4tK51rWtd60aPx+FxeBxa17rWta51o8fj8DgcAq1rXeta17rRU/jjOB+apI6bacjjcAi0rnWta13rRo/H4XFoXeta17rWjR6Pw+PwOLSuda1rXetGj8fhcTgEWte61rWudaPH4/A4HAKta13rWte60eNxeBwOgda1rnWta93o8Tg8DodA61rXuta1bvRk9Tj6bhfar9pQ6t/0OLSuda1rXetGj8fhcXgcWte61rWudaPH4/A4HAKta13rWte60eNxeBwOgda1rnWta93o8Tg8DodA61rXuta1bvR4HB6HQ6B1rWtd61o3ejwOj8Mh0LrWta51rRs94BCA1tG60QMOAVrXOlo3evA4tI7WtY7R43HgcWgdrYPR43HgEIDWwegBhwC0DkYPOASgdTB6wCEArYPRAw4BaB2MHnAIQOto3egBhwCtax2tGz14HFpH61rH6PE48Di0jtbB6PE4cAhA62D0gEMAWgejBxwC0DoYPeAQgNbB6AGHALQORg84BKB1tG70gEOA1rWO1o0ePA6to3WtY/R4HHgcWkfrYPT4yDgEoHUwesAhAK2D0QMOAWgdjB5wCEDrYPSAQwBaB6MHHALQOlr/l9EDAJAjowcAMHoAAIweAACjBwDA6AEAMHoAAIweAACjBwDA6AEAjB4fAQAwegAAjB4AAKMHAMDoAQAwegAAjB4AAKMHAMDoAQCMHgAAowcAwOgBADB6AACMHgAAowcAwOgBADB6AACMHgDA6AEAMHoAAIweAACjBwDA6AEAMHoAAIweAACjBwDA6AEAjB4AAKMHAMDoAQB4cj/Ow9oTAAW/SwAAAABJRU5ErkJggg==" width="659" height="876" alt="四副身体三套算法的贴合结果对照图">
+      </div>
+      <div class="legend">
+        <span><i style="background:#6c86d9"></i>旧 · 逐行横带 — js/clothing-fit.js 现有算法</span><span><i style="background:#e0607a"></i>新 · 部位（修正前） — 腿部忽略纵向比例</span><span><i style="background:#5ac08a"></i>新 · 部位（修正后） — 当前 test/clothing-studio.html 使用</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>2 · 量化指标</h2><p>格数 / 落在身体上的格 / 溢出到空白的格 / 压在描边上的格</p></div>
+    <div class="card">
+      <table>
+        <thead><tr><th>目标身体</th><th>旧 · 逐行横带</th><th>新 · 部位（修正前）</th><th>新 · 部位（修正后）</th></tr></thead>
+        <tbody><tr><th scope="row">同一副身体</th><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td></tr><tr><th scope="row">走路帧</th><td class="num"><span class="px">16</span><span class="sub">贴身 16 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">16</span><span class="sub">贴身 16 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">14</span><span class="sub">贴身 14 / 溢出 0 / 压描边 0</span></td></tr><tr><th scope="row">侧面</th><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td></tr><tr><th scope="row">拾取帧</th><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td><td class="num"><span class="px">24</span><span class="sub">贴身 24 / 溢出 0 / 压描边 0</span></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>3 · 腿部修正前后</h2><p>当前 19×19 素体腿只有 1~2 行，看不出差别，所以另用一副 13×20 的长腿素体单独演示</p></div>
+    <div class="card">
+      <div class="figure" style="margin-bottom:20px">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfwAAAEECAYAAADNk4ZnAAAJ/UlEQVR42u3VsQmAMBRFUWcQQdDOeQMWqbODI7mJLmCnCXxzituHcPhvGKf1kiRJ/27wCZIkGXxJkmTwJUmSwZckSQZfkiQZfEmSZPAlSZLBlyRJBl+SJIP/0LxsUrO4FJfSty4NvhxWiUsZfIDlsEpcyuBLDqu45FIGX3JYxaVk8CWHVVxKBl8AcykuJYMvgLkUl5LBl8MqcSkuDb4cVolLGXyA5bBKXMrgSw6ruORSBl9yWMWlZPAlh1VcSgZfcljFpWTwBTCX4lIy+HJYJS7FpcGXwypxKYMPsBxWiUsZfJ8qh1VccimDLzms4pJLGXzJYRWXksGXHFZxKRl8AcyluJQMvhxWiUtxafDlsEpcyuADLIdV4lIGH2A5rBKXMviSwyouuZTBlxxWcSkZfMlhFZeSwRfAXIpLyeALYC7FpWTw5bBKXIpLgy+HVeJSBh9gOawSlzL4ksMqLrmUwZccVnEpGXzJYRWXksGXHFZxKRl8AcyluJQMvhxWiUtxafDlsEpcyuADLIdV4lIG36fKYRWXXMrgSw6ruORSBl9yWMWlZPAlh1VcSgb/fSWnrnJYueSSSy65NPgAO6xccskllwYfYIAdVi655JJLgw8wwA4rl1xyyaXBBxhgh5VLLrnk0uADDLDDyiWXXHJp8AEG2GHlkksuuTT4AAPMJZdccsmlwQfYYeWSSy655NLgA+ywcskll1wafIABdli55JJLLg0+wAA7rFxyySWXBh9ggB1WLrnkkkuDDzDADiuXXHLJpcEHGGCHlUsuueTS4AMMMJdccskllwYfYIeVSy655JJLgw+ww8oll1xyyaXBB9hh5ZJLLrk0+AAD7LByySWXXBp8gAF2WLnkkksuDT7AADusXHLJJZcGH2CAHVYuueSSS4MPMMBccskll1wafIAB5pJLLrnk0uAD7LByySWXXHJp8AF2WLnkkksuDT7AADusXHLJJZcGH2CAHVYuueSSS4MPMMAOK5dccsmlwQcYYIeVSy655NLgAwyww8oll1xyafABBphLLrnkkkuDD7DDyiWXXHLJpcEH2GHlkksuuTT4AAPssHLJJZdcGnyAAXZYueSSSy4NPsAAO6xccskllwYfYIAdVi655JJLgw8wwA4rl1xyyaXBBxhgLrnkkksuDT7ADiuXXHLJJZcGH2CHlUsuueSSS4MPsMPKJZdccmnwAQbYYeWSSy65NPgAA+ywcskll1wafIABdli55JJLLg0+wAA7rFxyySWXBh9ggLnkkksuuTT4AAPMJZdccsmlwQfYYeWSSy655NLgA+ywcskll1wafIABdli55JJLLg0+wAA7rFxyySWXBh9ggB1WLrnkkkuDDzDADiuXXHLJpcEHGGCHlUsuueTS4AMMMJdccskllwYfYIeVSy655JJLgw+ww8oll1xyafABBthh5ZJLLrk0+AAD7LByySWXXBp8gAF2WLnkkksuDT7AADusXHLJJZcGH2CAHVYuueSSS4MPMMBccskll1wafIAdVi655JJLLg0+wA4rl1xyyaXBBxhgh5VLLrnk0uADDLDDyiWXXHJp8AEG2GHlkksuuTT4AAPssHLJJZdcGvyWnftRtejvcVi55JJLLg0+wAA7rFxyySWXBh9ggB1WLrnkkkuDDzDADiuXXHLJpcEHGGCHlUsuueTS4AMMMJdccskllwYfYIeVSy655JJLgw+ww8oll1xyyaXBB9hh5ZJLLrk0+AAD7LByySWXXBp8gAF2WLnkkksuDT7AADusXHLJJZcGH2CAHVYuueSSS4MPMMBccskll1wafIAB5pJLLrnk0uAD7LByySWXXHJp8AF2WLnkkksuDT7AADusXHLJJZcGH2CAHVYuueSSS4MPMMAOK5dccsmlwQcYYIeVSy655NLgAwyww8oll1xyafABBphLLrnkkkuDD7DDyiWXXHLJpcEvOVUt+nscVofVYeXSvTT4AAPssBp8g2/w3UuDDzDADqvBN/jupXtp8AEG2GE1+AbfvXQvDT7AABt8g8+le+leGnyAATb4Bp9L99K9NPgAG3yDb/C5dC/dS4MPsMNq8A0+l+6le2nwAXZYDb7B59K9NPgAA+ywGnyDb/DdS4MPMMAOq8E3+O6le2nwAQbYYTX4Bt+9dC8NPsAAO6wGn0v30r00+AADbPANPpfupXtp8AEG2OAbfC7dS/fS4ANs8A2+wefSvXQvDT7ADqvBN/hcupcGH2CAHVaDb/ANvntp8AEG2GE1+AbfvXQvDT7AADusBt/gu5fupcEHGGCH1eBz6V66lwYfYIANvsHn0r10Lw0+wAAbfIPPpXvpXhp8gA2+wTf4XLqX7qXBB9hhNfgGn0v30uADDLDDavANPpfupcEHGGCH1eAbfIPvXhp8gAF2WA2+wXcv3UuDDzDADqvBN/jupXtp8AEG2OAbfC7dS/fS4AMMsME3+Fy6l+6lwQfY4Bt8g8+le+leGnyAHVaDb/C5dC/dS4MPsMNq8A0+l+6lwQcYYIfV4Bt8g+9eGnyAAXZYDb7Bdy/dS4MPMMAOq8E3+O6le2nwAQbYYTX4XLqX7qXBBxhgg2/wuXQv3UuDDzDABt/gc+leupcGH2CDb/ANPpfupXtp8AF2WA2+wefSvTT4AAPssBp8g2/w3UuDDzDADqvBN/jupXtp8AEG2GE1+AbfvXQvDT7AADusBp9L99K9NPgAA2zwDT6X7qV7afABBtjgG3wu3Uv30uADbPANvsHn0r10Lw0+wA6rwTf4XLqXBh9ggB1Wg2/wuXQvDT7AADusBt/gG3z30uADDLDDavANvnvpXhp8gAF2WA2+wXcv3UuDDzDABt/gc+leupcGH2CADb7B59K9dC8NPsAG3+AbfC7dS/fS4APssBp8g8+le+leGnyAHVaDb/C5dC8NPsAAO6wG3+AbfPfS4AMMsMNq8A2+e+leGnyAAXZYDb7Bdy/dS4MPMMAOq8Hn0r10Lw0+wAAbfIPPpXvpXhp8gAE2+AafS/fSvTT4ADusBt/gc+leupcGH2CH1eAbfC7dS4MPMMAOq8E3+AbfvTT4AAPssBp8g+9eupcGH2CAHVaDb/DdS/fS4AMMsMNq8Ll0L91Lgw8wwAbf4HPpXrqXBl/9xKW4lAy+AOZSXEoGXw6rxKW4NPhyWCUuZfABlsMqcSmDLzms4pJLGXzJYRWXXMrgSw6ruJQMvuSwikvJ4AtgLsWlZPDlsEpcikuDL4dV4lIGH2A5rBKXMvgAy2GVuJTBlxxWccmlDL7ksIpLyeBLDqu4lAy+AOZSXEoGXw6rvxKX4tLgy2GVuBSXBl8Oq8SlDD7AclglLmXwJYdVXHIpgy85rOJSijj4kiQpbgZfkiSDL0mSDL4kSTL4kiTJ4EuSJIMvSZIMviRJMviSJMngS5LUVTfZtfDw0lYZLgAAAABJRU5ErkJggg==" width="610" height="312" alt="长腿素体下的短裤贴合：原画 / 修正前 / 修正后">
+      </div>
+      <div class="ascii-grid">
+      <figure class="ascii">
+        <figcaption style="color:#e0b04a">你画的短裤（8 格）</figcaption>
+        <pre> 8   .....  
+ 9   .....  
+10   ## ##  
+11   ## ##  
+12   .. ..  
+13   .. ..  
+14   .. ..  
+15   .. ..  
+16   .. ..  
+17   .. ..  
+18          </pre>
+      </figure>
+      <figure class="ascii">
+        <figcaption style="color:#e0607a">修正前（32 格，铺满 8 行腿）</figcaption>
+        <pre> 8   .....  
+ 9   .....  
+10   ## ##  
+11   ## ##  
+12   ## ##  
+13   ## ##  
+14   ## ##  
+15   ## ##  
+16   ## ##  
+17   ## ##  
+18          </pre>
+      </figure>
+      <figure class="ascii">
+        <figcaption style="color:#5ac08a">修正后（8 格，2 行腿）</figcaption>
+        <pre> 8   .....  
+ 9   .....  
+10   ## ##  
+11   ## ##  
+12   .. ..  
+13   .. ..  
+14   .. ..  
+15   .. ..  
+16   .. ..  
+17   .. ..  
+18          </pre>
+      </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>4 · 结论</h2><p>都基于本次实测，不是推断</p></div>
+    <div class="verdict">
+      <div class="vrow ok"><span class="mark">✓</span><div><b>重贴到同一副身体，三套算法都像素级还原</b><span>与画的 24 格相比，旧算法、新算法修正前、修正后的差异格数均为 0 / 0 / 0。</span></div></div>
+      <div class="vrow warn"><span class="mark">!</span><div><b>当前工程尺度下，新旧算法几乎无差别</b><span>body 图层实际只有 5 行墨迹、躯干 5 px 宽，示例衣服仅 24 格。四个目标里只有走路帧不同：旧 16 格、新修正后 14 格。</span></div></div>
+      <div class="vrow bad"><span class="mark">✗</span><div><b>修正前的腿部分支是真 bug</b><span>只保留横向比例 <code>u</code>、丢掉纵向比例 <code>t</code>，一条两行短裤会被刷满整条腿：8 格 → 32 格铺满 8 行。修正后回到 8 格 / 2 行，与所画一致。</span></div></div>
+      <div class="vrow"><span class="mark">→</span><div><b>生产算法尚未更换</b><span><code>js/clothing-fit.js</code> 仍是旧的分行横带算法，本次只修了演示页，没有改主工程、没有写回任何工程数据。</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>5 · 相关页面</h2><p>本地服务在跑时可用 http 打开，否则直接双击文件也行</p></div>
+    <div class="links">
+      <a href="../../test/clothing-studio.html">绘制试贴台 <small>test/clothing-studio.html</small></a>
+      <a href="../../test/clothing-lab.html">算法实验台 <small>test/clothing-lab.html</small></a>
+      <a href="./compare.png">对照原图 <small>compare.png</small></a>
+      <a href="./leg-fix-demo.png">腿部演示 <small>leg-fix-demo.png</small></a>
+      <a href="./report.json">原始数据 <small>report.json</small></a>
+    </div>
+  </section>
+
+  <footer>
+    示例衣服 24 格 · 模型记录 24 条 · 图 190×190 px 为同一件衣服放大版<br>
+    本页由 <code>scripts/build-clothing-fit-report-page.cjs</code> 生成，图片已内嵌，离线可看。
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+PASS hair animation: directional offsets, new action layers, real-time drawing, one-step undo/redo, persistent sway, per-action overrides, masks, sync, save/reopen, real PNG, trust-boundary validation, atomic lock rejection, protected bases and out-of-frame preservation.
+PASS explicit rigid native16: 153 exact frames; no stored-pixel mutations; stable resync/reopen; out-of-frame pixels retained.

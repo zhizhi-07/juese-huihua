@@ -1,0 +1,35 @@
+{
+  "sourceSHA256": "501404b825eeb6eb9da169860266b2489938ef14a8f719a73ee802268e6730a6",
+  "candidateSHA256": "f306bacb07216a82120abde6b62db19d6eb135a3a2cfa4870316a2392545fa70",
+  "nativeSize": [
+    32,
+    48
+  ],
+  "frameCount": 12,
+  "firstFrameCompositePixelIdentical": true,
+  "allFrameMetadataAndTimingUnchanged": true,
+  "staticInteriorPixels": 127,
+  "blackInteriorPixels": 110,
+  "staticLayerIdenticalForAllFrames": true,
+  "blackInkAbsentFromDoorLayer": true,
+  "originalDoorMotionAngles": [
+    0,
+    20,
+    40,
+    60,
+    80,
+    100,
+    110,
+    100,
+    80,
+    60,
+    40,
+    20
+  ],
+  "staticLayerIndex": 2,
+  "doorLayerIndex": 3,
+  "oldLayerCount": 91,
+  "newLayerCount": 92,
+  "otherSheetsAndLayersPreserved": true,
+  "noHDOrResizing": true
+}

@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "originalSHA256": "363657617a2c8d134ea102a516624fed4cffbb76544228819d26cddf36854d5d",
+  "newSHA256": "8187ed8f5dbc4d280f0948fc7ee0cbe4b577af9d8ccfcd01088ea60a2e9c7e45",
+  "etag": "\"8187ed8f5dbc4d280f0948fc7ee0cbe4b577af9d8ccfcd01088ea60a2e9c7e45\"",
+  "newSheet": "现代收银台 32×32",
+  "index": 7,
+  "verified": "尺寸与透明轮廓不变；收银机及付款终端PNG未改；新增配色来自Otterisk96；原收银台、现代冷柜及其他素材全部保留；回读一致"
+}

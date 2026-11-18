@@ -1,0 +1,46 @@
+{
+  "oldBounds": {
+    "right": 27.0,
+    "top": 4.0,
+    "bottom": 40.0,
+    "left": 4.0
+  },
+  "layers": [
+    {
+      "file": "lower-layer-0.png",
+      "name": "柜体与层板",
+      "removedPixels": 214,
+      "index": 0
+    },
+    {
+      "file": "lower-layer-1.png",
+      "name": "商品",
+      "removedPixels": 0,
+      "index": 1
+    },
+    {
+      "file": "lower-layer-2.png",
+      "name": "玻璃门框与把手",
+      "removedPixels": 14,
+      "index": 2
+    }
+  ],
+  "removedRows": [
+    7,
+    8,
+    9,
+    10,
+    15,
+    23,
+    30,
+    36,
+    38
+  ],
+  "newBounds": {
+    "right": 27.0,
+    "top": 13.0,
+    "bottom": 40.0,
+    "left": 4.0
+  },
+  "verified": "无重采样、不混色；商品像素无删除；宽度和脚底位置不变"
+}

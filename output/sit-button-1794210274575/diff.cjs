@@ -1,0 +1,2 @@
+const a=require('../yellow-side-1794209570717/readback.json'),b=require('./before.json');
+for(const [i,l] of b.layers.entries())if(JSON.stringify(l)!==JSON.stringify(a.layers[i])){console.log(i,l.name,l.sheetIndex); console.log(Object.keys(l.frameData).filter(k=>JSON.stringify(l.frameData[k])!==JSON.stringify(a.layers[i]?.frameData[k])));if(l.clothingSync)console.log(l.clothingSync.sitMasters,l.clothingSync.preserved);}

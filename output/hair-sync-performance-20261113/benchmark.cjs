@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const {createCanvas,ImageData,Image}=require('C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');
+global.window=global;global.ImageData=ImageData;global.Image=Image;let canvases=0;
+global.document={addEventListener(){},createElement:()=>{canvases++;return Object.assign(createCanvas(1,1),{style:{}})}};
+global.FileReader=class{async readAsText(b){this.result=await b.text();this.onload();}};
+for(const n of ['core','history','canvas','tools','export','api','frame-tools','hair-animation'])vm.runInThisContext(fs.readFileSync('js/'+n+'.js','utf8'));
+(async()=>{let r=await fetch('http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561');assert(r.ok);let raw=await r.text();fs.writeFileSync(__dirname+'/project-copy.json',raw);let {project:p}=await new PE.ExportManager().importProject(new Blob([raw])),source=p.layers.find(l=>l.hairAnimation&&l.name.includes('中性灰'));assert(source);p.currentLayerIndex=p.layers.indexOf(source);
+let H=PE.HairAnimation,anchor=H.calibrate(p,source),start=performance.now(),c=canvases;for(let i=0;i<20;i++)assert.deepEqual(H.calibrate(p,source),anchor);let calibrate={ms:performance.now()-start,canvases:canvases-c};
+let app={project:p,history:new PE.HistoryManager(),toolManager:{isDrawing:false,clearSelection(){}},animationPlayer:{pause(){}},canvasManager:{render(){}},updateAll(){},persistence:{markDirty(){}}};
+start=performance.now();c=canvases;let result;for(let i=0;i<3;i++)result=H.sync(app);console.log(JSON.stringify({calibrate20:calibrate,sync3:{ms:performance.now()-start,canvases:canvases-c,frames:result.edits.length}}));
+})().catch(e=>{console.error(e);process.exitCode=1});

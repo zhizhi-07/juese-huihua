@@ -1,0 +1,2 @@
+PASS: wheel anchor with CSS scaling and pan, in/out, corners, fractional coordinates, 1–64 limits, zero delta, toolbar center unchanged.
+Exit status: 0

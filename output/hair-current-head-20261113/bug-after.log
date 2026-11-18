@@ -1,0 +1,1 @@
+PASS current-head sync: head-only live invalidation; native16/20px pickup; source-head movement; manual correction; legacy recalculation; new frames; pause; save/reopen; atomic locks; validation.

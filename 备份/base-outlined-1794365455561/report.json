@@ -1,0 +1,92 @@
+[
+  {
+    "title": "行走",
+    "frames": 8,
+    "directions": 3,
+    "w": 15,
+    "h": 17,
+    "changedPixels": 3814,
+    "sha256": "09368a2ce7bbe36ce120a184ce818d439d0f0c89ea2a1850d932280ba28c2e0a",
+    "preview": "导出/新主工程-行走.png"
+  },
+  {
+    "title": "待机",
+    "frames": 4,
+    "directions": 3,
+    "w": 15,
+    "h": 17,
+    "changedPixels": 1922,
+    "sha256": "8191fc20bf4538a456e4dea4cfb4a27007c3794709f4189d83112c56e8fa37a7",
+    "preview": "导出/新主工程-待机.png"
+  },
+  {
+    "title": "拾取",
+    "frames": 6,
+    "directions": 3,
+    "w": 21,
+    "h": 20,
+    "changedPixels": 2930,
+    "sha256": "d78ae5d0ad1c0a4c3ede413f4141e1b923bd6cddf5f96f23b39024d48df8a707",
+    "preview": "导出/新主工程-拾取.png"
+  },
+  {
+    "title": "浇水",
+    "frames": 6,
+    "directions": 3,
+    "w": 27,
+    "h": 30,
+    "changedPixels": 2695,
+    "sha256": "6cb4413f112a551e97b523a7f37fcd8a4d05f50ef544645aa8978c43f5615016",
+    "preview": "导出/新主工程-浇水.png"
+  },
+  {
+    "title": "镐",
+    "frames": 6,
+    "directions": 3,
+    "w": 30,
+    "h": 29,
+    "changedPixels": 3130,
+    "sha256": "a58a8f50b08c8ec81823eed727fcfaed4523d0c54ead29c35ae7de065d87e011",
+    "preview": "导出/新主工程-镐.png"
+  },
+  {
+    "title": "斧头",
+    "frames": 6,
+    "directions": 3,
+    "w": 31,
+    "h": 30,
+    "changedPixels": 3201,
+    "sha256": "eca9bae23f5396b8e2db12c1d17b0a56b25407048287f2aa8732e65c46cec2e1",
+    "preview": "导出/新主工程-斧头.png"
+  },
+  {
+    "title": "锄头",
+    "frames": 6,
+    "directions": 3,
+    "w": 29,
+    "h": 28,
+    "changedPixels": 3062,
+    "sha256": "c5858ac167ac9049d020fd812a15ea7010b212f8025394230d95f6309cffa65a",
+    "preview": "导出/新主工程-锄头.png"
+  },
+  {
+    "title": "镰刀",
+    "frames": 6,
+    "directions": 3,
+    "w": 32,
+    "h": 27,
+    "changedPixels": 3229,
+    "sha256": "3934d8a82aace027b26751064477c9cea0297aba3645da753a5b2c2826ee23f0",
+    "preview": "导出/新主工程-镰刀.png"
+  },
+  {
+    "title": "种植",
+    "frames": 4,
+    "directions": 3,
+    "w": 24,
+    "h": 23,
+    "changedPixels": 1821,
+    "sha256": "9f51e0b79d176457b3cd6c7d7517827077f715abcd432457c95989c9b12975b6",
+    "preview": "导出/新主工程-种植.png"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "verified": "原有色卡内像素、尺寸、透明度不变；转换后全部可见像素属于96色",
+  "replacements": {
+    "#CFB07C": "#D1AE8A",
+    "#AC846C": "#9E7565"
+  },
+  "images": [
+    {
+      "width": 32,
+      "path": [
+        "spriteSheets",
+        "0",
+        "imageDataURL"
+      ],
+      "corrected": "corrected-image-0.png",
+      "original": "image-0.png",
+      "height": 48,
+      "changedPixels": 46
+    },
+    {
+      "width": 32,
+      "path": [
+        "spriteSheets",
+        "1",
+        "imageDataURL"
+      ],
+      "corrected": "corrected-image-1.png",
+      "original": "image-1.png",
+      "height": 32,
+      "changedPixels": 47
+    },
+    {
+      "width": 32,
+      "path": [
+        "layers",
+        "0",
+        "frameData",
+        "0_0_0",
+        "dataURL"
+      ],
+      "corrected": "corrected-image-2.png",
+      "original": "image-2.png",
+      "height": 48,
+      "changedPixels": 23
+    },
+    {
+      "width": 32,
+      "path": [
+        "layers",
+        "1",
+        "frameData",
+        "0_0_0",
+        "dataURL"
+      ],
+      "corrected": "corrected-image-3.png",
+      "original": "image-3.png",
+      "height": 48,
+      "changedPixels": 17
+    },
+    {
+      "width": 32,
+      "path": [
+        "layers",
+        "2",
+        "frameData",
+        "0_0_0",
+        "dataURL"
+      ],
+      "corrected": "corrected-image-4.png",
+      "original": "image-4.png",
+      "height": 48,
+      "changedPixels": 6
+    },
+    {
+      "width": 32,
+      "path": [
+        "layers",
+        "3",
+        "frameData",
+        "1_0_0",
+        "dataURL"
+      ],
+      "corrected": "corrected-image-5.png",
+      "original": "image-5.png",
+      "height": 32,
+      "changedPixels": 55
+    },
+    {
+      "width": 32,
+      "path": [
+        "layers",
+        "4",
+        "frameData",
+        "1_0_0",
+        "dataURL"
+      ],
+      "corrected": "corrected-image-6.png",
+      "original": "image-6.png",
+      "height": 32,
+      "changedPixels": 0
+    }
+  ]
+}

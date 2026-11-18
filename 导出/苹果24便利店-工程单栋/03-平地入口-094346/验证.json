@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "newETag": "\"f67ca8817672bdabcb26a826d425a6c081d66a6511dc835378130de3fbf0d545\"",
+  "sha256": "f67ca8817672bdabcb26a826d425a6c081d66a6511dc835378130de3fbf0d545",
+  "doorShift": 7,
+  "thresholdY": 101,
+  "changed": [
+    "入口 · 门套",
+    "入口 · 玻璃门扇",
+    "入口 · 门槛"
+  ]
+}

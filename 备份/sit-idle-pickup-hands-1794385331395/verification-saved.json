@@ -1,0 +1,9 @@
+{
+  "put": 200,
+  "get": 200,
+  "byteExact": true,
+  "etag": "\"914cf656d51abf27e99d9f806407f1e7433480bd0fe8df50300431273b02b672\"",
+  "sha256": "914cf656d51abf27e99d9f806407f1e7433480bd0fe8df50300431273b02b672",
+  "frontBackIdleBodyPickupHands": true,
+  "sideHurtUnchanged": true
+}

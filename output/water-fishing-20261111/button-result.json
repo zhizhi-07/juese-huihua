@@ -1,0 +1,670 @@
+{
+  "linked": [
+    "original16_walk",
+    "original16_idle",
+    "original16_pickup",
+    "浇水",
+    "镐",
+    "斧头",
+    "锄头",
+    "镰刀",
+    "种植"
+  ],
+  "status": "",
+  "selected": "头发",
+  "disabled": false,
+  "classified": {
+    "category": "头发",
+    "slot": "前发",
+    "rank": 4,
+    "name": "头发 / 通用发型 / 前发",
+    "clean": "头发",
+    "series": ""
+  },
+  "config": {
+    "version": 1,
+    "id": "8278ad9c-373e-4273-9754-c521d4a537a1",
+    "live": false,
+    "enabled": false,
+    "params": {
+      "ampV": 0,
+      "ampH": 1,
+      "cycles": 1,
+      "lag": 0.6,
+      "verticalMode": "wave",
+      "masks": {},
+      "protectedMasks": {},
+      "trajAmp": 0.1,
+      "trajectories": {},
+      "stitch": {}
+    },
+    "overrides": {},
+    "offsets": {
+      "original16_walk/side/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/side/1": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/side/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/side/3": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/side/4": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/side/5": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/side/6": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/side/7": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/side/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/side/1": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/side/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_idle/side/3": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_pickup/side/0": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/side/1": {
+        "x": 4,
+        "y": 2
+      },
+      "original16_pickup/side/2": {
+        "x": 2,
+        "y": 1
+      },
+      "original16_pickup/side/3": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/side/4": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/side/5": {
+        "x": 3,
+        "y": 1
+      },
+      "浇水/side/0": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/side/1": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/side/2": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/side/3": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/side/4": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/side/5": {
+        "x": 0,
+        "y": 2
+      },
+      "镐/side/0": {
+        "x": 6,
+        "y": 5
+      },
+      "镐/side/1": {
+        "x": 5,
+        "y": 5
+      },
+      "镐/side/2": {
+        "x": 8,
+        "y": 6
+      },
+      "镐/side/3": {
+        "x": 8,
+        "y": 6
+      },
+      "镐/side/4": {
+        "x": 8,
+        "y": 6
+      },
+      "镐/side/5": {
+        "x": 7,
+        "y": 6
+      },
+      "斧头/side/0": {
+        "x": 6,
+        "y": 6
+      },
+      "斧头/side/1": {
+        "x": 5,
+        "y": 6
+      },
+      "斧头/side/2": {
+        "x": 8,
+        "y": 7
+      },
+      "斧头/side/3": {
+        "x": 8,
+        "y": 7
+      },
+      "斧头/side/4": {
+        "x": 8,
+        "y": 7
+      },
+      "斧头/side/5": {
+        "x": 7,
+        "y": 7
+      },
+      "锄头/side/0": {
+        "x": 5,
+        "y": 4
+      },
+      "锄头/side/1": {
+        "x": 4,
+        "y": 4
+      },
+      "锄头/side/2": {
+        "x": 7,
+        "y": 5
+      },
+      "锄头/side/3": {
+        "x": 7,
+        "y": 5
+      },
+      "锄头/side/4": {
+        "x": 7,
+        "y": 5
+      },
+      "锄头/side/5": {
+        "x": 6,
+        "y": 5
+      },
+      "镰刀/side/0": {
+        "x": 7,
+        "y": 1
+      },
+      "镰刀/side/1": {
+        "x": 6,
+        "y": 1
+      },
+      "镰刀/side/2": {
+        "x": 9,
+        "y": 2
+      },
+      "镰刀/side/3": {
+        "x": 9,
+        "y": 2
+      },
+      "镰刀/side/4": {
+        "x": 9,
+        "y": 2
+      },
+      "镰刀/side/5": {
+        "x": 8,
+        "y": 2
+      },
+      "种植/side/0": {
+        "x": 0,
+        "y": 1
+      },
+      "种植/side/1": {
+        "x": 1,
+        "y": 1
+      },
+      "种植/side/2": {
+        "x": 2,
+        "y": 2
+      },
+      "种植/side/3": {
+        "x": 1,
+        "y": 2
+      },
+      "original16_walk/down/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/down/1": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/down/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/down/3": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/down/4": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/down/5": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/down/6": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/down/7": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/down/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/down/1": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/down/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_idle/down/3": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_pickup/down/0": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/down/1": {
+        "x": 3,
+        "y": 2
+      },
+      "original16_pickup/down/2": {
+        "x": 3,
+        "y": 0
+      },
+      "original16_pickup/down/3": {
+        "x": 3,
+        "y": 0
+      },
+      "original16_pickup/down/4": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/down/5": {
+        "x": 3,
+        "y": 1
+      },
+      "浇水/down/0": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/down/1": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/down/2": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/down/3": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/down/4": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/down/5": {
+        "x": 0,
+        "y": 2
+      },
+      "镐/down/0": {
+        "x": 7,
+        "y": 5
+      },
+      "镐/down/1": {
+        "x": 7,
+        "y": 4
+      },
+      "镐/down/2": {
+        "x": 7,
+        "y": 6
+      },
+      "镐/down/3": {
+        "x": 7,
+        "y": 6
+      },
+      "镐/down/4": {
+        "x": 7,
+        "y": 6
+      },
+      "镐/down/5": {
+        "x": 7,
+        "y": 5
+      },
+      "斧头/down/0": {
+        "x": 7,
+        "y": 6
+      },
+      "斧头/down/1": {
+        "x": 7,
+        "y": 5
+      },
+      "斧头/down/2": {
+        "x": 7,
+        "y": 7
+      },
+      "斧头/down/3": {
+        "x": 7,
+        "y": 7
+      },
+      "斧头/down/4": {
+        "x": 7,
+        "y": 7
+      },
+      "斧头/down/5": {
+        "x": 7,
+        "y": 6
+      },
+      "锄头/down/0": {
+        "x": 6,
+        "y": 4
+      },
+      "锄头/down/1": {
+        "x": 6,
+        "y": 3
+      },
+      "锄头/down/2": {
+        "x": 6,
+        "y": 5
+      },
+      "锄头/down/3": {
+        "x": 6,
+        "y": 5
+      },
+      "锄头/down/4": {
+        "x": 6,
+        "y": 5
+      },
+      "锄头/down/5": {
+        "x": 6,
+        "y": 4
+      },
+      "镰刀/down/0": {
+        "x": 8,
+        "y": 1
+      },
+      "镰刀/down/1": {
+        "x": 8,
+        "y": 0
+      },
+      "镰刀/down/2": {
+        "x": 8,
+        "y": 2
+      },
+      "镰刀/down/3": {
+        "x": 8,
+        "y": 2
+      },
+      "镰刀/down/4": {
+        "x": 8,
+        "y": 2
+      },
+      "镰刀/down/5": {
+        "x": 8,
+        "y": 1
+      },
+      "种植/down/0": {
+        "x": 1,
+        "y": 0
+      },
+      "种植/down/1": {
+        "x": 1,
+        "y": 1
+      },
+      "种植/down/2": {
+        "x": 1,
+        "y": 2
+      },
+      "种植/down/3": {
+        "x": 1,
+        "y": 1
+      },
+      "original16_walk/up/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/up/1": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/up/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/up/3": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/up/4": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_walk/up/5": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/up/6": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_walk/up/7": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/up/0": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/up/1": {
+        "x": 0,
+        "y": 0
+      },
+      "original16_idle/up/2": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_idle/up/3": {
+        "x": 0,
+        "y": 1
+      },
+      "original16_pickup/up/0": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/up/1": {
+        "x": 3,
+        "y": 4
+      },
+      "original16_pickup/up/2": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/up/3": {
+        "x": 3,
+        "y": 2
+      },
+      "original16_pickup/up/4": {
+        "x": 3,
+        "y": 1
+      },
+      "original16_pickup/up/5": {
+        "x": 3,
+        "y": 1
+      },
+      "浇水/up/0": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/up/1": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/up/2": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/up/3": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/up/4": {
+        "x": 0,
+        "y": 2
+      },
+      "浇水/up/5": {
+        "x": 0,
+        "y": 2
+      },
+      "镐/up/0": {
+        "x": 7,
+        "y": 6
+      },
+      "镐/up/1": {
+        "x": 7,
+        "y": 5
+      },
+      "镐/up/2": {
+        "x": 7,
+        "y": 8
+      },
+      "镐/up/3": {
+        "x": 7,
+        "y": 8
+      },
+      "镐/up/4": {
+        "x": 7,
+        "y": 8
+      },
+      "镐/up/5": {
+        "x": 7,
+        "y": 7
+      },
+      "斧头/up/0": {
+        "x": 7,
+        "y": 7
+      },
+      "斧头/up/1": {
+        "x": 7,
+        "y": 6
+      },
+      "斧头/up/2": {
+        "x": 7,
+        "y": 9
+      },
+      "斧头/up/3": {
+        "x": 7,
+        "y": 9
+      },
+      "斧头/up/4": {
+        "x": 7,
+        "y": 9
+      },
+      "斧头/up/5": {
+        "x": 7,
+        "y": 8
+      },
+      "锄头/up/0": {
+        "x": 6,
+        "y": 5
+      },
+      "锄头/up/1": {
+        "x": 6,
+        "y": 4
+      },
+      "锄头/up/2": {
+        "x": 6,
+        "y": 7
+      },
+      "锄头/up/3": {
+        "x": 6,
+        "y": 7
+      },
+      "锄头/up/4": {
+        "x": 6,
+        "y": 7
+      },
+      "锄头/up/5": {
+        "x": 6,
+        "y": 6
+      },
+      "镰刀/up/0": {
+        "x": 8,
+        "y": 2
+      },
+      "镰刀/up/1": {
+        "x": 8,
+        "y": 1
+      },
+      "镰刀/up/2": {
+        "x": 8,
+        "y": 4
+      },
+      "镰刀/up/3": {
+        "x": 8,
+        "y": 4
+      },
+      "镰刀/up/4": {
+        "x": 8,
+        "y": 4
+      },
+      "镰刀/up/5": {
+        "x": 8,
+        "y": 3
+      },
+      "种植/up/0": {
+        "x": 1,
+        "y": 2
+      },
+      "种植/up/1": {
+        "x": 1,
+        "y": 3
+      },
+      "种植/up/2": {
+        "x": 1,
+        "y": 4
+      },
+      "种植/up/3": {
+        "x": 1,
+        "y": 3
+      }
+    }
+  },
+  "edits": 153
+}

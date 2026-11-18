@@ -1,0 +1,19 @@
+{
+  put: 200,
+  get: 200,
+  outline: '#2f3b3d',
+  recoloredPixels: 1203,
+  changedCels: 11,
+  curtainUnchanged: true,
+  openSilhouetteAndMetadataUnchanged: true,
+  originalVisibilityPreserved: true,
+  bodyStillThreeLayers: true,
+  newDoorLayers: 1,
+  doorDefaultHidden: true,
+  closedOpeningFullyCovered: true,
+  closedOnlyChangesDoorArea: true,
+  readbackEqualsCandidate: true,
+  gameLogicAndAnimationNotImplemented: true,
+  beforeSha256: '025c4676dba95868e84c79ab4cd92fbe13295ba4553bf40076a9d977e57cfcc7',
+  afterSha256: '78e2b4ce8f5ce20550b48688c670d65ea5cb787fdb57b0911bc15075710efeb3'
+}

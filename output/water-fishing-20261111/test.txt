@@ -1,0 +1,1 @@
+PASS watering static; 66 fishing frames; two linked hairs follow calibrated head only; candidate sync idempotent; body/head palette unchanged.

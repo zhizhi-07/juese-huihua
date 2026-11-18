@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=scene-store-item01-shelf-20261116",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"cbb3632b7c3c612584f131be92295a7a54b0a471c3fd4f8f7a35e16c2bcfb787\""
+    },
+    "input": "candidate.json",
+    "inputSHA256": "00aa5d1172a2748673bf42a10802751964dc2ea6209a6b82f1a4f6dde5fab556"
+  },
+  "save": {
+    "status": 409,
+    "etag": null,
+    "body": "{\"error\":\"Shared project changed; local draft retained\"}"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "staticPNG": 13,
+  "totalTrimmedPNG": 59,
+  "cabinetFrames": [
+    12,
+    12,
+    8
+  ],
+  "doorFrames": [
+    6,
+    6
+  ],
+  "zipBytes": 221154,
+  "skipped": [
+    {
+      "name": "静图/场景画布",
+      "reason": "当前可见图层为空"
+    }
+  ]
+}

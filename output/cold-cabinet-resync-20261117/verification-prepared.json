@@ -1,0 +1,126 @@
+{
+  "sourceSHA256": "9fa52d5d410afa21940e6292a12a9d86d3e26f125b1c8c8dea3b10ff5d5dcec4",
+  "candidateSHA256": "512b63366f5ad89a47735b2af4b80ca96e03d3f648eb249d8cfab0fe5713be16",
+  "changes": [
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_2"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_3"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_4"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_5"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_6"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_7"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_8"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_9"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_10"
+    },
+    {
+      "layer": 0,
+      "name": "柜体与层板",
+      "key": "0_0_11"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_2"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_3"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_4"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_5"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_6"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_7"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_8"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_9"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_10"
+    },
+    {
+      "layer": 2,
+      "name": "柜内 · 固定内框与层板",
+      "key": "0_0_11"
+    }
+  ],
+  "firstFrameUnchanged": true,
+  "doorLayerAllFramesUnchanged": true,
+  "staticInteriorFixed": true,
+  "allOtherContentUnchanged": true,
+  "frameCount": 12,
+  "sourceNativeCanvas": [
+    32,
+    48
+  ],
+  "gameFrameSize": [
+    24,
+    29
+  ],
+  "gameAtlasSize": [
+    288,
+    29
+  ],
+  "noResizing": true,
+  "gameOldSHA256": "d7aa0860b673a1c36df92f950ea271c3f5d2919d69ced791208652f935d2d902",
+  "gameNewSHA256": "be08cfb031f120ba0f0e5d0b5c58a20d55fe4deaa3b48aaba33bbac1358845cc"
+}

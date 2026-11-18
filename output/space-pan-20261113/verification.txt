@@ -1,0 +1,5 @@
+修复范围：js/app.js 的空格键处理、平移光标和失焦清理；js/layer-mirror.js 的参考线鼠标抢占。未修改工程数据。
+复现：node test/space-pan.cjs --before，退出 1，滑条聚焦时 Space 未触发平移。
+验证：node test/space-pan.cjs，退出 0；node test/alt-eyedropper.cjs，退出 0；node --check 两个修改的 JS，退出 0。
+未做真实浏览器交互测试；未刷新前台。
+恢复：备份 app.before.js、layer-mirror.before.js 可恢复本轮代码；已有 Alt 功能保留在备份中。若代码后续有改动，先合并，勿直接覆盖。

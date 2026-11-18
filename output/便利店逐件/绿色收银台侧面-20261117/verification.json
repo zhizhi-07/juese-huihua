@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "originalSHA256": "256473355f92065beba80cb8a3f06c42903cc4edc800759f97f2473e9d868c37",
+  "newSHA256": "def1be6ad1a6d5e6240eaad77f60f759afa8f4e7ed805a4394033ad6b36af5c9",
+  "etag": "\"def1be6ad1a6d5e6240eaad77f60f759afa8f4e7ed805a4394033ad6b36af5c9\"",
+  "target": "收银台 32×32",
+  "tabletopLength": 28,
+  "computerLength": 14,
+  "frontUntouched": true,
+  "modernVersionUntouched": true,
+  "verified": "绿色收银台增加右侧面；三个图层可编辑；正面、现代版及其他素材不变；回读一致"
+}

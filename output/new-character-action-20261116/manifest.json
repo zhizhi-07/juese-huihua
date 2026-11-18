@@ -1,0 +1,32 @@
+[
+  {
+    "file": "index.html",
+    "existed": true,
+    "beforeSha256": "0b99dc7aed6bcd85b796438ae6e5b41cd93249fa1ebb1f4c39e0e6db3a2d0840",
+    "afterSha256": "168d0f0f55914c68e294e0d897d4394dfea455d2752e6fed6614dbaf360cdaf1"
+  },
+  {
+    "file": "js/export.js",
+    "existed": true,
+    "beforeSha256": "83b62b643dbd84d32603aeb433572ba493b0104f1a7edc3f4fcba36a27d554a9",
+    "afterSha256": "444c5dcf3264d63d7551d35d037cca65adbcfb8536801ab1259f2b87c2b76826"
+  },
+  {
+    "file": "js/studio.js",
+    "existed": true,
+    "beforeSha256": "3d34ef5abbb2b54e5049f9f6b780e28e444aa20193e04c8f1111004f1bb829e1",
+    "afterSha256": "305e4d9e4895c9d389779ef6808cc76c6eea7bd4ecfc565a8766ff0a6d74ce0f"
+  },
+  {
+    "file": "js/visual-layers.js",
+    "existed": true,
+    "beforeSha256": "b587bc59a5c6b0809ddb13724b7f9923e85155b586640a22cdcf0229c97d3677",
+    "afterSha256": "f6e94d4111a042cfe0f979345b20dfa8b160438a83d0bb7891c4a61e1af41e38"
+  },
+  {
+    "file": "js/character-actions.js",
+    "existed": false,
+    "beforeSha256": null,
+    "afterSha256": "fccfc0b2415451ee8a144a6f20921ded49fd627ed6c2c8230700a5c24d378166"
+  }
+]

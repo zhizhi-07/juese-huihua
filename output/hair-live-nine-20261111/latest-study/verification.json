@@ -1,0 +1,2359 @@
+{
+  "sourceSHA256": "3040ebbd14bb2ad4e2b900a848faf7f82537ffd313557b9489eee0576000b0d4",
+  "seedCount": 3,
+  "generatedFrames": 156,
+  "addedLayers": 27,
+  "originalLayersUnchanged": true,
+  "sheetsFramesDurationsUnchanged": true,
+  "clipped": 0,
+  "mastersExact": true,
+  "algorithm": "Existing PE.HairAnimation.deform; protected crown; selected lower tips; capped one-frame vertical lag",
+  "stats": [
+    {
+      "sheet": "original16_walk",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 6,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 7,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_walk",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 6,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 7,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_walk",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 6,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 7,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_idle",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_idle",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_idle",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 0,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_pickup",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 11,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 4,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 9,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 2,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_pickup",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 10,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 3,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 10,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 3,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 10,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 3,
+            "y": 0
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "original16_pickup",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 10,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 3,
+            "y": 4
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 10,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 3,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 10,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 3,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "浇水",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "浇水",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "浇水",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 7,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 0,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镐",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 12,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 5,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 15,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 8,
+            "y": 6
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 15,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 8,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 15,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 8,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镐",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 14,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 7,
+            "y": 4
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镐",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 14,
+            "y": 9,
+            "bottom": 18
+          },
+          "offset": {
+            "x": 7,
+            "y": 8
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 14,
+            "y": 9,
+            "bottom": 18
+          },
+          "offset": {
+            "x": 7,
+            "y": 8
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 14,
+            "y": 9,
+            "bottom": 18
+          },
+          "offset": {
+            "x": 7,
+            "y": 8
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "斧头",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 13,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 6,
+            "y": 6
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 12,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 5,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 15,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 8,
+            "y": 7
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 15,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 8,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 15,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 8,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "斧头",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "斧头",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 14,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 7,
+            "y": 7
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 14,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 7,
+            "y": 6
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 14,
+            "y": 10,
+            "bottom": 19
+          },
+          "offset": {
+            "x": 7,
+            "y": 9
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 14,
+            "y": 10,
+            "bottom": 19
+          },
+          "offset": {
+            "x": 7,
+            "y": 9
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 14,
+            "y": 10,
+            "bottom": 19
+          },
+          "offset": {
+            "x": 7,
+            "y": 9
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 14,
+            "y": 9,
+            "bottom": 18
+          },
+          "offset": {
+            "x": 7,
+            "y": 8
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "锄头",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 12,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 5,
+            "y": 4
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 11,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 4,
+            "y": 4
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 14,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 7,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "锄头",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 13,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 6,
+            "y": 4
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 13,
+            "y": 4,
+            "bottom": 13
+          },
+          "offset": {
+            "x": 6,
+            "y": 3
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 13,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 6,
+            "y": 4
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "锄头",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 13,
+            "y": 6,
+            "bottom": 15
+          },
+          "offset": {
+            "x": 6,
+            "y": 5
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 13,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 6,
+            "y": 4
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 13,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 6,
+            "y": 7
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 13,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 6,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 13,
+            "y": 8,
+            "bottom": 17
+          },
+          "offset": {
+            "x": 6,
+            "y": 7
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 13,
+            "y": 7,
+            "bottom": 16
+          },
+          "offset": {
+            "x": 6,
+            "y": 6
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镰刀",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 14,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 7,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 13,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 6,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 16,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 9,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 16,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 9,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 16,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 9,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 15,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 8,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镰刀",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 15,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 8,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 15,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 8,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 15,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 8,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 15,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 8,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 15,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 8,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 15,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 8,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "镰刀",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 15,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 8,
+            "y": 2
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 15,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 8,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 15,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 8,
+            "y": 4
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 15,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 8,
+            "y": 4
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 4,
+          "head": {
+            "x": 15,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 8,
+            "y": 4
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 5,
+          "head": {
+            "x": 15,
+            "y": 4,
+            "bottom": 13
+          },
+          "offset": {
+            "x": 8,
+            "y": 3
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "种植",
+      "direction": "side",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 7,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 0,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 8,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 1,
+            "y": 1
+          },
+          "lag": 0,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 9,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 2,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 8,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 1,
+            "y": 2
+          },
+          "lag": 0,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "种植",
+      "direction": "down",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 8,
+            "y": 1,
+            "bottom": 10
+          },
+          "offset": {
+            "x": 1,
+            "y": 0
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 8,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 1,
+            "y": 1
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 8,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 1,
+            "y": 2
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 8,
+            "y": 2,
+            "bottom": 11
+          },
+          "offset": {
+            "x": 1,
+            "y": 1
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    },
+    {
+      "sheet": "种植",
+      "direction": "up",
+      "frames": [
+        {
+          "fi": 0,
+          "head": {
+            "x": 8,
+            "y": 3,
+            "bottom": 12
+          },
+          "offset": {
+            "x": 1,
+            "y": 2
+          },
+          "lag": -1,
+          "clipped": 0
+        },
+        {
+          "fi": 1,
+          "head": {
+            "x": 8,
+            "y": 4,
+            "bottom": 13
+          },
+          "offset": {
+            "x": 1,
+            "y": 3
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 2,
+          "head": {
+            "x": 8,
+            "y": 5,
+            "bottom": 14
+          },
+          "offset": {
+            "x": 1,
+            "y": 4
+          },
+          "lag": 1,
+          "clipped": 0
+        },
+        {
+          "fi": 3,
+          "head": {
+            "x": 8,
+            "y": 4,
+            "bottom": 13
+          },
+          "offset": {
+            "x": 1,
+            "y": 3
+          },
+          "lag": -1,
+          "clipped": 0
+        }
+      ]
+    }
+  ]
+}

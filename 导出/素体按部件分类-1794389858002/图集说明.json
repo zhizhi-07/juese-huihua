@@ -1,0 +1,2530 @@
+[
+  {
+    "file": "前手/行走.png",
+    "sourceSheet": "original16_walk",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 8,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/行走.png",
+    "sourceSheet": "original16_walk",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 8,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/行走.png",
+    "sourceSheet": "original16_walk",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 8,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/行走.png",
+    "sourceSheet": "original16_walk",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 8,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 8,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/待机.png",
+    "sourceSheet": "original16_idle",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/待机.png",
+    "sourceSheet": "original16_idle",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/待机.png",
+    "sourceSheet": "original16_idle",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/待机.png",
+    "sourceSheet": "original16_idle",
+    "frameWidth": 17,
+    "frameHeight": 17,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/拾取.png",
+    "sourceSheet": "original16_pickup",
+    "frameWidth": 21,
+    "frameHeight": 20,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/拾取.png",
+    "sourceSheet": "original16_pickup",
+    "frameWidth": 21,
+    "frameHeight": 20,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/拾取.png",
+    "sourceSheet": "original16_pickup",
+    "frameWidth": 21,
+    "frameHeight": 20,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/拾取.png",
+    "sourceSheet": "original16_pickup",
+    "frameWidth": 21,
+    "frameHeight": 20,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          500
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/浇水.png",
+    "sourceSheet": "浇水",
+    "frameWidth": 27,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/浇水.png",
+    "sourceSheet": "浇水",
+    "frameWidth": 27,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/浇水.png",
+    "sourceSheet": "浇水",
+    "frameWidth": 27,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/浇水.png",
+    "sourceSheet": "浇水",
+    "frameWidth": 27,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/镐.png",
+    "sourceSheet": "镐",
+    "frameWidth": 30,
+    "frameHeight": 29,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/镐.png",
+    "sourceSheet": "镐",
+    "frameWidth": 30,
+    "frameHeight": 29,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/镐.png",
+    "sourceSheet": "镐",
+    "frameWidth": 30,
+    "frameHeight": 29,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/镐.png",
+    "sourceSheet": "镐",
+    "frameWidth": 30,
+    "frameHeight": 29,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/斧头.png",
+    "sourceSheet": "斧头",
+    "frameWidth": 31,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/斧头.png",
+    "sourceSheet": "斧头",
+    "frameWidth": 31,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/斧头.png",
+    "sourceSheet": "斧头",
+    "frameWidth": 31,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/斧头.png",
+    "sourceSheet": "斧头",
+    "frameWidth": 31,
+    "frameHeight": 30,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/锄头.png",
+    "sourceSheet": "锄头",
+    "frameWidth": 29,
+    "frameHeight": 28,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/锄头.png",
+    "sourceSheet": "锄头",
+    "frameWidth": 29,
+    "frameHeight": 28,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/锄头.png",
+    "sourceSheet": "锄头",
+    "frameWidth": 29,
+    "frameHeight": 28,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/锄头.png",
+    "sourceSheet": "锄头",
+    "frameWidth": 29,
+    "frameHeight": 28,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/镰刀.png",
+    "sourceSheet": "镰刀",
+    "frameWidth": 32,
+    "frameHeight": 27,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/镰刀.png",
+    "sourceSheet": "镰刀",
+    "frameWidth": 32,
+    "frameHeight": 27,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/镰刀.png",
+    "sourceSheet": "镰刀",
+    "frameWidth": 32,
+    "frameHeight": 27,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/镰刀.png",
+    "sourceSheet": "镰刀",
+    "frameWidth": 32,
+    "frameHeight": 27,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/种植.png",
+    "sourceSheet": "种植",
+    "frameWidth": 24,
+    "frameHeight": 23,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/种植.png",
+    "sourceSheet": "种植",
+    "frameWidth": 24,
+    "frameHeight": 23,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/种植.png",
+    "sourceSheet": "种植",
+    "frameWidth": 24,
+    "frameHeight": 23,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/种植.png",
+    "sourceSheet": "种植",
+    "frameWidth": 24,
+    "frameHeight": 23,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/钓鱼-甩竿.png",
+    "sourceSheet": "钓鱼-甩竿",
+    "frameWidth": 45,
+    "frameHeight": 48,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/钓鱼-甩竿.png",
+    "sourceSheet": "钓鱼-甩竿",
+    "frameWidth": 45,
+    "frameHeight": 48,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/钓鱼-甩竿.png",
+    "sourceSheet": "钓鱼-甩竿",
+    "frameWidth": 45,
+    "frameHeight": 48,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/钓鱼-甩竿.png",
+    "sourceSheet": "钓鱼-甩竿",
+    "frameWidth": 45,
+    "frameHeight": 48,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/钓鱼-持竿.png",
+    "sourceSheet": "钓鱼-持竿",
+    "frameWidth": 33,
+    "frameHeight": 48,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/钓鱼-持竿.png",
+    "sourceSheet": "钓鱼-持竿",
+    "frameWidth": 33,
+    "frameHeight": 48,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/钓鱼-持竿.png",
+    "sourceSheet": "钓鱼-持竿",
+    "frameWidth": 33,
+    "frameHeight": 48,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/钓鱼-持竿.png",
+    "sourceSheet": "钓鱼-持竿",
+    "frameWidth": 33,
+    "frameHeight": 48,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 4,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/钓鱼-收线.png",
+    "sourceSheet": "钓鱼-收线",
+    "frameWidth": 35,
+    "frameHeight": 47,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/钓鱼-收线.png",
+    "sourceSheet": "钓鱼-收线",
+    "frameWidth": 35,
+    "frameHeight": 47,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/钓鱼-收线.png",
+    "sourceSheet": "钓鱼-收线",
+    "frameWidth": 35,
+    "frameHeight": 47,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/钓鱼-收线.png",
+    "sourceSheet": "钓鱼-收线",
+    "frameWidth": 35,
+    "frameHeight": 47,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/钓鱼-上鱼.png",
+    "sourceSheet": "钓鱼-上鱼",
+    "frameWidth": 37,
+    "frameHeight": 51,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/钓鱼-上鱼.png",
+    "sourceSheet": "钓鱼-上鱼",
+    "frameWidth": 37,
+    "frameHeight": 51,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/钓鱼-上鱼.png",
+    "sourceSheet": "钓鱼-上鱼",
+    "frameWidth": 37,
+    "frameHeight": 51,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/钓鱼-上鱼.png",
+    "sourceSheet": "钓鱼-上鱼",
+    "frameWidth": 37,
+    "frameHeight": 51,
+    "columns": 6,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 1,
+        "direction": "down",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      {
+        "sourceActionIndex": 2,
+        "direction": "up",
+        "frameCount": 6,
+        "durationsMs": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      }
+    ]
+  },
+  {
+    "file": "前手/坐姿.png",
+    "sourceSheet": "original16_sit",
+    "frameWidth": 20,
+    "frameHeight": 19,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          400,
+          400,
+          400,
+          400
+        ]
+      }
+    ]
+  },
+  {
+    "file": "后手/坐姿.png",
+    "sourceSheet": "original16_sit",
+    "frameWidth": 20,
+    "frameHeight": 19,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          400,
+          400,
+          400,
+          400
+        ]
+      }
+    ]
+  },
+  {
+    "file": "身体/坐姿.png",
+    "sourceSheet": "original16_sit",
+    "frameWidth": 20,
+    "frameHeight": 19,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          400,
+          400,
+          400,
+          400
+        ]
+      }
+    ]
+  },
+  {
+    "file": "眼睛/坐姿.png",
+    "sourceSheet": "original16_sit",
+    "frameWidth": 20,
+    "frameHeight": 19,
+    "columns": 4,
+    "rows": [
+      {
+        "sourceActionIndex": 0,
+        "direction": "side",
+        "frameCount": 4,
+        "durationsMs": [
+          400,
+          400,
+          400,
+          400
+        ]
+      }
+    ]
+  }
+]

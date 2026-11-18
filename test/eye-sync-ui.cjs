@@ -16,7 +16,7 @@ class Element{
 const body=new Element('body'),host=new Element('button');body.append(host);let initialize;
 global.document={body,addEventListener(name,fn){if(name==='DOMContentLoaded')initialize=fn;},getElementById(){return host;},createElement(tag){return tag==='canvas'?Object.assign(createCanvas(1,1),{style:{}}):new Element(tag);}};
 vm.runInThisContext(fs.readFileSync(__dirname+'/../js/hair-animation.js','utf8'));
-const {p,eyes,hair,app}=fixture();PE.app=app;initialize();app.canvasManager.render();
+const {p,eyes,hair,app}=fixture();PE.HairAnimation.setup(p,eyes);eyes.hairAnimation.preserved=['original32_idle/down/1','original32_walk/down/1'];PE.app=app;initialize();app.canvasManager.render();
 const bar=body.children.find(c=>c.className==='hair-animation-tools'),status=body.children.find(c=>c.className==='hair-animation-status');
 assert.equal(bar.querySelector('[data-sync-part]').textContent,'眼睛实时同步');assert(bar.querySelector('#hair-sway').hidden);
 bar.querySelector('#hair-sync-all').onclick();assert.equal(eyes.hairAnimation.part,'eyes');assert.match(status.textContent,/保留 2 帧/);

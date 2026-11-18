@@ -1,0 +1,1 @@
+Only these 2 side sitting cels changed (2x pixels): { '3_0_2': 19, '3_0_3': 19 }

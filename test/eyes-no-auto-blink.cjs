@@ -1,0 +1,25 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const {fixture,pixels,raster}=require('./eye-sync.cjs');
+if(process.env.EYE_SOURCE)vm.runInThisContext(fs.readFileSync(process.env.EYE_SOURCE,'utf8'));
+const H=PE.HairAnimation;
+(async()=>{
+ const {p,eyes,walk,app}=fixture();H.sync(app,{live:true});
+ assert.deepEqual(eyes.hairAnimation.preserved,[],'different eye drawings must not be classified as blinking');
+ assert.deepEqual(raster(walk.getFrameData('1_0_1')),raster(pixels(4,5)),'all ordinary frames use this eye variant master');
+ delete eyes.hairAnimation.manualPreservation;eyes.hairAnimation.preserved=['original32_walk/down/1'];walk.frameData.set('1_0_1',pixels(4,5,true));
+ H.refresh(p,true);assert.deepEqual(raster(walk.getFrameData('1_0_1')),raster(pixels(4,5)),'legacy auto-preserved blink markers no longer block sync');
+ const other=new PE.Layer('眼睛 / 另一眼型');other.sheetIndex=0;
+ for(let ai=0;ai<3;ai++)other.frameData.set(`0_${ai}_0`,pixels(8,4,true));p.layers.push(other);p.currentLayerIndex=p.layers.indexOf(other);
+ H.sync(app,{live:true});assert.notEqual(other.hairAnimation.id,eyes.hairAnimation.id);
+ const linked=p.layers.find(l=>l.sheetIndex===1&&l.hairAnimationId===other.hairAnimation.id);
+ assert.deepEqual(raster(linked.getFrameData('1_0_1')),raster(pixels(9,4,true)),'another eye shape follows its own master unchanged');
+ assert.deepEqual(raster(walk.getFrameData('1_0_1')),raster(pixels(4,5)),'variants do not overwrite each other');
+ other.hairAnimation.preserved=['original32_walk/down/1'];const kept=linked.getFrameData('1_0_1');H.refresh(p,true);assert.equal(linked.getFrameData('1_0_1'),kept,'explicit manual frame opt-out remains available');
+ const ex=new PE.ExportManager();ex.project=p;const reopened=(await ex.importProject(ex.exportProject(false))).project;H.refresh(reopened,true);
+ const owner=reopened.layers.find(l=>l.hairAnimation?.id===other.hairAnimation.id);assert(owner.hairAnimation.manualPreservation);
+ const guard=fixture();H.sync(guard.app,{live:true});delete guard.eyes.hairAnimation.manualPreservation;guard.eyes.hairAnimation.preserved=['original32_walk/down/1'];
+ guard.p.currentSheetIndex=1;guard.p.currentFrameIndex=1;guard.p.currentLayerIndex=guard.p.layers.indexOf(guard.walk);
+ let drawn=false;guard.app.toolManager.onMouseDown=()=>{drawn=true;};H.install(guard.app);guard.app.toolManager.onMouseDown();assert.equal(drawn,false,'legacy auto markers cannot bypass generated-frame drawing protection');
+ guard.eyes.hairAnimation.manualPreservation=true;guard.app.toolManager.onMouseDown();assert.equal(drawn,true,'explicit manual opt-out remains editable');
+ console.log('PASS no-auto-blink: no shape recognition; legacy auto markers ignored; independent eye variants; explicit manual opt-out; save/reopen.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

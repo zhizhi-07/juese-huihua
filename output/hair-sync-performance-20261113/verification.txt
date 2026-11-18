@@ -1,0 +1,9 @@
+Scope: hair synchronization performance only. No project JSON writes and no forced browser reload.
+Cause addressed: recalibration repeatedly rasterized identical head images and allocated canvases during synchronization and repaint.
+Change: weak per-image anchor cache checked against exact pixel bytes, frame/source dimensions and placement; recalibration prefilters head layers. In-place edits invalidate cache.
+Current project-copy benchmark: 20 calibrations 585.9692 ms / 4740 canvases before; 68.6675 ms / 0 new canvases after warm-up.
+Three explicit sync calls: 378.4673 ms before; 229.1515 ms after; same 231 generated cels per call.
+Tests: node test/hair-animation.cjs; node test/hair-rigid-sync.cjs; node --check js/hair-animation.js. All exit 0.
+Tests verify unchanged calibration reuse, in-place edit invalidation, head-only rerasterization, preserved sync/undo/save/reopen behavior and rigid pixel matching.
+Live browser responsiveness is NOT verified. Existing page must reload safely after preserving drafts to load changed JavaScript.
+Recovery: copy hair-animation.original.js in this folder back to js/hair-animation.js. Preserve any later changes first.

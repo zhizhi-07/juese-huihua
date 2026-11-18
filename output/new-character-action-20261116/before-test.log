@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: 人物动作列表应提供新建动作按钮
+
+0 !== 1
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\new-character-action-browser.cjs:30:10 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

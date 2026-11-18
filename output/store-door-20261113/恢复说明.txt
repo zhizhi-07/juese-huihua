@@ -1,0 +1,1 @@
+原始工程 before.json；仅当当前 API ETag 等于 verification.json 中 etag 时，才用该 ETag 按后台工程读写约定 PUT before.json，并回读比对。版本不一致先合并，不覆盖后续修改。最终动画未回滚。

@@ -1,0 +1,94 @@
+{
+ "baseChecked": 48,
+ "eyesLayers": 7,
+ "eyeFrames": 36,
+ "eyeHidden": 0,
+ "layers": 91,
+ "coverage": {
+  "original16_walk/side": {
+   "frames": 8,
+   "hairFront": 464,
+   "hairRear": 200,
+   "band": 72,
+   "cloth": 246
+  },
+  "original16_walk/down": {
+   "frames": 8,
+   "hairFront": 488,
+   "hairRear": 400,
+   "band": 72,
+   "cloth": 240
+  },
+  "original16_walk/up": {
+   "frames": 8,
+   "hairFront": 0,
+   "hairRear": 1024,
+   "band": 104,
+   "cloth": 240
+  },
+  "original16_idle/side": {
+   "frames": 4,
+   "hairFront": 232,
+   "hairRear": 100,
+   "band": 36,
+   "cloth": 126
+  },
+  "original16_idle/down": {
+   "frames": 4,
+   "hairFront": 244,
+   "hairRear": 200,
+   "band": 36,
+   "cloth": 126
+  },
+  "original16_idle/up": {
+   "frames": 4,
+   "hairFront": 0,
+   "hairRear": 512,
+   "band": 52,
+   "cloth": 126
+  },
+  "original16_pickup/side": {
+   "frames": 6,
+   "hairFront": 348,
+   "hairRear": 150,
+   "band": 54,
+   "cloth": 209
+  },
+  "original16_pickup/down": {
+   "frames": 6,
+   "hairFront": 366,
+   "hairRear": 300,
+   "band": 54,
+   "cloth": 211
+  },
+  "original16_pickup/up": {
+   "frames": 6,
+   "hairFront": 0,
+   "hairRear": 768,
+   "band": 78,
+   "cloth": 199
+  },
+  "original16_sit/side": {
+   "frames": 4,
+   "hairFront": 232,
+   "hairRear": 98,
+   "band": 36,
+   "cloth": 153
+  },
+  "original16_sit/down": {
+   "frames": 4,
+   "hairFront": 244,
+   "hairRear": 200,
+   "band": 36,
+   "cloth": 140
+  },
+  "original16_sit/up": {
+   "frames": 4,
+   "hairFront": 0,
+   "hairRear": 512,
+   "band": 52,
+   "cloth": 126
+  }
+ },
+ "problems": []
+}

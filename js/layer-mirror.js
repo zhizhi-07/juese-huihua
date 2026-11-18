@@ -385,7 +385,7 @@ window.PE = window.PE || {};
     let dragging = false;
 
     window.addEventListener('mousedown', event => {
-      if (event.button !== 0 || event.target !== canvas) return;
+      if (event.button !== 0 || event.altKey || app.isSpacePressed || event.target !== canvas) return;
       const g = guideAt(event);
       if (!g) return;
       dragging = true;

@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "oldETag": "\"6203a85588646db2576402e9694c04f2007c9280de468f27cacf8a6906a5c25c\"",
+  "etag": "\"9ccdeb53463030491a58832ff4037394d7beff32b399bfdbfe55849919a638ff\"",
+  "sha256": "9ccdeb53463030491a58832ff4037394d7beff32b399bfdbfe55849919a638ff",
+  "layer": "屋顶 · 空调外机",
+  "frame": "8_0_0",
+  "bbox": [
+    110,
+    21,
+    126,
+    38
+  ],
+  "oldColors": 18,
+  "newColors": 4,
+  "onlyOneLayerChanged": true
+}

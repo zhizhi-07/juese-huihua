@@ -1,0 +1,18 @@
+const fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto'),png=require('../../scripts/png.cjs');
+const {createCanvas,loadImage}=require('C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');
+const dir=__dirname,hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+(async()=>{
+ const before=fs.readFileSync(path.join(dir,'before.json')),meta=JSON.parse(fs.readFileSync(path.join(dir,'source-meta.json'))),old=JSON.parse(before),p=structuredClone(old);assert.equal(hash(before),meta.sha256);
+ const bytes=fs.readFileSync(path.join(dir,'out/sprites/双列陈列架.png')),im=png.decode(bytes);assert.equal(im.width,16);assert.equal(im.height,32);
+ let count=0;for(let i=0;i<im.data.length;i+=4){assert([0,255].includes(im.data[i+3]));if(im.data[i+3])count++;}assert(count>300&&count<450);assert.equal(im.data[3],0);
+ const dataURL=bytes=>'data:image/png;base64,'+bytes.toString('base64'),url=dataURL(bytes),si=p.spriteSheets.length;
+ p.spriteSheets.push({name:'双列陈列架 16×32',frameWidth:16,frameHeight:32,columns:1,rows:1,spacingX:0,spacingY:0,offsetX:0,offsetY:0,fps:8,imageDataURL:url,actions:[{name:'画面',direction:'none',frames:[{sheetIndex:si,sourceX:0,sourceY:0,width:16,height:32,locked:false,lockedRegions:[],status:'completed',duration:100,notes:'按用户参考图制作：双列细长金属架，上部高格、下部两层短格；当前16像素素材尺度，只做架体，不含商品。'}]}]});
+ for(let name of ['背板','金属架']){let b=fs.readFileSync(path.join(dir,`out/sprites/${name}.png`));p.layers.push({sheetIndex:si,parent:null,name:'陈列架 · '+name,visible:true,locked:false,opacity:1,frameData:{[`${si}_0_0`]:{width:16,height:32,dataURL:dataURL(b)}}});}
+ p.currentSheetIndex=si;p.currentActionIndex=0;p.currentFrameIndex=0;p.currentLayerIndex=p.layers.length-1;
+ const restore=structuredClone(p);restore.spriteSheets.pop();restore.layers.splice(old.layers.length);for(let k of ['currentSheetIndex','currentActionIndex','currentFrameIndex','currentLayerIndex'])restore[k]=old[k];assert.deepEqual(restore,old);
+ const merged=createCanvas(16,32),mc=merged.getContext('2d');for(let name of ['背板','金属架'])mc.drawImage(await loadImage(path.join(dir,`out/sprites/${name}.png`)),0,0);assert(Buffer.from(mc.getImageData(0,0,16,32).data).equals(im.data));
+ fs.writeFileSync(path.join(dir,'candidate.json'),JSON.stringify(p));fs.writeFileSync(path.join(dir,'双列陈列架-16x32.png'),bytes);
+ const c=createCanvas(192,384),ctx=c.getContext('2d');for(let y=0;y<384;y+=12)for(let x=0;x<192;x+=12){ctx.fillStyle=((x+y)/12)%2?'#e0ddd6':'#efede7';ctx.fillRect(x,y,12,12);}ctx.imageSmoothingEnabled=false;ctx.drawImage(merged,0,0,192,384);fs.writeFileSync(path.join(dir,'陈列架-预览.png'),c.toBuffer('image/png'));
+ const context=createCanvas(360,312),cx=context.getContext('2d');cx.fillStyle='#e9e5db';cx.fillRect(0,0,360,312);cx.imageSmoothingEnabled=false;const fridge=await loadImage(path.resolve('output/rug-20261117/reference-0.png'));cx.drawImage(fridge,20,12,192,288);cx.drawImage(merged,240,108,96,192);fs.writeFileSync(path.join(dir,'现有冷柜尺寸对照.png'),context.toBuffer('image/png'));
+ const info={prepared:true,id:meta.id,sourceETag:meta.etag,sourceSHA256:meta.sha256,candidateSHA256:hash(fs.readFileSync(path.join(dir,'candidate.json'))),appendedSheet:si,sheetCountBefore:old.spriteSheets.length,sheetCountAfter:p.spriteSheets.length,layerCountBefore:old.layers.length,layerCountAfter:p.layers.length,width:16,height:32,opaquePixels:count,allOldContentUnchanged:true,layerCompositeMatchesExport:true};fs.writeFileSync(path.join(dir,'verification-prepared.json'),JSON.stringify(info,null,2));console.log(JSON.stringify(info));
+})().catch(e=>{console.error(e);process.exit(1)});

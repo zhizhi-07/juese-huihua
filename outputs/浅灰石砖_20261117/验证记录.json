@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "originalETag": "\"200ab96308d96bda11b140b5f10c1780530bef22b16f32e8470a2ef01a604563\"",
+  "savedETag": "\"55f834f6c2de5c85fb3827f9d43bb860154e35b34d0fca35d8bdfd75ebf25e06\"",
+  "originalSHA256": "200ab96308d96bda11b140b5f10c1780530bef22b16f32e8470a2ef01a604563",
+  "savedSHA256": "55f834f6c2de5c85fb3827f9d43bb860154e35b34d0fca35d8bdfd75ebf25e06",
+  "tileSHA256": "634206be3d1913d7d90e0d7170a0a468b6c32b5f8c860544512e5204edefc75b",
+  "size": "16x16",
+  "colors": 4,
+  "opaquePixels": 256,
+  "addedSheetIndex": 15,
+  "addedLayers": 1,
+  "frames": 1,
+  "duration": 100,
+  "priorSheetsUnchanged": true,
+  "priorLayersUnchanged": true,
+  "exactAPIReadback": true,
+  "restorationOnExtraCopy": true,
+  "frontendRefreshed": false
+}

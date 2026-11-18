@@ -1,0 +1,17 @@
+{
+  "putStatus": 200,
+  "getStatus": 200,
+  "response": "{\"saved\":true,\"revision\":\"\\\"e303ab3e6c3de3ceb6198d991880faf5695481bed1b8c9fbcaea81cda9c62dc1\\\"\"}",
+  "originalSHA256": "30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba",
+  "savedSHA256": "e303ab3e6c3de3ceb6198d991880faf5695481bed1b8c9fbcaea81cda9c62dc1",
+  "savedETag": "\"e303ab3e6c3de3ceb6198d991880faf5695481bed1b8c9fbcaea81cda9c62dc1\"",
+  "changedPixels": 1926,
+  "checks": [
+    "only hotel image changed; other layers and all metadata unchanged",
+    "160x128 and alpha unchanged",
+    "all opaque colors from user palette",
+    "roof and trim manually flattened; wall mottling removed; lower plinth speckles removed",
+    "readback equals candidate"
+  ],
+  "restore": "GET current; if savedETag still matches PUT before.json with If-Match; otherwise merge subsequent edits first."
+}

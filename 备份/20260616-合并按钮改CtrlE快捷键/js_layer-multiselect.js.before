@@ -1,0 +1,556 @@
+/* Photoshop 式多选图层：Shift 连选、Ctrl/⌘ 点选；选中的图层可以一起移动、合并、建组。
+   建筑 / 场景这类一层一层的画法用得最多：楼体、屋顶、阴影、装饰常常分在几个图层里，
+   选中后整体上移下移、合并成一层，或者收进一个图层组。 */
+document.addEventListener('DOMContentLoaded', () => {
+  const app = PE.app;
+  const list = document.getElementById('layer-list');
+  if (!app || !list) return;
+
+  const M = PE.LayerMultiSelect = {};
+  app.layerSelection = new Set();
+  app.layerSelectionAnchor = null;
+
+  const toast = document.createElement('div');
+  toast.className = 'layer-toast';
+  toast.setAttribute('role', 'status');
+  document.body.append(toast);
+  let toastTimer = 0;
+  function notify(text) {
+    toast.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  const P = () => app.project;
+  const parentOf = layer => (layer.parent == null ? null : P().layers[layer.parent] || null);
+  function isDescendant(layer, group) {
+    const seen = new Set();
+    let current = parentOf(layer);
+    while (current) {
+      if (seen.has(current)) return false;
+      seen.add(current);
+      if (current === group) return true;
+      current = parentOf(current);
+    }
+    return false;
+  }
+  const selectedLayers = () => {
+    const p = P();
+    return [...app.layerSelection].filter(layer => p.layers.includes(layer));
+  };
+  const selectedIndices = () => selectedLayers().map(layer => P().layers.indexOf(layer)).sort((a, b) => a - b);
+
+  // ---------- 结构快照：图层顺序、父子关系按对象记住，重排后索引不会错位 ----------
+  function snapshot() {
+    const p = P();
+    return {
+      layers: p.layers.slice(),
+      parents: new Map(p.layers.map(layer => [layer, layer.parent == null ? null : p.layers[layer.parent]])),
+      selected: p.layers[p.currentLayerIndex] || null
+    };
+  }
+  function restore(snap) {
+    const p = P();
+    p.layers.length = 0;
+    for (const layer of snap.layers) p.layers.push(layer);
+    for (const layer of p.layers) {
+      const parent = snap.parents.get(layer);
+      layer.parent = parent && p.layers.includes(parent) ? p.layers.indexOf(parent) : null;
+    }
+    p.currentLayerIndex = Math.max(0, p.layers.indexOf(snap.selected));
+  }
+  function snapFrames(layers) {
+    return layers.map(layer => ({
+      layer,
+      data: new Map([...layer.frameData].map(([key, value]) => [key, PE.utils.cloneImageData(value)]))
+    }));
+  }
+  function restoreFrames(snap) {
+    for (const item of snap) {
+      item.layer.frameData.clear();
+      for (const [key, value] of item.data) item.layer.frameData.set(key, PE.utils.cloneImageData(value));
+    }
+  }
+  function refresh() {
+    app.updateLayerList();
+    app.updateStatusBar?.();
+    app.canvasManager?.render();
+    app.animationPlayer?._renderPreviewFrame?.();
+  }
+  function record(description, undo, redo, throwOnError) {
+    const run = fn => {
+      app.animationPlayer?.pause?.();
+      fn();
+      refresh();
+    };
+    try {
+      run(redo);
+    } catch (error) {
+      if (throwOnError) throw error;
+      notify(error?.message || '操作失败');
+      return false;
+    }
+    app.history.undoStack.push({ description, changes: [], undo: () => run(undo), redo: () => run(redo) });
+    if (app.history.maxSteps && app.history.undoStack.length > app.history.maxSteps) app.history.undoStack.shift();
+    app.history.redoStack = [];
+    app.history._notifyChange();
+    return true;
+  }
+
+  // ---------- 选区 ----------
+  function prune() {
+    const p = P();
+    for (const layer of [...app.layerSelection]) if (!p.layers.includes(layer)) app.layerSelection.delete(layer);
+    if (app.layerSelectionAnchor && !p.layers.includes(app.layerSelectionAnchor)) app.layerSelectionAnchor = null;
+    const current = p.layers[p.currentLayerIndex];
+    if (current && !app.layerSelection.size) app.layerSelection.add(current);
+  }
+  M.select = function (index, shift, toggle) {
+    const p = P();
+    const layers = p.layers;
+    const layer = layers[index];
+    if (!layer) return;
+    if (shift && app.layerSelectionAnchor && layers.includes(app.layerSelectionAnchor)) {
+      const from = layers.indexOf(app.layerSelectionAnchor);
+      const [low, high] = from <= index ? [from, index] : [index, from];
+      if (!toggle) app.layerSelection.clear();
+      for (let i = low; i <= high; i++) app.layerSelection.add(layers[i]);
+      // Shift 的锚点保持不变，连续 Shift 点选仍然从最初那层往外连选，和 PS 一致。
+    } else if (toggle) {
+      if (app.layerSelection.has(layer) && app.layerSelection.size > 1) app.layerSelection.delete(layer);
+      else app.layerSelection.add(layer);
+      app.layerSelectionAnchor = layer;
+    } else {
+      app.layerSelection.clear();
+      app.layerSelection.add(layer);
+      app.layerSelectionAnchor = layer;
+    }
+    if (app.layerSelection.has(layer)) p.currentLayerIndex = index;
+    else {
+      const rest = selectedIndices();
+      if (rest.length) p.currentLayerIndex = rest.at(-1);
+    }
+    refresh();
+  };
+  M.clear = function () {
+    const p = P();
+    const current = p.layers[p.currentLayerIndex];
+    app.layerSelection.clear();
+    if (current) app.layerSelection.add(current);
+    app.layerSelectionAnchor = current || null;
+    refresh();
+  };
+
+  // ---------- 一起移动（保持相对层序，跳过没选的图层） ----------
+  M.moveSelected = function (delta) {
+    const p = P();
+    const layers = p.layers;
+    const chosen = selectedLayers();
+    if (!chosen.length) { notify('请先选择图层'); return false; }
+    const before = snapshot();
+    const parentObjects = new Map(layers.map(layer => [layer, layer.parent == null ? null : layers[layer.parent]]));
+    const descendantIn = (layer, group) => {
+      const seen = new Set();
+      let current = parentObjects.get(layer) || null;
+      while (current) {
+        if (seen.has(current)) return false;
+        seen.add(current);
+        if (current === group) return true;
+        current = parentObjects.get(current) || null;
+      }
+      return false;
+    };
+    // 同一父级里连续的整块才算一个单元：组和组内成员一起移动，组内图层只在组里移动。
+    const runsOf = container => {
+      const runs = [];
+      let i = 0;
+      while (i < layers.length) {
+        const layer = layers[i];
+        if ((parentObjects.get(layer) || null) !== container) { i++; continue; }
+        const run = [i];
+        let j = i + 1;
+        if (layer.isGroup) while (j < layers.length && descendantIn(layers[j], layer)) { run.push(j); j++; }
+        runs.push(run);
+        i = j;
+      }
+      return runs;
+    };
+    const containers = new Set(chosen.map(layer => parentObjects.get(layer) || null));
+    let moved = false;
+    for (const container of containers) {
+      const runs = runsOf(container);
+      const items = runs.map(run => ({ run, selected: chosen.includes(layers[run[0]]) }));
+      const count = items.length;
+      if (count < 2) continue;
+      let containerMoved = false;
+      if (delta > 0) {
+        for (let k = count - 2; k >= 0; k--) {
+          if (items[k].selected && !items[k + 1].selected) {
+            [items[k], items[k + 1]] = [items[k + 1], items[k]];
+            containerMoved = true;
+          }
+        }
+      } else {
+        for (let k = 1; k < count; k++) {
+          if (items[k].selected && !items[k - 1].selected) {
+            [items[k], items[k - 1]] = [items[k - 1], items[k]];
+            containerMoved = true;
+          }
+        }
+      }
+      if (!containerMoved) continue;
+      const slots = runs.flat();
+      const replacement = items.flatMap(item => item.run).map(index => layers[index]);
+      layers.splice(slots[0], slots.length, ...replacement);
+      moved = true;
+    }
+    if (!moved) {
+      notify(delta > 0 ? '所选图层已经在最上层' : '所选图层已经在最下层');
+      return false;
+    }
+    const active = before.selected;
+    for (const layer of p.layers) {
+      const parent = parentObjects.get(layer);
+      layer.parent = parent && p.layers.includes(parent) ? p.layers.indexOf(parent) : null;
+    }
+    p.currentLayerIndex = Math.max(0, p.layers.indexOf(active));
+    const after = snapshot();
+    const ok = record('移动所选图层', () => restore(before), () => restore(after));
+    if (ok) notify('所选 ' + chosen.length + ' 层一起' + (delta > 0 ? '上移' : '下移') + '了一层');
+    return ok;
+  };
+
+  // ---------- 合并所选：按绘制顺序叠加，结果留在最上面那层 ----------
+  function placementRect(data) {
+    if (!data) return null;
+    const r = data.placement;
+    if (r) return { x: r.x, y: r.y, w: r.w, h: r.h };
+    return { x: 0, y: 0, w: data.width, h: data.height };
+  }
+  function unionRect(a, b) {
+    if (!a) return b;
+    if (!b) return a;
+    const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y);
+    return { x, y, w: Math.max(a.x + a.w, b.x + b.w) - x, h: Math.max(a.y + a.h, b.y + b.h) - y };
+  }
+  // 叠加顺序里的每一层都要保留各自的透明度，最后合成一张源画布。
+  function compose(datas) {
+    const rect = datas.reduce((acc, item) => unionRect(acc, placementRect(item.data)), null);
+    if (!rect) return null;
+    let scale = 1;
+    for (const item of datas) {
+      const r = item.data.placement;
+      if (!r) continue;
+      scale = Math.max(scale, Math.ceil(item.data.width / r.w), Math.ceil(item.data.height / r.h),
+        !Number.isInteger(r.x) || !Number.isInteger(r.y) ? 10 : 1);
+    }
+    const x = Math.floor(rect.x * scale) / scale, y = Math.floor(rect.y * scale) / scale;
+    const w = Math.ceil((rect.x + rect.w) * scale) - Math.round(x * scale);
+    const h = Math.ceil((rect.y + rect.h) * scale) - Math.round(y * scale);
+    if (![w, h].every(Number.isSafeInteger) || w < 1 || h < 1 || w > 32767 || h > 32767 || w * h > 16 * 1024 * 1024)
+      throw new Error('合并后的源画布过大，未修改图层');
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.translate(-x * scale, -y * scale);
+    for (const item of datas) {
+      ctx.globalAlpha = Math.max(0, Math.min(1, item.opacity ?? 1));
+      PE.utils.drawImageData(ctx, item.data, 0, 0, scale);
+    }
+    ctx.globalAlpha = 1;
+    const result = ctx.getImageData(0, 0, w, h);
+    if (datas.some(item => item.data.placement)) result.placement = { x, y, w: w / scale, h: h / scale };
+    return result;
+  }
+  M.merge = function () {
+    const p = P();
+    if (app.toolManager?.isDrawing) { notify('请先结束当前绘画或拖动'); return false; }
+    const chosen = selectedLayers();
+    if (!chosen.length) { notify('请先选择图层'); return false; }
+    // 选到图层组就展开成组内图层，组本身不参与像素叠加。
+    const targets = new Set();
+    for (const layer of chosen) {
+      if (layer.isGroup) {
+        for (const other of p.layers) if (!other.isGroup && isDescendant(other, layer)) targets.add(other);
+      } else targets.add(layer);
+    }
+    const list = [...targets].filter(layer => !layer.inheritedBase && !PE.isHandLayer(layer));
+    if (list.length < 2) { notify('至少选两个图层才能合并（选到组会展开成组内图层）'); return false; }
+    if (list.some(layer => layer.locked)) { notify('所选图层里有锁定图层，请先解锁'); return false; }
+    if (new Set(list.map(layer => String(layer.sheetIndex))).size > 1) { notify('不同素材表的图层不能合并'); return false; }
+    if (!list.every(layer => PE.isLayerVisible(p, layer, p.currentSheetIndex))) { notify('所选图层里有隐藏图层，请先显示再合并'); return false; }
+    const keys = new Set();
+    for (const layer of list) for (const key of layer.frameData.keys()) keys.add(key);
+    if (!keys.size) { notify('所选图层都没有内容，无需合并'); return false; }
+    const merged = new Map();
+    try {
+      for (const key of keys) {
+        const [si, ai, fi] = key.split('_').map(Number);
+        const frame = p.spriteSheets[si]?.actions?.[ai]?.frames?.[fi];
+        if (!frame || frame.locked || frame.lockedRegions?.length) throw new Error('合并涉及锁定帧、保护区域或无效帧，未修改图层');
+        const datas = PE.getRenderLayers(p, si, ai)
+          .filter(layer => targets.has(layer) && PE.isLayerVisible(p, layer, si))
+          .map(layer => ({ data: layer.frameData.get(key), opacity: layer.opacity ?? 1 }))
+          .filter(item => item.data);
+        const result = datas.length ? compose(datas) : null;
+        if (result) merged.set(key, result);
+      }
+    } catch (error) { notify(error.message); return false; }
+    // 合并结果放在最上面那层：和 Photoshop 一样保留它的名字与位置。
+    const target = list.reduce((a, b) => (p.layers.indexOf(b) > p.layers.indexOf(a) ? b : a));
+    const before = { structure: snapshot(), frames: snapFrames(list) };
+    target.frameData.clear();
+    for (const [key, data] of merged) target.frameData.set(key, data);
+    target.opacity = 1;
+    target.visible = true;
+    const removals = list.filter(layer => layer !== target);
+    const parentObjects = new Map(p.layers.map(layer => [layer, layer.parent == null ? null : p.layers[layer.parent]]));
+    p.layers.splice(0, p.layers.length, ...p.layers.filter(layer => !removals.includes(layer)));
+    for (const layer of p.layers) {
+      const parent = parentObjects.get(layer);
+      layer.parent = parent && p.layers.includes(parent) ? p.layers.indexOf(parent) : null;
+    }
+    p.currentLayerIndex = Math.max(0, p.layers.indexOf(target));
+    app.layerSelection.clear();
+    app.layerSelection.add(target);
+    app.layerSelectionAnchor = target;
+    const after = { structure: snapshot(), frames: snapFrames(list) };
+    const ok = record('合并所选图层',
+      () => { restore(before.structure); restoreFrames(before.frames); },
+      () => { restore(after.structure); restoreFrames(after.frames); });
+    if (ok) notify('已把 ' + list.length + ' 个图层合并成「' + target.name + '」');
+    return ok;
+  };
+
+  // ---------- 建组：所选图层收进一个新组，组放在最上面那层的位置 ----------
+  M.group = function (name) {
+    const p = P();
+    const chosen = selectedLayers();
+    if (!chosen.length) { notify('请先选择图层'); return false; }
+    // 已经选中的组不再把组里的图层重复收进来，避免自己套自己。
+    const items = chosen.filter(layer => !chosen.some(other => other !== layer && other.isGroup && isDescendant(layer, other)));
+    if (!items.length) { notify('请先选择图层'); return false; }
+    const containerOf = layer => (layer.parent == null ? null : p.layers[layer.parent] || null);
+    const container = containerOf(items[0]);
+    if (items.some(layer => containerOf(layer) !== container)) {
+      notify('只能把同一层级（同一层或同一个组里）的图层建成一组');
+      return false;
+    }
+    const groupName = String(name ?? '').trim() || '图层组';
+    const before = snapshot();
+    const parentObjects = new Map(p.layers.map(layer => [layer, layer.parent == null ? null : p.layers[layer.parent]]));
+    const group = new PE.Layer(groupName);
+    group.isGroup = true;
+    group.depth = 0;
+    group.sheetIndex = items[0].sheetIndex;
+    group.opacity = 1;
+    group.visible = true;
+    const topIndex = Math.max(...items.map(layer => p.layers.indexOf(layer)));
+    const insertAt = p.layers.filter((layer, index) => index < topIndex && !items.includes(layer)).length;
+    const remaining = p.layers.filter(layer => !items.includes(layer));
+    remaining.splice(insertAt, 0, group, ...items);
+    p.layers.splice(0, p.layers.length, ...remaining);
+    for (const layer of p.layers) {
+      const parent = parentObjects.get(layer);
+      layer.parent = parent && p.layers.includes(parent) ? p.layers.indexOf(parent) : null;
+    }
+    group.parent = container && p.layers.includes(container) ? p.layers.indexOf(container) : null;
+    for (const layer of items) layer.parent = p.layers.indexOf(group);
+    // 面板里点不了图层组本身，建组后直接选中组内图层，接着就能整体移动 / 合并。
+    p.currentLayerIndex = Math.max(0, p.layers.indexOf(items.at(-1)));
+    app.layerSelection.clear();
+    for (const layer of items) app.layerSelection.add(layer);
+    app.layerSelectionAnchor = items[0];
+    const after = snapshot();
+    const ok = record('新建图层组', () => restore(before), () => restore(after));
+    if (ok) notify('已把 ' + items.length + ' 个图层收进「' + group.name + '」');
+    return ok;
+  };
+
+  // ---------- 删除所选 ----------
+  M.remove = function () {
+    const p = P();
+    const chosen = selectedLayers();
+    if (!chosen.length) { notify('请先选择图层'); return false; }
+    const targets = new Set();
+    for (const layer of chosen) {
+      if (layer.isGroup) {
+        for (const other of p.layers) if (!other.isGroup && isDescendant(other, layer)) targets.add(other);
+      } else targets.add(layer);
+    }
+    const list = [...targets];
+    if (!list.length) { notify('图层组里没有可删除的图层'); return false; }
+    const blocked = list.find(layer => layer.inheritedBase || PE.isHandLayer(layer) || layer.locked);
+    if (blocked) {
+      notify(blocked.inheritedBase ? '头部、身体和手部跟随主工程，请到主工程修改'
+        : PE.isHandLayer(blocked) ? '手部参考层受保护' : '图层「' + blocked.name + '」已锁定，请先解锁');
+      return false;
+    }
+    if (p.layers.filter(layer => !targets.has(layer)).length < 1) { notify('至少要留下一个图层'); return false; }
+    const before = snapshot();
+    const parentObjects = new Map(p.layers.map(layer => [layer, layer.parent == null ? null : p.layers[layer.parent]]));
+    const active = before.selected && !targets.has(before.selected) ? before.selected : null;
+    p.layers.splice(0, p.layers.length, ...p.layers.filter(layer => !targets.has(layer)));
+    for (const layer of p.layers) {
+      const parent = parentObjects.get(layer);
+      layer.parent = parent && p.layers.includes(parent) && !targets.has(parent) ? p.layers.indexOf(parent) : null;
+    }
+    p.currentLayerIndex = active ? Math.max(0, p.layers.indexOf(active)) : Math.max(0, p.layers.length - 1);
+    app.layerSelection.clear();
+    app.layerSelectionAnchor = null;
+    const after = snapshot();
+    const ok = record('删除所选图层', () => restore(before), () => restore(after));
+    if (ok) notify('已删除 ' + list.length + ' 个图层（可以撤销）');
+    return ok;
+  };
+
+  // ---------- 整体平移所选图层的像素（方向键） ----------
+  M.nudge = function (dx, dy) {
+    const p = P();
+    const key = p.getFrameKey();
+    const frame = p.getCurrentFrame();
+    if (!frame || frame.locked) { notify('当前帧已锁定，不能移动'); return false; }
+    const targets = selectedLayers().filter(layer =>
+      !layer.isGroup && !layer.locked && !layer.inheritedBase && !PE.isHandLayer(layer) &&
+      (layer.sheetIndex === undefined || layer.sheetIndex === p.currentSheetIndex));
+    if (!targets.length) { notify('所选图层不能移动（锁定 / 跟随主工程 / 手部参考层）'); return false; }
+    const map = layer => {
+      const data = layer.frameData.get(key);
+      return { layer, data: data ? PE.utils.cloneImageData(data) : null };
+    };
+    const before = targets.map(map);
+    let changed = false;
+    for (const layer of targets) {
+      const data = layer.frameData.get(key);
+      if (!data) continue;
+      if (data.placement) {
+        data.placement = { ...data.placement, x: data.placement.x + dx, y: data.placement.y + dy };
+        changed = true;
+        continue;
+      }
+      const next = PE.utils.createTransparentImageData(data.width, data.height);
+      for (let y = 0; y < data.height; y++) for (let x = 0; x < data.width; x++) {
+        const tx = x + dx, ty = y + dy;
+        if (tx < 0 || ty < 0 || tx >= data.width || ty >= data.height) continue;
+        const from = (y * data.width + x) * 4, to = (ty * data.width + tx) * 4;
+        next.data[to] = data.data[from];
+        next.data[to + 1] = data.data[from + 1];
+        next.data[to + 2] = data.data[from + 2];
+        next.data[to + 3] = data.data[from + 3];
+      }
+      layer.frameData.set(key, next);
+      changed = true;
+    }
+    if (!changed) { notify('所选图层在当前帧没有内容'); return false; }
+    const after = targets.map(map);
+    const apply = snap => {
+      for (const item of snap) {
+        if (item.data) item.layer.frameData.set(key, PE.utils.cloneImageData(item.data));
+        else item.layer.frameData.delete(key);
+      }
+    };
+    const ok = record('整体移动所选图层（当前帧）', () => apply(before), () => apply(after));
+    if (ok) notify('所选 ' + targets.length + ' 层的像素一起移动了 ' + dx + ',' + dy);
+    return ok;
+  };
+
+  // ---------- 面板：批量操作条 + 选中高亮 ----------
+  const bar = document.createElement('div');
+  bar.className = 'layer-multi-bar';
+  bar.innerHTML =
+    '<button type="button" class="lm-btn" data-act="up" title="选中的图层一起上移一层（更靠前）">↑</button>' +
+    '<button type="button" class="lm-btn" data-act="down" title="选中的图层一起下移一层（更靠后）">↓</button>' +
+    '<button type="button" class="lm-btn" data-act="merge" title="把选中的图层按绘制顺序合并成一层，保留最上面那层的名字与位置（Ctrl+E 仍然只合并当前层与下面一层）">合并所选</button>' +
+    '<button type="button" class="lm-btn" data-act="group" title="把选中的图层收进一个新的图层组">建组</button>' +
+    '<button type="button" class="lm-btn" data-act="clear" title="退出多选，只保留当前图层">单选</button>' +
+    '<span class="lm-count">已选 1 层</span>' +
+    '<span class="lm-hint">Shift 连选 · Ctrl/⌘ 点选多个 · 方向键一起移动像素</span>';
+  list.before(bar);
+
+  function paint() {
+    const p = P();
+    prune();
+    const rows = [...list.querySelectorAll('.layer-item[data-layer-index]')];
+    for (const row of rows) {
+      const index = Number(row.dataset.layerIndex), layer = p.layers[index];
+      if (!layer) continue;
+      const on = app.layerSelection.has(layer);
+      row.classList.toggle('multi-selected', on && app.layerSelection.size > 1);
+      row.classList.toggle('active', index === p.currentLayerIndex);
+      row.setAttribute('aria-selected', on ? 'true' : 'false');
+    }
+    const count = app.layerSelection.size;
+    const countEl = bar.querySelector('.lm-count');
+    if (countEl) countEl.textContent = '已选 ' + count + ' 层' + (count > 1 ? ' · 一起操作' : '');
+    const up = bar.querySelector('[data-act="up"]'), down = bar.querySelector('[data-act="down"]');
+    const merge = bar.querySelector('[data-act="merge"]'), group = bar.querySelector('[data-act="group"]');
+    const clear = bar.querySelector('[data-act="clear"]');
+    if (up) up.disabled = count < 1;
+    if (down) down.disabled = count < 1;
+    if (merge) merge.disabled = count < 2;
+    if (group) group.disabled = count < 1;
+    if (clear) clear.disabled = count < 2;
+  }
+
+  bar.addEventListener('click', event => {
+    const button = event.target.closest('button[data-act]');
+    if (!button) return;
+    event.stopPropagation();
+    const act = button.dataset.act;
+    try {
+      if (act === 'up') M.moveSelected(1);
+      else if (act === 'down') M.moveSelected(-1);
+      else if (act === 'merge') M.merge();
+      else if (act === 'group') { const name = prompt('图层组名称', '图层组'); if (name !== null) M.group(name); }
+      else if (act === 'clear') M.clear();
+    } catch (error) { notify(error?.message || '操作失败'); }
+  });
+
+  // 需要接在图层列表所有渲染逻辑之后：分组面板最后还会把行搬进 <details> 里。
+  const inner = app.updateLayerList.bind(app);
+  app.updateLayerList = function () {
+    inner();
+    paint();
+  };
+
+  // 捕获阶段处理，这样 Shift / Ctrl 点选不会被行本身的“单选”逻辑抢先。
+  list.addEventListener('click', event => {
+    if (event.detail > 1) return;
+    const row = event.target.closest('.layer-item[data-layer-index]');
+    if (!row || !list.contains(row)) return;
+    if (event.target.closest('button, input, select, textarea, summary, a')) return;
+    const index = Number(row.dataset.layerIndex);
+    if (!P().layers[index]) return;
+    event.preventDefault();
+    event.stopPropagation();
+    M.select(index, event.shiftKey, event.ctrlKey || event.metaKey);
+  }, true);
+
+  // 方向键：没有矩形 / 魔棒选区时，把所选图层的内容一起平移；有选区时优先给选区。
+  window.addEventListener('keydown', event => {
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName) || document.activeElement?.isContentEditable) return;
+    if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) return;
+    const step = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (!step) return;
+    if (app.toolManager?.selection) return;
+    if (app.toolManager?.isDrawing) return;
+    const p = P();
+    if (!app.layerSelection.size) return;
+    // 角色素材里的单层微调交给原来的工具，避免误动头发 / 衣服的同步部件。
+    if (PE.isCharacterSheet?.(p.getCurrentSheet()) && app.layerSelection.size < 2) return;
+    event.preventDefault();
+    event.stopPropagation();
+    M.nudge(step[0], step[1]);
+  });
+
+  app.clearLayerMultiSelection = () => M.clear();
+  app.moveSelectedLayers = delta => M.moveSelected(delta);
+  app.mergeSelectedLayers = () => M.merge();
+  app.groupSelectedLayers = name => M.group(name);
+  app.deleteSelectedLayers = () => M.remove();
+
+  app.updateLayerList();
+});

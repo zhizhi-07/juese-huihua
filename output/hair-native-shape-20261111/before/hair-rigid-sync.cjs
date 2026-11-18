@@ -1,0 +1,24 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const {createCanvas,ImageData,Image}=require('@napi-rs/canvas');
+global.window=global;global.ImageData=ImageData;global.Image=Image;
+global.document={addEventListener(){},createElement:()=>createCanvas(1,1)};
+global.FileReader=class{async readAsText(f){this.result=await f.text();this.onload();}};
+for(const name of ['core','canvas','export','hair-animation'])vm.runInThisContext(fs.readFileSync(`js/${name}.js`,'utf8'),{filename:name});
+const H=PE.HairAnimation,fixture='output/hair-live-nine-20261111/latest-study/original.json';
+function pixels(im,dx=0,dy=0){const r=im.placement||{x:0,y:0,w:im.width,h:im.height};assert.equal(r.w,im.width);assert.equal(r.h,im.height);let a=[];for(let y=0;y<im.height;y++)for(let x=0;x<im.width;x++){let i=(y*im.width+x)*4;if(im.data[i+3])a.push([x+r.x+dx,y+r.y+dy,...im.data.slice(i,i+4)].join(','));}return a.sort();}
+async function load(){return (await new PE.ExportManager().importProject(new Blob([fs.readFileSync(fixture)]))).project;}
+(async()=>{const p=await load(),source=p.layers.find(l=>l.name==='头发'&&p.spriteSheets[l.sheetIndex].name==='original16_idle');assert(source);const untouched=p.layers.map(l=>({l,frames:JSON.stringify([...l.frameData].map(([k,v])=>[k,Array.from(v.data),v.placement]))}));
+H.setup(p,source);assert.equal(source.hairAnimation.enabled,false,'new native16 sync must not enable sway');assert(!source.hairAnimation.params.nativeTips,'no implicit tip deformation');
+function check(plan){for(const e of plan.edits){const [si,ai,fi]=e.key.split('_').map(Number),s=p.spriteSheets[si],a=s.actions[ai],base=p.spriteSheets[source.sheetIndex].actions.findIndex(v=>v.direction===a.direction),seed=source.getFrameData(p.getFrameKey(source.sheetIndex,base,0)),o=source.hairAnimation.offsets[H.address(s,a.direction,fi)];assert.deepEqual(pixels(e.image),pixels(seed,o.x,o.y),`whole hair follows head without shape change: ${e.key}`);}assert.equal(plan.edits.length,153);}
+check(H.plan(p,source));
+// Old auto-generated recipes must stop lagging without rewriting stored settings.
+Object.assign(source.hairAnimation,{enabled:true});Object.assign(source.hairAnimation.params,{followHead:true,nativeTips:true});const recipe=JSON.stringify(source.hairAnimation);check(H.plan(p,source));assert.equal(JSON.stringify(source.hairAnimation),recipe);
+for(const item of untouched)assert.equal(JSON.stringify([...item.l.frameData].map(([k,v])=>[k,Array.from(v.data),v.placement])),item.frames,'planning never changes any existing pixels');
+const first=H.plan(p,source);H.applyPlan(first);check(H.plan(p,source));const exporter=new PE.ExportManager();exporter.project=p;const reopened=(await new PE.ExportManager().importProject(exporter.exportProject(false))).project,rs=reopened.layers.find(l=>l.hairAnimation?.id===source.hairAnimation.id);H.validate(reopened);const second=H.plan(reopened,rs);assert.equal(second.edits.length,153);for(let i=0;i<first.edits.length;i++)assert.deepEqual(pixels(second.edits[i].image),pixels(first.edits[i].image),'legacy recipe remains rigid after reopen');
+const key=H.address(p.spriteSheets[1],p.spriteSheets[1].actions[0].direction,1),saved=source.hairAnimation.offsets[key];source.hairAnimation.offsets[key]={x:-25,y:-25};check(H.plan(p,source));source.hairAnimation.offsets[key]=saved;
+const cm=new PE.CanvasManager(Object.assign(createCanvas(200,200),{style:{}}),p),contact=createCanvas(960,560),ctx=contact.getContext('2d');ctx.imageSmoothingEnabled=false;ctx.fillStyle='#dae0e3';ctx.fillRect(0,0,960,560);let row=0;
+for(const name of ['original16_idle','original16_walk'])for(const dir of ['down','side']){const si=p.spriteSheets.findIndex(s=>s.name===name),s=p.spriteSheets[si],ai=s.actions.findIndex(a=>a.direction===dir);ctx.fillStyle='#303040';ctx.font='14px sans-serif';ctx.fillText(`${name} ${dir}`,6,row*140+16);for(let fi=0;fi<s.actions[ai].frames.length;fi++){const im=cm.getCompositeImageData(si,ai,fi),c=createCanvas(im.width,im.height);c.getContext('2d').putImageData(im,0,0);ctx.drawImage(c,fi*120,row*140+22,im.width*6,im.height*6);}row++;}
+fs.writeFileSync('output/hair-rigid-sync-20261111/rigid-contact.png',contact.toBuffer('image/png'));
+console.log('PASS native16: 153 exact rigid frames; legacy nativeTips; no stored-pixel mutations; stable resync/reopen; out-of-frame pixels retained.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
+

@@ -1,0 +1,67 @@
+{
+  "id": "base-outlined-1794365455561",
+  "etag": "\"a356e068ee89c7d0e13faeeaca58234c9e991d0ec91209f1e582027a5f2b4713\"",
+  "sha256": "a356e068ee89c7d0e13faeeaca58234c9e991d0ec91209f1e582027a5f2b4713",
+  "apiWrites": 0,
+  "originalLayersUnchanged": true,
+  "actions": [
+    {
+      "name": "original16_walk",
+      "generated": 16
+    },
+    {
+      "name": "original16_pickup",
+      "generated": 12
+    },
+    {
+      "name": "浇水",
+      "generated": 12
+    },
+    {
+      "name": "镐",
+      "generated": 12
+    },
+    {
+      "name": "斧头",
+      "generated": 12
+    },
+    {
+      "name": "锄头",
+      "generated": 12
+    },
+    {
+      "name": "镰刀",
+      "generated": 12
+    },
+    {
+      "name": "种植",
+      "generated": 8
+    },
+    {
+      "name": "钓鱼-甩竿",
+      "generated": 12
+    },
+    {
+      "name": "钓鱼-持竿",
+      "generated": 8
+    },
+    {
+      "name": "钓鱼-收线",
+      "generated": 12
+    },
+    {
+      "name": "钓鱼-上鱼",
+      "generated": 12
+    },
+    {
+      "name": "original16_sit",
+      "generated": 8
+    },
+    {
+      "name": "original16_idle",
+      "generated": 6
+    }
+  ],
+  "generatedFrames": 154,
+  "clipped": 0
+}

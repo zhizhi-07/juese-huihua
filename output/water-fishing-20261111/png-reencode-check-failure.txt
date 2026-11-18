@@ -1,0 +1,65 @@
+AssertionError [ERR_ASSERTION]: unexpected original layer change 1
++ actual - expected
+
+  {
+    depth: 1,
+    frameData: {
+      '0_0_0': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNgeAA3t7j/bm5x/8nS+O/tw///3j6EG8BEqiGPblwm2WK47WQ5m+oAABvGFZwDTrzyAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYHgAN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kh1AACH6h4CH2NV/gAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_1': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNg0AA3t7j/bm5x/8nS+O/tw///3j6EG8BEqiGPblwm2WK47WQ5e3ABAEIAFZwiDGsVAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYNAAN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0ji4AACukB4C3VU2HwAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_2': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNgeAA3t7j/bm5x/8nS+O/tw///3j6EG8BEqiGPblwm2WK47WQ5m+oAABvGFZwDTrzyAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYHgAN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kh1AACH6h4CH2NV/gAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_3': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNg6AM3t7j/bm5x/8nS+O/tw///3j5EMYCJFEMe3bhMssVw28lyNk0AAHIqFZw59pOxAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYOgDN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kgTAAD/7h4CbrqTBAAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_4': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNgaAM3t7j/bm5x/8nS+O/tw///3j7EMICJWEMe3bhMssVw28lyNs0AAMiOFZzja9gfAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYGgDN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kgzAAB4AR4CYXabHAAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_5': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNgwIGbW9x/N7e4/2Rp/Pf24f9/bx9iGMBErCGPblwm2WK47WQ5e3ACAO7IFZyDxkAZAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYMCBm1vcfxAmS+O/tw/BmGQDYJofHN1Cvu1kaRycAACepx4COeqhagAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_6': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNgaAM3t7j/bm5x/8nS+O/tw///3j7EMICJWEMe3bhMssVw28lyNs0AAMiOFZzja9gfAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYGgDN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kgzAAB4AR4CYXabHAAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      },
+      '0_0_7': {
++       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAA0SURBVDiNY2AYBaNg6AM3t7j/bm5x/8nS+O/tw///3j5EMYCJFEMe3bhMssVw28lyNk0AAHIqFZw59pOxAAAAAElFTkSuQmCC',
+-       dataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAARCAYAAAACCvahAAAAK0lEQVR42mNgGAWjYOgDN7e4/yBMlsZ/bx+CMckGwDQ/OLqFfNvJ0kgTAAD/7h4CbrqTBAAAAABJRU5ErkJggg==',
+        height: 17,
+        width: 15
+      }
+    },
+    isGroup: false,
+
+    at C:\Users\Administrator\Desktop\角色绘画\output\water-fishing-20261111\build.cjs:23:377 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Object],
+  expected: [Object],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

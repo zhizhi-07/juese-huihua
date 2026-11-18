@@ -1,0 +1,300 @@
+{
+  "originalSHA256": "0204cb12a32b1516709d6c5620289391bbcc42114a38ee4de3d0e8beb1f89f43",
+  "newETag": "\"47e5a5190f5fcf770b61281de7fb3ccdbc238b14e7c0d2d4444f250ec5c15901\"",
+  "groups": 12,
+  "layersPerGroup": 8,
+  "checks": [
+    {
+      "oldIndex": 1,
+      "name": "hand 2",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 2,
+      "name": "body",
+      "frames": 8,
+      "outlinePixels": 80
+    },
+    {
+      "oldIndex": 3,
+      "name": "head",
+      "frames": 8,
+      "outlinePixels": 200
+    },
+    {
+      "oldIndex": 4,
+      "name": "hand",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 6,
+      "name": "hand 2",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 7,
+      "name": "body",
+      "frames": 8,
+      "outlinePixels": 80
+    },
+    {
+      "oldIndex": 8,
+      "name": "head",
+      "frames": 8,
+      "outlinePixels": 200
+    },
+    {
+      "oldIndex": 9,
+      "name": "hand",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 11,
+      "name": "hand 2",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 12,
+      "name": "body",
+      "frames": 8,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 13,
+      "name": "head",
+      "frames": 8,
+      "outlinePixels": 5
+    },
+    {
+      "oldIndex": 14,
+      "name": "hand",
+      "frames": 8,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 16,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 17,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 40
+    },
+    {
+      "oldIndex": 18,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 100
+    },
+    {
+      "oldIndex": 19,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 21,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 22,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 29
+    },
+    {
+      "oldIndex": 23,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 100
+    },
+    {
+      "oldIndex": 24,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 26,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 32
+    },
+    {
+      "oldIndex": 27,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 40
+    },
+    {
+      "oldIndex": 28,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 100
+    },
+    {
+      "oldIndex": 29,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 32
+    },
+    {
+      "oldIndex": 31,
+      "name": "hand 2",
+      "frames": 6,
+      "outlinePixels": 48
+    },
+    {
+      "oldIndex": 32,
+      "name": "body",
+      "frames": 6,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 33,
+      "name": "head",
+      "frames": 6,
+      "outlinePixels": 150
+    },
+    {
+      "oldIndex": 34,
+      "name": "hand",
+      "frames": 6,
+      "outlinePixels": 48
+    },
+    {
+      "oldIndex": 36,
+      "name": "hand 2",
+      "frames": 6,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 37,
+      "name": "body",
+      "frames": 6,
+      "outlinePixels": 69
+    },
+    {
+      "oldIndex": 38,
+      "name": "head",
+      "frames": 6,
+      "outlinePixels": 174
+    },
+    {
+      "oldIndex": 39,
+      "name": "hand",
+      "frames": 6,
+      "outlinePixels": 96
+    },
+    {
+      "oldIndex": 41,
+      "name": "hand 2",
+      "frames": 6,
+      "outlinePixels": 48
+    },
+    {
+      "oldIndex": 42,
+      "name": "body",
+      "frames": 6,
+      "outlinePixels": 67
+    },
+    {
+      "oldIndex": 43,
+      "name": "head",
+      "frames": 6,
+      "outlinePixels": 150
+    },
+    {
+      "oldIndex": 44,
+      "name": "hand",
+      "frames": 6,
+      "outlinePixels": 48
+    },
+    {
+      "oldIndex": 46,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 47,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 39
+    },
+    {
+      "oldIndex": 48,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 100
+    },
+    {
+      "oldIndex": 49,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 51,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 0
+    },
+    {
+      "oldIndex": 52,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 53,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 116
+    },
+    {
+      "oldIndex": 54,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 64
+    },
+    {
+      "oldIndex": 56,
+      "name": "hand 2",
+      "frames": 4,
+      "outlinePixels": 32
+    },
+    {
+      "oldIndex": 57,
+      "name": "body",
+      "frames": 4,
+      "outlinePixels": 66
+    },
+    {
+      "oldIndex": 58,
+      "name": "head",
+      "frames": 4,
+      "outlinePixels": 100
+    },
+    {
+      "oldIndex": 59,
+      "name": "hand",
+      "frames": 4,
+      "outlinePixels": 32
+    }
+  ],
+  "pixelReconstruction": "PASS",
+  "unchangedOtherData": "PASS",
+  "apiReadback": "PASS",
+  "restore": "GET current ETag, PUT before.json to same URL with If-Match; stop on conflict."
+}

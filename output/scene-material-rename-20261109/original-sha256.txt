@@ -1,0 +1,13 @@
+
+Path : C:\Users\Administrator\Desktop\角色绘画\output\scene-material-rename-20261109\before\js\scene-materials.js
+Hash : 560C103BB6A668D5242AFBA44B8715AACE7EF983BCCA2A03033822EA70192CAC
+
+Path : C:\Users\Administrator\Desktop\角色绘画\output\scene-material-rename-20261109\before\js\studio.js
+Hash : 9179B77339D796FAF5BEBA07D2648B3E7B86AE42C20C31D7A02F76F48E52D990
+
+Path : C:\Users\Administrator\Desktop\角色绘画\output\scene-material-rename-20261109\before\index.html
+Hash : FFC1CEAC3E799ED9ED18BF37F7782E33120771B7F2F4989E989360DFB943A016
+
+Path : C:\Users\Administrator\Desktop\角色绘画\output\scene-material-rename-20261109\before\test\scene-materials-browser.cjs
+Hash : 6F7054855689D538A78E7DCD3466525BF86E72B4F8915E309CC8530337029BA5
+

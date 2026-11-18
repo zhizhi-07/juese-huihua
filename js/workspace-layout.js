@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const imageTools = $('.image-edit-toolbar');
   if (imageTools) {
+    const freePlacementLabel = imageTools.querySelector('input[aria-label="无视像素格放置"]')?.closest('label');
+    const positionFields = imageTools.querySelector('.image-position-fields');
+    const resizeMode = imageTools.querySelector('.image-resize-mode');
     const primary = [...imageTools.children].filter(control =>
       control.tagName === 'STRONG' || control.hasAttribute('data-edit-status') ||
       control.matches('[data-edit-flip-x], [data-edit-flip-y]') ||
+      control === freePlacementLabel || control === positionFields || control === resizeMode ||
       ['新建高清画布', '编辑高清画布'].includes(control.textContent.trim()));
     menu('抠图与缩放', [...imageTools.children].filter(control => !primary.includes(control)), imageTools);
   }

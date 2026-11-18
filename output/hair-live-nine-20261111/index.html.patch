@@ -1,0 +1,26 @@
+diff --git a/output/hair-live-nine-20261111/before/index.html b/index.html
+index ce8fd99..722fa96 100644
+--- a/output/hair-live-nine-20261111/before/index.html
++++ b/index.html
+@@ -321,7 +321,7 @@
+ 
+   <!-- 外部与核心脚本加载 (严格保持顺序) -->
+   <script src="js/vendor/jszip.min.js"></script>
+-  <script src="js/core.js?v=new-part-series-name-2"></script>
++  <script src="js/core.js?v=whole-hair-20261111"></script>
+   <script src="js/history.js"></script>
+   <script src="js/canvas.js?v=select-wand-2"></script>
+   <script src="js/tools.js?v=native16-wiring-20261104"></script>
+@@ -362,10 +362,11 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=sit-eye-topdown-20261110"></script>
++  <script src="js/hair-animation.js?v=native-tips-nine-actions-20261111"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>
+   <script src="js/layer-color-adjust.js?v=layer-color-1"></script>
+ </body>
+ </html>
++

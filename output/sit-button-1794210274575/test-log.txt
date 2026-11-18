@@ -1,0 +1,5 @@
+PASS clothing: 3 idle masters; unconfirmed sitting untouched; base/geometry unchanged; atomic locks; undo/redo; live brush; manual keep/unkeep; PNG/config roundtrip; invalid config rejected.
+PASS: only the bottom two rows follow skin shadow; reuse painted tones across rows; single-color fabric keeps hue and alpha; no darkening twice.
+PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot and transparent hems
+PASS editor: sync button shades idle first frame once; each sitting direction shows exactly one empty Yellow layer and accepts paint; no page errors. API writes intercepted.
+PASS: served sync button preserves saved cels; rebuilds side and front frames pixel-for-pixel; builds back from two sources; skips when side is missing. API intercepted.

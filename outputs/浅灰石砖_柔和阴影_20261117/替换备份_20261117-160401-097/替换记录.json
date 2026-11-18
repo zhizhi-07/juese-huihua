@@ -1,0 +1,9 @@
+{
+  "Result": "PASS",
+  "Source": "C:\\Users\\Administrator\\Desktop\\角色绘画\\outputs\\浅灰石砖_柔和阴影_20261117\\浅灰石砖_四块_柔和阴影_16x16.png",
+  "Target": "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\便利店\\浅灰石砖_四块拼接_16x16.png",
+  "Backup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\outputs\\浅灰石砖_柔和阴影_20261117\\替换备份_20261117-160401-097\\浅灰石砖_四块拼接_16x16_替换前.png",
+  "OldSHA256": "7286FF0DA8DA27341DF32011F083B51B6BB6F688068410FB774999E23845D0CD",
+  "NewSHA256": "0DE138755C6E16488644DA43CCDA4AB83311F7E984AEC2A55781569512599D7F",
+  "ImportUnchanged": true
+}

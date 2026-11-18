@@ -1,0 +1,21 @@
+{
+  "status": 200,
+  "etag": "\"6dbe8cd1e21443a5da4d852ae672a620aad1f83d9a9b8cd9d1134333ae8f3906\"",
+  "sha256": "6dbe8cd1e21443a5da4d852ae672a620aad1f83d9a9b8cd9d1134333ae8f3906",
+  "canvas": [
+    80,
+    64
+  ],
+  "body": [
+    2,
+    8,
+    61,
+    52
+  ],
+  "refSize": [
+    59,
+    54
+  ],
+  "layerCount": 15,
+  "otherSheetsUnchanged": true
+}

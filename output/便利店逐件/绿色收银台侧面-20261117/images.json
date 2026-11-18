@@ -1,0 +1,92 @@
+[
+  {
+    "index": 3,
+    "si": 1,
+    "name": "收银椅",
+    "key": "1_0_0",
+    "file": "layer-3-1_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 4,
+    "si": 1,
+    "name": "收银柜台",
+    "key": "1_0_0",
+    "file": "layer-4-1_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 5,
+    "si": 1,
+    "name": "收银机与付款终端",
+    "key": "1_0_0",
+    "file": "layer-5-1_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 22,
+    "si": 7,
+    "name": "现代 · 收银椅",
+    "key": "7_0_0",
+    "file": "layer-22-7_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 22,
+    "si": 7,
+    "name": "现代 · 收银椅",
+    "key": "7_1_0",
+    "file": "layer-22-7_1_0.png",
+    "width": 32,
+    "height": 40,
+    "visible": true
+  },
+  {
+    "index": 23,
+    "si": 7,
+    "name": "现代 · 收银柜台",
+    "key": "7_0_0",
+    "file": "layer-23-7_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 23,
+    "si": 7,
+    "name": "现代 · 收银柜台",
+    "key": "7_1_0",
+    "file": "layer-23-7_1_0.png",
+    "width": 32,
+    "height": 40,
+    "visible": true
+  },
+  {
+    "index": 24,
+    "si": 7,
+    "name": "现代 · 收银机与付款终端",
+    "key": "7_0_0",
+    "file": "layer-24-7_0_0.png",
+    "width": 32,
+    "height": 32,
+    "visible": true
+  },
+  {
+    "index": 24,
+    "si": 7,
+    "name": "现代 · 收银机与付款终端",
+    "key": "7_1_0",
+    "file": "layer-24-7_1_0.png",
+    "width": 32,
+    "height": 40,
+    "visible": true
+  }
+]

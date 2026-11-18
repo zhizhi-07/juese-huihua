@@ -1,0 +1,90 @@
+{
+  "frames": [
+    {
+      "composite": "frame-0.png",
+      "index": 0,
+      "angle": 0,
+      "duration": 600,
+      "door": "door-0.png"
+    },
+    {
+      "composite": "frame-1.png",
+      "index": 1,
+      "angle": 20,
+      "duration": 100,
+      "door": "door-1.png"
+    },
+    {
+      "composite": "frame-2.png",
+      "index": 2,
+      "angle": 40,
+      "duration": 100,
+      "door": "door-2.png"
+    },
+    {
+      "composite": "frame-3.png",
+      "index": 3,
+      "angle": 60,
+      "duration": 100,
+      "door": "door-3.png"
+    },
+    {
+      "composite": "frame-4.png",
+      "index": 4,
+      "angle": 80,
+      "duration": 100,
+      "door": "door-4.png"
+    },
+    {
+      "composite": "frame-5.png",
+      "index": 5,
+      "angle": 100,
+      "duration": 100,
+      "door": "door-5.png"
+    },
+    {
+      "composite": "frame-6.png",
+      "index": 6,
+      "angle": 110,
+      "duration": 600,
+      "door": "door-6.png"
+    },
+    {
+      "composite": "frame-7.png",
+      "index": 7,
+      "angle": 100,
+      "duration": 100,
+      "door": "door-7.png"
+    },
+    {
+      "composite": "frame-8.png",
+      "index": 8,
+      "angle": 80,
+      "duration": 100,
+      "door": "door-8.png"
+    },
+    {
+      "composite": "frame-9.png",
+      "index": 9,
+      "angle": 60,
+      "duration": 100,
+      "door": "door-9.png"
+    },
+    {
+      "composite": "frame-10.png",
+      "index": 10,
+      "angle": 40,
+      "duration": 100,
+      "door": "door-10.png"
+    },
+    {
+      "composite": "frame-11.png",
+      "index": 11,
+      "angle": 20,
+      "duration": 100,
+      "door": "door-11.png"
+    }
+  ],
+  "verified": "闭合帧逐像素保留原稿；门上方装饰每帧一致；柜体与商品仅复制不修改",
+  "doorLayerIndex": 2
+}

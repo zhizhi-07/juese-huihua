@@ -1,0 +1,12 @@
+{
+  "source": {
+    "id": "draft-conflict-1793762650078-819fdffe",
+    "etag": "\"570d88b2ce611bb4023296cf5b2cc747f1dcc7d48d6dd549598e9fb7ac52c368\"",
+    "sha256": "570d88b2ce611bb4023296cf5b2cc747f1dcc7d48d6dd549598e9fb7ac52c368"
+  },
+  "target": {
+    "id": "base-outlined-1794365455561",
+    "etag": "\"08d22afb2c8186da11f194fe0b16b01ad13a71d2f7317d3e70f8ceb6a508fb95\"",
+    "sha256": "08d22afb2c8186da11f194fe0b16b01ad13a71d2f7317d3e70f8ceb6a508fb95"
+  }
+}

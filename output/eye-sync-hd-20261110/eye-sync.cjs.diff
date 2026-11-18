@@ -1,0 +1,38 @@
+diff --git a/output/eye-sync-hd-20261110/before/test/eye-sync.cjs b/test/eye-sync.cjs
+index acefdd8..f6aef92 100644
+--- a/output/eye-sync-hd-20261110/before/test/eye-sync.cjs
++++ b/test/eye-sync.cjs
+@@ -59,11 +59,31 @@ async function main(){
+  const kept=sit.getFrameData('3_1_1');
+  for(let attempt=0;attempt<2;attempt++){
+    H.sync(shared.app);
+-   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,5)),'side sitting eyes: head displacement, regardless of saved Y');
+-   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,7)),'side sitting eyes follow the later head displacement');
++   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,6)),'side sitting eyes: head displacement plus one grid pixel, regardless of saved Y');
++   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,8)),'side sitting eyes follow the later head displacement plus one grid pixel');
+    assert.deepEqual(raster(sit.getFrameData('3_0_0')),raster(pixels(3,5)),'non-side sitting eyes unchanged');
+    assert.equal(sit.getFrameData('3_1_1'),kept);
+  }
++ for(const scale of [1,2]){
++   const {p,eyes,app}=fixture();
++   const source=new ImageData(8,4);
++   source.data.set([30,40,50,255,80,90,100,255]);
++   source.placement={x:3.5,y:5.5,w:8/scale,h:4/scale};
++   eyes.frameData.set('0_1_0',source);
++   H.sync(app,{live:true});
++   const target=p.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===eyes.hairAnimationId);
++   const generated=target.getFrameData('3_1_0');
++   assert.deepEqual([generated.width,generated.height],[8,4]);
++   assert.deepEqual(generated.placement,{...source.placement,y:6.5});
++   assert.deepEqual(generated.data,source.data);
++   assert.notEqual(generated.data,source.data);
++   assert.equal(eyes.getFrameData('0_1_0'),source);
++   const ex=new PE.ExportManager();ex.project=p;
++   const reopened=(await ex.importProject(ex.exportProject(false))).project;
++   const saved=reopened.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===eyes.hairAnimationId).getFrameData('3_1_0');
++   assert.deepEqual(saved.placement,generated.placement);
++   assert.deepEqual(saved.data,source.data);
++ }
+  console.log('PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
+ }
+ if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});

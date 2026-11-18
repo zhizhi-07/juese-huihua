@@ -159,6 +159,14 @@ window.PE = window.PE || {};
           return;
         }
 
+        if (e.altKey && e.button === 0 && !this.toolManager.isDrawing) {
+          e.preventDefault();
+          const pixel = this.canvasManager.screenToPixel(e.clientX, e.clientY, false);
+          this.toolManager.pickColor(pixel.x, pixel.y);
+          this.canvasManager.render();
+          return;
+        }
+
         const pixel = mousePixel(e);
         if(this.toolManager.currentTool==='move')this.animationPlayer.pause();
         this.toolManager.onMouseDown(pixel.x, pixel.y, e.button, resizeHandleAt(e), e.ctrlKey&&!e.altKey&&!e.metaKey);
@@ -185,7 +193,9 @@ window.PE = window.PE || {};
           e.clientY <= rect.bottom || this.toolManager._transform
         ) {
           const pixel = mousePixel(e);
-          if(this.toolManager.currentTool==='move'){
+          if(this.isSpacePressed){
+            canvas.style.cursor='grab';
+          }else if(this.toolManager.currentTool==='move'){
             canvas.style.cursor=resizeHandleAt(e)?'nwse-resize':'move';
           }else canvas.style.cursor=this.isSpacePressed?'grab':'crosshair';
           this.toolManager.onMouseMove(pixel.x, pixel.y);
@@ -210,12 +220,15 @@ window.PE = window.PE || {};
       // 滚轮缩放
       canvas.addEventListener('wheel', (e) => {
         e.preventDefault();
+        if (!e.deltaY) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * canvas.width / rect.width;
+        const y = (e.clientY - rect.top) * canvas.height / rect.height;
         if (e.deltaY < 0) {
-          this.canvasManager.zoomIn();
+          this.canvasManager.zoomIn(x, y);
         } else {
-          this.canvasManager.zoomOut();
+          this.canvasManager.zoomOut(x, y);
         }
-        this.canvasManager.render();
         this.updateZoomDisplay();
       }, { passive: false });
     }
@@ -606,17 +619,22 @@ window.PE = window.PE || {};
 
     bindKeyboardShortcuts() {
       window.addEventListener('keydown', (e) => {
+        if (e.code !== 'Space') return;
+        const target = document.activeElement;
+        if (target?.isContentEditable || ['TEXTAREA', 'SELECT'].includes(target?.tagName) ||
+          target?.tagName === 'INPUT' && !['range', 'color', 'checkbox', 'radio', 'button', 'submit', 'reset'].includes(target.type) ||
+          document.querySelector('dialog[open]')) return;
+        e.preventDefault();
+        this.isSpacePressed = true;
+        const canvas = document.getElementById('main-canvas');
+        if (canvas) canvas.style.cursor = this.isPanning ? 'grabbing' : 'grab';
+      }, true);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') return;
         // 如果焦点在输入框内，不拦截快捷键
         if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName) || document.activeElement?.isContentEditable) {
           return;
-        }
-
-        // 空格平移
-        if (e.code === 'Space' && !this.isSpacePressed) {
-          this.isSpacePressed = true;
-          const canvas = document.getElementById('main-canvas');
-          if (canvas) canvas.style.cursor = 'grab';
-          e.preventDefault();
         }
 
         if(e.key==='Escape'&&(this.toolManager._rectStroke||this.toolManager._nativeEdit?.tools._rectStroke)){
@@ -658,12 +676,20 @@ window.PE = window.PE || {};
             this.persistence?.saveNow();
             return;
           }
-          // 不把 Ctrl+Shift+E（合并可见图层）误当成向下合并。
+          // Ctrl+G 建组：选中的图层收进一个新组，不弹框、名字自动顺延。
+          if (e.key === 'g' || e.key === 'G') {
+            if (e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            if (!e.repeat) this.groupSelectedLayers();
+            return;
+          }
+          // Ctrl+E 就是合并：多选时合并所选图层，单选时向下合并；Ctrl+Shift+E / Alt 留给“合并可见图层”。
           if (['j', 'e'].includes(e.key.toLowerCase())) {
             if (e.shiftKey || e.altKey) return;
             e.preventDefault();
             if (!e.repeat) {
               if (e.key.toLowerCase() === 'j') this.duplicateCurrentLayer?.();
+              else if (this.layerSelection?.size > 1 && this.mergeSelectedLayers) this.mergeSelectedLayers();
               else this.mergeLayerDown?.();
             }
             return;
@@ -732,8 +758,14 @@ window.PE = window.PE || {};
         if (e.code === 'Space') {
           this.isSpacePressed = false;
           const canvas = document.getElementById('main-canvas');
-          if (canvas) canvas.style.cursor = 'crosshair';
+          if (canvas) canvas.style.cursor = this.isPanning ? 'grabbing' : this.toolManager.currentTool === 'move' ? 'move' : 'crosshair';
         }
+      }, true);
+      window.addEventListener('blur', () => {
+        this.isSpacePressed = false;
+        this.isPanning = false;
+        const canvas = document.getElementById('main-canvas');
+        if (canvas) canvas.style.cursor = this.toolManager.currentTool === 'move' ? 'move' : 'crosshair';
       });
     }
 
@@ -950,13 +982,19 @@ window.PE = window.PE || {};
 
         // 眼睛按钮 (可见性)
         const visBtn = document.createElement('button');
-        visBtn.className = `layer-icon-btn ${layer.visible !== false ? 'visible' : 'hidden'}`;
-        visBtn.innerHTML = layer.visible !== false ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
-        visBtn.title = '切换图层显示/隐藏';
+        const paintVisibility = () => {
+          const shown = layer.visible !== false;
+          visBtn.className = `layer-icon-btn ${shown ? 'visible' : 'hidden'}`;
+          visBtn.innerHTML = shown ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
+        };
+        paintVisibility();
+        visBtn.title = '切换图层显示/隐藏（同一部件会同步全部方向与全部动作）';
         visBtn.addEventListener('click', () => {
+          // 头发、衣服是同一个部件：任一方向/动作关掉就全部关掉，任一开启就全部开启。
+          if (PE.VisualLayers?.togglePart?.(this, layer)) return;
           layer.visible = !layer.visible;
           this.persistence?.markDirty();
-          visBtn.innerHTML = layer.visible ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10 5h2c6 0 10 7 10 7l-3 4M6 6l-4 6s4 7 10 7h2"/></svg>';
+          paintVisibility();
           this.canvasManager.render();
           this.updatePalette();
         });

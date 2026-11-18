@@ -184,6 +184,5 @@ document.addEventListener('DOMContentLoaded',()=>{
       return b;
     };
     add('复制图层','复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）','duplicateCurrentLayer');
-    add('合并图层','把当前图层向下合并到下面那层（Ctrl+E，同 Photoshop）','mergeLayerDown');
   }
 });

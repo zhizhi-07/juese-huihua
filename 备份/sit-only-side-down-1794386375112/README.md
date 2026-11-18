@@ -1,0 +1,1 @@
+仅正背所有坐姿cel上移1格，撤回上次误移；侧面、节奏、画布和其他内容不变。原响应/ETag/SHA256见meta.json，保存版见verification.json。恢复仅在API仍为保存ETag时按其If-Match PUT original.json并回读；有后续编辑则先合并，不盲传旧稿。未刷新前台。

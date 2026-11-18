@@ -1,0 +1,8 @@
+{
+  "status": 200,
+  "originalSHA256": "24f3922c6cdd62103abf7c68417032aa0d67a7b6d0bb9f3cb144dcd0e7bb62e1",
+  "newSHA256": "7c941504c7acb12335e99907a76f1638ae02b7e5d719d6ad02f1ac57bce2a94e",
+  "etag": "\"7c941504c7acb12335e99907a76f1638ae02b7e5d719d6ad02f1ac57bce2a94e\"",
+  "sceneModeRestored": true,
+  "verified": "仅重画简单收银机，付款终端不变；原图层保留；补标准场景画布；全用官方96色；回读一致"
+}

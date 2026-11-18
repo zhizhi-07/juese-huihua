@@ -1,0 +1,15 @@
+diff --git a/output/eye-screenshot-audit-20261110/before/test/hair-animation.cjs b/test/hair-animation.cjs
+index 573b6c9..89f4cdb 100644
+--- a/output/eye-screenshot-audit-20261110/before/test/hair-animation.cjs
++++ b/test/hair-animation.cjs
+@@ -21,6 +21,10 @@ function raster(im,w=12,h=12){const c=createCanvas(w,h),ctx=c.getContext('2d');i
+ function pixel(im,x,y){return Array.from(raster(im).slice((y*12+x)*4,(y*12+x+1)*4));}
+ (async()=>{
+  const independent=fixture();H.sync(independent.app);const dg=independent.hair.hairAnimation;
++ const sitting=independent.p.layers.find(l=>l.sheetIndex===2&&l.hairAnimationId===dg.id);
++ assert.deepEqual(raster(sitting.getFrameData('2_1_0')),raster(independent.hair.getFrameData('0_1_0')),'unchanged head position must not lift seated hair');
++ assert.equal(pixel(sitting.getFrameData('2_1_2'),3,1)[3],0,'seated hair follows the later head offset without extra lift');
++ assert.equal(pixel(sitting.getFrameData('2_1_2'),3,2)[3],255);
+  H.editSettings(dg,'original32_idle','down','current',independent.p.spriteSheets).ampV=.1;
+  H.editSettings(dg,'original32_idle','side','current',independent.p.spriteSheets).ampV=.2;
+  H.editSettings(dg,'original32_idle','up','current',independent.p.spriteSheets).ampV=.3;

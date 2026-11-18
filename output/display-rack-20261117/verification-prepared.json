@@ -1,0 +1,17 @@
+{
+  "prepared": true,
+  "id": "scene-store-item01-shelf-20261116",
+  "sourceETag": "\"6f1f7e1a798813ed6c3f3e7cd8bead64b90296b01ac86970375d513ffcc585f4\"",
+  "sourceSHA256": "6f1f7e1a798813ed6c3f3e7cd8bead64b90296b01ac86970375d513ffcc585f4",
+  "candidateSHA256": "2f508eb3454de9cabf961aeeed624fce4e477df850588119fd6f387377c76209",
+  "appendedSheet": 13,
+  "sheetCountBefore": 13,
+  "sheetCountAfter": 14,
+  "layerCountBefore": 86,
+  "layerCountAfter": 88,
+  "width": 16,
+  "height": 32,
+  "opaquePixels": 384,
+  "allOldContentUnchanged": true,
+  "layerCompositeMatchesExport": true
+}

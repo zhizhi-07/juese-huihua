@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!p.ready)throw new Error('请等待当前工程读取完成');
     const name=prompt(scene?'场景名称':character?'人物分支名称（例如 白裙、短袖）':'独立稿名称',scene?'厨房场景':character?'人物-衣服独立稿':'独立稿');
     if(!name?.trim())return;
-    let data;
+    let data,baseRevision;
     if(scene){
       const size=prompt('画布宽×高（像素，16格比例；最大1024×1024）','160x128');
       if(size===null)return;
@@ -32,9 +32,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         layers:['地面','家具与设施','装饰'].map(name=>({name,sheetIndex:0,visible:true,locked:false,opacity:1,frameData:{'0_0_0':{width:w,height:h,dataURL:blank}}}))};
     }else{
       if(character){
-        if(p.projectId==='main'&&p.dirty&&!await p.saveNow())throw new Error('主工程保存未完成，未新建分支；请先处理保存冲突');
-        const source=await fetch(p.base+'/api/project?id=main',{headers:p.headers,cache:'no-store'});
+        const status=await fetch(p.base+'/api/status',{headers:p.headers,cache:'no-store'});
+        if(!status.ok)throw new Error('无法读取当前人物素体，未新建分支');
+        const baseId=(await status.json()).characterBaseProjectId||'main';
+        if(p.projectId===baseId&&p.dirty&&!await p.saveNow())throw new Error('素体保存未完成，未新建分支；请先处理保存冲突');
+        const source=await fetch(p.base+'/api/project?id='+baseId,{headers:p.headers,cache:'no-store'});
         if(!source.ok)throw new Error('人物主工程读取失败：'+source.status);
+        if(baseId!=='main')baseRevision=source.headers.get('ETag');
         data=await source.json();
       }else{data=JSON.parse(await app.exportManager.exportProject(false).text());}
       data.name=name.trim();
@@ -43,7 +47,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
     }
     const id=(scene?'scene-':character?'character-':'draft-')+crypto.randomUUID();
-    const response=await fetch(p.base+'/api/project?id='+id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(data)});
+    const response=await fetch(p.base+'/api/project?id='+id+(baseRevision?'&baseRevision='+encodeURIComponent(baseRevision):''),{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(data)});
+    if(response.status===409)throw new Error('人物素体或工程版本已变化，未新建分支；请重试');
     if(!response.ok)throw new Error('新建失败：'+response.status+'；需要更新并重新启动编辑器服务');
     try{const chat=localStorage.getItem('pixel-ai-chat-'+p.projectId);if(chat)localStorage.setItem('pixel-ai-chat-'+id,chat);}catch(error){console.warn('分支对话复制失败',error);}
     const url=new URL(location.href);url.searchParams.set('project',id);

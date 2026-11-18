@@ -1,0 +1,15 @@
+{
+  "generated": {
+    "walk": 24,
+    "idle": 8,
+    "pickup": 18
+  },
+  "preserved": [
+    "1_1_3",
+    "1_1_0",
+    "1_0_0",
+    "1_2_0"
+  ],
+  "sitPending": true,
+  "layersAdded": 9
+}

@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "originalSHA256": "e30ca1d5128743fb0a456c94edcdb3912fa496685c526cab96d5ea4adc31e9fc",
+  "newSHA256": "e757415af4280f5a2090162e4165a664910233abc312d72215c797adc74d2a89",
+  "etag": "\"e757415af4280f5a2090162e4165a664910233abc312d72215c797adc74d2a89\"",
+  "sheet": "现代收银台 32×32",
+  "addedAction": "右侧面",
+  "size": "32×48",
+  "frontSizePreserved": "32×32",
+  "frontPixelsUntouched": true,
+  "otherContentUntouched": true,
+  "verified": "按侧面参考增加纵向右侧面；正面仍32×32且像素不变；侧面三层可编辑；回读一致"
+}

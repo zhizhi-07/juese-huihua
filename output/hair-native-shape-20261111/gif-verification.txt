@@ -1,0 +1,4 @@
+4 frames 900x380 delay=20
+4 frames 900x380 delay=20
+4 frames 900x380 delay=20
+4 frames 900x380 delay=20

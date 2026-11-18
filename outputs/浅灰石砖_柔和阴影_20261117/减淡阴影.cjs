@@ -1,0 +1,61 @@
+const fs = require('node:fs'), path = require('node:path');
+const assert = require('node:assert/strict'), crypto = require('node:crypto');
+const png = require('../../scripts/png.cjs');
+const file = name => path.join(__dirname, name);
+const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const url = 'http://127.0.0.1:8765/api/project?id=scene-store-item01-shelf-20261116';
+const colors = { a9b7baff: 'c5cfceff', e5e9e5ff: 'dde3e0ff', c6d0d0ff: 'd2dad9ff', d8dfdeff: 'd8dfdeff' };
+(async () => {
+  assert(!fs.existsSync(file('工程原始备份.json')), '禁止覆盖备份或重复执行');
+  const response = await fetch(url); assert.equal(response.status, 200);
+  const raw = Buffer.from(await response.arrayBuffer()), etag = response.headers.get('etag');
+  assert(etag);
+  fs.writeFileSync(file('工程原始备份.json'), raw);
+  fs.writeFileSync(file('备份摘要.json'), JSON.stringify({ url, etag, sha256: sha(raw) }, null, 2));
+  const original = JSON.parse(raw), project = structuredClone(original);
+  const si = project.spriteSheets.findIndex(s => s.name === '浅灰石砖 · 四块拼接16×16');
+  assert(si >= 0);
+  const entries = project.layers.map((l, i) => ({ l, i })).filter(x => x.l.sheetIndex === si);
+  assert.equal(entries.length, 1);
+  const { l, i: li } = entries[0], key = `${si}_0_0`;
+  const before = png.decode(Buffer.from(l.frameData[key].dataURL.split(',')[1], 'base64'));
+  assert.equal(before.width, 16); assert.equal(before.height, 16);
+  const pixels = new Uint8Array(before.data.length);
+  let changedPixels = 0;
+  for (let i = 0; i < pixels.length; i += 4) {
+    const old = Buffer.from(before.data.subarray(i, i + 4)).toString('hex');
+    assert(colors[old], `未知颜色${old}，停止以免覆盖用户修改`);
+    pixels.set(Buffer.from(colors[old], 'hex'), i);
+    assert.equal(pixels[i + 3], before.data[i + 3]);
+    if (colors[old] !== old) changedPixels++;
+  }
+  assert.equal(changedPixels, 152);
+  const bytes = png.encode(16, 16, pixels), dataURL = 'data:image/png;base64,' + bytes.toString('base64');
+  fs.writeFileSync(file('浅灰石砖_四块_柔和阴影_16x16.png'), bytes);
+  assert.deepEqual(png.decode(fs.readFileSync(file('浅灰石砖_四块_柔和阴影_16x16.png'))).data, pixels);
+  const preview = new Uint8Array(256 * 256 * 4);
+  for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) {
+    const i = (Math.floor(y / 16) * 16 + Math.floor(x / 16)) * 4;
+    preview.set(pixels.subarray(i, i + 4), (y * 256 + x) * 4);
+  }
+  fs.writeFileSync(file('浅灰石砖_四块_柔和阴影_放大预览.png'), png.encode(256, 256, preview));
+  assert.deepEqual(png.decode(fs.readFileSync(file('浅灰石砖_四块_柔和阴影_放大预览.png'))).data, preview);
+  const s = project.spriteSheets[si];
+  assert.equal(s.actions.length, 1); assert.equal(s.actions[0].frames.length, 1);
+  assert.equal(s.frameWidth, 16); assert.equal(s.frameHeight, 16);
+  s.imageDataURL = dataURL; l.frameData[key].dataURL = dataURL;
+  s.actions[0].frames[0].notes = '整体16×16，四块8×8石砖；仅减淡砖缝、边缘阴影与高光，降低凸起感，保持原底色、像素位置与布局。';
+  fs.writeFileSync(file('工程候选稿.json'), JSON.stringify(project));
+  const put = await fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-Pixel-Editor': '1', 'If-Match': etag }, body: JSON.stringify(project) });
+  const output = await put.text(); fs.writeFileSync(file('保存响应.txt'), `${put.status}\n${output}`);
+  assert.equal(put.status, 200, '失败或冲突，保留候选稿且不盲目重试');
+  const read = await fetch(url); assert.equal(read.status, 200);
+  const savedRaw = Buffer.from(await read.arrayBuffer()), saved = JSON.parse(savedRaw);
+  fs.writeFileSync(file('保存后回读.json'), savedRaw); assert.deepEqual(saved, project);
+  const undo = structuredClone(saved); undo.spriteSheets[si] = original.spriteSheets[si]; undo.layers[li] = original.layers[li];
+  assert.deepEqual(undo, original, '其他工程内容不变，额外副本可恢复');
+  const report = { result: 'PASS', size: '16x16', layout: '2x2', changedPixels, baseColorUnchanged: true, geometryUnchanged: true, otherContentUnchanged: true, apiReadbackExact: true, restorationOnExtraCopy: true, paletteDiff: colors, originalSHA256: sha(raw), savedSHA256: sha(savedRaw), pngSHA256: sha(bytes), frontendRefreshed: false };
+  fs.writeFileSync(file('验证记录.json'), JSON.stringify(report, null, 2));
+  fs.writeFileSync(file('恢复说明.txt'), `原始备份和SHA256均保留。撤销时GET当前工程并备份，仅恢复本次第${si}号画布与第${li}号图层中的图像、帧备注，保留后续编辑；以当前ETag按If-Match PUT，409停止。额外副本已验证可恢复；勿用旧整稿覆盖新编辑。\n`);
+  console.log(JSON.stringify(report, null, 2));
+})().catch(e => { console.error(e); process.exitCode = 1; });

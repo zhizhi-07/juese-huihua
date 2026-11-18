@@ -1,10 +1,11 @@
 /* Finished pieces use the existing revision-checked project store, never a branch copy. */
 window.PE=window.PE||{};
 PE.Wardrobe={
+  baseProjectId:'draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba',
   actions:{idle:'待机',walk:'走路',sit:'坐下',pickup:'拾取'},
   hasPixels(image){return !!image?.data.some((v,i)=>i%4===3&&v);},
   family(layer){return PE.VisualLayers.partName(layer)||layer.name;},
-  isBase(layer){return /^(body|head|身体|头部)$/.test(layer.name)||PE.isHandLayer(layer);},
+  isBase(layer){return /^(body|head|身体|头部)(?: 描边)?$/.test(layer.name)||PE.isHandLayer(layer);},
   choices(project){
     const groups=new Map();
     for(const layer of project.layers){
@@ -17,8 +18,112 @@ PE.Wardrobe={
     }
     return [...groups.values()];
   },
+  // 收藏：图层卡片上的五角星。一次点选就收录整件（同一发型系列 / 同一套衣服），不用再在衣柜里手工勾选。
+  favoriteOf(layer){
+    if(!layer||layer.isGroup||PE.isHandLayer(layer))return null;
+    const raw=String(layer.name||'').replace(/ 描边$/, ''),info=PE.classifyPart(raw);
+    if(!info||!['头发','衣服','五官'].includes(info.category))return null;
+    const pieces=raw.split(' / ').map(part=>part.trim()).filter(Boolean);
+    const clean=value=>{const text=String(value||'').trim(),stripped=text.replace(/^\d+\s*/, '').trim();return stripped||text;};
+    if(info.category==='五官'){
+      // 五官按部件本身收藏：换眼睛不牵连头发衣服，同一套眼睛的所有方向动作一起收录。
+      const name=clean(pieces.at(-1))||clean(info.clean);
+      return {category:'五官',group:'五官:'+(PE.VisualLayers.partName(layer)||raw),name};
+    }
+    if(info.category==='头发'){
+      if(info.slot==='饰品'){const name=clean(pieces[1])||clean(info.clean);return {category:'头发',group:'饰品:'+name,name};}
+      const series=info.series||clean(pieces[1])||String(info.slot||'头像');
+      return {category:'头发',group:'发型:'+series,name:/^\d+$/.test(series)?'发型 '+series:series};
+    }
+    const outfit=clean(pieces[1])||clean(info.clean);
+    return {category:'衣服',group:'衣服:'+outfit,name:outfit};
+  },
+  favoriteParts(project, layer){
+    const desc=this.favoriteOf(layer);
+    if(!desc||!project?.layers)return [];
+    const available=new Set(this.choices(project).map(choice=>choice.key));
+    const members=project.layers.filter(item=>{const other=this.favoriteOf(item);return other&&other.group===desc.group;});
+    return [...new Set(members.map(item=>this.family(item)))].filter(key=>key&&available.has(key));
+  },
+  favoriteState(group){
+    const projectId=PE.app?.persistence?.projectId;
+    if(!projectId||!this._favoritesLoaded)return 'unknown';
+    return this._favoriteEntries.some(entry=>entry.favorite===group&&entry.sourceProjectId===projectId)?'yes':'no';
+  },
+  favoriteStamp(entries){return JSON.stringify(entries.map(entry=>[entry.id,entry.revision,entry.favorite,entry.sourceProjectId,entry.name]));},
+  syncFavoriteIndex(entries){
+    const before=this.favoriteStamp(this._favoriteEntries||[]);
+    this._favoriteEntries=entries;this._favoritesLoaded=true;
+    return before!==this.favoriteStamp(entries);
+  },
+  async loadFavoriteEntries(refresh=false){
+    if(this._favoritesLoaded&&!refresh)return this._favoriteEntries;
+    if(this._favoritesLoading)return this._favoritesLoading;
+    const persistence=PE.app?.persistence;
+    if(!persistence)return this._favoriteEntries||[];
+    this._favoritesLoading=(async()=>{
+      const response=await fetch(persistence.base+'/api/projects',{headers:persistence.headers,cache:'no-store'});
+      if(!response.ok)throw new Error('成品衣柜读取失败：'+response.status);
+      const list=(await response.json()).filter(item=>String(item.id).startsWith('finished-'));
+      const built=[];
+      for(const {id}of list){
+        try{
+          const read=await fetch(persistence.base+'/api/project?id='+id,{headers:persistence.headers,cache:'no-store'});
+          if(!read.ok)continue;
+          const data=await read.json(),meta=data.wardrobe;
+          if(!meta||meta.archived||!['头发','衣服','五官'].includes(meta.category))continue;
+          built.push({id,revision:read.headers.get('ETag'),name:data.name||'',category:meta.category,favorite:meta.favorite||'',sourceProjectId:meta.sourceProjectId||'',sourceParts:meta.sourceParts||[]});
+        }catch(error){console.debug('成品读取失败',id,error.message);}
+      }
+      this.syncFavoriteIndex(built);this._favoritesFailedAt=0;
+      return built;
+    })().finally(()=>{this._favoritesLoading=null;});
+    return this._favoritesLoading;
+  },
+  prefetchFavorites(){
+    if(this._favoritesLoaded||this._favoritesLoading)return;
+    if(Date.now()-(this._favoritesFailedAt||0)<15000)return;
+    this.loadFavoriteEntries().then(()=>PE.app?.updateLayerList?.()).catch(()=>{this._favoritesFailedAt=Date.now();});
+  },
+  toast(text,error=false){
+    if(!text)return null;
+    const box=document.createElement('div');
+    box.className='wardrobe-toast'+(error?' error':'');box.setAttribute('role','status');box.textContent=text;
+    document.body.append(box);
+    setTimeout(()=>box.classList.add('fade'),2800);
+    setTimeout(()=>box.remove(),3400);
+    return box;
+  },
+  async toggleFavorite(app, layer){
+    const persistence=app?.persistence;
+    if(!persistence?.ready||app.suspendBackup)throw new Error('请等当前工程读取完成后再收藏');
+    const desc=this.favoriteOf(layer);
+    if(!desc)throw new Error('只有头发、衣服、五官类部件可以收藏');
+    const parts=this.favoriteParts(app.project, layer);
+    if(!parts.length)throw new Error('「'+desc.name+'」还没有可收录的动作像素，先把动作画好再收藏');
+    const entries=await this.loadFavoriteEntries(true);
+    const hit=entries.find(entry=>entry.favorite===desc.group&&entry.sourceProjectId===persistence.projectId);
+    if(hit){
+      if(!confirm('「'+hit.name+'」已经在成品衣柜里，要把这一件移出衣柜吗？原草稿和像素不变。'))return 'kept';
+      const read=await fetch(persistence.base+'/api/project?id='+hit.id,{headers:persistence.headers,cache:'no-store'});
+      if(!read.ok)throw new Error('成品读取失败：'+read.status);
+      const data=await read.json();data.wardrobe={...(data.wardrobe||{}),archived:true};
+      const response=await fetch(persistence.base+'/api/project?id='+hit.id,{method:'PUT',headers:{...persistence.headers,'Content-Type':'application/json','If-Match':read.headers.get('ETag')},body:JSON.stringify(data)});
+      if(!response.ok)throw new Error(response.status===409?'成品版本已变化，请稍后再试':'移出衣柜失败：'+response.status);
+      await this.loadFavoriteEntries(true);
+      return 'removed';
+    }
+    const raw=JSON.parse(await app.exportManager.exportProject(false).text()),data=this.snapshot(raw,parts,desc.name,desc.category,persistence.projectId);
+    const source=await fetch(persistence.base+'/api/project?id='+persistence.projectId,{headers:persistence.headers,cache:'no-store'});
+    data.wardrobe={...data.wardrobe,favorite:desc.group,sourceParts:parts,sourceRevision:source.ok?source.headers.get('ETag'):'none'};
+    const id='finished-'+crypto.randomUUID();
+    const response=await fetch(persistence.base+'/api/project?id='+id,{method:'PUT',headers:{...persistence.headers,'Content-Type':'application/json','If-Match':'none'},body:JSON.stringify(data)});
+    if(!response.ok)throw new Error('收藏保存失败：'+response.status);
+    await this.loadFavoriteEntries(true);
+    return 'added';
+  },
   snapshot(raw,selected,name,category,sourceProjectId){
-    if(!name.trim()||!['头发','衣服'].includes(category))throw new Error('请填写成品名称和类别');
+    if(!name.trim()||!['头发','衣服','五官'].includes(category))throw new Error('请填写成品名称和类别');
     const wanted=new Set(selected),layers=raw.layers.filter(l=>!l.isGroup&&!this.isBase(l)&&wanted.has(this.family(l))).flatMap(l=>{
       const sheets=new Set(Object.keys(l.frameData||{}).map(k=>Number(k.split('_')[0])));
       return [...sheets].filter(si=>l.sheetIndex===undefined||l.sheetIndex===si).map(si=>({...l,sheetIndex:si}));
@@ -64,7 +169,7 @@ PE.Wardrobe={
   },
   rank(layer,direction,project,key){
     // shortcut: 人物部位使用固定穿插顺序，需要任意遮挡层级时再增加显式插槽。
-    const n=layer.name;
+    const n=layer.name.replace(/ 描边$/, '');
     if(n.startsWith('发饰 /'))return 40;
     if(n.startsWith('头发 /')&&n.endsWith('侧面后发'))return direction==='up'?36:25;
     if(PE.classifyPart(n)?.slot==='后发')return direction==='up'?35:24;
@@ -73,12 +178,15 @@ PE.Wardrobe={
     if(/^(head|头部)$/.test(n))return 20;
     if(PE.classifyPart(n)?.slot==='眼睛')return 26;
     if(PE.isHandLayer(layer)){
+      if(direction==='up')return -10;
       if(project&&key){
         const index=project.layers.indexOf(layer),body=project.layers.findIndex(l=>/^(body|身体)$/.test(l.name)&&l.getFrameData?.(key)),head=project.layers.findIndex(l=>/^(head|头部)$/.test(l.name)&&l.getFrameData?.(key));
         if(body>=0&&index<body)return -10;
-        if(head>=0&&index>head)return 22;
+        // 非背面保留原有近手遮挡顺序。
+        if(head>=0&&index>head)return 99;
+        if(body>=0&&index>body)return 99;
       }
-      return n==='hand 2'?-10:15;
+      return n==='hand 2'?-10:99;
     }
     return 30;
   },
@@ -125,23 +233,24 @@ document.addEventListener('DOMContentLoaded',()=>{
   function report(text,error=false){status.textContent=text;status.classList.toggle('save-error',error);}
   function button(text,fn,parent){const b=node('button','studio-button',text);b.type='button';b.onclick=async()=>{b.disabled=true;busy++;try{await fn();}catch(e){report(e.message,true);}finally{b.disabled=false;busy--;}};parent?.append(b);return b;}
   const title=node('div','dialog-title'),heading=node('h2','','成品衣柜 / 换装测试');heading.id='wardrobe-title';title.append(heading);button('关闭衣柜',()=>dialog.close(),title);dialog.append(title);
-  dialog.append(node('p','wardrobe-note','首次勾选收录后，成品自动同步原工程已保存的修改，无需再选中更新；未保存草稿不参与同步。试穿不修改当前工程，缺动作不自动补画。'));
+  dialog.append(node('p','wardrobe-note','图层卡片上的五角星=收藏：头发、衣服、五官都能整件收藏，点一下直接进衣柜，不用再来这里勾选。手动勾选收录后，成品自动同步原工程已保存的修改，无需再选中更新；未保存草稿不参与同步。试穿不修改当前工程，缺动作不自动补画。'));
   const grid=node('div','wardrobe-grid'),library=node('section','wardrobe-library'),stage=node('section','wardrobe-stage');grid.append(library,stage);dialog.append(grid,status);
   const register=node('details','wardrobe-register'),summary=node('summary','','＋ 标记当前工程的成品');register.append(summary);library.append(register);
   const form=node('div','wardrobe-form'),nameLabel=node('label','','成品名称 '),nameInput=node('input');nameInput.maxLength=60;nameInput.placeholder='例如：灰色长发 / 深蓝JK套装';nameLabel.append(nameInput);
-  const categoryLabel=node('label','','成品类别 '),category=node('select');category.append(new Option('头发','头发'),new Option('衣服','衣服'));categoryLabel.append(category);form.append(nameLabel,categoryLabel);
+  const categoryLabel=node('label','','成品类别 '),category=node('select');category.append(new Option('头发','头发'),new Option('衣服','衣服'),new Option('五官','五官'));categoryLabel.append(category);form.append(nameLabel,categoryLabel);
   const choices=node('div','wardrobe-choices');form.append(node('p','wardrobe-note','勾选属于这一件成品的部件；会收录这些部件的全部已有动作，不带身体和其他草稿。自定义命名的图层也可勾选。'),choices);register.append(form);
   const saveRow=node('div','wardrobe-buttons');form.append(saveRow);
-  const filter=node('select');filter.setAttribute('aria-label','衣柜类别筛选');filter.append(new Option('全部成品',''),new Option('头发','头发'),new Option('衣服','衣服'));library.append(filter);
+  const filter=node('select');filter.setAttribute('aria-label','衣柜类别筛选');filter.append(new Option('全部成品',''),new Option('头发','头发'),new Option('衣服','衣服'),new Option('五官','五官'));library.append(filter);
   const list=node('div','wardrobe-items');library.append(list);button('刷新成品列表',async()=>{report('正在刷新成品列表…');await load();if(!status.classList.contains('save-error'))report('已刷新成品列表');},library);
   const scene=node('canvas','wardrobe-scene');scene.width=320;scene.height=224;scene.tabIndex=0;scene.setAttribute('aria-label','换装测试场景：方向键或WASD移动，C坐下或站起，E拾取');
   stage.append(node('h3','','换装试验场'),scene);
-  const help=node('p','wardrobe-note','可多件叠穿，点“脱下”单独移除。方向键 / WASD 移动，C 就近坐椅子 / 站起，F 使用附近椅子或床 / 起身，E 拾取。也可选家具后点“就位测试”，自动匹配朝向；缺动作会提示，不会用待机冒充。');stage.append(help);
+  const helpIntro='可多件叠穿，点“脱下”单独移除。方向键 / WASD 移动，C 就近坐下 / 站起，F 使用附近家具 / 起身，E 拾取。房间与家具来自场景绘制工程，按你画的原生像素摆好；也可选家具后点“就位测试”，沿用当前朝向。缺动作会提示，不会用待机冒充。';
+  const help=node('p','wardrobe-note',helpIntro);stage.append(help);
   const controls=node('div','wardrobe-buttons');stage.append(controls);
   const direction=node('select');direction.setAttribute('aria-label','测试朝向');for(const [value,label]of [['down','正面'],['left','左侧'],['right','右侧'],['up','背面']])direction.append(new Option(label,value));controls.append(direction);
   const actionSelect=node('select');actionSelect.setAttribute('aria-label','测试动作');for(const [key,label]of Object.entries(W.actions))actionSelect.append(new Option(label,key));controls.append(actionSelect);
   const equipment=node('p','wardrobe-equipment'),warnings=node('p','wardrobe-warnings');warnings.setAttribute('role','status');stage.append(equipment,warnings);
-  let entries=[],selected=null,base=null,equipped={},raf=0,last=0,elapsed=0,action='idle',moving=false,keys=new Set(),player={x:160,y:144},item={x:206,y:151,picked:false},pickupUntil=0,attached=null,returnPoint=null;
+  let entries=[],selected=null,base=null,equipped={},raf=0,last=0,elapsed=0,action='idle',moving=false,keys=new Set(),player={x:160,y:144},item={x:206,y:151,picked:false},pickupUntil=0,attached=null,returnPoint=null,sceneSource='';
   const images=new WeakMap();
   function updateChoices(){
     choices.replaceChildren();
@@ -162,6 +271,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!source.ok&&source.status!==404)throw new Error('原工程版本读取失败：'+source.status);
     const parts=[...choices.querySelectorAll('input:checked')].map(e=>e.value),raw=JSON.parse(await app.exportManager.exportProject(false).text()),data=W.snapshot(raw,parts,nameInput.value,category.value,p.projectId);
     data.wardrobe.sourceParts=parts;data.wardrobe.sourceRevision=source.ok?source.headers.get('ETag'):'none';
+    // 保留五角星收藏标记，手动更新成品后图层面板的星标状态不变。
+    if(existing&&selected.data.wardrobe.favorite)data.wardrobe.favorite=selected.data.wardrobe.favorite;
     const response=await fetch(p.base+'/api/project?id='+id,{method:'PUT',headers:{...p.headers,'Content-Type':'application/json','If-Match':revision},body:JSON.stringify(data)});
     if(response.status===409)throw new Error('成品已被其他窗口修改，未覆盖。请刷新成品列表后比较，再决定是否更新。');
     if(!response.ok)throw new Error('成品保存失败：'+response.status);
@@ -178,7 +289,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   function equipText(){
     const worn=Object.values(equipped);
-    equipment.textContent='试穿：'+['头发','衣服'].map(c=>c+' · '+(worn.filter(e=>e.data.wardrobe.category===c).map(e=>e.data.name).join('、')||'未穿戴')).join('　/　');
+    equipment.textContent='试穿：'+['头发','衣服','五官'].map(c=>c+' · '+(worn.filter(e=>e.data.wardrobe.category===c).map(e=>e.data.name).join('、')||'未穿戴')).join('　/　');
   }
   function renderList(){
     list.replaceChildren();
@@ -186,7 +297,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       const card=node('article','wardrobe-item');card.classList.toggle('selected',selected?.id===entry.id);
       const thumb=node('canvas','wardrobe-thumb');thumb.width=64;thumb.height=64;
       const loc=W.locate(entry.project,'idle','down')||entry.project.spriteSheets.flatMap((s,si)=>s.actions.map((a,ai)=>({si,ai,action:a,flip:false}))).find(l=>l.action.frames.length);
-      if(loc){const ctx=thumb.getContext('2d');ctx.scale(2,2);W.drawFrame(ctx,entry.project,loc,0,16,16);}
+      if(loc){
+        // 缩略图也按素材的源像素倍率画，2× 高清的眼睛、头发不会被缩成格子色块。
+        const ctx=thumb.getContext('2d'),frame=loc.action.frames[0]||{width:16,height:16},edge=Math.max(frame.width,frame.height,1);
+        let scale=Math.max(2,Math.min(4,PE.utils.imageScale?PE.utils.imageScale(entry.project,loc.si):1));
+        if(scale*edge>60)scale=Math.max(1,Math.floor(60/edge));
+        ctx.scale(scale,scale);
+        W.drawFrame(ctx,entry.project,loc,0,Math.round(32/scale),Math.round(32/scale));
+      }
       const content=node('div');content.append(node('strong','',entry.data.name),node('small','',entry.data.wardrobe.category+' · '+entry.data.wardrobe.sourceName));
       const details=node('details'),s=node('summary','','动作覆盖（有像素帧 / 总帧）');details.append(s,node('p','wardrobe-note',coverage(entry)));content.append(details);
       const row=node('div','wardrobe-buttons');
@@ -204,7 +322,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         delete equipped[entry.id];await load();report('已移出衣柜；独立文件仍保留。');
       },row);content.append(row);card.append(thumb,content);list.append(card);
     }
-    if(!list.childElementCount)list.append(node('p','wardrobe-empty','这里还没有成品。展开上方“标记当前工程的成品”，手动勾选收录；不会自动把旧半成品放进来。'));
+    if(!list.childElementCount)list.append(node('p','wardrobe-empty','这里还没有成品。回到图层面板点「头发 / 衣服 / 五官」卡片上的五角星就能直接收藏整件；也可以展开上方“标记当前工程的成品”手动勾选收录。不会自动把旧半成品放进来。'));
   }
   filter.onchange=renderList;
   const sources=new Map();
@@ -239,7 +357,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const cached=entries.find(e=>e.id===id),r=await fetch(p.base+'/api/project?id='+id,{headers:{...p.headers,...(cached?{'If-None-Match':cached.revision}:{})},cache:'no-store'});
       if(r.status!==304&&!r.ok)throw new Error('成品读取失败：'+id+' · '+r.status);
       let entry=cached;
-      if(r.status!==304){const data=await r.json();if(data.wardrobe?.archived||!['头发','衣服'].includes(data.wardrobe?.category))continue;entry={id,data,revision:r.headers.get('ETag'),project:await W.decode(data)};}
+      if(r.status!==304){const data=await r.json();if(data.wardrobe?.archived||!['头发','衣服','五官'].includes(data.wardrobe?.category))continue;entry={id,data,revision:r.headers.get('ETag'),project:await W.decode(data)};}
       try{entry=await syncSource(entry);}catch(e){syncError=e.message;}
       next.push(entry);
     }
@@ -249,29 +367,82 @@ document.addEventListener('DOMContentLoaded',()=>{
     entries=next;selected=entries.find(e=>e.id===(selectId||selected?.id))||null;
     for(const id of Object.keys(equipped)){const updated=entries.find(e=>e.id===id);if(updated)equipped[id]=updated;else delete equipped[id];}
     equipText();renderList();
+    // 衣柜里刚移出/新收录的成品要同步回图层面的五角星状态。
+    const changed=W.syncFavoriteIndex(next.map(entry=>({id:entry.id,revision:entry.revision,name:entry.data.name,category:entry.data.wardrobe.category,favorite:entry.data.wardrobe.favorite||'',sourceProjectId:entry.data.wardrobe.sourceProjectId||'',sourceParts:entry.data.wardrobe.sourceParts||[]})));
+    if(changed)PE.app?.updateLayerList?.();
     }finally{loading=false;}
   }
   setInterval(()=>{if(dialog.open&&!register.open&&!busy&&!loading)load().catch(e=>report(e.message,true));},2000);
   function setAction(value){if(action!==value){action=value;elapsed=0;}actionSelect.value=value;}
   function leaveFurniture(){if(attached){player={...returnPoint};attached=null;returnPoint=null;}pickupUntil=0;}
-  function useFurniture(f){
-    if(f.kind==='bed'){report('睡觉动作已移除，请选择椅子测试坐姿。');return;}
+  // 房间按“画布格”计尺寸；高清人物要按源像素上屏，所以画布会按倍率放大，逻辑坐标保持不变。
+  let roomSize={width:320,height:224};
+  const sheetScales=new WeakMap();
+  function sheetScale(project,si){
+    let bySheet=sheetScales.get(project);
+    if(!bySheet)sheetScales.set(project,bySheet=new Map());
+    if(!bySheet.has(si))bySheet.set(si,Math.max(1,Math.min(4,PE.utils.imageScale?PE.utils.imageScale(project,si):1)));
+    return bySheet.get(si);
+  }
+  function applyResolution(){
+    const dir=direction.value;
+    let scale=base&&W.locate(base,action,dir)?sheetScale(base,W.locate(base,action,dir).si):1;
+    for(const e of Object.values(equipped)){const loc=W.locate(e.project,action,dir);if(loc)scale=Math.max(scale,sheetScale(e.project,loc.si));}
+    const budget=Math.floor(Math.sqrt(16*1024*1024/(roomSize.width*roomSize.height)))||1;
+    scale=Math.max(1,Math.min(scale,4,budget));
+    const width=roomSize.width*scale,height=roomSize.height*scale;
+    if(scene.width!==width)scene.width=width;
+    if(scene.height!==height)scene.height=height;
+    return scale;
+  }
+  function worldSize(){return {width:roomSize.width,height:roomSize.height};}
+  function limits(){const size=worldSize();return {left:8,right:size.width-8,top:F.room?Math.round(size.height*0.3):75,bottom:F.room?size.height-8:208};}
+  function resetScene(){
     leaveFurniture();keys.clear();moving=false;
-    returnPoint=F.blocked(player.x,player.y)?{x:f.x,y:f.y+16}:{...player};
-    attached=f;player={x:f.x,y:f.y};direction.value=f.direction;setAction('sit');
+    const size=worldSize(),bounded=limits();
+    player={x:Math.round(size.width/2),y:Math.min(bounded.bottom,Math.max(bounded.top,Math.round(size.height*0.64)))};
+    item={x:Math.round(size.width*0.64),y:Math.min(bounded.bottom-4,Math.round(size.height*0.67)),picked:false};
+    setAction('idle');direction.value='down';
+  }
+  function useScene(){
+    roomSize=F.room?{width:F.room.width,height:F.room.height}:{width:320,height:224};
+    resetScene();
+    furnitureSelect.replaceChildren();
+    for(const f of F.layout)furnitureSelect.append(new Option(f.name,f.id));
+    if(!F.layout.length)furnitureSelect.append(new Option('场景里还没有家具',''));
+    help.textContent=helpIntro+(F.hint?' ｜ '+F.hint:'');
+  }
+  function useFurniture(f){
+    if(!f){report('场景里还没有家具：先在场景绘制的“家具与设施”层画好家具，再点刷新场景。');return;}
+    leaveFurniture();keys.clear();moving=false;
+    const bounded=limits();
+    returnPoint=F.blocked(player.x,player.y)?{x:f.x,y:Math.min(bounded.bottom,f.y+3)}:{...player};
+    attached=f;player={x:f.x,y:f.y};setAction('sit');
     report('正在测试：'+f.name+'；按 F 起身，或直接移动离开。');scene.focus();
   }
-  function interact(){if(attached){leaveFurniture();setAction('idle');}else{const f=F.nearest(player,'chair');if(f)useFurniture(f);else report('请靠近椅子，或选择椅子后点“就位测试”。');}scene.focus();}
-  function sit(){if(attached||action==='sit'){leaveFurniture();setAction('idle');}else{const f=F.nearest(player,'chair');if(f)useFurniture(f);else setAction('sit');}scene.focus();}
+  function interact(){if(attached){leaveFurniture();setAction('idle');}else{const f=F.nearest(player);if(f)useFurniture(f);else report('请靠近家具，或选择家具后点“就位测试”。');}scene.focus();}
+  function sit(){if(attached||action==='sit'){leaveFurniture();setAction('idle');}else{const f=F.nearest(player);if(f)useFurniture(f);else setAction('sit');}scene.focus();}
   actionSelect.onchange=()=>{leaveFurniture();setAction(actionSelect.value);scene.focus();};direction.onchange=()=>{if(attached){leaveFurniture();setAction('idle');}scene.focus();};
-  const furnitureSelect=node('select');furnitureSelect.setAttribute('aria-label','测试家具');for(const f of F.layout.filter(f=>f.kind!=='bed'))furnitureSelect.append(new Option(f.name,f.id));controls.append(furnitureSelect);
+  const sceneSelect=node('select');sceneSelect.setAttribute('aria-label','场景来源');
+  const refreshScene=button('刷新场景',async()=>{
+    if(!p.ready)throw new Error('请等待工程读取完成');
+    await loadScene(sceneSelect.value);
+    report(F.source?'已读取场景「'+F.source.name+'」：家具 '+F.layout.length+' 件':'已清空场景家具');
+    scene.focus();
+  },controls);
+  controls.insertBefore(sceneSelect,controls.firstElementChild);
+  sceneSelect.onchange=()=>{loadScene(sceneSelect.value).then(()=>{
+    report(F.source?'已读取场景「'+F.source.name+'」：家具 '+F.layout.length+' 件':'已清空场景家具');
+    scene.focus();
+  }).catch(e=>report(e.message,true));};
+  const furnitureSelect=node('select');furnitureSelect.setAttribute('aria-label','测试家具');furnitureSelect.append(new Option('场景里还没有家具',''));controls.append(furnitureSelect);
   button('就位测试',()=>useFurniture(F.layout.find(f=>f.id===furnitureSelect.value)),controls);
   button('使用 / 起身 (F)',interact,controls);
   button('坐下 / 站起 (C)',sit,controls);
   function pickup(){leaveFurniture();setAction('pickup');pickupUntil=performance.now()+900;if(Math.hypot(player.x-item.x,player.y-item.y)<25){item.picked=true;report('已拾取测试物件；可重置场景继续测试。');}else report('正在测试拾取动作。走到黄色物件旁可实际拾取。');scene.focus();}
   button('拾取 (E)',pickup,controls);
   button('脱下全部',()=>{equipped={};equipText();renderList();},controls);
-  button('重置场景',()=>{leaveFurniture();player={x:160,y:144};item.picked=false;keys.clear();moving=false;setAction('idle');direction.value='down';report('测试场景已重置');scene.focus();},controls);
+  button('重置场景',()=>{resetScene();report('测试场景已重置');scene.focus();},controls);
   scene.addEventListener('keydown',e=>{
     e.stopPropagation();
     const key=e.key.toLowerCase();if(!['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d','c','e','f'].includes(key))return;
@@ -282,51 +453,86 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Editor shortcuts must not consume drawing keys while a modal is active.
   window.addEventListener('keydown',e=>{if(dialog.open&&e.key!=='Escape'&&e.target!==scene)e.stopPropagation();},true);
   const ctx=scene.getContext('2d');
+  function drawRoom(){
+    const size=worldSize();
+    if(F.room){ctx.drawImage(F.room.canvas,0,0);return;}
+    // 没有场景绘制工程时的空房间：只有地面和墙，不画任何家具。
+    ctx.fillStyle='#be9b7b';ctx.fillRect(0,0,size.width,size.height);ctx.fillStyle='#ddd0aa';ctx.fillRect(0,0,size.width,57);ctx.fillStyle='#79645b';ctx.fillRect(0,55,size.width,5);
+    ctx.fillStyle='#b59273';for(let x=0;x<size.width;x+=16){ctx.fillRect(x,60,1,size.height-60);for(let y=68+(x%32?16:0);y<size.height;y+=32)ctx.fillRect(x,y,16,1);}
+  }
   function render(now){
     if(!dialog.open)return;
     const dt=Math.min((now-last)/1000||0,0.05);last=now;
+    const bounded=limits();
     let dx=Number(keys.has('arrowright')||keys.has('d'))-Number(keys.has('arrowleft')||keys.has('a')),dy=Number(keys.has('arrowdown')||keys.has('s'))-Number(keys.has('arrowup')||keys.has('w'));
-    if(dx||dy){leaveFurniture();const length=Math.hypot(dx,dy),x=Math.max(20,Math.min(300,player.x+dx/length*65*dt)),y=Math.max(75,Math.min(208,player.y+dy/length*65*dt));if(!F.blocked(x,player.y))player.x=x;if(!F.blocked(player.x,y))player.y=y;direction.value=dx?(dx<0?'left':'right'):(dy<0?'up':'down');setAction('walk');moving=true;}
+    if(dx||dy){leaveFurniture();const length=Math.hypot(dx,dy),x=Math.max(bounded.left,Math.min(bounded.right,player.x+dx/length*65*dt)),y=Math.max(bounded.top,Math.min(bounded.bottom,player.y+dy/length*65*dt));if(!F.blocked(x,player.y))player.x=x;if(!F.blocked(player.x,y))player.y=y;direction.value=dx?(dx<0?'left':'right'):(dy<0?'up':'down');setAction('walk');moving=true;}
     else if(moving){if(action==='walk')setAction('idle');moving=false;}
     if(action==='pickup'&&pickupUntil&&now>pickupUntil){pickupUntil=0;setAction('idle');}
     elapsed+=dt*1000;
-    ctx.imageSmoothingEnabled=false;ctx.fillStyle='#be9b7b';ctx.fillRect(0,0,320,224);ctx.fillStyle='#ddd0aa';ctx.fillRect(0,0,320,57);ctx.fillStyle='#79645b';ctx.fillRect(0,55,320,5);
-    ctx.fillStyle='#b59273';for(let x=0;x<320;x+=16){ctx.fillRect(x,60,1,164);for(let y=68+(x%32?16:0);y<224;y+=32)ctx.fillRect(x,y,16,1);}
-    ctx.fillStyle='#9e806b';ctx.fillRect(41,52,40,7);ctx.fillRect(45,59,5,10);ctx.fillRect(72,59,5,10);ctx.fillStyle='#6e8c71';ctx.fillRect(265,26,18,22);ctx.fillStyle='#a28f75';ctx.fillRect(268,48,12,12);
+    // 按高清倍率放大画布：房间按格子画，人物的高清图层就按源像素落屏，不再被压成格子。
+    const roomScale=applyResolution();
+    ctx.setTransform(roomScale,0,0,roomScale,0,0);
+    ctx.imageSmoothingEnabled=false;drawRoom();
     if(!item.picked){ctx.fillStyle='#9c7836';ctx.fillRect(item.x-4,item.y-2,8,5);ctx.fillStyle='#e4bc5a';ctx.fillRect(item.x-3,item.y-5,6,5);}
     const behind=F.layout.filter(f=>f===attached||f.y<=player.y),ahead=F.layout.filter(f=>!behind.includes(f));
-    for(const f of behind){F.draw(ctx,f,'rear');if(f!==attached)F.draw(ctx,f,'front');}
-    if(!attached){ctx.fillStyle='#79645b3b';ctx.fillRect(Math.round(player.x)-9,Math.round(player.y)-1,18,3);}
+    for(const f of behind)F.draw(ctx,f);
+    if(!attached){ctx.fillStyle='#79645b3b';ctx.fillRect(Math.round(player.x)-6,Math.round(player.y)-1,12,3);}
     const missing=[],commands=[],dir=direction.value,location=base&&W.locate(base,action,dir);
     const fi=location?W.frameAt(location.sheet,location.action,elapsed,action!=='pickup'):0;
     if(!location)missing.push('底稿缺少'+W.actions[action]+' / '+dir);
-    function collect(project,loc,frameIndex,label,isBase){
+    function collect(project,loc,frameIndex,label,isBase,quiet){
       if(!loc?.action.frames[frameIndex]){missing.push(label+'缺少'+W.actions[action]+' / '+dir+' 第'+(frameIndex+1)+'帧');return;}
       const key=project.getFrameKey(loc.si,loc.ai,frameIndex);let found=false;
       for(const l of PE.getRenderLayers(project,loc.si,loc.ai)){
+        if(isBase&&/ 描边$/.test(l.name))continue;
         if(!PE.isLayerVisible(project,l,loc.si)||l.opacity<=0||(isBase&&!W.isBase(l)&&PE.VisualLayers.category(l)!=='五官'))continue;
+        // 已经穿戴同部位五官成品时，素体自带的眼/嘴不再叠在下面。
+        if(isBase&&wornFace.size&&PE.VisualLayers.category(l)==='五官'&&wornFace.has(PE.classifyPart(String(l.name||'').replace(/ 描边$/, ''))?.slot))continue;
         const image=l.getFrameData(key);if(!image)continue;
         if(W.hasPixels(image))found=true;
         let canvas=images.get(image);if(!canvas){canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;canvas.getContext('2d').putImageData(image,0,0);images.set(image,canvas);}
         commands.push({l,canvas,placement:image.placement,frame:loc.action.frames[frameIndex],flip:loc.flip,rank:W.rank(l,loc.action.direction,project,key)});
       }
-      if(!found)missing.push(label+'在'+W.actions[action]+' / '+dir+' 第'+(frameIndex+1)+'帧无像素（可能未制作或刻意留空）');
+      if(!found&&!quiet)missing.push(label+'在'+W.actions[action]+' / '+dir+' 第'+(frameIndex+1)+'帧无像素（可能未制作或刻意留空）');
     }
+    // 穿戴五官成品时，衣柜素体自带的同部位五官要让位，避免两套眼睛叠在一起。
+    const wornFace=new Set();
+    for(const e of Object.values(equipped))if(e.data.wardrobe.category==='五官')for(const l of e.project.layers)if(!l.isGroup){const slot=PE.classifyPart(String(l.name||'').replace(/ 描边$/, ''))?.slot;if(slot)wornFace.add(slot);}
     if(location)collect(base,location,fi,'底稿',true);
-    for(const e of Object.values(equipped))collect(e.project,W.locate(e.project,action,dir),fi,e.data.name,false);
+    // 五官（眼睛、嘴巴）按部件收藏，背面本来就没有像素，不当作缺动作报错。
+    for(const e of Object.values(equipped))collect(e.project,W.locate(e.project,action,dir),fi,e.data.name,false,e.data.wardrobe.category==='五官');
     commands.sort((a,b)=>a.rank-b.rank);
-    for(const c of commands){ctx.save();ctx.translate(Math.round(player.x),Math.round(player.y)-16);if(c.flip)ctx.scale(-1,1);ctx.globalAlpha=c.l.opacity??1;const r=c.placement||{x:0,y:0,w:c.canvas.width,h:c.canvas.height};ctx.drawImage(c.canvas,-Math.floor(c.frame.width/2)+r.x,-Math.floor(c.frame.height/2)+r.y,r.w,r.h);ctx.restore();}
-    if(attached)F.draw(ctx,attached,'front');
-    for(const f of ahead){F.draw(ctx,f,'rear');F.draw(ctx,f,'front');}
+    // 人物按当前帧的真实高度落地，16 规格与旧 32 规格都站在同一条脚线上。
+    for(const c of commands){ctx.save();ctx.translate(Math.round(player.x),Math.round(player.y));if(c.flip)ctx.scale(-1,1);ctx.globalAlpha=c.l.opacity??1;const r=c.placement||{x:0,y:0,w:c.canvas.width,h:c.canvas.height};ctx.drawImage(c.canvas,-Math.floor(c.frame.width/2)+r.x,-c.frame.height+r.y,r.w,r.h);ctx.restore();}
+    for(const f of ahead)F.draw(ctx,f);
     const text=W.actions[action]+' · '+({down:'正面',up:'背面',left:'左侧',right:'右侧'}[dir])+' · '+(fi+1)+'帧'+(missing.length?' ｜ '+missing.join('；'):' ｜ 当前帧已匹配');if(warnings.textContent!==text)warnings.textContent=text;
     scene.dataset.action=action;scene.dataset.direction=dir;scene.dataset.x=player.x;scene.dataset.y=player.y;scene.dataset.picked=String(item.picked);scene.dataset.furniture=attached?.id||'';
     raf=requestAnimationFrame(render);
   }
   dialog.addEventListener('close',()=>{cancelAnimationFrame(raf);keys.clear();});
+  async function loadScene(id){
+    if(!p.ready)throw new Error('请等待工程读取完成');
+    sceneSource=id||'';
+    try{localStorage.setItem('pixel-wardrobe-scene',sceneSource);}catch(error){/* 本地存储不可用时只影响记忆，不影响试穿 */}
+    await F.load({base:p.base,headers:p.headers},sceneSource);
+    useScene();last=performance.now();
+  }
+  async function loadSceneSources(){
+    const projects=await F.projects({base:p.base,headers:p.headers}),saved=(()=>{try{return localStorage.getItem('pixel-wardrobe-scene')||'';}catch(error){return '';}})();
+    const chosen=projects.some(project=>project.id===saved)?saved:(projects[0]?.id||'');
+    sceneSelect.replaceChildren(new Option('不使用场景（空房间）',''),...projects.map(project=>new Option(project.name,project.id)));
+    sceneSelect.value=chosen;
+    await loadScene(chosen);
+    report(F.source?'已读取场景「'+F.source.name+'」：家具 '+F.layout.length+' 件':F.hint||'衣柜场景内没有任何家具；在场景绘制里画好家具后点“刷新场景”。');
+  }
   async function open(){
     if(!p.ready)throw new Error('请等待当前工程读取完成');
-    app.animationPlayer.pause();base=await W.decode(JSON.parse(await app.exportManager.exportProject(false).text()));
+    app.animationPlayer.pause();
+    const response=await fetch(p.base+'/api/project?id='+W.baseProjectId,{headers:p.headers,cache:'no-store'});
+    if(!response.ok)throw new Error('衣柜素体读取失败：'+response.status);
+    base=await W.decode(await response.json());
     dialog.showModal();report('正在读取成品衣柜…');updateChoices();equipText();last=performance.now();cancelAnimationFrame(raf);raf=requestAnimationFrame(render);scene.focus();
+    try{await loadSceneSources();}catch(e){report(e.message,true);}
     try{report('已启用自动同步；试穿不会写入绘画工程。');await load();}catch(e){report(e.message,true);}
   }
   const entry=button('成品衣柜 / 换装测试',open);entry.id='wardrobe-open';document.querySelector('.project-bar').append(entry);

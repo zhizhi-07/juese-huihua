@@ -1,0 +1,70 @@
+diff --git a/output/hair-native-shape-20261111/before/hair-animation.js b/js/hair-animation.js
+index 899b689..26b6b52 100644
+--- a/output/hair-native-shape-20261111/before/hair-animation.js
++++ b/js/hair-animation.js
+@@ -1,4 +1,4 @@
+-/* Shared directional masters and head offsets; only hair uses the sway recipe. */
++/* Directional masters and head offsets; native hair uses discrete shapes, advanced sway is opt-in. */
+ window.PE = window.PE || {};
+ (() => {
+   'use strict';
+@@ -225,6 +225,25 @@ window.PE = window.PE || {};
+     const inside=Math.max(0,Math.min(frame.width,x+r.w)-Math.max(0,x))*Math.max(0,Math.min(frame.height,y+r.h)-Math.max(0,y));
+     return {image:out,clipped:Math.round(Math.max(0,r.w*r.h-inside))};
+   }
++  function shapePose(sheet, fi, count) {
++    const stages=/^original16_walk$/.test(sheet)?[1,1,0,0,1,1,0,0]
++      :/^original16_pickup$/.test(sheet)?[0,1,1,1,0,0]:[0,1,1,0];
++    return stages[Math.min(stages.length-1,Math.floor(fi*stages.length/count))];
++  }
++  function reshape(src, pose) {
++    if(!pose||src.placement&&(src.placement.w!==src.width||src.placement.h!==src.height))return src;
++    if(src.width*src.height>262144)throw Error('头发形变支持最多 512×512 源像素；原图未修改');
++    let top=src.height,bottom=-1;
++    for(let y=0;y<src.height;y++)for(let x=0;x<src.width;x++)if(src.data[(y*src.width+x)*4+3]){top=Math.min(top,y);bottom=Math.max(bottom,y);}
++    if(bottom-top<3)return src;
++    // shortcut: two-state one-row squash, not hairstyle-specific hand-drawn correction.
++    const cut=top+Math.ceil((bottom-top+1)/2),out=PE.utils.cloneImageData(src);out.data.fill(0);
++    for(let y=0;y<src.height;y++)for(let x=0;x<src.width;x++){
++      const i=(y*src.width+x)*4;if(!src.data[i+3])continue;
++      out.data.set(src.data.subarray(i,i+4),((y>=cut?y-1:y)*src.width+x)*4);
++    }
++    return out;
++  }
+   function deform(src, frame, offset, phase, settings, mask, enabled, protectedMask=null, trajectory=null, stitchMask=null, followOffset=null) {
+     const base=src;
+     const stitched=stitchMask?stitchSource(src,stitchMask):null;
+@@ -310,8 +329,10 @@ window.PE = window.PE || {};
+         // 每个方向都以本方向待机首帧为基准；没有基准就不动这个方向（不会擦掉已有眼睛）。
+         if(!src){missing.add(`${actions[s.name.slice(11)]||s.name}·${directions[a.direction]||a.direction}`);continue;}
+         const settings=settingsFor(g,s.name,a.direction);
+-        // Legacy nativeTips was enabled automatically, not an explicit request for sway.
+-        const rigid=settings.nativeTips===true;
++        const customRegion=settings.masks[a.direction]||settings.protectedMasks?.[a.direction]||settings.trajectories?.[a.direction]?.length||settings.stitch?.[a.direction];
++        const autoShape=g.part!=='eyes'&&idle.name==='original16_idle'&&!customRegion&&(!g.enabled||settings.nativeTips===true);
++        // Legacy automatic recipes use discrete shapes, never velocity-driven sway.
++        const rigid=autoShape||settings.nativeTips===true;
+         const mask=settings.masks[a.direction];
+         const durations=a.frames.map(f=>s.useFrameDurations!==false&&Number.isFinite(f.duration)&&f.duration>0?f.duration:1000/(s.fps||8));
+         const total=durations.reduce((n,v)=>n+v,0);let elapsed=0, idleHeadY;
+@@ -334,9 +355,10 @@ window.PE = window.PE || {};
+             if(!prev||!earlier)throw Error('帧结构已变化，请先重新标定偏移');
+             followOffset=Math.max(-2,Math.min(2,offset.y-prev.y+(prev.y-earlier.y)*.5));
+           }
++          const shaped=autoShape?reshape(src,shapePose(s.name,fi,a.frames.length)):src;
+           const result=g.part==='eyes'&&src?.placement
+             ?translatePlaced(src,frame,offset)
+-            :deform(src,frame,offset,phase,settings,mask,g.part==='eyes'||rigid?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'||rigid?null:settings.trajectories?.[a.direction],g.part==='eyes'||rigid?null:settings.stitch?.[a.direction],followOffset);
++            :deform(shaped,frame,offset,phase,settings,mask,g.part==='eyes'||rigid?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'||rigid?null:settings.trajectories?.[a.direction],g.part==='eyes'||rigid?null:settings.stitch?.[a.direction],followOffset);
+           clipped+=result.clipped;
+           edits.push({layer,key:p.getFrameKey(si,ai,fi),image:result.image});
+         }
+@@ -406,7 +428,7 @@ window.PE = window.PE || {};
+       return down(...args);
+     };
+   }
+-  PE.HairAnimation={actions,directions,isIdle,master,setup,validate,calibrate,plan,usesSitEyeY,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
++  PE.HairAnimation={actions,directions,isIdle,master,setup,validate,calibrate,plan,usesSitEyeY,applyPlan,refresh,transaction,sync,install,deform,reshape,shapePose,params,address,settingsFor,editSettings,previewLayers};
+ })();
+ 
+ document.addEventListener('DOMContentLoaded',()=>{

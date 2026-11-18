@@ -1,0 +1,1090 @@
+[
+  {
+    "character": "Angler",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 1,
+        "translationNormalizedAlphaMatches": 1,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 3,
+        "translationNormalizedAlphaMatches": 3,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Blacksmith",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 80,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 124,
+        "bodyInteriorPixels": 168,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 144,
+        "bodyInteriorPixels": 164,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 136,
+        "bodyInteriorPixels": 164,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 131,
+        "bodyInteriorPixels": 143,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 112,
+        "bodyInteriorPixels": 135,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 120,
+        "bodyInteriorPixels": 138,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 129,
+        "bodyInteriorPixels": 173,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 154,
+        "bodyInteriorPixels": 174,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 148,
+        "bodyInteriorPixels": 174,
+        "errors": []
+      }
+    ]
+  },
+  {
+    "character": "Chef",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 84,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 104,
+        "bodyInteriorPixels": 167,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 140,
+        "bodyInteriorPixels": 142,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 105,
+        "bodyInteriorPixels": 173,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Farmer",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 120,
+        "bodyInteriorPixels": 167,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 148,
+        "bodyInteriorPixels": 160,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 148,
+        "bodyInteriorPixels": 160,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 141,
+        "bodyInteriorPixels": 142,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 134,
+        "bodyInteriorPixels": 142,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 129,
+        "bodyInteriorPixels": 135,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 127,
+        "bodyInteriorPixels": 173,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 162,
+        "bodyInteriorPixels": 170,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 162,
+        "bodyInteriorPixels": 170,
+        "errors": []
+      }
+    ]
+  },
+  {
+    "character": "Florist",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 120,
+        "bodyInteriorPixels": 167,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 148,
+        "bodyInteriorPixels": 160,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 148,
+        "bodyInteriorPixels": 160,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 141,
+        "bodyInteriorPixels": 142,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 114,
+        "bodyInteriorPixels": 132,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 129,
+        "bodyInteriorPixels": 135,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 127,
+        "bodyInteriorPixels": 173,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 162,
+        "bodyInteriorPixels": 170,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 162,
+        "bodyInteriorPixels": 170,
+        "errors": []
+      }
+    ]
+  },
+  {
+    "character": "Inn Keeper",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 2,
+        "translationNormalizedAlphaMatches": 2,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 2,
+        "translationNormalizedAlphaMatches": 2,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 0,
+        "translationNormalizedAlphaMatches": 0,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Merchant",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 0,
+        "bodyInteriorPixels": 0,
+        "errors": [
+          "衣服超出身体区域；当前算法仅支持贴身款"
+        ]
+      }
+    ]
+  },
+  {
+    "character": "Miner",
+    "comparisons": [
+      {
+        "action": "idle",
+        "dir": "side",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "down",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "idle",
+        "dir": "up",
+        "frames": 4,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 86,
+        "bodyInteriorPixels": 86,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 116,
+        "bodyInteriorPixels": 168,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 144,
+        "bodyInteriorPixels": 164,
+        "errors": []
+      },
+      {
+        "action": "walk",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 140,
+        "bodyInteriorPixels": 164,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "side",
+        "frames": 6,
+        "exactBodyAlphaMatches": 6,
+        "translationNormalizedAlphaMatches": 6,
+        "fromIdleColorMatched": 138,
+        "bodyInteriorPixels": 142,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "down",
+        "frames": 6,
+        "exactBodyAlphaMatches": 4,
+        "translationNormalizedAlphaMatches": 4,
+        "fromIdleColorMatched": 110,
+        "bodyInteriorPixels": 135,
+        "errors": []
+      },
+      {
+        "action": "pick up",
+        "dir": "up",
+        "frames": 6,
+        "exactBodyAlphaMatches": 5,
+        "translationNormalizedAlphaMatches": 5,
+        "fromIdleColorMatched": 123,
+        "bodyInteriorPixels": 138,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "side",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 124,
+        "bodyInteriorPixels": 173,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "down",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 154,
+        "bodyInteriorPixels": 174,
+        "errors": []
+      },
+      {
+        "action": "run",
+        "dir": "up",
+        "frames": 8,
+        "exactBodyAlphaMatches": 8,
+        "translationNormalizedAlphaMatches": 8,
+        "fromIdleColorMatched": 151,
+        "bodyInteriorPixels": 174,
+        "errors": []
+      }
+    ]
+  }
+]

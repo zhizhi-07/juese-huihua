@@ -1,0 +1,3463 @@
+{
+  "pixelScale": 2,
+  "bodySource": "素体主",
+  "partsSource": "16×16 · 干净素体",
+  "notes": "2倍PNG保留眼睛原有高清像素；Godot显示缩放0.5。未修改编辑器画布。空白帧不补画。",
+  "files": [
+    {
+      "file": "身体_纯底色/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "当前可见头发眼睛_合成预览/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "眼睛/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7"
+      ]
+    },
+    {
+      "file": "头发 _ 1 _ 后发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "头发 _ 齐肩短发 _ 后发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "头发 _ 短发 _ 后发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "高清 · 眼睛/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7"
+      ]
+    },
+    {
+      "file": "眼睛 _ 眼睛/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7"
+      ]
+    },
+    {
+      "file": "眼睛 _ 可爱/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7"
+      ]
+    },
+    {
+      "file": "头发 _ 通用发型 _ 前发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "头发 _ 齐刘海2 _ 前发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "头发 _ 刘海3 _ 前发/original16_walk.png",
+      "cellWidth": 32,
+      "cellHeight": 32,
+      "logicalCellWidth": 16,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 8,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 8,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "0_0_0",
+        "0_0_1",
+        "0_0_2",
+        "0_0_3",
+        "0_0_4",
+        "0_0_5",
+        "0_0_6",
+        "0_0_7",
+        "0_1_0",
+        "0_1_1",
+        "0_1_2",
+        "0_1_3",
+        "0_1_4",
+        "0_1_5",
+        "0_1_6",
+        "0_1_7",
+        "0_2_0",
+        "0_2_1",
+        "0_2_2",
+        "0_2_3",
+        "0_2_4",
+        "0_2_5",
+        "0_2_6",
+        "0_2_7"
+      ]
+    },
+    {
+      "file": "身体_纯底色/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_0",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "当前可见头发眼睛_合成预览/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_0",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "眼睛/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3"
+      ]
+    },
+    {
+      "file": "头发 _ 齐肩短发 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 短发 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_0",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "高清 · 眼睛/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3"
+      ]
+    },
+    {
+      "file": "眼睛 _ 可爱/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3"
+      ]
+    },
+    {
+      "file": "头发 _ 齐刘海2 _ 前发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 刘海3 _ 前发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 侧边马尾辫 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "头发 _ 侧边丸子头 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "头发 _ 双马尾 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 侧边批发 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "头发 _ 小啾啾 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "头发 _ 层次感批发 _ 后发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "眼睛 _ 眼睛1/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3"
+      ]
+    },
+    {
+      "file": "头发 _ 齐刘海 _ 前发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_0_0",
+        "1_0_1",
+        "1_0_2",
+        "1_0_3",
+        "1_1_0",
+        "1_1_1",
+        "1_1_2",
+        "1_1_3",
+        "1_2_1",
+        "1_2_2",
+        "1_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 斜齐刘海 _ 前发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "头发 _ 斜刘海 _ 前发/original16_idle.png",
+      "cellWidth": 34,
+      "cellHeight": 32,
+      "logicalCellWidth": 17,
+      "logicalCellHeight": 16,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "1_1_0"
+      ]
+    },
+    {
+      "file": "身体_纯底色/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "当前可见头发眼睛_合成预览/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "眼睛/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5"
+      ]
+    },
+    {
+      "file": "头发 _ 1 _ 后发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "头发 _ 齐肩短发 _ 后发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "头发 _ 短发 _ 后发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "高清 · 眼睛/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5"
+      ]
+    },
+    {
+      "file": "眼睛 _ 眼睛/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5"
+      ]
+    },
+    {
+      "file": "眼睛 _ 可爱/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5"
+      ]
+    },
+    {
+      "file": "头发 _ 通用发型 _ 前发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "头发 _ 齐刘海2 _ 前发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "头发 _ 刘海3 _ 前发/original16_pickup.png",
+      "cellWidth": 40,
+      "cellHeight": 40,
+      "logicalCellWidth": 20,
+      "logicalCellHeight": 20,
+      "logicalOrigin": {
+        "x": 0,
+        "y": 0
+      },
+      "columns": 6,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 6,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100,
+            100,
+            500
+          ]
+        }
+      ],
+      "presentFrames": [
+        "2_0_0",
+        "2_0_1",
+        "2_0_2",
+        "2_0_3",
+        "2_0_4",
+        "2_0_5",
+        "2_1_0",
+        "2_1_1",
+        "2_1_2",
+        "2_1_3",
+        "2_1_4",
+        "2_1_5",
+        "2_2_0",
+        "2_2_1",
+        "2_2_2",
+        "2_2_3",
+        "2_2_4",
+        "2_2_5"
+      ]
+    },
+    {
+      "file": "身体_纯底色/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "当前可见头发眼睛_合成预览/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "眼睛/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3"
+      ]
+    },
+    {
+      "file": "头发 _ 1 _ 后发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 齐肩短发 _ 后发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 短发 _ 后发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "高清 · 眼睛/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3"
+      ]
+    },
+    {
+      "file": "眼睛 _ 眼睛/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3"
+      ]
+    },
+    {
+      "file": "眼睛 _ 可爱/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3"
+      ]
+    },
+    {
+      "file": "头发 _ 通用发型 _ 前发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 齐刘海2 _ 前发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    },
+    {
+      "file": "头发 _ 刘海3 _ 前发/original16_sit.png",
+      "cellWidth": 52,
+      "cellHeight": 34,
+      "logicalCellWidth": 26,
+      "logicalCellHeight": 17,
+      "logicalOrigin": {
+        "x": 1,
+        "y": 0
+      },
+      "columns": 4,
+      "rows": [
+        {
+          "direction": "side",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "direction": "down",
+          "frames": 4,
+          "durationsMs": [
+            200,
+            200,
+            200,
+            200
+          ]
+        },
+        {
+          "direction": "up",
+          "frames": 4,
+          "durationsMs": [
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ],
+      "presentFrames": [
+        "3_0_0",
+        "3_0_1",
+        "3_0_2",
+        "3_0_3",
+        "3_1_0",
+        "3_1_1",
+        "3_1_2",
+        "3_1_3",
+        "3_2_0",
+        "3_2_1",
+        "3_2_2",
+        "3_2_3"
+      ]
+    }
+  ]
+}

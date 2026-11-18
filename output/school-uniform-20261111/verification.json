@@ -1,0 +1,14 @@
+{
+  "masters": 3,
+  "sourcePixels": [
+    30,
+    34
+  ],
+  "placement": [
+    15,
+    17
+  ],
+  "projectUnchanged": true,
+  "noApiWrite": true,
+  "allOtherFramesNotGenerated": true
+}

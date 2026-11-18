@@ -13,7 +13,21 @@ PE.ProjectPersistence=class {
   show(text,error=false){this.status.textContent=text;this.status.classList.toggle('save-error',error);this.status.title='当前工程独立保存；多人协作请先分出 AI 独立稿。';if(this.conflict){const b=document.createElement('button');b.textContent='处理保存冲突';b.onclick=()=>this.openConflictDialog();this.status.append(' ',b);}}
   db(){return this.dbPromise??=new Promise((resolve,reject)=>{const request=indexedDB.open('pixel-workbench',1);request.onupgradeneeded=()=>request.result.createObjectStore('projects');request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});}
   async localRead(){const db=await this.db();return new Promise((resolve,reject)=>{const store=db.transaction('projects').objectStore('projects'),blob=store.get(this.localKey),meta=store.get(this.localKey+'-meta');meta.onsuccess=()=>resolve({blob:blob.result,meta:meta.result});meta.onerror=()=>reject(meta.error);});}
-  async localWrite(blob,pending){const db=await this.db();return new Promise((resolve,reject)=>{const transaction=db.transaction('projects','readwrite'),store=transaction.objectStore('projects');store.put(blob,this.localKey);store.put({pending,revision:this.revision,savedAt:Date.now()},this.localKey+'-meta');transaction.oncomplete=resolve;transaction.onerror=()=>reject(transaction.error);});}
+  async localWrite(blob,pending,archive){
+    const db=await this.db();
+    return new Promise((resolve,reject)=>{
+      const transaction=db.transaction('projects','readwrite'),store=transaction.objectStore('projects'),metaKey=this.localKey+'-meta';
+      transaction.oncomplete=resolve;
+      transaction.onabort=()=>reject(transaction.error||new Error('本地草稿已变化，未替换'));
+      const write=()=>{store.put(blob,this.localKey);store.put({pending,revision:this.revision,savedAt:Date.now()},metaKey);};
+      if(!archive){write();return;}
+      const current=store.get(metaKey);
+      current.onsuccess=()=>{
+        if(current.result?.savedAt!==archive.meta?.savedAt||current.result?.revision!==archive.meta?.revision||current.result?.pending!==archive.meta?.pending){transaction.abort();return;}
+        store.put(archive,this.localKey+'-conflict-'+crypto.randomUUID());write();
+      };
+    });
+  }
   request(options={}){return fetch(this.base+'/api/project?id='+encodeURIComponent(this.projectId),{...options,headers:{...this.headers,...options.headers},cache:'no-store',signal:AbortSignal.timeout(5000)});}
   async apply(blob,preserveView=false){
     const app=this.app,p=app.project;
@@ -36,6 +50,12 @@ PE.ProjectPersistence=class {
       this.revision=response.status===404?'none':response.headers.get('ETag');
       if(local.blob&&(!local.meta||local.meta.pending)){
         const sharedRevision=this.revision;
+        if(response.ok&&sharedRevision&&(local.meta?.revision||'none')!==sharedRevision&&performance.getEntriesByType('navigation')[0]?.type==='reload'){
+          const blob=await response.blob();
+          await this.apply(blob);
+          await this.localWrite(blob,false,local);
+          this.ready=true;this.show('已读取共享最新版 · 冲突草稿已留本地备份');return true;
+        }
         await this.apply(local.blob);this.ready=true;this.dirty=true;
         // A pending draft still belongs to its original base, not the just-read server version.
         this.revision=local.meta?.revision||'none';
@@ -111,7 +131,8 @@ PE.ProjectPersistence=class {
     add('关闭',()=>dialog.close());dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();
   }
   async pull(){
-    if(!this.ready||this.dirty||this.saving||this.resolving||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
+    if(!this.ready||this.dirty||this.saving||this.resolving||this.pulling||this.app.suspendBackup||this.app.toolManager.isDrawing)return;
+    this.pulling=true;
     try{
       const response=await this.request({headers:{'If-None-Match':this.revision}});
       if(response.status===304||response.status===404)return;
@@ -120,6 +141,7 @@ PE.ProjectPersistence=class {
       if(this.dirty||this.saving||this.resolving||this.app.toolManager.isDrawing)return;
       await this.apply(blob,true);this.revision=response.headers.get('ETag');await this.localWrite(blob,false).catch(console.error);this.show('已同步共享修改');
     }catch(error){console.debug('等待共享工程连接',error.message);}
+    finally{this.pulling=false;}
   }
 };
 document.addEventListener('DOMContentLoaded',()=>{

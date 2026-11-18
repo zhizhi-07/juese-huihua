@@ -1,0 +1,162 @@
+{
+  "framesPerDirection": 4,
+  "totalFrames": 12,
+  "addedCels": 45,
+  "firstFramesExact": true,
+  "headsBodiesEyesFixed": true,
+  "sideHeightPreserved": true,
+  "clipped": 0,
+  "otherDataUnchanged": true,
+  "offsets": [
+    [
+      0,
+      0
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      -1
+    ]
+  ],
+  "durations": [
+    100,
+    300,
+    100,
+    300
+  ],
+  "stats": [
+    {
+      "direction": "side",
+      "fi": 1,
+      "arm": "hand 2",
+      "components": 1,
+      "movedPixels": 0
+    },
+    {
+      "direction": "side",
+      "fi": 1,
+      "arm": "hand",
+      "components": 1,
+      "movedPixels": 12
+    },
+    {
+      "direction": "side",
+      "fi": 2,
+      "arm": "hand 2",
+      "components": 1,
+      "movedPixels": 0
+    },
+    {
+      "direction": "side",
+      "fi": 2,
+      "arm": "hand",
+      "components": 1,
+      "movedPixels": 0
+    },
+    {
+      "direction": "side",
+      "fi": 3,
+      "arm": "hand 2",
+      "components": 1,
+      "movedPixels": 12
+    },
+    {
+      "direction": "side",
+      "fi": 3,
+      "arm": "hand",
+      "components": 1,
+      "movedPixels": 0
+    },
+    {
+      "direction": "down",
+      "fi": 1,
+      "arm": "hand 2",
+      "components": 0,
+      "movedPixels": 0
+    },
+    {
+      "direction": "down",
+      "fi": 1,
+      "arm": "hand",
+      "components": 2,
+      "movedPixels": 12
+    },
+    {
+      "direction": "down",
+      "fi": 2,
+      "arm": "hand 2",
+      "components": 0,
+      "movedPixels": 0
+    },
+    {
+      "direction": "down",
+      "fi": 2,
+      "arm": "hand",
+      "components": 2,
+      "movedPixels": 0
+    },
+    {
+      "direction": "down",
+      "fi": 3,
+      "arm": "hand 2",
+      "components": 0,
+      "movedPixels": 0
+    },
+    {
+      "direction": "down",
+      "fi": 3,
+      "arm": "hand",
+      "components": 2,
+      "movedPixels": 12
+    },
+    {
+      "direction": "up",
+      "fi": 1,
+      "arm": "hand 2",
+      "components": 2,
+      "movedPixels": 12
+    },
+    {
+      "direction": "up",
+      "fi": 1,
+      "arm": "hand",
+      "components": 0,
+      "movedPixels": 0
+    },
+    {
+      "direction": "up",
+      "fi": 2,
+      "arm": "hand 2",
+      "components": 2,
+      "movedPixels": 0
+    },
+    {
+      "direction": "up",
+      "fi": 2,
+      "arm": "hand",
+      "components": 0,
+      "movedPixels": 0
+    },
+    {
+      "direction": "up",
+      "fi": 3,
+      "arm": "hand 2",
+      "components": 2,
+      "movedPixels": 12
+    },
+    {
+      "direction": "up",
+      "fi": 3,
+      "arm": "hand",
+      "components": 0,
+      "movedPixels": 0
+    }
+  ]
+}

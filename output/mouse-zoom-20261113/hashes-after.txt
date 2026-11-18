@@ -1,0 +1,9 @@
+
+Algorithm : SHA256
+Hash      : A4E766F5951468A649F03ED76893C6E00F5F7FD783AC18BD9175CDE81A79E1EB
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\app.js
+
+Algorithm : SHA256
+Hash      : 8A2B800331346C5478EF7844946DED24E7EB931F7E6A0AAE38A11985A307E486
+Path      : C:\Users\Administrator\Desktop\角色绘画\js\canvas.js
+

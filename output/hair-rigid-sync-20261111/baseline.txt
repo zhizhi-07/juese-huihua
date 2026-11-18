@@ -1,0 +1,12 @@
+AssertionError [ERR_ASSERTION]: new native16 sync must not enable sway
+
+true !== false
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\hair-rigid-sync.cjs:11:26 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

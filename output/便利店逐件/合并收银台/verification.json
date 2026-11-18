@@ -1,0 +1,13 @@
+{
+  "target": "scene-store-item01-shelf-20261116",
+  "source": "scene-store-item02-checkout-20261116",
+  "saveStatus": 200,
+  "etag": "\"b89f666b383492421f8b097762be912a4f3cd98ce334b291004bf3ca7991a562\"",
+  "sha256": "b89f666b383492421f8b097762be912a4f3cd98ce334b291004bf3ca7991a562",
+  "sheets": [
+    "陈列冷柜 32×48",
+    "收银台 32×32"
+  ],
+  "addedLayers": 3,
+  "originalSheetsAndLayersUnchanged": true
+}

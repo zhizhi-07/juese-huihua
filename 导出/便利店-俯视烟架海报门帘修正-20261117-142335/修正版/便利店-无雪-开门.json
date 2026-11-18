@@ -1,0 +1,69 @@
+{
+  "frameSize": [
+    59,
+    45
+  ],
+  "frames": [
+    {
+      "rect": [
+        0,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 500
+    },
+    {
+      "rect": [
+        59,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        118,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        177,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        236,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 90
+    },
+    {
+      "rect": [
+        295,
+        0,
+        59,
+        45
+      ],
+      "durationMs": 500
+    }
+  ],
+  "trim": [
+    2,
+    7,
+    61,
+    52
+  ],
+  "curtainFixed": true
+}

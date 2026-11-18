@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=scene-store-item01-shelf-20261116",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"f3c632dca779780812e22b8a0579df7ca7b50d248e2f7900ff57c226e36858d3\""
+    },
+    "input": "candidate.json",
+    "sha256": "d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345"
+  },
+  "save": {
+    "status": 200,
+    "etag": "\"d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345\"",
+    "body": "{\"saved\":true,\"revision\":\"\\\"d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345\\\"\"}"
+  },
+  "readback": {
+    "status": 200,
+    "etag": "\"d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345\"",
+    "sha256": "d5f3d2406503a673b3d79874bcb40a8ae2b5167768024d3dd155e3354024b345",
+    "equalCandidate": true
+  },
+  "game": {
+    "path": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/便利店/零食架.png",
+    "backup": "游戏零食架-before-32x64.png",
+    "dimensions": [
+      16,
+      32
+    ],
+    "sha256": "0c111f9e76fa6e18eabb3f5d2e3f976737ad5482631d62a0933e332f44553015",
+    "importSettingsUnchanged": true
+  },
+  "restoreTest": {
+    "extraCopyOnly": true,
+    "restoredOriginalHash": true,
+    "finalGameNativePNGPreserved": true
+  }
+}

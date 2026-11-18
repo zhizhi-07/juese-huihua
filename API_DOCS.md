@@ -1,6 +1,6 @@
 # 本地保存接口
 
-- `GET /api/status`：服务状态。
+- `GET /api/status`：服务状态；`characterBaseProjectId` 是人物分支当前继承的素体工程编号。创建人物分支时可传 `baseRevision` 查询参数（素体 GET 的 ETag），若素体版本已变则返回 409。
 - `GET /api/projects`：当前工程列表，不含已归档工程。
 - `GET /api/project?id=main`：主工程JSON；响应头ETag是保存版本。
 - `GET /api/project?id=<编号>`：指定独立工程。

@@ -1,0 +1,61 @@
+diff --git a/output/eyes-all-actions-20261113/before/js/hair-animation.js b/js/hair-animation.js
+index 425fbc6..b927ae9 100644
+--- a/output/eyes-all-actions-20261113/before/js/hair-animation.js
++++ b/js/hair-animation.js
+@@ -3,13 +3,12 @@ window.PE = window.PE || {};
+ (() => {
+   'use strict';
+   const actions = {idle:'待机', walk:'行走', pickup:'拾取', sit:'坐姿', sleep:'睡觉'};
+-  const extraActions = ['浇水','镐','斧头','锄头','镰刀','种植','钓鱼-甩竿','钓鱼-持竿','钓鱼-收线','钓鱼-上鱼'];
+   const directions = {down:'正面', side:'侧面', up:'背面'};
+   const clone = value => JSON.parse(JSON.stringify(value));
+   const cache = new WeakMap();
+   const headAnchors = new WeakMap();
+   function samePixels(a,b){if(a.length!==b.length)return false;for(let i=0;i<a.length;i++)if(a[i]!==b[i])return false;return true;}
+-  const supported = (sheet, part) => (Object.hasOwn(actions, sheet?.name?.replace(/^original(?:16|32)_/, '')) || part!=='eyes'&&extraActions.includes(sheet?.name)) && PE.isCharacterSheet(sheet);
++  const supported = sheet => PE.isCharacterSheet(sheet);
+   const isIdle = sheet => /^original(?:16|32)_idle$/.test(sheet?.name || '');
+   const active = (sheet, part) => supported(sheet,part) && PE.isEditorSheet(sheet);
+   const isEyes = layer => PE.classifyPart(layer?.name)?.slot === '眼睛';
+@@ -118,19 +117,21 @@ window.PE = window.PE || {};
+     return result;
+   }
+   function setup(p, layer=p.getCurrentLayer()) {
+-    const known=master(p,layer);if(known)return known;
++    const known=master(p,layer);if(known)layer=known;
+     editable(layer);
+     if(!isIdle(p.spriteSheets[layer.sheetIndex]))throw Error('首次关联请在待机中选择头发或眼睛；各方向第一帧作为基准');
+     if(layer.parent!=null)throw Error('请先把此部件作为独立部件层；不自动合并方向分组');
+     const part=isEyes(layer)?'eyes':undefined;
+     const matches=p.layers.filter(l=>l!==layer&&!l.isGroup&&l.name===layer.name&&active(p.spriteSheets[l.sheetIndex],part));
+-    if(matches.some(l=>l.parent!=null||l.hairAnimationId)||new Set(matches.map(l=>l.sheetIndex)).size!==matches.length)throw Error('其他动作存在重复或已关联同名层，请先明确部件名称');
++    if(matches.some(l=>l.parent!=null||l.hairAnimationId&&l.hairAnimationId!==known?.hairAnimation.id)||new Set(matches.map(l=>l.sheetIndex)).size!==matches.length)throw Error('其他动作存在重复或已关联同名层，请先明确部件名称');
+     matches.forEach(editable);
+-    const offsets=calibrate(p,layer),id=crypto.randomUUID();
+-    layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(p.spriteSheets[layer.sheetIndex]),overrides:{},offsets};
+-    // Keep the existing serialized recipe key so both parts use the same save/undo path.
+-    if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=[];layer.hairAnimation.manualPreservation=true;}
+-    layer.hairAnimation.headOffsets=clone(offsets);
++    const offsets=calibrate(p,layer),id=known?.hairAnimation.id||crypto.randomUUID();
++    if(!known){
++      layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(p.spriteSheets[layer.sheetIndex]),overrides:{},offsets};
++      // Keep the existing serialized recipe key so both parts use the same save/undo path.
++      if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=[];layer.hairAnimation.manualPreservation=true;}
++      layer.hairAnimation.headOffsets=clone(offsets);
++    }
+     layer.hairAnimationId=id;
+     for(const [si,s]of p.spriteSheets.entries())if(active(s,part)&&si!==layer.sheetIndex) {
+       let target=matches.find(l=>l.sheetIndex===si);
+diff --git a/output/eyes-all-actions-20261113/before/index.html b/index.html
+index 3ba270d..71c11a9 100644
+--- a/output/eyes-all-actions-20261113/before/index.html
++++ b/index.html
+@@ -362,7 +362,7 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=eyes-no-auto-blink-20261113"></script>
++  <script src="js/hair-animation.js?v=eyes-all-actions-20261113"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>

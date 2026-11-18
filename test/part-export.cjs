@@ -28,6 +28,14 @@ async function main(){
  const archive=ex.exportProject(false),loaded=await ex.importProject(archive);assert.deepEqual(loaded.project.layers.map(l=>l.visible),layers.map(l=>l.visible),'saved switch states reload');ex.project=p;
  layers.forEach(l=>l.visible=false);await assert.rejects(ex.exportPartsAsZip(),/没有非透明/);
  await assert.rejects(ex.exportPartsAsZip(99),/请选择/);
+ const eye=layer('高清 · 眼睛',0);
+ eye.frameData.set('0_2_0',image());
+ layers.push(eye);
+ const eyeZip=await JSZip.loadAsync(await (await ex.exportPartsAsZip(layers.indexOf(eye))).arrayBuffer());
+ const [eyeFile]=JSON.parse(await eyeZip.file('部件说明.json').async('string')).files;
+ const atlas=png.decode(await eyeZip.file(eyeFile.file).async('nodebuffer'));
+ assert.equal(atlas.data[(2*atlas.width+4)*4+3],255);
+ assert(!atlas.data.subarray(2*eyeFile.frameHeight*atlas.width*4).some(Boolean),'stored rear eye pixels never enter the exported atlas');
  console.log('PASS: named all-action ZIPs, hidden selected family, visible-only bundle, transparent back rows, 40px alignment, frame timing, visibility persistence, no pixel mutation, empty/error handling.');
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});

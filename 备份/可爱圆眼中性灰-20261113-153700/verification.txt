@@ -1,0 +1,1 @@
+PUT 200; readback exact; only layer 198 dataURL changed; 16 frames; map #e7cdfe -> #d6d6d6, #bf9ae0 -> #aaaaaa, #8352ad -> #636363, #71429a -> #525252

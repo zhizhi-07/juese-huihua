@@ -1,0 +1,21 @@
+AssertionError [ERR_ASSERTION]: eyes detect head-only movement
+
+0 !== 1
+
+    at C:\Users\Administrator\Desktop\角色绘画\test\eyes-current-head.cjs:10:9
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\eyes-current-head.cjs:24:3)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+EXIT: 1

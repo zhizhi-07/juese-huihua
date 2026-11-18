@@ -1,0 +1,62 @@
+[
+  {
+    "name": "镐",
+    "frames": 6,
+    "directions": [
+      "side",
+      "down",
+      "up"
+    ],
+    "w": 30,
+    "h": 29,
+    "sourceSHA256": "a58a8f50b08c8ec81823eed727fcfaed4523d0c54ead29c35ae7de065d87e011"
+  },
+  {
+    "name": "斧头",
+    "frames": 6,
+    "directions": [
+      "side",
+      "down",
+      "up"
+    ],
+    "w": 31,
+    "h": 30,
+    "sourceSHA256": "eca9bae23f5396b8e2db12c1d17b0a56b25407048287f2aa8732e65c46cec2e1"
+  },
+  {
+    "name": "锄头",
+    "frames": 6,
+    "directions": [
+      "side",
+      "down",
+      "up"
+    ],
+    "w": 29,
+    "h": 28,
+    "sourceSHA256": "c5858ac167ac9049d020fd812a15ea7010b212f8025394230d95f6309cffa65a"
+  },
+  {
+    "name": "镰刀",
+    "frames": 6,
+    "directions": [
+      "side",
+      "down",
+      "up"
+    ],
+    "w": 32,
+    "h": 27,
+    "sourceSHA256": "3934d8a82aace027b26751064477c9cea0297aba3645da753a5b2c2826ee23f0"
+  },
+  {
+    "name": "种植",
+    "frames": 4,
+    "directions": [
+      "side",
+      "down",
+      "up"
+    ],
+    "w": 24,
+    "h": 23,
+    "sourceSHA256": "9f51e0b79d176457b3cd6c7d7517827077f715abcd432457c95989c9b12975b6"
+  }
+]

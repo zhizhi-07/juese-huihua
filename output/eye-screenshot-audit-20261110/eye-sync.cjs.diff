@@ -1,0 +1,24 @@
+diff --git a/output/eye-screenshot-audit-20261110/before/test/eye-sync.cjs b/test/eye-sync.cjs
+index f6aef92..39f3226 100644
+--- a/output/eye-screenshot-audit-20261110/before/test/eye-sync.cjs
++++ b/test/eye-sync.cjs
+@@ -59,8 +59,8 @@ async function main(){
+  const kept=sit.getFrameData('3_1_1');
+  for(let attempt=0;attempt<2;attempt++){
+    H.sync(shared.app);
+-   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,6)),'side sitting eyes: head displacement plus one grid pixel, regardless of saved Y');
+-   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,8)),'side sitting eyes follow the later head displacement plus one grid pixel');
++   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,4)),'side sitting eyes: head displacement minus one grid pixel, regardless of saved Y');
++   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,6)),'side sitting eyes follow the later head displacement minus one grid pixel');
+    assert.deepEqual(raster(sit.getFrameData('3_0_0')),raster(pixels(3,5)),'non-side sitting eyes unchanged');
+    assert.equal(sit.getFrameData('3_1_1'),kept);
+  }
+@@ -74,7 +74,7 @@ async function main(){
+    const target=p.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===eyes.hairAnimationId);
+    const generated=target.getFrameData('3_1_0');
+    assert.deepEqual([generated.width,generated.height],[8,4]);
+-   assert.deepEqual(generated.placement,{...source.placement,y:6.5});
++   assert.deepEqual(generated.placement,{...source.placement,y:4.5});
+    assert.deepEqual(generated.data,source.data);
+    assert.notEqual(generated.data,source.data);
+    assert.equal(eyes.getFrameData('0_1_0'),source);

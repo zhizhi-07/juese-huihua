@@ -1,0 +1,18 @@
+{
+  "js/hair-animation.js": {
+    "sha256": "d970004f93b0e44383cebdde61ed91c97e7fb55c4cc8a663b834b2fe65d3ee22",
+    "servedMatchesDisk": true
+  },
+  "js/core.js": {
+    "sha256": "8cd5d6a396b28ef24f537bc30ad3db9e0784be4a4106a8baf6f01473e27c19e5",
+    "servedMatchesDisk": true
+  },
+  "index.html": {
+    "sha256": "1b9f77691b07e409146b3f86c3ae950c5d98e0ab94752b67e99c999fa12eed1a",
+    "servedMatchesDisk": true
+  },
+  "projectSHA256": "3040ebbd14bb2ad4e2b900a848faf7f82537ffd313557b9489eee0576000b0d4",
+  "etag": "\"3040ebbd14bb2ad4e2b900a848faf7f82537ffd313557b9489eee0576000b0d4\"",
+  "sameAsLatestStudy": true,
+  "note": "User hair changed during work relative to earlier study; latest snapshot was retested. No PUT to live API; browser writes intercepted."
+}

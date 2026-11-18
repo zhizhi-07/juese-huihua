@@ -1,0 +1,10 @@
+﻿const fs=require('fs'),path=require('path'),f=path.resolve(__dirname,'../../test/clothing-sync.cjs');let s=fs.readFileSync(f,'utf8');
+fs.writeFileSync(path.join(__dirname,'before','clothing-sync.test.cjs'),s);
+const rep=(a,b)=>{if(s.split(a).length!==2)throw Error('missing '+a.slice(0,50));s=s.replace(a,()=>b);};
+rep(`assert(result.sitPending);assert(!result.edits.some(e=>e.key.startsWith('3_')));`,`assert(!result.sitPending);assert(result.edits.some(e=>e.key.startsWith('3_')),'blank sitting is generated from the idle masters');assert.deepEqual(source.clothingSync.sitGenerated,p.spriteSheets[3].actions.map((_,ai)=>\`3_\${ai}_0\`));`);
+rep(`const seat=C.plan(p,source);assert.equal(seat.sitPending,ai===0);
+    if(ai===0)assert(!seat.edits.some(e=>e.key.startsWith('3_')));
+    else C.apply(seat);`,`assert(!source.clothingSync.sitGenerated.includes(key),'a confirmed first frame is no longer auto-generated');
+    const seat=C.plan(p,source);assert(!seat.sitPending);assert(!seat.edits.some(e=>e.key===key),'a confirmed first frame is the master');C.apply(seat);`);
+rep(`unconfirmed sitting untouched`,`blank sitting generated, painted first frames kept`);
+fs.writeFileSync(f,s);

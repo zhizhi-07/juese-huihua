@@ -1,0 +1,3 @@
+PASS: rear hair covers head from front, covers head from back, hidden rear reveals scalp, accessories on top, canvas and PNG fallback agree, project indexes unchanged.
+PASS: main editable canvas, preview composite and PNG fallback have identical layer ordering in front/back views with rear hair and accessories toggled.
+exit=0

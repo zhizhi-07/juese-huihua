@@ -1,0 +1,26 @@
+{
+  "source": "C:/Users/Administrator/Desktop/Hana Caraka - Base Character/Hana Caraka - Base Character/Basic/jump.aseprite",
+  "sha256": "c777b3a31ddb63f5c634305d208cd3c056ba5fefd9bfd2ce21a2867948a5aa4e",
+  "sitIndex": 13,
+  "sideUnchanged": true,
+  "allOriginalLayersUnchanged": true,
+  "otherActionsUnchanged": true,
+  "stats": [
+    {
+      "direction": "down",
+      "sourceFrame": 5,
+      "ink": 169,
+      "eyesCount": 4,
+      "pixelsMatch": true,
+      "clipped": 0
+    },
+    {
+      "direction": "up",
+      "sourceFrame": 5,
+      "ink": 169,
+      "eyesCount": 0,
+      "pixelsMatch": true,
+      "clipped": 0
+    }
+  ]
+}

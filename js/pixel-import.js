@@ -128,8 +128,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   const imageSize=document.createElement('label'),placedWidth=document.createElement('input'),imageInfo=document.createElement('span');
   imageInfo.style.cssText='width:190px;flex:0 0 190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
   imageSize.textContent='图层宽度 ';placedWidth.type='number';placedWidth.min='1';placedWidth.max='4096';placedWidth.setAttribute('aria-label','图层缩放宽度');imageSize.append(placedWidth);editStatus.before(imageSize,imageInfo);
-  const resizeLabel=document.createElement('label'),resizeMode=document.createElement('select');
-  resizeLabel.textContent='缩放方式 ';resizeMode.setAttribute('aria-label','图层缩放方式');resizeMode.innerHTML='<option value="pixel">普通像素缩放</option><option value="hd">高清无损缩放</option>';resizeLabel.append(resizeMode);imageSize.before(resizeLabel);
+  // 两种缩放方式常驻工具栏表面，不塞进折叠菜单，随时看得到、点得到。
+  const resizeMode=document.createElement('div'),resizeModeButtons=[];
+  resizeMode.className='image-resize-mode';resizeMode.setAttribute('role','group');resizeMode.setAttribute('aria-label','图层缩放方式');
+  resizeMode.innerHTML='<span class="image-resize-mode-title">缩放方式</span>';
+  for(const [value,label,hint]of [['pixel','普通像素缩放','按最近邻真实改变像素数量，不混色；缩小会丢失细节，可撤销'],['hd','高清像素缩放','只改变放置大小，保留源像素，拖拽 / 宽度输入都不重采样']]){
+    const button=document.createElement('button');button.type='button';button.className='image-resize-mode-option';button.dataset.resizeMode=value;button.textContent=label;button.title=hint;button.setAttribute('aria-pressed','false');resizeMode.append(button);resizeModeButtons.push(button);
+  }
+  imageSize.before(resizeMode);
+  let resizeModeValue=app.toolManager.imageResizeMode||'pixel',resizeModeLocked=false;
+  function paintResizeMode(){
+    for(const button of resizeModeButtons){
+      const on=button.dataset.resizeMode===resizeModeValue;
+      button.classList.toggle('active',on);button.setAttribute('aria-pressed',String(on));button.disabled=resizeModeLocked;
+    }
+  }
   const freeLabel=document.createElement('label'),freePlacement=document.createElement('input'),positionFields=document.createElement('span');
   freePlacement.type='checkbox';freePlacement.setAttribute('aria-label','无视像素格放置');freeLabel.append(freePlacement,'无视像素格放置（普通 / 高清图层）');
   positionFields.className='pixel-import-controls image-position-fields';positionFields.innerHTML='<label>X <input type="number" step="1" aria-label="图层位置 X"></label><label>Y <input type="number" step="1" aria-label="图层位置 Y"></label>';
@@ -138,17 +151,20 @@ document.addEventListener('DOMContentLoaded',()=>{
     const p=app.project,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=data?.placement,bounds=app.toolManager.getLayerPlacement();
     imageSize.style.display='flex';placedWidth.disabled=!bounds||app.toolManager.isDrawing;
     imageInfo.textContent=r?'源像素 '+data.width+'×'+data.height+' → 放置 '+r.w+'×'+r.h:bounds?'普通像素图层':'当前帧无图层内容';imageInfo.title=imageInfo.textContent;
-    resizeMode.value=app.toolManager.imageResizeMode||(r?'hd':'pixel');resizeMode.disabled=app.toolManager.isDrawing;
+    resizeModeValue=app.toolManager.imageResizeMode||(r?'hd':'pixel');resizeModeLocked=app.toolManager.isDrawing;paintResizeMode();
     if(document.activeElement!==placedWidth)placedWidth.value=bounds?bounds.w:'';
     const position=r||(freePlacement.checked?app.toolManager.getLayerPlacement():null);
     positionFields.style.display='flex';
     for(const [input,axis]of [[positionX,'x'],[positionY,'y']]){input.disabled=!position||app.toolManager.isDrawing;input.step=freePlacement.checked?'0.1':'1';if(document.activeElement!==input)input.value=position?Math.round(position[axis]*1e6)/1e6:'';}
   }
-  resizeMode.onchange=()=>{
-    if(app.toolManager.isDrawing){imageDetails();return;}
-    app.toolManager.imageResizeMode=resizeMode.value;
-    editStatus.textContent=resizeMode.value==='pixel'?'普通像素缩放：按最近邻实际改变像素数量，不混色；缩小会丢失细节，可撤销。':'高清无损缩放：只改变放置大小，保留本次缩放前的源像素。拖拽、宽度输入与放大 / 缩小按钮均生效。';
+  for(const button of resizeModeButtons)button.onclick=()=>{
+    if(button.disabled)return;
+    if(app.toolManager.isDrawing){resizeModeValue=app.toolManager.imageResizeMode||'pixel';paintResizeMode();imageDetails();return;}
+    const value=button.dataset.resizeMode;
+    resizeModeValue=value;paintResizeMode();app.toolManager.imageResizeMode=value;
+    editStatus.textContent=value==='pixel'?'普通像素缩放：按最近邻实际改变像素数量，不混色；缩小会丢失细节，可撤销。':'高清像素缩放：只改变放置大小，保留本次缩放前的源像素。拖拽、宽度输入与放大 / 缩小按钮均生效。';
   };
+  paintResizeMode();
   freePlacement.onchange=()=>{
     if(app.toolManager.isDrawing){freePlacement.checked=app.toolManager.freeImagePlacement;editStatus.textContent='请先结束当前拖动';return;}
     app.toolManager.freeImagePlacement=freePlacement.checked;imageDetails();
@@ -169,7 +185,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const p=app.project,tm=app.toolManager,data=p.getCurrentLayer()?.getFrameData(p.getFrameKey()),r=tm.getLayerPlacement(),w=Number(placedWidth.value);
     try{
       if(!r||tm.isDrawing||!Number.isSafeInteger(w)||w<1||w>4096)throw new Error('请输入有效的放置宽度，并先结束拖动');
-      const target={...r,w,h:Math.max(1,Math.round(w*(data.placement?data.height/data.width:r.h/r.w)))},mode=resizeMode.value;
+      const target={...r,w,h:Math.max(1,Math.round(w*(data.placement?data.height/data.width:r.h/r.w)))},mode=resizeModeValue;
       if(!tm.transformSelection(p.currentLayerIndex,p.getFrameKey(),r,target))throw new Error('图片范围无效、图层锁定或包含保护区域，未修改原图');
       app.persistence?.markDirty();app.updateAll();editStatus.textContent=mode==='hd'?'只改变图片摆放尺寸，源像素未重采样，可撤销':'已按普通像素缩放改变像素数量，可撤销；工程仍需保存';
     }catch(error){editStatus.textContent=error.message;imageDetails();if(r)placedWidth.value=r.w;}
@@ -195,28 +211,39 @@ document.addEventListener('DOMContentLoaded',()=>{
   menu.addEventListener('click',e=>{if(e.target.closest('button'))menu.open=false;});
   const dialog=document.createElement('dialog');dialog.className='advanced-dialog pixel-import-dialog';dialog.setAttribute('aria-label','上传图片与裁选');
   dialog.innerHTML=`<div class="dialog-title"><h2>上传图片 · 裁选 / 转像素</h2><button type="button" data-close class="studio-button">关闭</button></div>
-    <label>选择图片 <input type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传源图片"></label>
+    <label>选择图片（也可直接把图片从外部拖进窗口） <input type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传源图片"></label>
     <p><label><input type="checkbox" data-hd>高清图片图层（保留原图，无损缩放）</label><br>勾选后，尺寸只控制图片在画布上占多大；不减色、不像素化。放入后直接在主画布逐源像素绘画、擦除与框选（编辑最大512×512），其他图层仍作位置参考。</p>
     <div class="image-crop-area"><section><h3>原图：拖动框选 · 框内移动 · 右下角缩放</h3><canvas data-source aria-label="原图裁选"></canvas>
     <div class="crop-fields"><label>X <input type="number" min="-16384" value="0" aria-label="裁选 X"></label><label>Y <input type="number" min="-16384" value="0" aria-label="裁选 Y"></label><label>宽 <input type="number" min="1" value="1" aria-label="裁选宽度"></label><label>高 <input type="number" min="1" value="1" aria-label="裁选高度"></label></div>
     <button type="button" data-all class="studio-button">选整张图</button><button type="button" data-reselect class="studio-button" aria-pressed="false">重新框选</button>
     <div class="pixel-import-controls"><select data-row aria-label="精灵方向"><option value="0">正面</option><option value="1">左侧</option><option value="2">右侧</option><option value="3">背面</option></select><select data-column aria-label="精灵帧"><option value="0">第1帧</option><option value="1" selected>第2帧</option><option value="2">第3帧</option></select><button type="button" data-cell class="studio-button">按3×4精灵格裁选</button></div>
     </section><section><h3>导入预览</h3><canvas data-preview aria-label="裁选结果预览"></canvas></section></div>
+    <div class="pixel-import-controls"><label><input type="checkbox" data-exact checked>原样放进画布 · 纯像素 1:1（不缩放、不减色、不改色板）</label></div>
     <div class="pixel-import-controls"><label><span data-width-label>像素宽度</span> <input type="number" min="1" max="512" value="32" aria-label="像素宽度"></label><button type="button" data-fit class="studio-button">适合当前画布</button>
-    <label><input type="checkbox" data-pixel checked>转成像素图</label><label>颜色 <select data-colors aria-label="颜色数量"><option value="0" selected>保留原图颜色</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label>
+    <label><input type="checkbox" data-pixel>转成像素图</label><label>颜色 <select data-colors aria-label="颜色数量"><option value="0" selected>保留原图颜色</option><option>8</option><option>16</option><option>32</option><option>64</option></select></label>
     <label>缩小方式 <select data-sampling aria-label="缩小方式"><option value="nearest">最近邻（保留像素形状）</option><option value="smooth">平滑缩小（照片 / 大图）</option></select></label>
     <label>色板 <select data-palette aria-label="输出色板"><option value="original">原色</option><option value="hair-gray">灰色去色（保留阴影）</option><option value="hair-gray-three">头发规则灰色（三色）</option></select></label></div>
     <div class="pixel-import-controls"><button type="button" data-flip-x class="studio-button" aria-pressed="false">水平翻转</button><button type="button" data-flip-y class="studio-button" aria-pressed="false">上下翻转</button><label><input type="checkbox" data-thin aria-label="保细线轮廓">保细线轮廓（可能增粗，默认关闭）</label><button type="button" data-photo class="studio-button">原图缩放（不做像素化）</button></div>
     <div class="pixel-import-controls"><label><input type="checkbox" data-key>按颜色抠图</label><input type="color" data-key-color value="#303030" aria-label="抠除颜色"><button type="button" data-pick class="studio-button" aria-pressed="false">从原图取色</button><label>容差 <input type="number" data-tolerance value="32" min="0" max="255" aria-label="抠图容差"></label><label><input type="checkbox" data-neutral>只抠灰黑</label><button type="button" data-black class="studio-button">去黑色人形</button></div>
     <p>灰色去色：按原图亮度转灰，保留高光、阴影、深色描边与透明度，不限制为三色。头发规则灰色（三色）：描边 #777777 · 阴影 #B2B2B2 · 底色 #D1D1D1。裁框可拖出原图，外部留透明边；高清素材可用原图缩放保留半透明，不减色。预览不改原文件。</p>
+    <p>原样放进画布：裁框里的像素原封不动复制进来，不缩放、不量化颜色、不改色板，原图 24 × 16 放进来就是 24 × 16。纯像素图（自己画的、Aseprite 导出的）选这个就行，只有照片或大图才需要取消勾选改用缩放。</p>
     <p data-status aria-live="polite">选择图片后可框选局部，再调整尺寸和颜色。</p><div class="image-import-actions"><button type="button" data-place class="studio-button save-primary" disabled>放到当前画布</button><button type="button" data-import class="studio-button" disabled>新建独立素材</button></div>
     <p>放入后拖动图片移动，拖动右下角白色方块等比缩放。取消选中后，用“移动 / 缩放”点回图片；方向键微调，Ctrl+Z 撤销。</p>`;
   document.body.append(dialog);
   const file=dialog.querySelector('input[type=file]'),width=dialog.querySelector('[aria-label="像素宽度"]'),colors=dialog.querySelector('[data-colors]'),sampling=dialog.querySelector('[data-sampling]'),pixelize=dialog.querySelector('[data-pixel]'),sourceCanvas=dialog.querySelector('[data-source]'),preview=dialog.querySelector('[data-preview]'),status=dialog.querySelector('[data-status]'),place=dialog.querySelector('[data-place]'),submit=dialog.querySelector('[data-import]'),fields=[...dialog.querySelectorAll('.crop-fields input')];
   const palette=dialog.querySelector('[data-palette]'),key=dialog.querySelector('[data-key]'),keyColor=dialog.querySelector('[data-key-color]'),tolerance=dialog.querySelector('[data-tolerance]'),neutral=dialog.querySelector('[data-neutral]'),pick=dialog.querySelector('[data-pick]');
   const flipX=dialog.querySelector('[data-flip-x]'),flipY=dialog.querySelector('[data-flip-y]'),thin=dialog.querySelector('[data-thin]'),reselect=dialog.querySelector('[data-reselect]');
-  const hd=dialog.querySelector('[data-hd]');
+  const hd=dialog.querySelector('[data-hd]'),exact=dialog.querySelector('[data-exact]'),fitButton=dialog.querySelector('[data-fit]');
   let image=null,filename='',loading=false,crop=null,pixels=null,start=null,picking=false,selectAgain=false;
+  function applyExactState(){
+    if(!exact.checked)return;
+    hd.checked=false;pixelize.checked=false;sampling.value='nearest';palette.value='original';colors.value='0';thin.checked=false;
+  }
+  function rememberExact(){
+    try{localStorage.setItem('pe.imageExact',exact.checked?'1':'0');}catch(error){}
+  }
+  try{if(localStorage.getItem('pe.imageExact')==='0')exact.checked=false;}catch(error){}
+  applyExactState();
   trigger.onclick=()=>dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();
   function drawSource(){
     if(!image)return;const scale=Math.min(360/image.width,200/image.height);sourceCanvas.width=Math.max(1,Math.round(image.width*scale));sourceCanvas.height=Math.max(1,Math.round(image.height*scale));
@@ -226,18 +253,27 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   function fit(){if(!crop)return;const f=app.project.getCurrentFrame();width.value=Math.max(1,Math.min(512,crop.w,f?.width||512,Math.floor((f?.height||512)*crop.w/crop.h)));}
   function render(){
-    submit.disabled=place.disabled=true;pixels=null;colors.disabled=hd.checked||!pixelize.checked||palette.value!=='original';thin.disabled=hd.checked||!pixelize.checked||sampling.value!=='nearest';pixelize.disabled=sampling.disabled=palette.disabled=hd.checked;
-    dialog.querySelector('[data-photo]').disabled=hd.checked;dialog.querySelector('[data-width-label]').textContent=hd.checked?'放置宽度':'像素宽度';
-    width.setAttribute('aria-label',hd.checked?'放置宽度':'像素宽度');if(!image||loading)return;
+    submit.disabled=place.disabled=true;pixels=null;
+    const exactMode=exact.checked;
+    colors.disabled=exactMode||hd.checked||!pixelize.checked||palette.value!=='original';thin.disabled=exactMode||hd.checked||!pixelize.checked||sampling.value!=='nearest';
+    pixelize.disabled=sampling.disabled=palette.disabled=exactMode||hd.checked;hd.disabled=exactMode;width.disabled=exactMode;
+    dialog.querySelector('[data-photo]').disabled=exactMode||hd.checked;
+    const widthLabel=exactMode?'原像素宽度（锁定）':hd.checked?'放置宽度':'像素宽度';
+    dialog.querySelector('[data-width-label]').textContent=widthLabel;width.setAttribute('aria-label',widthLabel);
+    if(!image||loading)return;
+    if(exactMode)width.value=crop.w;
     try{
       const rgb=keyColor.value.match(/[a-f0-9]{2}/gi).map(v=>parseInt(v,16));
-      const w=Number(width.value),h=Math.max(1,Math.round(crop.h*w/crop.w));
+      const w=exactMode?crop.w:Number(width.value),h=exactMode?crop.h:Math.max(1,Math.round(crop.h*w/crop.w));
+      if(exactMode&&(crop.w>512||crop.h>512))throw new Error('原样 1:1 单边上限 512 像素，这张是 '+crop.w+' × '+crop.h+'；可取消勾选「原样放进画布」改用缩放');
       if(!Number.isSafeInteger(w)||w<1||w>512||h>512)throw new Error('放置或输出宽高需要在 1–512 之间');
-      pixels=PE.imageToPixels(image,crop,w,{keepSource:hd.checked,pixelize:pixelize.checked,colors:Number(colors.value),sampling:sampling.value,palette:palette.value,keyColor:key.checked?{rgb,tolerance:Number(tolerance.value),neutralOnly:neutral.checked}:null,flipX:flipX.getAttribute('aria-pressed')==='true',flipY:flipY.getAttribute('aria-pressed')==='true',preserveThin:thin.checked});
+      pixels=PE.imageToPixels(image,crop,w,{keepSource:hd.checked,pixelize:exactMode?false:pixelize.checked,colors:exactMode?0:Number(colors.value),sampling:exactMode?'nearest':sampling.value,palette:exactMode?'original':palette.value,keyColor:key.checked?{rgb,tolerance:Number(tolerance.value),neutralOnly:neutral.checked}:null,flipX:flipX.getAttribute('aria-pressed')==='true',flipY:flipY.getAttribute('aria-pressed')==='true',preserveThin:thin.checked});
       if(hd.checked)pixels.placement={x:0,y:0,w,h};
       preview.width=pixels.width;preview.height=pixels.height;preview.getContext('2d').putImageData(pixels,0,0);
+      submit.textContent=exactMode?'新建独立素材（'+pixels.width+' × '+pixels.height+' 原像素）':'新建独立素材';
       const f=app.project.getCurrentFrame(),fits=f&&!f.locked&&w<=f.width&&h<=f.height;
-      status.textContent=(hd.checked?'高清原图 '+pixels.width+' × '+pixels.height+' 像素保持不变 · 放置 '+w+' × '+h+' 画布单位':'裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 灰色去色，保留阴影':palette.value==='hair-gray-three'?' · 头发三色灰':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色'))+(key.checked?' · 已抠色':'')+(fits?'':'；比当前画布大，可点“适合当前画布”或新建独立素材');
+      const size=exactMode?'原像素 '+pixels.width+' × '+pixels.height+' 原样放入 · 不缩放、不减色、不改色板':hd.checked?'高清原图 '+pixels.width+' × '+pixels.height+' 像素保持不变 · 放置 '+w+' × '+h+' 画布单位':'裁选 '+crop.w+' × '+crop.h+' → '+pixels.width+' × '+pixels.height+' 像素'+(palette.value==='hair-gray'?' · 灰色去色，保留阴影':palette.value==='hair-gray-three'?' · 头发三色灰':pixelize.checked&&Number(colors.value)?' · 最多 '+colors.value+' 色':' · 保留原图颜色');
+      status.textContent=size+(key.checked&&!exactMode?' · 已抠色':'')+(fits?'':exactMode?'；比当前画布 '+(f?f.width+' × '+f.height:'')+' 大：可点「新建独立素材」按原像素存成一张，或取消勾选改用缩放':'；比当前画布大，可点“适合当前画布”或新建独立素材');
       submit.disabled=false;place.disabled=!fits;
     }catch(error){status.textContent=error.message;}
   }
@@ -269,11 +305,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   sourceCanvas.onpointercancel=()=>{if(!start)return;crop=start.crop;start=null;drawSource();render();};
   fields.forEach(input=>input.oninput=()=>{const [x,y,w,h]=fields.map(f=>Number(f.value));crop={x,y,w,h};fit();render();if(pixels)drawSource();});
   dialog.querySelector('[data-all]').onclick=()=>{if(!image)return;crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();render();};
-  dialog.querySelector('[data-fit]').onclick=()=>{fit();render();};
+  dialog.querySelector('[data-fit]').onclick=()=>{exact.checked=false;rememberExact();fit();render();};
+  exact.onchange=()=>{applyExactState();rememberExact();render();};
   reselect.onclick=()=>{selectAgain=true;reselect.setAttribute('aria-pressed','true');status.textContent='从原图任意位置重新拖框；可拖出图像边界留透明边';};
   for(const button of [flipX,flipY])button.onclick=()=>{button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));render();};
   thin.onchange=render;
-  dialog.querySelector('[data-photo]').onclick=()=>{pixelize.checked=false;sampling.value='smooth';palette.value='original';colors.value='0';key.checked=false;render();};
+  dialog.querySelector('[data-photo]').onclick=()=>{exact.checked=false;rememberExact();pixelize.checked=false;sampling.value='smooth';palette.value='original';colors.value='0';key.checked=false;render();};
   dialog.querySelector('[data-cell]').onclick=()=>{
     if(!image||loading)return;
     if(image.width%3||image.height%4){status.textContent='此图不能均分为3列×4行，请手动裁选';return;}
@@ -281,16 +318,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   };
   pick.onclick=()=>{picking=!picking;pick.setAttribute('aria-pressed',String(picking));if(picking)status.textContent='点击原图选择要抠除的颜色；再次点取色按钮可取消';};
   dialog.querySelector('[data-black]').onclick=()=>{key.checked=true;keyColor.value='#303030';tolerance.value=66;neutral.checked=true;render();};
-  file.onchange=async()=>{
-    image?.close();image=null;pixels=null;picking=selectAgain=false;for(const button of [pick,reselect,flipX,flipY])button.setAttribute('aria-pressed','false');submit.disabled=place.disabled=true;const selected=file.files[0];if(!selected)return;
-    if(!['image/png','image/jpeg','image/webp'].includes(selected.type)||selected.size>64*1024*1024){status.textContent='请选择 64 MB 以内的 PNG、JPEG 或 WebP 图片';return;}
+  function isImageFile(candidate){return ['image/png','image/jpeg','image/webp'].includes(candidate?.type)||/\.(png|jpe?g|webp)$/i.test(candidate?.name||'');}
+  async function loadImageFile(selected){
+    image?.close();image=null;pixels=null;picking=selectAgain=false;for(const button of [pick,reselect,flipX,flipY])button.setAttribute('aria-pressed','false');submit.disabled=place.disabled=true;if(!selected)return;
+    if(!isImageFile(selected)||selected.size>64*1024*1024){status.textContent='请选择 64 MB 以内的 PNG、JPEG 或 WebP 图片';return;}
     loading=true;file.disabled=true;status.textContent='读取图片…';
-    try{const decoded=await createImageBitmap(selected);if(decoded.width*decoded.height>16*1024*1024){decoded.close();throw new Error('图片超过 1600 万像素，请先缩小原图');}image=decoded;filename=selected.name.replace(/\.[^/.]+$/,'');crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();}
+    try{const decoded=await createImageBitmap(selected);if(decoded.width*decoded.height>16*1024*1024){decoded.close();throw new Error('图片超过 1600 万像素，请先缩小原图');}image=decoded;filename=selected.name.replace(/\.[^/.]+$/,'').trim()||'拖入图片';crop={x:0,y:0,w:image.width,h:image.height};drawSource();fit();}
     catch(error){status.textContent='图片读取失败：'+error.message;}
     finally{loading=false;file.disabled=false;render();}
-  };
+  }
+  file.onchange=()=>{loadImageFile(file.files[0]);file.value='';};
   width.oninput=colors.onchange=sampling.onchange=pixelize.onchange=render;
-  hd.onchange=()=>{if(hd.checked){pixelize.checked=false;colors.value='0';palette.value='original';sampling.value='nearest';thin.checked=false;}render();};
+  hd.onchange=()=>{if(hd.checked){exact.checked=false;rememberExact();pixelize.checked=false;colors.value='0';palette.value='original';sampling.value='nearest';thin.checked=false;}render();};
   palette.onchange=key.onchange=keyColor.oninput=tolerance.oninput=neutral.onchange=render;
   place.onclick=()=>{try{if(!pixels)return;PE.addImageLayer(app,pixels,filename);dialog.close();}catch(error){status.textContent=error.message;}};
   submit.onclick=async()=>{
@@ -310,4 +349,108 @@ document.addEventListener('DOMContentLoaded',()=>{
     }catch(error){status.textContent=error.message;}
     finally{render();}
   };
+  const dropOverlay=document.createElement('div');
+  dropOverlay.className='image-drop-overlay';
+  dropOverlay.setAttribute('aria-hidden','true');
+  dropOverlay.innerHTML='<div class="image-drop-card"><strong data-drop-title>松手即导入图片</strong><span data-drop-note>PNG / JPEG / WebP · 自动打开「上传图片」对话框</span></div>';
+  document.body.append(dropOverlay);
+  const dropTitle=dropOverlay.querySelector('[data-drop-title]'),dropNote=dropOverlay.querySelector('[data-drop-note]');
+  let dragDepth=0,hintTimer=0,watchTimer=0,lastDragAt=0;
+  const dragTypes=event=>[...(event.dataTransfer?.types||[])];
+  // 从资源管理器 / 其他网页拖进来的东西都要算外部拖放；页面内部拖文字仍交给输入框。
+  const isImageDrag=event=>{
+    const dt=event.dataTransfer,types=dragTypes(event);
+    return !!dt&&(types.includes('Files')||types.includes('text/uri-list')||(dt.files?.length||0)>0||[...(dt.items||[])].some(item=>item.kind==='file'));
+  };
+  const isTextDrag=event=>{
+    const types=dragTypes(event);
+    return !isImageDrag(event)&&types.length>0&&types.every(type=>type==='text/plain'||type==='text/html'||type==='text/rtf');
+  };
+  function dropHint(visible,title,note){
+    clearTimeout(hintTimer);
+    dropOverlay.classList.toggle('active',visible);
+    if(title)dropTitle.textContent=title;
+    if(note)dropNote.textContent=note;
+  }
+  // 拖放一结束（松手、取消、离开、窗口失焦）就彻底收起提示层，绝不留着挡画面。
+  function endDrag(){
+    dragDepth=0;lastDragAt=0;
+    if(watchTimer){clearInterval(watchTimer);watchTimer=0;}
+    dropHint(false);
+  }
+  // 兜底：拖的过程中 dragover 会连续触发；一旦超过 0.7 秒没有新的拖拽事件，就认为已经松手，自己收掉提示层。
+  function startDragWatch(){
+    lastDragAt=Date.now();
+    if(watchTimer)return;
+    watchTimer=setInterval(()=>{
+      if(!dropOverlay.classList.contains('active')){clearInterval(watchTimer);watchTimer=0;return;}
+      if(Date.now()-lastDragAt>700){clearInterval(watchTimer);watchTimer=0;endDrag();}
+    },140);
+  }
+  // 浏览器默认会把拖进来的图片当成网址打开（“拖进去就变成一页图片”），所以 dragover / drop 必须在捕获阶段先拦掉。
+  document.addEventListener('dragover',event=>{
+    if(event.dataTransfer&&!isTextDrag(event))event.preventDefault();
+    if(!isImageDrag(event))return;
+    event.dataTransfer.dropEffect='copy';
+    lastDragAt=Date.now();
+    if(dialog.open)endDrag();
+  },true);
+  document.addEventListener('dragenter',event=>{
+    if(!isImageDrag(event))return;
+    event.preventDefault();
+    if(dialog.open||loading){endDrag();return;}
+    startDragWatch();
+    if(dragDepth++)return;
+    dropHint(true,'松手即导入图片','PNG / JPEG / WebP · 自动打开「上传图片」对话框');
+  },true);
+  document.addEventListener('dragleave',event=>{
+    if(!isImageDrag(event))return;
+    if(--dragDepth>0)return;
+    endDrag();
+  },true);
+  window.addEventListener('dragend',endDrag);
+  window.addEventListener('blur',endDrag);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)endDrag();});
+  function finishDrop(title,note){
+    endDrag();
+    if(!title)return;
+    dropHint(true,title,note);
+    hintTimer=setTimeout(()=>dropHint(false),2600);
+  }
+  async function loadDroppedUrl(url){
+    if(!dialog.open)dialog.showModal();
+    if(!/^(https?:|data:)/i.test(url)){
+      finishDrop('这个地址读不到','浏览器不允许网页读取本地路径；请从资源管理器把图片文件直接拖进窗口，或点「上传图片」选文件');
+      return;
+    }
+    status.textContent='正在读取拖入的图片…';
+    try{
+      const response=await fetch(url);
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      const blob=await response.blob();
+      const name=decodeURIComponent((url.split(/[?#]/)[0].split('/').pop()||'拖入图片')).replace(/\.[^/.]+$/,'')||'拖入图片';
+      const type=blob.type.split(';')[0];
+      await loadImageFile(new File([blob],name+'.'+({ 'image/png':'png','image/jpeg':'jpg','image/webp':'webp' }[type]||'png'),{type:type||'image/png'}));
+    }catch(error){
+      finishDrop('这张图读不进来','对方网站不允许跨站读取：请先把图片存到本地，再从资源管理器拖进来');
+    }
+  }
+  // 拖入图片时即使对话框未打开也要先把对话框显出来，再走同一套读取 / 裁选流程。
+  document.addEventListener('drop',event=>{
+    if(!event.dataTransfer)return;
+    if(isTextDrag(event))return;          // 页面内拖文字进输入框，放行
+    event.preventDefault();
+    event.stopPropagation();
+    endDrag();                            // 松手后立刻收起提示层，不留着挡画面
+    const dropped=[...(event.dataTransfer.files||[])],picked=dropped.find(isImageFile);
+    if(picked){
+      if(!dialog.open)dialog.showModal();
+      loadImageFile(picked);
+      if(dropped.length>1)status.textContent='检测到 '+dropped.length+' 个文件，先导入'+picked.name+'，其他可用「选择图片」逐个上传';
+      return;
+    }
+    const uri=(event.dataTransfer.getData('text/uri-list')||event.dataTransfer.getData('text/plain')||'').split(/\r?\n/).map(line=>line.trim()).find(line=>line&&!line.startsWith('#'));
+    if(uri){loadDroppedUrl(uri);return;}
+    finishDrop('没读到图片文件','请从资源管理器直接拖 PNG / JPEG / WebP 进来，或点「上传图片」选文件');
+  },true);
 });

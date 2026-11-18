@@ -1,0 +1,14 @@
+{
+  "put": 200,
+  "get": 200,
+  "response": "{\"saved\":true,\"revision\":\"\\\"30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba\\\"\"}",
+  "etag": "\"30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba\"",
+  "sha256": "30559dc5e8731a2ea22c74e71f07f5e16643109733986d8caeee9bdb451f88ba",
+  "checks": [
+    "only hotel colors and palette changed",
+    "alpha and dimensions unchanged",
+    "roof close colors merged to one; wall close colors merged to one",
+    "readback equals candidate"
+  ],
+  "restore": "Use before.json with saved ETag only if current version has not changed; otherwise merge."
+}

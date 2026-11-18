@@ -1,0 +1,47 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "F28B44917EB3113356A1346E18F6C83CC1314D1252B3B69CC3FB325A318DA081",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\AGENTS.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "41CACBC2E4EEA414997B6B929E8B3C0C1658F0940D2EE68A025E368811FB4370",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\API_DOCS.md"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "E24BAD9769C9457E50079A66DD47FB28E5E3599F57DA1204D7C30B2F4E013B40",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\index.html"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "0FFB628963DBD525BFF52D68D27DBB60BE2CE8AEF052657BDF5A9D71B7106AB3",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\server.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "068CA85DA407DEF2096A617D1F4937AA100DFF00CCA18B8223E0552F8479591A",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\js\\character-base.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "66B056BC12BE068462FE83708391EF175024CB3B7F4664220256628E763FE28D",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\js\\character-sync.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "B4883864AFFE98AB6B0695D27CE28AA195B2D7A4438456C6E700BB2D2E9E1A8A",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\js\\projects.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6C0D9DC355E88997BF007FF94726413488BA75F5E4AD663CC8F04C4A258F3B4F",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\js\\scene-reference.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "65FBF62B6529A357B987D23C98CF950C06631356ACDD357EE57BE92A0A053D26",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\primary-body-branch-20261110\\before\\js\\wardrobe.js"
+  }
+]

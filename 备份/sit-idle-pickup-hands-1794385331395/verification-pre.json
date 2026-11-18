@@ -1,0 +1,113 @@
+{
+  "changes": [
+    {
+      "layer": 334,
+      "key": "13_1_0",
+      "name": "body",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 35
+    },
+    {
+      "layer": 335,
+      "key": "13_1_0",
+      "name": "head",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 106
+    },
+    {
+      "layer": 336,
+      "key": "13_1_0",
+      "name": "五官 / 眼睛",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 4
+    },
+    {
+      "layer": 337,
+      "key": "13_1_0",
+      "name": "hand",
+      "source": "pickup",
+      "dx": -3,
+      "dy": -1,
+      "count": 24
+    },
+    {
+      "layer": 333,
+      "key": "13_1_0",
+      "name": "hand 2",
+      "source": "pickup",
+      "dx": -3,
+      "dy": -1,
+      "count": 0
+    },
+    {
+      "layer": 340,
+      "key": "13_2_0",
+      "name": "body",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 35
+    },
+    {
+      "layer": 341,
+      "key": "13_2_0",
+      "name": "head",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 106
+    },
+    {
+      "layer": 342,
+      "key": "13_2_0",
+      "name": "五官 / 眼睛",
+      "source": "idle",
+      "dx": 0,
+      "dy": 0,
+      "count": 0
+    },
+    {
+      "layer": 343,
+      "key": "13_2_0",
+      "name": "hand",
+      "source": "pickup",
+      "dx": -3,
+      "dy": -1,
+      "count": 0
+    },
+    {
+      "layer": 339,
+      "key": "13_2_0",
+      "name": "hand 2",
+      "source": "pickup",
+      "dx": -3,
+      "dy": -1,
+      "count": 24
+    }
+  ],
+  "stats": [
+    {
+      "direction": "down",
+      "handOffset": {
+        "x": -3,
+        "y": -1
+      }
+    },
+    {
+      "direction": "up",
+      "handOffset": {
+        "x": -3,
+        "y": -1
+      }
+    }
+  ],
+  "clipped": 0,
+  "otherDataUnchanged": true,
+  "sideHurtUnchanged": true
+}

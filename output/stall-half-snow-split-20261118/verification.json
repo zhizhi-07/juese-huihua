@@ -1,0 +1,47 @@
+{
+  "put": 200,
+  "get": 200,
+  "oldCanvas": [
+    64,
+    64
+  ],
+  "newCanvas": [
+    32,
+    32
+  ],
+  "linearScale": 0.5,
+  "areaScale": 0.25,
+  "pixelMethod": "2x2 source-color sampling with external outline preservation; no blur or placement",
+  "snowLayers": [
+    "屋顶积雪",
+    "招牌积雪",
+    "棚子积雪"
+  ],
+  "oldMergedSnowRemoved": true,
+  "snowPerObjectParenting": true,
+  "independentSnowVisibilityTestPassed": true,
+  "originalLayerVisibilityPreserved": true,
+  "bodyStillThreeLayers": true,
+  "actionCounts": [
+    {
+      "name": "场景",
+      "frames": 1
+    },
+    {
+      "name": "卷闸门开启",
+      "frames": 6
+    }
+  ],
+  "doorFramePixels": [
+    95,
+    76,
+    57,
+    38,
+    19,
+    0
+  ],
+  "durationsPreserved": true,
+  "readbackEqualsCandidate": true,
+  "beforeSha256": "0de97534bd78baf492bb9f163c14b75ea3fdd26032f9c9589447571f53534c01",
+  "afterSha256": "5ec5c91e939980df7537390c20936676e2dfa827868fe7c4dd263bdf92b03a20"
+}

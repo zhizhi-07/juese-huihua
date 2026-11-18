@@ -1,0 +1,177 @@
+diff --git a/output/eyes-no-auto-blink-20261113/before/js/hair-animation.js b/js/hair-animation.js
+index 41c4ce3..425fbc6 100644
+--- a/output/eyes-no-auto-blink-20261113/before/js/hair-animation.js
++++ b/js/hair-animation.js
+@@ -129,7 +129,7 @@ window.PE = window.PE || {};
+     const offsets=calibrate(p,layer),id=crypto.randomUUID();
+     layer.hairAnimation={version:1,id,live:false,enabled:false,params:params(p.spriteSheets[layer.sheetIndex]),overrides:{},offsets};
+     // Keep the existing serialized recipe key so both parts use the same save/undo path.
+-    if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=preservedEyes(p,layer,matches,offsets);}
++    if(isEyes(layer)){layer.hairAnimation.part='eyes';layer.hairAnimation.preserved=[];layer.hairAnimation.manualPreservation=true;}
+     layer.hairAnimation.headOffsets=clone(offsets);
+     layer.hairAnimationId=id;
+     for(const [si,s]of p.spriteSheets.entries())if(active(s,part)&&si!==layer.sheetIndex) {
+@@ -139,36 +139,7 @@ window.PE = window.PE || {};
+     }
+     return layer;
+   }
+-  function preservedEyes(p,source,matches,offsets) {
+-    const signature=(im,offset)=>{
+-      if(!im)return null;
+-      const r=im.placement||{x:0,y:0,w:im.width,h:im.height};
+-      // 高清层只整块平移、不重采样，所以按“源像素指纹 + 相对偏移后的放置位置”比对：
+-      // 由同步生成的帧指纹和基准一致，会被继续更新；自己画过的原画指纹不同，保留。
+-      if(r.w!==im.width||r.h!==im.height||!Number.isInteger(r.x)||!Number.isInteger(r.y)) {
+-        let hash=2166136261;for(let i=0;i<im.data.length;i++)hash=Math.imul(hash^im.data[i],16777619)>>>0;
+-        return `hd:${hash}:${im.width}x${im.height}:${r.w}x${r.h}@${r.x-offset.x},${r.y-offset.y}`;
+-      }
+-      const pixels=[];
+-      for(let y=0;y<im.height;y++)for(let x=0;x<im.width;x++){const i=(y*im.width+x)*4;if(im.data[i+3])pixels.push([x+r.x-offset.x,y+r.y-offset.y,...im.data.slice(i,i+4)].join(','));}
+-      return pixels.join(';');
+-    };
+-    const idle=p.spriteSheets[source.sheetIndex],preserved=[];
+-    for(const layer of [source,...matches]){
+-      const s=p.spriteSheets[layer.sheetIndex];
+-      for(const [ai,a]of s.actions.entries()){
+-        const baseAI=idle.actions.findIndex(b=>b.direction===a.direction);if(baseAI<0)continue;
+-        const base=signature(source.getFrameData(p.getFrameKey(source.sheetIndex,baseAI,0)),{x:0,y:0});
+-        for(let fi=0;fi<a.frames.length;fi++){
+-          if(layer===source&&fi===0)continue;
+-          const key=address(s,a.direction,fi),im=layer.getFrameData(p.getFrameKey(layer.sheetIndex,ai,fi));
+-          // Preserve existing expressions conservatively; users can opt each cel back in.
+-          if(im&&signature(im,offsets[key])!==base)preserved.push(key);
+-        }
+-      }
+-    }
+-    return preserved;
+-  }
++  const preservedFrames = g => g.manualPreservation ? (g.preserved||[]) : [];
+   function validate(p) {
+     const ids=new Set();
+     const directionKeys=new Set(p.spriteSheets.filter(supported).flatMap(s=>s.actions.map(a=>settingKey(s.name,a.direction))));
+@@ -178,6 +149,7 @@ window.PE = window.PE || {};
+       if(g.version!==1||typeof g.id!=='string'||g.id.length>80||!g.id||ids.has(g.id)||l.hairAnimationId!==g.id||!isIdle(p.spriteSheets[l.sheetIndex])||typeof g.live!=='boolean'||typeof g.enabled!=='boolean')throw Error('头发联动设置无效');
+       ids.add(g.id);
+       if(l.isGroup||l.inheritedBase||PE.isHandLayer(l)||(g.part==='eyes'?!isEyes(l):PE.classifyPart(l.name)?.category!=='头发'))throw Error('同步基准层身份无效');
++      if(g.manualPreservation!==undefined&&typeof g.manualPreservation!=='boolean')throw Error('手动保留设置无效');
+       if(g.part!==undefined&&g.part!=='eyes')throw Error('同步部件类型无效');
+       if(g.part==='eyes'&&(g.enabled||!Array.isArray(g.preserved)||g.preserved.length>4096||g.preserved.some(k=>typeof k!=='string'||!Object.hasOwn(g.offsets||{},k)||/original(?:16|32)_idle\/[^/]+\/0$/.test(k))))throw Error('眼睛保留帧设置无效');
+       if(!g.offsets||Array.isArray(g.offsets)||Object.keys(g.offsets).length>4096||!g.overrides||Array.isArray(g.overrides)||Object.keys(g.overrides).length>p.spriteSheets.length)throw Error('头发偏移/动作设置无效');
+@@ -336,7 +308,7 @@ window.PE = window.PE || {};
+           const phase=2*Math.PI*elapsed/total;elapsed+=durations[fi];
+           if(only&&!only.has(p.getFrameKey(si,ai,fi)))continue;
+           if(layer===source&&fi===0)continue;
+-          if(g.part==='eyes'&&g.preserved.includes(address(s,a.direction,fi)))continue;
++          if(g.part==='eyes'&&preservedFrames(g).includes(address(s,a.direction,fi)))continue;
+           if(frame.locked||frame.lockedRegions?.length)throw Error(`${actions[s.name.slice(11)]||s.name} 第${fi+1}帧有保护区域，同步未写入`);
+           let offset=offsets[address(s,a.direction,fi)];if(!offset)throw Error('帧结构已变化，请先重新标定偏移');
+           if(usesSitEyeY(g.part,s.name,a.direction)){
+@@ -423,12 +395,12 @@ window.PE = window.PE || {};
+     const down=app.toolManager.onMouseDown.bind(app.toolManager);
+     app.toolManager.onMouseDown=function(...args){
+       const p=app.project,l=p.getCurrentLayer(),source=master(p,l),g=source?.hairAnimation;
+-      const preserved=g?.part==='eyes'&&g.preserved.includes(address(p.getCurrentSheet(),p.getCurrentAction().direction,p.currentFrameIndex));
++      const preserved=g?.part==='eyes'&&preservedFrames(g).includes(address(p.getCurrentSheet(),p.getCurrentAction().direction,p.currentFrameIndex));
+       if(g&&(g.live||g.enabled)&&!preserved&&(l!==source||p.currentFrameIndex!==0)&&!['eyedropper','select','wand'].includes(this.currentTool)) {onStatus('这是自动生成帧。请点击「编辑基准」修改本方向待机首帧；眼睛保留帧可独立绘制，其他帧需先关闭实时同步和飘动。');return;}
+       return down(...args);
+     };
+   }
+-  PE.HairAnimation={actions,directions,isIdle,master,setup,validate,calibrate,offsetsFor,plan,usesSitEyeY,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
++  PE.HairAnimation={actions,directions,isIdle,master,setup,validate,calibrate,offsetsFor,preservedFrames,plan,usesSitEyeY,applyPlan,refresh,transaction,sync,install,deform,params,address,settingsFor,editSettings,previewLayers};
+ })();
+ 
+ document.addEventListener('DOMContentLoaded',()=>{
+@@ -441,18 +413,18 @@ document.addEventListener('DOMContentLoaded',()=>{
+   function run(fn){try{return fn();}catch(e){live.checked=!!current()?.hairAnimation.live;say(e.message);}}
+   const current=()=>H.master(app.project);
+   H.install(app,say,()=>{const g=current()?.hairAnimation,eyes=PE.classifyPart(app.project.getCurrentLayer()?.name)?.slot==='眼睛';live.checked=!!g?.live;bar.querySelector('[data-sync-part]').textContent=(eyes?'眼睛':'头发')+'实时同步';bar.querySelector('#hair-sway').hidden=eyes;const sheet=app.project.getCurrentSheet(),direction=app.project.getCurrentAction()?.direction;bar.querySelector('#hair-sway').classList.toggle('hair-effect-active',!!g?.enabled&&!H.settingsFor(g,sheet?.name,direction).nativeTips);});
+-  live.onchange=()=>run(()=>{if(live.checked)H.sync(app,{live:true});else H.transaction(app,'关闭实时同步',()=>{const s=current();if(s)s.hairAnimation.live=false;});say(live.checked?'实时同步已开启；在各方向待机首帧绘制。眼睛异于首帧的原画会保留，可在「偏移 / 保留帧」中调整。':'实时同步已关闭，现有部件设置保留；画好后点击同步全部。');});
+-  bar.querySelector('#hair-sync-all').onclick=()=>run(()=>{const r=H.sync(app),g=current()?.hairAnimation;say(`已同步 ${r.edits.length} 帧，可一次撤销。${g?.part==='eyes'?`保留 ${g.preserved.length} 帧原画（含眨眼等），可在「偏移 / 保留帧」调整。`:''}${r.missing?.length?`${r.missing.join('、')} 还没有待机首帧基准，先在这些方向画一次再同步。`:''}${r.clipped?'有像素超出画布，未删除原像素。':''}`);});
++  live.onchange=()=>run(()=>{if(live.checked)H.sync(app,{live:true});else H.transaction(app,'关闭实时同步',()=>{const s=current();if(s)s.hairAnimation.live=false;});say(live.checked?'实时同步已开启；在各方向待机首帧绘制。每套眼睛独立同步，不自动识别眨眼；只有手动勾选的帧保留原画。':'实时同步已关闭，现有部件设置保留；画好后点击同步全部。');});
++  bar.querySelector('#hair-sync-all').onclick=()=>run(()=>{const r=H.sync(app),g=current()?.hairAnimation;say(`已同步 ${r.edits.length} 帧，可一次撤销。${g?.part==='eyes'?`手动保留 ${H.preservedFrames(g).length} 帧原画，可在「偏移 / 保留帧」调整。`:''}${r.missing?.length?`${r.missing.join('、')} 还没有待机首帧基准，先在这些方向画一次再同步。`:''}${r.clipped?'有像素超出画布，未删除原像素。':''}`);});
+   bar.querySelector('#hair-edit-master').onclick=()=>run(()=>{const p=app.project,s=current();if(!s)throw Error('请先在待机选择头发或眼睛并同步');const dir=p.getCurrentAction().direction,ai=p.spriteSheets[s.sheetIndex].actions.findIndex(a=>a.direction===dir);if(ai<0)throw Error('没有这个方向的基准');app.selectFrame(s.sheetIndex,ai,0);p.currentLayerIndex=p.layers.indexOf(s);app.updateAll();app.canvasManager.render();say('正在编辑本方向待机第一帧；其他帧按标记位置生成。');});
+   bar.querySelector('#hair-offsets').onclick=()=>run(()=>{
+     const p=app.project,s=current();if(!s)throw Error('请先开启实时同步或点击同步全部');
+     const dialog=document.createElement('dialog');dialog.className='advanced-dialog hair-offset-dialog';dialog.setAttribute('aria-label','部件偏移与保留帧');
+     dialog.innerHTML='<h2>相对各方向待机首帧的偏移</h2><p>向右、向下为正数。重新标定只读取现有头部，不修改人物。眼睛勾选「保留原画」的帧不参与同步，可独立绘制；取消勾选会用本方向基准替换。侧面坐姿眼睛的 Y 跟随头部位移，不额外上移（俯视角度）；头发与眼睛均按当前头部自动跟随；表中手调量会保留，不额外抬高。旧版标定会按当前头部重算。</p><div class="hair-offset-table"></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-calibrate class="studio-button">按头部重新标定</button><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>';
+-    const heads=H.calibrate(p,s);let offsets=cloneOffsets();const preserved=new Set(s.hairAnimation.preserved||[]),stamp=JSON.stringify(s.hairAnimation);function cloneOffsets(){return JSON.parse(JSON.stringify(H.offsetsFor(p,s)));}
++    const heads=H.calibrate(p,s);let offsets=cloneOffsets();const preserved=new Set(H.preservedFrames(s.hairAnimation)),stamp=JSON.stringify(s.hairAnimation);function cloneOffsets(){return JSON.parse(JSON.stringify(H.offsetsFor(p,s)));}
+     const list=dialog.querySelector('.hair-offset-table');
+     function draw(){list.replaceChildren();for(const [key,v]of Object.entries(offsets)){const [sheet,dir,fi]=key.split('/');if(!PE.isEditorSheet({name:sheet}))continue;const row=document.createElement('div'),base=sheet===p.spriteSheets[s.sheetIndex].name&&fi==='0';row.textContent=`${H.actions[sheet.slice(11)]||sheet} · ${H.directions[dir]||dir} · 第${Number(fi)+1}帧 `;for(const axis of ['x','y']){if(axis==='y'&&H.usesSitEyeY(s.hairAnimation.part,sheet,dir)){row.append('Y：头部位移');continue;}const input=document.createElement('input');input.type='number';input.step='1';input.min='-4096';input.max='4096';input.value=v[axis];input.disabled=base;input.setAttribute('aria-label',`${H.actions[sheet.slice(11)]||sheet} ${H.directions[dir]||dir} 第${Number(fi)+1}帧 ${axis.toUpperCase()}`);input.oninput=()=>v[axis]=Number(input.value);row.append(axis.toUpperCase(),input);}if(s.hairAnimation.part==='eyes'&&!base){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=preserved.has(key);input.onchange=()=>input.checked?preserved.add(key):preserved.delete(key);label.append(input,'保留原画');row.append(label);}list.append(row);}}
+     draw();dialog.querySelector('[data-calibrate]').onclick=()=>run(()=>{offsets=H.calibrate(p,s);draw();});
+-    dialog.querySelector('[data-cancel]').onclick=()=>dialog.close();dialog.querySelector('[data-apply]').onclick=()=>{try{if(app.project!==p||!p.layers.includes(s)||JSON.stringify(s.hairAnimation)!==stamp||JSON.stringify(H.calibrate(p,s))!==JSON.stringify(heads))throw Error('工程、头部或部件设置已变化，请重新打开');H.transaction(app,'调整部件偏移与保留帧',()=>{s.hairAnimation.offsets=offsets;s.hairAnimation.headOffsets=heads;if(s.hairAnimation.part==='eyes')s.hairAnimation.preserved=[...preserved];H.validate(p);H.applyPlan(H.plan(p,s));});dialog.close();}catch(e){dialog.querySelector('[data-note]').textContent=e.message;}};
++    dialog.querySelector('[data-cancel]').onclick=()=>dialog.close();dialog.querySelector('[data-apply]').onclick=()=>{try{if(app.project!==p||!p.layers.includes(s)||JSON.stringify(s.hairAnimation)!==stamp||JSON.stringify(H.calibrate(p,s))!==JSON.stringify(heads))throw Error('工程、头部或部件设置已变化，请重新打开');H.transaction(app,'调整部件偏移与保留帧',()=>{s.hairAnimation.offsets=offsets;s.hairAnimation.headOffsets=heads;if(s.hairAnimation.part==='eyes'){s.hairAnimation.preserved=[...preserved];s.hairAnimation.manualPreservation=true;}H.validate(p);H.applyPlan(H.plan(p,s));});dialog.close();}catch(e){dialog.querySelector('[data-note]').textContent=e.message;}};
+     dialog.onclose=()=>dialog.remove();document.body.append(dialog);dialog.showModal();
+   });
+   bar.querySelector('#hair-sway').onclick=()=>run(()=>openSway());
+diff --git a/output/eyes-no-auto-blink-20261113/before/index.html b/index.html
+index 62e1fce..3ba270d 100644
+--- a/output/eyes-no-auto-blink-20261113/before/index.html
++++ b/index.html
+@@ -362,7 +362,7 @@
+   <script src="js/panel-dock.js?v=panel-dock-2"></script>
+   <script src="js/workspace-layout.js?v=free-placement-visible-1"></script>
+   <link rel="stylesheet" href="css/hair-animation.css?v=eye-behind-fringe-20261103">
+-  <script src="js/hair-animation.js?v=eyes-current-head-20261113"></script>
++  <script src="js/hair-animation.js?v=eyes-no-auto-blink-20261113"></script>
+   <script src="js/clothing-fit.js?v=idle-master-shadows-20261109"></script>
+   <script src="js/clothing-sync.js?v=sit-directions-20261109"></script>
+   <script src="js/scene-reference.js?v=scene-reference-2"></script>
+diff --git a/output/eyes-no-auto-blink-20261113/before/test/eye-sync.cjs b/test/eye-sync.cjs
+index 6e885d3..a653e6f 100644
+--- a/output/eyes-no-auto-blink-20261113/before/test/eye-sync.cjs
++++ b/test/eye-sync.cjs
+@@ -28,14 +28,15 @@ function fixture(){
+ async function main(){
+  const {p,eyes,walk,sleep,hair,app}=fixture(),layers=p.layers.slice(),headBytes=p.layers.filter(l=>l.name==='head').map(l=>[...l.frameData.values()].map(im=>[...im.data])),sleepBefore=JSON.stringify([...sleep.frameData]),hairBefore=JSON.stringify([...hair.frameData]);
+  const blinkIdle=eyes.getFrameData('0_0_1'),blinkWalk=walk.getFrameData('1_0_1');
+- const r=H.sync(app,{live:true});assert.equal(r.edits.length,28);assert.equal(eyes.hairAnimation.part,'eyes');assert(!eyes.hairAnimation.enabled);
++ const r=H.sync(app,{live:true});assert.equal(r.edits.length,30);assert.equal(eyes.hairAnimation.part,'eyes');assert(!eyes.hairAnimation.enabled);
+  assert(r.edits.every(e=>!e.key.startsWith(e.layer.sheetIndex+'_2_')),'eyes never generate rear cels even when a legacy rear master contains pixels');
+  assert(!p.layers.find(l=>l.sheetIndex===2&&l.hairAnimationId).getFrameData('2_2_0'));
+- assert.deepEqual(eyes.hairAnimation.preserved,['original32_idle/down/1','original32_walk/down/1']);
+- assert.equal(eyes.getFrameData('0_0_1'),blinkIdle);assert.equal(walk.getFrameData('1_0_1'),blinkWalk);
++ assert.deepEqual(eyes.hairAnimation.preserved,[],'different pixels are not automatically classified as blinking');
++ assert.deepEqual(raster(eyes.getFrameData('0_0_1')),raster(pixels(3,5)));assert.deepEqual(raster(walk.getFrameData('1_0_1')),raster(pixels(4,5)));
+  assert.deepEqual(raster(walk.getFrameData('1_1_2')),raster(pixels(4,7)),'open eyes follow direction and head offsets');
+  assert(!sleep.hairAnimationId,'retired sleeping layer is not linked');assert(!Object.keys(eyes.hairAnimation.offsets).some(k=>k.includes('sleep')));
+  app.history.undo(p);assert.deepEqual(p.layers,layers);assert(!eyes.hairAnimation);app.history.redo(p);assert(eyes.hairAnimation.live);
++ H.transaction(app,'manual frame opt-out',()=>{eyes.hairAnimation.preserved=['original32_idle/down/1','original32_walk/down/1'];eyes.frameData.set('0_0_1',blinkIdle);walk.frameData.set('1_0_1',blinkWalk);});
+  H.install(app);app.toolManager.drawPixel(p.layers.indexOf(eyes),'0_1_0',5,5,90,80,70,255);
+  assert.equal(raster(walk.getFrameData('1_1_2'))[(7*16+6)*4],90,'live brush reaches walking eyes');
+  assert.equal(eyes.getFrameData('0_0_1'),blinkIdle);assert.equal(walk.getFrameData('1_0_1'),blinkWalk);
+@@ -84,7 +85,8 @@ async function main(){
+    assert.deepEqual(saved.placement,generated.placement);
+    assert.deepEqual(saved.data,source.data);
+  }
+- console.log('PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
++ console.log('PASS eyes: shared directional sync, calibrated offsets, no automatic blink recognition, manual frame opt-out, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
+ }
+ if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});
+ module.exports={fixture,pixels,raster};
++
+diff --git a/output/eyes-no-auto-blink-20261113/before/test/eye-sync-ui.cjs b/test/eye-sync-ui.cjs
+index fa43e1f..5add274 100644
+--- a/output/eyes-no-auto-blink-20261113/before/test/eye-sync-ui.cjs
++++ b/test/eye-sync-ui.cjs
+@@ -16,7 +16,7 @@ class Element{
+ const body=new Element('body'),host=new Element('button');body.append(host);let initialize;
+ global.document={body,addEventListener(name,fn){if(name==='DOMContentLoaded')initialize=fn;},getElementById(){return host;},createElement(tag){return tag==='canvas'?Object.assign(createCanvas(1,1),{style:{}}):new Element(tag);}};
+ vm.runInThisContext(fs.readFileSync(__dirname+'/../js/hair-animation.js','utf8'));
+-const {p,eyes,hair,app}=fixture();PE.app=app;initialize();app.canvasManager.render();
++const {p,eyes,hair,app}=fixture();PE.HairAnimation.setup(p,eyes);eyes.hairAnimation.preserved=['original32_idle/down/1','original32_walk/down/1'];PE.app=app;initialize();app.canvasManager.render();
+ const bar=body.children.find(c=>c.className==='hair-animation-tools'),status=body.children.find(c=>c.className==='hair-animation-status');
+ assert.equal(bar.querySelector('[data-sync-part]').textContent,'眼睛实时同步');assert(bar.querySelector('#hair-sway').hidden);
+ bar.querySelector('#hair-sync-all').onclick();assert.equal(eyes.hairAnimation.part,'eyes');assert.match(status.textContent,/保留 2 帧/);
+diff --git a/output/eyes-no-auto-blink-20261113/before/test/eyes-current-head.cjs b/test/eyes-current-head.cjs
+index 5f3f374..0de2648 100644
+--- a/output/eyes-no-auto-blink-20261113/before/test/eyes-current-head.cjs
++++ b/test/eyes-current-head.cjs
+@@ -4,6 +4,7 @@ if(process.env.EYE_SOURCE)vm.runInThisContext(fs.readFileSync(process.env.EYE_SO
+ const H=PE.HairAnimation;
+ (async()=>{
+  const {p,eyes,walk,app}=fixture();H.sync(app,{live:true});H.refresh(p);
++ eyes.hairAnimation.preserved.push('original32_walk/down/1');
+  const blink=walk.getFrameData('1_0_1'),key='1_1_2',before=raster(walk.getFrameData(key));
+  const head=p.layers.find(l=>l.name==='head'&&l.sheetIndex===1).getFrameData(key);
+  head.placement={x:1,y:1,w:16,h:16};

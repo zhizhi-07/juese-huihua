@@ -1,0 +1,3 @@
+DEBUG del: true [ '阴影' ] [ '', '', '已删除 2 个图层（可以撤销）' ]
+PASS: Shift 连选 / Ctrl 点选 / 一起上移 / 合并所选 / 建组 / 方向键整体移动 / 删除所选 + 撤销，无页面报错
+PASS: Ctrl+J layer/rect/mask/native-HD selection copy; independent frames/parents; Ctrl+E alpha/native-HD/all-frame merge; undo/redo, dirty state, protection/gesture/input/modifier guards.

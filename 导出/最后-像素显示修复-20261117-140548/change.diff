@@ -1,0 +1,18 @@
+--- project.godot.before
++++ project.godot.after
+@@ -21,8 +21,9 @@
+ window/size/viewport_height=552
+ window/size/window_width_override=1104
+ window/size/window_height_override=828
+-window/stretch/mode="canvas_items"
++window/stretch/mode="viewport"
+ window/stretch/aspect="expand"
++window/stretch/scale_mode="integer"
+ 
+ [physics]
+ 
+@@ -33,3 +34,4 @@
+ rendering_device/driver.windows="d3d12"
+ renderer/rendering_method="gl_compatibility"
+ renderer/rendering_method.mobile="gl_compatibility"
++textures/canvas_textures/default_texture_filter=0

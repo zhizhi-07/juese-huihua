@@ -1,0 +1,13 @@
+{
+  put: 200,
+  get: 200,
+  bodyLayers: [ '黑色内景 · 后层', '立柱框架 · 中层', '柜台前沿 · 前层' ],
+  pixelCounts: [ 502, 72, 578 ],
+  bodyCompositeUnchanged: true,
+  sceneCompositeUnchanged: true,
+  otherArtworkUnchanged: true,
+  userVisibilityAndMetadataPreserved: true,
+  noPersonAdded: true,
+  beforeSha256: 'e6b1161b9e29e61907bf579710b4556d6eae723b88c0f8b24b9b731dd28157bc',
+  afterSha256: '1b7dcf2f6f6c9094f764020dd3637349e5820c15bcc16a44fd49d1db6a533491'
+}

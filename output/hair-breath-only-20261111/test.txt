@@ -1,0 +1,1 @@
+{"generatedFrames":657,"clipped":0,"rigidPixelEquality":true,"mastersExact":true,"nonHairExact":true,"fishingRetained":true}

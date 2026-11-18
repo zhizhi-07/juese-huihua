@@ -1,0 +1,13 @@
+/* Shape tools, symmetry toggle and collapsing the auxiliary toolbars. */
+.studio .tool-rail .shape-tool svg,
+.studio .tool-rail .symmetry-tool svg{width:21px;height:21px}
+.studio .tool-rail .symmetry-tool[data-mode="none"]{color:#8b9785}
+.studio .tool-rail .symmetry-tool[data-mode="x"] span,
+.studio .tool-rail .symmetry-tool[data-mode="y"] span,
+.studio .tool-rail .symmetry-tool[data-mode="both"] span{font-size:10px;letter-spacing:-.2px}
+
+/* Hidden by default so the canvas keeps the space. */
+body.hide-aux-bars .image-edit-toolbar,
+body.hide-aux-bars .frame-edit-toolbar{display:none}
+
+.studio .view-actions .aux-toggle.active{background:#e4eee3;color:#467b5e}

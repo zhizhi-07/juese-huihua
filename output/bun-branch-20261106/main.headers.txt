@@ -1,0 +1,8 @@
+﻿X-Content-Type-Options: nosniff
+Connection: keep-alive
+Keep-Alive: timeout=5
+Content-Length: 239393
+Cache-Control: no-store
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Nov 2026 00:50:46 GMT
+ETag: "7cf7a936ac816fd59df8d6832988df6350485132af5b415f377b5b99cb3aeec4"

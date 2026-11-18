@@ -1,0 +1,290 @@
+[
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_0",
+    "file": "layer-0-0_0_0.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_1",
+    "file": "layer-0-0_0_1.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_2",
+    "file": "layer-0-0_0_2.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_3",
+    "file": "layer-0-0_0_3.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_4",
+    "file": "layer-0-0_0_4.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_5",
+    "file": "layer-0-0_0_5.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_6",
+    "file": "layer-0-0_0_6.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_7",
+    "file": "layer-0-0_0_7.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_8",
+    "file": "layer-0-0_0_8.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_9",
+    "file": "layer-0-0_0_9.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_10",
+    "file": "layer-0-0_0_10.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 0,
+    "name": "柜体与层板",
+    "key": "0_0_11",
+    "file": "layer-0-0_0_11.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_0",
+    "file": "layer-1-0_0_0.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_1",
+    "file": "layer-1-0_0_1.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_2",
+    "file": "layer-1-0_0_2.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_3",
+    "file": "layer-1-0_0_3.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_4",
+    "file": "layer-1-0_0_4.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_5",
+    "file": "layer-1-0_0_5.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_6",
+    "file": "layer-1-0_0_6.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_7",
+    "file": "layer-1-0_0_7.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_8",
+    "file": "layer-1-0_0_8.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_9",
+    "file": "layer-1-0_0_9.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_10",
+    "file": "layer-1-0_0_10.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 1,
+    "name": "商品 副本",
+    "key": "0_0_11",
+    "file": "layer-1-0_0_11.png",
+    "visible": true,
+    "recolor": false
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_0",
+    "file": "layer-2-0_0_0.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_1",
+    "file": "layer-2-0_0_1.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_2",
+    "file": "layer-2-0_0_2.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_3",
+    "file": "layer-2-0_0_3.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_4",
+    "file": "layer-2-0_0_4.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_5",
+    "file": "layer-2-0_0_5.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_6",
+    "file": "layer-2-0_0_6.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_7",
+    "file": "layer-2-0_0_7.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_8",
+    "file": "layer-2-0_0_8.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_9",
+    "file": "layer-2-0_0_9.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_10",
+    "file": "layer-2-0_0_10.png",
+    "visible": true,
+    "recolor": true
+  },
+  {
+    "index": 2,
+    "name": "玻璃门框与把手",
+    "key": "0_0_11",
+    "file": "layer-2-0_0_11.png",
+    "visible": true,
+    "recolor": true
+  }
+]

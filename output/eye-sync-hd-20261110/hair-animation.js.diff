@@ -1,0 +1,98 @@
+diff --git a/output/eye-sync-hd-20261110/before/js/hair-animation.js b/js/hair-animation.js
+index 0d6df1d..e1bc538 100644
+--- a/output/eye-sync-hd-20261110/before/js/hair-animation.js
++++ b/js/hair-animation.js
+@@ -126,11 +126,10 @@ window.PE = window.PE || {};
+       const r=im.placement||{x:0,y:0,w:im.width,h:im.height};
+       // 高清层只整块平移、不重采样，所以按“源像素指纹 + 相对偏移后的放置位置”比对：
+       // 由同步生成的帧指纹和基准一致，会被继续更新；自己画过的原画指纹不同，保留。
+-      if(r.w!==im.width||r.h!==im.height) {
++      if(r.w!==im.width||r.h!==im.height||!Number.isInteger(r.x)||!Number.isInteger(r.y)) {
+         let hash=2166136261;for(let i=0;i<im.data.length;i++)hash=Math.imul(hash^im.data[i],16777619)>>>0;
+-        return `hd:${hash}:${r.w}x${r.h}@${r.x-offset.x},${r.y-offset.y}`;
++        return `hd:${hash}:${im.width}x${im.height}:${r.w}x${r.h}@${r.x-offset.x},${r.y-offset.y}`;
+       }
+-      if(!Number.isInteger(r.x)||!Number.isInteger(r.y))throw Error('眼睛同步只支持整数格放置，请先把图层吸附到像素格');
+       const pixels=[];
+       for(let y=0;y<im.height;y++)for(let x=0;x<im.width;x++){const i=(y*im.width+x)*4;if(im.data[i+3])pixels.push([x+r.x-offset.x,y+r.y-offset.y,...im.data.slice(i,i+4)].join(','));}
+       return pixels.join(';');
+@@ -216,6 +215,13 @@ window.PE = window.PE || {};
+     }
+     return {width:w,height:h,data:d,placement:src.placement};
+   }
++  function translatePlaced(src, frame, offset) {
++    const r=src.placement,out=PE.utils.cloneImageData(src);
++    out.placement.x+=offset.x;out.placement.y+=offset.y;
++    const {x,y}=out.placement;
++    const inside=Math.max(0,Math.min(frame.width,x+r.w)-Math.max(0,x))*Math.max(0,Math.min(frame.height,y+r.h)-Math.max(0,y));
++    return {image:out,clipped:Math.round(Math.max(0,r.w*r.h-inside))};
++  }
+   function deform(src, frame, offset, phase, settings, mask, enabled, protectedMask=null, trajectory=null, stitchMask=null, followOffset=null) {
+     const base=src;
+     const stitched=stitchMask?stitchSource(src,stitchMask):null;
+@@ -223,13 +229,9 @@ window.PE = window.PE || {};
+     const r=useSrc?.placement||{x:0,y:0,w:useSrc?.width||1,h:useSrc?.height||1};
+     if(!useSrc)return {image:new ImageData(frame.width,frame.height),clipped:0};
+     // 高清（放置范围 ≠ 源尺寸）永不重采样：只把整块放置范围按偏移平移。
+-    // 眼睛同步就是“整块跟着头部走”，所以高清眼睛同样能进实时同步。
+     if(r.w!==useSrc.width||r.h!==useSrc.height) {
+       if(enabled||trajectory||stitchMask||followOffset!==null)throw Error('高清底图只能整块跟随头部，不支持飘动、轨迹或补全；需要飘动请改用原生像素图层');
+-      const out=PE.utils.cloneImageData(useSrc);out.placement={x:r.x+offset.x,y:r.y+offset.y,w:r.w,h:r.h};
+-      const left=Math.max(0,out.placement.x),top=Math.max(0,out.placement.y),right=Math.min(frame.width,out.placement.x+r.w),bottom=Math.min(frame.height,out.placement.y+r.h);
+-      const inside=Math.max(0,right-left)*Math.max(0,bottom-top);
+-      return {image:out,clipped:Math.round(Math.max(0,r.w*r.h-inside))};
++      return translatePlaced(useSrc,frame,offset);
+     }
+     if(!Number.isInteger(r.x)||!Number.isInteger(r.y))throw Error('请先把图层吸附到整数像素格；自由小数坐标的图层不能同步');
+     if(useSrc.width*useSrc.height>262144)throw Error('头发飘动支持最多 512×512 源像素；原图未修改');
+@@ -316,7 +318,7 @@ window.PE = window.PE || {};
+           let offset=g.offsets[address(s,a.direction,fi)];if(!offset)throw Error('帧结构已变化，请先重新标定偏移');
+           if(usesSitEyeY(g.part,s.name,a.direction)){
+             idleHeadY??=headAnchor(p,source.sheetIndex,baseAI,0).y;
+-            offset={x:offset.x,y:headAnchor(p,si,ai,fi).y-idleHeadY};
++            offset={x:offset.x,y:headAnchor(p,si,ai,fi).y-idleHeadY+1};
+           }
+           let followOffset=null;
+           if(g.enabled&&g.part!=='eyes'&&settings.followHead){
+@@ -327,7 +329,10 @@ window.PE = window.PE || {};
+             followOffset=Math.max(-2,Math.min(2,offset.y-prev.y+(prev.y-earlier.y)*.5));
+           }
+           const placementOffset=g.part!=='eyes'&&isSideSit(s.name,a.direction)?{x:offset.x,y:offset.y-1}:offset;
+-          const result=deform(src,frame,placementOffset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction],followOffset);clipped+=result.clipped;
++          const result=g.part==='eyes'&&src?.placement
++            ?translatePlaced(src,frame,placementOffset)
++            :deform(src,frame,placementOffset,phase,settings,mask,g.part==='eyes'?false:g.enabled,settings.protectedMasks?.[a.direction],g.part==='eyes'?null:settings.trajectories?.[a.direction],g.part==='eyes'?null:settings.stitch?.[a.direction],followOffset);
++          clipped+=result.clipped;
+           edits.push({layer,key:p.getFrameKey(si,ai,fi),image:result.image});
+         }
+       }
+@@ -415,10 +420,10 @@ document.addEventListener('DOMContentLoaded',()=>{
+   bar.querySelector('#hair-offsets').onclick=()=>run(()=>{
+     const p=app.project,s=current();if(!s)throw Error('请先开启实时同步或点击同步全部');
+     const dialog=document.createElement('dialog');dialog.className='advanced-dialog hair-offset-dialog';dialog.setAttribute('aria-label','部件偏移与保留帧');
+-    dialog.innerHTML='<h2>相对各方向待机首帧的偏移</h2><p>向右、向下为正数。重新标定只读取现有头部，不修改人物。眼睛勾选「保留原画」的帧不参与同步，可独立绘制；取消勾选会用本方向基准替换。侧面坐姿眼睛的 Y 统一按头部位移，不使用工程旧值；侧面坐姿头发生成时在设置值上再上移 1 格。</p><div class="hair-offset-table"></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-calibrate class="studio-button">按头部重新标定</button><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>';
++    dialog.innerHTML='<h2>相对各方向待机首帧的偏移</h2><p>向右、向下为正数。重新标定只读取现有头部，不修改人物。眼睛勾选「保留原画」的帧不参与同步，可独立绘制；取消勾选会用本方向基准替换。侧面坐姿眼睛的 Y 按头部位移再向下 1 格，不使用工程旧值；侧面坐姿头发生成时在设置值上再上移 1 格。</p><div class="hair-offset-table"></div><p data-note role="status"></p><div class="hair-dialog-actions"><button data-calibrate class="studio-button">按头部重新标定</button><button data-cancel class="studio-button">取消</button><button data-apply class="studio-button save-primary">确定</button></div>';
+     let offsets=cloneOffsets();const preserved=new Set(s.hairAnimation.preserved||[]),stamp=JSON.stringify(s.hairAnimation);function cloneOffsets(){return JSON.parse(JSON.stringify(s.hairAnimation.offsets));}
+     const list=dialog.querySelector('.hair-offset-table');
+-    function draw(){list.replaceChildren();for(const [key,v]of Object.entries(offsets)){const [sheet,dir,fi]=key.split('/');if(!PE.isEditorSheet({name:sheet}))continue;const row=document.createElement('div'),base=sheet===p.spriteSheets[s.sheetIndex].name&&fi==='0';row.textContent=`${H.actions[sheet.slice(11)]||sheet} · ${H.directions[dir]||dir} · 第${Number(fi)+1}帧 `;for(const axis of ['x','y']){if(axis==='y'&&H.usesSitEyeY(s.hairAnimation.part,sheet,dir)){row.append('Y：头部位移');continue;}const input=document.createElement('input');input.type='number';input.step='1';input.min='-4096';input.max='4096';input.value=v[axis];input.disabled=base;input.setAttribute('aria-label',`${H.actions[sheet.slice(11)]||sheet} ${H.directions[dir]||dir} 第${Number(fi)+1}帧 ${axis.toUpperCase()}`);input.oninput=()=>v[axis]=Number(input.value);row.append(axis.toUpperCase(),input);}if(s.hairAnimation.part==='eyes'&&!base){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=preserved.has(key);input.onchange=()=>input.checked?preserved.add(key):preserved.delete(key);label.append(input,'保留原画');row.append(label);}list.append(row);}}
++    function draw(){list.replaceChildren();for(const [key,v]of Object.entries(offsets)){const [sheet,dir,fi]=key.split('/');if(!PE.isEditorSheet({name:sheet}))continue;const row=document.createElement('div'),base=sheet===p.spriteSheets[s.sheetIndex].name&&fi==='0';row.textContent=`${H.actions[sheet.slice(11)]||sheet} · ${H.directions[dir]||dir} · 第${Number(fi)+1}帧 `;for(const axis of ['x','y']){if(axis==='y'&&H.usesSitEyeY(s.hairAnimation.part,sheet,dir)){row.append('Y：头部位移 + 1 格');continue;}const input=document.createElement('input');input.type='number';input.step='1';input.min='-4096';input.max='4096';input.value=v[axis];input.disabled=base;input.setAttribute('aria-label',`${H.actions[sheet.slice(11)]||sheet} ${H.directions[dir]||dir} 第${Number(fi)+1}帧 ${axis.toUpperCase()}`);input.oninput=()=>v[axis]=Number(input.value);row.append(axis.toUpperCase(),input);}if(s.hairAnimation.part==='eyes'&&!base){const label=document.createElement('label'),input=document.createElement('input');input.type='checkbox';input.checked=preserved.has(key);input.onchange=()=>input.checked?preserved.add(key):preserved.delete(key);label.append(input,'保留原画');row.append(label);}list.append(row);}}
+     draw();dialog.querySelector('[data-calibrate]').onclick=()=>run(()=>{offsets=H.calibrate(p,s);draw();});
+     dialog.querySelector('[data-cancel]').onclick=()=>dialog.close();dialog.querySelector('[data-apply]').onclick=()=>{try{if(app.project!==p||!p.layers.includes(s)||JSON.stringify(s.hairAnimation)!==stamp)throw Error('工程或部件设置已变化，请重新打开');H.transaction(app,'调整部件偏移与保留帧',()=>{s.hairAnimation.offsets=offsets;if(s.hairAnimation.part==='eyes')s.hairAnimation.preserved=[...preserved];H.validate(p);H.applyPlan(H.plan(p,s));});dialog.close();}catch(e){dialog.querySelector('[data-note]').textContent=e.message;}};
+     dialog.onclose=()=>dialog.remove();document.body.append(dialog);dialog.showModal();
+@@ -525,8 +530,14 @@ document.addEventListener('DOMContentLoaded',()=>{
+       if(result){const work=entry.work,si=Number(action.value),sheet=work.spriteSheets[si],ai=sheet.actions.findIndex(a=>a.direction===direction.value),a=sheet.actions[ai];if(a){
+         const durations=a.frames.map(f=>sheet.useFrameDurations!==false&&f.duration>0?f.duration:1000/(sheet.fps||8)),total=durations.reduce((n,v)=>n+v,0);if(start===null)start=now-durations.slice(0,frame).reduce((n,v)=>n+v,0);
+         if(playing){let t=(now-start)%total;frame=0;while(frame<durations.length-1&&t>=durations[frame])t-=durations[frame++];}
+-        const f=a.frames[frame],key=work.getFrameKey(si,ai,frame);preview.width=f.width;preview.height=f.height;const ctx=preview.getContext('2d');
+-        for(const l of H.previewLayers(work,si,ai,entry.source.hairAnimation.id)){const replacement=result.edits.find(e=>e.layer===l&&e.key===key),im=replacement?.image||l.getFrameData(key);if(im){ctx.globalAlpha=l.opacity??1;PE.utils.drawImageData(ctx,im);}}
++        const f=a.frames[frame],key=work.getFrameKey(si,ai,frame);
++        const layers=H.previewLayers(work,si,ai,entry.source.hairAnimation.id).map(l=>({
++          opacity:l.opacity??1,image:result.edits.find(e=>e.layer===l&&e.key===key)?.image||l.getFrameData(key)
++        })).filter(l=>l.image&&l.opacity>0);
++        const density=Math.max(1,...layers.map(({image:im})=>im.placement?Math.ceil(Math.max(im.width/im.placement.w,im.height/im.placement.h)):1));
++        const scale=Math.min(density,Math.max(1,Math.floor(Math.sqrt(16*1024*1024/(f.width*f.height)))));
++        preview.width=f.width*scale;preview.height=f.height*scale;const ctx=preview.getContext('2d');
++        for(const {opacity,image} of layers){ctx.globalAlpha=opacity;PE.utils.drawImageData(ctx,image,0,0,scale);}
+         $('[data-frame]').textContent=`第 ${frame+1}/${a.frames.length} 帧`;
+       }}request=requestAnimationFrame(tick);
+     }

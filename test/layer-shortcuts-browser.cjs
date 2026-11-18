@@ -32,8 +32,8 @@ const root=path.resolve(__dirname,'..'),output=path.join(__dirname,'output/ps-la
     await page.keyboard.press('Control+j');copy=await state();assert.equal(copy.names.length,2);assert.equal(copy.rgba[(2*8+2)*4+3],255);assert.equal(copy.rgba[(5*8+5)*4+3],0);
     await page.locator('.layer-header-actions summary').click();
     await page.getByRole('button',{name:'复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）',exact:true}).focus();await page.keyboard.press('Enter');assert.equal((await state()).names.length,3);
-    await page.locator('.layer-header-actions summary').click();
-    await page.getByRole('button',{name:'把当前图层向下合并到下面那层（Ctrl+E，同 Photoshop）',exact:true}).focus();await page.keyboard.press('Enter');assert.equal((await state()).names.length,2);
+    await page.evaluate(()=>document.activeElement.blur());
+    await page.keyboard.press('Control+e');assert.equal((await state()).names.length,2);
     await page.evaluate(()=>{const input=document.createElement('input');input.id='shortcut-input-fixture';document.body.append(input);input.focus();});
     await page.keyboard.press('Control+j');assert.equal((await state()).names.length,2);
     await page.evaluate(()=>{const d=document.createElement('div');d.contentEditable='true';d.textContent='editable';document.body.append(d);d.focus();});

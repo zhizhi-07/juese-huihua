@@ -1,0 +1,22 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "8CD5D6A396B28EF24F537BC30AD3DB9E0784BE4A4106A8BAF6F01473E27C19E5",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111\\before\\core.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "593CC1087DC6DFE67F54B5EF9F82B2EF972443CB68C9C287DB3DC7FD7EFC8CE5",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111\\before\\hair-animation.js"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "5E4CE83C3D26938CF45B1E37E2AE4E2E98ED8C79E7994E56F1B6FA449DB3FD65",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111\\before\\hair-nine-live-browser.cjs"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "34DFF782065E566B1BB6BB9F96238E4490A187A28B9193DEE99F10E37C14B320",
+    "Path": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\water-fishing-20261111\\before\\index.html"
+  }
+]

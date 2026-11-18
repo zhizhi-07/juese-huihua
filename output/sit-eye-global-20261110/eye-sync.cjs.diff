@@ -1,0 +1,25 @@
+diff --git a/output/sit-eye-global-20261110/before/eye-sync.cjs b/test/eye-sync.cjs
+index 2a56e4a..d57720b 100644
+--- a/output/sit-eye-global-20261110/before/eye-sync.cjs
++++ b/test/eye-sync.cjs
+@@ -50,6 +50,20 @@ async function main(){
+  assert.equal(JSON.stringify([...sleep.frameData]),sleepBefore);assert.equal(JSON.stringify([...hair.frameData]),hairBefore);assert.deepEqual(p.layers.filter(l=>l.name==='head').map(l=>[...l.frameData.values()].map(im=>[...im.data])),headBytes);
+  assert(!PE.isEditorSheet({name:'original32_sleep'}));assert(!PE.isEditorSheet({name:'sleep'}));assert(PE.isEditorSheet({name:'original32_sit'}));assert(!('sleep' in PE.Wardrobe.actions));
+  const noSource=fixture();noSource.eyes.frameData.delete('0_1_0');H.sync(noSource.app);assert.deepEqual(raster(noSource.walk.getFrameData('1_1_2')),raster(pixels(4,7)),'missing side master never erases existing eyes');
++ const shared=fixture();H.sync(shared.app);
++ const sit=shared.p.layers.find(l=>l.sheetIndex===3&&l.hairAnimationId===shared.eyes.hairAnimationId);
++ const recipe=shared.eyes.hairAnimation;
++ recipe.offsets['original32_sit/side/0'].y=8;
++ recipe.offsets['original32_sit/side/2'].y=-4;
++ recipe.preserved.push('original32_sit/side/1');
++ const kept=sit.getFrameData('3_1_1');
++ for(let attempt=0;attempt<2;attempt++){
++   H.sync(shared.app);
++   assert.deepEqual(raster(sit.getFrameData('3_1_0')),raster(pixels(3,3)),'side sitting eyes: head displacement minus two, regardless of saved Y');
++   assert.deepEqual(raster(sit.getFrameData('3_1_2')),raster(pixels(3,5)),'side sitting eyes follow the later head displacement');
++   assert.deepEqual(raster(sit.getFrameData('3_0_0')),raster(pixels(3,5)),'non-side sitting eyes unchanged');
++   assert.equal(sit.getFrameData('3_1_1'),kept);
++ }
+  console.log('PASS eyes: shared directional sync, calibrated offsets, expression preservation/opt-in, live brush, pause/manual sync, undo/redo, atomic locks, PNG save/reopen, validation, untouched hair/base/sleep and hidden sleep action.');
+ }
+ if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});

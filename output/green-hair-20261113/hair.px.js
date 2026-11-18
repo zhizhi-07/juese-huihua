@@ -1,0 +1,4 @@
+pal({"o":"#46465E","d":"#536A36","s":"#718C40","g":"#8DA64F","l":"#AAC46D","h":"#C4D990"})
+sprite("hair_0", { w:17,h:17 }, ".....ooooooo.....\n....ogggllggo....\n...ogllggggggo...\n..osglgggsggggo..\n..osggsggssgggo..\n.osggssgsssggo...\n.osgsssgsoggo....\n.osgssgo..oo.....\n..osgso..........\n..osgso.....go...\n...osso....odo...\n....oo......o....")
+sprite("hair_1", { w:17,h:17 }, ".....ooooooo.....\n....ogggllggo....\n...ogllggglggo...\n..ogggggggggggo..\n..ogglggglggggo..\n.osggsglgsgggsgo.\n.osgsoogoogosgso.\n..oso.......oso..\n.osgo.......ogso.\n.osso.......osso.\n..oso.......oso..\n...o.........o...")
+sprite("hair_2", { w:17,h:17 }, ".....ooooooo.....\n....ogggllggo....\n...ogggggggggo...\n..ogglgggglgggo..\n..ogggggggggggo..\n.osggggggggggsgo.\n.osgglggggglgsgo.\nosgggsgggsggggsgo\n.osgssgsgsgssgso.\n.osssgssgssgssso.\n..osssossossso...\n...ooo.oo.ooo....")

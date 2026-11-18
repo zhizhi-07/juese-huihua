@@ -1,0 +1,1 @@
+{"cache-control":"no-store","connection":"keep-alive","content-length":"256187","content-type":"application/json; charset=utf-8","date":"Mon, 09 Nov 2026 07:33:59 GMT","etag":"\"8b35780fedd8b63cd8d72676589bb1fdd1e6e29b2b2f13d2aa2323286515343b\"","keep-alive":"timeout=5","x-content-type-options":"nosniff"}

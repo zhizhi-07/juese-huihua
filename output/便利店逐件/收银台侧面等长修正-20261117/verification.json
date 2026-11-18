@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "originalSHA256": "c479601089497b931b56e40ec2e0b5041087e637b7b0c8f6660f14f9a95c0a42",
+  "newSHA256": "db518fa4a98371c9f8942583ea7ef5b8819ee47252e608fca0e0cc82aaa4fa19",
+  "etag": "\"db518fa4a98371c9f8942583ea7ef5b8819ee47252e608fca0e0cc82aaa4fa19\"",
+  "frontLength": 28,
+  "sideLength": 28,
+  "verified": "正面像素不变；侧面柜台实长28像素；侧面画布改为32×32；其他素材不变；回读一致"
+}

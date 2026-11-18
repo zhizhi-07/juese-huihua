@@ -1,0 +1,2 @@
+PASS 4 shapes x 2 palettes; source/root/palette invariants; idle/walk/pickup stages; HD/tiny safety; 153 user frames, 0 clipping; legacy compatibility and reopen.
+exit=0

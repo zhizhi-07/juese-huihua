@@ -1,0 +1,1 @@
+PASS actual HD project in memory: three confirmations required, no writes to masters/kept frames, missing seated frame at 2×, source edit live, cancellation and persistence.

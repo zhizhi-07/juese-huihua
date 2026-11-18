@@ -1,0 +1,28 @@
+/* 场景绘制中的人物比对浮层：只影响显示，不影响工程数据 */
+.reference-panel{position:absolute;top:12px;right:12px;width:252px;max-height:calc(100% - 24px);overflow:auto;display:flex;flex-direction:column;gap:8px;padding:11px 12px;background:#fbfcf9;border:1px solid #d8dfd0;border-radius:10px;box-shadow:0 10px 30px #1b2b2233;font-size:11px;color:#45583b;z-index:20}
+.reference-panel[hidden]{display:none}
+.reference-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.reference-titles{display:flex;flex-direction:column;gap:1px}
+.reference-titles strong{font-size:12px;color:#3e6d54}
+.reference-titles small{font-size:10px;color:#9aa896}
+.reference-close{border:0;background:transparent;color:#9aa896;font-size:15px;line-height:1;cursor:pointer;padding:0 2px;border-radius:4px}
+.reference-close:hover{background:#eceee8;color:#5c7051}
+.reference-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.reference-label{min-width:31px;color:#8b9785;font-size:10px}
+.reference-select{flex:1;min-width:0;background:#fff;color:#5c7051;border:1px solid #d9e1d1;border-radius:5px;padding:4px 5px;font-size:11px}
+.reference-chips{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.reference-chip{border:1px solid #d9e1d1;background:#fff;color:#7d8c74;font-size:10px;padding:4px 7px;border-radius:5px;cursor:pointer}
+.reference-chip[aria-pressed="true"]{background:#e4eee3;border-color:#c6dbca;color:#3e6d54}
+.reference-mini{border:1px solid #d9e1d1;background:#fff;color:#7d8c74;font-size:10px;padding:3px 6px;border-radius:5px;cursor:pointer;white-space:nowrap}
+.reference-mini:hover{background:#eef3ea;color:#4b6b57}
+.reference-frame{min-width:44px;text-align:center;color:#7f8e76;font-size:10px;font-variant-numeric:tabular-nums}
+.reference-check{display:flex;align-items:center;gap:4px;color:#7f8e76;font-size:10px;cursor:pointer}
+.reference-alpha{flex:1;min-width:60px;accent-color:#7fa985}
+.reference-number{width:52px;background:#fff;color:#5c7051;border:1px solid #d9e1d1;border-radius:5px;padding:3px 4px;font-size:10px;text-align:center}
+.reference-size{font-size:10px;color:#7f8e76;margin:0;font-variant-numeric:tabular-nums}
+.reference-status{font-size:10px;color:#6b8a72;margin:0;line-height:1.45}
+.reference-status.reference-error{color:#b4593f}
+.reference-note{font-size:9.5px;color:#a3af9c;margin:0;line-height:1.5}
+.reference-toggle{border:1px solid #d3ddca!important;border-radius:5px;color:#5f7f68!important;padding:4px 8px!important;background:#fff}
+.reference-toggle[aria-pressed="true"]{background:#e4eee3!important;border-color:#c6dbca!important;color:#3e6d54!important}
+.reference-toggle[hidden]{display:none}

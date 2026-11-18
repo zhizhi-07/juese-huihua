@@ -1,0 +1,89 @@
+node:assert:150
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  Uint8ClampedArray(80) [
+    222,
+    222,
+    222,
+    255,
+...
+    255,
++   222,
++   222,
++   222,
+    255,
+    255,
+    255,
+    255,
+    255,
++   222,
++   222,
++   222,
+    255,
+    255,
+    255,
+    255,
+    255,
++   222,
++   222,
++   222,
+    255,
+    255,
+    255,
+    255,
+    255,
+-   255,
+-   255,
+-   255,
+-   255,
+-   255,
+-   255,
+-   255,
+-   255,
+-   255,
+    0,
+    0,
+    0,
+    0,
+    255,
+
+    at Object.<anonymous> (C:\Users\Administrator\Desktop\角色绘画\test\clothing-shadow.cjs:18:8)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: Uint8ClampedArray(80) [
+    222, 222, 222, 255, 222, 222, 222, 255, 222, 222, 222,
+    255, 222, 222, 222, 255, 222, 222, 222, 255, 255, 255,
+    255, 255, 222, 222, 222, 255, 255, 255, 255, 255, 222,
+    222, 222, 255, 255, 255, 255, 255,   0,   0,   0,   0,
+    255, 255, 255, 255, 105, 105, 105, 255, 125, 125, 125,
+    255, 105, 105, 105, 255, 125, 125, 125, 255, 105, 105,
+    105, 255, 105, 105, 105, 255, 105, 105, 105, 255, 105,
+    105, 105, 255
+  ],
+  expected: Uint8ClampedArray(80) [
+    222, 222, 222, 255, 222, 222, 222, 255, 222, 222, 222,
+    255, 222, 222, 222, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255,   0,   0,   0,   0,
+    255, 255, 255, 255, 105, 105, 105, 255, 125, 125, 125,
+    255, 105, 105, 105, 255, 125, 125, 125, 255, 105, 105,
+    105, 255, 105, 105, 105, 255, 105, 105, 105, 255, 105,
+    105, 105, 255
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.23.1

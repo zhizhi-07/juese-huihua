@@ -1,0 +1,10 @@
+const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto'),{decode,encode}=require('../../scripts/png.cjs');
+const dir=__dirname,url='http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561';
+(async()=>{await fetch('http://127.0.0.1:8765/api/projects');const r=await fetch(url);assert(r.ok);const raw=await r.text(),etag=r.headers.get('etag'),original=JSON.parse(raw),j=structuredClone(original);fs.writeFileSync(dir+'/original.json',raw);fs.writeFileSync(dir+'/source.json',JSON.stringify({etag,sha256:crypto.createHash('sha256').update(raw).digest('hex')}));
+const indices=j.layers.map((l,i)=>l.name.startsWith('头发 / 中性灰蓬松短发 /')?i:-1).filter(i=>i>=0);assert(indices.length);let count=0;
+for(const idx of indices)for(const [key,cel]of Object.entries(j.layers[idx].frameData)){const im=decode(Buffer.from(cel.dataURL.split(',')[1],'base64')),before=Uint8Array.from(im.data);for(let i=0;i<im.data.length;i+=4){if(im.data[i+3]&&im.data[i]===58&&im.data[i+1]===58&&im.data[i+2]===58){im.data.set([70,70,94],i);count++;}else assert.deepEqual(im.data.slice(i,i+4),before.slice(i,i+4));assert.equal(im.data[i+3],before[i+3]);}cel.dataURL='data:image/png;base64,'+encode(im.width,im.height,im.data).toString('base64');}
+assert(count>0);const check=structuredClone(j);for(const idx of indices)check.layers[idx]=original.layers[idx];assert.deepEqual(check,original);fs.writeFileSync(dir+'/candidate.json',JSON.stringify(j));
+const put=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(j)});assert(put.ok,'Save failed '+put.status);assert.deepEqual(await(await fetch(url)).json(),j);
+fs.writeFileSync(dir+'/verification.json',JSON.stringify({passed:true,outline:'#46465E',recoloredPixels:count,changedLayers:indices,interiorAndAlphaUnchanged:true,otherFieldsUnchanged:true},null,2));console.log(fs.readFileSync(dir+'/verification.json','utf8'));
+})().catch(e=>{console.error(e);process.exitCode=1});
+

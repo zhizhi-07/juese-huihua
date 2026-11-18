@@ -1,0 +1,9 @@
+{
+  "url": "http://127.0.0.1:8765/api/project?id=scene-c81daf8c-650d-4be9-9c91-ab68b8ff8f5d",
+  "etag": "\"b3d701329613234efe7a970735060e47b93b077212c1f9023791bbad8851f1cf\"",
+  "sha256": "b3d701329613234efe7a970735060e47b93b077212c1f9023791bbad8851f1cf",
+  "paletteSHA256": "811ba883a0fd7d7554aee4724ab07ec9de2b79cf5eb95404485dfe3edd6c4b88",
+  "imageCount": 10,
+  "changedPixels": 17441,
+  "colorCount": 174
+}

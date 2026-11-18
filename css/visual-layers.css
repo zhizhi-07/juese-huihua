@@ -15,3 +15,10 @@
 .visual-layer-card.part-visible .part-state{color:#227865}.part-more{grid-column:1/-1;border-top:1px solid #eef0ec;padding-top:3px}.part-more summary{font-size:10px;color:#89938a;cursor:pointer;list-style:none;text-align:right}.part-more[open]{padding-bottom:5px}.studio .part-more .layer-opacity-slider{max-width:130px;width:130px;margin:4px 8px 0 0}.part-empty{font-size:12px;color:#7c867e;padding:10px}
 @media(max-width:1100px){.studio #right-sidebar{width:260px;min-width:260px}}
 .part-bulk-actions{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.part-bulk-actions .part-choose{padding:3px 5px;font-size:10px}.part-choose:disabled{opacity:.5;cursor:wait}
+/* 五角星收藏：空心=未收藏，实心=已在成品衣柜 */
+.part-star{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;padding:0;line-height:1}
+.part-star svg{width:14px;height:14px;fill:none;stroke:#b08c2f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round;pointer-events:none}
+.part-star:hover{border-color:#d9b451;background:#fdf7e4}
+.part-star[aria-pressed="true"]{background:#fdf4d5;border-color:#d9b451}
+.part-star[aria-pressed="true"] svg{fill:#e0a91a;stroke:#a8800d}
+.part-star[aria-busy="true"]{opacity:.5}

@@ -1,0 +1,430 @@
+[
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "saved",
+    "s": "original16_sit",
+    "dir": "side",
+    "si": 3,
+    "ai": 0,
+    "fi": 0,
+    "key": "3_0_0",
+    "score": 10868,
+    "layers": [
+      [
+        "hand 2",
+        {
+          "x": 7,
+          "y": 9,
+          "w": 18,
+          "h": 8
+        }
+      ],
+      [
+        "body",
+        {
+          "x": 5,
+          "y": 11,
+          "w": 8,
+          "h": 5
+        }
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        {
+          "x": 0,
+          "y": 0,
+          "w": 17,
+          "h": 18
+        }
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "saved",
+    "s": "original16_sit",
+    "dir": "side",
+    "si": 3,
+    "ai": 0,
+    "fi": 1,
+    "key": "3_0_1",
+    "score": 10868,
+    "layers": [
+      [
+        "hand 2",
+        {
+          "x": 5,
+          "y": 9,
+          "w": 11,
+          "h": 8
+        }
+      ],
+      [
+        "body",
+        {
+          "x": 5,
+          "y": 11,
+          "w": 8,
+          "h": 5
+        }
+      ],
+      [
+        "head",
+        {
+          "x": 0,
+          "y": -1,
+          "w": 16,
+          "h": 17
+        }
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        {
+          "x": 2,
+          "y": 11,
+          "w": 6,
+          "h": 6
+        }
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "live",
+    "s": "original16_sit",
+    "dir": "side",
+    "si": 3,
+    "ai": 0,
+    "fi": 0,
+    "key": "3_0_0",
+    "score": 10868,
+    "layers": [
+      [
+        "hand 2",
+        {
+          "x": 7,
+          "y": 9,
+          "w": 18,
+          "h": 8
+        }
+      ],
+      [
+        "body",
+        {
+          "x": 5,
+          "y": 11,
+          "w": 8,
+          "h": 5
+        }
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        {
+          "x": 0,
+          "y": 0,
+          "w": 17,
+          "h": 18
+        }
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "live",
+    "s": "original16_sit",
+    "dir": "side",
+    "si": 3,
+    "ai": 0,
+    "fi": 1,
+    "key": "3_0_1",
+    "score": 10868,
+    "layers": [
+      [
+        "hand 2",
+        {
+          "x": 5,
+          "y": 9,
+          "w": 11,
+          "h": 8
+        }
+      ],
+      [
+        "body",
+        {
+          "x": 5,
+          "y": 11,
+          "w": 8,
+          "h": 5
+        }
+      ],
+      [
+        "head",
+        {
+          "x": 0,
+          "y": -1,
+          "w": 16,
+          "h": 17
+        }
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        {
+          "x": 2,
+          "y": 11,
+          "w": 6,
+          "h": 6
+        }
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "saved",
+    "s": "original16_idle",
+    "dir": "side",
+    "si": 1,
+    "ai": 0,
+    "fi": 0,
+    "key": "1_0_0",
+    "score": 44517,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "眼睛 / 眼睛1",
+        {
+          "x": 3,
+          "y": 7,
+          "w": 12,
+          "h": 5
+        }
+      ],
+      [
+        "头发 / -卷 / 前发",
+        {
+          "x": 0,
+          "y": 0,
+          "w": 17,
+          "h": 16
+        }
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "live",
+    "s": "original16_idle",
+    "dir": "side",
+    "si": 1,
+    "ai": 0,
+    "fi": 0,
+    "key": "1_0_0",
+    "score": 44517,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "眼睛 / 眼睛1",
+        {
+          "x": 3,
+          "y": 7,
+          "w": 12,
+          "h": 5
+        }
+      ],
+      [
+        "头发 / -卷 / 前发",
+        {
+          "x": 0,
+          "y": 0,
+          "w": 17,
+          "h": 16
+        }
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "saved",
+    "s": "original16_walk",
+    "dir": "side",
+    "si": 0,
+    "ai": 0,
+    "fi": 7,
+    "key": "0_0_7",
+    "score": 45505,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "live",
+    "s": "original16_walk",
+    "dir": "side",
+    "si": 0,
+    "ai": 0,
+    "fi": 7,
+    "key": "0_0_7",
+    "score": 45505,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "saved",
+    "s": "original16_walk",
+    "dir": "side",
+    "si": 0,
+    "ai": 0,
+    "fi": 0,
+    "key": "0_0_0",
+    "score": 45783,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  },
+  {
+    "id": "draft-conflict-1794277219868-e36ffb28",
+    "mode": "live",
+    "s": "original16_walk",
+    "dir": "side",
+    "si": 0,
+    "ai": 0,
+    "fi": 0,
+    "key": "0_0_0",
+    "score": 45783,
+    "layers": [
+      [
+        "hand 2",
+        null
+      ],
+      [
+        "body",
+        null
+      ],
+      [
+        "head",
+        null
+      ],
+      [
+        "头发 / -卷 / 前发",
+        null
+      ],
+      [
+        "hand",
+        null
+      ]
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "etag": "\"9f3a71ec155be4f0a21b76be2a92d5717a6f87c82e2a237fc985db2bc1df0d49\"",
+  "sha256": "9f3a71ec155be4f0a21b76be2a92d5717a6f87c82e2a237fc985db2bc1df0d49",
+  "sizes": {
+    "饮品海报": [
+      6,
+      9
+    ],
+    "风景海报": [
+      6,
+      9
+    ],
+    "日历海报": [
+      8,
+      7
+    ]
+  },
+  "canvas": [
+    32,
+    16
+  ],
+  "otherArtUnchanged": true
+}

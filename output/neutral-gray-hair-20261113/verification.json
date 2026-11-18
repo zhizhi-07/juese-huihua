@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "onlyChangedLayer": 344,
+  "frames": [
+    "1_0_0",
+    "1_1_0",
+    "1_2_0"
+  ],
+  "neutralRGB": true,
+  "alphaUnchanged": true,
+  "otherFieldsUnchanged": true,
+  "colors": {
+    "698140": 119,
+    "313c3d": 58,
+    "859d50": 146,
+    "b3d698": 202,
+    "4f6e2d": 99,
+    "43632a": 88
+  }
+}

@@ -1,0 +1,45 @@
+GET draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba 200 "d74963fbb93bbb7043ff162d9a9f32c234ae8b5872fa40ea7c8bddd4d13af6bb" d74963fbb93bbb7043ff162d9a9f32c234ae8b5872fa40ea7c8bddd4d13af6bb
+GET main 200 "91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b" 91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b
+Candidate: four rendered cels match the real sync algorithm; reverse diff on a copy matches original.
+[
+  {
+    key: '3_0_0',
+    address: 'original16_sit/side/0',
+    original: { x: 0, y: 1 },
+    current: { x: 0, y: 3 },
+    offset: { x: 0, y: -1 },
+    placementBefore: { x: 3, y: 10, w: 11, h: 4 },
+    placementAfter: { x: 3, y: 6, w: 11, h: 4 }
+  },
+  {
+    key: '3_0_1',
+    address: 'original16_sit/side/1',
+    original: { x: 0, y: 1 },
+    current: { x: 0, y: 3 },
+    offset: { x: 0, y: -1 },
+    placementBefore: { x: 3, y: 10, w: 11, h: 4 },
+    placementAfter: { x: 3, y: 6, w: 11, h: 4 }
+  },
+  {
+    key: '3_0_2',
+    address: 'original16_sit/side/2',
+    original: { x: 0, y: 2 },
+    current: { x: 0, y: 4 },
+    offset: { x: 0, y: 0 },
+    placementBefore: { x: 3, y: 11, w: 11, h: 4 },
+    placementAfter: { x: 3, y: 7, w: 11, h: 4 }
+  },
+  {
+    key: '3_0_3',
+    address: 'original16_sit/side/3',
+    original: { x: 0, y: 2 },
+    current: { x: 0, y: 4 },
+    offset: { x: 0, y: 0 },
+    placementBefore: { x: 3, y: 11, w: 11, h: 4 },
+    placementAfter: { x: 3, y: 7, w: 11, h: 4 }
+  }
+]
+PUT 200 {"saved":true,"revision":"\"db915cdd0308d663ef20990feb317d0ae839941f4a872eb6f1ee4d6a44631986\""}
+GET draft-7278d7c9-a753-4c98-bf8b-d7c2d45119ba 200 "db915cdd0308d663ef20990feb317d0ae839941f4a872eb6f1ee4d6a44631986" db915cdd0308d663ef20990feb317d0ae839941f4a872eb6f1ee4d6a44631986
+GET main 200 "91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b" 91cf60206001b7c0b0858b010a570ea7e14ec9190bdc4ea58a2350caf524c24b
+PASS: readback exactly matches candidate; all four eyes match regenerated pixels; main unchanged.

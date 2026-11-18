@@ -1,0 +1,8 @@
+START isolated save-conflict browser test
+Temporary test directory: C:\Users\ADMINI~1\AppData\Local\Temp\pixel-save-conflict-zOUdio
+Copied js
+Copied css
+Copied scripts
+Isolated server ready
+Headless browser ready
+PASS: 409 blocks overwrites; normal open retains original draft base; reload adopts latest and archives exact draft; repeat reload stays clean; same-revision and offline drafts survive; subsequent ETag save/reopen succeeds; existing conflict dialog and rescue still work.

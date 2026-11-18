@@ -1,0 +1,13 @@
+diff --git a/output/save-conflict-refresh-20261110/before/index.html b/index.html
+index b341681..c86153a 100644
+--- a/output/save-conflict-refresh-20261110/before/index.html
++++ b/index.html
+@@ -296,7 +296,7 @@
+   <script src="js/app.js?v=part-visibility-sync-2"></script>
+   <script src="js/workbench.js?v=blank-sit-clothing-20261109"></script>
+   <script src="js/local-bridge.js"></script>
+-  <script src="js/persistence.js?v=manual-shared-save-2"></script>
++  <script src="js/persistence.js?v=manual-shared-save-3"></script>
+   <script src="js/builtin-packs.js"></script>
+   <script src="js/walk-pack.js"></script>
+   <script src="js/poses.js"></script>
