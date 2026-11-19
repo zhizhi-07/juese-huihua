@@ -1,4 +1,8 @@
 /* 图层调色：在颜色面板里给当前图层整体调色相 / 饱和度 / 明度 */
+.brush-color-adjust{display:grid;gap:4px;margin:0 0 10px;flex-shrink:0}
+.brush-color-adjust label{display:flex;align-items:center;gap:10px;min-height:40px;font-size:12px}
+.brush-color-adjust input[type=range]{flex:1;min-width:0;height:28px;accent-color:#333;touch-action:pan-y}
+.brush-color-adjust output{width:38px;text-align:right;font-variant-numeric:tabular-nums}
 .hue-adjust{margin-top:10px;padding-top:6px;border-top:1px solid var(--border-light);display:block;flex:0 0 auto}
 .hue-adjust-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:2px 0;cursor:pointer;user-select:none;list-style:none;border-radius:4px}
 .hue-adjust-head::-webkit-details-marker{display:none}

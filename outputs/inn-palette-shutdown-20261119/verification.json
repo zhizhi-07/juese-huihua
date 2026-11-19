@@ -1,0 +1,31 @@
+{
+  "onlyAsset": "壁炉",
+  "onFramesUnchanged": true,
+  "bodyUnchanged": true,
+  "shutdownFrames": 7,
+  "firePixels": [
+    41,
+    25,
+    19,
+    9,
+    3,
+    1,
+    0
+  ],
+  "delaysMs": [
+    120,
+    120,
+    140,
+    140,
+    160,
+    160,
+    400
+  ],
+  "allColorsInOtterisk96": true,
+  "otherAssetsUnchanged": true,
+  "previewLoopsForReview": true,
+  "exactReadback": true,
+  "changedOnlyFireplace": true,
+  "awaitingUserApprovalBeforeNextAsset": true,
+  "etag": "\"c5b092294395d8e9096145fe7cc66d79a8fcfc8643c126c0256a60a2ae3e2129\""
+}

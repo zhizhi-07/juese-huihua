@@ -111,6 +111,46 @@ window.PE = window.PE || {};
 
   document.addEventListener('DOMContentLoaded', () => {
     const app = PE.app;
+    const paintControls = document.querySelector('.paint-controls');
+    if (app && paintControls) {
+      const group = document.createElement('div');
+      group.className = 'brush-color-adjust';
+      group.setAttribute('role', 'group');
+      group.setAttribute('aria-label', '微调当前画笔颜色');
+      let hsl;
+      const setColor = app.setPrimaryColor.bind(app);
+      const sliders = [];
+      for (const [index, label, max] of [[2, '明暗', 100], [1, '鲜艳', 100], [0, '色相', 360]]) {
+        const row = document.createElement('label');
+        row.textContent = label;
+        const slider = document.createElement('input');
+        slider.type = 'range';slider.min = '0';slider.max = String(max);slider.step = '0.1';
+        slider.setAttribute('aria-label', '画笔颜色' + label);
+        const value = document.createElement('output');
+        slider.oninput = () => {
+          hsl[index] = Number(slider.value) / max;
+          const [r, g, b] = hslToRgb(...hsl);
+          setColor({ r, g, b, a: app.toolManager.primaryColor.a });
+          update();
+        };
+        sliders.push({ slider, value, index, max });
+        row.append(slider, value);group.append(row);
+      }
+      function update() {
+        for (const { slider, value, index, max } of sliders) {
+          slider.value = String(hsl[index] * max);
+          value.textContent = Math.round(hsl[index] * max) + (index === 0 ? '°' : '%');
+        }
+      }
+      app.setPrimaryColor = color => {
+        setColor(color);
+        hsl = rgbToHsl(color.r, color.g, color.b);
+        update();
+      };
+      const color = app.toolManager.primaryColor;
+      hsl = rgbToHsl(color.r, color.g, color.b);update();
+      paintControls.after(group);
+    }
     const root = document.getElementById('layer-hue-adjust');
     if (!app || !root) return;
 

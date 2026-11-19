@@ -1,0 +1,16 @@
+{
+  "project": "scene-inn-20261119",
+  "name": "行李架",
+  "width": 21,
+  "height": 21,
+  "frames": 1,
+  "layers": [
+    "空架子",
+    "上面物品"
+  ],
+  "emptyRackComplete": true,
+  "transparentBackground": true,
+  "latestEditsPreserved": true,
+  "exactReadback": true,
+  "etag": "\"dbe7a721ad1a2e8ce45c48fd55b29aac4e290a431a0bd1435b3e64ffa93a5d15\""
+}

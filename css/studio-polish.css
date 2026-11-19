@@ -314,3 +314,38 @@
 
 /* Standing instructions repeat what the controls already say. */
 .studio .layer-multi-bar .lm-hint { display:none; }
+
+.mobile-panels, .mobile-panel-close { display:none; }
+@media (max-width:900px) {
+  .studio #app-container { min-width:0; }
+  .studio .studio-header { min-height:44px; padding:6px 8px; gap:6px; flex-wrap:nowrap; }
+  .studio .studio-brand { display:none; }
+  .studio .primary-actions { overflow-x:auto; flex-wrap:nowrap; justify-content:flex-start; width:100%; }
+  .studio .project-bar { padding:4px 8px; gap:5px; flex-wrap:nowrap; min-height:40px; overflow-x:auto; }
+  .studio .project-bar>strong { display:none; }
+  .studio .project-bar>select { flex:1; min-width:100px; }
+  .studio .mobile-panels { display:flex; gap:8px; padding:4px 8px; flex-shrink:0; }
+  .studio .mobile-panels button, .studio .mobile-panel-close { min-height:40px; padding:8px 12px; border:1px solid #ccc; border-radius:6px; background:#fff; }
+  .studio .mobile-panels button[aria-expanded="true"] { background:#e4eee3; }
+  .studio #workspace { display:flex; position:relative; flex:1; min-height:0; overflow:hidden; gap:0; margin:0; }
+  .studio .tool-rail { width:46px; min-width:46px; padding:4px 2px; }
+  .studio #center-viewport { flex:1; min-width:0; min-height:0; margin:0; border-radius:0; }
+  .studio #left-sidebar, .studio #right-sidebar { display:none; }
+  .studio #left-sidebar.mobile-open, .studio #right-sidebar.mobile-open {
+    display:flex; flex-direction:column; position:absolute; inset:0 0 0 auto; z-index:85;
+    width:min(320px,calc(100% - 46px)); min-width:0; padding:8px; overflow:auto;
+    background:#fff; box-shadow:-6px 0 24px #0003;
+  }
+  .studio .mobile-panel-close { display:block; position:sticky; top:0; z-index:1; align-self:flex-end; flex-shrink:0; }
+  .studio #left-sidebar #sheet-list { flex-direction:column; }
+  .studio .canvas-header { min-height:34px; padding:4px 8px; }
+  .studio .canvas-title span, .studio .canvas-help { display:none; }
+  .studio .canvas-viewbar { max-height:100px; overflow:auto; padding:4px; gap:4px; flex-shrink:0; }
+  .studio .view-actions { flex-basis:auto; justify-content:flex-start; }
+  .studio #center-viewport #frame-strip-wrapper { height:100px; min-height:100px; overflow:auto; }
+  .studio .timeline-header { flex-wrap:nowrap; overflow-x:auto; min-height:34px; }
+  .studio .timeline-header>* { flex-shrink:0; white-space:nowrap; }
+  .studio #frame-list { height:64px; padding:0 6px 4px; }
+  .studio .frame-thumb { height:60px; min-width:52px; width:52px; }
+  .studio .frame-thumb canvas { width:44px; height:44px; }
+}

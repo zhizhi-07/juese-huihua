@@ -1,0 +1,46 @@
+{
+  "fireColors": [
+    "8a3c24",
+    "cc6764",
+    "d48d57",
+    "e3d176",
+    "e6dfa1"
+  ],
+  "allColorsInOtterisk96": true,
+  "bodyUnchanged": true,
+  "fireFitsOpening": true,
+  "onFrames": 6,
+  "offFrames": 1,
+  "coverage": [
+    {
+      "frame": 0,
+      "old": 24,
+      "new": 41
+    },
+    {
+      "frame": 1,
+      "old": 24,
+      "new": 39
+    },
+    {
+      "frame": 2,
+      "old": 19,
+      "new": 36
+    },
+    {
+      "frame": 3,
+      "old": 22,
+      "new": 41
+    },
+    {
+      "frame": 4,
+      "old": 24,
+      "new": 41
+    },
+    {
+      "frame": 5,
+      "old": 20,
+      "new": 40
+    }
+  ]
+}

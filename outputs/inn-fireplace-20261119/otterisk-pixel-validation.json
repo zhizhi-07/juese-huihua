@@ -1,0 +1,8 @@
+{
+  "paletteSource": "https://lospec.com/palette-list/otterisk-96",
+  "paletteSize": 96,
+  "allOpaquePixelsInPalette": true,
+  "onFrames": 6,
+  "offFrames": 1,
+  "bodyConstant": true
+}

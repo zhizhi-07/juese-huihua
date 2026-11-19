@@ -231,6 +231,77 @@ window.PE = window.PE || {};
         }
         this.updateZoomDisplay();
       }, { passive: false });
+
+      let pinch = null;
+      let finger = null;
+      const touchMouse = (type, touch) => canvas.dispatchEvent(new MouseEvent(type, {
+        bubbles: true, clientX: touch.clientX, clientY: touch.clientY, button: 0, buttons: type === 'mouseup' ? 0 : 1
+      }));
+      const finishFinger = () => {
+        if (finger?.drawing) touchMouse('mouseup', finger.last);
+        finger = null;
+      };
+      const touchPair = touches => {
+        const rect = canvas.getBoundingClientRect();
+        const [a, b] = touches;
+        return {
+          x: ((a.clientX + b.clientX) / 2 - rect.left) * canvas.width / rect.width,
+          y: ((a.clientY + b.clientY) / 2 - rect.top) * canvas.height / rect.height,
+          distance: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)
+        };
+      };
+      canvas.addEventListener('touchstart', event => {
+        event.preventDefault();
+        if (event.touches.length === 1 && !pinch) {
+          finger = { start: event.touches[0], last: event.touches[0], drawing: false };
+          return;
+        }
+        if (event.touches.length < 2) return;
+        finishFinger();
+        const pair = touchPair(event.touches), cm = this.canvasManager;
+        pinch = {
+          distance: Math.max(1, pair.distance), zoom: cm.zoom,
+          worldX: (pair.x - cm.offsetX) / cm.zoom,
+          worldY: (pair.y - cm.offsetY) / cm.zoom
+        };
+      }, { passive: false });
+      canvas.addEventListener('touchmove', event => {
+        if (!pinch && !finger) return;
+        event.preventDefault();
+        if (finger && event.touches.length === 1) {
+          if (!finger.drawing) {
+            touchMouse('mousedown', finger.start);
+            finger.drawing = true;
+          }
+          finger.last = event.touches[0];
+          touchMouse('mousemove', finger.last);
+          return;
+        }
+        if (!pinch) return;
+        if (event.touches.length < 2) return;
+        const pair = touchPair(event.touches), cm = this.canvasManager;
+        cm.setZoom(pinch.zoom * pair.distance / pinch.distance, pair.x, pair.y);
+        cm.offsetX = Math.round(pair.x - pinch.worldX * cm.zoom);
+        cm.offsetY = Math.round(pair.y - pinch.worldY * cm.zoom);
+        cm.render();
+        this.updateZoomDisplay();
+      }, { passive: false });
+      const endPinch = event => {
+        if (finger) {
+          event.preventDefault();
+          if (event.type !== 'touchcancel' && !finger.drawing) {
+            touchMouse('mousedown', finger.start);
+            finger.drawing = true;
+          }
+          finishFinger();
+        }
+        if (!pinch) return;
+        // Suppress the synthetic click until every finger has left the canvas.
+        event.preventDefault();
+        if (!event.touches.length) pinch = null;
+      };
+      canvas.addEventListener('touchend', endPinch, { passive: false });
+      canvas.addEventListener('touchcancel', endPinch, { passive: false });
     }
 
     bindResizeObserver(canvas) {
@@ -292,7 +363,7 @@ window.PE = window.PE || {};
           const hex = e.target.value;
           const rgb = this.hexToRgb(hex);
           if (rgb) {
-            this.toolManager.setColor(rgb.r, rgb.g, rgb.b, 255);
+            this.setPrimaryColor(rgb);
           }
         });
       }

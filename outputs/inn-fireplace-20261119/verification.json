@@ -1,0 +1,26 @@
+{
+  "project": "scene-inn-20261119",
+  "name": "壁炉",
+  "width": 18,
+  "height": 29,
+  "layers": [
+    "炉体",
+    "火焰"
+  ],
+  "actions": {
+    "开火": {
+      "frames": 6,
+      "durationMs": 140,
+      "distinctFireFrames": 6
+    },
+    "关火": {
+      "frames": 1,
+      "emptyFireLayer": true
+    }
+  },
+  "bodyUnchangedAcrossAllFrames": true,
+  "transparentBackground": true,
+  "latestEditsPreserved": true,
+  "exactReadback": true,
+  "etag": "\"29427e69bafaa03c00ac7a4f39f7497639165a27ef7936edbb7119e31653dafd\""
+}

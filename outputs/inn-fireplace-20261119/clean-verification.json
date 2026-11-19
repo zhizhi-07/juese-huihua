@@ -1,0 +1,25 @@
+{
+  "usedColors": [
+    "2f3b3d",
+    "7b7d77",
+    "5c6163",
+    "9e7565",
+    "785a55",
+    "b89184",
+    "9c756a",
+    "5c4644",
+    "bd6f42",
+    "e0ac6c",
+    "e6dfa1"
+  ],
+  "count": 11,
+  "allColorsInOtterisk96": true,
+  "onFrames": 6,
+  "offFrames": 1,
+  "bodyConstant": true,
+  "replacedExistingFireplace": true,
+  "projectPaletteUnchanged": true,
+  "otherAssetsUnchanged": true,
+  "exactReadback": true,
+  "etag": "\"ec8f1e96d912192e308789fc681422b8ba3fa5319a8bdcd0504b7a71a12aa645\""
+}

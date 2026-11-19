@@ -2,6 +2,37 @@
 document.addEventListener('DOMContentLoaded', () => {
   const $ = selector => document.querySelector(selector);
   const menus = [];
+  const mobilePanels = document.createElement('nav');
+  mobilePanels.className = 'mobile-panels';
+  mobilePanels.setAttribute('aria-label', '手机面板');
+  for (const [id, label] of [['left-sidebar', '动作素材'], ['right-sidebar', '图层与颜色']]) {
+    const panel = document.getElementById(id);
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.textContent = label;
+    toggle.setAttribute('aria-controls', id);
+    toggle.setAttribute('aria-expanded', 'false');
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'mobile-panel-close';
+    close.textContent = '关闭面板';
+    toggle.onclick = () => {
+      const open = !panel.classList.contains('mobile-open');
+      mobilePanels.querySelectorAll('button').forEach(button => button.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.mobile-open').forEach(element => element.classList.remove('mobile-open'));
+      panel.classList.toggle('mobile-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    close.onclick = () => {
+      panel.classList.remove('mobile-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    };
+    panel.prepend(close);
+    mobilePanels.append(toggle);
+  }
+  $('#workspace').before(mobilePanels);
+  if (window.matchMedia('(max-width: 900px)').matches) $('.aux-toggle')?.click();
   function menu(label, controls, host) {
     const details = document.createElement('details');
     details.className = 'workspace-menu';

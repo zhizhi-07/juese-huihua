@@ -4,6 +4,14 @@
  */
 
 window.PE = window.PE || {};
+// LAN HTTP pages lack randomUUID; getRandomValues remains available there.
+if (!crypto.randomUUID) crypto.randomUUID = () => {
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 15) | 64;
+  bytes[8] = (bytes[8] & 63) | 128;
+  const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+  return [hex.slice(0,8), hex.slice(8,12), hex.slice(12,16), hex.slice(16,20), hex.slice(20)].join('-');
+};
 // Hide the retired action without deleting or reindexing saved sheets and cels.
 PE.isEditorSheet = sheet => !['sleep', 'original16_sleep', 'original32_sleep'].includes(sheet?.name);
 PE.isCharacterSheet = sheet => ['浇水','镐','斧头','锄头','镰刀','种植','钓鱼-甩竿','钓鱼-持竿','钓鱼-收线','钓鱼-上鱼'].includes(sheet?.name) || /^original(?:16|32)_/.test(sheet?.name || '');

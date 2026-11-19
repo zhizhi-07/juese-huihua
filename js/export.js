@@ -393,6 +393,7 @@ window.PE = window.PE || {};
         name: this.project.name || '未命名角色',
         bgColor: this.project.bgColor,
         gridColor: this.project.gridColor,
+        ...(this.project.sceneAssembly ? {sceneAssembly: structuredClone(this.project.sceneAssembly)} : {}),
         currentSheetIndex: this.project.currentSheetIndex || 0,
         currentActionIndex: this.project.currentActionIndex || 0,
         currentFrameIndex: this.project.currentFrameIndex || 0,
@@ -556,6 +557,7 @@ window.PE = window.PE || {};
       }
 
       proj.name = data.name || '未命名角色';
+      if(data.sceneAssembly)proj.sceneAssembly=structuredClone(data.sceneAssembly);
       if(/^#[0-9a-f]{6}$/i.test(data.bgColor||''))proj.bgColor=data.bgColor;
       if(typeof data.gridColor==='string'&&data.gridColor.length<100)proj.gridColor=data.gridColor;
       proj.palette = Array.isArray(data.palette) ? data.palette : [];

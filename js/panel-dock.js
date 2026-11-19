@@ -13,6 +13,7 @@ window.PE = window.PE || {};
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(max-width: 900px)').matches) return;
     const left = document.getElementById('left-sidebar');
     const right = document.getElementById('right-sidebar');
     if (!left || !right) return;

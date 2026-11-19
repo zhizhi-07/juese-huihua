@@ -1,0 +1,27 @@
+{
+  "onlyAsset": "壁炉",
+  "onFramesUnchanged": true,
+  "bodyUnchanged": true,
+  "shutdownFrames": 7,
+  "firePixels": [
+    41,
+    25,
+    19,
+    9,
+    3,
+    1,
+    0
+  ],
+  "delaysMs": [
+    120,
+    120,
+    140,
+    140,
+    160,
+    160,
+    400
+  ],
+  "allColorsInOtterisk96": true,
+  "otherAssetsUnchanged": true,
+  "previewLoopsForReview": true
+}

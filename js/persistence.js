@@ -145,6 +145,7 @@ PE.ProjectPersistence=class {
   }
 };
 document.addEventListener('DOMContentLoaded',()=>{
+  if(!PE.app)return;
   const app=PE.app,toolbar=document.getElementById('top-toolbar'),status=document.createElement('span');status.id='save-status';status.textContent='正在读取已保存工程…';status.setAttribute('aria-live','polite');toolbar.append(status);
   const persistence=app.persistence=new PE.ProjectPersistence(app,status);
   function button(text,fn){const b=document.createElement('button');b.className='tool-btn';b.textContent=text;b.onclick=fn;toolbar.append(b);}

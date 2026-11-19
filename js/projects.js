@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   button('分出当前工程独立稿',()=>create(false));
   PE.createProjectBranch=()=>create(false,true);
   button('＋ 场景绘制',()=>create(true));
+  const assembler=document.createElement('a');assembler.className='studio-button';assembler.textContent='场景拼装器';assembler.href='scene-assembler.html'+(p.projectId.startsWith('scene-')?'?project='+encodeURIComponent(p.projectId):'');assembler.target='_blank';assembler.rel='noopener';bar.append(assembler);
   const select=document.createElement('select');select.setAttribute('aria-label','打开已有工程');bar.insertBefore(select,menu);
   select.onchange=()=>{if(!select.value)return;const url=new URL(location.href);url.searchParams.set('project',select.value);window.open(url.href,'_blank','noopener');select.value='';};
   async function refresh(){

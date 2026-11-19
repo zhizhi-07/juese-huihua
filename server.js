@@ -46,6 +46,7 @@ function pushBaseBody(project,previous){
   return true;
 }
 function validProject(project){
+  if(project?.sceneAssembly){try{require('./js/scene-assembly-model.js').validate(project.sceneAssembly);}catch{return false;}}
   if(!project||!Array.isArray(project.layers)||!project.layers.length||project.layers.length>1024||!Array.isArray(project.spriteSheets)||project.spriteSheets.length>128)return false;
   let pixels=0;
   for(const sheet of project.spriteSheets){if(!sheet||!Array.isArray(sheet.actions))return false;for(const action of sheet.actions){if(!action||!Array.isArray(action.frames))return false;for(const f of action.frames){if(!f||!Number.isSafeInteger(f.width)||!Number.isSafeInteger(f.height)||f.width<1||f.height<1||f.width>4096||f.height>4096)return false;pixels+=f.width*f.height;}}}
@@ -72,7 +73,7 @@ const server = http.createServer((req, res) => {
   try { reqPath = decodeURIComponent(req.url.split('?')[0]); } catch { res.writeHead(400);res.end('Bad path');return; }
   res.setHeader('X-Content-Type-Options','nosniff');
   if(reqPath.startsWith('/api/')){
-    const origin=req.headers.origin,local=['http://localhost:'+PORT,'http://127.0.0.1:'+PORT].includes(origin);
+    const origin=req.headers.origin,local=['http://localhost:'+PORT,'http://127.0.0.1:'+PORT,'http://'+req.socket.localAddress+':'+PORT].includes(origin);
     const filePage=origin==='null'&&req.headers['x-pixel-token']===token;
     const preflight=origin==='null'&&req.method==='OPTIONS';
     if(origin&&!local&&!filePage&&!preflight){res.writeHead(403);res.end('Origin denied');return;}
@@ -117,6 +118,7 @@ const server = http.createServer((req, res) => {
         // Already-open pages may serialize the new borders without the new origin field.
         if(previous){
           const saved=JSON.parse(projectBytes(projectFile,projectId));
+          if(saved.sceneAssembly&&!Object.hasOwn(project,'sceneAssembly'))project.sceneAssembly=saved.sceneAssembly;
           for(const sheet of project.spriteSheets){
             const old=saved.spriteSheets.find(s=>s.name===sheet.name);if(!old?.canvasLayout||sheet.canvasLayout)continue;
             const geometry=s=>JSON.stringify(s.actions.map(a=>[a.name,a.direction,a.frames.map(f=>[f.width,f.height,f.sourceX,f.sourceY])]));
@@ -196,7 +198,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '127.0.0.1', () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`====================================================`);
   console.log(`🚀 像素角色编辑网页 (Pixel Art Character Editor) 已启动`);
   console.log(`📡 本地访问地址: http://localhost:${PORT}`);

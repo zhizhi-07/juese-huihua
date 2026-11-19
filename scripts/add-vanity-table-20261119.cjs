@@ -1,0 +1,15 @@
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict'),png=require('./png.cjs');
+(async()=>{
+const url='http://127.0.0.1:8765/api/project?id=scene-inn-20261119';const list=await(await fetch('http://127.0.0.1:8765/api/projects')).json();assert(list.some(p=>p.id==='scene-inn-20261119'));
+const r=await fetch(url);assert(r.ok);const raw=await r.text(),etag=r.headers.get('etag'),before=JSON.parse(raw),p=structuredClone(before),out=path.resolve(__dirname,'../output/vanity-table-'+Date.now());fs.mkdirSync(out,{recursive:true});fs.writeFileSync(out+'/before.json',raw);fs.writeFileSync(out+'/revision.json',JSON.stringify({etag,sha256:crypto.createHash('sha256').update(raw).digest('hex')}));
+const rows=['DHBBBBBBBBBBBBBD','DHBBBBBBBBBBBBBD','DHBBBBBBBBBBBBBD','DWWWWWWWWWWWWWWD','.SSSSSSSSSSSSSS.','.DWDDDDDDDDDDWD.','.DWD........DWD.','.DWD........DWD.','.DWD........DWD.'];
+const colors={D:'2f3b3d',H:'d1ae8a',B:'ba9273',W:'80575b',S:'5e4452'},w=16,h=9,data=new Uint8Array(w*h*4),palette=new Set(p.palette.map(c=>Buffer.from([c.r,c.g,c.b]).toString('hex')));
+rows.forEach((row,y)=>{assert.equal(row.length,w);[...row].forEach((c,x)=>{if(c!=='.'){assert(palette.has(colors[c]));data.set([...Buffer.from(colors[c],'hex'),255],(y*w+x)*4);}});});
+const image=png.encode(w,h,data),dataURL='data:image/png;base64,'+image.toString('base64'),si=p.spriteSheets.length,name='梳妆台·空台子';assert(!p.spriteSheets.some(s=>s.name===name));
+p.spriteSheets.push({name,frameWidth:w,frameHeight:h,columns:1,rows:1,spacingX:0,spacingY:0,offsetX:0,offsetY:0,fps:8,imageDataURL:dataURL,actions:[{name,direction:'',frames:[{sheetIndex:si,sourceX:0,sourceY:0,width:w,height:h,locked:false,lockedRegions:[],status:'completed',duration:0,notes:''}]}]});
+p.layers.push({sheetIndex:si,parent:null,name,visible:true,locked:false,opacity:1,frameData:{[`${si}_0_0`]:{width:w,height:h,dataURL}}});Object.assign(p,{currentSheetIndex:si,currentActionIndex:0,currentFrameIndex:0,currentLayerIndex:p.layers.length-1});
+assert.deepEqual(p.spriteSheets.slice(0,-1),before.spriteSheets);assert.deepEqual(p.layers.slice(0,-1),before.layers);assert.deepEqual(p.sceneAssembly,before.sceneAssembly);
+fs.writeFileSync(out+'/table.png',image);fs.writeFileSync(out+'/candidate.json',JSON.stringify(p));const scale=40,pw=w*scale,ph=h*scale,preview=new Uint8Array(pw*ph*4);for(let y=0;y<ph;y++)for(let x=0;x<pw;x++){const i=(Math.floor(y/scale)*w+Math.floor(x/scale))*4;preview.set(data.slice(i,i+4),(y*pw+x)*4);}fs.writeFileSync(out+'/large-preview.png',png.encode(pw,ph,preview));
+if(process.argv.includes('--save')){const saved=await fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body:JSON.stringify(p)});assert(saved.ok,await saved.text());assert.deepEqual(await(await fetch(url)).json(),p);}
+console.log(JSON.stringify({out,width:w,height:h,saved:process.argv.includes('--save')}));
+})().catch(e=>{console.error(e);process.exitCode=1;});

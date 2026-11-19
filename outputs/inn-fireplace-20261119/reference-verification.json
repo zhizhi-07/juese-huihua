@@ -1,0 +1,15 @@
+{
+  "name": "壁炉",
+  "replacedExisting": true,
+  "referenceGridMatched": true,
+  "layers": [
+    "炉体",
+    "火焰"
+  ],
+  "onFrames": 6,
+  "offFrames": 1,
+  "bodyConstant": true,
+  "otherAssetsAndProjectStateUnchanged": true,
+  "exactReadback": true,
+  "etag": "\"a7b9d44f7b0958f9ad9fadb3bebe5b93f3150e094d5637849d0b2310d430c466\""
+}
