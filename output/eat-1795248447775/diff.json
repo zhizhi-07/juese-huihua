@@ -1,0 +1,114 @@
+{
+  "sheet": 15,
+  "name": "吃东西",
+  "edits": [
+    {
+      "layer": 474,
+      "frame": "15_0_0",
+      "handX": 6,
+      "handY": 11
+    },
+    {
+      "layer": 474,
+      "frame": "15_0_1",
+      "handX": 7,
+      "handY": 10
+    },
+    {
+      "layer": 474,
+      "frame": "15_0_2",
+      "handX": 9,
+      "handY": 9
+    },
+    {
+      "layer": 474,
+      "frame": "15_0_3",
+      "handX": 9,
+      "handY": 9
+    },
+    {
+      "layer": 474,
+      "frame": "15_0_4",
+      "handX": 8,
+      "handY": 10
+    },
+    {
+      "layer": 474,
+      "frame": "15_0_5",
+      "handX": 7,
+      "handY": 11
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_0",
+      "handX": 4,
+      "handY": 11
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_1",
+      "handX": 5,
+      "handY": 10
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_2",
+      "handX": 7,
+      "handY": 9
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_3",
+      "handX": 7,
+      "handY": 9
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_4",
+      "handX": 6,
+      "handY": 10
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_5",
+      "handX": 5,
+      "handY": 11
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_0",
+      "handX": 12,
+      "handY": 11
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_1",
+      "handX": 12,
+      "handY": 10
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_2",
+      "handX": 11,
+      "handY": 9
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_3",
+      "handX": 11,
+      "handY": 9
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_4",
+      "handX": 12,
+      "handY": 10
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_5",
+      "handX": 12,
+      "handY": 11
+    }
+  ]
+}

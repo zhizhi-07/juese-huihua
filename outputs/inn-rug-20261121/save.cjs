@@ -1,0 +1,25 @@
+const fs=require('node:fs'), a=require('node:assert/strict'), {createHash}=require('node:crypto');
+const u='http://127.0.0.1:8765/api/project?id=scene-inn-20261119';
+(async()=>{
+  const raw=fs.readFileSync('original.json'), original=JSON.parse(raw), p=JSON.parse(raw);
+  const etag=/^etag:\s*("[a-f0-9]+")/im.exec(fs.readFileSync('headers.txt','utf8'))[1];
+  a.equal(etag,JSON.stringify(createHash('sha256').update(raw).digest('hex')));
+  const i=p.spriteSheets.findIndex(s=>s.name==='地毯'), s=p.spriteSheets[i], l=p.layers.findIndex(l=>l.sheetIndex===i);
+  a.equal(s.actions.length,1); a.equal(s.actions[0].frames.length,1); a.equal(Object.keys(p.layers[l].frameData).length,1);
+  const png=fs.readFileSync('out/sprites/inn-rug.png'), width=png.readUInt32BE(16),height=png.readUInt32BE(20);
+  a.deepEqual([width,height],[32,16]);
+  for(const hex of ['5e4452','80575b','8f3648']) a(p.palette.some(({r,g,b})=>Buffer.from([r,g,b]).toString('hex')===hex));
+  const dataURL='data:image/png;base64,'+png.toString('base64');
+  Object.assign(s,{frameWidth:width,frameHeight:height,imageDataURL:dataURL});
+  Object.assign(s.actions[0].frames[0],{width,height});
+  p.layers[l].frameData[i+'_0_0']={width,height,dataURL};
+  const body=JSON.stringify(p);
+  fs.writeFileSync('candidate.json',body);
+  let r=await fetch(u,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body});
+  const result=await r.text();fs.writeFileSync('save-result.txt',r.status+'\n'+result);a(r.ok,result);
+  r=await fetch(u);a(r.ok); const saved=await r.text();fs.writeFileSync('saved-readback.json',saved);
+  const q=JSON.parse(saved);a.deepEqual(q,p);
+  q.spriteSheets[i]=original.spriteSheets[i];q.layers[l]=original.layers[l];a.deepEqual(q,original);
+  const report={sheet:i,layer:l,width,height,etagBefore:etag,etagAfter:r.headers.get('etag'),exactReadback:true,otherDataUnchanged:true};
+  fs.writeFileSync('verification.json',JSON.stringify(report,null,2));console.log(report);
+})().catch(e=>{console.error(e);process.exitCode=1});

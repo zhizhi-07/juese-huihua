@@ -1,0 +1,13 @@
+pal({k:'#2f3b3d',h:'#8a7b63',s:'#6e5f4d',b:'#5c4644',B:'#785a55',l:'#bdb395',t:'#a3987a'});
+sprite('deer-head', {w:12,h:11}, `
+..k......k..
+kkh......hkk
+khhk.bb.khhk
+.khhkBBkhhk.
+..kkhllhkk..
+..khsllshk..
+...ktlltk...
+...kbllbk...
+...kbssbk...
+....kBBk....
+.....kk.....`);

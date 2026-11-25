@@ -162,12 +162,10 @@ window.PE = window.PE || {};
       const action = sheet?.actions?.[actionIdx];
 
       const blob = await this.exportFrameAsBlob(sheetIdx, actionIdx, frameIdx);
-      const projName = this._sanitizeFilename(this.project?.name || '角色');
-      const actName = this._sanitizeFilename(action?.name || `动作_${actionIdx}`);
-      const dirPart = action?.direction ? `${this._sanitizeFilename(action.direction)}_` : '';
-      const filename = `${projName}_${actName}_${dirPart}帧${frameIdx}.png`;
+      const filename = `${this._sanitizeFilename(sheet?.name || action?.name || this.project?.name || '角色')}.png`;
 
       this._downloadBlob(blob, filename);
+      this.notifyExport('已交给浏览器下载：'+filename);
 
       return {
         success: true,
@@ -253,11 +251,10 @@ window.PE = window.PE || {};
       const sheet = this.project?.spriteSheets?.[sheetIdx];
       const blob = await this._renderSpriteSheetBlob(sheetIdx);
 
-      const projName = this._sanitizeFilename(this.project?.name || '角色');
-      const sheetName = this._sanitizeFilename(sheet?.name || `图集_${sheetIdx}`);
-      const filename = `${projName}_${sheetName}_动作表.png`;
+      const filename = `${this._sanitizeFilename(sheet?.name || this.project?.name || '角色')}.png`;
 
       this._downloadBlob(blob, filename);
+      this.notifyExport('已交给浏览器下载：'+filename);
 
       return blob;
     }
@@ -872,6 +869,21 @@ window.PE = window.PE || {};
       a.click();
       document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    notifyExport(message) {
+      if (!this.exportNotice) {
+        const notice = document.createElement('div');
+        notice.className = 'layer-toast';
+        notice.id = 'export-notice';
+        notice.setAttribute('role', 'status');
+        document.body.appendChild(notice);
+        this.exportNotice = notice;
+      }
+      this.exportNotice.textContent = message;
+      this.exportNotice.classList.add('show');
+      clearTimeout(this.exportNoticeTimer);
+      this.exportNoticeTimer = setTimeout(() => this.exportNotice.classList.remove('show'), 5000);
     }
 
     /**

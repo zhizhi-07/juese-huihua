@@ -1,0 +1,15 @@
+{
+  "saveStatus": 200,
+  "noRasterInputInDrawing": true,
+  "handwrittenDrawingLines": 130,
+  "dimensions": [
+    66,
+    78
+  ],
+  "editableLayers": 8,
+  "renderMatchesReadback": true,
+  "layersMatchReadback": true,
+  "otherSheetsUnchanged": true,
+  "otherLayersUnchanged": true,
+  "sceneUnchanged": true
+}

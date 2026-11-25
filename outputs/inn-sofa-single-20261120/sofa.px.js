@@ -1,0 +1,20 @@
+pal({k:'#2f3b3d',h:'#ba9273',t:'#9e7565',s:'#785a55',r:'#b04a58',R:'#8f3648',b:'#5c4644'});
+sprite('sofa-right', {w:12,h:18}, `
+.kkk........
+khrk........
+khrk........
+khrkkkkkkkk.
+khrkhhhhhhhk
+khrkttttttsk
+khrkbbbbbbsk
+khrkbRRRRbsk
+khrkbRRRRbsk
+khrkbRRRRbsk
+ksrkkkkkkkkk
+ksshhhhhhhsk
+kssthhhhhhtk
+ksssttttttsk
+kssssssssssk
+ksskkkkkkssk
+kskk....kssk
+kkk......kkk`);

@@ -1,0 +1,30 @@
+{
+  "sheet": 15,
+  "direction": "side",
+  "edits": [
+    {
+      "layer": 470,
+      "frame": "15_0_0"
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_1"
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_2"
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_3"
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_4"
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_5"
+    }
+  ]
+}

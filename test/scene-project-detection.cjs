@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const context={window:{},PE:{isCharacterSheet:s=>/^original(?:16|32)_/.test(s.name)}};
+vm.runInNewContext(fs.readFileSync(`${__dirname}/../js/scene-materials.js`,'utf8'),context);
+const {PE}=context;
+const inn=JSON.parse(fs.readFileSync(`${__dirname}/../data/projects/scene-inn-20261119.json`,'utf8'));
+assert.equal(PE.isSceneProject(inn,'scene-inn-20261119'),true);
+PE.app={project:inn,persistence:{projectId:'scene-inn-20261119'}};
+assert.equal(PE.isSceneProject(inn),true);
+assert.equal(PE.isSceneProject({spriteSheets:[{name:'床'}]}),false);
+assert.equal(PE.isSceneProject({spriteSheets:[{name:'场景画布'}]}),true);
+assert.equal(PE.isSceneProject({spriteSheets:[{name:'床'}],sceneAssembly:{version:1}}),true);
+assert.equal(PE.isSceneProject({spriteSheets:[{name:'original16_idle'}]},'scene-test'),false);
+console.log('PASS: inn, active project identity, legacy scene, assembly, unrelated project and character protection');

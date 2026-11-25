@@ -2,8 +2,9 @@
 window.PE=window.PE||{};
 (()=>{
   const F=PE.ClothingFit,clone=v=>JSON.parse(JSON.stringify(v)),cache=new WeakMap();
-  // 全部人物动作（含浇水、工具、钓鱼等）都从待机三面首帧生成。
+  // 全部人物动作（含浇水、工具、钓鱼等）都从待机三面首帧生成；吃东西/抽烟是搭配待机的额外手部动作，不参与衣服同步。
   const supported=s=>PE.isCharacterSheet(s)&&PE.isEditorSheet(s)&&s.name.startsWith('original32_')===false,idle=s=>s?.name==='original16_idle';
+  const extraHand=s=>/(抽烟|吃东西)/.test(s?.name||''),syncSheet=s=>supported(s)&&!extraHand(s);
   const sit=s=>s?.name==='original16_sit',sitFirst=p=>sit(p.spriteSheets[p.currentSheetIndex])&&p.currentFrameIndex===0;
   const isClothes=l=>!l?.isGroup&&PE.classifyPart(l?.name)?.category==='衣服';
   const hasInk=im=>im&&im.data.some((v,i)=>i%4===3&&v);
@@ -19,6 +20,8 @@ window.PE=window.PE||{};
       const seen=new Set();for(const key of g.preserved){if(typeof key!=='string'||!/^\d+_\d+_\d+$/.test(key)||seen.has(key))throw Error('衣服保留帧无效');seen.add(key);const [si,ai,fi]=key.split('_').map(Number);if(!supported(p.spriteSheets[si])||!p.spriteSheets[si].actions[ai]?.frames[fi]||si===l.sheetIndex&&fi===0)throw Error('衣服保留帧不存在或是源稿');}owners.set(g.id,l);
       if(g.sitMasters!==undefined&&(!Array.isArray(g.sitMasters)||g.sitMasters.length>3||new Set(g.sitMasters).size!==g.sitMasters.length||g.sitMasters.some(key=>{if(typeof key!=='string'||!/^\d+_\d+_0$/.test(key))return true;const [si,ai]=key.split('_').map(Number);return !sit(p.spriteSheets[si])||!p.spriteSheets[si].actions[ai]?.frames[0];})))throw Error('坐姿衣服首帧设置无效');
       if(g.sitGenerated!==undefined&&(!Array.isArray(g.sitGenerated)||g.sitGenerated.length>3||g.sitGenerated.some(key=>typeof key!=='string'||!/^\d+_\d+_0$/.test(key)||!sit(p.spriteSheets[Number(key.split('_')[0])]))))throw Error('坐姿衣服自动首帧设置无效');
+      if(g.compress!==undefined&&!['auto','waist','top'].includes(g.compress))throw Error('衣服压缩模式无效');
+      if(g.shadeLegs!==undefined&&typeof g.shadeLegs!=='boolean')throw Error('衣服腿部阴影开关无效');
       if(g.idleShadows!==undefined){
         const keys=p.spriteSheets[l.sheetIndex].actions.map((_,ai)=>`${l.sheetIndex}_${ai}_0`),integer=(n,max)=>Number.isInteger(n)&&n>=0&&n<=max;
         if(!g.idleShadows||Array.isArray(g.idleShadows)||typeof g.idleShadows!=='object'||Object.entries(g.idleShadows).some(([key,r])=>!keys.includes(key)||!r||!integer(r.width,1<<24)||!integer(r.height,1<<24)||!Array.isArray(r.pixels)||r.pixels.length>r.width*r.height||r.pixels.some(v=>!Array.isArray(v)||v.length!==3||!integer(v[0],r.width*r.height-1)||!integer(v[1],0xffffff)||!integer(v[2],0xffffff))))throw Error('待机衣服阴影设置无效');
@@ -78,8 +81,9 @@ window.PE=window.PE||{};
     if(n>1)out.placement={x:0,y:0,w:frame.width,h:frame.height};
     return out;
   }
-  function plan(p,source,{includePreserved=false,usePaintedSit=false}={}){
+  function plan(p,source,{includePreserved=false,usePaintedSit=false,onlySheet=null}={}){
     const g=source.clothingSync;if(!g)throw Error('请先选择待机衣服源稿');const sheet=p.spriteSheets[source.sheetIndex],sources=new Map(),edits=[],shadows={};
+    const shadeLegs=g.shadeLegs!==false,compress=g.compress||'auto';
     for(const [ai,action] of sheet.actions.entries()){
       const key=p.getFrameKey(source.sheetIndex,ai,0),im=source.getFrameData(key);if(!hasInk(im))throw Error('请先画好待机正、背、侧各一帧');
       let src=pattern(p,source.sheetIndex,ai,im);
@@ -87,48 +91,58 @@ window.PE=window.PE||{};
       const shaded=F.shadeIdle(src.body,im,src.scale,previous);
       if(previous)src=pattern(p,source.sheetIndex,ai,make(shaded.raw));
       if(frame.locked||frame.lockedRegions?.length){if(previous)shadows[key]=previous;}
-      else{
+      else if(shadeLegs){
         if(shaded.record)shadows[key]=shaded.record;
         const image=make(shaded.data);
+        if(!same(im,image))edits.push({layer:source,key,image});
+      }else if(previous){
+        const image=make(shaded.raw);
         if(!same(im,image))edits.push({layer:source,key,image});
       }
       sources.set(action.direction,src);
     }
     // 坐姿首帧：已确认或手画的当源稿；空白或上次自动生成的，直接从待机生成，不需要另画。
     const sitSheet=p.spriteSheets.findIndex(sit),seated=new Map(),skipped=new Set(),auto=[];
-    if(sitSheet>=0)for(const [ai,a] of p.spriteSheets[sitSheet].actions.entries()){
+    if(sitSheet>=0&&(onlySheet==null||onlySheet===sitSheet))for(const [ai,a] of p.spriteSheets[sitSheet].actions.entries()){
       const key=p.getFrameKey(sitSheet,ai,0),confirmed=!!g.sitMasters?.includes(key),im=target(p,source,sitSheet,ai).getFrameData(key);
       if(!hasInk(im)||!confirmed&&g.sitGenerated?.includes(key)){auto.push(key);continue;}
       if(confirmed||usePaintedSit||a.direction==='up')seated.set(a.direction,im);else skipped.add(a.direction);
     }
     const sitPending=skipped.size>0;
-    for(let si=0;si<p.spriteSheets.length;si++)if(supported(p.spriteSheets[si]))for(let ai=0;ai<p.spriteSheets[si].actions.length;ai++){
+    for(let si=0;si<p.spriteSheets.length;si++)if(syncSheet(p.spriteSheets[si])&&(onlySheet==null||si===onlySheet))for(let ai=0;ai<p.spriteSheets[si].actions.length;ai++){
       const a=p.spriteSheets[si].actions[ai],sitting=si===sitSheet;if(sitting&&skipped.has(a.direction))continue;
       const src=sources.get(a.direction);if(!src)throw Error('缺少方向源稿：'+a.direction);const l=target(p,source,si,ai);
       const first=sitting?seated.get(a.direction):null,firstBody=first?base(p,si,ai,0,'body'):null,firstHead=first?base(p,si,ai,0,'head'):null;
       for(let fi=0;fi<a.frames.length;fi++){const key=p.getFrameKey(si,ai,fi),frame=a.frames[fi];if(fi===0&&(si===source.sheetIndex||first)||!includePreserved&&g.preserved.includes(key))continue;
         editable(l);if(frame.locked||frame.lockedRegions?.length)throw Error('目标帧有保护区域，同步未写入：'+key);
-        const body=base(p,si,ai,fi,'body');
-        const image=first?compressSit(first,frame,base(p,si,ai,fi,'head'),firstHead,body,firstBody):fitPattern(src,body,{shadeLegs:true,mask:base(p,si,ai,fi,'head')});
+        const body=base(p,si,ai,fi,'body'),head=base(p,si,ai,fi,'head');
+        const image=first?compressSit(first,frame,head,firstHead,body,firstBody):fitPattern(src,body,{sit:sitting,targetHead:sitting?head:null,shadeLegs,compress,mask:head});
         if(sitting&&matches(l.getFrameData(key),image,frame))continue;
         edits.push({layer:l,key,image});
       }
-    }return {edits,preserved:g.preserved.length,sitPending,source,shadows,shadowsChanged:JSON.stringify(g.idleShadows||{})!==JSON.stringify(shadows),sitGenerated:auto,sitGeneratedChanged:JSON.stringify(g.sitGenerated||[])!==JSON.stringify(auto)};
+    }
+    const nextAuto=onlySheet==null||onlySheet===sitSheet?auto:(g.sitGenerated||[]);
+    return {edits,preserved:g.preserved.length,sitPending,source,shadows,shadowsChanged:JSON.stringify(g.idleShadows||{})!==JSON.stringify(shadows),sitGenerated:nextAuto,sitGeneratedChanged:JSON.stringify(g.sitGenerated||[])!==JSON.stringify(nextAuto)};
   }
   function apply(result){for(const e of result.edits)e.layer.frameData.set(e.key,e.image);if(result.shadowsChanged)result.source.clothingSync.idleShadows=result.shadows;if(result.sitGeneratedChanged)result.source.clothingSync.sitGenerated=result.sitGenerated.slice();return result;}
   function setup(p,selected=p.getCurrentLayer()){
-    editable(selected);let source=master(p,selected);if(source){validate(p);return source;}
-    if(!idle(p.spriteSheets[selected.sheetIndex]))throw Error('首次同步请在待机选择衣服源稿');source=selected;
-    const g={version:1,id:crypto.randomUUID(),live:false,preserved:[]};source.clothingSync=g;source.clothingSyncId=g.id;
-    const parents=new Map(p.layers.map(l=>[l,l.parent==null?null:p.layers[l.parent]])),chosen=p.getCurrentLayer();
-    for(let si=0;si<p.spriteSheets.length;si++)if(supported(p.spriteSheets[si]))for(let ai=0;ai<p.spriteSheets[si].actions.length;ai++){
-      if(si===source.sheetIndex)continue;const prefix=`${si}_${ai}_`,matches=p.layers.filter(l=>l.name===source.name&&l.sheetIndex===si&&PE.isLayerInAction(p,l,si,ai)&&[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
+    editable(selected);let source=master(p,selected);const existed=!!source;
+    if(!source){
+      if(!idle(p.spriteSheets[selected.sheetIndex]))throw Error('首次同步请在待机选择衣服源稿');source=selected;
+      const g={version:1,id:crypto.randomUUID(),live:false,preserved:[]};source.clothingSync=g;source.clothingSyncId=g.id;
+    }
+    const g=source.clothingSync,parents=new Map(p.layers.map(l=>[l,l.parent==null?null:p.layers[l.parent]])),chosen=p.getCurrentLayer();
+    for(let si=0;si<p.spriteSheets.length;si++)if(syncSheet(p.spriteSheets[si]))for(let ai=0;ai<p.spriteSheets[si].actions.length;ai++){
+      if(si===source.sheetIndex)continue;const prefix=`${si}_${ai}_`;
+      if(existed){const linked=targets(p,source).filter(l=>l.sheetIndex===si&&PE.isLayerInAction(p,l,si,ai)&&(!l.frameData.size||[...l.frameData.keys()].some(k=>k.startsWith(prefix))));if(linked.length===1)continue;}
+      const matches=p.layers.filter(l=>l.name===source.name&&l.sheetIndex===si&&PE.isLayerInAction(p,l,si,ai)&&[...l.frameData.keys()].some(k=>k.startsWith(prefix)));
       if(matches.length>1)throw Error('同方向有多个同名衣服层，请先整理');let l=matches[0];
       if(!l){const head=p.layers.find(l=>l.name==='head'&&l.sheetIndex===si&&l.getFrameData(prefix+'0'));if(!head)throw Error('缺少目标头部');l=new PE.Layer(source.name);l.sheetIndex=si;l.parent=null;l.depth=head.depth;parents.set(l,parents.get(head));p.layers.splice(p.layers.indexOf(head)+1,0,l);}
       editable(l);l.clothingSyncId=g.id;
-      if(sit(p.spriteSheets[si]))for(const [key,im] of l.frameData)if(key.startsWith(prefix)&&!key.endsWith('_0')&&hasInk(im))g.preserved.push(key);
+      if(!existed&&sit(p.spriteSheets[si]))for(const [key,im] of l.frameData)if(key.startsWith(prefix)&&!key.endsWith('_0')&&hasInk(im))g.preserved.push(key);
     }
     for(const l of p.layers)l.parent=parents.get(l)==null?null:p.layers.indexOf(parents.get(l));p.currentLayerIndex=p.layers.indexOf(chosen);
+    if(existed){validate(p);return source;}
     // Idle cels follow their first frame; only explicit preservation may opt them out.
     for(const e of plan(p,source).edits){const [si,ai,fi]=e.key.split('_').map(Number);if(si===source.sheetIndex)continue;const old=e.layer.getFrameData(e.key);if(hasInk(old)&&!matches(old,e.image,p.spriteSheets[si].actions[ai].frames[fi]))g.preserved.push(e.key);}
     return source;
@@ -136,7 +150,7 @@ window.PE=window.PE||{};
   function snapshot(p){return {layers:p.layers.slice(),selected:p.currentLayerIndex,items:p.layers.map(l=>({l,parent:l.parent,visible:l.visible,id:l.clothingSyncId,config:l.clothingSync?clone(l.clothingSync):null,frames:new Map(l.frameData)}))};}
   function restore(p,state){p.layers=state.layers.slice();p.currentLayerIndex=state.selected;for(const v of state.items){v.l.parent=v.parent;v.l.visible=v.visible;v.l.frameData=new Map(v.frames);if(v.id===undefined)delete v.l.clothingSyncId;else v.l.clothingSyncId=v.id;if(v.config)v.l.clothingSync=clone(v.config);else delete v.l.clothingSync;cache.delete(v.l);}}
   function transaction(app,label,change){if(app.toolManager.isDrawing)throw Error('请先结束当前绘画');const p=app.project,before=snapshot(p);let result,after;try{result=change();validate(p);after=snapshot(p);}catch(e){restore(p,before);throw e;}restore(p,before);PE.FrameEditing.record(app,label,()=>restore(p,before),()=>restore(p,after));return result;}
-  function sync(app,{live,usePaintedSit=false}={}){return transaction(app,'同步衣服（保留手工帧）',()=>{const p=app.project,s=setup(p);if(live!==undefined)s.clothingSync.live=!!live;const result=plan(p,s,{usePaintedSit});for(const l of p.layers)if(isClothes(l)&&supported(p.spriteSheets[l.sheetIndex]))l.visible=l.clothingSyncId===s.clothingSync.id;return apply(result);});}
+  function sync(app,{live,usePaintedSit=false,onlySheet=null,shadeLegs,compress}={}){return transaction(app,onlySheet==null?'同步衣服（保留手工帧）':'同步当前动作衣服',()=>{const p=app.project,s=setup(p);if(live!==undefined)s.clothingSync.live=!!live;if(shadeLegs!==undefined)s.clothingSync.shadeLegs=!!shadeLegs;if(compress!==undefined)s.clothingSync.compress=compress;const result=plan(p,s,{usePaintedSit,onlySheet});for(const l of p.layers)if(isClothes(l)&&syncSheet(p.spriteSheets[l.sheetIndex]))l.visible=l.clothingSyncId===s.clothingSync.id;return apply(result);});}
   function stamp(p,s){let h=2166136261;const add=n=>h=Math.imul(h^n,16777619)>>>0;for(const l of p.layers){
     const linked=l===s||l.clothingSyncId===s.clothingSync.id&&sit(p.spriteSheets[l.sheetIndex]);
     if(!linked&&!(/^(head|body)$/.test(l.name)&&supported(p.spriteSheets[l.sheetIndex])))continue;
@@ -163,13 +177,17 @@ window.PE=window.PE||{};
 })();
 document.addEventListener('DOMContentLoaded',()=>{
   const app=PE.app,C=PE.ClothingSync,host=document.getElementById('hair-edit-master');if(!host)return;const hairNote=host.parentElement.nextElementSibling;
-  const bar=document.createElement('span');bar.className='hair-animation-tools';bar.id='clothing-sync-tools';bar.innerHTML='<label><input id="clothing-live-sync" type="checkbox">衣服实时同步</label><button id="clothing-sync-all" class="studio-button">同步衣服全部</button><button id="clothing-preserve" class="studio-button">保留当前帧</button><button id="clothing-edit-master" class="studio-button">编辑衣服基准</button>';host.parentElement.after(bar);
-  const note=document.createElement('span');note.className='hair-animation-status';note.setAttribute('role','status');note.setAttribute('aria-live','polite');bar.after(note);const say=t=>note.textContent=t,live=bar.querySelector('input'),keep=bar.querySelector('#clothing-preserve');
-  const update=()=>{const p=app.project,s=C.master(p);bar.hidden=PE.classifyPart(p.getCurrentLayer()?.name)?.category!=='衣服';bar.style.display=bar.hidden?'none':'';note.style.display=bar.hidden?'none':'';host.parentElement.style.display=bar.hidden?'':'none';if(hairNote?.classList.contains('hair-animation-status'))hairNote.style.display=bar.hidden?'':'none';live.checked=!!s?.clothingSync.live;keep.disabled=C.sitFirst(p)&&p.getCurrentAction()?.direction==='up';keep.textContent=keep.disabled?'背面首帧可自动生成':C.sitFirst(p)?(s?.clothingSync.sitMasters?.includes(p.getFrameKey())?'取消确认坐姿首帧':'确认坐姿首帧（实时同步）'):(s?.clothingSync.preserved.includes(p.getFrameKey())?'取消保留当前帧':'保留当前帧');if(!note.textContent)note.textContent='只画待机正、侧、背三面第 1 帧，点「同步衣服全部」即可生成全部动作；坐姿想自己画就画首帧后点确认。';};
+  const bar=document.createElement('span');bar.className='hair-animation-tools';bar.id='clothing-sync-tools';bar.innerHTML='<label><input id="clothing-live-sync" type="checkbox">衣服实时同步</label><button id="clothing-sync-all" class="studio-button">同步衣服全部</button><button id="clothing-sync-current" class="studio-button">仅同步当前动作</button><label><input id="clothing-shade-legs" type="checkbox" checked>自动腿部阴影</label><select id="clothing-compress" class="studio-select" title="4行压缩时的行保留策略"><option value="auto">压缩:底部对齐(商人)</option><option value="top">压缩:顶部下压(花店)</option><option value="waist">压缩:领口+腰带</option></select><button id="clothing-preserve" class="studio-button">保留当前帧</button><button id="clothing-edit-master" class="studio-button">编辑衣服基准</button>';host.parentElement.after(bar);
+  const note=document.createElement('span');note.className='hair-animation-status';note.setAttribute('role','status');note.setAttribute('aria-live','polite');bar.after(note);const say=t=>note.textContent=t,live=bar.querySelector('#clothing-live-sync'),shade=bar.querySelector('#clothing-shade-legs'),compress=bar.querySelector('#clothing-compress'),keep=bar.querySelector('#clothing-preserve');
+  const update=()=>{const p=app.project,s=C.master(p);bar.hidden=PE.classifyPart(p.getCurrentLayer()?.name)?.category!=='衣服';bar.style.display=bar.hidden?'none':'';note.style.display=bar.hidden?'none':'';host.parentElement.style.display=bar.hidden?'':'none';if(hairNote?.classList.contains('hair-animation-status'))hairNote.style.display=bar.hidden?'':'none';live.checked=!!s?.clothingSync.live;shade.checked=s?s.clothingSync.shadeLegs!==false:true;compress.value=s?.clothingSync.compress||'auto';keep.disabled=C.sitFirst(p)&&p.getCurrentAction()?.direction==='up';keep.textContent=keep.disabled?'背面首帧可自动生成':C.sitFirst(p)?(s?.clothingSync.sitMasters?.includes(p.getFrameKey())?'取消确认坐姿首帧':'确认坐姿首帧（实时同步）'):(s?.clothingSync.preserved.includes(p.getFrameKey())?'取消保留当前帧':'保留当前帧');if(!note.textContent)note.textContent='只画待机正、侧、背三面第 1 帧，点「同步衣服全部」即可生成全部动作；吃东西/抽烟自动跳过，坐姿可按需手画确认。';};
   const run=fn=>{try{fn();}catch(e){say(e.message);}update();};C.install(app,say,update);
   const pending=(r,live=false)=>r.sitPending?(live?' 坐姿有手画但未确认的首帧，该方向暂不改动；点「确认坐姿首帧」后跟随。':' 坐姿有方向已跳过。'):'';
-  live.onchange=()=>run(()=>{if(live.checked){const r=C.sync(app,{live:true});say('衣服实时同步已开启；保留 '+r.preserved+' 帧手工修改。'+pending(r,true));}else C.transaction(app,'关闭衣服实时同步',()=>{const s=C.master(app.project);if(s)s.clothingSync.live=false;});});
-  bar.querySelector('#clothing-sync-all').onclick=()=>run(()=>{const r=C.sync(app,{usePaintedSit:true});say('衣服已同步 '+r.edits.length+' 帧，保留 '+r.preserved+' 帧；可一次撤销。'+pending(r));});
+  const opts=()=>({shadeLegs:shade.checked,compress:compress.value});
+  live.onchange=()=>run(()=>{if(live.checked){const r=C.sync(app,{live:true,...opts()});say('衣服实时同步已开启；保留 '+r.preserved+' 帧手工修改。'+pending(r,true));}else C.transaction(app,'关闭衣服实时同步',()=>{const s=C.master(app.project);if(s)s.clothingSync.live=false;});});
+  bar.querySelector('#clothing-sync-all').onclick=()=>run(()=>{const r=C.sync(app,{usePaintedSit:true,...opts()});say('衣服已同步 '+r.edits.length+' 帧，保留 '+r.preserved+' 帧；可一次撤销。'+pending(r));});
+  bar.querySelector('#clothing-sync-current').onclick=()=>run(()=>{const r=C.sync(app,{usePaintedSit:true,onlySheet:app.project.currentSheetIndex,...opts()});say('当前动作已同步 '+r.edits.length+' 帧，保留 '+r.preserved+' 帧。'+pending(r));});
+  shade.onchange=()=>run(()=>{const s=C.master(app.project);if(!s)return;const r=C.sync(app,{usePaintedSit:true,...opts()});say((shade.checked?'已开启':'已关闭')+'自动腿部阴影，更新 '+r.edits.length+' 帧。');});
+  compress.onchange=()=>run(()=>{const s=C.master(app.project);if(!s)return;const r=C.sync(app,{usePaintedSit:true,...opts()});say('压缩模式已切换为「'+compress.selectedOptions[0].textContent+'」，更新 '+r.edits.length+' 帧。');});
   keep.onclick=()=>run(()=>{const p=app.project,first=C.sitFirst(p),on=C.preserve(app);say(first?(on?'当前方向的坐姿首帧已确认。':'已取消确认；坐姿停止实时同步。'):(on?'当前帧已保留，不会被同步覆盖。':'已取消保留。'));});
   bar.querySelector('#clothing-edit-master').onclick=()=>run(()=>{const p=app.project,s=C.master(p);if(!s)throw Error('首次同步请在待机选择衣服源稿');const sitting=p.spriteSheets[p.currentSheetIndex]?.name==='original16_sit',si=sitting?p.currentSheetIndex:s.sheetIndex,ai=p.spriteSheets[si].actions.findIndex(a=>a.direction===p.getCurrentAction().direction),l=sitting?p.getCurrentLayer():s;if(ai<0)throw Error('没有这个方向的源稿');app.selectFrame(si,ai,0);p.currentLayerIndex=p.layers.indexOf(l);app.updateAll();app.canvasManager.render();say(sitting?'坐姿默认从待机自动生成；想自己画就画本方向首帧后点「确认坐姿首帧」。':'正在编辑本方向待机首帧。');});update();
 });

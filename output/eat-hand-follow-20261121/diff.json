@@ -1,0 +1,77 @@
+{
+  "sheet": 15,
+  "edits": [
+    {
+      "layer": 470,
+      "frame": "15_0_0",
+      "direction": "side",
+      "dy": -1
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_1",
+      "direction": "side",
+      "dy": -1
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_4",
+      "direction": "side",
+      "dy": -1
+    },
+    {
+      "layer": 470,
+      "frame": "15_0_5",
+      "direction": "side",
+      "dy": -1
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_0",
+      "direction": "down",
+      "dy": -1
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_1",
+      "direction": "down",
+      "dy": -1
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_4",
+      "direction": "down",
+      "dy": -1
+    },
+    {
+      "layer": 481,
+      "frame": "15_1_5",
+      "direction": "down",
+      "dy": -1
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_0",
+      "direction": "up",
+      "dy": -1
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_1",
+      "direction": "up",
+      "dy": -1
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_4",
+      "direction": "up",
+      "dy": -1
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_5",
+      "direction": "up",
+      "dy": -1
+    }
+  ]
+}

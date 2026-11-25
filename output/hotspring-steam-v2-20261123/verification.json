@@ -1,0 +1,25 @@
+{
+  "saveStatus": 200,
+  "frames": 8,
+  "durations": [
+    220,
+    220,
+    220,
+    220,
+    220,
+    220,
+    220,
+    220
+  ],
+  "size": [
+    32,
+    34
+  ],
+  "sheetPixels": true,
+  "allFramePixels": true,
+  "staticPoolEveryFrame": true,
+  "steamUniqueFrames": 6,
+  "otherSheetsUnchanged": true,
+  "otherLayersUnchanged": true,
+  "sceneUnchanged": true
+}

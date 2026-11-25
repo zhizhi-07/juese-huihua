@@ -1,0 +1,12 @@
+{
+  "old": [
+    "旅馆_前台钥匙挂板_帧0.png",
+    "旅馆_前台钥匙挂板_动作表.png"
+  ],
+  "now": [
+    "前台钥匙挂板.png",
+    "前台钥匙挂板.png"
+  ],
+  "beforeSHA256": "cf9b676dc9be918e18519cb3ef613f0ed1dd2b2369d0568e40896d94d6e9cd57",
+  "afterSHA256": "617a86e3384e54ba39d8d539338ddb8fa00db0dc2f8144648fbdcd36290fd99f"
+}

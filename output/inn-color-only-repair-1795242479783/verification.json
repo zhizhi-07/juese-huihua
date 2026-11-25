@@ -1,0 +1,152 @@
+{
+  "destination": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/旅馆",
+  "originalExportBackup": "C:\\Users\\Administrator\\Desktop\\角色绘画\\output\\inn-export-1795242384860\\originals",
+  "sourceSHA256": "abf0c35b1a4541754a499abfc9f508c364fc0cda377c875b55e46e905395b23e",
+  "files": [
+    {
+      "name": "前台钥匙挂板.png",
+      "recoloredPixels": 134,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "墙挂地图.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "蜡烛.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "前台桌子.png",
+      "recoloredPixels": 778,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "登记簿.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "旅馆招牌.png",
+      "recoloredPixels": 128,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "壁挂蜡烛.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "地毯.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "沙发.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "行李架.png",
+      "recoloredPixels": 92,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "壁炉.png",
+      "recoloredPixels": 1822,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "半边楼梯.png",
+      "recoloredPixels": 513,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "饮水机.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "垃圾桶.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "植物架·左.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "植物架·右.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "独立开花盆栽.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "双烛黄铜吊灯.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "梳妆台·空台子.png",
+      "recoloredPixels": 64,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "双门衣柜.png",
+      "recoloredPixels": 228,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    },
+    {
+      "name": "单人沙发·朝右.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "鹿头壁饰.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "参考单人沙发·朝右.png",
+      "recoloredPixels": 0,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": true
+    },
+    {
+      "name": "圆桌.png",
+      "recoloredPixels": 124,
+      "originalGeometryAndAlphaPreserved": true,
+      "restoredByteExact": false
+    }
+  ],
+  "projectReadbackVerified": true
+}

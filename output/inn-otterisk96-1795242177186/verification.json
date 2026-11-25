@@ -1,0 +1,17 @@
+{
+  "url": "http://127.0.0.1:8765/api/project?id=scene-inn-20261119",
+  "originalETag": "\"979c85386aabb2e640d4f3a06350fefcaf4004182ea72a1e948526deb1b88214\"",
+  "originalSHA256": "979c85386aabb2e640d4f3a06350fefcaf4004182ea72a1e948526deb1b88214",
+  "verifiedSHA256": "00f2a639f3c3fe694839f52743e9a8782bbf3c6e67abc347247257419b6f9d7c",
+  "paletteSource": "https://lospec.com/palette-list/otterisk-96",
+  "sheets": 26,
+  "layers": 41,
+  "uniqueImages": 77,
+  "checkedPixels": 40020,
+  "changedPixels": 1331,
+  "sourceColors": 70,
+  "usedColors": 53,
+  "alphaAndStructureUnchanged": true,
+  "saveStatus": 200,
+  "readbackMatches": true
+}

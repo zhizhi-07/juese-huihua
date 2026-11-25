@@ -1,0 +1,71 @@
+[
+  {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"da3b3b543edb9cd477d500a8e36077b38cafff2f0af4d26c03e67317f5526423\""
+    },
+    "body": "candidate.json",
+    "sha256": "70de4e561fda7695393a481ef61bfa98c6120852646aa0089ba30a33656eef4c",
+    "status": 200,
+    "etag": "\"70de4e561fda7695393a481ef61bfa98c6120852646aa0089ba30a33656eef4c\"",
+    "response": "{\"saved\":true,\"revision\":\"\\\"70de4e561fda7695393a481ef61bfa98c6120852646aa0089ba30a33656eef4c\\\"\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561",
+    "status": 200,
+    "etag": "\"70de4e561fda7695393a481ef61bfa98c6120852646aa0089ba30a33656eef4c\"",
+    "response": "after.json",
+    "sha256": "70de4e561fda7695393a481ef61bfa98c6120852646aa0089ba30a33656eef4c"
+  },
+  {
+    "command": [
+      "magick",
+      "-delay",
+      "10",
+      "motion-1.png",
+      "-delay",
+      "10",
+      "motion-2.png",
+      "-delay",
+      "14",
+      "motion-3.png",
+      "-delay",
+      "14",
+      "motion-4.png",
+      "-delay",
+      "12",
+      "motion-5.png",
+      "-delay",
+      "12",
+      "motion-6.png",
+      "-loop",
+      "0",
+      "animation.gif"
+    ],
+    "exit": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "command": [
+      "magick",
+      "identify",
+      "-format",
+      "%wx%h:%T\\n",
+      "animation.gif"
+    ],
+    "exit": 0,
+    "out": "408x154:10\r\n408x154:10\r\n408x154:14\r\n408x154:14\r\n408x154:12\r\n408x154:12\r\n",
+    "err": ""
+  },
+  {
+    "checks": "Only 18 hand cels changed, saved readback equals candidate, inverse verified on data copy, project reopens and renders, GIF frames and durations verified.",
+    "sharedProjectBefore": "674d8fe5bd3ef0327bc386a84c322d58e321139ec0a6a0227967d4b208946785",
+    "sharedProjectAfter": "674d8fe5bd3ef0327bc386a84c322d58e321139ec0a6a0227967d4b208946785",
+    "preview": "animation.gif"
+  }
+]

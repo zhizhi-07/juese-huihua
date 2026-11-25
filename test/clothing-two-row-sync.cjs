@@ -19,4 +19,13 @@ assert.deepEqual(pixels(F.fromIdle(short,src.body),3),Array(7).fill(clear),'an u
 const crouch=F.fromIdle(src,body(['.......','obbbb..','.obbbb.','.obbbb.','..bbob.','....bb.']));
 for(const y of [2,3])assert.deepEqual(pixels(crouch,y),[clear,clear,top,top,top,top,clear],'pickup follows the torso row shift and extends the shirt to the waist');
 assert.deepEqual(pixels(crouch,5),pixels(shifted,5),'extending the shirt must not change the legs');
-console.log('PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot and transparent hems');
+const belt=[66,186,116,255],dress5={body:body(['.obbbbbo.','.obbbbbo.','.obbbbbo.','.obbbbbo.','.obbobbo.']),clothes:image(['..T.T.T..','..TTTTT..','..BBBBB..','..LLLLL..','..RRRRR..'],{T:top,B:belt,L:left,R:right})};
+const dressWalk=F.fromIdle(dress5,body(['.obbbbbo.','.obbbbbo.','obbboobbo','obbooobbo']));
+assert.deepEqual(pixels(dressWalk,1).slice(2,7),Array(5).fill(belt),'merchant bottom-align keeps waistband fixed at y=1');
+assert.deepEqual(pixels(dressWalk,2).slice(1,8),Array(7).fill(left),'skirt body stays intact across split legs');
+assert.deepEqual(pixels(dressWalk,3).slice(1,8),Array(7).fill(right),'skirt hem closes gap across split legs');
+const dressOneFoot=F.fromIdle(dress5,body(['.obbbbbo.','.obbbbbo.','.obbobbo.','....obbo.']));
+assert.deepEqual(pixels(dressOneFoot,3).slice(4,7),Array(3).fill(right),'single-foot skirt covers inner seam outline without black dot');
+const wideTorso=F.fromIdle(dress5,body(['.obbbbbo.','.obbbbbo.','obbbbbbo.','obbbbbbo.','obboobbo.']));
+assert(pixels(wideTorso,2).slice(1,7).every(p=>p[3]===255),'6px wide torso must not leave bare skin');
+console.log('PASS: separate trouser legs, collar bob and face occlusion, different canvas size, one visible foot, transparent hems, closed skirts, 4-row waist and 6px torso');

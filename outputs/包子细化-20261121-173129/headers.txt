@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Content-Length: 219918
+Cache-Control: no-store
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Date: Sat, 21 Nov 2026 09:31:29 GMT
+Etag: "0edbcd6b49ba97d2941b5428e9dfe5e12951dc547f47883332205f00c23becef"
+Keep-Alive: timeout=4
+Proxy-Connection: keep-alive
+X-Content-Type-Options: nosniff
+

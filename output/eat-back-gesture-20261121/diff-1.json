@@ -1,0 +1,38 @@
+{
+  "sheet": 15,
+  "direction": "up",
+  "edits": [
+    {
+      "layer": 489,
+      "frame": "15_2_1",
+      "left": 12,
+      "top": 10
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_2",
+      "left": 13,
+      "top": 8
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_3",
+      "left": 13,
+      "top": 8
+    },
+    {
+      "layer": 489,
+      "frame": "15_2_4",
+      "left": 12,
+      "top": 10
+    }
+  ],
+  "visible": [
+    12,
+    12,
+    10,
+    10,
+    12,
+    12
+  ]
+}

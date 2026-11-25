@@ -1,0 +1,25 @@
+const fs=require('node:fs'),a=require('node:assert/strict'),{createHash}=require('node:crypto');
+const u='http://127.0.0.1:8765/api/project?id=scene-inn-20261119';
+(async()=>{
+const old=JSON.parse(fs.readFileSync('original.json')), last=JSON.parse(fs.readFileSync('saved-readback.json'));
+const raw=fs.readFileSync('before-separate.json'), p=JSON.parse(raw);
+const etag=/^etag:\s*("[a-f0-9]+")/im.exec(fs.readFileSync('before-separate.headers','utf8'))[1];
+a.equal(etag,JSON.stringify(createHash('sha256').update(raw).digest('hex')));
+const i=7, l=10, n=p.spriteSheets.length;
+a.deepEqual(p.spriteSheets[i],last.spriteSheets[i]);a.deepEqual(p.layers[l],last.layers[l]);
+a(!p.spriteSheets.some(s=>s.name==='地毯·参考款'));
+const s=structuredClone(p.spriteSheets[i]), layer=structuredClone(p.layers[l]);
+s.name=s.actions[0].name=layer.name='地毯·参考款';
+s.actions[0].frames[0].sheetIndex=layer.sheetIndex=n;
+layer.frameData={ [n+'_0_0']:layer.frameData[i+'_0_0'] };
+p.spriteSheets[i]=old.spriteSheets[i];p.layers[l]=old.layers[l];p.spriteSheets.push(s);p.layers.push(layer);
+const body=JSON.stringify(p);fs.writeFileSync('separate-candidate.json',body);
+let r=await fetch(u,{method:'PUT',headers:{'Content-Type':'application/json','X-Pixel-Editor':'1','If-Match':etag},body});
+const result=await r.text();fs.writeFileSync('separate-save-result.txt',r.status+'\n'+result);a(r.ok,result);
+r=await fetch(u);a(r.ok);const saved=await r.text();fs.writeFileSync('separate-readback.json',saved);
+const q=JSON.parse(saved);a.deepEqual(q,p);
+a.deepEqual(q.spriteSheets[i],old.spriteSheets[i]);a.deepEqual(q.layers[l],old.layers[l]);
+a.equal(q.spriteSheets.pop().imageDataURL,last.spriteSheets[i].imageDataURL);q.layers.pop();
+q.spriteSheets[i]=last.spriteSheets[i];q.layers[l]=last.layers[l];a.deepEqual(q,JSON.parse(raw));
+console.log('Verified: original 28x10 restored at index 7; separate 32x16 added at index '+n+'; placement and all other fields unchanged.');
+})().catch(e=>{console.error(e);process.exitCode=1});

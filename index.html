@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>像素衣橱 · 角色绘画工作台</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/studio.css?v=image-drop-1">
+  <link rel="stylesheet" href="css/studio.css?v=png-export-2">
   <link rel="stylesheet" href="css/visual-layers.css?v=favorite-star-1">
   <link rel="stylesheet" href="css/wardrobe.css?v=favorite-star-1">
   <link rel="stylesheet" href="css/hd-canvas.css?v=drag-create-1">
@@ -39,6 +39,11 @@
           <button class="tool-btn dropdown-toggle">💾 导出 ▼</button>
           <div class="dropdown-menu">
             <button id="export-frame-btn" class="dropdown-item">导出当前帧 (PNG)</button>
+            <button id="download-scene-png" class="dropdown-item" style="display:none" hidden>另存下载当前帧 (PNG)</button>
+            <button id="set-scene-png-folder" class="dropdown-item" style="display:none" hidden>设置本工程的 PNG 导出文件夹…</button>
+            <button id="clear-scene-png-folder" class="dropdown-item" style="display:none" hidden>取消本工程的 PNG 导出文件夹</button>
+            <button id="set-scene-png" class="dropdown-item" style="display:none" hidden>选择此素材的固定位置并导出…</button>
+            <button id="clear-scene-png" class="dropdown-item" style="display:none" hidden>取消此素材的固定 PNG 位置</button>
             <button id="export-sheet-btn" class="dropdown-item">导出素材大图 (PNG)</button>
             <button id="export-all-btn" class="dropdown-item">导出全动作打包 (ZIP)</button>
             <button id="export-parts-btn" class="dropdown-item">导出可见部件 · 全动作分层 (ZIP)</button>
@@ -328,10 +333,10 @@
   <script src="js/spritesheet.js"></script>
   <script src="js/animation.js?v=playback-overlays-1"></script>
   <script src="js/inspection.js"></script>
-  <script src="js/export.js?v=new-character-action-20261116"></script>
+  <script src="js/export.js?v=png-export-feedback-1"></script>
   <script src="js/api.js?v=native16-wiring-20261104"></script>
   <script src="js/aseprite.js"></script>
-  <script src="js/app.js?v=part-visibility-sync-2"></script>
+  <script src="js/app.js?v=scene-fixed-png-5"></script>
   <script src="js/workbench.js?v=blank-sit-clothing-20261109"></script>
   <script src="js/local-bridge.js"></script>
   <script src="js/persistence.js?v=manual-shared-save-3"></script>
@@ -340,9 +345,9 @@
   <script src="js/poses.js"></script>
   <script src="js/original32.js"></script>
   <script src="js/eyes32.js"></script>
-  <script src="js/scene-materials.js?v=2"></script>
+  <script src="js/scene-materials.js?v=11"></script>
   <script src="js/character-actions.js?v=20261116"></script>
-  <script src="js/studio.js?v=new-character-action-20261116"></script>
+  <script src="js/studio.js?v=scene-fixed-png-4"></script>
   <script src="js/visual-layers.js?v=new-character-action-20261116"></script>
   <script src="js/character-base.js?v=branch-hands-1"></script>
   <script src="js/projects.js?v=primary-body-20261110"></script>

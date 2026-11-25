@@ -1,0 +1,207 @@
+{
+  "dest": "C:/Users/Administrator/Desktop/最后/游戏资产/游戏内部/旅馆",
+  "sourceETag": "\"abf0c35b1a4541754a499abfc9f508c364fc0cda377c875b55e46e905395b23e\"",
+  "sourceSHA256": "abf0c35b1a4541754a499abfc9f508c364fc0cda377c875b55e46e905395b23e",
+  "exported": 24,
+  "allReadbackVerified": true,
+  "untouchedFiles": [
+    "cabinet 1.png",
+    "cabinet 1.png.import",
+    "table.png",
+    "table.png.import",
+    "前台桌子.png.import",
+    "前台钥匙挂板.png.import",
+    "半边楼梯.png.import",
+    "单人沙发·朝右.png.import",
+    "参考单人沙发·朝右.png.import",
+    "双烛黄铜吊灯.png.import",
+    "双门衣柜.png.import",
+    "圆桌.png.import",
+    "地毯.png.import",
+    "垃圾桶.png.import",
+    "墙挂地图.png.import",
+    "壁挂蜡烛.png.import",
+    "壁炉.png.import",
+    "旅馆招牌.png.import",
+    "梳妆台·空台子.png.import",
+    "植物架·右.png.import",
+    "植物架·左.png.import",
+    "沙发.png.import",
+    "独立开花盆栽.png.import",
+    "登记簿.png.import",
+    "蜡烛.png.import",
+    "行李架.png.import",
+    "饮水机.png.import",
+    "鹿头壁饰.png.import"
+  ],
+  "records": [
+    {
+      "name": "前台钥匙挂板.png",
+      "width": 18,
+      "height": 13,
+      "originalSHA256": "e69910693d23c243473359009275d6c1417b1449cae19ad67d4234937bf5b700",
+      "exportSHA256": "d144ba527f465936503fa40c7bbf5a60c39a19fad3c8cf2fa65b5f5211d2ac69"
+    },
+    {
+      "name": "墙挂地图.png",
+      "width": 18,
+      "height": 14,
+      "originalSHA256": "4474aa34edcff3f958fa61508f4953ce5b47a0a16a7901a1528bdd568e00f994",
+      "exportSHA256": "efd338ccdb00a8c9ea67086f77bae14cce3d8098d0b01c1db1c8eb9908b7d998"
+    },
+    {
+      "name": "蜡烛.png",
+      "width": 80,
+      "height": 14,
+      "originalSHA256": "7960020ffd103bb35f5a9399a0f998bacd4261d359247655aa8d77d8a07dd5d6",
+      "exportSHA256": "52358a61505f5dfb831242f9e09411d79b031e261ddaa05d442bd0daca795d2d"
+    },
+    {
+      "name": "前台桌子.png",
+      "width": 55,
+      "height": 28,
+      "originalSHA256": "678dffa4779db63f56bbb7f00397a826743c014dad2855dd01119a2a869d7116",
+      "exportSHA256": "5faa9d2e6ca1935619cdb999d0955fa8204bd7401e9adc0d6707c829ac42fa15"
+    },
+    {
+      "name": "登记簿.png",
+      "width": 11,
+      "height": 6,
+      "originalSHA256": "abdb571dd636e0f99946835c30a5b3ece0f4a0a463ee49b90cf37ea6ca85614f",
+      "exportSHA256": "b12d63bffce035953838d0d0da01ec4233e19686c46172f4d1745dcc559cc759"
+    },
+    {
+      "name": "旅馆招牌.png",
+      "width": 21,
+      "height": 9,
+      "originalSHA256": "9d8b2e4365e38c52e0726f5dd36e01ee34809c67932e7e3832090daa5bd38c0b",
+      "exportSHA256": "6588f5ecc856ebf7e5288949387ccd904cbc1dc01aa65907a1287e24615fb736"
+    },
+    {
+      "name": "壁挂蜡烛.png",
+      "width": 5,
+      "height": 7,
+      "originalSHA256": "b7a900763a57547d7f7202f45a8f9db5f69c428587b138d367c4fd6bd918787a",
+      "exportSHA256": "52da78c53e1e58987697d8a2f313f3cfe76027fc24e4b68104610172584078a8"
+    },
+    {
+      "name": "地毯.png",
+      "width": 28,
+      "height": 10,
+      "originalSHA256": "ec2c8a2b6d2088df544da607ef51b40479cfb60d84692246b5f4579f379fb01e",
+      "exportSHA256": "d5b59ecfb5004b5d39cd976f1708e905b1084b8391f9036da0db997684e60eac"
+    },
+    {
+      "name": "沙发.png",
+      "width": 32,
+      "height": 42,
+      "originalSHA256": "7468bf587e0ea65f8cac4dd16f15db7f7f1d6932eeb4f631453d7fa5dbdfb11b",
+      "exportSHA256": "408137dc41418d21972db9278384e9e279eea2dd0c8757d7e3ee123d330f669a"
+    },
+    {
+      "name": "行李架.png",
+      "width": 21,
+      "height": 21,
+      "originalSHA256": "9541d1851b04ca20a40f1f9a46acd3e0f47f67d15c3d91bda2a93f1135957455",
+      "exportSHA256": "d30e18f0c2a9a99fca57e83fb20aa779e496297bdafc6a1555f5f4a702934bab"
+    },
+    {
+      "name": "壁炉.png",
+      "width": 234,
+      "height": 29,
+      "originalSHA256": "fb9203a7fd7ef1179f894c463417147522de29af0d1dc1b7def5b0fb2564a1e4",
+      "exportSHA256": "d8b03f6b5e038bdfebde53804179535c57d1f8da33cea52ca23c6187441f2647"
+    },
+    {
+      "name": "半边楼梯.png",
+      "width": 24,
+      "height": 74,
+      "originalSHA256": "791cb8a538fe773f16946a3e9614e3d8d2b37321c4d8d20a015262ccf96fe465",
+      "exportSHA256": "7b6be57d1f56cbb2b015f88ce52864160b649109181cffbe5d459dc8d2aca40b"
+    },
+    {
+      "name": "饮水机.png",
+      "width": 10,
+      "height": 20,
+      "originalSHA256": "58a88ef02d2bc96864d8757de59d68f7c273de1be5ebd9327bf6b6ab04f1afac",
+      "exportSHA256": "d04a59d706f6711bf58bfdf26f3f927b3d55dda7406eee132edc79bbbea71854"
+    },
+    {
+      "name": "垃圾桶.png",
+      "width": 9,
+      "height": 10,
+      "originalSHA256": "1a62708c77e8417283731fc418a3e48848624d3a0cc1c60b30d1654fe3213b2c",
+      "exportSHA256": "a3ec1792d001f40d3aa1ab93a6e16d4069aad2f946c5d58487d64a7bac5e671c"
+    },
+    {
+      "name": "植物架·左.png",
+      "width": 21,
+      "height": 25,
+      "originalSHA256": "bf52d7087748a69b8bc6e8a88952171f0ac32cf7fce934b72ddd3f26ffc1a324",
+      "exportSHA256": "413792e70731b7af90c73e639b695cf5a6eb42ba4245565955880c6899181485"
+    },
+    {
+      "name": "植物架·右.png",
+      "width": 18,
+      "height": 25,
+      "originalSHA256": "64610cf089d79e52543a3f60c96ab117cce5898fdcae8db5f044220bde629895",
+      "exportSHA256": "36839714d55395d0cfc1b4f9a9ce35e430fd78daac68e04ec266b7cbdbd821f9"
+    },
+    {
+      "name": "独立开花盆栽.png",
+      "width": 10,
+      "height": 15,
+      "originalSHA256": "9db628978d5725a5c6f35d40696410cffb2b5d5259da10f7e8ac05bdd7b8aae1",
+      "exportSHA256": "5210437c15cc74bb31a786aaa86cf37b2b734f8f43ae7a62cfa9b8db2a61dcdd"
+    },
+    {
+      "name": "双烛黄铜吊灯.png",
+      "width": 11,
+      "height": 12,
+      "originalSHA256": "67b57a7a14b04ac8e693180a44eeb06da7f3d332964498094caa0ff80291ae8e",
+      "exportSHA256": "795fb59ba5f98415d6d9825031fbf50b19d5995f86f6d92bfc597fc17da9a13c"
+    },
+    {
+      "name": "梳妆台·空台子.png",
+      "width": 16,
+      "height": 18,
+      "originalSHA256": "bfe35107a43a013b371a135914226cf74a5a26da0dd02dc8768ce0b84f728dd1",
+      "exportSHA256": "fd6391fd94d66eff7b38e4f2e1bbef4ab6c1568a702809a0911e7d96c2a9b16e"
+    },
+    {
+      "name": "双门衣柜.png",
+      "width": 17,
+      "height": 23,
+      "originalSHA256": "400190fb48e3ec50f23f2940f83c19f7755a9d8488bf24ae256c0fb15d76b088",
+      "exportSHA256": "66c0a46791c6829883296db1b4d8efa0d89b976ddbbe3f2b2b569fd3d954bd64"
+    },
+    {
+      "name": "单人沙发·朝右.png",
+      "width": 13,
+      "height": 14,
+      "originalSHA256": "1fcb059fa11c749829684f2c38070377be6d192cc3cc3fa65003ea56530b53a7",
+      "exportSHA256": "940b692d5b9a032e9b175ca6948dfe37d9a8e5a835f49b85cb33bc9b3631bd51"
+    },
+    {
+      "name": "鹿头壁饰.png",
+      "width": 12,
+      "height": 11,
+      "originalSHA256": "6e9fda23053fa95b410f5e0635cdeb30b93fb73e2009fc617e1b9c79e3d10403",
+      "exportSHA256": "bbaac3df35cf1e77c2e6c98f6fa46dd0ffcd798f0435bc97c34c91d87d18e28f"
+    },
+    {
+      "name": "参考单人沙发·朝右.png",
+      "width": 11,
+      "height": 17,
+      "originalSHA256": "38afac1f9258fa528d89066886c6c555d5d1caf38606cf70d54ddf9ac9b9836b",
+      "exportSHA256": "8d46e228882718790655236fa0966d280b1597aa8155043a11d38e8e4f6336e9"
+    },
+    {
+      "name": "圆桌.png",
+      "width": 16,
+      "height": 16,
+      "originalSHA256": "4d29a9142ae1eb065c16a77b2dea123d1655afaa022e4a97d963a668330f8ead",
+      "exportSHA256": "02490122931f5d85ae04fb74abc6615ebf535aa4c8330a46ebd88ebf73c19da0"
+    }
+  ]
+}

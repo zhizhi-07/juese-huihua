@@ -480,21 +480,33 @@ window.PE = window.PE || {};
       }
 
       // 导出按钮
-      const exportFrameBtn = document.getElementById('export-frame-btn');
-      if (exportFrameBtn) {
+      for (const id of ['export-frame-btn', 'download-scene-png']) {
+        const exportFrameBtn = document.getElementById(id);
+        if (!exportFrameBtn) continue;
         exportFrameBtn.addEventListener('click', async () => {
-          await this.exportManager.exportFrame(
-            this.project.currentSheetIndex,
-            this.project.currentActionIndex,
-            this.project.currentFrameIndex
-          );
+          exportFrameBtn.disabled = true;
+          this.exportManager.notifyExport('正在导出 PNG…');
+          try {
+            const p = this.project;
+            const frame = [p.currentSheetIndex, p.currentActionIndex, p.currentFrameIndex];
+            if (id === 'download-scene-png' || !await PE.exportScenePng?.(this, frame)) await this.exportManager.exportFrame(...frame);
+          } catch (error) {
+            alert('PNG 导出失败：' + error.message);
+            this.exportManager.notifyExport('PNG 导出失败：' + error.message);
+          } finally {
+            exportFrameBtn.disabled = false;
+          }
         });
       }
 
       const exportSheetBtn = document.getElementById('export-sheet-btn');
       if (exportSheetBtn) {
         exportSheetBtn.addEventListener('click', async () => {
-          await this.exportManager.exportSpriteSheet(this.project.currentSheetIndex);
+          try {
+            await this.exportManager.exportSpriteSheet(this.project.currentSheetIndex);
+          } catch (error) {
+            alert('PNG 导出失败：' + error.message);
+          }
         });
       }
 

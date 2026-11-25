@@ -13,8 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const primary=node('div','primary-actions');
   $('import-btn').textContent='导入素材';$('import-project-btn').textContent='打开工程';$('export-project-btn').textContent='保存工程';$('export-project-btn').classList.add('save-primary');
   const oldSave=$('export-project-btn'),save=oldSave.cloneNode(true);oldSave.replaceWith(save);save.onclick=()=>app.persistence.saveNow();
-  const dropdown=document.querySelector('.dropdown-wrapper');dropdown.querySelector('.dropdown-toggle').textContent='导出 PNG / ZIP ▾';
-  primary.append($('import-btn'),$('import-project-btn'),$('export-project-btn'),dropdown);header.append($('import-file-input'),$('import-project-input'));
+  const dropdown=document.querySelector('.dropdown-wrapper');dropdown.querySelector('.dropdown-toggle').textContent='其他导出 ▾';
+  const exportFrame=$('export-frame-btn');exportFrame.className='tool-btn';
+  primary.append($('import-btn'),$('import-project-btn'),$('export-project-btn'),exportFrame,dropdown);header.append($('import-file-input'),$('import-project-input'));
   const more=button('更多 ···',()=>advanced.showModal());primary.append(more);header.append(brand,primary);
 
   const advanced=node('dialog','advanced-dialog');advanced.id='advanced-dialog';
@@ -68,6 +69,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       app.updateSheetList();app.updateStatusBar();app.persistence.markDirty();
     }catch(error){alert(error.message);}
   });renameMaterial.hidden=true;addMaterial.after(renameMaterial);
+  const deleteMaterial=button('删除素材',()=>{
+    try{
+      if(!app.persistence.ready||app.toolManager.isDrawing)throw new Error('请等待工程载入或结束当前绘画');
+      const p=app.project,si=p.currentSheetIndex,sheet=p.getCurrentSheet();
+      if(!sheet||!confirm('删除场景素材「'+sheet.name+'」？删除后保存工程生效，且不可撤销。'))return;
+      app.animationPlayer.pause();app.toolManager.clearSelection();
+      const next=PE.deleteSceneMaterial(p,si);
+      app.history.clear();app.selectSheet(next);app.updateHistoryButtons();app.persistence.markDirty();
+    }catch(error){alert(error.message);}
+  });deleteMaterial.hidden=true;renameMaterial.after(deleteMaterial);
+  const pngSettings=[
+    ['set-scene-png',false,PE.configureScenePng],['clear-scene-png',true,PE.configureScenePng],
+    ['set-scene-png-folder',false,PE.configureScenePngFolder],['clear-scene-png-folder',true,PE.configureScenePngFolder]
+  ];
+  for(const [id,clear,configure] of pngSettings){
+    const item=dropdown.querySelector('#'+id);
+    item.onclick=async()=>{
+      item.disabled=true;
+      try{await configure(app,clear);}catch(error){if(error.name!=='AbortError')alert('设置失败：'+error.message);}
+      finally{item.disabled=false;}
+    };
+  }
   const directionList=$('action-list');
   const left=$('left-sidebar');left.replaceChildren(sources);
   const guide=node('div','library-guide');guide.innerHTML='<strong>从这里开始</strong><p>选择动作和朝向，再在右侧选择要画的图层。</p><span>每次只修改当前帧</span>';left.append(guide);
@@ -144,6 +167,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     addMaterial.hidden=!scene;
     addAction.hidden=scene;
     renameMaterial.hidden=!scene||!this.project.getCurrentSheet()||this.project.getCurrentSheet().name==='场景画布';
+    deleteMaterial.hidden=renameMaterial.hidden||visible<=1;
+    for(const id of [...pngSettings.map(([id])=>id),'download-scene-png']){
+      const item=$(id);
+      item.hidden=id.endsWith('-folder')?!scene:!PE.scenePngKey(this);
+      item.style.display=item.hidden?'none':'';
+    }
     sources.querySelector('h3').textContent=scene?'场景素材':'动作素材';
     libraryNote.textContent=scene?'每件素材独立画布、图层与动画帧':visible+' 套常用动作 · 手部独立保留';
     if(scene)guide.innerHTML='<strong>从这里开始</strong><p>新建床、台灯等素材，点击名称切换绘画；右侧可加图层，下方“帧操作”可复制整帧制作动画。</p><span>素材不会自动摆入场景，可复制后粘贴到场景画布。</span>';

@@ -1,0 +1,13 @@
+{
+  "operation": "rename temporary copy onto single existing PNG",
+  "target": "E:\\工作\\0000-游戏\\最后\\游戏资产\\人物\\基础身体\\前手\\吃东西.png",
+  "beforeSHA256": "f75e4ef6deec9934807ba37e94b8787f520f1a80e3ba0791f125d88bf9ff67a8",
+  "afterSHA256": "ce318574270678f387c59fbfb7169d6d72a0f76ea778d090f3d8f0133b85ba17",
+  "sourceETag": "\"6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa\"",
+  "sourceStatus": 304,
+  "width": 102,
+  "height": 51,
+  "frames": 18,
+  "untouchedFiles": 97,
+  "restorationVerifiedOnCopy": true
+}

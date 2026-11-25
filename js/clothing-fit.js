@@ -99,42 +99,95 @@
     }
     return {raw,data,record:pixels.length?{width,height,pixels}:null};
   }
-  function fromIdle(src,target,{sit=false,targetHead,shadeLegs=true,mask=null}={}){
+  function fromIdle(src,target,{sit=false,targetHead,shadeLegs=true,mask=null,compress='auto'}={}){
     // shortcut: native16 fitted garments; sleeves and loose hems need their own attachment guides.
     const cloth=src.clothes,out=blank(target.width,target.height);
     ensure(cloth.width===src.body.width&&cloth.height===src.body.height);
-    for(let i=0;i<cloth.data.length;i+=4)if(cloth.data[i+3]){
-      ensure(src.body.data[i+3]&&!outline(src.body,i),'衣服超出身体区域；当前算法仅支持贴身款');
+    const sr=rows(src.body),tr=rows(target),sb=bounds(src.body).bottom,tb=bounds(target).bottom;
+    const spanByY=new Map(sr.map(r=>[r.y,[r.xs[0],r.xs.at(-1)]]));
+    for(let y=0;y<cloth.height;y++)for(let x=0;x<cloth.width;x++){
+      const i=(y*cloth.width+x)*4;if(!cloth.data[i+3])continue;
+      const span=spanByY.get(y),innerSeam=span&&outline(src.body,i)&&x>span[0]&&x<span[1];
+      ensure(src.body.data[i+3]&&(!outline(src.body,i)||innerSeam),'衣服超出身体区域；当前算法仅支持贴身款');
       ensure(cloth.data[i]!==255||cloth.data[i+1]!==0||cloth.data[i+2]!==0,'红色位置标记不能参与衣服同步');
     }
-    const sr=rows(src.body),tr=rows(target),sb=bounds(src.body).bottom,tb=bounds(target).bottom;
+    const bottomSpan=spanByY.get(sb);
+    let skirt=false;
+    if(bottomSpan)for(let x=bottomSpan[0]+1;x<bottomSpan[1];x++){
+      const i=(sb*cloth.width+x)*4;
+      if(outline(src.body,i)&&cloth.data[i+3]){skirt=true;break;}
+    }
     const su=sr.filter(r=>r.y<sb-1),tu=tr.filter(r=>r.y<tb-1);
     ensure(su.length&&tu.length,'身体缺少躯干，无法同步衣服');
     const sx=center(su[0].xs),tx=center(tu[0].xs),dx=Math.round(tx-sx);
     const legShades=shadeLegs?fabricShades(cloth,sr.filter(r=>r.y>=sb-1)):null;
-    const copy=(x,y,px,py)=>{
+    const copy=(x,y,px,py,shade=true)=>{
       const i=(y*out.width+x)*4;
       // mask：目标帧的头部；低头时衣领不盖住脸。
       if(px<0||px>=cloth.width||sit&&targetHead?.data[i+3]||mask?.data[i+3])return;
       const j=(py*cloth.width+px)*4,c=cloth.data.subarray(j,j+4);
       out.data.set(c,i);
-      if(legShades&&y>=tb-1&&c[3]&&skinShadow(target,i)){
+      if(shade&&legShades&&y>=tb-1&&c[3]&&skinShadow(target,i)){
         const shaded=legShades.get(c.subarray(0,3).join());
         if(shaded)out.data.set(shaded,i);
       }
     };
+    const contiguous=xs=>xs.at(-1)-xs[0]+1===xs.length;
+    const spanXs=xs=>Array.from({length:xs.at(-1)-xs[0]+1},(_,k)=>xs[0]+k);
+    const fillRow=(toXs,toY,fromXs,fromY,shade=true)=>{
+      if(toXs.length===fromXs.length&&contiguous(toXs)&&contiguous(fromXs)){
+        const shift=Math.round(center(toXs)-center(fromXs));
+        for(const x of toXs)copy(x,toY,x-shift,fromY,shade);
+      }else{
+        toXs.forEach((x,i)=>copy(x,toY,sample(fromXs,i,toXs.length),fromY,shade));
+      }
+    };
+    const legUpper=tr.find(r=>r.y===tb-1),legUpperSplit=legUpper&&runs(legUpper.xs).length>=2;
+    const keepWaistInLower=sr.length===5&&tr.length===4&&!sit&&compress==='top'&&(skirt||!legUpperSplit);
     const visible=tu.filter(r=>!sit||r.xs.some(x=>!targetHead?.data[(r.y*out.width+x)*4+3]));
     for(const [i,r] of visible.entries()){
-      const sy=Math.min(su.at(-1).y,su[0].y+r.y-tu[0].y);
-      const from=sit?su[visible.length===1?su.length-1:Math.round(i*(su.length-1)/(visible.length-1))]:su.find(s=>s.y===sy);
-      if(from){
-        const shift=Math.round(center(r.xs)-center(from.xs));
-        for(const x of r.xs)copy(x,r.y,x-shift,from.y);
+      let from;
+      if(sit){
+        from=su[visible.length===1?su.length-1:Math.round(i*(su.length-1)/(visible.length-1))];
+      }else if(compress==='auto'&&visible.length<su.length){
+        // 商人/物理底部对齐：头下沉遮住最顶领口，胸口/腰带/下装高度纹丝不动
+        from=su[su.length-visible.length+i];
+      }else if(compress==='waist'&&su.length===3&&visible.length===2){
+        from=i===0?su[0]:su[2];
+      }else{
+        const sy=Math.min(su.at(-1).y,su[0].y+r.y-tu[0].y);
+        from=su.find(s=>s.y===sy);
       }
+      if(from)fillRow(r.xs,r.y,from.xs,from.y,false);
     }
     for(let offset=1;offset>=0;offset--){
-      const from=sr.find(r=>r.y===sb-offset),to=tr.find(r=>r.y===tb-offset);if(!from||!to)continue;
-      const source=runs(from.xs),dest=runs(to.xs);
+      const to=tr.find(r=>r.y===tb-offset);if(!to)continue;
+      if(offset===1&&keepWaistInLower){
+        const fromWaist=su.at(-1);
+        const destXs=skirt&&runs(to.xs).length>=2?spanXs(to.xs):to.xs;
+        fillRow(destXs,to.y,fromWaist.xs,fromWaist.y,false);
+        continue;
+      }
+      const from=sr.find(r=>r.y===sb-offset);if(!from)continue;
+      const dest=runs(to.xs);
+      if(skirt){
+        const fromAll=spanXs(from.xs);
+        if(dest.length>=2){
+          fillRow(spanXs(to.xs),to.y,fromAll,from.y,true);
+        }else{
+          // 单脚着地时，把紧挨着地脚且位于上一行裙身内部跨度内的裤缝描边（如 x=8）一并盖成裙摆，消除中缝黑块。
+          let xs=to.xs;
+          if(offset===0&&legUpper){
+            const prevL=legUpper.xs[0],prevR=legUpper.xs.at(-1),ext=new Set(xs);
+            for(const cx of [xs[0]-1,xs.at(-1)+1])if(cx>prevL&&cx<prevR&&outline(target,(to.y*target.width+cx)*4))ext.add(cx);
+            xs=[...ext].sort((a,b)=>a-b);
+          }
+          if(xs.length<fromAll.length)for(const x of xs)copy(x,to.y,Math.max(fromAll[0],Math.min(fromAll.at(-1),x-dx)),from.y,true);
+          else fillRow(xs,to.y,fromAll,from.y,true);
+        }
+        continue;
+      }
+      const source=runs(from.xs);
       const footRuns=sit?dest.slice(-2):dest,cut=footRuns.length===2?(footRuns[0].at(-1)+footRuns[1][0])/2:tx;
       const split=source.length===2?(source[0].at(-1)+source[1][0])/2:sx;
       const sides=source.length===2?source:[from.xs.filter(x=>x<split),from.xs.filter(x=>x>split)];

@@ -1,0 +1,11 @@
+{
+  "path": "C:\\Users\\Administrator\\Desktop\\最后\\游戏资产\\游戏内部\\旅馆\\壁炉.png",
+  "backup": "outputs/inn-fireplace-sync-20261121-xhkmqt/game-fireplace-before-top-outline.png",
+  "before": "c2ed4bfd2f982654e8ae3045ed9b97ebff4c03a5586bff415ba8d700d7b91858",
+  "after": "c947214e5c2874ac8e4e50b6c3d49839b8a4bf0bb939c6fa2afa17fac0df8eb3",
+  "frames": 13,
+  "frameSize": [
+    18,
+    30
+  ]
+}

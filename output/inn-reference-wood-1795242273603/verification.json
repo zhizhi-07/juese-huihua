@@ -1,0 +1,18 @@
+{
+  "etag": "\"00f2a639f3c3fe694839f52743e9a8782bbf3c6e67abc347247257419b6f9d7c\"",
+  "originalSHA256": "00f2a639f3c3fe694839f52743e9a8782bbf3c6e67abc347247257419b6f9d7c",
+  "changedLayerPixels": 4370,
+  "sheets": [
+    "0",
+    "3",
+    "5",
+    "9",
+    "10",
+    "11",
+    "20",
+    "21",
+    "25"
+  ],
+  "readbackMatches": true,
+  "structureUnchanged": true
+}

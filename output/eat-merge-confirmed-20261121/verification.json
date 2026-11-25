@@ -1,0 +1,71 @@
+[
+  {
+    "method": "PUT",
+    "url": "http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Pixel-Editor": "1",
+      "If-Match": "\"0e4f91ea224145f3755aca22c917e413974512dd5931adf56ce983fec2d3deb1\""
+    },
+    "body": "candidate.json",
+    "sha256": "6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa",
+    "status": 200,
+    "etag": "\"6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa\"",
+    "response": "{\"saved\":true,\"revision\":\"\\\"6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa\\\"\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://127.0.0.1:8765/api/project?id=base-outlined-1794365455561",
+    "status": 200,
+    "etag": "\"6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa\"",
+    "response": "after.json",
+    "sha256": "6c1718ca86300444f6a249bf640c79490375cefd5f342c718c883d037e513ffa"
+  },
+  {
+    "command": [
+      "magick",
+      "-delay",
+      "10",
+      "motion-1.png",
+      "-delay",
+      "10",
+      "motion-2.png",
+      "-delay",
+      "14",
+      "motion-3.png",
+      "-delay",
+      "14",
+      "motion-4.png",
+      "-delay",
+      "12",
+      "motion-5.png",
+      "-delay",
+      "12",
+      "motion-6.png",
+      "-loop",
+      "0",
+      "animation.gif"
+    ],
+    "exit": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "command": [
+      "magick",
+      "identify",
+      "-format",
+      "%wx%h:%T\\n",
+      "animation.gif"
+    ],
+    "exit": 0,
+    "out": "408x154:10\r\n408x154:10\r\n408x154:14\r\n408x154:14\r\n408x154:12\r\n408x154:12\r\n",
+    "err": ""
+  },
+  {
+    "checks": "Active hands match screenshot version, passive hands unchanged from latest, only 6 back hand cels changed, saved readback equals candidate, inverse verified on data copy, project reopens and renders, GIF frames and durations verified.",
+    "sharedProjectBefore": "674d8fe5bd3ef0327bc386a84c322d58e321139ec0a6a0227967d4b208946785",
+    "sharedProjectAfter": "674d8fe5bd3ef0327bc386a84c322d58e321139ec0a6a0227967d4b208946785",
+    "preview": "animation.gif"
+  }
+]
