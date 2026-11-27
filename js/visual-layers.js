@@ -233,7 +233,20 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
       for(const icon of icons)icon.onclick=()=>{state.textContent=(l.inheritedBase?'头部 / 身体跟随主工程':backBang?'背面不显示 · 正面缩略图':(l.visible?'已显示':'已隐藏')+(l.locked?' · 锁定':''))+(p._soloLayer===l?' · 独显中':'');choose.textContent=index===p.currentLayerIndex?'已选中':l.visible?'选择':'选用';row.classList.toggle('part-visible',!!l.visible);row.classList.toggle('part-soloed',p._soloLayer===l);app.animationPlayer._renderPreviewFrame();};
       const renameButton=element('button','part-choose part-rename','改名');renameButton.type='button';renameButton.setAttribute('aria-label','重命名 '+l.name);renameButton.disabled=!!l.inheritedBase||PE.isHandLayer(l);renameButton.title=renameButton.disabled?'同步底稿请到主工程修改':'款式改名不改变像素或层序；写其他部件类型（如后发）会重新分类归位';renameButton.onclick=rename;
-      const actions=element('div','part-card-actions');if(star)actions.append(star);actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
+      let quickExport=null;
+      if(favorite&&['头发','衣服'].includes(favorite.category)){
+        quickExport=element('button','part-choose part-quick-export','导出');
+        quickExport.type='button';
+        quickExport.title=`一键导出整件「${favorite.name}」全部动作到游戏资产（快捷键 Ctrl+Shift+E）`;
+        quickExport.setAttribute('aria-label',`一键导出${favorite.category}：${favorite.name}`);
+        quickExport.onclick=async event=>{
+          event.stopPropagation();
+          quickExport.disabled=true;
+          try{await this.quickExportAsset(index);}
+          finally{quickExport.disabled=false;}
+        };
+      }
+      const actions=element('div','part-card-actions');if(star)actions.append(star);if(quickExport)actions.append(quickExport);actions.append(choose,renameButton,...icons);if(remove)actions.append(remove);main.append(label,state,actions);
       if(slot==='后发'){
         const erase=element('button','part-choose part-erase-overlap','避开头身');erase.type='button';erase.title='仅当前帧：擦除与头部、身体重叠的头发；不处理手臂，可撤销。遵守选区和像素锁。';erase.setAttribute('aria-label',l.name+'一键避开头部身体（当前帧）');erase.disabled=!!(l.locked||l.inheritedBase||!PE.isLayerVisible(p,l,p.currentSheetIndex));
         erase.onclick=event=>{event.stopPropagation();try{const count=V.eraseOverlap(this,index);if(!count)alert('没有可擦除的重叠像素（请检查当前帧、选区和锁定状态）');}catch(error){alert(error.message);}};actions.append(erase);

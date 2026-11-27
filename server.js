@@ -22,6 +22,17 @@ const bodySync=require('./js/body-sync.cjs');
 const characterBase=require('./js/character-base.js');
 const CHARACTER_BASE_ID='base-outlined-1794365455561';
 const CHARACTER_BASE_FILE=path.join(DATA_DIR,'projects',CHARACTER_BASE_ID+'.json');
+const ASSET_EXPORT_ROOTS={
+  '头发':'E:\\工作\\0000-游戏\\最后\\游戏资产\\人物\\头发',
+  '衣服':'E:\\工作\\0000-游戏\\最后\\游戏资产\\人物\\服装'
+};
+const RESERVED_ASSET_DIRS=new Set(['npc专属','工作']);
+const PNG_MAGIC=Buffer.from([0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A]);
+function safeSingleSegment(name){
+  const s=String(name||'').trim();
+  if(!s||s==='.'||s==='..'||s.length>80||/[\\/:*?"<>|\x00-\x1f]/.test(s))return '';
+  return s;
+}
 const hasCharacterBase=()=>fs.existsSync(CHARACTER_BASE_FILE);
 function syncCharacter(project){
   const splitBase=hasCharacterBase(),file=splitBase?CHARACTER_BASE_FILE:PROJECT_FILE;
@@ -89,6 +100,50 @@ const server = http.createServer((req, res) => {
       const folder=path.join(DATA_DIR,'projects');
       const projects=fs.existsSync(folder)?fs.readdirSync(folder).filter(n=>/^[a-z0-9-]{1,80}\.json$/.test(n)).map(n=>({id:n.slice(0,-5),name:JSON.parse(fs.readFileSync(path.join(folder,n),'utf8')).name})):[];
       res.end(JSON.stringify([{id:'main',name:'人物主工程'},...projects]));return;
+    }
+    if(reqPath==='/api/export-asset'){
+      if(req.method!=='POST'){res.writeHead(405);res.end('{"error":"Method not allowed"}');return;}
+      if(req.headers['x-pixel-editor']!=='1'){res.writeHead(403);res.end('{"error":"Missing editor header"}');return;}
+      const chunks=[];let size=0,tooLarge=false;
+      req.on('data',chunk=>{size+=chunk.length;if(size>64*1024*1024){if(!tooLarge){tooLarge=true;res.writeHead(413);res.end('{"error":"Export payload too large"}');}return;}chunks.push(chunk);});
+      req.on('end',()=>{
+        if(tooLarge)return;
+        let payload;
+        try{payload=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{res.writeHead(400);res.end('{"error":"Invalid JSON"}');return;}
+        const rootDir=ASSET_EXPORT_ROOTS[payload?.category];
+        if(!rootDir){res.writeHead(400);res.end('{"error":"仅支持导出头发或衣服"}');return;}
+        const folderName=safeSingleSegment(payload?.name);
+        if(!folderName||RESERVED_ASSET_DIRS.has(folderName)){res.writeHead(400);res.end('{"error":"导出名称无效或为保留目录名"}');return;}
+        const files=payload?.files;
+        if(!Array.isArray(files)||!files.length||files.length>64){res.writeHead(400);res.end('{"error":"没有可导出的动作文件"}');return;}
+        const rootResolved=path.resolve(rootDir),targetDir=path.resolve(rootResolved,folderName);
+        if(path.dirname(targetDir)!==rootResolved){res.writeHead(400);res.end('{"error":"目标目录越界"}');return;}
+        const prepared=[];
+        for(const item of files){
+          const fileName=safeSingleSegment(item?.name);
+          if(!fileName||!fileName.endsWith('.png')||typeof item?.dataURL!=='string'||!item.dataURL.startsWith('data:image/png;base64,')){
+            res.writeHead(400);res.end('{"error":"存在无效的PNG导出项"}');return;
+          }
+          const targetFile=path.resolve(targetDir,fileName);
+          if(path.dirname(targetFile)!==targetDir){res.writeHead(400);res.end('{"error":"文件路径越界"}');return;}
+          const buf=Buffer.from(item.dataURL.slice('data:image/png;base64,'.length),'base64');
+          if(buf.length<PNG_MAGIC.length||!buf.subarray(0,PNG_MAGIC.length).equals(PNG_MAGIC)){
+            res.writeHead(400);res.end('{"error":"PNG数据损坏"}');return;
+          }
+          prepared.push({fileName,targetFile,buf});
+        }
+        try{
+          fs.mkdirSync(targetDir,{recursive:true});
+          for(const {targetFile,buf} of prepared){
+            const temp=targetFile+'.tmp';
+            fs.writeFileSync(temp,buf);
+            fs.renameSync(temp,targetFile);
+          }
+          res.end(JSON.stringify({exported:true,category:payload.category,name:folderName,dir:targetDir,files:prepared.map(p=>p.fileName)}));
+        }catch(error){
+          res.writeHead(500);res.end(JSON.stringify({error:'写入游戏资产目录失败：'+error.message}));
+        }
+      });return;
     }
     if(reqPath!=='/api/project'){res.writeHead(404);res.end('{}');return;}
     const params=new URL(req.url,'http://localhost').searchParams;

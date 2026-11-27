@@ -766,7 +766,13 @@ window.PE = window.PE || {};
             if (!e.repeat) this.groupSelectedLayers();
             return;
           }
-          // Ctrl+E 就是合并：多选时合并所选图层，单选时向下合并；Ctrl+Shift+E / Alt 留给“合并可见图层”。
+          // Ctrl+Shift+E：一键导出当前选中的头发或衣服到游戏资产目录
+          if (e.key.toLowerCase() === 'e' && e.shiftKey && !e.altKey) {
+            e.preventDefault();
+            if (!e.repeat) this.quickExportAsset?.();
+            return;
+          }
+          // Ctrl+E 就是合并：多选时合并所选图层，单选时向下合并
           if (['j', 'e'].includes(e.key.toLowerCase())) {
             if (e.shiftKey || e.altKey) return;
             e.preventDefault();

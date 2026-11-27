@@ -169,6 +169,21 @@ document.addEventListener('DOMContentLoaded',()=>{
     notify('已把「'+source.name+'」合并到「'+target.name+'」');
   };
 
+  /* Ctrl+Shift+E / 顶部按钮：一键导出选中的头发或衣服全部动作到游戏资产目录。 */
+  let exportingAsset=false;
+  app.quickExportAsset=async function(layerIndex=null){
+    if(exportingAsset){notify('正在导出，请稍候…');return null;}
+    exportingAsset=true;
+    try{
+      return await this.exportManager.exportGameAsset(layerIndex);
+    }catch(error){
+      notify('导出失败：'+(error&&error.message||'未知错误'));
+      return null;
+    }finally{
+      exportingAsset=false;
+    }
+  };
+
   /* 图层面板上的快捷按钮，和快捷键共用同一实现。 */
   const header=document.querySelector('.layer-header-actions');
   if(header){
@@ -179,10 +194,11 @@ document.addEventListener('DOMContentLoaded',()=>{
       b.textContent=text;
       b.title=title;
       b.setAttribute('aria-label',title);
-      b.onclick=()=>{try{app[handler]();}catch(error){notify(error&&error.message||'操作失败');}};
+      b.onclick=()=>{try{const r=app[handler]();if(r&&typeof r.catch==='function')r.catch(error=>notify(error&&error.message||'操作失败'));}catch(error){notify(error&&error.message||'操作失败');}};
       header.append(b);
       return b;
     };
     add('复制图层','复制当前图层；有选区时仅复制选区到新图层（Ctrl+J）','duplicateCurrentLayer');
+    add('一键导出','一键导出当前选中的头发或衣服全部动作到游戏资产目录（Ctrl+Shift+E）','quickExportAsset');
   }
 });

@@ -377,6 +377,100 @@ window.PE = window.PE || {};
     }
 
     /**
+     * One-click export selected hair or clothing (all actions) directly into game asset directory
+     * @param {number|null} layerIndex
+     */
+    async exportGameAsset(layerIndex = null) {
+      const p=this.project,W=PE.Wardrobe;
+      if(!p||!W)throw new Error('当前无活动工程可导出');
+      const selected=layerIndex===null?p.layers[p.currentLayerIndex]:p.layers[layerIndex];
+      const desc=W.favoriteOf?.(selected);
+      if(!desc||!['头发','衣服'].includes(desc.category))throw new Error('请先选中头发或衣服图层再一键导出');
+      const folderName=this._sanitizeFilename(desc.name);
+      if(!folderName)throw new Error('部件名称无效，请先给该图层命名');
+
+      const members=p.layers.filter(l=>!l.isGroup&&W.favoriteOf?.(l)?.group===desc.group);
+      const actionMap={walk:'行走',idle:'待机',pickup:'拾取',sit:'坐姿'};
+      const files=[],used=new Set();
+
+      for(let si=0;si<p.spriteSheets.length;si++){
+        const sheet=p.spriteSheets[si];
+        if(!sheet||(PE.isEditorSheet&&!PE.isEditorSheet(sheet))||PE.VisualLayers?.isIdleCopy?.(sheet))continue;
+        const sheetMembers=members.filter(l=>l.sheetIndex===undefined||l.sheetIndex===si);
+        if(!sheetMembers.length)continue;
+
+        const rawAction=String(sheet.name||'').replace(/^original(?:16|32)_/,'');
+        const actionName=this._sanitizeFilename(actionMap[rawAction]||rawAction);
+        if(!actionName||used.has(actionName))continue;
+
+        let actionIndices=sheet.actions.map((_,ai)=>ai);
+        if(rawAction==='sit'){
+          const sideIdx=sheet.actions.findIndex(a=>a.direction==='side');
+          if(sideIdx>=0)actionIndices=[sideIdx];
+        }
+        const cols=Math.max(0,...actionIndices.map(ai=>sheet.actions[ai]?.frames?.length||0));
+        const rows=actionIndices.length;
+        if(!cols||!rows)continue;
+
+        let scale=1;
+        for(const l of sheetMembers)for(const [k,d]of l.frameData.entries()){
+          if(!k.startsWith(si+'_')||!d?.placement)continue;
+          scale=Math.max(scale,Math.ceil(d.width/d.placement.w),Math.ceil(d.height/d.placement.h));
+        }
+        const frames=actionIndices.flatMap(ai=>sheet.actions[ai].frames||[]);
+        if(!frames.length)continue;
+        const logicalW=Math.max(...frames.map(f=>f.width)),logicalH=Math.max(...frames.map(f=>f.height));
+        const fw=logicalW*scale,fh=logicalH*scale;
+        if(cols*fw>32767||rows*fh>32767||cols*fw*rows*fh>16*1024*1024)throw new Error(`动作「${actionName}」画布过大，无法导出`);
+
+        const canvas=document.createElement('canvas');
+        canvas.width=cols*fw;canvas.height=rows*fh;
+        const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+        const tmp=document.createElement('canvas');tmp.width=fw;tmp.height=fh;
+        const tc=tmp.getContext('2d');tc.imageSmoothingEnabled=false;
+        let nonempty=false;
+
+        for(let rowIdx=0;rowIdx<rows;rowIdx++){
+          const ai=actionIndices[rowIdx],action=sheet.actions[ai];
+          const renderLayers=PE.getRenderLayers(p,si,ai).filter(l=>sheetMembers.includes(l));
+          for(let fi=0;fi<action.frames.length;fi++){
+            const key=p.getFrameKey(si,ai,fi);
+            for(const l of renderLayers){
+              const alpha=l.opacity===undefined?1:Math.max(0,Math.min(1,l.opacity));
+              if(alpha<=0)continue;
+              const image=l.getFrameData(key);
+              if(!image||!image.data?.some((v,i)=>i%4===3&&v))continue;
+              tc.clearRect(0,0,fw,fh);
+              PE.utils.drawImageData(tc,image,0,0,scale);
+              ctx.globalAlpha=alpha;
+              ctx.drawImage(tmp,fi*fw,rowIdx*fh);
+              nonempty=true;
+            }
+          }
+        }
+        ctx.globalAlpha=1;
+        if(!nonempty)continue;
+        used.add(actionName);
+        files.push({name:actionName+'.png',dataURL:canvas.toDataURL('image/png')});
+      }
+
+      if(!files.length)throw new Error(`「${desc.name}」当前没有可导出的动作像素`);
+      const persistence=PE.app?.persistence;
+      const base=persistence?.base||'';
+      const headers={...(persistence?.headers||{'X-Pixel-Editor':'1'}),'Content-Type':'application/json'};
+      const res=await fetch(base+'/api/export-asset',{
+        method:'POST',
+        headers,
+        body:JSON.stringify({category:desc.category,name:folderName,files})
+      });
+      const result=await res.json().catch(()=>({}));
+      if(!res.ok)throw new Error(result.error||`导出失败（HTTP ${res.status}）`);
+      const msg=`已导出「${result.name}」（${result.files.length}个动作）→ ${result.dir}`;
+      this.notifyExport(msg);
+      return result;
+    }
+
+    /**
      * Save complete project as JSON Blob and trigger download
      * @returns {Blob}
      */
