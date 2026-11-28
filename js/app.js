@@ -503,7 +503,10 @@ window.PE = window.PE || {};
       if (exportSheetBtn) {
         exportSheetBtn.addEventListener('click', async () => {
           try {
-            await this.exportManager.exportSpriteSheet(this.project.currentSheetIndex);
+            const si = this.project.currentSheetIndex;
+            if (!await PE.exportScenePng?.(this, [si, 0, 0], false, true)) {
+              await this.exportManager.exportSpriteSheet(si);
+            }
           } catch (error) {
             alert('PNG 导出失败：' + error.message);
           }

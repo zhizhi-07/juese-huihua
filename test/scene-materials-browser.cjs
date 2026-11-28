@@ -179,6 +179,18 @@ await page.getByRole('button',{name:'保存工程',exact:true}).click();
 assert.equal((await delSave).status(),200);
 await page.waitForFunction(()=>!PE.app.persistence.dirty);
 assert.equal(puts,2);
+assert.match(await page.locator('#save-status').textContent(),/已保存工程并写入 PNG：旅馆\/台灯\.png/);
+const savedLamp=await page.evaluate(async()=>{
+  const root=await navigator.storage.getDirectory(),dir=await root.getDirectoryHandle('旅馆');
+  const f=await (await dir.getFileHandle('台灯.png')).getFile();
+  return [...new Uint8Array(await f.arrayBuffer())];
+});
+const expectedLamp=await page.evaluate(async()=>{
+  const {exportManager:e}=PE.app;
+  return [...new Uint8Array(await (await e.exportFrameAsBlob(1,0,0)).arrayBuffer())];
+});
+assert.deepEqual(savedLamp,expectedLamp,'clicking Save Project must write updated PNG into the selected folder');
+assert.notDeepEqual(savedLamp,lamp,'folder PNG must reflect the newly drawn pixels after Save Project');
 assert.deepEqual(errors,[]);
 console.log('PASS: inn URL; rename, delete with sheetIndex reindex, project folder and individual binding survive reload. API intercepted.');
 }finally{await browser.close();}

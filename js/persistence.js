@@ -73,7 +73,7 @@ PE.ProjectPersistence=class {
     }
   }
   schedule(){clearTimeout(this.timer);}
-  markDirty(){if(!this.ready||this.app.suspendBackup)return;this.dirty=true;this.version++;if(this.conflict)this.show('共享版本有更新 · 本地草稿待保存',true);else{this.show('未保存 · 点击保存或 Ctrl+S');}}
+  markDirty(){if(!this.ready||this.app.suspendBackup)return;this.dirty=true;this.version++;PE.markSceneSheetDirty?.(this.app);if(this.conflict)this.show('共享版本有更新 · 本地草稿待保存',true);else{this.show('未保存 · 点击保存或 Ctrl+S');}}
   async seed(){this.ready=true;this.dirty=true;this.show('未保存 · 点击保存或 Ctrl+S');return false;}
   saveNow(){
     if(!this.ready||this.app.suspendBackup||this.resolving)return Promise.resolve(false);
@@ -83,6 +83,8 @@ PE.ProjectPersistence=class {
     return this.saving;
   }
   async performSave(){
+    let pngPlan=null,pngError=null;
+    if(!this.conflict){try{pngPlan=await PE.prepareScenePngSave?.(this.app);}catch(error){pngError=error;}}
     const version=this.version,blob=this.app.exportManager.exportProject(false);let localSaved=false;
     try{await this.localWrite(blob,true);localSaved=true;}catch(error){console.error(error);}
     if(this.conflict){this.show('共享版本冲突 · 请处理保存冲突',true);this.openConflictDialog();return false;}
@@ -91,7 +93,21 @@ PE.ProjectPersistence=class {
       if(response.status===409){this.conflict=true;this.show('共享版本有更新 · 本地草稿已保留',true);return false;}
       if(!response.ok)throw new Error('共享保存失败：'+response.status);
       this.revision=response.headers.get('ETag');await this.localWrite(blob,false).catch(console.error);
-      if(version===this.version){this.dirty=false;this.show('已保存到本地共享工程 · '+new Date().toLocaleTimeString());}else this.show('还有新修改未保存 · 请再次保存');
+      let written=null;
+      if(pngPlan&&!pngError){try{written=await PE.commitScenePngSave?.(this.app,pngPlan);}catch(error){pngError=error;}}
+      if(version===this.version){
+        this.dirty=false;
+        if(pngError){
+          const msg='工程已保存，但导出位置未写入：'+pngError.message;
+          this.app.exportManager.notifyExport?.(msg);
+          this.show(msg,true);
+        }else if(written?.length){
+          const label=written.length===1?written[0]:`${written[0]} 等 ${written.length} 个 PNG`;
+          this.show('已保存工程并写入 PNG：'+label+' · '+new Date().toLocaleTimeString());
+        }else{
+          this.show('已保存到本地共享工程 · '+new Date().toLocaleTimeString());
+        }
+      }else this.show('还有新修改未保存 · 请再次保存');
       return true;
     }catch(error){this.show(localSaved?'本地已保存 · 共享未连接':'保存失败 · 请导出工程',true);console.error(error);return false;}
   }
